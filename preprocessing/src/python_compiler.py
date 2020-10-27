@@ -4,14 +4,11 @@ import dis
 import pathlib
 import io
 import tqdm
+import warnings
 
 
 def python_to_bytecode_from_file(
-    input_file,
-    output_file,
-    content="content",
-    progress_bar=None,
-    filter_file=None,
+    input_file, output_file, content="content", progress_bar=None, filter_file=None,
 ):
     """
     Reads json objects and converts contents member from python to bytecode.
@@ -20,7 +17,9 @@ def python_to_bytecode_from_file(
         json_obj = json.loads(line)
         with io.StringIO() as output_buffer:
             try:
-                dis.dis(json_obj[content], file=output_buffer)
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore")
+                    dis.dis(json_obj[content], file=output_buffer)
                 json_obj[content] = output_buffer.getvalue()
                 output_file.write(json.dumps(json_obj) + "\n")
                 if filter_file is not None:
@@ -36,11 +35,7 @@ def python_to_bytecode_from_file(
 
 
 def python_to_bytecode(
-    input_path,
-    output_path,
-    content="content",
-    progress_bar=True,
-    filter_path=None,
+    input_path, output_path, content="content", progress_bar=True, filter_path=None,
 ):
     if isinstance(input_path, str):
         input_path = pathlib.PurePath(input_path)
