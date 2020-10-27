@@ -125,13 +125,13 @@ def make_arg_string(argtype, argval):
     return f'{argtype} {argval} {"[ ]" * dim}'
 
 
-def convert_filled_arguments(script_model, f, lang, f_name=None):
+def convert_filled_arguments(script_model, ref, f, lang, f_name=None):
     assert lang in {'java', 'cpp'}
     header = []
     detokenizer = getattr(code_tokenizer, f'detokenize_{lang}')
     arguments_extractor = getattr(code_tokenizer, f'extract_arguments_{lang}')
-    arguments_gold = arguments_extractor(script_model)
-    return_type_gold = get_return_type(script_model)
+    arguments_gold = arguments_extractor(ref)
+    return_type_gold = get_return_type(ref)
 
     arguments_filled = arguments_extractor(f)
     return_type_filled = get_return_type(f)
@@ -240,7 +240,7 @@ def submit_functions(functions_list, id, ref, lang, outfolder, script_folder, re
             elif retry_mismatching_types and lang in {'cpp', 'java'}:
                 try:
                     script_transform_args = convert_filled_arguments(
-                        script_model, f_fill, lang, f_name=f_name)
+                        script_model, ref, f_fill, lang, f_name=f_name)
                 except KeyboardInterrupt:
                     raise
                 except:
