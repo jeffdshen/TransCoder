@@ -1,0 +1,232 @@
+(pytorch_latest_p36) ubuntu@ip-172-31-6-122:~/TransCoder$ python XLM/train.py --n_heads 8 --bt_steps 'python_sa-cpp_sa-python_sa,cpp_sa-python_sa-cpp_sa' --max_vocab '-1'  --word_blank '0.1' --n_layers 6  --generate_hypothesis true --max_len 512 --bptt 256  --fp16 true --share_inout_emb true --tokens_per_batch 6000 --has_sentences_ids true --eval_bleu true  --split_data false  --data_path 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test'  --eval_computation true --batch_size 32 --reload_model 'model_2.pth,model_2.pth'  --amp 2  --max_batch_size 128 --ae_steps 'cpp_sa,python_sa,java_sa' --emb_dim 1024 --eval_only True --beam_size 10 --retry_mistmatching_types 1 --dump_path '/tmp/' --exp_name='eval_final_model_wc_30' --lgs 'cpp_sa-java_sa-python_sa' --encoder_only=False
+SLURM job: False
+0 - Number of nodes: 1
+0 - Node ID        : 0
+0 - Local rank     : 0
+0 - Global rank    : 0
+0 - World size     : 1
+0 - GPUs per node  : 1
+0 - Master         : True
+0 - Multi-node     : False
+0 - Multi-GPU      : False
+0 - Hostname       : ip-172-31-6-122
+INFO - 10/14/20 22:26:34 - 0:00:00 - ============ Initialized logger ============
+INFO - 10/14/20 22:26:34 - 0:00:00 - accumulate_gradients: 1
+                                     ae_steps: ['cpp_sa', 'python_sa', 'java_sa']
+                                     amp: 2
+                                     attention_dropout: 0
+                                     batch_size: 32
+                                     beam_size: 10
+                                     bptt: 256
+                                     bt_sample_temperature: 0
+                                     bt_src_langs: ['python_sa', 'cpp_sa']
+                                     bt_steps: [('python_sa', 'cpp_sa', 'python_sa'), ('cpp_sa', 'python_sa', 'cpp_sa')]
+                                     clip_grad_norm: 5
+                                     clm_steps: []
+                                     command: python XLM/train.py --n_heads 8 --bt_steps 'python_sa-cpp_sa-python_sa,cpp_sa-python_sa-cpp_sa' --max_vocab '-1' --word_blank '0.1' --n_layers 6 --generate_hypothesis true --max_len 512 --bptt 256 --fp16 true --share_inout_emb true --tokens_per_batch 6000 --has_sentences_ids true --eval_bleu true --split_data false --data_path 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test' --eval_computation true --batch_size 32 --reload_model 'model_2.pth,model_2.pth' --amp 2 --max_batch_size 128 --ae_steps 'cpp_sa,python_sa,java_sa' --emb_dim 1024 --eval_only True --beam_size 10 --retry_mistmatching_types 1 --dump_path '/tmp/' --exp_name=eval_final_model_wc_30 --lgs 'cpp_sa-java_sa-python_sa' --encoder_only=False --exp_id "je67el4yfg"
+                                     context_size: 0
+                                     data_path: data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test
+                                     debug: False
+                                     debug_slurm: False
+                                     debug_train: False
+                                     dropout: 0
+                                     dump_path: /tmp/eval_final_model_wc_30/je67el4yfg
+                                     early_stopping: False
+                                     emb_dim: 1024
+                                     emb_dim_decoder: 1024
+                                     emb_dim_encoder: 1024
+                                     encoder_only: False
+                                     epoch_size: 100000
+                                     eval_bleu: True
+                                     eval_bleu_test_only: False
+                                     eval_computation: True
+                                     eval_only: True
+                                     eval_temperature: None
+                                     exp_id: je67el4yfg
+                                     exp_name: eval_final_model_wc_30
+                                     fp16: True
+                                     gelu_activation: False
+                                     gen_tpb_multiplier: 1
+                                     generate_hypothesis: True
+                                     global_rank: 0
+                                     group_by_size: True
+                                     has_sentences_ids: True
+                                     id2lang: {0: 'cpp_sa', 1: 'java_sa', 2: 'python_sa'}
+                                     is_master: True
+                                     is_slurm_job: False
+                                     lambda_ae: 1
+                                     lambda_bt: 1
+                                     lambda_clm: 1
+                                     lambda_mlm: 1
+                                     lambda_mt: 1
+                                     lang2id: {'cpp_sa': 0, 'java_sa': 1, 'python_sa': 2}
+                                     langs: ['cpp_sa', 'java_sa', 'python_sa']
+                                     length_penalty: 1
+                                     lg_sampling_factor: -1
+                                     lgs: cpp_sa-java_sa-python_sa
+                                     local_rank: 0
+                                     master_port: -1
+                                     max_batch_size: 128
+                                     max_epoch: 100000
+                                     max_len: 512
+                                     max_vocab: -1
+                                     min_count: 0
+                                     mlm_steps: []
+                                     mono_dataset: {'cpp_sa': {'train': 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/train.cpp_sa.pth', 'valid': 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.cpp_sa.pth', 'test': 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.cpp_sa.pth'}, 'java_sa': {'train': 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/train.java_sa.pth', 'valid': 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.java_sa.pth', 'test': 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.java_sa.pth'}, 'python_sa': {'train': 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/train.python_sa.pth', 'valid': 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.python_sa.pth', 'test': 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.python_sa.pth'}}
+                                     mt_steps: []
+                                     multi_gpu: False
+                                     multi_node: False
+                                     n_gpu_per_node: 1
+                                     n_heads: 8
+                                     n_langs: 3
+                                     n_layers: 6
+                                     n_layers_decoder: 6
+                                     n_layers_encoder: 6
+                                     n_nodes: 1
+                                     n_share_dec: 0
+                                     node_id: 0
+                                     number_samples: 1
+                                     optimizer: adam,lr=0.0001
+                                     para_dataset: {('cpp_sa', 'python_sa'): {'valid': ('data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.cpp_sa-python_sa.cpp_sa.pth', 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.cpp_sa-python_sa.python_sa.pth'), 'test': ('data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.cpp_sa-python_sa.cpp_sa.pth', 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.cpp_sa-python_sa.python_sa.pth')}}
+                                     reload_checkpoint: 
+                                     reload_emb: 
+                                     reload_model: model_2.pth,model_2.pth
+                                     retry_mistmatching_types: True
+                                     sample_alpha: 0
+                                     save_periodic: 0
+                                     separate_decoders: False
+                                     share_inout_emb: True
+                                     sinusoidal_embeddings: False
+                                     split_data: False
+                                     split_data_accross_gpu: local
+                                     stopping_criterion: 
+                                     tokens_per_batch: 6000
+                                     use_lang_emb: True
+                                     validation_metrics: 
+                                     word_blank: 0.1
+                                     word_dropout: 0
+                                     word_keep: 0.1
+                                     word_mask: 0.8
+                                     word_mask_keep_rand: 0.8,0.1,0.1
+                                     word_pred: 0.15
+                                     word_rand: 0.1
+                                     word_shuffle: 0
+                                     world_size: 1
+INFO - 10/14/20 22:26:34 - 0:00:00 - The experiment will be stored in /tmp/eval_final_model_wc_30/je67el4yfg
+                                     
+INFO - 10/14/20 22:26:34 - 0:00:00 - Running command: python XLM/train.py --n_heads 8 --bt_steps 'python_sa-cpp_sa-python_sa,cpp_sa-python_sa-cpp_sa' --max_vocab '-1' --word_blank '0.1' --n_layers 6 --generate_hypothesis true --max_len 512 --bptt 256 --fp16 true --share_inout_emb true --tokens_per_batch 6000 --has_sentences_ids true --eval_bleu true --split_data false --data_path 'data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test' --eval_computation true --batch_size 32 --reload_model 'model_2.pth,model_2.pth' --amp 2 --max_batch_size 128 --ae_steps 'cpp_sa,python_sa,java_sa' --emb_dim 1024 --eval_only True --beam_size 10 --retry_mistmatching_types 1 --dump_path '/tmp/' --exp_name=eval_final_model_wc_30 --lgs 'cpp_sa-java_sa-python_sa' --encoder_only=False
+
+WARNING - 10/14/20 22:26:34 - 0:00:00 - Signal handler installed.
+INFO - 10/14/20 22:26:34 - 0:00:00 - ============ Monolingual data (cpp_sa)
+INFO - 10/14/20 22:26:34 - 0:00:00 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.cpp_sa.pth ...
+INFO - 10/14/20 22:26:35 - 0:00:00 - 545764 words (63961 unique) in 2541 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:35 - 0:00:00 - Removed 0 empty sentences.
+
+INFO - 10/14/20 22:26:35 - 0:00:00 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.cpp_sa.pth ...
+INFO - 10/14/20 22:26:35 - 0:00:00 - 820038 words (63961 unique) in 2852 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:35 - 0:00:00 - Removed 0 empty sentences.
+
+INFO - 10/14/20 22:26:35 - 0:00:00 - ============ Monolingual data (java_sa)
+INFO - 10/14/20 22:26:35 - 0:00:00 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.java_sa.pth ...
+INFO - 10/14/20 22:26:35 - 0:00:00 - 125908 words (63961 unique) in 912 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:35 - 0:00:00 - Removed 0 empty sentences.
+
+INFO - 10/14/20 22:26:35 - 0:00:00 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.java_sa.pth ...
+INFO - 10/14/20 22:26:35 - 0:00:00 - 88101 words (63961 unique) in 646 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:35 - 0:00:01 - Removed 0 empty sentences.
+
+INFO - 10/14/20 22:26:35 - 0:00:01 - ============ Monolingual data (python_sa)
+INFO - 10/14/20 22:26:35 - 0:00:01 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.python_sa.pth ...
+INFO - 10/14/20 22:26:35 - 0:00:01 - 666641 words (63961 unique) in 2634 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:35 - 0:00:01 - Removed 0 empty sentences.
+
+INFO - 10/14/20 22:26:35 - 0:00:01 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.python_sa.pth ...
+INFO - 10/14/20 22:26:35 - 0:00:01 - 568798 words (63961 unique) in 2664 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:35 - 0:00:01 - Removed 0 empty sentences.
+
+
+INFO - 10/14/20 22:26:35 - 0:00:01 - ============ Parallel data (cpp_sa-python_sa)
+INFO - 10/14/20 22:26:35 - 0:00:01 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.cpp_sa-python_sa.cpp_sa.pth ...
+INFO - 10/14/20 22:26:35 - 0:00:01 - 61937 words (63961 unique) in 470 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:35 - 0:00:01 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/valid.cpp_sa-python_sa.python_sa.pth ...
+INFO - 10/14/20 22:26:35 - 0:00:01 - 63023 words (63961 unique) in 470 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:36 - 0:00:01 - Removed 0 empty sentences.
+INFO - 10/14/20 22:26:36 - 0:00:01 - Removed 0 empty sentences.
+INFO - 10/14/20 22:26:36 - 0:00:01 - Removed 1 too long sentences.
+
+INFO - 10/14/20 22:26:36 - 0:00:01 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.cpp_sa-python_sa.cpp_sa.pth ...
+INFO - 10/14/20 22:26:36 - 0:00:01 - 127240 words (63961 unique) in 948 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:36 - 0:00:01 - Loading data from data/XLM-cpp-java-python-with-comments-functions-sa-cl-split-test/test.cpp_sa-python_sa.python_sa.pth ...
+INFO - 10/14/20 22:26:36 - 0:00:01 - 130820 words (63961 unique) in 948 sentences. 0 unknown words (0 unique) covering 0.00% of the data.
+INFO - 10/14/20 22:26:36 - 0:00:01 - Removed 0 empty sentences.
+INFO - 10/14/20 22:26:36 - 0:00:01 - Removed 0 empty sentences.
+INFO - 10/14/20 22:26:36 - 0:00:01 - Removed 6 too long sentences.
+
+
+INFO - 10/14/20 22:26:36 - 0:00:01 - ============ Data summary
+INFO - 10/14/20 22:26:36 - 0:00:01 - Monolingual data   - valid -       cpp_sa:      2541
+INFO - 10/14/20 22:26:36 - 0:00:01 - Monolingual data   -  test -       cpp_sa:      2852
+INFO - 10/14/20 22:26:36 - 0:00:01 - Monolingual data   - valid -      java_sa:       912
+INFO - 10/14/20 22:26:36 - 0:00:01 - Monolingual data   -  test -      java_sa:       646
+INFO - 10/14/20 22:26:36 - 0:00:01 - Monolingual data   - valid -    python_sa:      2634
+INFO - 10/14/20 22:26:36 - 0:00:01 - Monolingual data   -  test -    python_sa:      2664
+INFO - 10/14/20 22:26:36 - 0:00:01 - Parallel data      - valid - cpp_sa-python_sa:       469
+INFO - 10/14/20 22:26:36 - 0:00:01 - Parallel data      -  test - cpp_sa-python_sa:       942
+
+INFO - 10/14/20 22:26:42 - 0:00:07 - Reloading encoder from model_2.pth ...
+INFO - 10/14/20 22:26:44 - 0:00:10 - Reloading decoders from model_2.pth ...
+INFO - 10/14/20 22:26:45 - 0:00:11 - Number of parameters (encoder): 142191065
+INFO - 10/14/20 22:26:45 - 0:00:11 - Number of parameters (decoders): 167393753
+INFO - 10/14/20 22:26:45 - 0:00:11 - Number of decoders: 1
+INFO - 10/14/20 22:26:45 - 0:00:11 - Found 264 parameters in model.
+INFO - 10/14/20 22:26:45 - 0:00:11 - Optimizers: model
+Selected optimization level O2:  FP16 training with FP32 batchnorm and FP32 master weights.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O2
+cast_model_type        : torch.float16
+patch_torch_functions  : False
+keep_batchnorm_fp32    : True
+master_weights         : True
+loss_scale             : dynamic
+/home/ubuntu/anaconda3/envs/pytorch_latest_p36/lib/python3.6/site-packages/apex/amp/_initialize.py:25: UserWarning: An input tensor was not cuda.
+  warnings.warn("An input tensor was not cuda.")
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam0.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam1.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam2.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam3.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam4.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam5.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam6.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam7.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam8.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam9.txt
+INFO - 10/14/20 23:42:38 - 1:16:04 - Computation res valid cpp_sa python_sa : {"error": 70, "failure": 22, "identical_gold": 19, "script_not_found": 232, "success": 143, "timeout": 2, "total": 469, "total_evaluated": 237}
+/bin/sh: 1: /home/ubuntu/TransCoder/XLM/src/evaluation/multi-bleu.perl: Permission denied
+WARNING - 10/14/20 23:42:38 - 1:16:04 - Impossible to parse BLEU score! ""
+INFO - 10/14/20 23:42:38 - 1:16:04 - BLEU /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.cpp_sa-python_sa.valid_beam0.txt /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/ref.cpp_sa-python_sa.valid.txt : -1.000000
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam0.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam1.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam2.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam3.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam4.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam5.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam6.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam7.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam8.txt
+outputing hypotheses in /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam9.txt
+INFO - 10/15/20 01:15:08 - 2:48:33 - Computation res valid python_sa cpp_sa : {"error": 211, "failure": 0, "identical_gold": 20, "script_not_found": 238, "success": 20, "timeout": 0, "total": 469, "total_evaluated": 231}
+/bin/sh: 1: /home/ubuntu/TransCoder/XLM/src/evaluation/multi-bleu.perl: Permission denied
+WARNING - 10/15/20 01:15:08 - 2:48:33 - Impossible to parse BLEU score! ""
+INFO - 10/15/20 01:15:08 - 2:48:33 - BLEU /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/hyp0.python_sa-cpp_sa.valid_beam0.txt /tmp/eval_final_model_wc_30/je67el4yfg/hypotheses/ref.python_sa-cpp_sa.valid.txt : -1.000000
+
