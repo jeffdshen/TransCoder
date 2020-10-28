@@ -1,0 +1,17 @@
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - clang
+  - python=3.7
+  - pytorch
+  - six
+  - submitit
+  - tqdm
+  - pip
+  - pip:
+    - pylint==2.6.0
+    - sacrebleu==1.2.11
+    - xasm==1.1.0
+    - xdis==5.0.4
+

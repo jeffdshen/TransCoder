@@ -1,42 +1,113 @@
 import json
 import gzip
-import dis
+from xdis.disasm import disassemble_file
 import pathlib
 import io
 import tqdm
 import warnings
+import py_compile
+import multiprocessing as mp
+import tempfile
+import dis
 
 
-def python_to_bytecode_from_file(
-    input_file, output_file, content="content", progress_bar=None, filter_file=None,
+def python_to_bytecode(python_code, filename="a.py", tmp_dir="/tmp", asm_format="dis"):
+    try:
+        with io.StringIO() as output_buffer:    
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                if asm_format == "dis":
+                    dis.dis(python_code, file=output_buffer)
+                else:
+                    path = pathlib.PurePath(tmp_dir, filename)
+                    with open(path, "w") as file:
+                        file.write(python_code)
+
+                    pyc_path = py_compile.compile(path, dfile=filename, doraise=True, optimize=0)
+                    disassemble_file(pyc_path, outstream=output_buffer, asm_format=asm_format)
+            return output_buffer.getvalue()
+    except:
+        return None
+
+def python_to_bytecode_line(
+    line, input_content, output_content, filter_none=True, **kwargs
 ):
-    """
-    Reads json objects and converts contents member from python to bytecode.
-    """
+    json_obj = json.loads(line)
+    if input_content in json_obj:
+        bytecode = python_to_bytecode(json_obj[input_content], **kwargs)
+    else:
+        bytecode = None 
+
+    if filter_none and bytecode is None:
+        return None
+
+    json_obj[output_content] = bytecode
+    return json.dumps(json_obj) + "\n"
+
+
+def python_to_bytecode_worker(
+    input_queue, output_queue, input_content, output_content, **kwargs
+):
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        for line in iter(input_queue.get, None):
+            output_line = python_to_bytecode_line(
+                line, input_content, output_content, tmp_dir=tmp_dir, **kwargs
+            )
+            if output_line is not None:
+                output_queue.put(output_line)
+
+
+def python_to_bytecode_output_worker(output_queue, output_file):
+    for line in iter(output_queue.get, None):
+        output_file.write(line)
+
+
+def python_to_bytecode_dataset_helper(
+    input_file,
+    output_file,
+    input_content="content",
+    output_content="bytecode",
+    progress_bar=None,
+    num_processes=8,
+    input_queue_size=1000,
+    output_queue_size=1000,
+    **kwargs
+):
+    input_queue = mp.Queue(maxsize=input_queue_size)
+    output_queue = mp.Queue(maxsize=output_queue_size)
+
+    workers = []
+    for _ in range(num_processes):
+        workers.append(
+            mp.Process(
+                target=python_to_bytecode_worker,
+                args=(input_queue, output_queue, input_content, output_content),
+                kwargs=kwargs,
+            )
+        )
+        workers[-1].start()
+
+    writer = mp.Process(
+        target=python_to_bytecode_output_worker, args=(output_queue, output_file)
+    )
+    writer.start()
+
     for line in input_file:
-        json_obj = json.loads(line)
-        with io.StringIO() as output_buffer:
-            try:
-                with warnings.catch_warnings():
-                    warnings.simplefilter("ignore")
-                    dis.dis(json_obj[content], file=output_buffer)
-                json_obj[content] = output_buffer.getvalue()
-                output_file.write(json.dumps(json_obj) + "\n")
-                if filter_file is not None:
-                    filter_file.write(line)
-            except Exception:
-                # Most likely syntax error from Python 2
-                if filter_file is None:
-                    json_obj[content] = None
-                    output_file.write(json.dumps(json_obj) + "\n")
-                pass
+        input_queue.put(line)
+        if progress_bar is not None:
+            progress_bar.update(len(line.encode("utf-8")))
 
-        progress_bar.update(len(line.encode("utf-8")))
+    for _ in range(num_processes):
+        input_queue.put(None)
+
+    for p in workers:
+        p.join()
+
+    output_queue.put(None)
+    writer.join()
 
 
-def python_to_bytecode(
-    input_path, output_path, content="content", progress_bar=True, filter_path=None,
-):
+def python_to_bytecode_dataset(input_path, output_path, progress_bar=True, **kwargs):
     if isinstance(input_path, str):
         input_path = pathlib.PurePath(input_path)
     if isinstance(output_path, str):
@@ -44,37 +115,20 @@ def python_to_bytecode(
     input_fn = gzip.open if (input_path.suffix == ".gz") else open
     output_fn = gzip.open if (output_path.suffix == ".gz") else open
 
-    if filter_path is not None:
-        if isinstance(filter_path, str):
-            filter_path = pathlib.PurePath(filter_path)
-        filter_fn = gzip.open if (filter_path.suffix == ".gz") else open
-
     with input_fn(input_path, mode="rt") as input_file:
         with output_fn(output_path, mode="wt") as output_file:
             # use a dummy __enter__, __exit__ if progress_bar is False
             with (
-                filter_fn(filter_path, mode="wt")
-                if (filter_path is not None)
+                tqdm.tqdm(
+                    total=pathlib.Path(input_path).stat().st_size,
+                    unit="B",
+                    unit_scale=True,
+                    unit_divisor=1024,
+                )
+                if progress_bar
                 else io.StringIO()
-            ) as filter_file:
-                with (
-                    tqdm.tqdm(
-                        total=pathlib.Path(input_path).stat().st_size,
-                        unit="B",
-                        unit_scale=True,
-                        unit_divisor=1024,
-                    )
-                    if progress_bar
-                    else io.StringIO()
-                ) as pbar:
-                    filter_file_to_pass = (
-                        filter_file if filter_path is not None else None
-                    )
-                    pbar_to_pass = pbar if progress_bar else None
-                    python_to_bytecode_from_file(
-                        input_file,
-                        output_file,
-                        content=content,
-                        progress_bar=pbar_to_pass,
-                        filter_file=filter_file_to_pass,
-                    )
+            ) as pbar:
+                pbar_to_pass = pbar if progress_bar else None
+                python_to_bytecode_dataset_helper(
+                    input_file, output_file, progress_bar=pbar_to_pass, **kwargs
+                )
