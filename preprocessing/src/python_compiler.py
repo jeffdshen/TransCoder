@@ -1,6 +1,6 @@
 import json
 import gzip
-from xdis.disasm import disassemble_file
+import xdis.disasm as disasm
 import pathlib
 import io
 import tqdm
@@ -28,7 +28,7 @@ def python_to_bytecode(python_code, filename="a.py", tmp_dir="/tmp", asm_format=
                     pyc_path = py_compile.compile(
                         path, dfile=filename, doraise=True, optimize=0
                     )
-                    disassemble_file(
+                    disasm.disassemble_file(
                         pyc_path, outstream=output_buffer, asm_format=asm_format
                     )
             return output_buffer.getvalue()
@@ -84,34 +84,37 @@ def python_to_bytecode_dataset_helper(
     output_queue = mp.Queue(maxsize=output_queue_size)
 
     workers = []
-    for _ in range(num_processes):
-        workers.append(
-            mp.Process(
-                target=python_to_bytecode_worker,
-                args=(input_queue, output_queue, input_content, output_content),
-                kwargs=kwargs,
-            )
-        )
-        workers[-1].start()
-
     writer = mp.Process(
         target=python_to_bytecode_output_worker, args=(output_queue, output_file)
     )
-    writer.start()
 
-    for line in input_file:
-        input_queue.put(line)
-        if progress_bar is not None:
-            progress_bar.update(len(line.encode()))
+    try:
+        for _ in range(num_processes):
+            workers.append(
+                mp.Process(
+                    target=python_to_bytecode_worker,
+                    args=(input_queue, output_queue, input_content, output_content),
+                    kwargs=kwargs,
+                )
+            )
+            workers[-1].start()
 
-    for _ in range(num_processes):
-        input_queue.put(None)
+        writer.start()
 
-    for p in workers:
-        p.join()
+        for line in input_file:
+            input_queue.put(line)
+            if progress_bar is not None:
+                progress_bar.update(len(line.encode()))
 
-    output_queue.put(None)
-    writer.join()
+    finally:
+        for _ in range(num_processes):
+            input_queue.put(None)
+
+        for p in workers:
+            p.join()
+
+        output_queue.put(None)
+        writer.join()
 
 
 def python_to_bytecode_dataset(input_path, output_path, progress_bar=True, **kwargs):
@@ -192,4 +195,92 @@ def shard_dataset(
                 pbar_to_pass = pbar if progress_bar else None
                 shard_dataset_helper(
                     input_file, output_files, progress_bar=pbar_to_pass, **kwargs
+                )
+
+
+def map_dataset_worker(
+    input_queue, output_queue, func, **kwargs
+):
+    for line in iter(input_queue.get, None):
+        output_line = func(line, **kwargs)
+        if output_line is not None:
+            output_queue.put(output_line)
+
+
+def map_dataset_output_worker(output_queue, output_file):
+    for line in iter(output_queue.get, None):
+        output_file.write(line)
+
+
+def map_dataset_helper(
+    input_file,
+    output_file,
+    func,
+    progress_bar=None,
+    num_processes=8,
+    input_queue_size=1000,
+    output_queue_size=1000,
+    **kwargs
+):
+    input_queue = mp.Queue(maxsize=input_queue_size)
+    output_queue = mp.Queue(maxsize=output_queue_size)
+
+    workers = []
+    writer = mp.Process(
+        target=map_dataset_output_worker, args=(output_queue, output_file)
+    )
+
+    try:
+        for _ in range(num_processes):
+            workers.append(
+                mp.Process(
+                    target=map_dataset_worker,
+                    args=(input_queue, output_queue, func),
+                    kwargs=kwargs,
+                )
+            )
+            workers[-1].start()
+
+        writer.start()
+
+        for line in input_file:
+            input_queue.put(line)
+            if progress_bar is not None:
+                progress_bar.update(len(line.encode()))
+
+    finally:
+        for _ in range(num_processes):
+            input_queue.put(None)
+
+        for p in workers:
+            p.join()
+
+        output_queue.put(None)
+        writer.join()
+
+
+def map_dataset(input_path, output_path, func, progress_bar=True, **kwargs):
+    if isinstance(input_path, str):
+        input_path = pathlib.PurePath(input_path)
+    if isinstance(output_path, str):
+        output_path = pathlib.PurePath(output_path)
+    input_fn = gzip.open if (input_path.suffix == ".gz") else open
+    output_fn = gzip.open if (output_path.suffix == ".gz") else open
+
+    with input_fn(input_path, mode="rt") as input_file:
+        with output_fn(output_path, mode="wt") as output_file:
+            # use a dummy __enter__, __exit__ if progress_bar is False
+            with (
+                tqdm.tqdm(
+                    total=pathlib.Path(input_path).stat().st_size,
+                    unit="B",
+                    unit_scale=True,
+                    unit_divisor=1024,
+                )
+                if progress_bar
+                else io.StringIO()
+            ) as pbar:
+                pbar_to_pass = pbar if progress_bar else None
+                map_dataset_helper(
+                    input_file, output_file, func, progress_bar=pbar_to_pass, **kwargs
                 )
