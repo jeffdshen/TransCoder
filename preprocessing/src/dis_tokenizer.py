@@ -404,7 +404,11 @@ def extract_functions_dis(tokens):
                 else:
                     functions_standalone.append(" ".join(function))
 
+            co_count = 0
             function = []
+
+        if token == SpecialToken.CO_START.value[2]:
+            co_count += 1
 
         if function is not None:
             function.append(token)
