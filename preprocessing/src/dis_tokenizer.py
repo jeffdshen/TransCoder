@@ -297,7 +297,7 @@ def detokenize_dis_json(
 
 
 def cmp_json(
-    line, expected_field="bytecode_std", actual_field="bytecode_detok", **kwargs
+    line, expected_field="bytecode_tok", actual_field="bytecode_retok", **kwargs
 ):
     json_obj = json.loads(line)
     expected = json_obj[expected_field]
