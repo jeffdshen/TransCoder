@@ -21,7 +21,7 @@ class SpecialToken(Enum):
     CO_DEF_END = ("___5", ":", "CO_DEF_END")
     NEW_LINE = ("___N", "\n", "NEW_LINE")
     STR_SPACE = ("__", " ", "_")
-    DOUBLE_UNDERSCORE = ("___", "_", "__")
+    UNDERSCORE = ("___", "_", "__")
 
 
 def interleave(*args):
@@ -104,7 +104,7 @@ def tokenize_python_string(s):
     tokens = []
     escaped = False
     for t in psuedo_tokens:
-        if t is None:
+        if t == "":
             continue
 
         real_t = SpecialToken.STR_SPACE if t == "ab" else t.replace("aa", "a")
@@ -181,6 +181,7 @@ def tokenize_argrepr_single(argrepr):
     if argrepr == "":
         return []
 
+    argrepr = argrepr.strip()
     if not can_tokenize_argrepr_single(argrepr):
         return None
 
@@ -193,7 +194,7 @@ def tokenize_argrepr(argrepr):
 
     wrap = lambda x: ["("] + x + [")"]
 
-    item = argrepr[1:-1]
+    item = argrepr[1:-1].strip()
     result = tokenize_argrepr_co(item)
     if result is not None:
         return wrap(result)
@@ -210,12 +211,9 @@ def tokenize_argrepr(argrepr):
 
 
 def tokenize_instruction(line):
-    if not (line[0].isdigit() or line[0] == " "):
-        return None
-
     if (
         re.fullmatch(
-            r"( *\d*) (-->|   ) (>>|  ) ( *\d*) ([A-Z_]+ *)( *\d*( \(.*\))?)?", line
+            r" *(\d+ +)?(--> +)?(>> +)?(\d+ +)([A-Z_]+ *)( +\d+( +\(.*\))?)?", line
         )
         is None
     ):
@@ -298,48 +296,17 @@ def detokenize_dis_json(
     return json.dumps(json_obj) + "\n"
 
 
-def cmp_dis_detok_json(
-    line, expected_field="bytecode", actual_field="bytecode_detok", **kwargs
+def cmp_json(
+    line, expected_field="bytecode_std", actual_field="bytecode_detok", **kwargs
 ):
     json_obj = json.loads(line)
     expected = json_obj[expected_field]
     actual = json_obj[actual_field]
 
-    was_space = True
-    is_argrepr = False
-    is_string = None
-    argrepr = ""
-    expected_std = ""
-    for c in expected:
-        if was_space and not is_argrepr and c == " ":
-            continue
-
-        if is_argrepr and not is_string and not argrepr.startswith("(<") and c == " ":
-            continue
-
-        expected_std += c
-        
-        was_space = (c == " " or c == "\n")
-        if is_argrepr and (c == "'" or c == '"') and (not argrepr.endswith("\\") or argrepr.endswith("\\\\")):
-            if c == is_string:
-                is_string = None
-            elif is_string is None:
-                is_string = c
-        if c == "\n":
-            is_argrepr = False
-            is_string = None
-            argrepr = ""
-        if c == "(":
-            is_argrepr = True
-        
-        if is_argrepr:
-            argrepr += c
-
-    expected = expected_std
     if expected == actual:
         return None
 
-    return line + "\nExpected:\n" + expected + "\nActual:\n" + actual + "\n"
+    return line
 
 
 def unescape_token(token):
@@ -355,6 +322,17 @@ def unescape_token(token):
     return token
 
 
+def is_escape(l, start_index = 0, escape_char = "\\"):
+    result = False
+    for i in range(start_index, len(l)):
+        if l[-(1 + i)] == escape_char:
+            result = not result
+        else:
+            return result
+
+    return result
+
+
 def detokenize_dis(tokens):
     if tokens is None:
         return None
@@ -366,9 +344,13 @@ def detokenize_dis(tokens):
 
     tokens = [unescape_token(token) for token in tokens]
     is_argrepr = False
+    is_string = None
     was_special = True
-    result = ""
+    result = []
     for token in tokens:
+        if token == '':
+            continue
+
         if isinstance(token, SpecialToken):
             if token == SpecialToken.NEW_LINE:
                 is_argrepr = False
@@ -377,12 +359,23 @@ def detokenize_dis(tokens):
             was_special = True
             continue
 
-        if not (was_special or is_argrepr):
+        if not was_special and not is_string:
             result += " "
         result += token
-
-        if token == "(":
+        
+        if not is_argrepr and token == "(":
             is_argrepr = True
+            is_string = None
+
+        if is_argrepr:
+            for i, c in enumerate(token):
+                if not is_string:
+                    if c == "'" or c == '"' and not is_escape(result, len(token) - i):
+                        is_string = c
+                else:
+                    if c == is_string and not is_escape(result, len(token) - i):
+                        is_string = None
+                
         was_special = False
 
-    return result
+    return "".join(result)
