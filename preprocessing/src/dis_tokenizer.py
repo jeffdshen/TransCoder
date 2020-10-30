@@ -51,6 +51,10 @@ def escape_token(token):
 
 
 def tokenize_dis(bytecode):
+    if bytecode is None:
+        return None
+    assert isinstance(bytecode, str)
+
     split_bytecode = split_and_keep(
         bytecode.replace("\r\n", "\n").replace("\r", "\n"), "\n"
     )
@@ -338,7 +342,6 @@ def detokenize_dis(tokens):
         return None
 
     assert isinstance(tokens, str) or isinstance(tokens, list)
-
     if isinstance(tokens, str):
         tokens = list(filter(None, tokens.split(" ")))
 
@@ -379,3 +382,46 @@ def detokenize_dis(tokens):
         was_special = False
 
     return "".join(result)
+
+def extract_functions_dis(tokens):
+    if tokens is None:
+        return None
+    assert isinstance(tokens, str) or isinstance(tokens, list)
+    if isinstance(tokens, str):
+        tokens = tokens.split(" ")
+
+    functions_standalone = []
+    functions_class = []
+    function = None
+    co_count = 0
+    
+    for token in tokens:
+        if token == SpecialToken.CO_DEF_START.value[2]:
+            if function is not None:
+                if co_count > 1:
+                    functions_class.append(function)
+                else:
+                    functions_standalone.append(function)
+            
+            function = []
+        
+        if function is not None:
+            function.append(token)
+
+    if function is not None:
+        if co_count > 1:
+            functions_class.append(function)
+        else:
+            functions_standalone.append(function)
+
+    return functions_standalone, functions_class
+
+
+def get_function_name_dis(tokens):
+    if tokens is None:
+        return None
+    assert isinstance(tokens, str) or isinstance(tokens, list)
+    if isinstance(tokens, str):
+        tokens = tokens.split(" ")
+
+    return tokens[tokens.index(SpecialToken.CO_DEF_START.value[2]) + 2]
