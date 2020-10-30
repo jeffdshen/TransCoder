@@ -198,9 +198,7 @@ def shard_dataset(
                 )
 
 
-def map_dataset_worker(
-    input_queue, output_queue, func, **kwargs
-):
+def map_dataset_worker(input_queue, output_queue, func, **kwargs):
     for line in iter(input_queue.get, None):
         output_line = func(line, **kwargs)
         if output_line is not None:
@@ -284,3 +282,19 @@ def map_dataset(input_path, output_path, func, progress_bar=True, **kwargs):
                 map_dataset_helper(
                     input_file, output_file, func, progress_bar=pbar_to_pass, **kwargs
                 )
+
+
+def select_json_field(
+    line,
+    input_field="content",
+    output_field="content",
+    field_set=["content", "bytecode"],
+):
+    json_obj = json.loads(line)
+    if input_field in json_obj:
+        json_obj[output_field] = json_obj[input_field]
+    for field in field_set:
+        if field != output_field:
+            del json_obj[field]
+
+    return json.dumps(json_obj) + "\n"
