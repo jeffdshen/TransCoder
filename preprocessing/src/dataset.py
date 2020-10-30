@@ -17,18 +17,18 @@ class Language:
 
     def __init__(self, root, lang):
         self.folder = Path(str(root)).joinpath(lang)
+        self.l = lang
         assert self.folder.is_dir(
         ), f"failed to initalize Language {self.l}, there is no directory {str(self.folder)}"
-        self.l = lang
 
     def process_json_and_tok(self, keep_comments, executor=None):
         if executor is None:
             executor = LocalExecutor()
         suffix = '.with_comments' if keep_comments else ''
-        assert len(list(self.folder.glob('*.json.gz'))
+        assert len(list(self.folder.glob('*.json'))
                    ) > 0, f"there is no json in {str(self.folder)}"
         jsons = [json for json in self.folder.glob(
-            '*.json.gz') if not Path(str(json).replace('.json.gz', suffix + '.tok')).is_file()]
+            '*.json') if not Path(str(json).replace('.json', suffix + '.tok')).is_file()]
         print(f"{self.l}: tokenizing {len(jsons)} json files ...")
         if len(jsons) > 0:
             jobs = executor.map_array(process_and_tokenize_json_file, jsons, itertools.repeat(
