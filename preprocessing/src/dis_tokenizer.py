@@ -23,6 +23,7 @@ class SpecialToken(Enum):
     STR_SPACE = ("__", " ", "_")
     DOUBLE_UNDERSCORE = ("___", "_", "__")
 
+
 def interleave(*args):
     return [item for t in zip(*args) for item in t]
 
@@ -38,14 +39,14 @@ def split_and_keep(s, sep):
 def escape_token(token):
     if isinstance(token, SpecialToken):
         return token.value[2]
-    
+
     if token.startswith(ESCAPE[0]):
-        return ESCAPE[1] + token[len(ESCAPE[0]):]
-    
+        return ESCAPE[1] + token[len(ESCAPE[0]) :]
+
     for sp in SpecialToken:
         if token == sp.value[2]:
             return sp.value[0]
-    
+
     return token
 
 
@@ -67,7 +68,7 @@ def tokenize_dis(bytecode):
             if (" " in token) or ("\n" in token):
                 return None
         escaped_tokens.append(escape_token(token))
-            
+
     return escaped_tokens
 
 
@@ -155,14 +156,35 @@ def tokenize_argrepr_python(argrepr):
         else:
             tokens.append(tok)
 
-
     assert tokens[-2] is None, "Error, should be newline"
     assert tokens[-1] is None, "Error, no end marker"
     result = tokens[:-2]
     if None in result:
         return None
-        
     return result
+
+
+def can_tokenize_argrepr_single(argrepr):
+    if argrepr.isidentifier():
+        return True
+
+    if argrepr.isdigit():
+        return True
+
+    if argrepr in {"==", "!=", "<", ">", "<=", ">="}:
+        return True
+
+    return False
+
+
+def tokenize_argrepr_single(argrepr):
+    if argrepr == "":
+        return []
+
+    if not can_tokenize_argrepr_single(argrepr):
+        return None
+
+    return [argrepr]
 
 
 def tokenize_argrepr(argrepr):
@@ -176,6 +198,10 @@ def tokenize_argrepr(argrepr):
     if result is not None:
         return wrap(result)
 
+    result = tokenize_argrepr_single(item)
+    if result is not None:
+        return wrap(result)
+
     result = tokenize_argrepr_python(item)
     if result is not None:
         return wrap(result)
@@ -184,7 +210,7 @@ def tokenize_argrepr(argrepr):
 
 
 def tokenize_instruction(line):
-    if not (line[0].isdigit() or line[0] == ' '):
+    if not (line[0].isdigit() or line[0] == " "):
         return None
 
     if (
@@ -210,7 +236,7 @@ def tokenize_instruction(line):
 
 
 def tokenize_func(line):
-    if not line.startswith('D'):
+    if not line.startswith("D"):
         return None
 
     regex = (
