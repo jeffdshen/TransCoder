@@ -779,7 +779,7 @@ def extract_arguments_java_using_parentheses(f):
     return types, names
 
 
-def tokenize_dis(s):
+def tokenize_dis(s, keep_comments=False):
     result = dis_tokenizer.tokenize_dis(s)
     if result is not None:
         return result
