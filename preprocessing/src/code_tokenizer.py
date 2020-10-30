@@ -19,6 +19,7 @@ import preprocessing.src.javalang_tokenizer as javalang_tok
 from clang.cindex import TokenKind
 from preprocessing.src.timeout import timeout, TimeoutError
 from sacrebleu import tokenize_v14_international
+import dis_tokenizer
 
 TOK_NO_SPACE_BEFORE = {',', ';'}
 clang.cindex.Config.set_library_path('/usr/lib/llvm-7/lib/')
@@ -776,6 +777,31 @@ def extract_arguments_java_using_parentheses(f):
         types.append(t)
         names.append(n)
     return types, names
+
+
+def tokenize_dis(s):
+    result = dis_tokenizer.tokenize_dis(s)
+    if result is not None:
+        return result
+    return []
+
+
+def detokenize_dis(s):
+    result = dis_tokenizer.detokenize_dis(s)
+    if result is not None:
+        return result
+    return []
+
+
+def extract_functions_dis(s):
+    result = dis_tokenizer.extract_functions_dis(s)
+    if result is not None:
+        return result
+    return [], []
+
+
+def get_function_name_dis(s):
+    return dis_tokenizer.get_function_name_dis(s)
 
 
 if __name__ == '__main__':
