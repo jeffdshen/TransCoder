@@ -64,16 +64,15 @@ def output_all_tokenized_results(docs, f_tok):
 
 def process_and_tokenize_json_file(input_path, language, keep_comments):
     suffix = '.with_comments' if keep_comments else ''
-    output_path = str(input_path).replace('.json', suffix + '.tok')
+    output_path = str(input_path).replace('.json.gz', suffix + '.tok')
     tokenizer = getattr(code_tokenizer, f"tokenize_{language}")
     docs = []
     paths = []
-    with open(input_path, mode="rt") as input_file:
-        for line in input_file:
-            x = json.loads(line)
-            content = x['content']
-            path = f"{x['repo_name']}/tree/master/{x['path']}"
-            docs.append((tokenizer, content, path, keep_comments))
+    for line in fileinput.input(str(input_path), openhook=fileinput.hook_compressed):
+        x = json.loads(line)
+        content = x['content']
+        path = f"{x['repo_name']}/tree/master/{x['path']}"
+        docs.append((tokenizer, content, path, keep_comments))
 
     f_tok = open(output_path, 'w', encoding='utf-8')
     try:
