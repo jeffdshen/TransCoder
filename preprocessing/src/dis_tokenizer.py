@@ -326,7 +326,7 @@ def unescape_token(token):
     return token
 
 
-def is_escape(l, start_index = 0, escape_char = "\\"):
+def is_escape(l, start_index=0, escape_char="\\"):
     result = False
     for i in range(start_index, len(l)):
         if l[-(1 + i)] == escape_char:
@@ -351,7 +351,7 @@ def detokenize_dis(tokens):
     was_special = True
     result = []
     for token in tokens:
-        if token == '':
+        if token == "":
             continue
 
         if isinstance(token, SpecialToken):
@@ -365,7 +365,7 @@ def detokenize_dis(tokens):
         if not was_special and not is_string:
             result += " "
         result += token
-        
+
         if not is_argrepr and token == "(":
             is_argrepr = True
             is_string = None
@@ -378,10 +378,11 @@ def detokenize_dis(tokens):
                 else:
                     if c == is_string and not is_escape(result, len(token) - i):
                         is_string = None
-                
+
         was_special = False
 
     return "".join(result)
+
 
 def extract_functions_dis(tokens):
     if tokens is None:
@@ -394,25 +395,25 @@ def extract_functions_dis(tokens):
     functions_class = []
     function = None
     co_count = 0
-    
+
     for token in tokens:
         if token == SpecialToken.CO_DEF_START.value[2]:
             if function is not None:
                 if co_count > 1:
-                    functions_class.append(function)
+                    functions_class.append(" ".join(function))
                 else:
-                    functions_standalone.append(function)
-            
+                    functions_standalone.append(" ".join(function))
+
             function = []
-        
+
         if function is not None:
             function.append(token)
 
     if function is not None:
         if co_count > 1:
-            functions_class.append(function)
+            functions_class.append(" ".join(function))
         else:
-            functions_standalone.append(function)
+            functions_standalone.append(" ".join(function))
 
     return functions_standalone, functions_class
 
