@@ -19,7 +19,7 @@ import preprocessing.src.javalang_tokenizer as javalang_tok
 from clang.cindex import TokenKind
 from preprocessing.src.timeout import timeout, TimeoutError
 from sacrebleu import tokenize_v14_international
-import preprocessing.src.dis_tokenizer
+import preprocessing.src.dis_tokenizer as dis_tokenizer
 
 TOK_NO_SPACE_BEFORE = {',', ';'}
 clang.cindex.Config.set_library_file('/usr/lib/llvm-7/lib/libclang.so')
