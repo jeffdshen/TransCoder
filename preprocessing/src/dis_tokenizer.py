@@ -280,10 +280,109 @@ def tokenize_line(line):
 import json
 
 
-def tokenize_json_line(line, **kwargs):
+def tokenize_dis_json(
+    line, input_field="bytecode", output_field="bytecode_tok", **kwargs
+):
     json_obj = json.loads(line)
-    result = tokenize_dis(json_obj["bytecode"])
-    if result is None:
-        raise RuntimeError(line, json_obj["bytecode"])
+    result = tokenize_dis(json_obj[input_field])
+    json_obj[output_field] = result
+    return json.dumps(json_obj) + "\n"
 
-    return " ".join(result) + "\n"
+
+def detokenize_dis_json(
+    line, input_field="bytecode_tok", output_field="bytecode_detok", **kwargs
+):
+    json_obj = json.loads(line)
+    result = detokenize_dis(json_obj[input_field])
+    json_obj[output_field] = result
+    return json.dumps(json_obj) + "\n"
+
+
+def cmp_dis_detok_json(
+    line, expected_field="bytecode", actual_field="bytecode_detok", **kwargs
+):
+    json_obj = json.loads(line)
+    expected = json_obj[expected_field]
+    actual = json_obj[actual_field]
+
+    was_space = True
+    is_argrepr = False
+    is_string = None
+    argrepr = ""
+    expected_std = ""
+    for c in expected:
+        if was_space and not is_argrepr and c == " ":
+            continue
+
+        if is_argrepr and not is_string and not argrepr.startswith("(<") and c == " ":
+            continue
+
+        expected_std += c
+        
+        was_space = (c == " " or c == "\n")
+        if is_argrepr and (c == "'" or c == '"') and (not argrepr.endswith("\\") or argrepr.endswith("\\\\")):
+            if c == is_string:
+                is_string = None
+            elif is_string is None:
+                is_string = c
+        if c == "\n":
+            is_argrepr = False
+            is_string = None
+            argrepr = ""
+        if c == "(":
+            is_argrepr = True
+        
+        if is_argrepr:
+            argrepr += c
+
+    expected = expected_std
+    if expected == actual:
+        return None
+
+    return line + "\nExpected:\n" + expected + "\nActual:\n" + actual + "\n"
+
+
+def unescape_token(token):
+    for sp in SpecialToken:
+        if token == sp.value[0]:
+            return sp.value[2]
+        if token == sp.value[2]:
+            return sp
+
+    if token.startswith(ESCAPE[1]):
+        return ESCAPE[0] + token[len(ESCAPE[1]) :]
+
+    return token
+
+
+def detokenize_dis(tokens):
+    if tokens is None:
+        return None
+
+    assert isinstance(tokens, str) or isinstance(tokens, list)
+
+    if isinstance(tokens, str):
+        tokens = list(filter(None, tokens.split(" ")))
+
+    tokens = [unescape_token(token) for token in tokens]
+    is_argrepr = False
+    was_special = True
+    result = ""
+    for token in tokens:
+        if isinstance(token, SpecialToken):
+            if token == SpecialToken.NEW_LINE:
+                is_argrepr = False
+
+            result += token.value[1]
+            was_special = True
+            continue
+
+        if not (was_special or is_argrepr):
+            result += " "
+        result += token
+
+        if token == "(":
+            is_argrepr = True
+        was_special = False
+
+    return result
