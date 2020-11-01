@@ -359,11 +359,20 @@ def python_to_python_and_bytecode_line(line, filter_none=True, **kwargs):
     if dis is None:
         return None
 
-    dis = " ".join(dis)
+    # Handle list comprehensions later
+    funcs = dis_tokenizer.extract_functions_dis(dis)
+    if funcs is None:
+        return None
+    
+    functions_standalone, functions_class = funcs
+    if len(functions_standalone) > 1 or len(functions_class) > 0:
+        return None
+
+    result = functions_standalone[0]
 
     name = name.strip()
     py_line = line
-    dis_line = name + " | " + dis + "\n"
+    dis_line = name + " | " + result + "\n"
     return py_line + dis_line
 
 
