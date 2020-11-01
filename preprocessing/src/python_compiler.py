@@ -13,8 +13,13 @@ import hashlib
 import contextlib
 import preprocessing.src.code_tokenizer as code_tokenizer
 import preprocessing.src.dis_tokenizer as dis_tokenizer
+import sys
 
-def python_to_bytecode(python_code, filename="a.py", tmp_dir="/tmp", asm_format="dis"):
+# hex_version=50792944 is sys.version_info(major=3, minor=7, micro=9, releaselevel='final', serial=0)
+def python_to_bytecode(
+    python_code, filename="a.py", tmp_dir="/tmp", asm_format="dis", hexversion=50792944
+):
+    assert sys.hexversion == hexversion, "Hex version does not match"
     try:
         with io.StringIO() as output_buffer:
             with warnings.catch_warnings():
@@ -354,8 +359,8 @@ def python_to_python_and_bytecode_line(line, filter_none=True, **kwargs):
     if dis is None:
         return None
 
-    dis = ' '.join(dis)
-    
+    dis = " ".join(dis)
+
     name = name.strip()
     py_line = line
     dis_line = name + " | " + dis + "\n"
