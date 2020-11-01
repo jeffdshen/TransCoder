@@ -52,7 +52,7 @@ def output_all_tokenized_results(docs, f_tok):
             continue
         else:
             content_tokenized = ' '.join(content_tokenized)
-            s = f"<DOCUMENT_ID=\"{path}\"> {content_tokenized} </DOCUMENT>"
+            s = content_tokenized
             # for some reason sometimes, some caracters of s
             # cannot be encoded into utf-8 and it failed to print, so use try/catch
             try:
@@ -92,7 +92,12 @@ def extract_functions_file(input_path, language, test_size=None):
     if output_path_sa.is_file() and output_path_class.is_file():
         return
     with input_path.open('r', encoding="utf-8") as f:
-        lines = f.readlines()
+        lines = []
+        for line in f:
+            stripped = line.rstrip('\n')
+            if stripped:
+                lines.append(stripped)
+
     extract_auto_code = getattr(
         code_tokenizer, f"extract_functions_{language}")
 
