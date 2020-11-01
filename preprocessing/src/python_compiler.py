@@ -11,7 +11,8 @@ import tempfile
 import dis
 import hashlib
 import contextlib
-
+import preprocessing.src.code_tokenizer as code_tokenizer
+import preprocessing.src.dis_tokenizer as dis_tokenizer
 
 def python_to_bytecode(python_code, filename="a.py", tmp_dir="/tmp", asm_format="dis"):
     try:
@@ -298,3 +299,111 @@ def select_json_field(
             del json_obj[field]
 
     return json.dumps(json_obj) + "\n"
+
+
+def map_dataset_ordered_helper(
+    input_file, output_file, func, progress_bar=None, **kwargs
+):
+    for line in input_file:
+        output_line = func(line, **kwargs)
+        if output_line is not None:
+            output_file.write(output_line)
+
+        if progress_bar is not None:
+            progress_bar.update(len(line.encode()))
+
+
+def map_dataset_ordered(input_path, output_path, func, progress_bar=True, **kwargs):
+    if isinstance(input_path, str):
+        input_path = pathlib.PurePath(input_path)
+    if isinstance(output_path, str):
+        output_path = pathlib.PurePath(output_path)
+    input_fn = gzip.open if (input_path.suffix == ".gz") else open
+    output_fn = gzip.open if (output_path.suffix == ".gz") else open
+
+    with input_fn(input_path, mode="rt") as input_file:
+        with output_fn(output_path, mode="wt") as output_file:
+            # use a dummy __enter__, __exit__ if progress_bar is False
+            with (
+                tqdm.tqdm(
+                    total=pathlib.Path(input_path).stat().st_size,
+                    unit="B",
+                    unit_scale=True,
+                    unit_divisor=1024,
+                )
+                if progress_bar
+                else io.StringIO()
+            ) as pbar:
+                pbar_to_pass = pbar if progress_bar else None
+                map_dataset_ordered_helper(
+                    input_file, output_file, func, progress_bar=pbar_to_pass, **kwargs
+                )
+
+
+def python_to_python_and_bytecode_line(line, filter_none=True, **kwargs):
+    """
+    Parse and compile the format of the release geeks_for_geeks validation and test set
+    """
+    name, sep, detok = line.partition("|")
+    if sep == "":
+        return None
+
+    detok = detok.strip()
+    code = code_tokenizer.detokenize_python(detok)
+    dis = dis_tokenizer.tokenize_dis(python_to_bytecode(code))
+    if dis is None:
+        return None
+
+    dis = ' '.join(dis)
+    
+    name = name.strip()
+    py_line = line
+    dis_line = name + " | " + dis + "\n"
+    return py_line + dis_line
+
+
+def split_dataset_helper(input_file, output_files, progress_bar=None, **kwargs):
+    index = 0
+    for line in input_file:
+        output_files[index % len(output_files)].write(line)
+        if progress_bar is not None:
+            progress_bar.update(len(line.encode()))
+        index += 1
+
+
+def split_dataset(
+    input_path, output_path_pattern, num_files=2, progress_bar=True, **kwargs
+):
+    if isinstance(input_path, str):
+        input_path = pathlib.PurePath(input_path)
+    if isinstance(output_path_pattern, str):
+        output_path_pattern = pathlib.PurePath(output_path_pattern)
+    input_fn = gzip.open if (input_path.suffix == ".gz") else open
+    output_fn = gzip.open if (output_path_pattern.suffix == ".gz") else open
+
+    output_paths = [
+        output_path_pattern.with_name(output_path_pattern.name.replace("*", str(i)))
+        for i in range(num_files)
+    ]
+
+    with input_fn(input_path, mode="rt") as input_file:
+        with contextlib.ExitStack() as stack:
+            output_files = [
+                stack.enter_context(output_fn(output_path, mode="wt"))
+                for output_path in output_paths
+            ]
+            # use a dummy __enter__, __exit__ if progress_bar is False
+            with (
+                tqdm.tqdm(
+                    total=pathlib.Path(input_path).stat().st_size,
+                    unit="B",
+                    unit_scale=True,
+                    unit_divisor=1024,
+                )
+                if progress_bar
+                else io.StringIO()
+            ) as pbar:
+                pbar_to_pass = pbar if progress_bar else None
+                split_dataset_helper(
+                    input_file, output_files, progress_bar=pbar_to_pass, **kwargs
+                )
