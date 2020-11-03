@@ -355,12 +355,12 @@ def python_to_python_and_bytecode_line(line, filter_none=True, **kwargs):
 
     detok = detok.strip()
     code = code_tokenizer.detokenize_python(detok)
-    dis = dis_tokenizer.tokenize_dis(python_to_bytecode(code))
-    if dis is None:
+    bytecode = dis_tokenizer.tokenize_dis(python_to_bytecode(code))
+    if bytecode is None:
         return None
 
     # Handle list comprehensions later
-    funcs = dis_tokenizer.extract_functions_dis(dis)
+    funcs = dis_tokenizer.extract_functions_dis(bytecode)
     if funcs is None:
         return None
     
