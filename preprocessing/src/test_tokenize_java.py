@@ -5,7 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-from .code_tokenizer import tokenize_java, detokenize_java
+from preprocessing.src.code_tokenizer import tokenize_java, detokenize_java
 
 
 TESTS = []

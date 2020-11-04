@@ -11,12 +11,20 @@ from collections import namedtuple
 
 import six
 
+from preprocessing.src.tokenizer_utils import (
+    process_string,
+    ind_iter,
+    indent_lines,
+    get_first_token_before_first_parenthesis,
+    extract_arguments_using_parentheses,
+)
+
 
 class LexerError(Exception):
     pass
 
 
-Position = namedtuple('Position', ['line', 'column'])
+Position = namedtuple("Position", ["line", "column"])
 
 
 class JavaToken(object):
@@ -28,7 +36,10 @@ class JavaToken(object):
     def __repr__(self):
         if self.position:
             return '%s "%s" line %d, position %d' % (
-                self.__class__.__name__, self.value, self.position[0], self.position[1]
+                self.__class__.__name__,
+                self.value,
+                self.position[0],
+                self.position[1],
             )
         else:
             return '%s "%s"' % (self.__class__.__name__, self.value)
@@ -45,26 +56,83 @@ class EndOfInput(JavaToken):
 
 
 class Keyword(JavaToken):
-    VALUES = set(['abstract', 'assert', 'boolean', 'break', 'byte', 'case',
-                  'catch', 'char', 'class', 'const', 'continue', 'default',
-                  'do', 'double', 'else', 'enum', 'extends', 'final',
-                  'finally', 'float', 'for', 'goto', 'if', 'implements',
-                  'import', 'instanceof', 'int', 'interface', 'long', 'native',
-                  'new', 'package', 'private', 'protected', 'public', 'return',
-                  'short', 'static', 'strictfp', 'super', 'switch',
-                  'synchronized', 'this', 'throw', 'throws', 'transient', 'try',
-                  'void', 'volatile', 'while'])
+    VALUES = set(
+        [
+            "abstract",
+            "assert",
+            "boolean",
+            "break",
+            "byte",
+            "case",
+            "catch",
+            "char",
+            "class",
+            "const",
+            "continue",
+            "default",
+            "do",
+            "double",
+            "else",
+            "enum",
+            "extends",
+            "final",
+            "finally",
+            "float",
+            "for",
+            "goto",
+            "if",
+            "implements",
+            "import",
+            "instanceof",
+            "int",
+            "interface",
+            "long",
+            "native",
+            "new",
+            "package",
+            "private",
+            "protected",
+            "public",
+            "return",
+            "short",
+            "static",
+            "strictfp",
+            "super",
+            "switch",
+            "synchronized",
+            "this",
+            "throw",
+            "throws",
+            "transient",
+            "try",
+            "void",
+            "volatile",
+            "while",
+        ]
+    )
 
 
 class Modifier(Keyword):
-    VALUES = set(['abstract', 'default', 'final', 'native', 'private',
-                  'protected', 'public', 'static', 'strictfp', 'synchronized',
-                  'transient', 'volatile'])
+    VALUES = set(
+        [
+            "abstract",
+            "default",
+            "final",
+            "native",
+            "private",
+            "protected",
+            "public",
+            "static",
+            "strictfp",
+            "synchronized",
+            "transient",
+            "volatile",
+        ]
+    )
 
 
 class BasicType(Keyword):
-    VALUES = set(['boolean', 'byte', 'char', 'double',
-                  'float', 'int', 'long', 'short'])
+    VALUES = set(["boolean", "byte", "char", "double", "float", "int", "long", "short"])
 
 
 class Literal(JavaToken):
@@ -120,15 +188,53 @@ class Null(Literal):
 
 
 class Separator(JavaToken):
-    VALUES = set(['(', ')', '{', '}', '[', ']', ';', ',', '.'])
+    VALUES = set(["(", ")", "{", "}", "[", "]", ";", ",", "."])
 
 
 class Operator(JavaToken):
     MAX_LEN = 4
-    VALUES = set(['>>>=', '>>=', '<<=', '%=', '^=', '|=', '&=', '/=',
-                  '*=', '-=', '+=', '<<', '--', '++', '||', '&&', '!=',
-                  '>=', '<=', '==', '%', '^', '|', '&', '/', '*', '-',
-                  '+', ':', '?', '~', '!', '<', '>', '=', '...', '->', '::'])
+    VALUES = set(
+        [
+            ">>>=",
+            ">>=",
+            "<<=",
+            "%=",
+            "^=",
+            "|=",
+            "&=",
+            "/=",
+            "*=",
+            "-=",
+            "+=",
+            "<<",
+            "--",
+            "++",
+            "||",
+            "&&",
+            "!=",
+            ">=",
+            "<=",
+            "==",
+            "%",
+            "^",
+            "|",
+            "&",
+            "/",
+            "*",
+            "-",
+            "+",
+            ":",
+            "?",
+            "~",
+            "!",
+            "<",
+            ">",
+            "=",
+            "...",
+            "->",
+            "::",
+        ]
+    )
 
     # '>>>' and '>>' are excluded so that >> becomes two tokens and >>> becomes
     # three. This is done because we can not distinguish the operators >> and
@@ -136,19 +242,45 @@ class Operator(JavaToken):
     # lexing. The job of potentially recombining these symbols is left to the
     # parser
 
-    INFIX = set(['||', '&&', '|', '^', '&', '==', '!=', '<', '>', '<=', '>=',
-                 '<<', '>>', '>>>', '+', '-', '*', '/', '%'])
+    INFIX = set(
+        [
+            "||",
+            "&&",
+            "|",
+            "^",
+            "&",
+            "==",
+            "!=",
+            "<",
+            ">",
+            "<=",
+            ">=",
+            "<<",
+            ">>",
+            ">>>",
+            "+",
+            "-",
+            "*",
+            "/",
+            "%",
+        ]
+    )
 
-    PREFIX = set(['++', '--', '!', '~', '+', '-'])
+    PREFIX = set(["++", "--", "!", "~", "+", "-"])
 
-    POSTFIX = set(['++', '--'])
+    POSTFIX = set(["++", "--"])
 
-    ASSIGNMENT = set(['=', '+=', '-=', '*=', '/=', '&=', '|=', '^=', '%=',
-                      '<<=', '>>=', '>>>='])
+    ASSIGNMENT = set(
+        ["=", "+=", "-=", "*=", "/=", "&=", "|=", "^=", "%=", "<<=", ">>=", ">>>="]
+    )
 
-    LAMBDA = set(['->'])
+    LAMBDA = set(["->"])
 
-    METHOD_REFERENCE = set(['::', ])
+    METHOD_REFERENCE = set(
+        [
+            "::",
+        ]
+    )
 
     def is_infix(self):
         return self.value in self.INFIX
@@ -176,11 +308,11 @@ class Comment(JavaToken):
 
 
 class JavaTokenizer(object):
-    IDENT_START_CATEGORIES = set(
-        ['Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Nl', 'Pc', 'Sc'])
+    IDENT_START_CATEGORIES = set(["Lu", "Ll", "Lt", "Lm", "Lo", "Nl", "Pc", "Sc"])
 
     IDENT_PART_CATEGORIES = set(
-        ['Lu', 'Ll', 'Lt', 'Lm', 'Lo', 'Mc', 'Mn', 'Nd', 'Nl', 'Pc', 'Sc'])
+        ["Lu", "Ll", "Lt", "Lm", "Lo", "Mc", "Mn", "Nd", "Nl", "Pc", "Sc"]
+    )
 
     def __init__(self, data, ignore_errors=False):
         self.data = data
@@ -196,7 +328,7 @@ class JavaTokenizer(object):
         for v in Operator.VALUES:
             self.operators[len(v) - 1].add(v)
 
-        self.whitespace_consumer = re.compile(r'[^\s]')
+        self.whitespace_consumer = re.compile(r"[^\s]")
 
         self.javadoc = None
 
@@ -213,11 +345,11 @@ class JavaTokenizer(object):
 
         i = match.start()
 
-        start_of_line = self.data.rfind('\n', self.i, i)
+        start_of_line = self.data.rfind("\n", self.i, i)
 
         if start_of_line != -1:
             self.start_of_line = start_of_line
-            self.current_line += self.data.count('\n', self.i, i)
+            self.current_line += self.data.count("\n", self.i, i)
 
         self.i = i
 
@@ -230,30 +362,30 @@ class JavaTokenizer(object):
 
         while True:
             if j >= length:
-                self.error('Unterminated character/string literal')
+                self.error("Unterminated character/string literal")
                 break
 
             if state == 0:
-                if self.data[j] == '\\':
+                if self.data[j] == "\\":
                     state = 1
                 elif self.data[j] == delim:
                     break
 
             elif state == 1:
-                if self.data[j] in 'btnfru"\'\\':
+                if self.data[j] in "btnfru\"'\\":
                     state = 0
-                elif self.data[j] in '0123':
+                elif self.data[j] in "0123":
                     state = 2
-                elif self.data[j] in '01234567':
+                elif self.data[j] in "01234567":
                     state = 3
                 else:
-                    self.error('Illegal escape character', self.data[j])
+                    self.error("Illegal escape character", self.data[j])
 
             elif state == 2:
                 # Possibly long octal
-                if self.data[j] in '01234567':
+                if self.data[j] in "01234567":
                     state = 3
-                elif self.data[j] == '\\':
+                elif self.data[j] == "\\":
                     state = 1
                 elif self.data[j] == delim:
                     break
@@ -261,7 +393,7 @@ class JavaTokenizer(object):
             elif state == 3:
                 state = 0
 
-                if self.data[j] == '\\':
+                if self.data[j] == "\\":
                     state = 1
                 elif self.data[j] == delim:
                     break
@@ -272,16 +404,16 @@ class JavaTokenizer(object):
 
     def try_operator(self):
         for l in range(min(self.length - self.i, Operator.MAX_LEN), 0, -1):
-            if self.data[self.i:self.i + l] in self.operators[l - 1]:
+            if self.data[self.i : self.i + l] in self.operators[l - 1]:
                 self.j = self.i + l
                 return True
         return False
 
     def read_comment(self):
-        if self.data[self.i + 1] == '/':
-            terminator, accept_eof = '\n', True
+        if self.data[self.i + 1] == "/":
+            terminator, accept_eof = "\n", True
         else:
-            terminator, accept_eof = '*/', False
+            terminator, accept_eof = "*/", False
 
         i = self.data.find(terminator, self.i + 2)
 
@@ -290,17 +422,17 @@ class JavaTokenizer(object):
         elif accept_eof:
             i = self.length
         else:
-            self.error('Unterminated block comment')
-            partial_comment = self.data[self.i:]
+            self.error("Unterminated block comment")
+            partial_comment = self.data[self.i :]
             self.i = self.length
             return partial_comment
 
-        comment = self.data[self.i:i]
-        start_of_line = self.data.rfind('\n', self.i, i)
+        comment = self.data[self.i : i]
+        start_of_line = self.data.rfind("\n", self.i, i)
 
         if start_of_line != -1:
             self.start_of_line = start_of_line
-            self.current_line += self.data.count('\n', self.i, i)
+            self.current_line += self.data.count("\n", self.i, i)
 
         self.i = i
 
@@ -312,23 +444,23 @@ class JavaTokenizer(object):
 
         self.read_decimal_integer()
 
-        if self.j >= len(self.data) or self.data[self.j] not in '.eEfFdD':
+        if self.j >= len(self.data) or self.data[self.j] not in ".eEfFdD":
             return DecimalInteger
 
-        if self.data[self.j] == '.':
+        if self.data[self.j] == ".":
             self.i = self.j + 1
             self.read_decimal_integer()
 
-        if self.j < len(self.data) and self.data[self.j] in 'eE':
+        if self.j < len(self.data) and self.data[self.j] in "eE":
             self.j = self.j + 1
 
-            if self.j < len(self.data) and self.data[self.j] in '-+':
+            if self.j < len(self.data) and self.data[self.j] in "-+":
                 self.j = self.j + 1
 
             self.i = self.j
             self.read_decimal_integer()
 
-        if self.j < len(self.data) and self.data[self.j] in 'fFdD':
+        if self.j < len(self.data) and self.data[self.j] in "fFdD":
             self.j = self.j + 1
 
         self.i = orig_i
@@ -340,25 +472,25 @@ class JavaTokenizer(object):
 
         self.read_hex_integer()
 
-        if self.j >= len(self.data) or self.data[self.j] not in '.pP':
+        if self.j >= len(self.data) or self.data[self.j] not in ".pP":
             return HexInteger
 
-        if self.data[self.j] == '.':
+        if self.data[self.j] == ".":
             self.j = self.j + 1
-            self.read_digits('0123456789abcdefABCDEF')
+            self.read_digits("0123456789abcdefABCDEF")
 
-        if self.j < len(self.data) and self.data[self.j] in 'pP':
+        if self.j < len(self.data) and self.data[self.j] in "pP":
             self.j = self.j + 1
         else:
-            self.error('Invalid hex float literal')
+            self.error("Invalid hex float literal")
 
-        if self.j < len(self.data) and self.data[self.j] in '-+':
+        if self.j < len(self.data) and self.data[self.j] in "-+":
             self.j = self.j + 1
 
         self.i = self.j
         self.read_decimal_integer()
 
-        if self.j < len(self.data) and self.data[self.j] in 'fFdD':
+        if self.j < len(self.data) and self.data[self.j] in "fFdD":
             self.j = self.j + 1
 
         self.i = orig_i
@@ -374,37 +506,37 @@ class JavaTokenizer(object):
             if c in digits:
                 self.j += 1 + tmp_i
                 tmp_i = 0
-            elif c == '_':
+            elif c == "_":
                 tmp_i += 1
             else:
                 break
 
-        if c in 'lL':
+        if c in "lL":
             self.j += 1
 
     def read_decimal_integer(self):
         self.j = self.i
-        self.read_digits('0123456789')
+        self.read_digits("0123456789")
 
     def read_hex_integer(self):
         self.j = self.i + 2
-        self.read_digits('0123456789abcdefABCDEF')
+        self.read_digits("0123456789abcdefABCDEF")
 
     def read_bin_integer(self):
         self.j = self.i + 2
-        self.read_digits('01')
+        self.read_digits("01")
 
     def read_octal_integer(self):
         self.j = self.i + 1
-        self.read_digits('01234567')
+        self.read_digits("01234567")
 
     def read_integer_or_float(self, c, c_next):
-        if c == '0' and c_next in 'xX':
+        if c == "0" and c_next in "xX":
             return self.read_hex_integer_or_float()
-        elif c == '0' and c_next in 'bB':
+        elif c == "0" and c_next in "bB":
             self.read_bin_integer()
             return BinaryInteger
-        elif c == '0' and c_next in '01234567':
+        elif c == "0" and c_next in "01234567":
             self.read_octal_integer()
             return OctalInteger
         else:
@@ -418,7 +550,7 @@ class JavaTokenizer(object):
 
     def decode_data(self):
         # Encodings to try in order
-        codecs = ['utf_8', 'iso-8859-1']
+        codecs = ["utf_8", "iso-8859-1"]
 
         # If data is already unicode don't try to redecode
         if isinstance(self.data, six.text_type):
@@ -431,7 +563,7 @@ class JavaTokenizer(object):
             except UnicodeDecodeError:
                 pass
 
-        self.error('Could not decode input data')
+        self.error("Could not decode input data")
 
     def is_java_identifier_start(self, c):
         return unicodedata.category(c) in self.IDENT_START_CATEGORIES
@@ -439,10 +571,13 @@ class JavaTokenizer(object):
     def read_identifier(self):
         self.j = self.i + 1
 
-        while self.j < len(self.data) and unicodedata.category(self.data[self.j]) in self.IDENT_PART_CATEGORIES:
+        while (
+            self.j < len(self.data)
+            and unicodedata.category(self.data[self.j]) in self.IDENT_PART_CATEGORIES
+        ):
             self.j += 1
 
-        ident = self.data[self.i:self.j]
+        ident = self.data[self.i : self.j]
         if ident in Keyword.VALUES:
             token_type = Keyword
 
@@ -453,7 +588,7 @@ class JavaTokenizer(object):
 
         elif ident in Boolean.VALUES:
             token_type = Boolean
-        elif ident == 'null':
+        elif ident == "null":
             token_type = Null
         else:
             token_type = Identifier
@@ -476,7 +611,7 @@ class JavaTokenizer(object):
 
         while j < length:
             if state == NONE:
-                j = data.find('\\', j)
+                j = data.find("\\", j)
 
                 if j == -1:
                     j = length
@@ -487,20 +622,20 @@ class JavaTokenizer(object):
             elif state == ELIGIBLE:
                 c = data[j]
 
-                if c == 'u':
+                if c == "u":
                     state = MARKER_FOUND
-                    new_data.append(data[i:j - 1])
+                    new_data.append(data[i : j - 1])
                 else:
                     state = NONE
 
             elif state == MARKER_FOUND:
                 c = data[j]
 
-                if c != 'u':
+                if c != "u":
                     try:
-                        escape_code = int(data[j:j + 4], 16)
+                        escape_code = int(data[j : j + 4], 16)
                     except ValueError:
-                        self.error('Invalid unicode escape', data[j:j + 4])
+                        self.error("Invalid unicode escape", data[j : j + 4])
 
                     new_data.append(six.unichr(escape_code))
 
@@ -515,7 +650,7 @@ class JavaTokenizer(object):
 
         new_data.append(data[i:])
 
-        self.data = ''.join(new_data)
+        self.data = "".join(new_data)
         self.length = len(self.data)
 
     def tokenize(self, keep_comments=False):
@@ -549,18 +684,18 @@ class JavaTokenizer(object):
                     yield token
                 continue
 
-            elif startswith == '..' and self.try_operator():
+            elif startswith == ".." and self.try_operator():
                 # Ensure we don't mistake a '...' operator as a sequence of
                 # three '.' separators. This is done as an optimization instead
                 # of moving try_operator higher in the chain because operators
                 # aren't as common and try_operator is expensive
                 token_type = Operator
 
-            elif c == '@':
+            elif c == "@":
                 token_type = Annotation
                 self.j = self.i + 1
 
-            elif c == '.' and c_next and c_next.isdigit():
+            elif c == "." and c_next and c_next.isdigit():
                 token_type = self.read_decimal_float_or_integer()
 
             elif self.try_separator():
@@ -570,7 +705,7 @@ class JavaTokenizer(object):
                 token_type = String
                 self.read_string()
 
-            elif c in '0123456789':
+            elif c in "0123456789":
                 token_type = self.read_integer_or_float(c, c_next)
 
             elif self.is_java_identifier_start(c):
@@ -580,13 +715,12 @@ class JavaTokenizer(object):
                 token_type = Operator
 
             else:
-                self.error('Could not process token', c)
+                self.error("Could not process token", c)
                 self.i = self.i + 1
                 continue
 
             position = Position(self.current_line, self.i - self.start_of_line)
-            token = token_type(
-                self.data[self.i:self.j], position, self.javadoc)
+            token = token_type(self.data[self.i : self.j], position, self.javadoc)
             yield token
 
             if self.javadoc:
@@ -596,8 +730,8 @@ class JavaTokenizer(object):
 
     def error(self, message, char=None):
         # Provide additional information in the errors message
-        line_start = self.data.rfind('\n', 0, self.i) + 1
-        line_end = self.data.find('\n', self.i)
+        line_start = self.data.rfind("\n", 0, self.i) + 1
+        line_end = self.data.find("\n", self.i)
         line = self.data[line_start:line_end].strip()
 
         line_number = self.current_line
@@ -605,8 +739,7 @@ class JavaTokenizer(object):
         if not char:
             char = self.data[self.j]
 
-        message = u'%s at "%s", line %s: %s' % (
-            message, char, line_number, line)
+        message = u'%s at "%s", line %s: %s' % (message, char, line_number, line)
         error = LexerError(message)
         self.errors.append(error)
 
@@ -631,38 +764,38 @@ def reformat_tokens(tokens):
             closed_block = False
             indent -= 4
 
-            output.append('\n')
-            output.append(' ' * indent)
-            output.append('}')
+            output.append("\n")
+            output.append(" " * indent)
+            output.append("}")
 
             if isinstance(token, (Literal, Keyword, Identifier)):
-                output.append('\n')
-                output.append(' ' * indent)
+                output.append("\n")
+                output.append(" " * indent)
 
-        if token.value == '{':
+        if token.value == "{":
             indent += 4
-            output.append(' {\n')
-            output.append(' ' * indent)
+            output.append(" {\n")
+            output.append(" " * indent)
 
-        elif token.value == '}':
+        elif token.value == "}":
             closed_block = True
 
-        elif token.value == ',':
-            output.append(', ')
+        elif token.value == ",":
+            output.append(", ")
 
         elif isinstance(token, (Literal, Keyword, Identifier)):
             if ident_last:
                 # If the last token was a literla/keyword/identifer put a space in between
-                output.append(' ')
+                output.append(" ")
             ident_last = True
             output.append(token.value)
 
         elif isinstance(token, Operator):
-            output.append(' ' + token.value + ' ')
+            output.append(" " + token.value + " ")
 
-        elif token.value == ';':
-            output.append(';\n')
-            output.append(' ' * indent)
+        elif token.value == ";":
+            output.append(";\n")
+            output.append(" " * indent)
 
         else:
             output.append(token.value)
@@ -670,8 +803,194 @@ def reformat_tokens(tokens):
         ident_last = isinstance(token, (Literal, Keyword, Identifier))
 
     if closed_block:
-        output.append('\n}')
+        output.append("\n}")
 
-    output.append('\n')
+    output.append("\n")
 
-    return ''.join(output)
+    return "".join(output)
+
+
+JAVA_TOKEN2CHAR = {
+    "STOKEN0": "//",
+    "STOKEN1": "/*",
+    "STOKEN2": "*/",
+    "STOKEN3": "/**",
+    "STOKEN4": "**/",
+    "STOKEN5": '"""',
+    "STOKEN6": "\\n",
+}
+JAVA_CHAR2TOKEN = {
+    "//": " STOKEN0 ",
+    "/*": " STOKEN1 ",
+    "*/": " STOKEN2 ",
+    "/**": " STOKEN3 ",
+    "**/": " STOKEN4 ",
+    '"""': " STOKEN5 ",
+    "\\n": " STOKEN6 ",
+}
+
+
+def tokenize_java(s, keep_comments=False):
+    try:
+        tokens = []
+        assert isinstance(s, str)
+        s = s.replace(r"\r", "")
+        tokens_generator = tokenize(s, keep_comments=keep_comments)
+        for token in tokens_generator:
+            if isinstance(token, String):
+                tokens.append(
+                    process_string(token.value, JAVA_CHAR2TOKEN, JAVA_TOKEN2CHAR, False)
+                )
+            elif isinstance(token, Comment):
+                com = process_string(
+                    token.value, JAVA_CHAR2TOKEN, JAVA_TOKEN2CHAR, True
+                )
+                if len(com) > 0:
+                    tokens.append(com)
+            else:
+                tokens.append(token.value)
+        return tokens
+    except:
+        return []
+
+
+def detokenize_java(s):
+    assert isinstance(s, str) or isinstance(s, list)
+    if isinstance(s, list):
+        s = " ".join(s)
+    s = s.replace("ENDCOM", "NEW_LINE")
+    s = s.replace("▁", "SPACETOKEN")
+
+    s = s.replace('} "', 'CB_ "')
+    s = s.replace('" {', '" OB_')
+    s = s.replace("*/ ", "*/ NEW_LINE")
+    s = s.replace("} ;", "CB_COLON NEW_LINE")
+    s = s.replace("} ,", "CB_COMA")
+    s = s.replace("}", "CB_ NEW_LINE")
+    s = s.replace("{", "OB_ NEW_LINE")
+    s = s.replace(";", "; NEW_LINE")
+    lines = re.split("NEW_LINE", s)
+
+    untok_s = indent_lines(lines)
+    untok_s = (
+        untok_s.replace("CB_COLON", "};")
+        .replace("CB_COMA", "},")
+        .replace("CB_", "}")
+        .replace("OB_", "{")
+    )
+    untok_s = untok_s.replace("> > >", ">>>").replace("<< <", "<<<")
+    untok_s = untok_s.replace("> >", ">>").replace("< <", "<<")
+
+    try:
+        # call parser of the tokenizer to find comments and string and detokenize them correctly
+        tokens_generator = tokenize(untok_s, keep_comments=True)
+        for token in tokens_generator:
+            if isinstance(token, String) or isinstance(
+                token, Comment
+            ):
+                token_ = (
+                    token.value.replace("STRNEWLINE", "\n")
+                    .replace("TABSYMBOL", "\t")
+                    .replace(" ", "")
+                    .replace("SPACETOKEN", " ")
+                )
+                untok_s = untok_s.replace(token.value, token_)
+    except KeyboardInterrupt:
+        raise
+    except:
+        pass
+    return untok_s
+
+
+def extract_functions_java(s):
+    tokens = s.split()
+    i = ind_iter(len(tokens))
+    functions_standalone = []
+    functions_class = []
+    try:
+        token = tokens[i.i]
+    except KeyboardInterrupt:
+        raise
+    except:
+        return [], []
+    while True:
+        try:
+            # detect function
+            if token == ")" and (
+                tokens[i.i + 1] == "{"
+                or (tokens[i.i + 1] == "throws" and tokens[i.i + 3] == "{")
+            ):
+                # go previous until the start of function
+                while token not in [";", "}", "{", "*/", "ENDCOM"]:
+                    i.prev()
+                    token = tokens[i.i]
+
+                if token == "*/":
+                    while token != "/*":
+                        i.prev()
+                        token = tokens[i.i]
+                    function = [token]
+                    while token != "*/":
+                        i.next()
+                        token = tokens[i.i]
+                        function.append(token)
+                elif token == "ENDCOM":
+                    while token != "//":
+                        i.prev()
+                        token = tokens[i.i]
+                    function = [token]
+                    while token != "ENDCOM":
+                        i.next()
+                        token = tokens[i.i]
+                        function.append(token)
+                else:
+                    i.next()
+                    token = tokens[i.i]
+                    function = [token]
+
+                while token != "{":
+                    i.next()
+                    token = tokens[i.i]
+                    function.append(token)
+                if token == "{":
+                    number_indent = 1
+                    while not (token == "}" and number_indent == 0):
+                        try:
+                            i.next()
+                            token = tokens[i.i]
+                            if token == "{":
+                                number_indent += 1
+                            elif token == "}":
+                                number_indent -= 1
+                            function.append(token)
+                        except StopIteration:
+                            break
+                    if "static" in function[0 : function.index("{")]:
+                        functions_standalone.append(
+                            remove_java_annotation(" ".join(function))
+                        )
+                    else:
+                        functions_class.append(
+                            remove_java_annotation(" ".join(function))
+                        )
+            i.next()
+            token = tokens[i.i]
+        except KeyboardInterrupt:
+            raise
+        except:
+            break
+    return functions_standalone, functions_class
+
+
+def remove_java_annotation(function):
+    return re.sub(
+        r"^(@ (Override|Deprecated|SuppressWarnings) (\( .* \) )?)*", "", function
+    )
+
+
+def get_function_name_java(s):
+    return get_first_token_before_first_parenthesis(s)
+
+
+def extract_arguments_java(f):
+    return extract_arguments_using_parentheses(f)

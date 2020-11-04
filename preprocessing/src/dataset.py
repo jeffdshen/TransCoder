@@ -104,29 +104,6 @@ class Language:
             for job in jobs:
                 job.result()
 
-    def extract_docstrings(self, keep_comments, test_size=1000, executor=None):
-        if executor is None:
-            executor = LocalExecutor()
-        suffix = '.with_comments' if keep_comments else ''
-        files = list(self.folder.glob(
-            f'train{suffix}.[01234567].functions_class.tok'))
-        files += list(self.folder.glob(
-            f'train{suffix}.[01234567].functions_standalone.tok'))
-        files.append(self.folder.joinpath(f'test{suffix}.functions_class.tok'))
-        files.append(self.folder.joinpath(
-            f'test{suffix}.functions_standalone.tok'))
-        files.append(self.folder.joinpath(
-            f'valid{suffix}.functions_class.tok'))
-        files.append(self.folder.joinpath(
-            f'valid{suffix}.functions_standalone.tok'))
-        toks = [tok for tok in files if not (tok.with_suffix(
-            '.DS-f.ds.tok').is_file() and tok.with_suffix('.DS-f.f.tok').is_file())]
-        if len(toks) > 0:
-            jobs = executor.map_array(
-                extract_docstrings, toks, itertools.repeat(self.l))
-            for job in jobs:
-                job.result()
-
 
 class Dataset:
 
