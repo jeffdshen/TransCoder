@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 import preprocessing.src.code_tokenizer as code_tokenizer
-import preprocessing.src.python_tokenizer as code_compiler
+import preprocessing.src.python_compiler as code_compiler
 
 from preprocessing.src.utils import (
     split_file,
@@ -25,6 +25,7 @@ from preprocessing.src.utils import (
     get_nlines,
     process_and_tokenize_json_file,
     map_dataset,
+    map_array,
 )
 
 # extract_mode in {"", "sa", "cls"}
@@ -57,7 +58,7 @@ def process_language_pair_json_line(line, lang1, lang2, keep_comments, extract_m
     ex1 = getattr(code_tokenizer, f"extract_functions_{lang1}")
     ex2 = getattr(code_tokenizer, f"extract_functions_{lang2}")
 
-    tok1 = toker1(file1)
+    tok1 = " ".join(toker1(file1))
     f1_sa, f1_cls = ex1(tok1)
 
     if extract_mode == "sa":
@@ -78,9 +79,7 @@ def process_language_pair_json_line(line, lang1, lang2, keep_comments, extract_m
             continue
         f2_all = f2_sa + f2_cls
 
-        results.append(
-            json.dumps({lang1: " ".join(f1), lang2: " ".join(f2_all[0])}) + "\n"
-        )
+        results.append(json.dumps({lang1: f1, lang2: f2_all[0]}) + "\n")
 
     if len(results) == 0:
         return None
@@ -153,7 +152,8 @@ class LanguagePair:
         ]
         print(f"{self.lang1}-{self.lang2}: processing {len(jsons)} json files ...")
         if len(jsons) > 0:
-            jobs = executor.map_array(
+            jobs = map_array(
+                executor,
                 process_language_pair_json,
                 jsons,
                 itertools.repeat(self.lang1),
@@ -181,7 +181,8 @@ class LanguagePair:
         shuf_file(all_tok)
 
         # extract to language toks
-        jobs = executor.map_array(
+        jobs = map_array(
+            executor,
             select_toks_json,
             [self.lang1, self.lang2],
             itertools.repeat(all_tok),
@@ -216,7 +217,8 @@ class Language:
         ]
         print(f"{self.l}: tokenizing {len(jsons)} json files ...")
         if len(jsons) > 0:
-            jobs = executor.map_array(
+            jobs = map_array(
+                executor,
                 process_and_tokenize_json_file,
                 jsons,
                 itertools.repeat(self.l),
@@ -329,7 +331,9 @@ class Dataset:
 
         if self.lang_pair is not None:
             self.lang_pair.process_json_and_tok(
-                self.keep_comments, self.extract_mode, tok_executor
+                self.keep_comments,
+                self.extract_mode,
+                lang_executor if tok_executor is None else tok_executor,
             )
         else:
             jobs = [

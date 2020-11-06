@@ -206,7 +206,7 @@ def select_json_field(
     if input_field in json_obj:
         json_obj[output_field] = json_obj[input_field]
     for field in field_set:
-        if field != output_field:
+        if field != output_field and field in json_obj:
             del json_obj[field]
 
     return json.dumps(json_obj) + "\n"

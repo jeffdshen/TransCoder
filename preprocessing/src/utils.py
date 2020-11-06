@@ -347,3 +347,10 @@ class LocalExecutor:
     def map_array(self, fn, *arg_iterators):
         grouped_args = zip(*arg_iterators)
         return [self.submit(fn, *g) for g in grouped_args]
+
+def map_array(executor, fn, *arg_iterators):
+    if hasattr(executor, 'map_array'):
+        return executor.map_array
+    
+    grouped_args = zip(*arg_iterators)
+    return [executor.submit(fn, *g) for g in grouped_args]
