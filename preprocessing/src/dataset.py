@@ -186,8 +186,8 @@ class LanguagePair:
             [self.lang1, self.lang2],
             itertools.repeat(all_tok),
             [
-                folder_lang1.joinpath(f"all{suffix}.tok"),
-                folder_lang2.joinpath(f"all{suffix}.tok"),
+                self.folder_lang1.joinpath(f"all{suffix}.tok"),
+                self.folder_lang2.joinpath(f"all{suffix}.tok"),
             ],
         )
 
