@@ -156,4 +156,4 @@ def geeks_python_to_dataset_json(line, filter_none=True, **kwargs):
     name = name.strip()
     py_line = line.strip()
     dis_line = name + " | " + result
-    return {"python": py_line, "dis": dis_line}
+    return json.dumps({"python": py_line, "dis": dis_line}) + "\n"
