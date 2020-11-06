@@ -1,13 +1,11 @@
 import json
 import gzip
-import xdis.disasm as disasm
 import pathlib
 import io
 import tqdm
 import warnings
 import py_compile
 import multiprocessing as mp
-import tempfile
 import dis
 import contextlib
 import preprocessing.src.code_tokenizer as code_tokenizer
@@ -15,38 +13,22 @@ import preprocessing.src.dis_tokenizer as dis_tokenizer
 import sys
 
 # hex_version=50792944 is sys.version_info(major=3, minor=7, micro=9, releaselevel='final', serial=0)
-def python_to_bytecode(
-    python_code, filename="a.py", tmp_dir="/tmp", asm_format="dis", hexversion=50792944
-):
+def python_to_dis(python_code, hexversion=50792944):
     assert sys.hexversion == hexversion, "Hex version does not match"
     try:
         with io.StringIO() as output_buffer:
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
-                if asm_format == "dis":
-                    dis.dis(python_code, file=output_buffer)
-                else:
-                    path = pathlib.PurePath(tmp_dir, filename)
-                    with open(path, "w") as file:
-                        file.write(python_code)
-
-                    pyc_path = py_compile.compile(
-                        path, dfile=filename, doraise=True, optimize=0
-                    )
-                    disasm.disassemble_file(
-                        pyc_path, outstream=output_buffer, asm_format=asm_format
-                    )
+                dis.dis(python_code, file=output_buffer)
             return output_buffer.getvalue()
     except:
         return None
 
 
-def python_to_bytecode_line(
-    line, input_content, output_content, filter_none=True, **kwargs
-):
+def python_to_dis_line(line, input_content, output_content, filter_none=True, **kwargs):
     json_obj = json.loads(line)
     if input_content in json_obj:
-        bytecode = python_to_bytecode(json_obj[input_content], **kwargs)
+        bytecode = python_to_dis(json_obj[input_content], **kwargs)
     else:
         bytecode = None
 
@@ -57,24 +39,21 @@ def python_to_bytecode_line(
     return json.dumps(json_obj) + "\n"
 
 
-def python_to_bytecode_worker(
+def python_to_dis_worker(
     input_queue, output_queue, input_content, output_content, **kwargs
 ):
-    with tempfile.TemporaryDirectory() as tmp_dir:
-        for line in iter(input_queue.get, None):
-            output_line = python_to_bytecode_line(
-                line, input_content, output_content, tmp_dir=tmp_dir, **kwargs
-            )
-            if output_line is not None:
-                output_queue.put(output_line)
+    for line in iter(input_queue.get, None):
+        output_line = python_to_dis_line(line, input_content, output_content, **kwargs)
+        if output_line is not None:
+            output_queue.put(output_line)
 
 
-def python_to_bytecode_output_worker(output_queue, output_file):
+def python_to_dis_output_worker(output_queue, output_file):
     for line in iter(output_queue.get, None):
         output_file.write(line)
 
 
-def python_to_bytecode_dataset_helper(
+def python_to_dis_dataset_helper(
     input_file,
     output_file,
     input_content="content",
@@ -90,14 +69,14 @@ def python_to_bytecode_dataset_helper(
 
     workers = []
     writer = mp.Process(
-        target=python_to_bytecode_output_worker, args=(output_queue, output_file)
+        target=python_to_dis_output_worker, args=(output_queue, output_file)
     )
 
     try:
         for _ in range(num_processes):
             workers.append(
                 mp.Process(
-                    target=python_to_bytecode_worker,
+                    target=python_to_dis_worker,
                     args=(input_queue, output_queue, input_content, output_content),
                     kwargs=kwargs,
                 )
@@ -122,7 +101,7 @@ def python_to_bytecode_dataset_helper(
         writer.join()
 
 
-def python_to_bytecode_dataset(input_path, output_path, progress_bar=True, **kwargs):
+def python_to_dis_dataset(input_path, output_path, progress_bar=True, **kwargs):
     if isinstance(input_path, str):
         input_path = pathlib.PurePath(input_path)
     if isinstance(output_path, str):
@@ -144,12 +123,12 @@ def python_to_bytecode_dataset(input_path, output_path, progress_bar=True, **kwa
                 else io.StringIO()
             ) as pbar:
                 pbar_to_pass = pbar if progress_bar else None
-                python_to_bytecode_dataset_helper(
+                python_to_dis_dataset_helper(
                     input_file, output_file, progress_bar=pbar_to_pass, **kwargs
                 )
 
 
-def python_to_python_and_bytecode_line(line, filter_none=True, **kwargs):
+def python_to_python_and_dis_line(line, filter_none=True, **kwargs):
     """
     Parse and compile the format of the release geeks_for_geeks validation and test set
     """
@@ -159,7 +138,7 @@ def python_to_python_and_bytecode_line(line, filter_none=True, **kwargs):
 
     detok = detok.strip()
     code = code_tokenizer.detokenize_python(detok)
-    bytecode = dis_tokenizer.tokenize_dis(python_to_bytecode(code))
+    bytecode = dis_tokenizer.tokenize_dis(python_to_dis(code))
     if bytecode is None:
         return None
 
@@ -167,7 +146,7 @@ def python_to_python_and_bytecode_line(line, filter_none=True, **kwargs):
     funcs = dis_tokenizer.extract_functions_dis(bytecode)
     if funcs is None:
         return None
-    
+
     functions_standalone, functions_class = funcs
     if len(functions_standalone) > 1 or len(functions_class) > 0:
         return None

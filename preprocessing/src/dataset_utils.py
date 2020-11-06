@@ -149,43 +149,6 @@ def map_dataset_unordered(input_path, output_path, func, progress_bar=True, **kw
                 )
 
 
-def map_dataset_helper(input_file, output_file, func, progress_bar=None, **kwargs):
-    for line in input_file:
-        output_line = func(line, **kwargs)
-        if output_line is not None:
-            output_file.write(output_line)
-
-        if progress_bar is not None:
-            progress_bar.update(len(line.encode()))
-
-
-def map_dataset(input_path, output_path, func, progress_bar=True, **kwargs):
-    if isinstance(input_path, str):
-        input_path = pathlib.PurePath(input_path)
-    if isinstance(output_path, str):
-        output_path = pathlib.PurePath(output_path)
-    input_fn = gzip.open if (input_path.suffix == ".gz") else open
-    output_fn = gzip.open if (output_path.suffix == ".gz") else open
-
-    with input_fn(input_path, mode="rt") as input_file:
-        with output_fn(output_path, mode="wt") as output_file:
-            # use a dummy __enter__, __exit__ if progress_bar is False
-            with (
-                tqdm.tqdm(
-                    total=pathlib.Path(input_path).stat().st_size,
-                    unit="B",
-                    unit_scale=True,
-                    unit_divisor=1024,
-                )
-                if progress_bar
-                else io.StringIO()
-            ) as pbar:
-                pbar_to_pass = pbar if progress_bar else None
-                map_dataset_helper(
-                    input_file, output_file, func, progress_bar=pbar_to_pass, **kwargs
-                )
-
-
 def split_dataset_helper(input_file, output_files, progress_bar=None, **kwargs):
     index = 0
     for line in input_file:

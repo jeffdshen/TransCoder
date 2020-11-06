@@ -44,7 +44,7 @@ def detokenize_dis(s):
     result = dis_tokenizer.detokenize_dis(s)
     if result is not None:
         return result
-    return []
+    return ""
 
 
 def extract_functions_dis(s):
