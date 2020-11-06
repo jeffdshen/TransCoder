@@ -128,7 +128,7 @@ def python_to_dis_dataset(input_path, output_path, progress_bar=True, **kwargs):
                 )
 
 
-def python_to_python_and_dis_line(line, filter_none=True, **kwargs):
+def geeks_python_to_dataset_json(line, filter_none=True, **kwargs):
     """
     Parse and compile the format of the release geeks_for_geeks validation and test set
     """
@@ -154,6 +154,6 @@ def python_to_python_and_dis_line(line, filter_none=True, **kwargs):
     result = functions_standalone[0]
 
     name = name.strip()
-    py_line = line
-    dis_line = name + " | " + result + "\n"
-    return py_line + dis_line
+    py_line = line.strip()
+    dis_line = name + " | " + result
+    return {"python": py_line, "dis": dis_line}

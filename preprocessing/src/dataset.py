@@ -102,7 +102,7 @@ def process_language_pair_json(input_path, lang1, lang2, keep_comments, extract_
     )
 
 
-def select_toks(line, lang):
+def select_toks(line, lang, **kwargs):
     json_obj = json.loads(line)
     assert lang in json_obj, f"{line} is missing {lang} field"
     return json_obj[lang] + "\n"
