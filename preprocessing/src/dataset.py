@@ -48,8 +48,8 @@ def process_language_pair_json_line(line, lang1, lang2, keep_comments, extract_m
         file2 = None
 
     if file2 is not None:
-        tok1 = toker1(file1)
-        tok2 = toker2(file2)
+        tok1 = toker1(file1, keep_comments)
+        tok2 = toker2(file2, keep_comments)
         if len(tok1) > 0 and len(tok2) > 0:
             return json.dumps({lang1: " ".join(tok1), lang2: " ".join(tok2)}) + "\n"
         else:
@@ -58,7 +58,7 @@ def process_language_pair_json_line(line, lang1, lang2, keep_comments, extract_m
     ex1 = getattr(code_tokenizer, f"extract_functions_{lang1}")
     ex2 = getattr(code_tokenizer, f"extract_functions_{lang2}")
 
-    tok1 = " ".join(toker1(file1))
+    tok1 = " ".join(toker1(file1, keep_comments))
     f1_sa, f1_cls = ex1(tok1)
 
     if extract_mode == "sa":
@@ -70,11 +70,11 @@ def process_language_pair_json_line(line, lang1, lang2, keep_comments, extract_m
 
     results = []
     for f1 in f1_all:
-        f2 = comp(detok1(f1))
+        f2 = comp(detok1(f1, keep_comments))
         if f2 is None:
             continue
 
-        f2_sa, f2_cls = ex2(toker2(f2))
+        f2_sa, f2_cls = ex2(toker2(f2, keep_comments))
         if len(f2_sa) + len(f2_cls) != 1:
             continue
         f2_all = f2_sa + f2_cls
