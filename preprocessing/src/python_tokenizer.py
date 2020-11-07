@@ -198,6 +198,8 @@ def extract_functions_python(s):
                         function = " ".join(function)
                         if function is not None:
                             functions_standalone.append(function)
+                except ValueError:
+                    token = next(tokens)
                 except:
                     print(function)
                     token = next(tokens)

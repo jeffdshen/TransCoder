@@ -108,13 +108,14 @@ def select_toks(line, lang, **kwargs):
 
 
 def select_toks_json(lang, input_path, output_path):
-    map_dataset(
-        input_path,
-        output_path,
-        select_toks,
-        lang=lang,
-        progress_bar=False,
-    )
+    if not output_path.is_file():
+        map_dataset(
+            input_path,
+            output_path,
+            select_toks,
+            lang=lang,
+            progress_bar=False,
+        )
 
 
 class LanguagePair:
@@ -166,19 +167,20 @@ class LanguagePair:
 
         # join
         all_tok = self.folder.joinpath(f"all{suffix}.tok.json")
-        command = (
-            f"cd {self.folder}; cat *.[0-9][0-9][0-9]{suffix}.tok.json > {all_tok}"
-        )
-        proc = subprocess.run(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            executable="/bin/bash",
-        )
+        if not all_tok.is_file():
+            command = (
+                f"cd {self.folder}; cat *.[0-9][0-9][0-9]{suffix}.tok.json > {all_tok}"
+            )
+            proc = subprocess.run(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                executable="/bin/bash",
+            )
 
-        # shuf
-        shuf_file(all_tok)
+            # shuf
+            shuf_file(all_tok)
 
         # extract to language toks
         jobs = map_array(
@@ -191,6 +193,8 @@ class LanguagePair:
                 self.folder_lang2.joinpath(f"all{suffix}.tok"),
             ],
         )
+        for job in jobs:
+            job.result()
 
 
 class Language:
@@ -230,17 +234,18 @@ class Language:
 
         # join
         all_tok = self.folder.joinpath(f"all{suffix}.tok")
-        command = f"cd {self.folder}; cat *.[0-9][0-9][0-9]{suffix}.tok > {all_tok}"
-        proc = subprocess.run(
-            command,
-            shell=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            executable="/bin/bash",
-        )
+        if not all_tok.is_file():
+            command = f"cd {self.folder}; cat *.[0-9][0-9][0-9]{suffix}.tok > {all_tok}"
+            proc = subprocess.run(
+                command,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                executable="/bin/bash",
+            )
 
-        # shuf
-        shuf_file(all_tok)
+            # shuf
+            shuf_file(all_tok)
 
     def split_train_test_valid(self, keep_comments, test_size):
         suffix = ".with_comments" if keep_comments else ""
@@ -275,9 +280,9 @@ class Language:
         if not all(
             self.folder.joinpath(f"train{suffix}.{n}.tok").is_file() for n in range(8)
         ):
-            print(f"{self.l}: splitting train ... ")
             n_lines = get_nlines(all_tok)
             split_len = int((n_lines - n_tests) / 8)
+            print(f"{self.l}: splitting train ({n_lines}) to ({split_len}) ... ")
             for n, i in zip(range(8), range(2 * test_size, n_lines, split_len)):
                 subprocess.run(
                     f"cat {all_tok} | head -n {i + split_len} | tail -n {split_len}  > {self.folder.joinpath(f'train{suffix}.{n}.tok')}",
@@ -435,16 +440,16 @@ class Dataset:
     def cat_bpe(self, files_regex, out):
         for l in self.langs:
             out_file = self.folder.joinpath(f"{l.l}.{out}")
-            for f in l.folder.glob(files_regex):
-                if not out_file.is_file():
-                    command = f"cd {self.folder}; cat {l.l}.{files_regex} > {l.l}.{out}"
-                    proc = subprocess.run(
-                        command,
-                        shell=True,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE,
-                        executable="/bin/bash",
-                    )
+            files_regex_pattern = self.folder.joinpath(f"{l.l}.{files_regex}")
+            if not out_file.is_file():
+                command = f"cd {self.folder}; cat {l.l}.{files_regex} > {l.l}.{out}"
+                proc = subprocess.run(
+                    command,
+                    shell=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    executable="/bin/bash",
+                )
 
     def binarize_for_XLM(self, files_regex, executor=None):
         print(f"binarize {files_regex} ...")
