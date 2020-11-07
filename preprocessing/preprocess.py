@@ -103,14 +103,15 @@ def preprocess(
 
         dataset.train_bpe(ncodes=ncodes, size_gb=size_gb)
 
-        dataset.get_vocab(size_gb=size_gb)
-
         print("apply bpe on train ... ")
         dataset.apply_bpe(
             f"train{dataset.suffix}.[0-9].tok",
             use_vocab=False,
             executor=single_ex,
         )
+
+        dataset.get_vocab(size_gb=size_gb)
+
         print("cat train ... ")
         dataset.cat_bpe(
             f"train{dataset.suffix}.[0-9].bpe",
