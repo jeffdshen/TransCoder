@@ -70,7 +70,7 @@ def process_language_pair_json_line(line, lang1, lang2, keep_comments, extract_m
 
     results = []
     for f1 in f1_all:
-        f2 = comp(detok1(f1, keep_comments))
+        f2 = comp(detok1(f1))
         if f2 is None:
             continue
 
