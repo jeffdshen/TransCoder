@@ -299,8 +299,8 @@ def regroup_and_select_data(files, output, nlines=None):
 
 
 def create_symlink(file_path, symlink):
-    assert file_path.is_file()
-    assert not symlink.is_file()
+    assert file_path.is_file(), file_path
+    assert not symlink.is_file(), symlink
     process = subprocess.run(
         f"ln -s {file_path} {symlink}",
         shell=True,

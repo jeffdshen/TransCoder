@@ -64,6 +64,14 @@ def check_files_and_symlink_for_XLM(dataset, langs, extract_mode):
             XLM_folder.joinpath(f"test.{langs[1]}{suffix}.pth"),
             XLM_folder.joinpath(f"test.{langs[0]}{suffix}-{langs[1]}{suffix}.{langs[1]}{suffix}.pth"),
         )
+        create_symlink(
+            XLM_folder.joinpath(f"valid.{langs[0]}{suffix}.pth"),
+            XLM_folder.joinpath(f"valid.{langs[0]}{suffix}-{langs[1]}{suffix}.{langs[0]}{suffix}.pth"),
+        )
+        create_symlink(
+            XLM_folder.joinpath(f"valid.{langs[1]}{suffix}.pth"),
+            XLM_folder.joinpath(f"valid.{langs[0]}{suffix}-{langs[1]}{suffix}.{langs[1]}{suffix}.pth"),
+        )
 
 
 def preprocess(
