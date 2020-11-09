@@ -157,3 +157,14 @@ def geeks_python_to_dataset_json(line, filter_none=True, **kwargs):
     py_line = line.strip()
     dis_line = name + " | " + result
     return json.dumps({"python": py_line, "dis": dis_line}) + "\n"
+
+
+def code_to_geeks_dataset(line, prefix="VALID_", sep="|", **kwargs):
+    """
+    Convert from function to the format of the geeks_for_geeks validation set
+    """
+    line_no = code_to_geeks_dataset.counter
+    return prefix + str(line_no) + " " + sep + " " + line
+
+
+code_to_geeks_dataset.counter = 0
