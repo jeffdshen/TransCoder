@@ -164,6 +164,7 @@ def code_to_geeks_dataset(line, prefix="VALID_", sep="|", **kwargs):
     Convert from function to the format of the geeks_for_geeks validation set
     """
     line_no = code_to_geeks_dataset.counter
+    code_to_geeks_dataset.counter += 1
     return prefix + str(line_no) + " " + sep + " " + line
 
 
