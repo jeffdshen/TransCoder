@@ -17,11 +17,13 @@
 import argparse
 import os
 import sys
+import json
 
 import fastBPE
 import torch
 
 import preprocessing.src.code_tokenizer as code_tokenizer
+import preprocessing.src.dataset as dataset
 from XLM.src.data.dictionary import Dictionary, BOS_WORD, EOS_WORD, PAD_WORD, UNK_WORD, MASK_WORD
 from XLM.src.model import build_model
 from XLM.src.utils import AttrDict
@@ -47,6 +49,8 @@ def get_parser():
                         default="data/BPE_with_comments_codes", help="Path to BPE codes.")
     parser.add_argument("--beam_size", type=int, default=1,
                         help="Beam size. The beams will be printed in order of decreasing likelihood.")
+    parser.add_argument("--ground_truth", type=bool, default=False,
+                        help="Whether to generate a ground truth translation as well")
 
     return parser
 
@@ -173,6 +177,12 @@ if __name__ == '__main__':
     # read input code from stdin
     src_sent = []
     input = sys.stdin.read().strip()
+
+    if params.ground_truth:
+        src_json = json.dumps({params.src_lang : input})
+        tgt_json = json.loads(dataset.process_language_pair_json_line(src_json, params.src_lang, params.tgt_lang, False, "sa"))
+        detokenizer = getattr(code_tokenizer, f'detokenize_{params.tgt_lang}')
+        print(detokenizer(tgt_json[params.tgt_lang]))
 
     with torch.no_grad():
         output = translator.translate(
