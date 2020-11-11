@@ -26,7 +26,7 @@ from XLM.src.data.dictionary import Dictionary, BOS_WORD, EOS_WORD, PAD_WORD, UN
 from XLM.src.model import build_model
 from XLM.src.utils import AttrDict
 
-SUPPORTED_LANGUAGES = ['cpp', 'java', 'python']
+SUPPORTED_LANGUAGES = ['cpp', 'java', 'python', 'dis']
 
 
 def get_parser():
@@ -101,8 +101,8 @@ class Translator:
 
     def translate(self, input, lang1, lang2, n=1, beam_size=1, sample_temperature=None, device='cuda:0'):
         with torch.no_grad():
-            assert lang1 in {'python', 'java', 'cpp'}, lang1
-            assert lang2 in {'python', 'java', 'cpp'}, lang2
+            assert lang1 in SUPPORTED_LANGUAGES, lang1
+            assert lang2 in SUPPORTED_LANGUAGES, lang2
 
             DEVICE = device
             tokenizer = getattr(code_tokenizer, f'tokenize_{lang1}')
