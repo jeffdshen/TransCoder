@@ -169,3 +169,9 @@ def code_to_geeks_dataset(line, prefix="VALID_", sep="|", **kwargs):
 
 
 code_to_geeks_dataset.counter = 0
+
+
+def strip_ids_dataset(line, sep=" | ", **kwargs):
+    _, _, sent = line.partition(sep)
+
+    return sent
