@@ -50,7 +50,7 @@ def get_parser():
     parser.add_argument("--beam_size", type=int, default=1,
                         help="Beam size. The beams will be printed in order of decreasing likelihood.")
     parser.add_argument("--ground_truth", type=bool, default=False,
-                        help="Whether to generate a ground truth translation as well")
+                        help="Whether to generate a ground truth translation instead")
 
     return parser
 
@@ -163,17 +163,6 @@ if __name__ == '__main__':
     parser = get_parser()
     params = parser.parse_args()
 
-    # check parameters
-    assert os.path.isfile(
-        params.model_path), f"The path to the model checkpoint is incorrect: {params.model_path}"
-    assert os.path.isfile(
-        params.BPE_path), f"The path to the BPE tokens is incorrect: {params.BPE_path}"
-    assert params.src_lang in SUPPORTED_LANGUAGES, f"The source language should be in {SUPPORTED_LANGUAGES}."
-    assert params.tgt_lang in SUPPORTED_LANGUAGES, f"The target language should be in {SUPPORTED_LANGUAGES}."
-
-    # Initialize translator
-    translator = Translator(params)
-
     # read input code from stdin
     src_sent = []
     input = sys.stdin.read().strip()
@@ -183,11 +172,22 @@ if __name__ == '__main__':
         tgt_json = json.loads(dataset.process_language_pair_json_line(src_json, params.src_lang, params.tgt_lang, False, "sa"))
         detokenizer = getattr(code_tokenizer, f'detokenize_{params.tgt_lang}')
         print(detokenizer(tgt_json[params.tgt_lang]))
+    else:
+        # check parameters
+        assert os.path.isfile(
+            params.model_path), f"The path to the model checkpoint is incorrect: {params.model_path}"
+        assert os.path.isfile(
+            params.BPE_path), f"The path to the BPE tokens is incorrect: {params.BPE_path}"
+        assert params.src_lang in SUPPORTED_LANGUAGES, f"The source language should be in {SUPPORTED_LANGUAGES}."
+        assert params.tgt_lang in SUPPORTED_LANGUAGES, f"The target language should be in {SUPPORTED_LANGUAGES}."
 
-    with torch.no_grad():
-        output = translator.translate(
-            input, lang1=params.src_lang, lang2=params.tgt_lang, beam_size=params.beam_size)
+        # Initialize translator
+        translator = Translator(params)
 
-    for out in output:
-        print("=" * 20)
-        print(out)
+        with torch.no_grad():
+            output = translator.translate(
+                input, lang1=params.src_lang, lang2=params.tgt_lang, beam_size=params.beam_size)
+
+        for out in output:
+            print("=" * 20)
+            print(out)
