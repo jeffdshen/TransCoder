@@ -12,7 +12,7 @@ import torch
 from .pretrain import load_embeddings
 
 # , TRANSFORMER_LAYER_PARAMS
-from .transformer import DECODER_ONLY_PARAMS, TransformerModel
+from .transformer import DECODER_ONLY_PARAMS, TransformerModel, PRED_ANY_PARAMS
 
 
 logger = getLogger()
@@ -293,6 +293,11 @@ def build_model(params, dico):
                         dec_reload["position_embeddings.weight"] = dec_reload[
                             "position_embeddings.weight"
                         ].repeat(2, 1)
+
+                    for name in PRED_ANY_PARAMS:
+                        if name not in dec_reload:
+                            logger.warning("Parameter %s not found." % (name))
+                            dec_reload[name] = dec.state_dict()[name]
 
                     for i in range(params.n_layers_decoder):
                         for name in DECODER_ONLY_PARAMS:

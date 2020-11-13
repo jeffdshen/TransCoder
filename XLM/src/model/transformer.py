@@ -409,10 +409,10 @@ class TransformerModel(nn.Module):
 
         # output layer
         if self.with_output:
-            if params.pred_any:
+            if self.pred_any:
                 self.pred_layer = PredAnyLayer(params)
             else:
-            self.pred_layer = PredLayer(params)
+                self.pred_layer = PredLayer(params)
 
             if params.share_inout_emb:
                 self.pred_layer.proj.weight = self.embeddings.weight
