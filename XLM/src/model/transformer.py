@@ -29,6 +29,11 @@ DECODER_ONLY_PARAMS = [
     "encoder_attn.%i.out_lin.bias",
 ]
 
+PRED_ANY_PARAMS = [
+    "pred_layer.pos_proj.weight",
+    "pred_layer.pos_proj.bias",
+]
+
 TRANSFORMER_LAYER_PARAMS = [
     "attentions.%i.q_lin.weight",
     "attentions.%i.q_lin.bias",
@@ -142,6 +147,44 @@ class PredLayer(nn.Module):
         assert x.dim() == 2
         return self.proj(x)
 
+class PredAnyLayer(nn.Module):
+    """
+    PredictAny layer (cross_entropy loss over union of allowed events).
+    """
+
+    def __init__(self, params):
+        super().__init__()
+        self.n_words = params.n_words
+        self.pad_index = params.pad_index
+        dim = params.emb_dim_decoder
+        self.proj = Linear(dim, params.n_words, bias=True)
+        self.pos_proj = Linear(dim, N_MAX_POSITIONS, bias=True)
+
+    def forward(self, x, ypos, get_scores=False):
+        """
+        Compute the loss, and optionally the scores.
+        """
+        y, pos = ypos
+        assert (y == self.pad_index).sum().item() == 0
+        y_scores = F.softmax(self.proj(x).view(-1, self.n_words))
+        pos_scores = F.softmax(self.pos_proj(x).view(-1, self.n_words))
+        
+        # gather((bs, n_words), (bs, set_size)) -> (bs, set_size)
+        y_select = torch.gather(y_scores, -1, y)
+        # gather((bs, n_max_positions), (bs, set_size)) -> (bs, set_size)
+        pos_select = torch.gather(pos_scores, -1, pos)
+        
+        # loss for sample = -log(sum(P(y_i) * P(pos_i))) where (y_i, pos_i) are targets
+        combined_scores = torch.mul(y_select, pos_select).sum(dim=1)
+        loss = torch.neg(torch.log(combined_scores)).sum()
+        return (y_scores, pos_scores), loss
+
+    def get_scores(self, x):
+        """
+        Compute scores.
+        """
+        assert x.dim() == 2
+        return self.proj(x), self.pos_proj(x)
 
 class MultiHeadAttention(nn.Module):
 
@@ -285,6 +328,7 @@ class TransformerModel(nn.Module):
         self.is_encoder = is_encoder
         self.is_decoder = not is_encoder
         self.with_output = with_output
+        self.pred_any = params.pred_any and self.is_decoder
 
         # dictionary / languages
         self.n_langs = params.n_langs
@@ -365,7 +409,11 @@ class TransformerModel(nn.Module):
 
         # output layer
         if self.with_output:
+            if params.pred_any:
+                self.pred_layer = PredAnyLayer(params)
+            else:
             self.pred_layer = PredLayer(params)
+
             if params.share_inout_emb:
                 self.pred_layer.proj.weight = self.embeddings.weight
 
