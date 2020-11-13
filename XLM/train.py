@@ -99,6 +99,12 @@ def get_parser():
         help="Share input and output embeddings",
     )
     parser.add_argument(
+        "--pred_any",
+        type=bool_flag,
+        default=False,
+        help="Enable predicting word position",
+    )
+    parser.add_argument(
         "--sinusoidal_embeddings",
         type=bool_flag,
         default=False,

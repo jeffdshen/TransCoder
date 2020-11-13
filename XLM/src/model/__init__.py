@@ -71,6 +71,9 @@ def check_model_params(params):
 
     assert params.n_layers_encoder > 0 and params.n_layers_decoder > 0
 
+    # share input and output embeddings
+    assert not params.share_inout_emb or not params.pred_any
+
     # reload pretrained word embeddings
     if params.reload_emb != "":
         assert os.path.isfile(params.reload_emb)
