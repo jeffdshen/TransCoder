@@ -26,7 +26,6 @@ logger = getLogger()
 
 
 class Trainer(object):
-
     def __init__(self, data, params):
         """
         Initialize trainer.
@@ -49,8 +48,19 @@ class Trainer(object):
         if params.multi_gpu and params.amp == -1:
             logger.info("Using nn.parallel.DistributedDataParallel ...")
             for name in self.MODEL_NAMES:
-                setattr(self, name, [nn.parallel.DistributedDataParallel(model, device_ids=[
-                        params.local_rank], output_device=params.local_rank, broadcast_buffers=True) for model in getattr(self, name)])
+                setattr(
+                    self,
+                    name,
+                    [
+                        nn.parallel.DistributedDataParallel(
+                            model,
+                            device_ids=[params.local_rank],
+                            output_device=params.local_rank,
+                            broadcast_buffers=True,
+                        )
+                        for model in getattr(self, name)
+                    ],
+                )
 
         # set optimizers
         self.set_optimizers()
@@ -61,31 +71,39 @@ class Trainer(object):
             if params.multi_gpu:
                 logger.info("Using apex.parallel.DistributedDataParallel ...")
                 for name in self.MODEL_NAMES:
-                    setattr(self, name, [apex.parallel.DistributedDataParallel(
-                        model, delay_allreduce=True) for model in getattr(self, name)])
+                    setattr(
+                        self,
+                        name,
+                        [
+                            apex.parallel.DistributedDataParallel(
+                                model, delay_allreduce=True
+                            )
+                            for model in getattr(self, name)
+                        ],
+                    )
 
         # stopping criterion used for early stopping
-        if params.stopping_criterion != '':
-            split = params.stopping_criterion.split(',')
+        if params.stopping_criterion != "":
+            split = params.stopping_criterion.split(",")
             assert len(split) == 2 and split[1].isdigit()
             self.decrease_counts_max = int(split[1])
             self.decrease_counts = 0
-            if split[0][0] == '_':
+            if split[0][0] == "_":
                 self.stopping_criterion = (split[0][1:], False)
             else:
                 self.stopping_criterion = (split[0], True)
-            self.best_stopping_criterion = - \
-                1e12 if self.stopping_criterion[1] else 1e12
+            self.best_stopping_criterion = -1e12 if self.stopping_criterion[1] else 1e12
         else:
             self.stopping_criterion = None
             self.best_stopping_criterion = None
 
         # probability of masking out / randomize / not modify words to predict
         params.pred_probs = torch.FloatTensor(
-            [params.word_mask, params.word_keep, params.word_rand])
+            [params.word_mask, params.word_keep, params.word_rand]
+        )
 
         # probabilty to predict a word
-        counts = np.array(list(self.data['dico'].counts.values()))
+        counts = np.array(list(self.data["dico"].counts.values()))
         params.mask_scores = np.maximum(counts, 1) ** -params.sample_alpha
         params.mask_scores[params.pad_index] = 0  # do not predict <PAD> index
         # do not predict special tokens
@@ -93,12 +111,13 @@ class Trainer(object):
 
         # validation metrics
         self.metrics = []
-        metrics = [m for m in params.validation_metrics.split(',') if m != '']
+        metrics = [m for m in params.validation_metrics.split(",") if m != ""]
         for m in metrics:
-            m = (m[1:], False) if m[0] == '_' else (m, True)
+            m = (m[1:], False) if m[0] == "_" else (m, True)
             self.metrics.append(m)
-        self.best_metrics = {metric: (-1e12 if biggest else 1e12)
-                             for (metric, biggest) in self.metrics}
+        self.best_metrics = {
+            metric: (-1e12 if biggest else 1e12) for (metric, biggest) in self.metrics
+        }
 
         # training statistics
         self.epoch = 0
@@ -106,17 +125,16 @@ class Trainer(object):
         self.n_total_iter = 0
         self.n_sentences = 0
         self.stats = OrderedDict(
-            [('processed_s', 0), ('processed_w', 0)] +
-            [('CLM-%s' % l, []) for l in params.langs] +
-            [('CLM-%s-%s' % (l1, l2), []) for l1, l2 in data['para'].keys()] +
-            [('CLM-%s-%s' % (l2, l1), []) for l1, l2 in data['para'].keys()] +
-            [('MLM-%s' % l, []) for l in params.langs] +
-            [('MLM-%s-%s' % (l1, l2), []) for l1, l2 in data['para'].keys()] +
-            [('MLM-%s-%s' % (l2, l1), []) for l1, l2 in data['para'].keys()] +
-            [('AE-%s' % lang, []) for lang in params.ae_steps] +
-            [('MT-%s-%s' % (l1, l2), []) for l1, l2 in params.mt_steps] +
-            [('BT-%s-%s-%s' % (l1, l2, l3), [])
-             for l1, l2, l3 in params.bt_steps]
+            [("processed_s", 0), ("processed_w", 0)]
+            + [("CLM-%s" % l, []) for l in params.langs]
+            + [("CLM-%s-%s" % (l1, l2), []) for l1, l2 in data["para"].keys()]
+            + [("CLM-%s-%s" % (l2, l1), []) for l1, l2 in data["para"].keys()]
+            + [("MLM-%s" % l, []) for l in params.langs]
+            + [("MLM-%s-%s" % (l1, l2), []) for l1, l2 in data["para"].keys()]
+            + [("MLM-%s-%s" % (l2, l1), []) for l1, l2 in data["para"].keys()]
+            + [("AE-%s" % lang, []) for lang in params.ae_steps]
+            + [("MT-%s-%s" % (l1, l2), []) for l1, l2 in params.mt_steps]
+            + [("BT-%s-%s-%s" % (l1, l2, l3), []) for l1, l2, l3 in params.bt_steps]
         )
         self.last_time = time.time()
 
@@ -137,13 +155,15 @@ class Trainer(object):
             if isinstance(models, list):
                 for model in models:
                     named_params.extend(
-                        [(k, p) for k, p in model.named_parameters() if p.requires_grad])
+                        [(k, p) for k, p in model.named_parameters() if p.requires_grad]
+                    )
             else:
                 named_params.extend(
-                    [(k, p) for k, p in models.named_parameters() if p.requires_grad])
+                    [(k, p) for k, p in models.named_parameters() if p.requires_grad]
+                )
 
         # model parameters
-        self.parameters['model'] = [p for k, p in named_params]
+        self.parameters["model"] = [p for k, p in named_params]
 
         # log
         for k, v in self.parameters.items():
@@ -158,8 +178,9 @@ class Trainer(object):
         self.optimizers = {}
 
         # model optimizer
-        self.optimizers['model'] = get_optimizer(
-            self.parameters['model'], params.optimizer)
+        self.optimizers["model"] = get_optimizer(
+            self.parameters["model"], params.optimizer
+        )
 
         # log
         logger.info("Optimizers: %s" % ", ".join(self.optimizers.keys()))
@@ -169,26 +190,27 @@ class Trainer(object):
         Initialize AMP optimizer.
         """
         params = self.params
-        assert params.amp == 0 and params.fp16 is False or params.amp in [
-            1, 2, 3] and params.fp16 is True
+        assert (
+            params.amp == 0
+            and params.fp16 is False
+            or params.amp in [1, 2, 3]
+            and params.fp16 is True
+        )
         opt_names = self.optimizers.keys()
-        models = [
-            model for name in self.MODEL_NAMES for model in getattr(self, name)]
+        models = [model for name in self.MODEL_NAMES for model in getattr(self, name)]
         models, optimizers = apex.amp.initialize(
             models,
             [self.optimizers[k] for k in opt_names],
-            opt_level=('O%i' % params.amp)
+            opt_level=("O%i" % params.amp),
         )
         current_index = 0
         for name in self.MODEL_NAMES:
             models_length = len(getattr(self, name))
-            setattr(
-                self, name, models[current_index:current_index + models_length])
+            setattr(self, name, models[current_index : current_index + models_length])
             current_index += models_length
         assert current_index == len(models)
         self.optimizers = {
-            opt_name: optimizer
-            for opt_name, optimizer in zip(opt_names, optimizers)
+            opt_name: optimizer for opt_name, optimizer in zip(opt_names, optimizers)
         }
 
     def optimize(self, loss):
@@ -214,8 +236,7 @@ class Trainer(object):
             if params.clip_grad_norm > 0:
                 for name in names:
                     # norm_check_a = (sum([p.grad.norm(p=2).item() ** 2 for p in self.parameters[name]])) ** 0.5
-                    clip_grad_norm_(
-                        self.parameters[name], params.clip_grad_norm)
+                    clip_grad_norm_(self.parameters[name], params.clip_grad_norm)
                     # norm_check_b = (sum([p.grad.norm(p=2).item() ** 2 for p in self.parameters[name]])) ** 0.5
                     # print(name, norm_check_a, norm_check_b)
             for optimizer in optimizers:
@@ -229,15 +250,19 @@ class Trainer(object):
                 if params.clip_grad_norm > 0:
                     for name in names:
                         # norm_check_a = (sum([p.grad.norm(p=2).item() ** 2 for p in apex.amp.master_params(self.optimizers[name])])) ** 0.5
-                        clip_grad_norm_(apex.amp.master_params(
-                            self.optimizers[name]), params.clip_grad_norm)
+                        clip_grad_norm_(
+                            apex.amp.master_params(self.optimizers[name]),
+                            params.clip_grad_norm,
+                        )
                         # norm_check_b = (sum([p.grad.norm(p=2).item() ** 2 for p in apex.amp.master_params(self.optimizers[name])])) ** 0.5
                         # print(name, norm_check_a, norm_check_b)
                 for optimizer in optimizers:
                     optimizer.step()
                     optimizer.zero_grad()
             else:
-                with apex.amp.scale_loss(loss, optimizers, delay_unscale=True) as scaled_loss:
+                with apex.amp.scale_loss(
+                    loss, optimizers, delay_unscale=True
+                ) as scaled_loss:
                     scaled_loss.backward()
 
     def iter(self):
@@ -258,10 +283,13 @@ class Trainer(object):
         #     return
 
         s_iter = "%7i - " % self.n_total_iter
-        s_stat = ' || '.join([
-            '{}: {:7.4f}'.format(k, np.mean(v)) for k, v in self.stats.items()
-            if type(v) is list and len(v) > 0
-        ])
+        s_stat = " || ".join(
+            [
+                "{}: {:7.4f}".format(k, np.mean(v))
+                for k, v in self.stats.items()
+                if type(v) is list and len(v) > 0
+            ]
+        )
         for k in self.stats.keys():
             if type(self.stats[k]) is list:
                 del self.stats[k][:]
@@ -269,25 +297,28 @@ class Trainer(object):
         # learning rates
         s_lr = " - "
         for k, v in self.optimizers.items():
-            s_lr = s_lr + (" - %s LR: " % k) + \
-                " / ".join("{:.4e}".format(group['lr'])
-                           for group in v.param_groups)
+            s_lr = (
+                s_lr
+                + (" - %s LR: " % k)
+                + " / ".join("{:.4e}".format(group["lr"]) for group in v.param_groups)
+            )
 
         if self.params.bt_sample_temperature > 0:
-            s_bt_samp = " - BT-sampling-T: " + \
-                "{:2.2e}".format(self.params.bt_sample_temperature)
+            s_bt_samp = " - BT-sampling-T: " + "{:2.2e}".format(
+                self.params.bt_sample_temperature
+            )
         else:
-            s_bt_samp = ''
+            s_bt_samp = ""
 
         # processing speed
         new_time = time.time()
         diff = new_time - self.last_time
         s_speed = "{:7.2f} sent/s - {:8.2f} words/s - ".format(
-            self.stats['processed_s'] * 1.0 / diff,
-            self.stats['processed_w'] * 1.0 / diff
+            self.stats["processed_s"] * 1.0 / diff,
+            self.stats["processed_w"] * 1.0 / diff,
         )
-        self.stats['processed_s'] = 0
-        self.stats['processed_w'] = 0
+        self.stats["processed_s"] = 0
+        self.stats["processed_w"] = 0
         self.last_time = new_time
 
         # log speed + stats + learning rate
@@ -297,26 +328,28 @@ class Trainer(object):
         """
         Create a new iterator for a dataset.
         """
-        logger.info("Creating new training data iterator (%s) ..." % ','.join(
-            [str(x) for x in [iter_name, lang1, lang2] if x is not None]))
+        logger.info(
+            "Creating new training data iterator (%s) ..."
+            % ",".join([str(x) for x in [iter_name, lang1, lang2] if x is not None])
+        )
         if lang2 is None:
             if stream:
-                iterator = self.data['mono_stream'][lang1]['train'].get_iterator(
-                    shuffle=True)
+                iterator = self.data["mono_stream"][lang1]["train"].get_iterator(
+                    shuffle=True
+                )
             else:
-                assert(self.params.gen_tpb_multiplier > 0)
-                iterator = self.data['mono'][lang1]['train'].get_iterator(
+                assert self.params.gen_tpb_multiplier > 0
+                iterator = self.data["mono"][lang1]["train"].get_iterator(
                     shuffle=True,
                     group_by_size=self.params.group_by_size,
                     n_sentences=-1,
-                    tokens_per_batch=self.params.tokens_per_batch *
-                    (self.params.gen_tpb_multiplier if iter_name == 'bt' else 1)
+                    tokens_per_batch=self.params.tokens_per_batch
+                    * (self.params.gen_tpb_multiplier if iter_name == "bt" else 1),
                 )
         else:
             assert stream is False
-            _lang1, _lang2 = (
-                lang1, lang2) if lang1 < lang2 else (lang2, lang1)
-            iterator = self.data['para'][(_lang1, _lang2)]['train'].get_iterator(
+            _lang1, _lang2 = (lang1, lang2) if lang1 < lang2 else (lang2, lang1)
+            iterator = self.data["para"][(_lang1, _lang2)]["train"].get_iterator(
                 shuffle=True,
                 group_by_size=self.params.group_by_size,
                 n_sentences=-1,
@@ -352,18 +385,18 @@ class Trainer(object):
 
         # define noise word scores
         noise = np.random.uniform(
-            0, self.params.word_shuffle, size=(x.size(0) - 1, x.size(1)))
+            0, self.params.word_shuffle, size=(x.size(0) - 1, x.size(1))
+        )
         noise[0] = -1  # do not move start sentence symbol
 
         assert self.params.word_shuffle > 1
         x2 = x.clone()
         for i in range(l.size(0)):
             # generate a random permutation
-            scores = np.arange(l[i] - 1) + noise[:l[i] - 1, i]
+            scores = np.arange(l[i] - 1) + noise[: l[i] - 1, i]
             permutation = scores.argsort()
             # shuffle words
-            x2[:l[i] - 1, i].copy_(x2[:l[i] - 1, i]
-                                   [torch.from_numpy(permutation)])
+            x2[: l[i] - 1, i].copy_(x2[: l[i] - 1, i][torch.from_numpy(permutation)])
         return x2, l
 
     def word_dropout(self, x, l):
@@ -377,15 +410,14 @@ class Trainer(object):
         # define words to drop
         eos = self.params.eos_index
         assert (x[0] == eos).sum() == l.size(0)
-        keep = np.random.rand(x.size(0) - 1, x.size(1)
-                              ) >= self.params.word_dropout
+        keep = np.random.rand(x.size(0) - 1, x.size(1)) >= self.params.word_dropout
         keep[0] = 1  # do not drop the start sentence symbol
 
         sentences = []
         lengths = []
         for i in range(l.size(0)):
             assert x[l[i] - 1, i] == eos
-            words = x[:l[i] - 1, i].tolist()
+            words = x[: l[i] - 1, i].tolist()
             # randomly drop words from the input
             new_s = [w for j, w in enumerate(words) if keep[j, i]]
             # we need to have at least one word in the sentence (more than the start / end sentence symbols)
@@ -397,10 +429,9 @@ class Trainer(object):
             lengths.append(len(new_s))
         # re-construct input
         l2 = torch.LongTensor(lengths)
-        x2 = torch.LongTensor(l2.max(), l2.size(
-            0)).fill_(self.params.pad_index)
+        x2 = torch.LongTensor(l2.max(), l2.size(0)).fill_(self.params.pad_index)
         for i in range(l2.size(0)):
-            x2[:l2[i], i].copy_(torch.LongTensor(sentences[i]))
+            x2[: l2[i], i].copy_(torch.LongTensor(sentences[i]))
         return x2, l2
 
     def word_blank(self, x, l):
@@ -414,24 +445,24 @@ class Trainer(object):
         # define words to blank
         eos = self.params.eos_index
         assert (x[0] == eos).sum() == l.size(0)
-        keep = np.random.rand(x.size(0) - 1, x.size(1)
-                              ) >= self.params.word_blank
+        keep = np.random.rand(x.size(0) - 1, x.size(1)) >= self.params.word_blank
         keep[0] = 1  # do not blank the start sentence symbol
 
         sentences = []
         for i in range(l.size(0)):
             assert x[l[i] - 1, i] == eos
-            words = x[:l[i] - 1, i].tolist()
+            words = x[: l[i] - 1, i].tolist()
             # randomly blank words from the input
-            new_s = [w if keep[j, i]
-                     else self.params.mask_index for j, w in enumerate(words)]
+            new_s = [
+                w if keep[j, i] else self.params.mask_index for j, w in enumerate(words)
+            ]
             new_s.append(eos)
             assert len(new_s) == l[i] and new_s[0] == eos and new_s[-1] == eos
             sentences.append(new_s)
         # re-construct input
         x2 = torch.LongTensor(l.max(), l.size(0)).fill_(self.params.pad_index)
         for i in range(l.size(0)):
-            x2[:l[i], i].copy_(torch.LongTensor(sentences[i]))
+            x2[: l[i], i].copy_(torch.LongTensor(sentences[i]))
         return x2, l
 
     def add_noise(self, words, lengths):
@@ -458,7 +489,8 @@ class Trainer(object):
             x_prob = params.mask_scores[x.flatten()]
             n_tgt = math.ceil(params.word_pred * slen * bs)
             tgt_ids = np.random.choice(
-                len(x_prob), n_tgt, replace=False, p=x_prob / x_prob.sum())
+                len(x_prob), n_tgt, replace=False, p=x_prob / x_prob.sum()
+            )
             pred_mask = torch.zeros(slen * bs, dtype=torch.uint8)
             pred_mask[tgt_ids] = 1
             pred_mask = pred_mask.view(slen, bs)
@@ -473,7 +505,7 @@ class Trainer(object):
             n1 = pred_mask.sum().item()
             n2 = max(n1 % 8, 8 * (n1 // 8))
             if n2 != n1:
-                pred_mask[torch.nonzero(pred_mask).view(-1)[:n1 - n2]] = 0
+                pred_mask[torch.nonzero(pred_mask).view(-1)[: n1 - n2]] = 0
             pred_mask = pred_mask.view(slen, bs)
             assert pred_mask.sum().item() % 8 == 0
 
@@ -482,10 +514,12 @@ class Trainer(object):
         _x_real = x[pred_mask]
         _x_rand = _x_real.clone().random_(params.n_words)
         _x_mask = _x_real.clone().fill_(params.mask_index)
-        probs = torch.multinomial(
-            params.pred_probs, len(_x_real), replacement=True)
-        _x = _x_mask * (probs == 0).long() + _x_real * \
-            (probs == 1).long() + _x_rand * (probs == 2).long()
+        probs = torch.multinomial(params.pred_probs, len(_x_real), replacement=True)
+        _x = (
+            _x_mask * (probs == 0).long()
+            + _x_real * (probs == 1).long()
+            + _x_rand * (probs == 2).long()
+        )
         x = x.masked_scatter(pred_mask, _x)
 
         assert 0 <= x.min() <= x.max() < params.n_words
@@ -511,13 +545,37 @@ class Trainer(object):
             (x2, len2) = (x1, len1)
             (x1, len1) = self.add_noise(x1, len1)
             x, lengths, positions, langs = concat_batches(
-                x1, len1, lang1_id, x2, len2, lang2_id, params.pad_index, params.eos_index, reset_positions=False)
+                x1,
+                len1,
+                lang1_id,
+                x2,
+                len2,
+                lang2_id,
+                params.pad_index,
+                params.eos_index,
+                reset_positions=False,
+            )
         else:
             (x1, len1), (x2, len2) = self.get_batch(name, lang1, lang2)
             x, lengths, positions, langs = concat_batches(
-                x1, len1, lang1_id, x2, len2, lang2_id, params.pad_index, params.eos_index, reset_positions=True)
+                x1,
+                len1,
+                lang1_id,
+                x2,
+                len2,
+                lang2_id,
+                params.pad_index,
+                params.eos_index,
+                reset_positions=True,
+            )
 
-        return x, lengths, positions, langs, (None, None) if lang2 is None else (len1, len2)
+        return (
+            x,
+            lengths,
+            positions,
+            langs,
+            (None, None) if lang2 is None else (len1, len2),
+        )
 
     def save_checkpoint(self, name, include_optimizers=True):
         """
@@ -526,14 +584,14 @@ class Trainer(object):
         if not self.params.is_master:
             return
 
-        path = os.path.join(self.params.dump_path, '%s.pth' % name)
+        path = os.path.join(self.params.dump_path, "%s.pth" % name)
         logger.info("Saving %s to %s ..." % (name, path))
 
         data = {
-            'epoch': self.epoch,
-            'n_total_iter': self.n_total_iter,
-            'best_metrics': self.best_metrics,
-            'best_stopping_criterion': self.best_stopping_criterion,
+            "epoch": self.epoch,
+            "n_total_iter": self.n_total_iter,
+            "best_metrics": self.best_metrics,
+            "best_stopping_criterion": self.best_stopping_criterion,
         }
 
         for name in self.MODEL_NAMES:
@@ -544,12 +602,12 @@ class Trainer(object):
         if include_optimizers:
             for name in self.optimizers.keys():
                 logger.warning(f"Saving {name} optimizer ...")
-                data[f'{name}_optimizer'] = self.optimizers[name].state_dict()
+                data[f"{name}_optimizer"] = self.optimizers[name].state_dict()
 
-        data['dico_id2word'] = self.data['dico'].id2word
-        data['dico_word2id'] = self.data['dico'].word2id
-        data['dico_counts'] = self.data['dico'].counts
-        data['params'] = {k: v for k, v in self.params.__dict__.items()}
+        data["dico_id2word"] = self.data["dico"].id2word
+        data["dico_word2id"] = self.data["dico"].word2id
+        data["dico_counts"] = self.data["dico"].counts
+        data["params"] = {k: v for k, v in self.params.__dict__.items()}
 
         torch.save(data, path)
 
@@ -557,15 +615,15 @@ class Trainer(object):
         """
         Reload a checkpoint if we find one.
         """
-        checkpoint_path = os.path.join(self.params.dump_path, 'checkpoint.pth')
+        checkpoint_path = os.path.join(self.params.dump_path, "checkpoint.pth")
         if not os.path.isfile(checkpoint_path):
-            if self.params.reload_checkpoint == '':
+            if self.params.reload_checkpoint == "":
                 return
             else:
                 checkpoint_path = self.params.reload_checkpoint
                 assert os.path.isfile(checkpoint_path)
         logger.warning(f"Reloading checkpoint from {checkpoint_path} ...")
-        data = torch.load(checkpoint_path, map_location='cpu')
+        data = torch.load(checkpoint_path, map_location="cpu")
 
         # reload model parameters
         for name in self.MODEL_NAMES:
@@ -574,30 +632,37 @@ class Trainer(object):
 
         # reload optimizers
         for name in self.optimizers.keys():
-            if False:  # AMP checkpoint reloading is buggy, we cannot do that - TODO: fix - https://github.com/NVIDIA/apex/issues/250
+            if (
+                False
+            ):  # AMP checkpoint reloading is buggy, we cannot do that - TODO: fix - https://github.com/NVIDIA/apex/issues/250
                 logger.warning(f"Reloading checkpoint optimizer {name} ...")
-                self.optimizers[name].load_state_dict(
-                    data[f'{name}_optimizer'])
+                self.optimizers[name].load_state_dict(data[f"{name}_optimizer"])
             else:  # instead, we only reload current iterations / learning rates
                 logger.warning(f"Not reloading checkpoint optimizer {name}.")
-                for group_id, param_group in enumerate(self.optimizers[name].param_groups):
-                    if 'num_updates' not in param_group:
-                        logger.warning(
-                            f"No 'num_updates' for optimizer {name}.")
+                for group_id, param_group in enumerate(
+                    self.optimizers[name].param_groups
+                ):
+                    if "num_updates" not in param_group:
+                        logger.warning(f"No 'num_updates' for optimizer {name}.")
                         continue
                     logger.warning(
-                        f"Reloading 'num_updates' and 'lr' for optimizer {name}.")
-                    param_group['num_updates'] = data[f'{name}_optimizer']['param_groups'][group_id]['num_updates']
-                    param_group['lr'] = self.optimizers[name].get_lr_for_step(
-                        param_group['num_updates'])
+                        f"Reloading 'num_updates' and 'lr' for optimizer {name}."
+                    )
+                    param_group["num_updates"] = data[f"{name}_optimizer"][
+                        "param_groups"
+                    ][group_id]["num_updates"]
+                    param_group["lr"] = self.optimizers[name].get_lr_for_step(
+                        param_group["num_updates"]
+                    )
 
         # reload main metrics
-        self.epoch = data['epoch'] + 1
-        self.n_total_iter = data['n_total_iter']
-        self.best_metrics = data['best_metrics']
-        self.best_stopping_criterion = data['best_stopping_criterion']
+        self.epoch = data["epoch"] + 1
+        self.n_total_iter = data["n_total_iter"]
+        self.best_metrics = data["best_metrics"]
+        self.best_stopping_criterion = data["best_stopping_criterion"]
         logger.warning(
-            f"Checkpoint reloaded. Resuming at epoch {self.epoch} / iteration {self.n_total_iter} ...")
+            f"Checkpoint reloaded. Resuming at epoch {self.epoch} / iteration {self.n_total_iter} ..."
+        )
 
     def save_periodic(self):
         """
@@ -605,9 +670,11 @@ class Trainer(object):
         """
         if not self.params.is_master:
             return
-        if self.params.save_periodic > 0 and self.epoch % self.params.save_periodic == 0:
-            self.save_checkpoint('periodic-%i' %
-                                 self.epoch, include_optimizers=False)
+        if (
+            self.params.save_periodic > 0
+            and self.epoch % self.params.save_periodic == 0
+        ):
+            self.save_checkpoint("periodic-%i" % self.epoch, include_optimizers=False)
 
     def save_best_model(self, scores):
         """
@@ -617,41 +684,47 @@ class Trainer(object):
             return
         for metric, biggest in self.metrics:
             if metric not in scores:
-                logger.warning("Metric \"%s\" not found in scores!" % metric)
+                logger.warning('Metric "%s" not found in scores!' % metric)
                 continue
             factor = 1 if biggest else -1
             if factor * scores[metric] > factor * self.best_metrics[metric]:
                 self.best_metrics[metric] = scores[metric]
-                logger.info('New best score for %s: %.6f' %
-                            (metric, scores[metric]))
-                self.save_checkpoint('best-%s' %
-                                     metric, include_optimizers=False)
+                logger.info("New best score for %s: %.6f" % (metric, scores[metric]))
+                self.save_checkpoint("best-%s" % metric, include_optimizers=False)
 
     def end_epoch(self, scores):
         """
         End the epoch.
         """
         # stop if the stopping criterion has not improved after a certain number of epochs
-        if self.stopping_criterion is not None and (self.params.is_master or not self.stopping_criterion[0].endswith('_mt_bleu')):
+        if self.stopping_criterion is not None and (
+            self.params.is_master or not self.stopping_criterion[0].endswith("_mt_bleu")
+        ):
             metric, biggest = self.stopping_criterion
             assert metric in scores, metric
             factor = 1 if biggest else -1
             if factor * scores[metric] > factor * self.best_stopping_criterion:
                 self.best_stopping_criterion = scores[metric]
-                logger.info("New best validation score: %f" %
-                            self.best_stopping_criterion)
+                logger.info(
+                    "New best validation score: %f" % self.best_stopping_criterion
+                )
                 self.decrease_counts = 0
             else:
-                logger.info("Not a better validation score (%i / %i)."
-                            % (self.decrease_counts, self.decrease_counts_max))
+                logger.info(
+                    "Not a better validation score (%i / %i)."
+                    % (self.decrease_counts, self.decrease_counts_max)
+                )
                 self.decrease_counts += 1
             if self.decrease_counts > self.decrease_counts_max:
-                logger.info("Stopping criterion has been below its best value for more "
-                            "than %i epochs. Ending the experiment..." % self.decrease_counts_max)
-                if self.params.multi_gpu and 'SLURM_JOB_ID' in os.environ:
-                    os.system('scancel ' + os.environ['SLURM_JOB_ID'])
+                logger.info(
+                    "Stopping criterion has been below its best value for more "
+                    "than %i epochs. Ending the experiment..."
+                    % self.decrease_counts_max
+                )
+                if self.params.multi_gpu and "SLURM_JOB_ID" in os.environ:
+                    os.system("scancel " + os.environ["SLURM_JOB_ID"])
                 exit()
-        self.save_checkpoint('checkpoint', include_optimizers=True)
+        self.save_checkpoint("checkpoint", include_optimizers=True)
         self.epoch += 1
 
     def round_batch(self, x, lengths, positions, langs):
@@ -683,11 +756,11 @@ class Trainer(object):
         if ml1 % 8 != 0:
             pad = 8 - (ml1 % 8)
             ml2 = ml1 + pad
-            x = torch.cat([x, torch.LongTensor(
-                pad, bs2).fill_(params.pad_index)], 0)
+            x = torch.cat([x, torch.LongTensor(pad, bs2).fill_(params.pad_index)], 0)
             if positions is not None:
-                positions = torch.cat([positions, torch.arange(
-                    pad)[:, None] + positions[-1][None] + 1], 0)
+                positions = torch.cat(
+                    [positions, torch.arange(pad)[:, None] + positions[-1][None] + 1], 0
+                )
             if langs is not None:
                 langs = torch.cat([langs, langs[-1][None].expand(pad, bs2)], 0)
             assert x.size() == (ml2, bs2)
@@ -705,33 +778,31 @@ class Trainer(object):
         if lambda_coeff == 0:
             return
         params = self.params
-        name = 'model' if params.encoder_only else 'decoder'
+        name = "model" if params.encoder_only else "decoder"
         model = getattr(self, name)
         model.train()
 
         # generate batch / select words to predict
-        x, lengths, positions, langs, _ = self.generate_batch(
-            lang1, lang2, 'causal')
-        x, lengths, positions, langs, _ = self.round_batch(
-            x, lengths, positions, langs)
-        alen = torch.arange(lengths.max(), dtype=torch.long,
-                            device=lengths.device)
+        x, lengths, positions, langs, _ = self.generate_batch(lang1, lang2, "causal")
+        x, lengths, positions, langs, _ = self.round_batch(x, lengths, positions, langs)
+        alen = torch.arange(lengths.max(), dtype=torch.long, device=lengths.device)
         pred_mask = alen[:, None] < lengths[None] - 1
         if params.context_size > 0:  # do not predict without context
-            pred_mask[:params.context_size] = 0
+            pred_mask[: params.context_size] = 0
         y = x[1:].masked_select(pred_mask[:-1])
         assert pred_mask.sum().item() == y.size(0)
 
         # cuda
-        x, lengths, langs, pred_mask, y = to_cuda(
-            x, lengths, langs, pred_mask, y)
+        x, lengths, langs, pred_mask, y = to_cuda(x, lengths, langs, pred_mask, y)
 
         # forward / loss
-        tensor = model('fwd', x=x, lengths=lengths, langs=langs, causal=True)
-        _, loss = model('predict', tensor=tensor,
-                        pred_mask=pred_mask, y=y, get_scores=False)
-        self.stats[('CLM-%s' % lang1) if lang2 is None else ('CLM-%s-%s' %
-                                                             (lang1, lang2))].append(loss.item())
+        tensor = model("fwd", x=x, lengths=lengths, langs=langs, causal=True)
+        _, loss = model(
+            "predict", tensor=tensor, pred_mask=pred_mask, y=y, get_scores=False
+        )
+        self.stats[
+            ("CLM-%s" % lang1) if lang2 is None else ("CLM-%s-%s" % (lang1, lang2))
+        ].append(loss.item())
         loss = lambda_coeff * loss
 
         # optimize
@@ -739,8 +810,8 @@ class Trainer(object):
 
         # number of processed sentences / words
         self.n_sentences += params.batch_size
-        self.stats['processed_s'] += lengths.size(0)
-        self.stats['processed_w'] += pred_mask.sum().item()
+        self.stats["processed_s"] += lengths.size(0)
+        self.stats["processed_w"] += pred_mask.sum().item()
 
     def mlm_step(self, lang1, lang2, lambda_coeff):
         """
@@ -751,28 +822,30 @@ class Trainer(object):
         if lambda_coeff == 0:
             return
         params = self.params
-        name = 'model' if params.encoder_only else 'encoder'
+        name = "model" if params.encoder_only else "encoder"
         model = getattr(self, name)[0]
         model.train()
 
         # generate batch / select words to predict
-        x, lengths, positions, langs, _ = self.generate_batch(
-            lang1, lang2, 'pred')
-        x, lengths, positions, langs, _ = self.round_batch(
-            x, lengths, positions, langs)
+        x, lengths, positions, langs, _ = self.generate_batch(lang1, lang2, "pred")
+        x, lengths, positions, langs, _ = self.round_batch(x, lengths, positions, langs)
         x, y, pred_mask = self.mask_out(x, lengths)
 
         # cuda
         x, y, pred_mask, lengths, positions, langs = to_cuda(
-            x, y, pred_mask, lengths, positions, langs)
+            x, y, pred_mask, lengths, positions, langs
+        )
 
         # forward / loss
-        tensor = model('fwd', x=x, lengths=lengths,
-                       positions=positions, langs=langs, causal=False)
-        _, loss = model('predict', tensor=tensor,
-                        pred_mask=pred_mask, y=y, get_scores=False)
-        self.stats[('MLM-%s' % lang1) if lang2 is None else ('MLM-%s-%s' %
-                                                             (lang1, lang2))].append(loss.item())
+        tensor = model(
+            "fwd", x=x, lengths=lengths, positions=positions, langs=langs, causal=False
+        )
+        _, loss = model(
+            "predict", tensor=tensor, pred_mask=pred_mask, y=y, get_scores=False
+        )
+        self.stats[
+            ("MLM-%s" % lang1) if lang2 is None else ("MLM-%s-%s" % (lang1, lang2))
+        ].append(loss.item())
         loss = lambda_coeff * loss
 
         # optimize
@@ -780,15 +853,14 @@ class Trainer(object):
 
         # number of processed sentences / words
         self.n_sentences += params.batch_size
-        self.stats['processed_s'] += lengths.size(0)
-        self.stats['processed_w'] += pred_mask.sum().item()
+        self.stats["processed_s"] += lengths.size(0)
+        self.stats["processed_w"] += pred_mask.sum().item()
 
 
 class SingleTrainer(Trainer):
-
     def __init__(self, model, data, params):
 
-        self.MODEL_NAMES = ['model']
+        self.MODEL_NAMES = ["model"]
 
         # model / data / params
         self.model = model
@@ -799,10 +871,9 @@ class SingleTrainer(Trainer):
 
 
 class EncDecTrainer(Trainer):
-
     def __init__(self, encoder, decoder, data, params, second_decoder=None):
 
-        self.MODEL_NAMES = ['encoder', 'decoder']
+        self.MODEL_NAMES = ["encoder", "decoder"]
         # if second_decoder is not None:
         #     self.MODEL_NAMES.append('decoder2')
 
@@ -833,14 +904,16 @@ class EncDecTrainer(Trainer):
         lang1_id = params.lang2id[lang1]
         lang2_id = params.lang2id[lang2]
 
-        decoder = self.decoder[lang2_id] if params.separate_decoders else self.decoder[0]
+        decoder = (
+            self.decoder[lang2_id] if params.separate_decoders else self.decoder[0]
+        )
         # generate batch
         if lang1 == lang2:
-            (x1, len1) = self.get_batch('ae', lang1)
+            (x1, len1) = self.get_batch("ae", lang1)
             (x2, len2) = (x1, len1)
             (x1, len1) = self.add_noise(x1, len1)
         else:
-            (x1, len1, _, _), (x2, len2, _, _) = self.get_batch('mt', lang1, lang2)
+            (x1, len1, _, _), (x2, len2, _, _) = self.get_batch("mt", lang1, lang2)
         langs1 = x1.clone().fill_(lang1_id)
         langs2 = x2.clone().fill_(lang2_id)
 
@@ -853,22 +926,31 @@ class EncDecTrainer(Trainer):
 
         # cuda
         x1, len1, langs1, x2, len2, langs2, y = to_cuda(
-            x1, len1, langs1, x2, len2, langs2, y)
+            x1, len1, langs1, x2, len2, langs2, y
+        )
 
         # encode source sentence
-        enc1 = self.encoder[0]('fwd', x=x1, lengths=len1,
-                               langs=langs1, causal=False)
+        enc1 = self.encoder[0]("fwd", x=x1, lengths=len1, langs=langs1, causal=False)
         enc1 = enc1.transpose(0, 1)
 
         # decode target sentence
-        dec2 = decoder('fwd', x=x2, lengths=len2, langs=langs2,
-                       causal=True, src_enc=enc1, src_len=len1)
+        dec2 = decoder(
+            "fwd",
+            x=x2,
+            lengths=len2,
+            langs=langs2,
+            causal=True,
+            src_enc=enc1,
+            src_len=len1,
+        )
 
         # loss
-        _, loss = decoder('predict', tensor=dec2,
-                          pred_mask=pred_mask, y=y, get_scores=False)
-        self.stats[('AE-%s' % lang1) if lang1 ==
-                   lang2 else ('MT-%s-%s' % (lang1, lang2))].append(loss.item())
+        _, loss = decoder(
+            "predict", tensor=dec2, pred_mask=pred_mask, y=y, get_scores=False
+        )
+        self.stats[
+            ("AE-%s" % lang1) if lang1 == lang2 else ("MT-%s-%s" % (lang1, lang2))
+        ].append(loss.item())
         loss = lambda_coeff * loss
 
         # optimize
@@ -876,8 +958,8 @@ class EncDecTrainer(Trainer):
 
         # number of processed sentences / words
         self.n_sentences += params.batch_size
-        self.stats['processed_s'] += len2.size(0)
-        self.stats['processed_w'] += (len2 - 1).sum().item()
+        self.stats["processed_s"] += len2.size(0)
+        self.stats["processed_w"] += (len2 - 1).sum().item()
 
     def train_mode(self):
         [enc.train() for enc in self.encoder]
@@ -906,17 +988,28 @@ class EncDecTrainer(Trainer):
 
         _encoder = self.encoder[0].module if params.multi_gpu else self.encoder[0]
         if params.separate_decoders:
-            _decoder_lang1 = self.decoder[lang1_id].module if params.multi_gpu else self.decoder[lang1_id]
-            _decoder_lang2 = self.decoder[lang2_id].module if params.multi_gpu else self.decoder[lang2_id]
+            _decoder_lang1 = (
+                self.decoder[lang1_id].module
+                if params.multi_gpu
+                else self.decoder[lang1_id]
+            )
+            _decoder_lang2 = (
+                self.decoder[lang2_id].module
+                if params.multi_gpu
+                else self.decoder[lang2_id]
+            )
         else:
-            _decoder_lang1 = _decoder_lang2 = self.decoder[
-                0].module if params.multi_gpu else self.decoder[0]
+            _decoder_lang1 = _decoder_lang2 = (
+                self.decoder[0].module if params.multi_gpu else self.decoder[0]
+            )
 
-        decoder1 = self.decoder[lang1_id] if params.separate_decoders else self.decoder[0]
+        decoder1 = (
+            self.decoder[lang1_id] if params.separate_decoders else self.decoder[0]
+        )
 
         if self.generation_index >= len(self.generated_data):
             # generate source batch
-            x1, len1 = self.get_batch('bt', lang1)
+            x1, len1 = self.get_batch("bt", lang1)
             langs1 = x1.clone().fill_(lang1_id)
 
             # cuda
@@ -929,31 +1022,35 @@ class EncDecTrainer(Trainer):
                 self.eval_mode()
 
                 # encode source sentence and translate it
-                enc1 = _encoder('fwd', x=x1, lengths=len1,
-                                langs=langs1, causal=False)
+                enc1 = _encoder("fwd", x=x1, lengths=len1, langs=langs1, causal=False)
                 enc1 = enc1.transpose(0, 1)
 
                 len_v = (3 * len1 + 10).clamp(max=params.max_len)
                 if self.params.fp16:
                     enc1 = enc1.half()
                 x2, len2 = _decoder_lang2.generate(
-                    enc1, len1, lang2_id, max_len=len_v, sample_temperature=sample_temperature)
+                    enc1,
+                    len1,
+                    lang2_id,
+                    max_len=len_v,
+                    sample_temperature=sample_temperature,
+                )
 
                 self.generation_inputs = x1.chunk(
-                    chunks=params.gen_tpb_multiplier, dim=1)
+                    chunks=params.gen_tpb_multiplier, dim=1
+                )
                 self.len_generation_inputs = len1.chunk(
-                    chunks=params.gen_tpb_multiplier)
-                self.generated_data = x2.chunk(
-                    chunks=params.gen_tpb_multiplier, dim=1)
-                self.len_generated_data = len2.chunk(
-                    chunks=params.gen_tpb_multiplier)
+                    chunks=params.gen_tpb_multiplier
+                )
+                self.generated_data = x2.chunk(chunks=params.gen_tpb_multiplier, dim=1)
+                self.len_generated_data = len2.chunk(chunks=params.gen_tpb_multiplier)
                 self.generation_index = 0
                 # free CUDA memory
                 del enc1
         len1 = self.len_generation_inputs[self.generation_index]
-        x1 = self.generation_inputs[self.generation_index][:len1.max()]
+        x1 = self.generation_inputs[self.generation_index][: len1.max()]
         len2 = self.len_generated_data[self.generation_index]
-        x2 = self.generated_data[self.generation_index][:len2.max()]
+        x2 = self.generated_data[self.generation_index][: len2.max()]
         langs1 = x1.clone().fill_(lang1_id)
         langs2 = x2.clone().fill_(lang2_id)
 
@@ -962,8 +1059,7 @@ class EncDecTrainer(Trainer):
         self.train_mode()
 
         # encode generate sentence
-        enc2 = self.encoder[0]('fwd', x=x2, lengths=len2,
-                               langs=langs2, causal=False)
+        enc2 = self.encoder[0]("fwd", x=x2, lengths=len2, langs=langs2, causal=False)
         enc2 = enc2.transpose(0, 1)
 
         # words to predict
@@ -973,13 +1069,21 @@ class EncDecTrainer(Trainer):
         y1 = x1[1:].masked_select(pred_mask[:-1])
 
         # decode original sentence
-        dec3 = decoder1('fwd', x=x1, lengths=len1, langs=langs1,
-                        causal=True, src_enc=enc2, src_len=len2)
+        dec3 = decoder1(
+            "fwd",
+            x=x1,
+            lengths=len1,
+            langs=langs1,
+            causal=True,
+            src_enc=enc2,
+            src_len=len2,
+        )
 
         # loss
-        _, loss = decoder1('predict', tensor=dec3,
-                           pred_mask=pred_mask, y=y1, get_scores=False)
-        self.stats[('BT-%s-%s-%s' % (lang1, lang2, lang3))].append(loss.item())
+        _, loss = decoder1(
+            "predict", tensor=dec3, pred_mask=pred_mask, y=y1, get_scores=False
+        )
+        self.stats[("BT-%s-%s-%s" % (lang1, lang2, lang3))].append(loss.item())
         loss = lambda_coeff * loss
 
         # optimize
@@ -987,5 +1091,5 @@ class EncDecTrainer(Trainer):
 
         # number of processed sentences / words
         self.n_sentences += params.batch_size
-        self.stats['processed_s'] += len1.size(0)
-        self.stats['processed_w'] += (len1 - 1).sum().item()
+        self.stats["processed_s"] += len1.size(0)
+        self.stats["processed_w"] += (len1 - 1).sum().item()
