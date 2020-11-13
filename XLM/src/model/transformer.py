@@ -147,6 +147,7 @@ class PredLayer(nn.Module):
         assert x.dim() == 2
         return self.proj(x)
 
+
 class PredAnyLayer(nn.Module):
     """
     PredictAny layer (cross_entropy loss over union of allowed events).
@@ -168,12 +169,12 @@ class PredAnyLayer(nn.Module):
         assert (y == self.pad_index).sum().item() == 0
         y_scores = F.softmax(self.proj(x).view(-1, self.n_words))
         pos_scores = F.softmax(self.pos_proj(x).view(-1, self.n_words))
-        
+
         # gather((bs, n_words), (bs, set_size)) -> (bs, set_size)
         y_select = torch.gather(y_scores, -1, y)
         # gather((bs, n_max_positions), (bs, set_size)) -> (bs, set_size)
         pos_select = torch.gather(pos_scores, -1, pos)
-        
+
         # loss for sample = -log(sum(P(y_i) * P(pos_i))) where (y_i, pos_i) are targets
         combined_scores = torch.mul(y_select, pos_select).sum(dim=1)
         loss = torch.neg(torch.log(combined_scores)).sum()
@@ -185,6 +186,7 @@ class PredAnyLayer(nn.Module):
         """
         assert x.dim() == 2
         return self.proj(x), self.pos_proj(x)
+
 
 class MultiHeadAttention(nn.Module):
 
