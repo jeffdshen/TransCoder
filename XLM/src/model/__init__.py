@@ -306,10 +306,11 @@ def build_model(params, dico):
                             "position_embeddings.weight"
                         ].repeat(2, 1)
 
-                    for name in PRED_ANY_PARAMS:
-                        if name not in dec_reload:
-                            logger.warning("Parameter %s not found." % (name))
-                            dec_reload[name] = dec.state_dict()[name]
+                    if params.pred_any:
+                        for name in PRED_ANY_PARAMS:
+                            if name not in dec_reload:
+                                logger.warning("Parameter %s not found." % (name))
+                                dec_reload[name] = dec.state_dict()[name]
 
                     for i in range(params.n_layers_decoder):
                         for name in DECODER_ONLY_PARAMS:
