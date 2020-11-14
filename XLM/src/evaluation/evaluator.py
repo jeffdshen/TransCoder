@@ -584,7 +584,7 @@ class EncDecEvaluator(Evaluator):
 
             # generate translation - translate / convert to text
             if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:
-                len_v = (3 * len1 + 10).clamp(max=params.max_len)
+                len_v = params.max_len
                 if params.beam_size == 1:
                     if params.number_samples > 1:
                         assert params.eval_temperature is not None

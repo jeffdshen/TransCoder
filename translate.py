@@ -138,13 +138,11 @@ class Translator:
 
             if beam_size == 1:
                 x2, len2 = self.decoder.generate(enc1, len1, lang2_id,
-                                                 max_len=int(
-                                                     min(self.reloaded_params.max_len, 3 * len1.max().item() + 10)),
+                                                 max_len=int(self.reloaded_params.max_len),
                                                  sample_temperature=sample_temperature)
             else:
                 x2, len2 = self.decoder.generate_beam(enc1, len1, lang2_id,
-                                                      max_len=int(
-                                                          min(self.reloaded_params.max_len, 3 * len1.max().item() + 10)),
+                                                      max_len=int(self.reloaded_params.max_len),
                                                       early_stopping=False, length_penalty=1.0, beam_size=beam_size)
             tok = []
             for i in range(x2.shape[1]):
