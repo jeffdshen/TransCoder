@@ -566,14 +566,14 @@ class EncDecEvaluator(Evaluator):
             else:
                 y_pred = y
             # loss
-            scores, loss = decoder(
+            yscores, loss = decoder(
                 "predict", tensor=dec2, pred_mask=pred_mask, y=y_pred, get_scores=True
             )
             if params.pred_any:
-                word_scores, pos_scores = scores
+                word_scores, pos_scores = yscores
                 num_valid = get_pred_any_valid(y, ypos, any_mask, word_scores, pos_scores)
             else:
-                word_scores = scores
+                word_scores = yscores
                 num_valid = (word_scores.max(1)[1] == y).sum().item()
 
             # update stats
