@@ -377,6 +377,21 @@ class Trainer(object):
             x = next(iterator)
         return x if lang2 is None or lang1 < lang2 else x[::-1]
 
+
+    def word_pos_permute(self, x, l, pos):
+        x2 = x.clone()
+        pos2 = pos.clone()
+        for i in range(l.size(0)):
+            # generate a random permutation
+            permutation = torch.zeros(l[i], dtype=torch.long)
+            # do not permute start sentence symbol
+            permutation[1:] = torch.randperm(l[i] - 1) + 1
+            # shuffle words
+            x2[:l[i], i].copy_(x2[: l[i], i][permutation])
+            pos2[:l[i], i].copy_(pos2[:l[i], i][permutation])
+        return x2, l, pos2
+
+
     def word_shuffle(self, x, l):
         """
         Randomly shuffle input words.
@@ -924,6 +939,8 @@ class EncDecTrainer(Trainer):
                 .unsqueeze(-1)
                 .repeat(1, len2.size(0))
             )
+            if params.word_pos_permute:
+                x2, len2, pos2 = self.word_pos_permute(x2, len2, pos2)
             pred_mask, y, ypos, any_mask = get_target_pred_any(x2, len2, pos2)
         else:
             pred_mask, y = get_target_pred(x2, len2, None)
@@ -943,6 +960,7 @@ class EncDecTrainer(Trainer):
             "fwd",
             x=x2,
             lengths=len2,
+            positions=pos2,
             langs=langs2,
             causal=True,
             src_enc=enc1,

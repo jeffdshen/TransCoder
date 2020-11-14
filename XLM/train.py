@@ -162,6 +162,14 @@ def get_parser():
         help="Randomly blank input words (0 to disable)",
     )
 
+    # pred_any task parameters
+    parser.add_argument(
+        "--word_pos_permute",
+        type=bool_flag,
+        default=False,
+        help="Randomly permute input words",
+    )
+
     # data
     parser.add_argument("--data_path", type=str, default="", help="Data path")
     parser.add_argument(

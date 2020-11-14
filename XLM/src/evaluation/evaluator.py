@@ -536,7 +536,7 @@ class EncDecEvaluator(Evaluator):
                 pred_mask, y, ypos, any_mask = get_target_pred_any(x2, len2, pos2)
             else:
                 pred_mask, y = get_target_pred(x2, len2, None)
-                pos2, ypos, any_mask = None, None
+                pos2, ypos, any_mask = None, None, None
 
             # cuda
             x1, len1, langs1, x2, len2, langs2, pos2, y, ypos, any_mask = to_cuda(
@@ -554,6 +554,7 @@ class EncDecEvaluator(Evaluator):
                 "fwd",
                 x=x2,
                 lengths=len2,
+                positions=pos2,
                 langs=langs2,
                 causal=True,
                 src_enc=enc1,
