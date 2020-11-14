@@ -119,6 +119,36 @@ def get_masks(slen, lengths, causal):
     return mask, attn_mask
 
 
+def get_target_pred(x2, len2, positions):
+    # target words to predict
+    alen = torch.arange(len2.max(), dtype=torch.long, device=len2.device)
+    # do not predict anything given the last target word
+    pred_mask = alen[:, None] < len2[None] - 1
+    y = x2[1:].masked_select(pred_mask[:-1])
+    assert len(y) == (len2 - 1).sum().item()
+    return pred_mask, y
+
+
+def get_target_pred_any(x2, len2, positions):
+    slen, bs = x2.size()
+    alen = torch.arange(len2.max(), dtype=torch.long, device=len2.device)
+    pred_mask = alen[:, None] < len2[None] - 1
+    set_mask = alen[None, None, :].repeat(slen, bs, 1) >= alen[:, None, None]
+    set_mask = set_mask.logical_and(pred_mask.transpose(0, 1).unsqueeze(0))[:-1, :, :-1]
+
+    y = x2[1:].transpose(0, 1).unsqueeze(0).expand_as(set_mask)[pred_mask[:-1], :]
+    ypos = (
+        positions[1:]
+        .transpose(0, 1)
+        .unsqueeze(0)
+        .expand_as(set_mask)[pred_mask[:-1], :]
+    )
+    any_mask = set_mask[pred_mask[:-1], :]
+    assert y.size() == ypos.size()
+    assert y.size() == any_mask.size()
+    return pred_mask, y, ypos, any_mask
+
+
 class PredLayer(nn.Module):
     """
     Prediction layer (cross_entropy loss).
@@ -161,23 +191,27 @@ class PredAnyLayer(nn.Module):
         self.proj = Linear(dim, params.n_words, bias=True)
         self.pos_proj = Linear(dim, N_MAX_POSITIONS, bias=True)
 
-    def forward(self, x, ypos, get_scores=False):
+    def forward(self, x, y_any, get_scores=False):
         """
         Compute the loss, and optionally the scores.
         """
-        y, pos = ypos
-        assert (y == self.pad_index).sum().item() == 0
-        y_scores = F.softmax(self.proj(x).view(-1, self.n_words))
-        pos_scores = F.softmax(self.pos_proj(x).view(-1, self.n_words))
+        y, pos, mask = y_any
+        assert (y.masked_select(mask) == self.pad_index).sum().item() == 0
+        y_scores = self.proj(x).view(-1, self.n_words)
+        pos_scores = self.pos_proj(x).view(-1, N_MAX_POSITIONS)
 
-        # gather((bs, n_words), (bs, set_size)) -> (bs, set_size)
-        y_select = torch.gather(y_scores, -1, y)
-        # gather((bs, n_max_positions), (bs, set_size)) -> (bs, set_size)
-        pos_select = torch.gather(pos_scores, -1, pos)
+        # gather((out, n_words), (out, slen)) -> (out, slen)
+        y_select = torch.gather(F.softmax(y_scores, dim=-1), -1, y).masked_fill(
+            ~mask, 0
+        )
+        # gather((out, n_max_positions), (out, slen)) -> (out, slen)
+        pos_select = torch.gather(F.softmax(pos_scores, dim=-1), -1, pos).masked_fill(
+            ~mask, 0
+        )
 
         # loss for sample = -log(sum(P(y_i) * P(pos_i))) where (y_i, pos_i) are targets
         combined_scores = torch.mul(y_select, pos_select).sum(dim=1)
-        loss = torch.neg(torch.log(combined_scores)).sum()
+        loss = torch.neg(torch.log(combined_scores)).mean()
         return (y_scores, pos_scores), loss
 
     def get_scores(self, x):

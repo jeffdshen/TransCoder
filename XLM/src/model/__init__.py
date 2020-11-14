@@ -12,7 +12,13 @@ import torch
 from .pretrain import load_embeddings
 
 # , TRANSFORMER_LAYER_PARAMS
-from .transformer import DECODER_ONLY_PARAMS, TransformerModel, PRED_ANY_PARAMS
+from .transformer import (
+    DECODER_ONLY_PARAMS,
+    TransformerModel,
+    PRED_ANY_PARAMS,
+    get_target_pred,
+    get_target_pred_any,
+)
 
 
 logger = getLogger()
@@ -71,8 +77,14 @@ def check_model_params(params):
 
     assert params.n_layers_encoder > 0 and params.n_layers_decoder > 0
 
-    # share input and output embeddings
-    assert not params.share_inout_emb or not params.pred_any
+    # pred_any only works currently with mt_steps and amp <= 1 because of softmax
+    if params.pred_any:
+        assert not params.share_inout_emb
+        assert not params.ae_steps
+        assert not params.clm_steps
+        assert not params.mlm_steps
+        assert not params.bt_steps
+        assert params.amp <= 1
 
     # reload pretrained word embeddings
     if params.reload_emb != "":

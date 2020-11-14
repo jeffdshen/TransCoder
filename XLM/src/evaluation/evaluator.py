@@ -23,6 +23,8 @@ from ..utils import (
     eval_function_output,
 )
 
+from ..model import get_target_pred, get_target_pred_any
+
 BLEU_SCRIPT_URL = "https://raw.githubusercontent.com/facebookresearch/XLM/master/src/evaluation/multi-bleu.perl"
 BLEU_SCRIPT_PATH = os.path.join(
     os.path.abspath(os.path.dirname(__file__)), "multi-bleu.perl"
@@ -46,6 +48,14 @@ EVAL_SCRIPT_FOLDER = {
     "valid": os.path.abspath("data/evaluation/geeks_for_geeks_successful_test_scripts"),
 }
 logger = getLogger()
+
+def get_pred_any_valid(y, ypos, any_mask, word_scores, pos_scores):
+    y_max = torch.nn.functional.one_hot(word_scores.argmax(dim=-1), word_scores.size(1))
+    y_select = torch.gather(y_max, -1, y).masked_fill(~any_mask, 0)
+    pos_max = torch.nn.functional.one_hot(pos_scores.argmax(dim=-1), pos_scores.size(1))
+    pos_select = torch.gather(pos_max, -1, ypos).masked_fill(~any_mask, 0)
+    combined_scores = torch.mul(y_select, pos_select).sum(dim=1)
+    return combined_scores.sum().item()
 
 
 class Evaluator(object):
@@ -517,16 +527,20 @@ class EncDecEvaluator(Evaluator):
             langs1 = x1.clone().fill_(lang1_id)
             langs2 = x2.clone().fill_(lang2_id)
 
-            # target words to predict
-            alen = torch.arange(len2.max(), dtype=torch.long, device=len2.device)
-            # do not predict anything given the last target word
-            pred_mask = alen[:, None] < len2[None] - 1
-            y = x2[1:].masked_select(pred_mask[:-1])
-            assert len(y) == (len2 - 1).sum().item()
+            if params.pred_any:
+                pos2 = (
+                    torch.arange(len2.max(), dtype=torch.long, device=len2.device)
+                    .unsqueeze(-1)
+                    .repeat(1, len2.size(0))
+                )
+                pred_mask, y, ypos, any_mask = get_target_pred_any(x2, len2, pos2)
+            else:
+                pred_mask, y = get_target_pred(x2, len2, None)
+                pos2, ypos, any_mask = None, None
 
             # cuda
-            x1, len1, langs1, x2, len2, langs2, y = to_cuda(
-                x1, len1, langs1, x2, len2, langs2, y
+            x1, len1, langs1, x2, len2, langs2, pos2, y, ypos, any_mask = to_cuda(
+                x1, len1, langs1, x2, len2, langs2, pos2, y, ypos, any_mask
             )
             # encode source sentence
             enc1 = encoder("fwd", x=x1, lengths=len1, langs=langs1, causal=False)
@@ -546,15 +560,26 @@ class EncDecEvaluator(Evaluator):
                 src_len=len1,
             )
 
+
+            if params.pred_any:
+                y_pred = (y, ypos, any_mask)
+            else:
+                y_pred = y
             # loss
-            word_scores, loss = decoder(
-                "predict", tensor=dec2, pred_mask=pred_mask, y=y, get_scores=True
+            scores, loss = decoder(
+                "predict", tensor=dec2, pred_mask=pred_mask, y=y_pred, get_scores=True
             )
+            if params.pred_any:
+                word_scores, pos_scores = scores
+                num_valid = get_pred_any_valid(y, ypos, any_mask, word_scores, pos_scores)
+            else:
+                word_scores = scores
+                num_valid = (word_scores.max(1)[1] == y).sum().item()
 
             # update stats
             n_words += y.size(0)
             xe_loss += loss.item() * len(y)
-            n_valid += (word_scores.max(1)[1] == y).sum().item()
+            n_valid += num_valid
 
             # generate translation - translate / convert to text
             if (eval_bleu or eval_computation) and data_set in datasets_for_bleu:

@@ -21,6 +21,7 @@ from .optim import get_optimizer
 from .utils import to_cuda, concat_batches
 from .utils import parse_lambda_config, update_lambdas
 
+from .model import get_target_pred, get_target_pred_any
 
 logger = getLogger()
 
@@ -917,16 +918,20 @@ class EncDecTrainer(Trainer):
         langs1 = x1.clone().fill_(lang1_id)
         langs2 = x2.clone().fill_(lang2_id)
 
-        # target words to predict
-        alen = torch.arange(len2.max(), dtype=torch.long, device=len2.device)
-        # do not predict anything given the last target word
-        pred_mask = alen[:, None] < len2[None] - 1
-        y = x2[1:].masked_select(pred_mask[:-1])
-        assert len(y) == (len2 - 1).sum().item()
+        if params.pred_any:
+            pos2 = (
+                torch.arange(len2.max(), dtype=torch.long, device=len2.device)
+                .unsqueeze(-1)
+                .repeat(1, len2.size(0))
+            )
+            pred_mask, y, ypos, any_mask = get_target_pred_any(x2, len2, pos2)
+        else:
+            pred_mask, y = get_target_pred(x2, len2, None)
+            pos2, ypos, any_mask = None, None
 
         # cuda
-        x1, len1, langs1, x2, len2, langs2, y = to_cuda(
-            x1, len1, langs1, x2, len2, langs2, y
+        x1, len1, langs1, x2, len2, langs2, pos2, y, ypos, any_mask = to_cuda(
+            x1, len1, langs1, x2, len2, langs2, pos2, y, ypos, any_mask
         )
 
         # encode source sentence
@@ -944,9 +949,13 @@ class EncDecTrainer(Trainer):
             src_len=len1,
         )
 
+        if params.pred_any:
+            y_pred = (y, ypos, any_mask)
+        else:
+            y_pred = y
         # loss
         _, loss = decoder(
-            "predict", tensor=dec2, pred_mask=pred_mask, y=y, get_scores=False
+            "predict", tensor=dec2, pred_mask=pred_mask, y=y_pred, get_scores=False
         )
         self.stats[
             ("AE-%s" % lang1) if lang1 == lang2 else ("MT-%s-%s" % (lang1, lang2))
