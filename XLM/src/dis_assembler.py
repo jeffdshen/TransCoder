@@ -218,7 +218,7 @@ def parse(bytecode, hexversion=50792944):
                 and argrepr[2:].strip().isdigit()
                 and offset is not None
             ):
-                arg = int(argrepr[2:].strip().isdigit()) - offset - 2
+                arg = int(argrepr[2:].strip()) - offset - 2
         elif op in dis.haslocal:
             varnames[arg] = argrepr
         elif op in dis.hascompare:
