@@ -237,6 +237,9 @@ def submit_functions(functions_list, id, ref, lang, outfolder, script_folder, re
             if f_fill == ref:
                 results_list.append(('success', 'identical to gold'))
                 return results_list, i
+            if lang == "dis" and re.sub(' 0x[0-9a-z][0-9a-z]+ ', ' 0x000000000000 ', f_fill) == re.sub(' 0x[0-9a-z][0-9a-z]+ ', ' 0x000000000000 ', ref):
+                results_list.append(('success', 'identical to gold'))
+                return results_list, i
             f = detokenize(f)
             script = script_model.replace(TOFILL[lang], f)
             if lang == 'python':

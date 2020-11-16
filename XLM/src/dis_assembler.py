@@ -3,6 +3,7 @@ import sys
 from collections import namedtuple
 import dis
 import re
+import ast
 
 
 class MutableCodeObject:
