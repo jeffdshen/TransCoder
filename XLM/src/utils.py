@@ -31,13 +31,16 @@ DUMP_PATH = '/checkpoint/%s/dumped' % getpass.getuser()
 DYNAMIC_COEFF = ['lambda_clm', 'lambda_mlm', 'lambda_ae',
                  'lambda_mt', 'lambda_bt', 'bt_sample_temperature']
 
-EXT = {'python': 'py', 'java': 'java', 'cpp': 'cpp'}
-TOFILL = {'python': '#TOFILL', 'java': '//TOFILL', 'cpp': '//TOFILL'}
+EXT = {'python': 'py', 'java': 'java', 'cpp': 'cpp', 'dis': 'dis'}
+TOFILL = {'python': '#TOFILL', 'java': '//TOFILL', 'cpp': '//TOFILL', 'dis': '###TOFILL'}
 
 primitive_types = {'short', 'int', 'long',
                    'float', 'double', 'boolean', 'char'}
 
 MAX_VIRTUAL_MEMORY = 2 * 1024 * 1024 * 1024  # 2 GB
+
+# python bin to use for dis
+PYTHON_BIN = "python"
 
 
 def transform_to_java_object_type(t):
@@ -89,6 +92,13 @@ def eval_state(proc, proc_name):
         raise
     except:
         return 'error', stderr.decode('utf-8', errors='replace')
+
+
+def run_dis_program(script_path, i):
+    proc = subprocess.Popen(f"{limit_virtual_memory(MAX_VIRTUAL_MEMORY)}; {PYTHON_BIN} XLM/dis_script.py --script_path {script_path}", stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                            shell=True, executable='/bin/bash')
+    res = eval_state(proc, f"{PYTHON_BIN} XLM/dis_script.py --script_path {script_path}")
+    return res, i
 
 
 def run_python_program(script_path, i):
@@ -217,12 +227,13 @@ def submit_functions(functions_list, id, ref, lang, outfolder, script_folder, re
         if os.path.exists(script_model_path):
             script_model = open(script_model_path, 'r',
                                 encoding='utf-8').read()
-            try:
-                f_name = get_name(f)
-                f = f.replace(f_name, 'f_filled')
-            except:
-                results_list.append(
-                    ('error', 'Could not replace function name'))
+            if lang != "dis":
+                try:
+                    f_name = get_name(f)
+                    f = f.replace(f_name, 'f_filled')
+                except:
+                    results_list.append(
+                        ('error', 'Could not replace function name'))
             if f_fill == ref:
                 results_list.append(('success', 'identical to gold'))
                 return results_list, i
