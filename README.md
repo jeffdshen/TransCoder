@@ -9,8 +9,8 @@ Preprocessing:
 4. Parallel dataset: https://github.com/jeffdshen/TransCoder/blob/master/preprocessing/src/dataset.py#L31-L197
 
 Model:
-1. Predict any layer and loss: https://github.com/jeffdshen/TransCoder/blob/master/XLM/src/model/transformer.py#L194-L215
-2. Predict any target vectors: https://github.com/jeffdshen/TransCoder/blob/master/XLM/src/model/transformer.py#L132-L149
+1. Any Token Prediction layer and loss: https://github.com/jeffdshen/TransCoder/blob/master/XLM/src/model/transformer.py#L194-L215
+2. Any Token Prediction target vectors: https://github.com/jeffdshen/TransCoder/blob/master/XLM/src/model/transformer.py#L132-L149
 3. Permute input sequence: https://github.com/jeffdshen/TransCoder/blob/master/XLM/src/trainer.py#L381-L392
 
 Evaluation:
