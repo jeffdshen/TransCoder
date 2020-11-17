@@ -1,0 +1,100 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    index = 0\n    while index < n :\n        if index == 0 :\n            index = index + 1\n        if arr [ index ] >= arr [ index - 1 ] :\n            index = index + 1\n        else :\n            arr [ index ] , arr [ index - 1 ] = arr [ index - 1 ] , arr [ index ]\n            index = index - 1\n    return arr\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([5, 20, 27, 28, 31, 31, 31, 34, 49, 55, 61, 63, 68, 69, 73, 78, 78, 82, 85, 87, 98],17,),\n    ([34, -54, 0, 16, 66, -58, 88, -38, -94, -10],7,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],22,),\n    ([10, 28, 65, 98, 25, 25, 77, 46, 77, 54, 16, 43, 52, 75, 9, 15, 1, 72, 56, 75, 73, 45, 5, 78, 11, 3, 93, 73, 31, 69, 8, 89, 44, 58, 64, 36, 7, 4],26,),\n    ([-86, -50, -12, 26, 30, 68, 70, 80, 82],6,),\n    ([1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0],17,),\n    ([14, 28, 29, 31, 41, 59, 60, 62, 66, 67, 70, 70, 74, 76, 92, 96],13,),\n    ([8, -22, 94, 28, 2, 14, 50, -54, 24, -26, -98, 58, -94, 4, -78, 98, 80, 72, -32, 58, -74],13,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],24,),\n    ([3, 30, 84, 92, 29, 47, 36, 54, 93, 73, 53, 91, 81, 16, 51, 69, 82, 74, 80, 66, 77, 14, 85, 59, 86, 25, 85, 29, 19, 28, 13, 47, 61, 54, 13, 82, 52, 11, 10, 63, 52, 30, 35, 74],41,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def gnomeSort ( arr , n ) :\n    index = 0\n    while index < n :\n        if index == 0 :\n            index = index + 1\n        if arr [ index ] >= arr [ index - 1 ] :\n            index = index + 1\n        else :\n            arr [ index ] , arr [ index - 1 ] = arr [ index - 1 ] , arr [ index ]\n            index = index - 1\n    return arr\n"}
+Disassembly of <code object gnomeSort at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_FAST 0 ( arr )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( n )
+
+66 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( n )
+
+67 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( n )
+
+68 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 4 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 5 ( 1 )
+32 BINARY_SUBSCR
+34 LOAD_CONST 6 ( 2 )
+36 BINARY_SUBSCR
+38 STORE_FAST 4 ( n )
+
+69 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 7 ( 1 )
+44 BINARY_SUBSCR
+46 LOAD_CONST 8 ( 2 )
+48 BINARY_SUBSCR
+50 LOAD_CONST 9 ( 1 )
+52 BINARY_SUBSCR
+54 LOAD_CONST 10 ( 2 )
+56 BINARY_SUBSCR
+58 LOAD_CONST 11 ( 1 )
+60 BINARY_SUBSCR
+62 LOAD_CONST 12 ( 2 )
+64 BINARY_SUBSCR
+66 STORE_FAST 5 ( n )
+
+70 68 LOAD_FAST 1 ( n )
+70 LOAD_CONST 4 ( 1 )
+72 BINARY_SUBSCR
+74 LOAD_CONST 12 ( 2 )
+76 BINARY_SUBSCR
+78 LOAD_CONST 13 ( 1 )
+80 BINARY_SUBSCR
+82 LOAD_CONST 14 ( 2 )
+84 BINARY_SUBSCR
+86 LOAD_CONST 15 ( 1 )
+88 BINARY_SUBSCR
+90 LOAD_CONST 16 ( 2 )
+92 BINARY_SUBSCR
+94 LOAD_CONST 17 ( 1 )
+96 BINARY_SUBSCR
+98 LOAD_CONST 18 ( 2 )
+100 BINARY_SUBSCR
+102 LOAD_CONST 19 ( 1 )
+104 BINARY_SUBSCR
+106 LOAD_CONST 20 ( 2 )
+108 BINARY_SUBSCR
+110 LOAD_CONST 21 ( 1 )
+112 BINARY_SUBSCR
+114 LOAD_CONST 22 ( 2 )
+116 BINARY_SUBSCR
+118 LOAD_CONST 21 ( 1 )
+120 BINARY_SUBSCR
+122 LOAD_CONST 22 ( 2 )
+124 BINARY_SUBSCR
+126 LOAD_CONST 23 ( 1 )
+128 BINARY_SUBSCR
+130 LOAD_CONST 22 ( 2 )
+132 BINARY_SUBSCR
+134 LOAD_CONST 23 ( 1 )
+136 BINARY_SUBSCR
+138 LOAD_CONST 22 ( 2 )
+140 LOAD_CONST 23 ( 1 )
+142 BINARY_SUBSCR
+144 LOAD_CONST 22 ( 2 )
+146 BINARY_SUBSCR
+148 LOAD_CONST 23 ( 1 )
+150 BINARY_SUBSCR
+152 LOAD_CONST 22 ( 2 )
+154 BINARY_SUBSCR
+156 LOAD_CONST 24 ( 2 )
+158 BINARY_SUBSCR
+160 LOAD_CONST 23 ( 1 )
+162 BINARY_SUBSCR
+164 LOAD_CONST 24 ( 2 )
+166 BINARY_SUBSCR
+168 LOAD_CONST 23 ( 1 )
+170 BINARY_SUBSCR
+
+67 172 LOAD_CONST 24 ( 2 )
+174 LOAD_CONST 25 ( 2 )
+176 BUILD_SLICE 2
+178 BINARY_SUBSCR
+180 LOAD_CONST 24 ( 2 )
+182

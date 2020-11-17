@@ -1,0 +1,57 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    p = - 1\n    for i in range ( len ( s ) ) :\n        for j in range ( i + 1 , len ( s ) ) :\n            if ( s [ i ] == s [ j ] ) :\n                p = i\n                break\n        if ( p != - 1 ) :\n            break\n    return p\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('ORXMflacQFBv',),\n    ('39977638567848',),\n    ('011110011011',),\n    ('fYjfNy',),\n    ('222280492',),\n    ('11',),\n    ('UjntBg',),\n    ('6866190138212',),\n    ('0000',),\n    ('FWz PWEQgVlRZ',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findRepeatFirstN2 ( s ) :\n    p = - 1\n    for i in range ( len ( s ) ) :\n        for j in range ( i + 1 , len ( s ) ) :\n            if ( s [ i ] == s [ j ] ) :\n                p = i\n                break\n        if ( p != - 1 ) :\n            break\n    return p\n"}
+Disassembly of <code object findRepeatFirstN2 at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( - 1 )
+2 STORE_FAST 1 ( p )
+
+3 4 SETUP_LOOP 74 ( to 80 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_GLOBAL 1 ( len )
+10 LOAD_FAST 0 ( s )
+12 CALL_FUNCTION 1
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 62 ( to 78 )
+20 STORE_FAST 2 ( i )
+
+4 22 SETUP_LOOP 52 ( to 76 )
+24 LOAD_GLOBAL 0 ( range )
+26 LOAD_FAST 2 ( i )
+28 LOAD_CONST 2 ( 1 )
+30 BINARY_ADD
+32 LOAD_GLOBAL 1 ( len )
+34 LOAD_FAST 0 ( s )
+36 CALL_FUNCTION 1
+38 CALL_FUNCTION 2
+40 GET_ITER
+>> 42 FOR_ITER 28 ( to 74 )
+44 STORE_FAST 3 ( j )
+
+5 46 LOAD_FAST 0 ( s )
+48 LOAD_FAST 2 ( i )
+50 BINARY_SUBSCR
+52 LOAD_FAST 0 ( s )
+54 LOAD_FAST 3 ( j )
+56 BINARY_SUBSCR
+58 COMPARE_OP 2 ( == )
+60 POP_JUMP_IF_FALSE 42
+
+6 62 LOAD_FAST 2 ( i )
+64 STORE_FAST 1 ( p )
+
+7 66 BREAK_LOOP
+68 JUMP_ABSOLUTE 42
+>> 70 POP_BLOCK
+>> 72 JUMP_ABSOLUTE 18
+>> 74 POP_BLOCK
+
+8 >> 76 LOAD_FAST 1 ( p )
+78 LOAD_CONST 1 ( - 1 )
+80 COMPARE_OP 3 ( != )
+82 POP_JUMP_IF_FALSE 18
+
+9 84 BREAK_LOOP
+86 JUMP_ABSOLUTE 18
+>> 88 POP_BLOCK
+
+10 90 LOAD_FAST 1 ( p )
+92 RETURN_VALUE

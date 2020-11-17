@@ -1,0 +1,91 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n , k ) :\n    while ( n % 2 == 0 ) :\n        k = k - 1\n        n = n / 2\n        if ( k == 0 ) :\n            return 2\n    i = 3\n    while i <= math.sqrt ( n ) :\n        while ( n % i == 0 ) :\n            if ( k == 1 ) :\n                return i\n            k = k - 1\n            n = n / i\n        i = i + 2\n    if ( n > 2 and k == 1 ) :\n        return n\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (94,0),\n    (99,1),\n    (64,3),\n    (27,3),\n    (24,4),\n    (84,6),\n    (69,98),\n    (69,39),\n    (22,60),\n    (39,57)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def kPrimeFactor ( n , k ) :\n    while ( n % 2 == 0 ) :\n        k = k - 1\n        n = n / 2\n        if ( k == 0 ) :\n            return 2\n    i = 3\n    while i <= math.sqrt ( n ) :\n        while ( n % i == 0 ) :\n            if ( k == 1 ) :\n                return i\n            k = k - 1\n            n = n / i\n        i = i + 2\n    if ( n > 2 and k == 1 ) :\n        return n\n    return - 1\n"}
+Disassembly of <code object kBetaFactor at 0x7f816a673a50, file "<dis>", line 19>:
+20 0 LOAD_CONST 1 ( 2 )
+2 STORE_FAST 1 ( k )
+
+21 4 LOAD_FAST 1 ( k )
+6 LOAD_CONST 2 ( 0 )
+8 COMPARE_OP 4 ( > )
+10 POP_JUMP_IF_FALSE 20
+
+22 12 LOAD_CONST 3 ( 1 )
+14 LOAD_FAST 0 ( n )
+16 COMPARE_OP 4 ( > )
+18 POP_JUMP_IF_FALSE 26
+
+23 20 LOAD_CONST 4 ( 1 )
+22 LOAD_FAST 0 ( n )
+24 COMPARE_OP 4 ( > )
+26 POP_JUMP_IF_FALSE 26
+
+24 28 LOAD_CONST 5 ( 1 )
+30 LOAD_FAST 0 ( n )
+32 COMPARE_OP 4 ( > )
+34 POP_JUMP_IF_FALSE 26
+
+25 36 LOAD_CONST 6 ( 1 )
+38 LOAD_FAST 0 ( n )
+40 COMPARE_OP 4 ( > )
+42 POP_JUMP_IF_FALSE 52
+
+26 44 LOAD_CONST 7 ( 1 )
+46 LOAD_FAST 0 ( n )
+48 COMPARE_OP 4 ( > )
+50 POP_JUMP_IF_FALSE 52
+
+27 52 LOAD_CONST 8 ( 1 )
+54 LOAD_FAST 0 ( n )
+56 COMPARE_OP 4 ( > )
+58 POP_JUMP_IF_FALSE 52
+
+28 60 LOAD_CONST 9 ( 1 )
+62 LOAD_FAST 0 ( n )
+64 COMPARE_OP 4 ( > )
+66 POP_JUMP_IF_FALSE 52
+
+29 68 LOAD_CONST 10 ( 1 )
+70 LOAD_FAST 0 ( n )
+72 COMPARE_OP 4 ( > )
+74 POP_JUMP_IF_FALSE 52
+
+30 76 LOAD_CONST 11 ( 1 )
+78 LOAD_FAST 0 ( n )
+80 COMPARE_OP 4 ( > )
+82 POP_JUMP_IF_FALSE 52
+
+31 84 LOAD_CONST 12 ( 1 )
+86 LOAD_FAST 0 ( n )
+88 COMPARE_OP 4 ( > )
+90 POP_JUMP_IF_FALSE 52
+
+32 92 LOAD_CONST 13 ( 1 )
+94 LOAD_FAST 0 ( n )
+96 COMPARE_OP 4 ( > )
+98 POP_JUMP_IF_FALSE 52
+
+33 100 LOAD_CONST 14 ( 1 )
+102 LOAD_FAST 0 ( n )
+104 COMPARE_OP 4 ( > )
+106 POP_JUMP_IF_FALSE 52
+
+34 108 LOAD_CONST 15 ( 1 )
+110 LOAD_FAST 0 ( n )
+112 COMPARE_OP 4 ( > )
+114 POP_JUMP_IF_FALSE 52
+
+35 116 LOAD_CONST 16 ( 1 )
+118 LOAD_FAST 0 ( n )
+120 COMPARE_OP 4 ( > )
+122 POP_JUMP_IF_FALSE 52
+
+36 124 LOAD_CONST 16 ( 1 )
+126 STORE_FAST 1 ( k )
+
+37 >> 128 LOAD_FAST 1 ( k )
+130 LOAD_FAST 0 ( n )
+132 COMPARE_OP 4 ( > )
+134 POP_JUMP_IF_FALSE 52
+
+38 136 LOAD_FAST 1 ( k )
+138 RETURN_VALUE
+

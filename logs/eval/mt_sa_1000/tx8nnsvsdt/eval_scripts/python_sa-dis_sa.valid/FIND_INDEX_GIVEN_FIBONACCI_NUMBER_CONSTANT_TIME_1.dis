@@ -1,0 +1,16 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    fibo = 2.078087 * math.log ( n ) + 1.672276\n    return round ( fibo )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (20,),\n    (95,),\n    (39,),\n    (21,),\n    (94,),\n    (79,),\n    (56,),\n    (62,),\n    (23,),\n    (3,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findIndex ( n ) :\n    fibo = 2.078087 * math.log ( n ) + 1.672276\n    return round ( fibo )\n"}
+Disassembly of <code object findIndex at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 2.078087 )
+2 LOAD_GLOBAL 0 ( math )
+4 LOAD_METHOD 1 ( log )
+6 LOAD_FAST 0 ( n )
+8 CALL_METHOD 1
+10 BINARY_MULTIPLY
+12 LOAD_CONST 2 ( 1.674 )
+14 BINARY_ADD
+16 STORE_FAST 1 ( fibo )
+
+3 18 LOAD_GLOBAL 2 ( round )
+20 LOAD_FAST 1 ( fibo )
+22 CALL_FUNCTION 1
+24 RETURN_VALUE

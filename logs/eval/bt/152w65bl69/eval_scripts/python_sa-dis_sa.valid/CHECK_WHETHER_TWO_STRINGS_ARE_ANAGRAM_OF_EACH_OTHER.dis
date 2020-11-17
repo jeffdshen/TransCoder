@@ -1,0 +1,14 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str1 , str2 ) :\n    n1 = len ( str1 )\n    n2 = len ( str2 )\n    if n1 != n2 :\n        return 0\n    str1 = sorted ( str1 )\n    str2 = sorted ( str2 )\n    for i in range ( 0 , n1 ) :\n        if str1 [ i ] != str2 [ i ] :\n            return 0\n    return 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (['LISTEN'],['SILENT'],),\n    (['TRIANGLE'],['INTEGRAL'],),\n    (['test'],['ttew'],),\n    (['night'],['thing'],),\n    (['Inch'],['Study'],),\n    (['Dusty'],['1'],),\n    (['GJLMOOSTTXaabceefgllpwz'],['EJRXYajoy'],),\n    (['41658699122772743330'],['9931020'],),\n    (['0000000000000000000000001111111111111111111'],['0000000000000000000001111111111111111111111'],),\n    (['ERioPYDqgTSz bVCW'],['GLajZE'],)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def areAnagram ( str1 , str2 ) :\n    n1 = len ( str1 )\n    n2 = len ( str2 )\n    if n1 != n2 :\n        return 0\n    str1 = sorted ( str1 )\n    str2 = sorted ( str2 )\n    for i in range ( 0 , n1 ) :\n        if str1 [ i ] != str2 [ i ] :\n            return 0\n    return 1\n"}
+Disassembly of <code object areAnian at 0x7f816a6e4b70, file "<dis>", line 16>:
+17 0 LOAD_FAST 0 ( str1 )
+2 LOAD_FAST 1 ( str2 )
+4 BINARY_MULTIPLY
+6 STORE_FAST 2 ( str2 )
+
+18 8 LOAD_GLOBAL 0 ( re )
+10 LOAD_METHOD 1 ( sub )
+12 LOAD_CONST 1 ( '(?:\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s\\s*\\s\\s*\\s*\\s\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s\\s\\s\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s\\s*\\s\\s*\\s*\\s*\\s\\s*\\s\\s*\\s*\\s\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s*\\s\\s*\\s*\\s*\\s*\\s*\\s\\s*\\s*\\s*\\s\\s\\s*\\s*\\s\\s\\s\\s\\s*\\s\\s*\\s\\s*\\s\\s*\\s\\s*\\s*\\s*\\s*\\s*\\s*\\s\\s
+20STORE_FAST3( str2 )
+22 LOAD_CONST 2 ( None )
+24 RETURN_VALUE
+

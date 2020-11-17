@@ -1,0 +1,71 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    p = - 1\n    for i in range ( len ( s ) ) :\n        for j in range ( i + 1 , len ( s ) ) :\n            if ( s [ i ] == s [ j ] ) :\n                p = i\n                break\n        if ( p != - 1 ) :\n            break\n    return p\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('ORXMflacQFBv',),\n    ('39977638567848',),\n    ('011110011011',),\n    ('fYjfNy',),\n    ('222280492',),\n    ('11',),\n    ('UjntBg',),\n    ('6866190138212',),\n    ('0000',),\n    ('FWz PWEQgVlRZ',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findRepeatFirstN2 ( s ) :\n    p = - 1\n    for i in range ( len ( s ) ) :\n        for j in range ( i + 1 , len ( s ) ) :\n            if ( s [ i ] == s [ j ] ) :\n                p = i\n                break\n        if ( p != - 1 ) :\n            break\n    return p\n"}
+Disassembly of <code object findRepeatFirstNN2 at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( - 1 )
+2 STORE_FAST 1 ( p )
+
+3 4 SETUP_LOOP 64 ( to 76 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_GLOBAL 1 ( len )
+10 LOAD_FAST 0 ( s )
+12 CALL_FUNCTION 1
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 64 ( to 74 )
+20 STORE_FAST 2 ( i )
+
+4 22 SETUP_LOOP 64 ( to 72 )
+24 LOAD_GLOBAL 2 ( range )
+26 LOAD_FAST 1 ( p )
+28 CALL_FUNCTION 1
+30 GET_ITER
+>> 32 FOR_ITER 48 ( to 70 )
+34 STORE_FAST 3 ( j )
+
+5 36 LOAD_FAST 2 ( i )
+38 LOAD_FAST 3 ( j )
+40 COMPARE_OP 2 ( == )
+42 POP_JUMP_IF_FALSE 32
+
+6 44 LOAD_FAST 2 ( i )
+46 LOAD_FAST 3 ( j )
+48 BINARY_SUBSCR
+50 STORE_FAST 4 ( j )
+
+7 52 LOAD_FAST 2 ( i )
+54 LOAD_FAST 3 ( j )
+56 BINARY_SUBSCR
+58 LOAD_FAST 4 ( j )
+60 BINARY_SUBSCR
+62 LOAD_FAST 4 ( j )
+64 BINARY_SUBSCR
+66 LOAD_FAST 4 ( j )
+68 BINARY_SUBSCR
+70 LOAD_FAST 4 ( j )
+72 BINARY_SUBSCR
+74 LOAD_FAST 4 ( j )
+76 BINARY_SUBSCR
+78 LOAD_FAST 4 ( j )
+80 BINARY_SUBSCR
+82 LOAD_FAST 4 ( j )
+84 BINARY_SUBSCR
+86 LOAD_FAST 4 ( j )
+88 STORE_SUBSCR
+
+8 90 LOAD_FAST 2 ( i )
+92 LOAD_FAST 3 ( j )
+94 BINARY_SUBSCR
+96 LOAD_FAST 4 ( j )
+98 BINARY_SUBSCR
+100 LOAD_FAST 4 ( j )
+102 BINARY_SUBSCR
+104 LOAD_FAST 4 ( j )
+106 STORE_SUBSCR
+
+9 108 LOAD_FAST 2 ( i )
+110 LOAD_FAST 3 ( j )
+112 STORE_SUBSCR
+114 JUMP_ABSOLUTE 32
+>> 116 POP_BLOCK
+
+10 >> 118 LOAD_FAST 1 ( p )
+120 RETURN_VALUE

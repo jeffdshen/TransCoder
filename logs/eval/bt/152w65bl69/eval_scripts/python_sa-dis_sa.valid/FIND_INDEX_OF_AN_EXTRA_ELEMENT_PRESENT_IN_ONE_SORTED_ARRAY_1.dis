@@ -1,0 +1,81 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr1 , arr2 , n ) :\n    index = n\n    left = 0\n    right = n - 1\n    while ( left <= right ) :\n        mid = ( int ) ( ( left + right ) / 2 )\n        if ( arr2 [ mid ] == arr1 [ mid ] ) :\n            left = mid + 1\n        else :\n            index = mid\n            right = mid - 1\n    return index\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([7, 18, 19, 25, 26, 27, 31, 39, 44, 46, 59, 60, 66, 72, 78, 83, 84, 92, 94],[2, 5, 12, 13, 17, 20, 22, 46, 51, 63, 64, 66, 66, 76, 87, 87, 90, 91, 96],11,),\n    ([-14, -56, 92, -90, 96, -84, 64, -38, -20, 84, 56, 92, 18, -78, 98, -96, -60, 88, -52, -28, 30, -90, 14, 76, 56, 20, -18, -94, -82, -2, 96, -60, -64, -90, 42, 6, 20, -38, 82, -86, -4, 82, 54, -88],[54, 44, -50, 26, 4, -26, -76, 98, -14, 36, 82, 0, -60, 18, 52, 82, -12, -8, -26, -58, 22, -70, 24, 48, 56, -46, 92, 98, -50, -72, -66, 8, 40, 12, -80, -86, 90, -30, 76, -92, 80, -62, 0, -48],26,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],31,),\n    ([13, 64, 73, 50, 73, 19, 92, 10, 64, 79, 58, 41, 97, 53, 53, 10, 96, 45, 47, 38, 99],[24, 42, 54, 13, 88, 63, 50, 73, 64, 66, 86, 84, 53, 4, 44, 58, 44, 42, 36, 94, 34],13,),\n    ([-96, -94, -90, -90, -78, -70, -64, -64, -58, -58, -52, -40, -36, -34, -34, -30, -26, -2, 0, 2, 14, 18, 24, 28, 28, 30, 34, 40, 42, 48, 66, 72, 86, 90, 92, 98],[-94, -92, -90, -88, -86, -82, -82, -80, -76, -74, -64, -60, -58, -46, -44, -36, -30, -30, -30, -18, -16, -8, -6, 12, 14, 20, 26, 38, 40, 42, 42, 68, 78, 82, 88, 98],29,),\n    ([1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0],[0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0],19,),\n    ([10, 51, 74, 74, 75, 80, 90],[12, 20, 36, 38, 61, 64, 93],5,),\n    ([-44, 48, 20, -38, -48, -26, 56, -62, -94, -18, 30, 66, -16, 80, 96, -40, -80, 32, 88, -56, -76, 16, 72, -94, 4, -34, -92, 70, -90, -54, 64, -90],[-76, 92, -66, 20, 86, 40, 64, 16, 54, -6, 54, -88, -24, 38, 86, 2, 30, 70, 98, -46, 28, 34, 40, -88, -96, 92, 22, 14, -36, -96, -48, -72],28,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,),\n    ([19, 53, 13, 91, 52, 62, 39, 84, 68, 45, 32, 40, 13, 68, 79, 76, 11, 42, 76, 30, 81, 3, 30, 15, 85, 76, 1],[33, 65, 36, 82, 30, 95, 42, 33, 9, 21, 25, 90, 54, 59, 21, 45, 3, 93, 67, 50, 97, 72, 77, 54, 75, 8, 6],25,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findExtra ( arr1 , arr2 , n ) :\n    index = n\n    left = 0\n    right = n - 1\n    while ( left <= right ) :\n        mid = ( int ) ( ( left + right ) / 2 )\n        if ( arr2 [ mid ] == arr1 [ mid ] ) :\n            left = mid + 1\n        else :\n            index = mid\n            right = mid - 1\n    return index\n"}
+Disassembly of <code object findExtra at 0x7f816a673a50, file "<dis>", line 49>:
+50 0 LOAD_FAST 1 ( arr2 )
+2 LOAD_CONST 1 ( - 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+51 8 LOAD_GLOBAL 0 ( mid )
+10 LOAD_FAST 1 ( arr2 )
+12 LOAD_CONST 2 ( - 1 )
+14 BUILD_SLICE 2
+16 BINARY_SUBSCR
+18 STORE_FAST 1 ( arr2 )
+
+52 20 LOAD_FAST 1 ( arr2 )
+22 LOAD_CONST 3 ( - 1 )
+24 COMPARE_OP 2 ( == )
+26 POP_JUMP_IF_FALSE 38
+
+53 28 LOAD_FAST 1 ( arr2 )
+30 LOAD_FAST 0 ( arr1 )
+32 LOAD_CONST 4 ( - 1 )
+34 BUILD_SLICE 2
+36 BINARY_SUBSCR
+38 STORE_FAST 1 ( arr2 )
+
+54 40 LOAD_FAST 1 ( arr2 )
+42 LOAD_FAST 0 ( arr1 )
+44 LOAD_CONST 5 ( - 1 )
+46 BUILD_SLICE 2
+48 BINARY_SUBSCR
+50 STORE_FAST 1 ( arr2 )
+
+55 52 LOAD_FAST 1 ( arr2 )
+54 LOAD_FAST 0 ( arr1 )
+56 LOAD_FAST 0 ( arr1 )
+58 LOAD_FAST 1 ( arr2 )
+60 LOAD_FAST 2 ( arr2 )
+62 LOAD_FAST 3 ( arr2 )
+64 LOAD_FAST 4 ( - 1 )
+66 LOAD_FAST 3 ( arr2 )
+68 LOAD_FAST 4 ( - 1 )
+70 LOAD_FAST 4 ( - 1 )
+72 LOAD_FAST 5 ( arr2 )
+74 LOAD_FAST 6 ( arr2 )
+76 LOAD_FAST 7 ( arr2 )
+78 LOAD_FAST 8 ( arr2 )
+80 LOAD_FAST 9 ( arr2 )
+82 LOAD_FAST 10 ( arr2 )
+84 LOAD_FAST 11 ( arr2 )
+86 LOAD_FAST 12 ( arr2 )
+88 LOAD_FAST 13 ( arr2 )
+90 LOAD_FAST 14 ( arr2 )
+92 LOAD_FAST 15 ( arr2 )
+94 LOAD_FAST 8 ( arr2 )
+96 LOAD_FAST 10 ( arr2 )
+98 LOAD_FAST 12 ( arr2 )
+100 LOAD_FAST 13 ( arr2 )
+102 LOAD_FAST 14 ( arr2 )
+104 LOAD_FAST 15 ( arr2 )
+106 LOAD_FAST 16 ( arr2 )
+108 LOAD_FAST 17 ( arr2 )
+110 LOAD_FAST 18 ( arr2 )
+112 LOAD_FAST 19 ( arr2 )
+114 LOAD_FAST 20 ( arr2 )
+116 LOAD_FAST 21 ( arr2 )
+118 LOAD_FAST 22 ( arr2 )
+120 LOAD_FAST 20 ( arr2 )
+122 LOAD_FAST 21 ( arr2 )
+124 LOAD_FAST 22 ( arr2 )
+126 LOAD_FAST 21 ( arr2 )
+128 LOAD_FAST 22 ( arr2 )
+130 LOAD_FAST 22 ( arr2 )
+132 LOAD_FAST 21 ( arr2 )
+134 BUILD_TUPLE 15
+136 CALL_FUNCTION 5
+138 RETURN_VALUE
+
+53 >> 140 LOAD_FAST 0 ( arr1 )
+142 RETURN_VALUE
+

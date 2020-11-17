@@ -1,0 +1,101 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    x = n\n    y = 1\n    e = 0.000001\n    while ( x - y > e ) :\n        x = ( x + y ) / 2\n        y = n / x\n    return x\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1763.655093333857,),\n    (-3544.737136289062,),\n    (7893.209433000695,),\n    (-3008.0331952533734,),\n    (6155.190186637041,),\n    (-5799.751467314729,),\n    (8234.151546380555,),\n    (-1829.5367705266551,),\n    (5778.227173218819,),\n    (-7785.473710863676,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def squareRoot ( n ) :\n    x = n\n    y = 1\n    e = 0.000001\n    while ( x - y > e ) :\n        x = ( x + y ) / 2\n        y = n / x\n    return x\n"}
+Disassembly of <code object squareRoot at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 STORE_FAST 1 ( x )
+
+3 4 LOAD_CONST 1 ( 1 )
+6 STORE_FAST 2 ( y )
+
+4 8 SETUP_LOOP 26 ( to 32 )
+10 LOAD_FAST 0 ( n )
+12 GET_ITER
+>> 14 FOR_ITER 18 ( to 30 )
+16 STORE_FAST 3 ( x )
+
+5 18 LOAD_FAST 1 ( x )
+20 LOAD_FAST 2 ( y )
+22 LOAD_FAST 3 ( x )
+24 BINARY_SUBTRACT
+26 LOAD_FAST 1 ( x )
+28 BINARY_SUBTRACT
+30 LOAD_FAST 2 ( y )
+32 BINARY_SUBTRACT
+34 LOAD_FAST 1 ( x )
+36 BINARY_SUBTRACT
+38 LOAD_FAST 2 ( y )
+40 BINARY_SUBTRACT
+42 BINARY_MULTIPLY
+44 LOAD_FAST 2 ( y )
+46 LOAD_FAST 3 ( x )
+48 BINARY_SUBTRACT
+50 BINARY_MULTIPLY
+52 LOAD_FAST 2 ( y )
+54 LOAD_FAST 3 ( x )
+56 BINARY_SUBTRACT
+58 BINARY_MULTIPLY
+60 LOAD_FAST 2 ( y )
+62 LOAD_FAST 3 ( x )
+64 BINARY_SUBTRACT
+66 LOAD_FAST 2 ( y )
+68 BINARY_SUBTRACT
+70 BINARY_MULTIPLY
+72 LOAD_FAST 2 ( y )
+74 LOAD_FAST 3 ( x )
+76 BINARY_SUBTRACT
+78 BINARY_MULTIPLY
+80 LOAD_FAST 2 ( y )
+82 LOAD_FAST 3 ( x )
+84 BINARY_SUBTRACT
+86 BINARY_MULTIPLY
+88 LOAD_FAST 2 ( y )
+90 LOAD_FAST 3 ( x )
+92 BINARY_SUBTRACT
+94 BINARY_MULTIPLY
+96 LOAD_FAST 2 ( y )
+98 LOAD_FAST 3 ( x )
+100 BINARY_SUBTRACT
+102 BINARY_MULTIPLY
+104 LOAD_FAST 2 ( y )
+106 LOAD_FAST 3 ( x )
+108 BINARY_SUBTRACT
+110 BINARY_MULTIPLY
+112 LOAD_FAST 2 ( y )
+114 LOAD_FAST 3 ( x )
+116 BINARY_SUBTRACT
+118 BINARY_MULTIPLY
+120 LOAD_FAST 2 ( y )
+122 LOAD_FAST 3 ( x )
+124 BINARY_SUBTRACT
+126 BINARY_MULTIPLY
+128 BINARY_ADD
+130 LOAD_FAST 2 ( y )
+132 LOAD_FAST 3 ( x )
+134 BINARY_SUBTRACT
+136 BINARY_MULTIPLY
+138 LOAD_FAST 2 ( y )
+140 LOAD_FAST 3 ( x )
+142 BINARY_SUBTRACT
+144 BINARY_MULTIPLY
+146 BINARY_ADD
+148 LOAD_FAST 2 ( y )
+150 LOAD_FAST 3 ( x )
+152 BINARY_SUBTRACT
+154 BINARY_MULTIPLY
+156 BINARY_ADD
+158 LOAD_FAST 2 ( y )
+160 BINARY_SUBTRACT
+162 LOAD_FAST 3 ( x )
+164 BINARY_SUBTRACT
+166 LOAD_FAST 2 ( y )
+168 BINARY_SUBTRACT
+170 LOAD_FAST 2 ( y )
+172 BINARY_SUBTRACT
+174 LOAD_FAST 2 ( y )
+176 BINARY_SUBTRACT
+178 BINARY_MULTIPLY
+180 BINARY_SUBTRACT
+182 LOAD_FAST 2 ( y )
+184 LOAD_FAST 3 ( x )
+186 BINARY_SUBTRACT
+188 LOAD_FAST 2 ( y )
+190 BUILD_TUPLE 3

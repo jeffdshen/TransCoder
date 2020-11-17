@@ -1,0 +1,35 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , p ) :\n    ans = 0 ;\n    temp = p ;\n    while ( temp <= n ) :\n        ans += n / temp ;\n        temp = temp * p ;\n    return ans ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (49,30,),\n    (80,25,),\n    (10,9,),\n    (81,57,),\n    (11,4,),\n    (45,34,),\n    (86,90,),\n    (27,78,),\n    (80,60,),\n    (97,31,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def PowerOFPINnfactorial ( n , p ) :\n    ans = 0 ;\n    temp = p ;\n    while ( temp <= n ) :\n        ans += n / temp ;\n        temp = temp * p ;\n    return ans ;\n"}
+Disassembly of <code object PowerOFPINfactorial at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 0 )
+2 LOAD_CONST 2 ( ( 'temp' , ) )
+4 IMPORT_NAME 0 ( ans . temp )
+6 IMPORT_FROM 1 ( temp )
+8 STORE_FAST 1 ( temp )
+10 POP_TOP
+
+27 12 LOAD_FAST 1 ( temp )
+14 LOAD_METHOD 2 ( temp )
+16 CALL_METHOD 0
+18 STORE_FAST 2 ( temp )
+
+28 20 LOAD_FAST 1 ( temp )
+22 LOAD_METHOD 3 ( temp )
+24 CALL_METHOD 0
+26 STORE_FAST 3 ( temp )
+
+29 28 LOAD_FAST 1 ( temp )
+30 LOAD_METHOD 4 ( temp )
+32 CALL_METHOD 0
+34 STORE_FAST 4 ( temp )
+
+30 36 LOAD_FAST 0 ( self )
+38 LOAD_METHOD 5 ( assertEqual )
+40 LOAD_FAST 4 ( temp )
+42 LOAD_METHOD 6 ( temp )
+44 CALL_METHOD 0
+46 LOAD_CONST 3 ( 0 )
+48 CALL_METHOD 2
+50 POP_TOP
+52 LOAD_CONST 0 ( None )
+54 RETURN_VALUE
+

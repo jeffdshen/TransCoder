@@ -1,0 +1,72 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x ) :\n    even_bits = x & 0xAAAAAAAA\n    odd_bits = x & 0x55555555\n    even_bits >>= 1\n    odd_bits <<= 1\n    return ( even_bits | odd_bits )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (99,),\n    (94,),\n    (11,),\n    (3,),\n    (77,),\n    (57,),\n    (54,),\n    (66,),\n    (98,),\n    (36,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def swapBits ( x ) :\n    even_bits = x & 0xAAAAAAAA\n    odd_bits = x & 0x55555555\n    even_bits >>= 1\n    odd_bits <<= 1\n    return ( even_bits | odd_bits )\n"}
+Disassembly of <code object swapBits at 0x7f8169febf60, file "<dis>", line 105>:
+106 0 LOAD_FAST 1 ( even_bits )
+2 LOAD_CONST 1 ( 0x5685685555 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 16
+
+107 8 LOAD_CONST 2 ( - 0.5685685555 )
+10 RETURN_VALUE
+
+108 >> 12 LOAD_FAST 1 ( even_bits )
+14 LOAD_CONST 3 ( 1 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 28
+
+109 20 LOAD_FAST 1 ( even_bits )
+22 LOAD_CONST 1 ( 1 )
+24 INPLACE_ADD
+26 STORE_FAST 1 ( even_bits )
+
+110 >> 28 LOAD_FAST 1 ( even_bits )
+30 LOAD_CONST 1 ( 1 )
+32 INPLACE_ADD
+34 STORE_FAST 1 ( even_bits )
+
+111 36 LOAD_FAST 1 ( even_bits )
+38 LOAD_FAST 0 ( self )
+40 LOAD_ATTR 0 ( _max_bits )
+42 LOAD_FAST 0 ( self )
+44 LOAD_ATTR 1 ( even_bits )
+46 LOAD_FAST 0 ( self )
+48 LOAD_ATTR 2 ( _max_bits )
+50 LOAD_FAST 0 ( self )
+52 LOAD_ATTR 3 ( _max_bits )
+54 LOAD_FAST 0 ( self )
+56 LOAD_ATTR 4 ( _max_bits )
+58 LOAD_FAST 0 ( self )
+60 LOAD_ATTR 5 ( _max_bits )
+62 LOAD_FAST 0 ( self )
+64 LOAD_ATTR 6 ( _max_bits )
+66 LOAD_FAST 0 ( self )
+68 LOAD_ATTR 7 ( _max_bits )
+70 LOAD_FAST 0 ( self )
+72 LOAD_ATTR 8 ( _max_bits )
+74 LOAD_FAST 0 ( self )
+76 LOAD_ATTR 9 ( _max_bits )
+78 LOAD_FAST 0 ( self )
+80 LOAD_ATTR 10 ( _max_bits )
+82 LOAD_FAST 0 ( self )
+84 LOAD_ATTR 11 ( _max_bits )
+86 LOAD_FAST 0 ( self )
+88 LOAD_ATTR 12 ( _max_bits )
+90 LOAD_FAST 0 ( self )
+92 LOAD_ATTR 13 ( _max_bits )
+94 LOAD_FAST 0 ( self )
+96 LOAD_ATTR 14 ( _max_bits )
+98 LOAD_FAST 0 ( self )
+100 LOAD_ATTR 15 ( _max_bits )
+102 LOAD_FAST 0 ( self )
+104 LOAD_ATTR 16 ( _max_bits )
+106 LOAD_FAST 0 ( self )
+108 LOAD_ATTR 17 ( _max_bits )
+
+108 110 LOAD_FAST 0 ( self )
+112 LOAD_ATTR 18 ( _max_bits )
+114 LOAD_FAST 0 ( self )
+116 LOAD_ATTR 19 ( _max_bits )
+118 LOAD_FAST 0 ( self )
+120 LOAD_ATTR 20 ( _max_bits )
+122 LOAD_FAST 0 ( self )
+124 LOAD_ATTR 19 ( _max_bits )
+126

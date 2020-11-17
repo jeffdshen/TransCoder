@@ -1,0 +1,106 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , y ) :\n    if ( x == 1 ) :\n        return ( y == 1 )\n    pow = 1\n    while ( pow < y ) :\n        pow = pow * x\n    return ( pow == y )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (57,1,),\n    (3,9,),\n    (10,101,),\n    (10,10000,),\n    (6,46656,),\n    (2,2048,),\n    (1,40,),\n    (20,79,),\n    (96,98,),\n    (25,5,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPower ( x , y ) :\n    if ( x == 1 ) :\n        return ( y == 1 )\n    pow = 1\n    while ( pow < y ) :\n        pow = pow * x\n    return ( pow == y )\n"}
+Disassembly of <code object isPower at 0x7f816a677930, file "<dis>", line 64>:
+65 0 LOAD_FAST 0 ( x )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+66 8 LOAD_GLOBAL 0 ( pow )
+10 LOAD_FAST 0 ( x )
+12 LOAD_CONST 2 ( 1 )
+14 BINARY_SUBTRACT
+16 CALL_FUNCTION 1
+18 LOAD_FAST 0 ( x )
+20 LOAD_CONST 3 ( 1 )
+22 BINARY_SUBTRACT
+24 BINARY_MULTIPLY
+26 LOAD_FAST 0 ( x )
+28 LOAD_CONST 4 ( 2 )
+30 BINARY_POWER
+32 BINARY_MULTIPLY
+34 LOAD_FAST 0 ( x )
+36 LOAD_CONST 5 ( 1 )
+38 BINARY_SUBTRACT
+40 BINARY_MULTIPLY
+42 LOAD_FAST 0 ( x )
+44 LOAD_CONST 6 ( 2 )
+46 BINARY_POWER
+48 BINARY_MULTIPLY
+50 LOAD_FAST 0 ( x )
+52 LOAD_CONST 7 ( 2 )
+54 BINARY_POWER
+56 BINARY_MULTIPLY
+58 BINARY_ADD
+60 LOAD_FAST 0 ( x )
+62 LOAD_CONST 8 ( 2 )
+64 BINARY_POWER
+66 BINARY_MULTIPLY
+68 LOAD_FAST 0 ( x )
+70 LOAD_CONST 9 ( 2 )
+72 BINARY_POWER
+74 BINARY_MULTIPLY
+76 BINARY_ADD
+78 LOAD_FAST 0 ( x )
+80 LOAD_CONST 10 ( 2 )
+82 BINARY_POWER
+84 BINARY_MULTIPLY
+86 LOAD_FAST 0 ( x )
+88 LOAD_CONST 11 ( 2 )
+90 BINARY_POWER
+92 BINARY_MULTIPLY
+94 BINARY_ADD
+96 LOAD_FAST 0 ( x )
+98 LOAD_CONST 12 ( 2 )
+100 BINARY_POWER
+102 BINARY_MULTIPLY
+104 BINARY_ADD
+106 LOAD_FAST 0 ( x )
+108 LOAD_CONST 13 ( 1 )
+110 BINARY_ADD
+112 BINARY_MULTIPLY
+114 BINARY_ADD
+116 LOAD_FAST 0 ( x )
+118 LOAD_CONST 14 ( 2 )
+120 BINARY_POWER
+122 BINARY_MULTIPLY
+124 BINARY_ADD
+126 LOAD_FAST 0 ( x )
+128 LOAD_CONST 15 ( 2 )
+130 BINARY_POWER
+132 BINARY_MULTIPLY
+134 BINARY_ADD
+136 LOAD_FAST 0 ( x )
+138 LOAD_CONST 16 ( 2 )
+140 BINARY_POWER
+142 BINARY_MULTIPLY
+144 BINARY_ADD
+146 LOAD_FAST 0 ( x )
+148 LOAD_CONST 17 ( 2 )
+150 BINARY_POWER
+152 BINARY_ADD
+154 BINARY_ADD
+156 LOAD_FAST 0 ( x )
+158 LOAD_CONST 18 ( 2 )
+160 BINARY_POWER
+162 BINARY_ADD
+164 LOAD_FAST 0 ( x )
+166 LOAD_CONST 19 ( 2 )
+168 BINARY_POWER
+170 BINARY_MULTIPLY
+
+67 148 LOAD_FAST 0 ( x )
+150 LOAD_CONST 18 ( 2 )
+152 BINARY_POWER
+154 BINARY_MULTIPLY
+156 BINARY_ADD
+158 LOAD_FAST 0 ( x )
+160 LOAD_CONST 19 ( 2 )
+162 BINARY_POWER
+164 BINARY_ADD
+166 LOAD_FAST 0 ( x )
+168 LOAD_CONST 20 ( 2 )
+170 BINARY_POWER
+172 BINARY_ADD
+174 BINARY_ADD
+
+68 176 LOAD_FAST 0 ( x

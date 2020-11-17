@@ -1,0 +1,48 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , k ) :\n    oneSeen = False\n    while ( n > 0 ) :\n        digit = n % k\n        if ( digit > 1 ) :\n            return False\n        if ( digit == 1 ) :\n            if ( oneSeen ) :\n                return False\n            oneSeen = True\n        n //= k\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (64,4,),\n    (16,2,),\n    (27,3,),\n    (81,72,),\n    (1,9,),\n    (69,17,),\n    (8,20,),\n    (31,79,),\n    (43,81,),\n    (54,89,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPowerOfK ( n , k ) :\n    oneSeen = False\n    while ( n > 0 ) :\n        digit = n % k\n        if ( digit > 1 ) :\n            return False\n        if ( digit == 1 ) :\n            if ( oneSeen ) :\n                return False\n            oneSeen = True\n        n //= k\n    return True\n"}
+Disassembly of <code object isPowerOfK at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( oneSeen )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 4 ( > )
+6 POP_JUMP_IF_FALSE 20
+
+3 8 LOAD_CONST 2 ( False )
+10 STORE_FAST 2 ( digit )
+
+4 12 SETUP_LOOP 26 ( to 36 )
+>> 14 LOAD_FAST 0 ( n )
+16 LOAD_CONST 1 ( 0 )
+18 COMPARE_OP 4 ( > )
+20 POP_JUMP_IF_FALSE 34
+
+5 22 LOAD_CONST 3 ( False )
+24 RETURN_VALUE
+
+6 >> 26 LOAD_CONST 4 ( False )
+28 RETURN_VALUE
+
+7 >> 30 LOAD_FAST 2 ( digit )
+32 LOAD_CONST 1 ( 0 )
+34 COMPARE_OP 4 ( > )
+36 POP_JUMP_IF_FALSE 48
+
+8 38 LOAD_CONST 5 ( False )
+40 RETURN_VALUE
+
+9 >> 42 LOAD_FAST 2 ( digit )
+44 LOAD_CONST 1 ( 0 )
+46 COMPARE_OP 4 ( > )
+48 POP_JUMP_IF_FALSE 50
+
+10 50 LOAD_CONST 6 ( False )
+52 RETURN_VALUE
+
+11 >> 54 LOAD_CONST 7 ( False )
+56 RETURN_VALUE
+58 JUMP_ABSOLUTE 14
+
+13 >> 60 LOAD_CONST 8 ( True )
+62 RETURN_VALUE
+64 JUMP_ABSOLUTE 14
+
+14 >> 66 LOAD_CONST 9 ( True )
+68 RETURN_VALUE

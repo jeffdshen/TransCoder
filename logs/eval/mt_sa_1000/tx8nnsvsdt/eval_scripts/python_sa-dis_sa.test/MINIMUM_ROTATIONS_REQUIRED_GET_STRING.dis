@@ -1,0 +1,42 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    tmp = str + str\n    n = len ( str )\n    for i in range ( 1 , n + 1 ) :\n        substring = tmp [ i : i + n ]\n        if ( str == substring ) :\n            return i\n    return n\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('vdevdNdQSopPtj',),\n    ('5',),\n    ('100010101011',),\n    ('tlDOvJHAyMllu',),\n    ('06',),\n    ('101',),\n    ('DYgtU',),\n    ('4',),\n    ('00',),\n    ('Dt',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findRotations ( str ) :\n    tmp = str + str\n    n = len ( str )\n    for i in range ( 1 , n + 1 ) :\n        substring = tmp [ i : n ]\n        if ( str == substring ) :\n            return i\n    return n\n"}
+Disassembly of <code object findRotations at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( str )
+2 LOAD_FAST 0 ( str )
+4 BINARY_ADD
+6 STORE_FAST 1 ( tmp )
+
+3 8 LOAD_GLOBAL 0 ( len )
+10 LOAD_FAST 0 ( str )
+12 CALL_FUNCTION 1
+14 STORE_FAST 2 ( n )
+
+4 16 SETUP_LOOP 52 ( to 74 )
+18 LOAD_GLOBAL 1 ( range )
+20 LOAD_CONST 1 ( 1 )
+22 LOAD_FAST 2 ( n )
+24 LOAD_CONST 1 ( 1 )
+26 BINARY_ADD
+28 CALL_FUNCTION 2
+30 GET_ITER
+>> 32 FOR_ITER 34 ( to 72 )
+34 STORE_FAST 3 ( i )
+
+5 36 LOAD_FAST 1 ( tmp )
+38 LOAD_FAST 3 ( i )
+40 LOAD_FAST 2 ( n )
+42 BUILD_SLICE 2
+44 BINARY_SUBSCR
+46 STORE_FAST 4 ( substring )
+
+6 48 LOAD_FAST 0 ( str )
+50 LOAD_FAST 4 ( substring )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 32
+
+7 56 LOAD_FAST 3 ( i )
+58 RETURN_VALUE
+60 JUMP_ABSOLUTE 32
+>> 62 POP_BLOCK
+
+8 >> 64 LOAD_FAST 2 ( n )
+66 RETURN_VALUE

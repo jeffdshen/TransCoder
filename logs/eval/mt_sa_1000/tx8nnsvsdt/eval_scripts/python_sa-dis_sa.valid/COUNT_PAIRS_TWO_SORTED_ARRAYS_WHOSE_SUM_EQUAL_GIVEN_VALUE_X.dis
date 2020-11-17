@@ -1,0 +1,43 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr1 , arr2 , m , n , x ) :\n    count = 0\n    for i in range ( m ) :\n        for j in range ( n ) :\n            if arr1 [ i ] + arr2 [ j ] == x :\n                count = count + 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([11, 13, 16, 23, 26, 28, 31, 34, 37, 39, 44, 48, 56, 59, 79, 91, 96, 98],[1, 1, 9, 14, 17, 23, 26, 31, 33, 36, 53, 60, 71, 75, 76, 84, 87, 88],9,15,11,),\n    ([50, 14, -98, 14, 90, 36, 66, 44, 10, -98, -24, -36, -32, -50],[34, -6, -66, 0, -6, 82, 60, -98, -8, 60, -2, 4, 22, 76],11,12,8,),\n    ([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,9,12,),\n    ([88, 14, 29, 87, 86, 58],[91, 95, 64, 4, 63, 35],3,5,5,),\n    ([-98, -92, -88, -86, -82, -76, -72, -66, -56, -48, -34, -28, -28, -26, -20, -18, -18, -16, -16, -12, -4, 0, 6, 12, 16, 20, 22, 30, 34, 34, 36, 56, 58, 62, 64, 80, 82, 94],[-94, -90, -88, -84, -82, -78, -76, -72, -70, -58, -58, -46, -42, -40, -40, -32, -22, -20, -18, -12, -8, -6, 6, 6, 18, 20, 34, 46, 60, 62, 66, 72, 72, 76, 76, 78, 92, 98],34,32,23,),\n    ([1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0],[1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0],39,26,34,),\n    ([70, 70, 74],[15, 55, 84],1,1,1,),\n    ([-20, -12, -50, 76, 24, 64, -22, -4, -68],[18, 98, -88, 86, 72, -44, 82, 94, 58],5,4,7,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],27,26,37,),\n    ([68, 75, 51, 45, 73, 95, 48, 53, 70, 41, 65, 47, 46, 43, 79, 29, 50],[4, 6, 76, 65, 16, 13, 85, 43, 31, 14, 81, 90, 24, 87, 40, 25, 88],10,10,9,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPairs ( arr1 , arr2 , m , n , x ) :\n    count = 0\n    for i in range ( m ) :\n        for j in range ( n ) :\n            if arr1 [ i ] + arr2 [ j ] == x :\n                count = count + 1\n    return count\n"}
+Disassembly of <code object countPairs at 0x7f2b016399c0, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 5 ( count )
+
+3 4 SETUP_LOOP 62 ( to 68 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_FAST 2 ( m )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 50 ( to 66 )
+16 STORE_FAST 6 ( i )
+
+4 18 SETUP_LOOP 44 ( to 64 )
+20 LOAD_GLOBAL 0 ( range )
+22 LOAD_FAST 5 ( n )
+24 CALL_FUNCTION 1
+26 GET_ITER
+>> 28 FOR_ITER 36 ( to 62 )
+30 STORE_FAST 7 ( j )
+
+5 32 LOAD_FAST 0 ( arr1 )
+34 LOAD_FAST 6 ( i )
+36 BINARY_SUBSCR
+38 LOAD_FAST 1 ( arr2 )
+40 LOAD_FAST 7 ( j )
+42 BINARY_SUBSCR
+44 BINARY_ADD
+46 LOAD_FAST 3 ( x )
+48 COMPARE_OP 2 ( == )
+50 POP_JUMP_IF_FALSE 28
+
+6 52 LOAD_FAST 5 ( count )
+54 LOAD_CONST 2 ( 1 )
+56 BINARY_ADD
+58 STORE_FAST 5 ( count )
+60 JUMP_ABSOLUTE 28
+>> 62 POP_BLOCK
+>> 64 JUMP_ABSOLUTE 14
+>> 66 POP_BLOCK
+
+7 >> 68 LOAD_FAST 5 ( count )
+70 RETURN_VALUE

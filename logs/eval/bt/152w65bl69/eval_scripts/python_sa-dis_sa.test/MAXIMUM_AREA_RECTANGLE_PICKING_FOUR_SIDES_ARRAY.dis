@@ -1,0 +1,94 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    arr.sort ( reverse = True )\n    dimension = [ 0 , 0 ]\n    i = 0\n    j = 0\n    while ( i < n - 1 and j < 2 ) :\n        if ( arr [ i ] == arr [ i + 1 ] ) :\n            dimension [ j ] = arr [ i ]\n            j += 1\n            i += 1\n        i += 1\n    return ( dimension [ 0 ] * dimension [ 1 ] )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 5, 6, 8, 9, 11, 12, 14, 16, 17, 24, 25, 36, 40, 44, 47, 49, 51, 51, 52, 67, 68, 72, 74, 81, 82, 83, 84, 92, 95, 95, 96, 99],27,),\n    ([-54, -82, -92, -32],2,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],15,),\n    ([16, 62, 17, 15, 26, 45, 2, 17, 65, 94, 96, 30, 68, 44, 96, 60, 99],8,),\n    ([-88, -82, -78, -52, -50, -42, -34, -28, 16, 46, 54, 56, 66, 66, 74, 82, 82, 94, 98],15,),\n    ([0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0],18,),\n    ([1, 6, 8, 8, 8, 10, 13, 14, 14, 23, 24, 25, 27, 28, 29, 30, 33, 38, 43, 44, 49, 52, 56, 58, 62, 63, 64, 65, 65, 68, 75, 85, 85, 87, 93, 96, 97],20,),\n    ([-90, -56, 16, 32, 78, -20, 76, -90, -68, -70, 54, 50, 60, -64, 78, -6, -92, 6, 16, 70],19,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],30,),\n    ([55, 51, 90, 10, 14, 5, 57, 22, 75, 29, 7, 18, 31, 43, 84, 35, 71, 94, 4, 51, 94, 30, 94, 53, 82],22,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findArea ( arr , n ) :\n    arr.sort ( reverse = True )\n    dimension = [ 0 , 0 ]\n    i = 0\n    j = 0\n    while ( i < n - 1 and j < 2 ) :\n        if ( arr [ i ] == arr [ i + 1 ] ) :\n            dimension [ j ] = arr [ i ]\n            j += 1\n            i += 1\n        i += 1\n    return ( dimension [ 0 ] * dimension [ 1 ] )\n"}
+Disassembly of <code object findArea at 0x7f816a677930, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( arr )
+2 LOAD_METHOD 0 ( sort )
+4 CALL_METHOD 0
+6 STORE_FAST 1 ( n )
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 1 ( 1 )
+12 COMPARE_OP 4 ( > )
+14 POP_JUMP_IF_FALSE 28
+
+28 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 2 ( 0 )
+20 COMPARE_OP 4 ( > )
+22 POP_JUMP_IF_FALSE 28
+
+29 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 3 ( 1 )
+28 INPLACE_ADD
+30 STORE_FAST 1 ( n )
+
+30 >> 32 LOAD_FAST 1 ( n )
+34 LOAD_CONST 4 ( 0 )
+36 COMPARE_OP 4 ( > )
+38 POP_JUMP_IF_FALSE 48
+
+31 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 5 ( 1 )
+44 INPLACE_ADD
+46 STORE_FAST 1 ( n )
+
+32 >> 48 LOAD_FAST 1 ( n )
+50 LOAD_CONST 6 ( 2 )
+52 INPLACE_ADD
+54 STORE_FAST 1 ( n )
+
+33 56 LOAD_FAST 1 ( n )
+58 LOAD_CONST 7 ( 2 )
+60 INPLACE_ADD
+62 STORE_FAST 1 ( n )
+
+34 64 LOAD_FAST 1 ( n )
+66 LOAD_CONST 8 ( 2 )
+68 INPLACE_ADD
+70 STORE_FAST 1 ( n )
+
+35 72 LOAD_FAST 1 ( n )
+74 LOAD_CONST 9 ( 2 )
+76 INPLACE_ADD
+78 STORE_FAST 1 ( n )
+80 JUMP_FORWARD 4 ( to 80 )
+
+36 >> 82 LOAD_FAST 1 ( n )
+84 LOAD_CONST 10 ( 2 )
+86 INPLACE_ADD
+88 STORE_FAST 1 ( n )
+
+37 >> 90 LOAD_FAST 1 ( n )
+92 LOAD_FAST 0 ( arr )
+94 LOAD_CONST 11 ( 1 )
+96 INPLACE_ADD
+98 STORE_FAST 1 ( n )
+
+38 >> 100 LOAD_FAST 1 ( n )
+102 LOAD_FAST 0 ( arr )
+104 LOAD_CONST 12 ( '%s %s %s' )
+106 LOAD_FAST 1 ( n )
+108 LOAD_FAST 0 ( arr )
+110 BUILD_TUPLE 3
+112 BINARY_MODULO
+114 INPLACE_ADD
+116 STORE_FAST 1 ( n )
+
+39 118 LOAD_FAST 1 ( n )
+120 LOAD_FAST 0 ( arr )
+122 LOAD_FAST 0 ( arr )
+124 BUILD_TUPLE 3
+126 BINARY_MODULO
+128 INPLACE_ADD
+130 STORE_FAST 1 ( n )
+
+40 132 LOAD_FAST 1 ( n )
+134 LOAD_CONST 12 ( 2 )
+136 INPLACE_ADD
+138 INPLACE_ADD
+140 STORE_FAST 1 ( n )
+
+41 142 LOAD_FAST 1 ( n )
+144 LOAD_CONST 13 ( 1 )
+146 INPLACE_ADD
+148 STORE_FAST 1 ( n )
+
+42 >> 150 LOAD_FAST

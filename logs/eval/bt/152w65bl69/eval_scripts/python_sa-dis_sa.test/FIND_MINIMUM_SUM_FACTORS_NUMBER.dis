@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num ) :\n    sum = 0\n    i = 2\n    while ( i * i <= num ) :\n        while ( num % i == 0 ) :\n            sum += i\n            num /= i\n        i += 1\n    sum += num\n    return sum\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (83,),\n    (88,),\n    (60,),\n    (6,),\n    (26,),\n    (98,),\n    (38,),\n    (90,),\n    (76,),\n    (66,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMinSum ( num ) :\n    sum = 0\n    i = 2\n    while ( i * i <= num ) :\n        while ( num % i == 0 ) :\n            sum += i\n            num /= i\n        i += 1\n    sum += num\n    return sum\n"}
+Disassembly of <code object findMinSum at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 2 )
+2 STORE_FAST 1 ( i )
+
+27 4 LOAD_CONST 2 ( '%i = %i' )
+6 LOAD_FAST 1 ( i )
+8 BINARY_MODULO
+10 STORE_FAST 2 ( i )
+
+28 12 LOAD_FAST 0 ( num )
+14 LOAD_CONST 3 ( 1 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 28
+
+29 20 LOAD_FAST 0 ( num )
+22 LOAD_CONST 4 ( 1 )
+24 INPLACE_ADD
+26 STORE_FAST 1 ( i )
+
+30 >> 28 LOAD_FAST 1 ( i )
+30 LOAD_CONST 5 ( 1 )
+32 INPLACE_ADD
+34 STORE_FAST 1 ( i )
+
+31 36 LOAD_FAST 0 ( num )
+38 LOAD_CONST 6 ( 2 )
+40 INPLACE_ADD
+42 STORE_FAST 1 ( i )
+44 JUMP_FORWARD 10 ( to 52 )
+
+32 >> 46 LOAD_FAST 1 ( i )
+48 LOAD_CONST 7 ( 3 )
+50 INPLACE_ADD
+52 STORE_FAST 1 ( i )
+
+33 54 LOAD_FAST 1 ( i )
+56 LOAD_CONST 8 ( 2 )
+58 INPLACE_ADD
+60 STORE_FAST 1 ( i )
+
+34 62 LOAD_FAST 1 ( i )
+64 LOAD_CONST 9 ( 4 )
+66 INPLACE_ADD
+68 STORE_FAST 1 ( i )
+
+35 70 LOAD_FAST 1 ( i )
+72 LOAD_CONST 10 ( 2 )
+74 INPLACE_ADD
+76 STORE_FAST 1 ( i )
+78 JUMP_FORWARD 10 ( to 52 )
+
+36 >> 80 LOAD_FAST 1 ( i )
+82 LOAD_CONST 10 ( 2 )
+84 INPLACE_ADD
+86 STORE_FAST 1 ( i )
+
+37 88 LOAD_FAST 1 ( i )
+90 LOAD_CONST 11 ( 3 )
+92 INPLACE_ADD
+94 STORE_FAST 1 ( i )
+
+38 >> 96 LOAD_FAST 1 ( i )
+98 LOAD_CONST 12 ( 2 )
+100 INPLACE_ADD
+102 STORE_FAST 1 ( i )
+104 JUMP_FORWARD 2 ( to 52 )
+
+39 >> 106 LOAD_FAST 1 ( i )
+108 LOAD_CONST 12 ( 2 )
+110 INPLACE_ADD
+112 STORE_FAST 1 ( i )
+
+40 114 LOAD_FAST 1 ( i )
+116 LOAD_CONST 12 ( 2 )
+118 INPLACE_ADD
+120 STORE_FAST 1 ( i )
+122 JUMP_FORWARD 2 ( to 52 )
+
+41 >> 124 LOAD_FAST 1 ( i )
+126 LOAD_CONST 13 ( 3 )
+128 INPLACE_ADD
+130 STORE_FAST 1 ( i )
+
+42 >> 132 LOAD_FAST 1 ( i )
+134 LOAD_CONST 14 ( 2 )
+136 INPLACE_ADD
+138 STORE_FAST 1 ( i )
+
+43 140 LOAD_FAST 1 ( i )
+142 RETURN_VALUE
+

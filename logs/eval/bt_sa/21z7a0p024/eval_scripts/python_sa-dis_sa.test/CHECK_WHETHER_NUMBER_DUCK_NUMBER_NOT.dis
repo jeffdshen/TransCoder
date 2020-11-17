@@ -1,0 +1,80 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num ) :\n    l = len ( num )\n    count_zero = 0\n    i = 1\n    while i < l :\n        ch = num [ i ]\n        if ( ch == \"0\" ) :\n            count_zero = count_zero + 1\n        i = i + 1\n    return count_zero\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('HLlQWSphZcIC',),\n    ('080287724',),\n    ('0000100000',),\n    (' Q',),\n    ('4247040983',),\n    ('00001011101',),\n    ('LbNsnYTHmLbCf',),\n    ('24',),\n    ('110',),\n    ('ie',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def check_duck ( num ) :\n    l = len ( num )\n    count_zero = 0\n    i = 1\n    while i < l :\n        ch = num [ i ]\n        if ( ch == \"0\" ) :\n            count_zero = count_zero + 1\n        i = i + 1\n    return count_zero\n"}
+Disassembly of <code object check_duck at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( num )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( l )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 2 ( i )
+
+4 12 LOAD_CONST 1 ( 0 )
+14 STORE_FAST 3 ( i )
+
+5 16 SETUP_LOOP 64 ( to 80 )
+>> 18 LOAD_FAST 0 ( num )
+20 LOAD_FAST 1 ( l )
+22 COMPARE_OP 2 ( == )
+24 POP_JUMP_IF_FALSE 42
+
+6 26 LOAD_FAST 2 ( i )
+28 LOAD_FAST 1 ( l )
+30 COMPARE_OP 2 ( == )
+32 POP_JUMP_IF_FALSE 42
+
+7 34 LOAD_FAST 2 ( i )
+36 LOAD_FAST 1 ( l )
+38 COMPARE_OP 2 ( == )
+40 POP_JUMP_IF_FALSE 42
+
+8 >> 42 LOAD_FAST 2 ( i )
+44 LOAD_FAST 1 ( l )
+46 COMPARE_OP 2 ( == )
+48 POP_JUMP_IF_FALSE 56
+
+9 50 LOAD_FAST 2 ( i )
+52 LOAD_FAST 1 ( l )
+54 LOAD_FAST 1 ( l )
+56 STORE_SUBSCR
+58 JUMP_ABSOLUTE 18
+
+10 >> 60 LOAD_FAST 2 ( i )
+62 LOAD_FAST 1 ( l )
+64 LOAD_FAST 1 ( l )
+66 STORE_SUBSCR
+
+11 68 LOAD_FAST 2 ( i )
+70 LOAD_FAST 1 ( l )
+72 LOAD_FAST 1 ( l )
+74 STORE_SUBSCR
+
+12 76 LOAD_FAST 2 ( i )
+78 LOAD_FAST 1 ( l )
+80 LOAD_FAST 1 ( l )
+82 STORE_SUBSCR
+
+13 84 LOAD_FAST 2 ( i )
+86 LOAD_FAST 1 ( l )
+88 LOAD_FAST 1 ( l )
+90 STORE_SUBSCR
+
+14 92 LOAD_FAST 2 ( i )
+94 LOAD_FAST 1 ( l )
+96 STORE_SUBSCR
+
+15 98 LOAD_FAST 2 ( i )
+100 LOAD_FAST 1 ( l )
+102 STORE_SUBSCR
+
+16 104 LOAD_FAST 2 ( i )
+106 LOAD_FAST 1 ( l )
+108 STORE_SUBSCR
+
+17 110 LOAD_FAST 2 ( i )
+112 LOAD_FAST 1 ( l )
+114 STORE_SUBSCR
+116 JUMP_ABSOLUTE 18
+>> 118 POP_BLOCK
+
+17 >> 120 LOAD_FAST 2 ( i )
+122 RETURN_VALUE

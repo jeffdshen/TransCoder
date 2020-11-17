@@ -1,0 +1,64 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , N , K ) :\n    arr.sort ( )\n    res = 2147483647\n    for i in range ( ( N - K ) + 1 ) :\n        curSeqDiff = arr [ i + K - 1 ] - arr [ i ]\n        res = min ( res , curSeqDiff )\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 1, 4, 18, 21, 35, 37, 39, 76, 81, 86, 92, 96],7,6,),\n    ([-8, -6, 62, 52, -86, 2, -94, 0, -48, -38, 24, -48, 34],9,12,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],16,26,),\n    ([23, 36, 43, 50, 74, 81, 94, 13, 30, 57, 30, 71, 10, 99, 66, 94, 83, 39, 37, 3, 89, 34],17,20,),\n    ([-96, -94, -92, -84, -80, -72, -24, -22, -18, -14, 6, 8, 26, 28, 30, 36, 50, 58, 80, 84, 92, 92],21,12,),\n    ([0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1],21,22,),\n    ([6, 7, 9, 27, 30, 42, 54, 55, 57, 57, 59, 76, 84, 84, 84],13,14,),\n    ([88, 44, -96, -72, -80, 0, -64, -64, -68, 4, 38, 4, -38, 68, -54, 92, -16, 62, 24, 54, 0, 54, 62, -70, 80, -12, 84, -16, -10, 88, -30, -56, 48, 50, -24, 94, 40, 28, -86, -12],31,26,),\n    ([0, 1],1,1,),\n    ([89, 18, 7, 54, 67, 93, 10, 61, 59, 59, 69, 63, 98, 8, 78, 55, 6, 1, 56, 97, 75, 88, 10],22,14,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minDifferenceAmongMaxMin ( arr , N , K ) :\n    arr.sort ( )\n    res = 2147483647\n    for i in range ( ( N - K ) + 1 ) :\n        curSeqDiff = arr [ i + K - 1 ] - arr [ i ]\n        res = min ( res , curSeqDiff )\n    return res\n"}
+Disassembly of <code object minDifferenceAmongMaxMin at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_FAST 0 ( arr )
+2 LOAD_ATTR 0 ( sort )
+4 LOAD_CONST 1 ( - 1 )
+6 LOAD_CONST 2 ( - 1 )
+8 LOAD_CONST 3 ( ( 'sort' , ) )
+10 CALL_FUNCTION_KW 1
+12 STORE_FAST 1 ( N )
+
+66 14 LOAD_FAST 1 ( N )
+16 LOAD_FAST 0 ( arr )
+18 LOAD_ATTR 1 ( dtype )
+20 LOAD_CONST 4 ( ( 'sort' , ) )
+22 CALL_FUNCTION_KW 1
+24 STORE_FAST 2 ( res )
+
+67 26 LOAD_FAST 2 ( res )
+28 LOAD_FAST 0 ( arr )
+30 LOAD_ATTR 2 ( iloc )
+32 LOAD_CONST 5 ( ( 'sort' , ) )
+34 CALL_FUNCTION_KW 1
+36 STORE_FAST 3 ( res )
+
+68 38 LOAD_FAST 3 ( res )
+40 LOAD_FAST 0 ( arr )
+42 LOAD_ATTR 3 ( iloc )
+44 LOAD_CONST 6 ( ( 'sort' , ) )
+46 CALL_FUNCTION_KW 1
+48 STORE_FAST 4 ( res )
+
+69 50 LOAD_FAST 0 ( arr )
+52 LOAD_ATTR 4 ( iloc )
+54 LOAD_CONST 7 ( ( 'sort' , ) )
+56 CALL_FUNCTION_KW 1
+58 STORE_FAST 5 ( res )
+
+70 60 LOAD_FAST 0 ( arr )
+62 LOAD_ATTR 5 ( iloc )
+64 LOAD_CONST 8 ( 0 )
+66 BINARY_SUBSCR
+68 STORE_FAST 6 ( res )
+
+71 70 LOAD_FAST 0 ( arr )
+72 LOAD_ATTR 6 ( iloc )
+74 LOAD_CONST 9 ( ( 'sort' , ) )
+76 CALL_FUNCTION_KW 1
+78 STORE_FAST 7 ( res )
+
+72 80 LOAD_FAST 0 ( arr )
+82 LOAD_ATTR 7 ( iloc )
+84 LOAD_CONST 10 ( 'sort' )
+86 BINARY_SUBSCR
+88 STORE_FAST 8 ( res )
+
+73 90 LOAD_FAST 0 ( arr )
+92 LOAD_ATTR 8 ( iloc )
+94 LOAD_CONST 11 ( 0 )
+96 BINARY_SUBSCR
+98 STORE_FAST 9 ( res )
+
+74 100 LOAD_FAST 7 ( res )
+102 RETURN_VALUE
+

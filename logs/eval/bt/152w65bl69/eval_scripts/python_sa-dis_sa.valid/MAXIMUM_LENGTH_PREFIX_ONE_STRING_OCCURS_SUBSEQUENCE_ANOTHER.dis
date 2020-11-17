@@ -1,0 +1,21 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s , t ) :\n    count = 0\n    for i in range ( 0 , len ( t ) ) :\n        if ( count == len ( s ) ) :\n            break\n        if ( t [ i ] == s [ count ] ) :\n            count = count + 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('nObYIOjEQZ','uARTDTQbmGI',),\n    ('84574','8538229',),\n    ('1010001010010','11',),\n    ('DjZtAfUudk','OewGm',),\n    ('550','132744553919',),\n    ('1110','0101',),\n    ('GywyxwH','LPQqEqrDZiwY',),\n    ('67318370914755','9928',),\n    ('11011000000101','00000',),\n    ('G','V',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxPrefix ( s , t ) :\n    count = 0\n    for i in range ( 0 , len ( t ) ) :\n        if ( count == len ( s ) ) :\n            break\n        if ( t [ i ] == s [ count ] ) :\n            count = count + 1\n    return count\n"}
+Disassembly of <code object maxPrefix at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( t )
+
+27 4 SETUP_LOOP 44 ( to 46 )
+6 LOAD_FAST 0 ( s )
+8 GET_ITER
+>> 10 FOR_ITER 44 ( to 46 )
+12 STORE_FAST 2 ( i )
+
+28 14 LOAD_FAST 1 ( t )
+16 LOAD_METHOD 0 ( append )
+18 LOAD_FAST 2 ( i )
+20 CALL_METHOD 1
+22 POP_TOP
+24 JUMP_ABSOLUTE 10
+>> 26 POP_BLOCK
+>> 28 LOAD_CONST 0 ( None )
+30 RETURN_VALUE
+

@@ -1,0 +1,80 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport sys\n\ndef f_gold ( A , B , m , n ) :\n    A.sort ( )\n    B.sort ( )\n    a = 0\n    b = 0\n    result = sys.maxsize\n    while ( a < m and b < n ) :\n        if ( abs ( A [ a ] - B [ b ] ) < result ) :\n            result = abs ( A [ a ] - B [ b ] )\n        if ( A [ a ] < B [ b ] ) :\n            a += 1\n        else :\n            b += 1\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 2, 11, 13, 18, 18, 23, 25, 28, 28, 37, 39, 53, 56, 67, 70, 74, 74, 75, 79, 80, 82, 84, 89, 94, 95, 95, 98, 98],[5, 6, 11, 13, 13, 16, 17, 19, 23, 25, 28, 31, 31, 39, 41, 44, 45, 52, 62, 64, 70, 71, 73, 78, 78, 79, 85, 86, 92],28,14,),\n    ([-78, 10, -8, 30, -70, -94, -48, -4, -22, -40, -36, -48, -4, 86, -50, 62, -72, -44, -62, 22, -30, -72, 6, -24, -78, 72, -44, 56, 38, -36, 0, -72, -10, -12, -70, -64, -24],[78, -80, -24, -50, -26, -62, 26, -12, 22, -90, 84, 10, 18, 62, 26, -68, 92, 64, -52, 76, -84, 64, 50, 36, -24, -98, 42, 72, -78, -98, -24, 86, 2, 60, -30, 14, -42],23,33,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,16,),\n    ([57, 82, 90, 9, 61, 71, 15, 2, 39, 24, 28, 28, 47],[85, 92, 84, 27, 54, 77, 26, 49, 47, 51, 70, 11, 41],7,8,),\n    ([-92, -90, -90, -28, -16, -14, -14, -8, 42, 52, 62, 84],[-98, -98, -58, -6, 14, 16, 18, 46, 52, 52, 52, 56],11,6,),\n    ([1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0],[0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1],35,33,),\n    ([6, 7, 7, 12, 15, 15, 21, 24, 26, 26, 28, 36, 38, 42, 46, 52, 55, 56, 59, 62, 63, 65, 65, 66, 68, 71, 73, 77, 77, 77, 77, 85, 87, 87, 88, 90, 93, 94, 98],[1, 3, 4, 4, 6, 7, 8, 8, 15, 17, 18, 18, 20, 23, 23, 24, 25, 25, 26, 33, 39, 43, 46, 54, 59, 67, 69, 69, 69, 69, 76, 76, 81, 81, 85, 86, 86, 91, 95],30,20,),\n    ([-68, 44, 88, -68, 22, 34, -82, 18, -60, 30, 24, 18, 78, 90, -20, -60, 94, 70, 4, -16, -38],[-18, -30, -74, -50, 98, -44, -62, -20, 18, 84, 62, -64, -2, 62, -32, -34, -14, -52, -36, -60, -68],16,12,),\n    ([0, 0, 1],[0, 0, 1],2,1,),\n    ([14, 7, 9, 71, 37, 20, 85, 62, 70, 67, 26, 47, 61, 99, 2, 90, 70, 46, 53, 16, 56, 7, 15, 81, 85, 94, 73, 40, 35, 58, 21, 98, 45],[99, 72, 29, 55, 88, 1, 88, 19, 7, 80, 79, 18, 28, 41, 48, 49, 67, 27, 24, 94, 86, 14, 45, 84, 37, 71, 92, 98, 16, 64, 67, 44, 29],20,25,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSmallestDifference ( A , B , m , n ) :\n    A.sort ( )\n    B.sort ( )\n    a = 0\n    b = 0\n    result = sys.maxsize\n    while ( a < m and b < n ) :\n        if ( abs ( A [ a ] - B [ b ] ) < result ) :\n            result = abs ( A [ a ] - B [ b ] )\n        if ( A [ a ] < B [ b ] ) :\n            a += 1\n        else :\n            b += 1\n    return result\n"}
+Disassembly of <code object findSmallestDifference at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( A )
+2 LOAD_METHOD 0 ( sort )
+4 CALL_METHOD 0
+6 POP_TOP
+
+3 8 LOAD_FAST 1 ( B )
+10 LOAD_METHOD 0 ( sort )
+12 CALL_METHOD 0
+14 POP_TOP
+
+4 16 LOAD_CONST 1 ( 0 )
+18 STORE_FAST 4 ( a )
+
+5 20 LOAD_CONST 1 ( 0 )
+22 STORE_FAST 5 ( b )
+
+6 24 LOAD_GLOBAL 1 ( sys )
+26 LOAD_ATTR 2 ( maxsize )
+28 STORE_FAST 6 ( result )
+
+7 30 SETUP_LOOP 68 ( to 96 )
+>> 32 LOAD_FAST 4 ( a )
+34 LOAD_FAST 2 ( m )
+36 COMPARE_OP 0 ( < )
+38 POP_JUMP_IF_FALSE 94
+40 LOAD_FAST 5 ( b )
+42 LOAD_FAST 3 ( n )
+44 COMPARE_OP 0 ( < )
+46 POP_JUMP_IF_FALSE 94
+
+8 48 LOAD_GLOBAL 3 ( abs )
+50 LOAD_FAST 0 ( A )
+52 LOAD_FAST 4 ( a )
+54 BINARY_SUBSCR
+56 LOAD_FAST 1 ( B )
+58 LOAD_FAST 5 ( b )
+60 BINARY_SUBSCR
+62 BINARY_SUBTRACT
+64 CALL_FUNCTION 1
+66 LOAD_FAST 6 ( result )
+68 COMPARE_OP 0 ( < )
+70 POP_JUMP_IF_FALSE 82
+
+9 72 LOAD_GLOBAL 3 ( abs )
+74 LOAD_FAST 0 ( A )
+76 LOAD_FAST 4 ( a )
+78 BINARY_SUBSCR
+80 LOAD_FAST 1 ( B )
+82 LOAD_FAST 5 ( b )
+84 BINARY_SUBSCR
+86 BINARY_SUBTRACT
+88 CALL_FUNCTION 1
+90 STORE_FAST 6 ( result )
+92 JUMP_ABSOLUTE 32
+>> 94 POP_BLOCK
+
+10 >> 96 LOAD_FAST 0 ( A )
+98 LOAD_FAST 4 ( a )
+100 BINARY_SUBSCR
+102 LOAD_FAST 1 ( B )
+104 LOAD_FAST 5 ( b )
+106 BINARY_SUBSCR
+108 COMPARE_OP 0 ( < )
+110 POP_JUMP_IF_FALSE 126
+
+11 112 LOAD_FAST 4 ( a )
+114 LOAD_CONST 2 ( 1 )
+116 INPLACE_ADD
+118 STORE_FAST 4 ( a )
+120 JUMP_FORWARD 8 ( to 132 )
+
+13 >> 122 LOAD_FAST 5 ( b )
+124 LOAD_CONST 2 ( 1 )
+126 INPLACE_ADD
+128 STORE_FAST 5 ( b )
+
+14 >> 130 LOAD_FAST 6 ( result )
+132 RETURN_VALUE

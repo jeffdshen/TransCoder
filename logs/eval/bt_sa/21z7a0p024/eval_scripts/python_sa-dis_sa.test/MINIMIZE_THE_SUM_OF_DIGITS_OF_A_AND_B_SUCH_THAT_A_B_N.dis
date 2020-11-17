@@ -1,0 +1,98 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    sum = 0 ;\n    while ( n > 0 ) :\n        sum += ( n % 10 ) ;\n        n //= 10 ;\n    if ( sum == 1 ) :\n        return 10 ;\n    return sum ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (2,),\n    (39,),\n    (31,),\n    (45,),\n    (35,),\n    (94,),\n    (67,),\n    (50,),\n    (4,),\n    (63,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minSum ( n ) :\n    sum = 0 ;\n    while ( n > 0 ) :\n        sum += ( n % 10 ) ;\n        n //= 10 ;\n    if ( sum == 1 ) :\n        return 10 ;\n    return sum ;\n"}
+Disassembly of <code object minSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( sum )
+
+3 4 SETUP_LOOP 64 ( to 66 )
+6 LOAD_FAST 0 ( n )
+8 LOAD_CONST 2 ( 0 )
+10 COMPARE_OP 4 ( > )
+12 POP_JUMP_IF_FALSE 64
+
+4 14 LOAD_FAST 1 ( sum )
+16 LOAD_CONST 2 ( 0 )
+18 COMPARE_OP 4 ( > )
+20 POP_JUMP_IF_FALSE 64
+
+5 22 LOAD_FAST 1 ( sum )
+24 LOAD_CONST 2 ( 0 )
+26 COMPARE_OP 4 ( > )
+28 POP_JUMP_IF_FALSE 64
+
+6 30 LOAD_FAST 1 ( sum )
+32 LOAD_CONST 2 ( 0 )
+34 COMPARE_OP 4 ( > )
+36 POP_JUMP_IF_FALSE 64
+
+7 38 LOAD_FAST 1 ( sum )
+40 LOAD_CONST 2 ( 0 )
+42 COMPARE_OP 4 ( > )
+44 POP_JUMP_IF_FALSE 64
+
+8 46 LOAD_FAST 1 ( sum )
+48 LOAD_CONST 2 ( 0 )
+50 COMPARE_OP 4 ( > )
+52 POP_JUMP_IF_FALSE 64
+
+9 54 LOAD_FAST 1 ( sum )
+56 LOAD_CONST 2 ( 0 )
+58 BINARY_SUBSCR
+60 LOAD_FAST 1 ( sum )
+62 LOAD_CONST 2 ( 0 )
+64 BINARY_SUBSCR
+66 LOAD_FAST 1 ( sum )
+68 LOAD_CONST 2 ( 0 )
+70 BINARY_SUBSCR
+72 BINARY_SUBTRACT
+74 LOAD_FAST 1 ( sum )
+76 LOAD_CONST 2 ( 0 )
+78 BINARY_SUBSCR
+80 BINARY_SUBTRACT
+82 LOAD_FAST 1 ( sum )
+84 LOAD_CONST 2 ( 0 )
+86 BINARY_SUBSCR
+88 BINARY_SUBTRACT
+90 LOAD_FAST 1 ( sum )
+92 LOAD_CONST 2 ( 0 )
+94 BINARY_SUBSCR
+96 BINARY_SUBTRACT
+98 LOAD_FAST 1 ( sum )
+100 LOAD_CONST 2 ( 0 )
+102 BINARY_SUBSCR
+104 BINARY_SUBTRACT
+106 LOAD_FAST 1 ( sum )
+108 LOAD_CONST 2 ( 0 )
+110 BINARY_SUBSCR
+112 BINARY_SUBTRACT
+114 LOAD_FAST 1 ( sum )
+116 LOAD_CONST 2 ( 0 )
+118 BINARY_SUBSCR
+120 BINARY_SUBTRACT
+122 LOAD_FAST 1 ( sum )
+124 LOAD_CONST 2 ( 0 )
+126 BINARY_SUBSCR
+128 BINARY_SUBTRACT
+130 LOAD_FAST 1 ( sum )
+132 LOAD_CONST 2 ( 0 )
+134 BINARY_SUBSCR
+136 BINARY_SUBTRACT
+138 LOAD_FAST 1 ( sum )
+140 LOAD_CONST 2 ( 0 )
+142 BINARY_SUBSCR
+144 BINARY_SUBTRACT
+146 LOAD_FAST 1 ( sum )
+148 LOAD_CONST 2 ( 0 )
+150 BINARY_SUBSCR
+152 BINARY_SUBTRACT
+154 LOAD_FAST 1 ( sum )
+156 LOAD_CONST 2 ( 0 )
+158 BINARY_SUBSCR
+160 BINARY_SUBTRACT
+162 LOAD_FAST 1 ( sum )
+164 LOAD_CONST 2 ( 0 )
+166 BINARY_SUBSCR
+168 BINARY_SUBTRACT
+170 LOAD_FAST 1 ( sum )
+172 LOAD_CONST 2 ( 0 )
+174 STORE_SUBSCR
+

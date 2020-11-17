@@ -1,0 +1,49 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    n -= 1\n    n |= n >> 1\n    n |= n >> 2\n    n |= n >> 4\n    n |= n >> 8\n    n |= n >> 16\n    n += 1\n    return n\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (60,),\n    (20,),\n    (33,),\n    (34,),\n    (68,),\n    (79,),\n    (20,),\n    (41,),\n    (36,),\n    (17,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def nextPowerOf2 ( n ) :\n    n -= 1\n    n |= n >> 1\n    n |= n >> 2\n    n |= n >> 4\n    n |= n >> 8\n    n |= n >> 16\n    n += 1\n    return n\n"}
+Disassembly of <code object nextPowerOf2 at 0x7f2b0164d780, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 INPLACE_SUBTRACT
+6 STORE_FAST 0 ( n )
+
+3 8 LOAD_FAST 0 ( n )
+10 LOAD_FAST 0 ( n )
+12 LOAD_CONST 1 ( 1 )
+14 BINARY_RSHIFT
+16 INPLACE_OR
+18 ROT_THREE
+20 STORE_SUBSCR
+
+4 22 LOAD_FAST 0 ( n )
+24 LOAD_FAST 0 ( n )
+26 LOAD_CONST 2 ( 2 )
+28 BINARY_RSHIFT
+30 INPLACE_OR
+32 STORE_FAST 0 ( n )
+
+5 34 LOAD_FAST 0 ( n )
+36 LOAD_FAST 0 ( n )
+38 LOAD_CONST 3 ( 4 )
+40 BINARY_RSHIFT
+42 INPLACE_OR
+44 ROT_THREE
+46 STORE_SUBSCR
+
+6 48 LOAD_FAST 0 ( n )
+50 LOAD_FAST 0 ( n )
+52 LOAD_CONST 4 ( 16 )
+54 BINARY_RSHIFT
+56 INPLACE_OR
+58 STORE_FAST 0 ( n )
+
+7 60 LOAD_FAST 0 ( n )
+62 LOAD_CONST 1 ( 1 )
+64 INPLACE_ADD
+66 STORE_FAST 0 ( n )
+
+8 68 LOAD_FAST 0 ( n )
+70 LOAD_CONST 1 ( 1 )
+72 INPLACE_ADD
+74 STORE_FAST 0 ( n )
+
+9 76 LOAD_FAST 0 ( n )
+78 RETURN_VALUE

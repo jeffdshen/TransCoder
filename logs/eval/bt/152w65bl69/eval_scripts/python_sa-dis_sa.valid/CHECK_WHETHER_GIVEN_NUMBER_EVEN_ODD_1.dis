@@ -1,0 +1,93 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    return ( not ( n & 1 ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (57,),\n    (73,),\n    (79,),\n    (36,),\n    (71,),\n    (23,),\n    (41,),\n    (66,),\n    (46,),\n    (50,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isEven ( n ) :\n    return ( not ( n & 1 ) )\n"}
+Disassembly of <code object isEven at 0x7f816a677930, file "<dis>", line 64>:
+65 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+66 8 LOAD_FAST 0 ( n )
+10 LOAD_CONST 2 ( 0 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+67 16 LOAD_FAST 0 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+68 >> 24 LOAD_FAST 0 ( n )
+26 LOAD_CONST 4 ( 2 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 28
+
+69 32 LOAD_FAST 0 ( n )
+34 LOAD_CONST 5 ( 1 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+
+70 40 LOAD_FAST 0 ( n )
+42 LOAD_CONST 6 ( 2 )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 44
+
+71 48 LOAD_FAST 0 ( n )
+50 LOAD_CONST 7 ( 2 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 44
+
+72 56 LOAD_FAST 0 ( n )
+58 LOAD_CONST 8 ( 2 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 44
+
+73 64 LOAD_FAST 0 ( n )
+66 LOAD_CONST 9 ( 2 )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 44
+
+74 72 LOAD_FAST 0 ( n )
+74 LOAD_CONST 10 ( 2 )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 80
+
+75 80 LOAD_FAST 0 ( n )
+82 LOAD_CONST 11 ( 2 )
+84 COMPARE_OP 2 ( == )
+86 POP_JUMP_IF_FALSE 80
+
+76 88 LOAD_FAST 0 ( n )
+90 LOAD_CONST 12 ( 2 )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 80
+
+77 >> 96 LOAD_FAST 0 ( n )
+98 LOAD_CONST 12 ( 2 )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 80
+
+78 104 LOAD_FAST 0 ( n )
+106 LOAD_CONST 13 ( 2 )
+108 COMPARE_OP 2 ( == )
+110 POP_JUMP_IF_FALSE 80
+
+79 >> 112 LOAD_FAST 0 ( n )
+114 LOAD_CONST 6 ( 2 )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 80
+
+80 120 LOAD_FAST 0 ( n )
+122 LOAD_CONST 6 ( 2 )
+124 COMPARE_OP 2 ( == )
+126 POP_JUMP_IF_FALSE 128
+
+81 128 LOAD_FAST 0 ( n )
+130 LOAD_CONST 6 ( 2 )
+132 COMPARE_OP 2 ( == )
+134 POP_JUMP_IF_FALSE 130
+
+82 >> 136 LOAD_FAST 0 ( n )
+138 LOAD_CONST 6 ( 2 )
+140 COMPARE_OP 2 ( == )
+142 POP_JUMP_IF_FALSE 130
+
+84 144 LOAD_FAST 0 ( n )

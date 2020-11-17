@@ -1,0 +1,60 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    result = 0 ;\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            product = arr [ i ] * arr [ j ] ;\n            for k in range ( 0 , n ) :\n                if ( arr [ k ] == product ) :\n                    result = result + 1 ;\n                    break ;\n    return result ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 7, 26, 40, 46, 89, 99],5,),\n    ([98, 42, -24, -60, 74, 86, 6, 8, 72, -58, 38, -20, 6, -6, 8, 48, -34, 30, 60, 66, 38, -54, 8, -94, -8, 0, -64, -94, -94, -72, -84, -36, 88, -62, -88, 46, -4, 88],24,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],44,),\n    ([37, 97, 57, 82, 29, 68, 94, 38, 81, 48, 13, 84, 57, 5, 27, 87, 11, 35, 82, 53, 67, 31, 15, 99, 6, 93, 91, 92, 3, 23, 90, 27, 6, 33, 78, 3, 19, 19, 27],36,),\n    ([-80, -74, -72, -72, -66, -66, -62, -50, -44, -44, -28, -24, -24, -22, -16, -10, -6, -4, -2, 2, 2, 4, 12, 16, 16, 28, 30, 32, 32, 38, 38, 72, 84, 86, 88, 90, 96],34,),\n    ([0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1],18,),\n    ([25, 67],1,),\n    ([82, 74, -82, 22, -28, -78, -22, -86, -74, 42, -6, 54, -88, -92, -14, -50, 68, 46, -50, 46, -18, 66, -76, -30, 36, 12, 66],14,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],32,),\n    ([50, 23, 56, 9],3,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPairs ( arr , n ) :\n    result = 0 ;\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            product = arr [ i ] * arr [ j ] ;\n            for k in range ( 0 , n ) :\n                if ( arr [ k ] == product ) :\n                    result = result + 1 ;\n                    break ;\n    return result ;\n"}
+Disassembly of <code object countPairs at 0x7f816a683c00, file "<dis>", line 64>:
+65 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( n )
+
+66 4 SETUP_LOOP 44 ( to 46 )
+6 LOAD_FAST 0 ( arr )
+8 LOAD_ATTR 0 ( shape )
+10 GET_ITER
+>> 12 FOR_ITER 44 ( to 46 )
+14 STORE_FAST 2 ( i )
+
+67 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 2 ( 1 )
+20 INPLACE_ADD
+22 STORE_FAST 1 ( n )
+
+68 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 3 ( 1 )
+28 INPLACE_ADD
+30 STORE_FAST 1 ( n )
+
+69 32 LOAD_FAST 1 ( n )
+34 LOAD_CONST 4 ( 2 )
+36 INPLACE_ADD
+38 STORE_FAST 1 ( n )
+
+70 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 5 ( 1 )
+44 INPLACE_ADD
+46 STORE_FAST 1 ( n )
+
+71 48 LOAD_FAST 1 ( n )
+50 LOAD_CONST 6 ( 2 )
+52 INPLACE_ADD
+54 STORE_FAST 1 ( n )
+
+72 56 LOAD_FAST 1 ( n )
+58 LOAD_CONST 7 ( 2 )
+60 INPLACE_ADD
+62 STORE_FAST 1 ( n )
+
+73 64 LOAD_FAST 1 ( n )
+66 LOAD_CONST 8 ( 3 )
+68 INPLACE_ADD
+70 STORE_FAST 1 ( n )
+
+74 72 LOAD_FAST 1 ( n )
+74 LOAD_CONST 9 ( 4 )
+76 INPLACE_ADD
+78 STORE_FAST 1 ( n )
+80 JUMP_ABSOLUTE 12
+>> 82 POP_BLOCK
+>> 84 JUMP_ABSOLUTE 12
+>> 86 POP_BLOCK
+>> 88 JUMP_ABSOLUTE 12
+>> 90 POP_BLOCK
+>> 92 LOAD_CONST 0 ( None )
+94 RETURN_VALUE
+

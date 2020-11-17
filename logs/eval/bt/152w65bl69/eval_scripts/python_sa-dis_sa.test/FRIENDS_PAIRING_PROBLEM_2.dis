@@ -1,0 +1,108 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    a , b , c = 1 , 2 , 0 ;\n    if ( n <= 2 ) :\n        return n ;\n    for i in range ( 3 , n + 1 ) :\n        c = b + ( i - 1 ) * a ;\n        a = b ;\n        b = c ;\n    return c ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (24,),\n    (1,),\n    (91,),\n    (90,),\n    (89,),\n    (29,),\n    (3,),\n    (60,),\n    (75,),\n    (14,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countFriendsPairings ( n ) :\n    a , b , c = 1 , 2 , 0 ;\n    if ( n <= 2 ) :\n        return n ;\n    for i in range ( 3 , n + 1 ) :\n        c = b + ( i - 1 ) * a ;\n        a = b ;\n        b = c ;\n    return c ;\n"}
+Disassembly of <code object countFriendsPairings at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( b )
+2 LOAD_CONST 1 ( 1 )
+4 BINARY_ADD
+6 STORE_FAST 2 ( c )
+
+27 8 LOAD_FAST 0 ( n )
+10 LOAD_CONST 2 ( 2 )
+12 BINARY_POWER
+14 STORE_FAST 3 ( c )
+
+28 16 LOAD_FAST 0 ( n )
+18 LOAD_CONST 3 ( 2 )
+20 BINARY_POWER
+22 STORE_FAST 4 ( c )
+
+29 24 LOAD_FAST 0 ( n )
+26 LOAD_CONST 4 ( 3 )
+28 BINARY_POWER
+30 STORE_FAST 5 ( c )
+
+30 32 LOAD_FAST 0 ( n )
+34 LOAD_CONST 5 ( 1 )
+36 BINARY_POWER
+38 LOAD_FAST 2 ( c )
+40 LOAD_CONST 6 ( 2 )
+42 BINARY_POWER
+44 BINARY_POWER
+46 LOAD_FAST 3 ( c )
+48 LOAD_CONST 7 ( 2 )
+50 BINARY_POWER
+52 BINARY_POWER
+54 LOAD_FAST 4 ( c )
+56 LOAD_CONST 8 ( 2 )
+58 BINARY_POWER
+60 BINARY_POWER
+62 BINARY_MULTIPLY
+64 LOAD_FAST 5 ( c )
+66 LOAD_CONST 9 ( 2 )
+68 BINARY_POWER
+70 BINARY_POWER
+72 BINARY_POWER
+74 LOAD_FAST 4 ( c )
+76 LOAD_CONST 10 ( 2 )
+78 BINARY_POWER
+80 BINARY_POWER
+82 BINARY_POWER
+84 BINARY_POWER
+86 LOAD_FAST 5 ( c )
+88 LOAD_CONST 11 ( 2 )
+90 BINARY_POWER
+92 BINARY_POWER
+94 BINARY_ADD
+96 LOAD_FAST 4 ( c )
+98 LOAD_CONST 12 ( 3 )
+100 BINARY_POWER
+102 BINARY_POWER
+104 BINARY_ADD
+106 LOAD_CONST 13 ( 2 )
+108 BINARY_POWER
+110 BINARY_POWER
+112 BINARY_ADD
+114 LOAD_FAST 5 ( c )
+116 LOAD_CONST 12 ( 3 )
+118 BINARY_POWER
+120 BINARY_POWER
+122 BINARY_ADD
+124 LOAD_CONST 13 ( 2 )
+126 BINARY_POWER
+128 BINARY_POWER
+130 LOAD_FAST 4 ( c )
+132 LOAD_CONST 14 ( 2 )
+134 BINARY_POWER
+136 BINARY_POWER
+138 BINARY_MULTIPLY
+140 BINARY_ADD
+142 LOAD_FAST 5 ( c )
+144 LOAD_CONST 15 ( 2 )
+146 BINARY_POWER
+148 BINARY_POWER
+150 BINARY_ADD
+152 LOAD_CONST 16 ( 2 )
+154 BINARY_POWER
+156 BINARY_ADD
+158 LOAD_FAST 5 ( c )
+160 BINARY_POWER
+162 BINARY_ADD
+164 LOAD_CONST 17 ( 2 )
+166 BINARY_POWER
+168 BINARY_POWER
+170 BINARY_ADD
+
+29 172 LOAD_FAST 5 ( c )
+174 LOAD_CONST 16 ( 2 )
+176 BINARY_POWER
+174 BINARY_ADD
+176 LOAD_FAST 5 ( c )
+
+30 172 LOAD_FAST 3 ( c )
+174 LOAD_CONST 17 ( 2 )
+176 BINARY_POWER
+
+31 174 LOAD_FAST 5 ( c )
+176 LOAD_CONST 18 ( 2 )
+178 BINARY_POWER
+
+32 32 LOAD_FAST 4

@@ -1,0 +1,61 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num ) :\n    if ( num // 10 == 0 ) :\n        return True\n    while ( num != 0 ) :\n        if ( num // 10 == 0 ) :\n            return True\n        digit1 = num % 10\n        digit2 = ( num // 10 ) % 10\n        if ( abs ( digit2 - digit1 ) > 1 ) :\n            return False\n        num = num // 10\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (67,),\n    (77,),\n    (35,),\n    (79,),\n    (45,),\n    (22,),\n    (68,),\n    (17,),\n    (5,),\n    (85,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkJumbled ( num ) :\n    if ( num / 10 == 0 ) :\n        return True\n    while ( num != 0 ) :\n        if ( num / 10 == 0 ) :\n            return True\n        digit1 = num % 10\n        digit2 = ( num / 10 ) % 10\n        if ( abs ( digit2 - digit1 ) > 1 ) :\n            return False\n        num = num / 10\n    return True\n"}
+Disassembly of <code object checkJumbled at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( num )
+2 LOAD_CONST 1 ( 10 )
+4 BINARY_TRUE_DIVIDE
+6 LOAD_CONST 2 ( 0 )
+8 COMPARE_OP 2 ( == )
+10 POP_JUMP_IF_FALSE 16
+
+3 12 LOAD_CONST 3 ( True )
+14 RETURN_VALUE
+
+4 >> 16 SETUP_LOOP 80 ( to 94 )
+>> 18 LOAD_FAST 0 ( num )
+20 LOAD_CONST 2 ( 0 )
+22 COMPARE_OP 3 ( != )
+24 POP_JUMP_IF_FALSE 92
+
+5 26 LOAD_FAST 0 ( num )
+28 LOAD_CONST 1 ( 10 )
+30 BINARY_TRUE_DIVIDE
+32 LOAD_CONST 2 ( 0 )
+34 COMPARE_OP 2 ( == )
+36 POP_JUMP_IF_FALSE 42
+
+6 38 LOAD_CONST 3 ( True )
+40 RETURN_VALUE
+
+7 >> 42 LOAD_FAST 0 ( num )
+44 LOAD_CONST 1 ( 10 )
+46 BINARY_MODULO
+48 STORE_FAST 1 ( digit1 )
+
+8 50 LOAD_FAST 0 ( num )
+52 LOAD_CONST 1 ( 10 )
+54 BINARY_TRUE_DIVIDE
+56 LOAD_CONST 1 ( 10 )
+58 BINARY_MODULO
+60 STORE_FAST 2 ( digit)
+
+9 62 LOAD_GLOBAL 0 ( abs )
+64 LOAD_FAST 1 ( digit2 )
+66 LOAD_FAST 2 ( digit1 )
+68 BINARY_SUBTRACT
+70 CALL_FUNCTION 1
+72 LOAD_CONST 4 ( 1 )
+74 COMPARE_OP 4 ( > )
+76 POP_JUMP_IF_FALSE 82
+
+10 78 LOAD_CONST 5 ( False )
+80 RETURN_VALUE
+
+11 >> 82 LOAD_FAST 0 ( num )
+84 LOAD_CONST 1 ( 10 )
+86 BINARY_TRUE_DIVIDE
+88 STORE_FAST 0 ( num )
+90 JUMP_ABSOLUTE 18
+>> 92 POP_BLOCK
+
+12 >> 94 LOAD_CONST 3 ( True )
+96 RETURN_VALUE

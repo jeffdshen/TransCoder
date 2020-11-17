@@ -1,0 +1,26 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , c ) :\n    if ( a + b <= c ) or ( a + c <= b ) or ( b + c <= a ) :\n        return False\n    else :\n        return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (29,19,52,),\n    (83,34,49,),\n    (48,14,65,),\n    (59,12,94,),\n    (56,39,22,),\n    (68,85,9,),\n    (63,36,41,),\n    (95,34,37,),\n    (2,90,27,),\n    (11,16,1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkValidity ( a , b , c ) :\n    if ( a + b <= c ) or ( a + c <= b ) or ( b + c <= a ) :\n        return False\n    else :\n        return True\n"}
+Disassembly of <code object checkends at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_FAST 1 ( b )
+4 DUP_TOP
+6 ROT_THREE
+8 COMPARE_OP 1 ( <= )
+10 POP_JUMP_IF_FALSE 20
+12 LOAD_FAST 1 ( b )
+14 DUP_TOP
+16 ROT_THREE
+18 COMPARE_OP 1 ( <= )
+20 POP_JUMP_IF_FALSE 36
+22 JUMP_FORWARD 1 ( <= )
+24 JUMP_FORWARD 1 ( to 32 )
+>> 26 ROT_TWO
+28 POP_TOP
+30 POP_TOP
+>> 32 POP_TOP
+34 POP_TOP
+
+3 36 LOAD_CONST 1 ( False )
+38 RETURN_VALUE
+>> 40 END_FINALLY
+42 LOAD_CONST 0 ( None )
+44 RETURN_VALUE

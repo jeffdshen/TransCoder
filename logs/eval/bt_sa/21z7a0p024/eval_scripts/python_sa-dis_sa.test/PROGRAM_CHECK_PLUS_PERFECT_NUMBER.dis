@@ -1,0 +1,71 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( x ) :\n    temp = x\n    n = 0\n    while ( x != 0 ) :\n        x = x // 10\n        n = n + 1\n    x = temp\n    sm = 0\n    while ( x != 0 ) :\n        sm = sm + ( int ) ( math.pow ( x % 10 , n ) )\n        x = x // 10\n    return ( sm == temp )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (371,),\n    (9474,),\n    (85,),\n    (35,),\n    (54,),\n    (17,),\n    (97,),\n    (63,),\n    (12,),\n    (43,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def checkplusperfect ( x ) :\n    temp = x\n    n = 0\n    while ( x != 0 ) :\n        x = x // 10\n        n = n + 1\n    x = temp\n    sm = 0\n    while ( x != 0 ) :\n        sm = sm + ( int ) ( math.pow ( x % 10 , n ) )\n        x = x // 10\n    return ( sm == temp )\n"}
+Disassembly of <code object checkplusperfect at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( x )
+2 STORE_FAST 1 ( temp )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 2 ( n )
+
+4 8 SETUP_LOOP 64 ( to 74 )
+10 LOAD_FAST 1 ( temp )
+12 GET_ITER
+>> 14 FOR_ITER 64 ( to 72 )
+16 STORE_FAST 3 ( n )
+
+5 18 LOAD_FAST 2 ( n )
+20 LOAD_CONST 2 ( 1 )
+22 COMPARE_OP 3 ( != )
+24 POP_JUMP_IF_FALSE 40
+
+6 26 LOAD_FAST 2 ( n )
+28 LOAD_CONST 2 ( 1 )
+30 INPLACE_ADD
+32 STORE_FAST 2 ( n )
+
+7 34 LOAD_FAST 2 ( n )
+36 LOAD_CONST 2 ( 1 )
+38 INPLACE_ADD
+40 STORE_FAST 2 ( n )
+42 JUMP_ABSOLUTE 14
+
+8 >> 44 LOAD_FAST 2 ( n )
+46 LOAD_CONST 2 ( 1 )
+48 INPLACE_ADD
+50 STORE_FAST 2 ( n )
+
+9 52 LOAD_FAST 2 ( n )
+54 LOAD_CONST 2 ( 1 )
+56 INPLACE_ADD
+58 STORE_FAST 2 ( n )
+60 JUMP_ABSOLUTE 14
+>> 62 POP_BLOCK
+
+10 >> 64 LOAD_FAST 2 ( n )
+66 LOAD_CONST 2 ( 1 )
+68 INPLACE_ADD
+70 STORE_FAST 2 ( n )
+
+11 72 LOAD_FAST 2 ( n )
+74 LOAD_CONST 2 ( 1 )
+76 INPLACE_ADD
+78 STORE_FAST 2 ( n )
+
+12 80 LOAD_FAST 2 ( n )
+82 LOAD_CONST 2 ( 1 )
+84 INPLACE_ADD
+86 STORE_FAST 2 ( n )
+
+13 88 LOAD_FAST 2 ( n )
+90 LOAD_CONST 2 ( 1 )
+92 INPLACE_ADD
+94 STORE_FAST 2 ( n )
+
+14 96 LOAD_FAST 2 ( n )
+98 LOAD_CONST 2 ( 1 )
+100 INPLACE_ADD
+102 STORE_FAST 2 ( n )
+104 JUMP_ABSOLUTE 14
+>> 106 POP_BLOCK
+
+15 >> 108 LOAD_FAST 2 ( n )
+110 RETURN_VALUE

@@ -1,0 +1,36 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    if ( n == 2 or n == 3 ) :\n        return ( n - 1 )\n    res = 1\n    while ( n > 4 ) :\n        n -= 3 ;\n        res *= 3 ;\n    return ( n * res )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (62,),\n    (53,),\n    (8,),\n    (6,),\n    (35,),\n    (35,),\n    (46,),\n    (74,),\n    (69,),\n    (3,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxProd ( n ) :\n    if ( n == 2 or n == 3 ) :\n        return ( n - 1 )\n    res = 1\n    while ( n > 4 ) :\n        n -= 3 ;\n        res *= 3 ;\n    return ( n * res )\n"}
+Disassembly of <code object maxProd at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 2 )
+4 BINARY_MULTIPLY
+6 STORE_FAST 1 ( n )
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 3 )
+12 BINARY_MULTIPLY
+14 STORE_FAST 2 ( n )
+
+28 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_MULTIPLY
+22 LOAD_FAST 0 ( n )
+24 BINARY_MULTIPLY
+26 LOAD_FAST 2 ( n )
+28 BINARY_MULTIPLY
+30 LOAD_FAST 0 ( n )
+32 BINARY_MULTIPLY
+34 INPLACE_ADD
+36 STORE_FAST 1 ( n )
+
+29 38 LOAD_FAST 1 ( n )
+40 LOAD_CONST 4 ( - 1 )
+42 BINARY_MULTIPLY
+44 LOAD_FAST 2 ( n )
+46 BINARY_MULTIPLY
+48 LOAD_FAST 0 ( n )
+50 BINARY_MULTIPLY
+52 LOAD_FAST 2 ( n )
+54 BINARY_MULTIPLY
+56 BINARY_ADD
+58 RETURN_VALUE
+

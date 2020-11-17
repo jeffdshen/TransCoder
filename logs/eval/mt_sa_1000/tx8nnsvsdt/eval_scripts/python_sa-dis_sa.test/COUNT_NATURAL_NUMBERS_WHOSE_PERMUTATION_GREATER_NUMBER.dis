@@ -1,0 +1,93 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    result = 0\n    for i in range ( 1 , 10 ) :\n        s = [ ]\n        if ( i <= n ) :\n            s.append ( i )\n            result += 1\n        while len ( s ) != 0 :\n            tp = s [ - 1 ]\n            s.pop ( )\n            for j in range ( tp % 10 , 10 ) :\n                x = tp * 10 + j\n                if ( x <= n ) :\n                    s.append ( x )\n                    result += 1\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (69,),\n    (72,),\n    (88,),\n    (7,),\n    (66,),\n    (34,),\n    (23,),\n    (37,),\n    (33,),\n    (21,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countNumber ( n ) :\n    result = 0\n    for i in range ( 1 , 10 ) :\n        s = [ ]\n        if ( i <= n ) :\n            s.append ( i )\n            result += 1\n        while len ( s ) != 0 :\n            tp = s [ - 1 ]\n            s.pop ( )\n            for j in range ( tp % 10 , 10 ) :\n                x = tp * 10 + j\n                if ( x <= n ) :\n                    s.append ( x )\n                    result += 1\n    return result\n"}
+Disassembly of <code object countNumber at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( result )
+
+3 4 SETUP_LOOP 142 ( to 148 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 1 )
+10 LOAD_CONST 3 ( 10 )
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 130 ( to 146 )
+18 STORE_FAST 2 ( i )
+
+4 20 BUILD_LIST 0
+22 STORE_FAST 3 ( s )
+
+5 24 LOAD_FAST 2 ( i )
+26 LOAD_FAST 0 ( n )
+28 COMPARE_OP 1 ( <= )
+30 POP_JUMP_IF_FALSE 54
+
+6 32 LOAD_FAST 3 ( s )
+34 LOAD_METHOD 1 ( append )
+36 LOAD_FAST 2 ( i )
+38 CALL_METHOD 1
+40 POP_TOP
+
+7 42 LOAD_FAST 1 ( result )
+44 LOAD_CONST 2 ( 1 )
+46 INPLACE_ADD
+48 STORE_FAST 1 ( result )
+50 JUMP_ABSOLUTE 16
+52 POP_BLOCK
+
+8 >> 54 SETUP_LOOP 132 ( to 144 )
+>> 56 LOAD_GLOBAL 2 ( len )
+58 LOAD_FAST 3 ( s )
+60 CALL_FUNCTION 1
+62 LOAD_CONST 1 ( 0 )
+64 COMPARE_OP 3 ( != )
+66 POP_JUMP_IF_FALSE 142
+
+9 68 LOAD_FAST 3 ( s )
+70 LOAD_CONST 4 ( - 1 )
+72 BINARY_SUBSCR
+74 STORE_FAST 4 ( tp )
+
+10 76 LOAD_FAST 3 ( s )
+78 LOAD_METHOD 3 ( pop )
+80 CALL_METHOD 0
+82 POP_TOP
+
+11 84 SETUP_LOOP 72 ( to 144 )
+86 LOAD_GLOBAL 0 ( range )
+88 LOAD_FAST 4 ( tp )
+90 LOAD_CONST 3 ( 10 )
+92 BINARY_MODULO
+94 LOAD_CONST 3 ( 10 )
+96 CALL_FUNCTION 2
+98 GET_ITER
+>> 100 FOR_ITER 58 ( to 142 )
+102 STORE_FAST 5 ( j )
+
+12 104 LOAD_FAST 4 ( tp )
+106 LOAD_CONST 3 ( 10 )
+108 BINARY_MULTIPLY
+110 LOAD_FAST 5 ( j )
+112 BINARY_ADD
+114 STORE_FAST 6 ( x )
+
+13 116 LOAD_FAST 6 ( x )
+118 LOAD_FAST 0 ( n )
+120 COMPARE_OP 1 ( <= )
+122 POP_JUMP_IF_FALSE 100
+
+14 124 LOAD_FAST 3 ( s )
+126 LOAD_METHOD 1 ( append )
+128 LOAD_FAST 6 ( x )
+130 CALL_METHOD 1
+132 POP_TOP
+
+15 134 LOAD_FAST 1 ( result )
+136 LOAD_CONST 2 ( 1 )
+138 INPLACE_ADD
+140 STORE_FAST 1 ( result )
+140 JUMP_ABSOLUTE 100
+>> 142 POP_BLOCK
+>> 144 JUMP_ABSOLUTE 56
+>> 146 POP_BLOCK
+
+16 >> 148 LOAD_FAST 1 ( result )
+150 RETURN_VALUE

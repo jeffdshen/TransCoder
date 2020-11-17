@@ -1,0 +1,109 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , p ) :\n    n = n % p\n    for x in range ( 2 , p , 1 ) :\n        if ( ( x * x ) % p == n ) :\n            return True\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (71,78,),\n    (85,75,),\n    (4,35,),\n    (20,99,),\n    (71,29,),\n    (72,88,),\n    (36,54,),\n    (95,52,),\n    (83,33,),\n    (72,13,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def squareRootExists ( n , p ) :\n    n = n % p\n    for x in range ( 2 , p , 1 ) :\n        if ( ( x * x ) % p == n ) :\n            return True\n    return False\n"}
+Disassembly of <code object squareRootExists at 0x7f816a673a50, file "<dis>", line 105>:
+106 0 LOAD_FAST 1 ( p )
+2 LOAD_CONST 1 ( 2 )
+4 BINARY_MULTIPLY
+6 STORE_FAST 2 ( d )
+
+107 8 LOAD_FAST 0 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_MULTIPLY
+14 STORE_FAST 3 ( d )
+
+108 16 LOAD_FAST 0 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_MULTIPLY
+22 LOAD_FAST 2 ( d )
+24 LOAD_CONST 4 ( 2 )
+26 BINARY_MULTIPLY
+28 BINARY_MULTIPLY
+30 LOAD_FAST 3 ( d )
+32 LOAD_CONST 5 ( 3 )
+34 BINARY_MULTIPLY
+36 BINARY_ADD
+38 LOAD_FAST 2 ( d )
+40 LOAD_CONST 6 ( 4 )
+42 BINARY_MULTIPLY
+44 BINARY_ADD
+46 BINARY_MULTIPLY
+48 LOAD_FAST 3 ( d )
+50 LOAD_CONST 7 ( 3 )
+52 BINARY_MULTIPLY
+54 BINARY_ADD
+56 LOAD_FAST 2 ( d )
+58 LOAD_CONST 8 ( 4 )
+60 BINARY_MULTIPLY
+62 BINARY_ADD
+64 BINARY_MULTIPLY
+66 LOAD_FAST 3 ( d )
+68 LOAD_CONST 9 ( 4 )
+70 BINARY_MULTIPLY
+72 BINARY_ADD
+74 BINARY_MULTIPLY
+76 BINARY_ADD
+78 LOAD_FAST 2 ( d )
+80 LOAD_CONST 10 ( 4 )
+82 BINARY_MULTIPLY
+84 BINARY_ADD
+86 BINARY_MULTIPLY
+88 BINARY_ADD
+90 LOAD_FAST 3 ( d )
+92 LOAD_CONST 11 ( 4 )
+94 BINARY_MULTIPLY
+96 BINARY_ADD
+98 LOAD_FAST 3 ( d )
+100 LOAD_CONST 12 ( 2 )
+102 BINARY_MULTIPLY
+104 BINARY_ADD
+106 BINARY_ADD
+108 LOAD_FAST 3 ( d )
+110 LOAD_CONST 13 ( 3 )
+112 BINARY_MULTIPLY
+114 BINARY_ADD
+116 BINARY_MULTIPLY
+118 BINARY_ADD
+120 LOAD_FAST 3 ( d )
+122 LOAD_CONST 14 ( 4 )
+124 BINARY_MULTIPLY
+126 BINARY_ADD
+128 BINARY_MULTIPLY
+130 LOAD_FAST 3 ( d )
+132 LOAD_CONST 15 ( 3 )
+134 BINARY_MULTIPLY
+136 BINARY_ADD
+138 LOAD_FAST 3 ( d )
+140 LOAD_CONST 16 ( 4 )
+142 BINARY_MULTIPLY
+144 BINARY_ADD
+146 BINARY_MULTIPLY
+148 BINARY_ADD
+150 LOAD_FAST 3 ( d )
+152 LOAD_CONST 17 ( 4 )
+154 BINARY_MULTIPLY
+156 BINARY_ADD
+158 BINARY_MULTIPLY
+160 BINARY_ADD
+162 LOAD_FAST 3 ( d )
+164 LOAD_CONST 18 ( 4 )
+162 BINARY_MULTIPLY
+164 BINARY_ADD
+166 BINARY_MULTIPLY
+168 BINARY_ADD
+
+109 170 LOAD_FAST 3 ( d )
+172 LOAD_CONST 19 ( 4 )
+174 BINARY_MULTIPLY
+176 BINARY_ADD
+
+110 110 LOAD_FAST 3 ( d )
+112 LOAD_CONST 20 ( 4 )
+114 BINARY_MULTIPLY
+116 BINARY_ADD
+118 LOAD_FAST 3 ( d )
+120 LOAD_CONST 21 ( 4 )
+122 BINARY_MULTIPLY
+124 BINARY_ADD
+126 LOAD_FAST 3 ( d )
+128 BINARY_MULTIPLY
+130 BINARY_ADD
+132 LOAD_FAST

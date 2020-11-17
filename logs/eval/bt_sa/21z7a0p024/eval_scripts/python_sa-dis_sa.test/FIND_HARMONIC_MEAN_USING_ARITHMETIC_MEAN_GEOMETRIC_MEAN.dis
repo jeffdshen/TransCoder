@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( a , b ) :\n    AM = ( a + b ) / 2\n    GM = math.sqrt ( a * b )\n    HM = ( GM * GM ) / AM\n    return HM\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (54,83,),\n    (42,56,),\n    (63,12,),\n    (19,76,),\n    (41,50,),\n    (7,26,),\n    (39,42,),\n    (11,64,),\n    (96,81,),\n    (15,54,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def compute ( a , b ) :\n    AM = ( a + b ) / 2\n    GM = math.sqrt ( a * b )\n    HM = ( GM * GM ) / AM\n    return HM\n"}
+Disassembly of <code object compute at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_FAST 1 ( b )
+4 BINARY_ADD
+6 LOAD_CONST 1 ( 2 )
+8 BINARY_TRUE_DIVIDE
+10 STORE_FAST 2 ( VM )
+
+3 12 LOAD_GLOBAL 0 ( math )
+14 LOAD_METHOD 1 ( sqrt )
+16 LOAD_FAST 2 ( M )
+18 LOAD_FAST 1 ( b )
+20 CALL_METHOD 2
+22 STORE_FAST 3 ( VM )
+
+4 24 LOAD_FAST 3 ( VM )
+26 LOAD_FAST 2 ( M )
+28 BINARY_MULTIPLY
+30 LOAD_FAST 3 ( VM )
+32 BINARY_MULTIPLY
+34 LOAD_FAST 2 ( M )
+36 BINARY_MULTIPLY
+38 LOAD_FAST 3 ( VM )
+40 BINARY_MULTIPLY
+42 LOAD_FAST 3 ( VM )
+44 BINARY_MULTIPLY
+46 LOAD_FAST 2 ( M )
+48 BINARY_MULTIPLY
+50 LOAD_FAST 3 ( VM )
+52 BINARY_MULTIPLY
+54 LOAD_FAST 3 ( VM )
+56 BINARY_MULTIPLY
+58 LOAD_FAST 2 ( M )
+60 BINARY_MULTIPLY
+62 LOAD_FAST 2 ( M )
+64 BINARY_MULTIPLY
+66 LOAD_FAST 3 ( VM )
+68 BINARY_MULTIPLY
+70 LOAD_FAST 2 ( M )
+72 BINARY_MULTIPLY
+74 LOAD_FAST 3 ( VM )
+76 BINARY_MULTIPLY
+78 LOAD_FAST 2 ( M )
+80 BINARY_MULTIPLY
+82 LOAD_FAST 2 ( M )
+84 BINARY_MULTIPLY
+86 LOAD_FAST 3 ( VM )
+88 BINARY_MULTIPLY
+90 LOAD_FAST 2 ( M )
+92 BINARY_MULTIPLY
+94 LOAD_FAST 3 ( VM )
+96 BINARY_MULTIPLY
+98 LOAD_FAST 2 ( M )
+100 BINARY_MULTIPLY
+102 LOAD_FAST 2 ( M )
+104 BINARY_MULTIPLY
+106 LOAD_FAST 3 ( VM )
+108 BINARY_MULTIPLY
+110 LOAD_FAST 4 ( VM )
+112 BINARY_MULTIPLY
+114 LOAD_FAST 2 ( M )
+116 BINARY_MULTIPLY
+118 LOAD_FAST 2 ( M )
+120 BINARY_MULTIPLY
+122 LOAD_FAST 2 ( M )
+124 BINARY_MULTIPLY
+126 LOAD_FAST 2 ( M )
+128 BINARY_MULTIPLY
+130 LOAD_FAST 3 ( VM )
+132 BINARY_MULTIPLY
+134 LOAD_FAST 2 ( M )
+136 BINARY_MULTIPLY
+138 LOAD_FAST 2 ( M )
+140 BINARY_MULTIPLY
+142 LOAD_FAST 3 ( VM )
+144 BINARY_MULTIPLY
+146 LOAD_FAST 2 ( M )
+148 BINARY_MULTIPLY
+150 LOAD_FAST 2 ( M )
+152 BINARY_MULTIPLY
+154 LOAD_FAST 2 ( M )
+156 BINARY_MULTIPLY
+158 LOAD_FAST 3 ( VM )
+160 BINARY_MULTIPLY
+162 LOAD_FAST 2 ( M )
+164 BINARY_MULTIPLY
+166 LOAD_FAST 2 ( M )
+168 BINARY_MULTIPLY
+170 LOAD_FAST 3 ( VM )
+172 BINARY_MULTIPLY
+174 LOAD_FAST 2 ( M )
+176 BINARY_MULTIPLY
+178 LOAD_FAST 2 ( M )
+180 RETURN_VALUE

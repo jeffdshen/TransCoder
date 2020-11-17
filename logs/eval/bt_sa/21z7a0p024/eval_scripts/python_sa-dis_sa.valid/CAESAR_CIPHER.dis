@@ -1,0 +1,48 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( text , s ) :\n    result = \"\"\n    for i in range ( len ( text ) ) :\n        char = text [ i ]\n        if ( char.isupper ( ) ) :\n            result += chr ( ( ord ( char ) + s - 65 ) % 26 + 65 )\n        else :\n            result += chr ( ( ord ( char ) + s - 97 ) % 26 + 97 )\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('LsvbpcviVPwq',15,),\n    ('35225904',2,),\n    ('010010',36,),\n    ('QnYd',44,),\n    ('2571694',11,),\n    ('101101011010',94,),\n    ('jb',22,),\n    ('928874',83,),\n    ('11',93,),\n    ('FbvbkMb',37,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def encrypt ( text , s ) :\n    result = \"\"\n    for i in range ( len ( text ) ) :\n        char = text [ i ]\n        if ( char.isupper ( ) ) :\n            result += chr ( ( ord ( char ) + s - 65 ) % 26 + 65 )\n        else :\n            result += chr ( ( ord ( char ) + s - 97 ) % 26 + 97 )\n    return result\n"}
+Disassembly of <code object encrypt at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( '' )
+2 STORE_FAST 1 ( result )
+
+3 4 SETUP_LOOP 74 ( to 76 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_GLOBAL 1 ( len )
+10 LOAD_FAST 0 ( text )
+12 CALL_FUNCTION 1
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 74 ( to 74 )
+20 STORE_FAST 2 ( i )
+
+4 22 LOAD_FAST 0 ( text )
+24 LOAD_FAST 2 ( i )
+26 BINARY_SUBSCR
+28 LOAD_METHOD 2 ( isupper )
+30 CALL_METHOD 0
+32 POP_JUMP_IF_FALSE 44
+
+5 34 LOAD_GLOBAL 3 ( chr )
+36 LOAD_FAST 0 ( text )
+38 LOAD_FAST 2 ( i )
+40 BINARY_SUBSCR
+42 LOAD_METHOD 2 ( isupper )
+44 CALL_METHOD 0
+46 CALL_FUNCTION 1
+48 POP_JUMP_IF_FALSE 18
+
+6 50 LOAD_FAST 1 ( result )
+52 LOAD_FAST 2 ( i )
+54 BINARY_SUBSCR
+56 LOAD_METHOD 2 ( isupper )
+58 CALL_METHOD 0
+60 POP_JUMP_IF_FALSE 18
+
+7 62 LOAD_FAST 1 ( result )
+64 RETURN_VALUE
+
+8 >> 66 LOAD_FAST 1 ( result )
+68 RETURN_VALUE
+70 JUMP_ABSOLUTE 18
+>> 72 POP_BLOCK
+
+9 >> 74 LOAD_FAST 1 ( result )
+76 RETURN_VALUE

@@ -1,0 +1,70 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , m ) :\n    return ( m * n * ( n + 1 ) * ( m + 1 ) ) // 4\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (86,70,),\n    (33,65,),\n    (3,5,),\n    (91,12,),\n    (33,27,),\n    (13,75,),\n    (75,36,),\n    (58,64,),\n    (50,51,),\n    (4,44,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def rectCount ( n , m ) :\n    return ( m * n * ( n + 1 ) * ( m + 1 ) ) // 4\n"}
+Disassembly of <code object rectCount at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_FAST 1 ( m )
+4 LOAD_CONST 1 ( 1 )
+6 BINARY_ADD
+8 LOAD_FAST 2 ( n )
+10 LOAD_CONST 1 ( 1 )
+12 BINARY_ADD
+14 BINARY_MULTIPLY
+16 LOAD_FAST 0 ( n )
+18 LOAD_CONST 1 ( 1 )
+20 BINARY_ADD
+22 LOAD_FAST 1 ( m )
+24 LOAD_CONST 1 ( 1 )
+26 BINARY_ADD
+28 BINARY_MULTIPLY
+30 BINARY_ADD
+32 LOAD_FAST 2 ( n )
+34 LOAD_CONST 1 ( 1 )
+36 BINARY_ADD
+38 LOAD_FAST 1 ( m )
+40 LOAD_CONST 1 ( 1 )
+42 BINARY_ADD
+44 LOAD_FAST 1 ( m )
+46 LOAD_CONST 1 ( 1 )
+48 BINARY_ADD
+50 LOAD_FAST 1 ( m )
+52 LOAD_CONST 1 ( 1 )
+54 BINARY_ADD
+56 LOAD_FAST 1 ( m )
+58 LOAD_CONST 1 ( 1 )
+60 BINARY_ADD
+62 LOAD_FAST 1 ( m )
+64 LOAD_CONST 1 ( 1 )
+66 BINARY_ADD
+68 LOAD_FAST 1 ( m )
+70 LOAD_CONST 1 ( 1 )
+72 BINARY_ADD
+74 LOAD_FAST 1 ( m )
+76 LOAD_CONST 1 ( 1 )
+78 BINARY_ADD
+80 LOAD_FAST 1 ( m )
+82 LOAD_CONST 1 ( 1 )
+84 BINARY_ADD
+86 LOAD_FAST 1 ( m )
+88 LOAD_CONST 1 ( 1 )
+90 BINARY_ADD
+92 LOAD_FAST 1 ( m )
+94 LOAD_CONST 1 ( 1 )
+96 BINARY_ADD
+98 LOAD_FAST 1 ( m )
+100 LOAD_CONST 1 ( 1 )
+102 BINARY_ADD
+104 LOAD_FAST 1 ( m )
+106 LOAD_CONST 1 ( 1 )
+108 BINARY_ADD
+110 LOAD_FAST 1 ( m )
+112 LOAD_CONST 1 ( 1 )
+114 BINARY_ADD
+116 LOAD_FAST 1 ( m )
+118 LOAD_CONST 1 ( 1 )
+120 BINARY_ADD
+122 LOAD_FAST 1 ( m )
+124 LOAD_CONST 1 ( 1 )
+126 BINARY_ADD
+128 STORE_SUBSCR
+
+3 130 LOAD_FAST 0 ( n )
+132 RETURN_VALUE

@@ -1,0 +1,75 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    res = 0\n    m = dict ( )\n    for i in range ( n ) :\n        Sum = 0\n        for j in range ( i , n ) :\n            Sum += arr [ j ]\n            m [ Sum ] = m.get ( Sum , 0 ) + 1\n    for x in m :\n        if m [ x ] == 1 :\n            res += x\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([7, 24, 34, 35, 36, 40, 49, 51, 53, 74, 78],9,),\n    ([-34, 60, 32],2,),\n    ([0],0,),\n    ([80, 64, 10, 82, 14, 75, 51, 91, 1, 25, 98, 22, 36, 27, 21, 31, 93, 6, 52, 91, 80, 8, 62, 95, 10, 71, 40, 80, 35, 86, 85, 26, 74, 72, 64, 88, 4, 71, 4, 16],31,),\n    ([-94, -46, -36, -24, -22, 0, 10, 14, 34, 34, 90, 92, 98],9,),\n    ([1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1],21,),\n    ([19, 20, 20, 24, 25, 33, 43, 47, 57, 61, 61, 64, 65, 71, 72, 73, 75, 82, 90, 93, 95],15,),\n    ([-6, 56, 58, -36, 70, -92, 30, 58, -40, 98, 80, -96, -4, -88, 34, 76, 40, -32, -94, -26, 8, 72, -56, -96, -88, -24, 36, 14, -88, -32, 90, 4, -88, 28, 18],24,),\n    ([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],11,),\n    ([91, 51, 15, 78, 55, 3, 10, 24, 42, 84, 66, 78, 10, 41, 21, 53, 69, 57, 20, 22, 50, 72, 8, 80, 12, 91, 29, 95, 38, 74, 95, 26, 10, 57, 51, 25, 49, 74, 15, 42, 99, 21, 27],36,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSubarraySum ( arr , n ) :\n    res = 0\n    m = dict ( )\n    for i in range ( n ) :\n        Sum = 0\n        for j in range ( i , n ) :\n            Sum += arr [ j ]\n            m [ Sum ] = m.get ( Sum , 0 ) + 1\n    for x in m :\n        if m [ x ] == 1 :\n            res += x\n    return res\n"}
+Disassembly of <code object findSubarraySum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( res )
+
+3 4 LOAD_GLOBAL 0 ( dict )
+6 CALL_FUNCTION 0
+8 STORE_FAST 3 ( m )
+
+4 10 SETUP_LOOP 80 ( to 90 )
+12 LOAD_GLOBAL 1 ( range )
+14 LOAD_FAST 1 ( n )
+16 CALL_FUNCTION 1
+18 GET_ITER
+>> 20 FOR_ITER 72 ( to 88 )
+22 STORE_FAST 4 ( i )
+
+5 24 LOAD_CONST 1 ( 0 )
+26 STORE_FAST 5 ( Sum )
+
+6 28 SETUP_LOOP 46 ( to 86 )
+30 LOAD_GLOBAL 1 ( range )
+32 LOAD_FAST 4 ( i )
+34 LOAD_FAST 1 ( n )
+36 CALL_FUNCTION 2
+38 GET_ITER
+>> 40 FOR_ITER 30 ( to 84 )
+42 STORE_FAST 6 ( j )
+
+7 44 LOAD_FAST 5 ( Sum )
+46 LOAD_FAST 0 ( arr )
+48 LOAD_FAST 6 ( j )
+50 BINARY_SUBSCR
+52 INPLACE_ADD
+54 STORE_FAST 5 ( Sum )
+
+8 56 LOAD_FAST 3 ( m )
+58 LOAD_METHOD 2 ( get )
+60 LOAD_FAST 5 ( Sum )
+62 LOAD_CONST 1 ( 0 )
+64 CALL_METHOD 2
+66 LOAD_CONST 2 ( 1 )
+68 BINARY_ADD
+70 LOAD_FAST 3 ( m )
+72 LOAD_FAST 5 ( Sum )
+74 STORE_SUBSCR
+76 JUMP_ABSOLUTE 40
+>> 78 POP_BLOCK
+>> 80 JUMP_ABSOLUTE 20
+>> 82 POP_BLOCK
+
+9 >> 84 SETUP_LOOP 46 ( to 124 )
+86 LOAD_FAST 3 ( m )
+88 GET_ITER
+>> 90 FOR_ITER 38 ( to 122 )
+92 STORE_FAST 7 ( x )
+
+10 94 LOAD_FAST 3 ( m )
+96 LOAD_FAST 7 ( x )
+98 BINARY_SUBSCR
+100 LOAD_CONST 2 ( 1 )
+102 COMPARE_OP 2 ( == )
+104 POP_JUMP_IF_FALSE 90
+
+11 106 LOAD_FAST 2 ( res )
+108 LOAD_FAST 7 ( x )
+110 INPLACE_ADD
+112 STORE_FAST 2 ( res )
+114 JUMP_ABSOLUTE 90
+>> 116 POP_BLOCK
+>> 118 JUMP_ABSOLUTE 20
+>> 120 POP_BLOCK
+
+12 >> 122 LOAD_FAST 2 ( res )
+124 RETURN_VALUE

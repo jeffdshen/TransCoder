@@ -1,0 +1,98 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , x ) :\n    curr_sum = 0 ;\n    min_len = n + 1 ;\n    start = 0 ;\n    end = 0 ;\n    while ( end < n ) :\n        while ( curr_sum <= x and end < n ) :\n            if ( curr_sum <= 0 and x > 0 ) :\n                start = end ;\n                curr_sum = 0 ;\n            curr_sum += arr [ end ] ;\n            end += 1 ;\n        while ( curr_sum > x and start < n ) :\n            if ( end - start < min_len ) :\n                min_len = end - start ;\n            curr_sum -= arr [ start ] ;\n            start += 1 ;\n    return min_len ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 4, 5, 10, 14, 15, 16, 20, 23, 28, 31, 35, 36, 36, 43, 48, 49, 55, 57, 57, 58, 61, 64, 64, 68, 70, 70, 73, 74, 76, 76, 77, 81, 81, 82, 87, 89, 92, 99],33,28,),\n    ([66, -20, 12, -48, 22, 28, 40, -30, -6, -96, 10, -88, 40],11,12,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],42,23,),\n    ([28, 19, 38, 31, 17, 27, 60, 35, 19, 47, 34, 51, 3, 95, 33, 29, 84, 46, 74, 87],15,15,),\n    ([-48, -2],1,1,),\n    ([1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1],12,15,),\n    ([1, 4, 4, 6, 8, 10, 12, 12, 13, 15, 18, 20, 21, 23, 25, 28, 28, 33, 33, 35, 35, 36, 37, 38, 42, 44, 63, 63, 65, 65, 65, 66, 70, 74, 77, 78, 80, 80, 84, 87, 87, 89, 92, 93, 94, 97, 98, 99],42,27,),\n    ([-82, -12, -40, 58, 22, -76, -94, -28, 42, 36, 64],10,6,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],10,14,),\n    ([76, 65, 96, 76, 1, 91, 22, 29, 95, 21, 73, 68, 30, 52, 73, 86, 52, 66, 67, 37, 76, 53, 68, 6, 95, 81, 98, 42, 63, 38, 92, 78, 59, 86, 10, 38, 18, 15, 52, 62, 16, 66],23,35,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def smallestSubWithSum ( arr , n , x ) :\n    curr_sum = 0 ;\n    min_len = n + 1 ;\n    start = 0 ;\n    end = 0 ;\n    while ( end < n ) :\n        while ( curr_sum <= x and end < n ) :\n            if ( curr_sum <= 0 and x > 0 ) :\n                start = end ;\n                curr_sum = 0 ;\n            curr_sum += arr [ end ] ;\n            end += 1 ;\n        while ( curr_sum > x and start < n ) :\n            if ( end - start < min_len ) :\n                min_len = end - start ;\n            curr_sum -= arr [ start ] ;\n            start += 1 ;\n    return min_len ;\n"}
+Disassembly of <code object Encoder stSubWithSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 3 ( curr_sum )
+
+3 4 LOAD_FAST 1 ( n )
+6 LOAD_CONST 2 ( 1 )
+8 BINARY_ADD
+10 STORE_FAST 4 ( min_len )
+
+4 12 LOAD_CONST 1 ( 0 )
+14 STORE_FAST 5 ( start )
+
+5 16 LOAD_CONST 1 ( 0 )
+18 STORE_FAST 6 ( end )
+
+6 20 SETUP_LOOP 80 ( to 102 )
+>> 22 LOAD_FAST 6 ( end )
+24 LOAD_FAST 1 ( n )
+26 COMPARE_OP 0 ( < )
+28 POP_JUMP_IF_FALSE 100
+
+7 30 SETUP_LOOP 62 ( to 96 )
+>> 32 LOAD_FAST 3 ( curr_sum )
+34 LOAD_FAST 2 ( x )
+36 COMPARE_OP 1 ( <= )
+38 POP_JUMP_IF_FALSE 94
+40 LOAD_FAST 6 ( end )
+42 LOAD_FAST 1 ( n )
+44 COMPARE_OP 0 ( < )
+46 POP_JUMP_IF_FALSE 94
+
+8 48 LOAD_FAST 3 ( curr_sum )
+50 LOAD_CONST 1 ( 0 )
+52 COMPARE_OP 4 ( > )
+54 POP_JUMP_IF_FALSE 66
+56 LOAD_FAST 2 ( x )
+58 LOAD_CONST 1 ( 0 )
+60 COMPARE_OP 4 ( > )
+62 POP_JUMP_IF_FALSE 66
+64 LOAD_FAST 2 ( x )
+66 LOAD_CONST 1 ( 0 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 66
+
+9 72 LOAD_FAST 6 ( end )
+74 STORE_FAST 5 ( start )
+
+10 76 LOAD_CONST 1 ( 0 )
+78 STORE_FAST 3 ( curr_sum )
+80 JUMP_ABSOLUTE 32
+>> 82 POP_BLOCK
+
+11 >> 84 LOAD_FAST 3 ( curr_sum )
+86 LOAD_FAST 0 ( arr )
+88 LOAD_FAST 6 ( end )
+90 BINARY_SUBSCR
+92 INPLACE_ADD
+94 STORE_FAST 3 ( curr_sum )
+
+12 96 LOAD_FAST 6 ( end )
+98 LOAD_CONST 2 ( 1 )
+100 INPLACE_ADD
+102 STORE_FAST 6 ( end )
+104 JUMP_ABSOLUTE 22
+>> 106 POP_BLOCK
+
+13 >> 108 SETUP_LOOP 52 ( to 156 )
+>> 110 LOAD_FAST 3 ( curr_sum )
+112 LOAD_FAST 2 ( x )
+114 COMPARE_OP 4 ( > )
+116 POP_JUMP_IF_FALSE 154
+118 LOAD_FAST 5 ( start )
+120 LOAD_FAST 1 ( n )
+122 COMPARE_OP 0 ( < )
+124 POP_JUMP_IF_FALSE 154
+
+14 126 LOAD_FAST 6 ( end )
+128 LOAD_FAST 5 ( start )
+130 BINARY_SUBTRACT
+132 STORE_FAST 4 ( min_len )
+
+15 >> 134 LOAD_FAST 3 ( curr_sum )
+136 LOAD_FAST 0 ( arr )
+138 LOAD_FAST 5 ( start )
+140 BINARY_SUBSCR
+142 INPLACE_SUBTRACT
+144 STORE_FAST 3 ( curr_sum )
+
+16 146 LOAD_FAST 5 ( start )
+148 LOAD_CONST 2 ( 1 )
+150 INPLACE_ADD
+152 STORE_FAST 5 ( start )
+154 JUMP_ABSOLUTE 22
+>> 156 POP_BLOCK
+
+17 >> 158 LOAD_FAST 4 ( min_len )
+160 RETURN_VALUE

@@ -1,0 +1,91 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    res = 1\n    while n % 2 == 0 :\n        n = n // 2\n    for i in range ( 3 , int ( math.sqrt ( n ) + 1 ) ) :\n        count = 0\n        curr_sum = 1\n        curr_term = 1\n        while n % i == 0 :\n            count += 1\n            n = n // i\n            curr_term *= i\n            curr_sum += curr_term\n        res *= curr_sum\n    if n >= 2 :\n        res *= ( 1 + n )\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (20,),\n    (6,),\n    (39,),\n    (80,),\n    (88,),\n    (7,),\n    (16,),\n    (27,),\n    (83,),\n    (6,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def sumofoddFactors ( n ) :\n    res = 1\n    while n % 2 == 0 :\n        n = n // 2\n    for i in range ( 3 , int ( math.sqrt ( n ) + 1 ) ) :\n        count = 0\n        curr_sum = 1\n        curr_term = 1\n        while n % i == 0 :\n            count += 1\n            n = n // i\n            curr_term *= i\n            curr_sum += curr_term\n        res *= curr_sum\n    if n >= 2 :\n        res *= ( 1 + n )\n    return res\n"}
+Disassembly of <code object sumofoddFactors at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 1 ( res )
+
+3 4 SETUP_LOOP 26 ( to 32 )
+>> 6 LOAD_FAST 0 ( n )
+8 LOAD_CONST 2 ( 2 )
+10 BINARY_MODULO
+12 LOAD_CONST 3 ( 0 )
+14 COMPARE_OP 2 ( == )
+16 POP_JUMP_IF_FALSE 30
+
+4 18 LOAD_FAST 0 ( n )
+20 LOAD_CONST 2 ( 2 )
+22 BINARY_FLOOR_DIVIDE
+24 STORE_FAST 0 ( n )
+26 JUMP_ABSOLUTE 6
+28 POP_BLOCK
+
+5 >> 30 SETUP_LOOP 92 ( to 128 )
+>> 32 LOAD_GLOBAL 0 ( range )
+34 LOAD_CONST 4 ( 3 )
+36 LOAD_GLOBAL 1 ( int )
+38 LOAD_GLOBAL 2 ( math )
+40 LOAD_METHOD 3 ( sqrt )
+42 LOAD_FAST 0 ( n )
+44 CALL_METHOD 1
+46 LOAD_CONST 1 ( 1 )
+48 BINARY_ADD
+50 CALL_FUNCTION 1
+52 CALL_FUNCTION 2
+54 GET_ITER
+>> 56 FOR_ITER 66 ( to 126 )
+58 STORE_FAST 2 ( i )
+
+6 60 LOAD_CONST 3 ( 0 )
+62 STORE_FAST 3 ( count )
+
+7 64 LOAD_CONST 1 ( 1 )
+66 STORE_FAST 4 ( curr_sum )
+
+8 68 LOAD_CONST 1 ( 1 )
+70 STORE_FAST 5 ( curr_term )
+
+9 72 SETUP_LOOP 46 ( to 124 )
+>> 74 LOAD_FAST 0 ( n )
+76 LOAD_FAST 2 ( i )
+78 BINARY_MODULO
+80 LOAD_CONST 3 ( 0 )
+82 COMPARE_OP 2 ( == )
+84 POP_JUMP_IF_FALSE 122
+
+10 86 LOAD_FAST 3 ( count )
+88 LOAD_CONST 1 ( 1 )
+90 INPLACE_ADD
+92 STORE_FAST 3 ( count )
+
+11 94 LOAD_FAST 0 ( n )
+96 LOAD_FAST 2 ( i )
+98 BINARY_FLOOR_DIVIDE
+100 STORE_FAST 0 ( n )
+
+12 102 LOAD_FAST 4 ( curr_sum )
+104 LOAD_FAST 5 ( curr_term )
+106 INPLACE_ADD
+108 STORE_FAST 4 ( curr_sum )
+110 JUMP_ABSOLUTE 74
+>> 112 POP_BLOCK
+
+13 >> 114 LOAD_FAST 1 ( res )
+116 LOAD_FAST 4 ( curr_sum )
+118 INPLACE_MULTIPLY
+120 STORE_FAST 1 ( res )
+
+14 >> 122 LOAD_FAST 0 ( n )
+124 LOAD_CONST 2 ( 2 )
+126 COMPARE_OP 5 ( >= )
+128 POP_JUMP_IF_FALSE 144
+
+15 130 LOAD_FAST 1 ( res )
+132 LOAD_CONST 1 ( 1 )
+134 LOAD_FAST 0 ( n )
+136 BINARY_ADD
+138 INPLACE_MULTIPLY
+140 STORE_FAST 1 ( res )
+142 JUMP_ABSOLUTE 32
+>> 144 POP_BLOCK
+
+16 >> 146 LOAD_FAST 1 ( res )
+148 RETURN_VALUE

@@ -1,0 +1,91 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , k ) :\n    dist_count = 0\n    for i in range ( n ) :\n        j = 0\n        while j < n :\n            if ( i != j and arr [ j ] == arr [ i ] ) :\n                break\n            j += 1\n        if ( j == n ) :\n            dist_count += 1\n        if ( dist_count == k ) :\n            return arr [ i ]\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 3, 8, 18, 20, 33, 53, 56, 60, 71, 76, 80, 81, 87, 88, 89, 92, 95],16,16,),\n    ([-78, 6, 32, 52, -12, -32, 22, -40, -82, 24, 30, 10, -40],8,6,),\n    ([0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],7,5,),\n    ([3, 28, 55, 21, 42, 60, 96, 83, 98, 75, 29, 73, 51, 21, 27, 65, 19, 47, 12, 81, 19, 94, 50, 43, 21, 32, 52, 44, 52, 91, 49, 59, 52, 10, 75, 86, 46, 43, 3, 49, 70, 60, 77, 99, 27, 63],40,39,),\n    ([-96, -90, -76, -44, -16, -8, 0, 0, 2, 2, 8, 14, 16, 18, 18, 20, 20, 28, 34, 44, 68, 74, 84, 90],23,12,),\n    ([0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0],10,8,),\n    ([3, 4, 5, 8, 9, 15, 26, 26, 26, 35, 39, 40, 42, 43, 45, 45, 48, 52, 54, 56, 57, 67, 74, 77, 79, 80, 81, 86, 87, 92, 95, 97],26,24,),\n    ([-76, -24, -12, 66, -40, 26, 72, 46, -56, 58, -68, 2, -82],6,10,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],27,17,),\n    ([29, 83, 32, 75, 5, 22, 68, 64, 36, 18, 7, 63, 16, 42, 77, 61, 1, 26, 12, 41, 67, 85, 85, 35, 94, 18, 14, 65, 8, 55, 44, 34, 48, 23, 8, 27, 86, 2, 51, 91],28,24,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def printKDistinct ( arr , n , k ) :\n    dist_count = 0\n    for i in range ( n ) :\n        j = 0\n        while j < n :\n            if ( i != j and arr [ j ] == arr [ i ] ) :\n                break\n            j += 1\n        if ( j == n ) :\n            dist_count += 1\n        if ( dist_count == k ) :\n            return arr [ i ]\n    return - 1\n"}
+Disassembly of <code object printKDistinct at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( n )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 4 ( > )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 INPLACE_ADD
+14 STORE_FAST 1 ( n )
+16 JUMP_FORWARD 4 ( to 28 )
+
+28 >> 18 LOAD_FAST 1 ( n )
+20 LOAD_CONST 3 ( 1 )
+22 INPLACE_ADD
+24 STORE_FAST 1 ( n )
+
+29 26 LOAD_FAST 1 ( n )
+28 LOAD_CONST 4 ( 2 )
+30 INPLACE_ADD
+32 STORE_FAST 1 ( n )
+
+30 34 LOAD_FAST 1 ( n )
+36 LOAD_CONST 5 ( 1 )
+38 INPLACE_ADD
+40 STORE_FAST 1 ( n )
+
+31 42 LOAD_FAST 1 ( n )
+44 LOAD_CONST 6 ( 2 )
+46 INPLACE_ADD
+48 STORE_FAST 1 ( n )
+
+32 50 LOAD_FAST 1 ( n )
+52 LOAD_CONST 7 ( 2 )
+54 INPLACE_ADD
+56 STORE_FAST 1 ( n )
+
+33 58 LOAD_FAST 1 ( n )
+60 LOAD_CONST 8 ( 2 )
+62 INPLACE_ADD
+64 STORE_FAST 1 ( n )
+
+34 66 LOAD_FAST 1 ( n )
+68 LOAD_CONST 9 ( 3 )
+70 INPLACE_ADD
+72 STORE_FAST 1 ( n )
+74 JUMP_FORWARD 4 ( to 80 )
+
+35 >> 76 LOAD_FAST 1 ( n )
+78 LOAD_CONST 10 ( 3 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( n )
+
+36 84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 11 ( 2 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( n )
+
+37 92 LOAD_FAST 1 ( n )
+94 LOAD_FAST 0 ( arr )
+96 LOAD_CONST 12 ( 4 )
+98 INPLACE_ADD
+100 STORE_FAST 1 ( n )
+
+38 102 LOAD_FAST 1 ( n )
+104 LOAD_FAST 0 ( arr )
+106 LOAD_CONST 13 ( 3 )
+108 INPLACE_ADD
+110 INPLACE_ADD
+112 STORE_FAST 1 ( n )
+
+39 114 LOAD_FAST 1 ( n )
+116 LOAD_CONST 14 ( 2 )
+118 INPLACE_ADD
+120 STORE_FAST 1 ( n )
+
+40 122 LOAD_FAST 1 ( n )
+124 LOAD_FAST 0 ( arr )
+126 LOAD_CONST 15 ( 2 )
+128 INPLACE_ADD
+130 STORE_FAST 1 ( n )
+
+41 132 LOAD_FAST 1 ( n )
+134 LOAD_CONST 16 ( 3 )
+136 INPLACE_ADD
+138 STORE_FAST 1 ( n )
+
+42 140 LOAD_FAST 1 ( n )
+142 RETURN_VALUE
+

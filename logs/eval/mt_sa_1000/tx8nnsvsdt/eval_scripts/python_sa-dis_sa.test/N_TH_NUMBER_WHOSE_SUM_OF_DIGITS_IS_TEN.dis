@@ -1,0 +1,60 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport itertools\n\ndef f_gold ( n ) :\n    count = 0\n    for curr in itertools.count ( ) :\n        sum = 0\n        x = curr\n        while ( x ) :\n            sum = sum + x % 10\n            x = x // 10\n        if ( sum == 10 ) :\n            count = count + 1\n        if ( count == n ) :\n            return curr\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (37,),\n    (13,),\n    (51,),\n    (69,),\n    (76,),\n    (10,),\n    (97,),\n    (40,),\n    (69,),\n    (4,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findNth ( n ) :\n    count = 0\n    for curr in itertools.count ( ) :\n        sum = 0\n        x = curr\n        while ( x ) :\n            sum = sum + x % 10\n            x = x // 10\n        if ( sum == 10 ) :\n            count = count + 1\n        if ( count == n ) :\n            return curr\n    return - 1\n"}
+Disassembly of <code object findNth at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( count )
+
+3 4 SETUP_LOOP 68 ( to 74 )
+6 LOAD_GLOBAL 0 ( itertools )
+8 LOAD_METHOD 1 ( count )
+10 CALL_METHOD 0
+12 GET_ITER
+>> 14 FOR_ITER 56 ( to 72 )
+16 STORE_FAST 2 ( curr )
+
+4 18 LOAD_CONST 1 ( 0 )
+20 STORE_FAST 3 ( sum )
+
+5 22 LOAD_FAST 2 ( curr )
+24 STORE_FAST 4 ( x )
+
+6 26 SETUP_LOOP 30 ( to 60 )
+>> 28 LOAD_FAST 4 ( x )
+30 CALL_FUNCTION 1
+32 POP_JUMP_IF_FALSE 58
+
+7 34 LOAD_FAST 3 ( sum )
+36 LOAD_FAST 4 ( x )
+38 LOAD_CONST 2 ( 10 )
+40 BINARY_MODULO
+42 BINARY_ADD
+44 STORE_FAST 3 ( sum )
+
+8 46 LOAD_FAST 4 ( x )
+48 LOAD_CONST 2 ( 10 )
+50 BINARY_FLOOR_DIVIDE
+52 STORE_FAST 4 ( x )
+54 JUMP_ABSOLUTE 28
+56 POP_BLOCK
+
+9 >> 58 LOAD_FAST 1 ( count )
+60 LOAD_CONST 2 ( 10 )
+62 COMPARE_OP 2 ( == )
+64 POP_JUMP_IF_FALSE 74
+
+10 66 LOAD_FAST 1 ( count )
+68 LOAD_CONST 3 ( 1 )
+70 BINARY_ADD
+72 STORE_FAST 1 ( count )
+
+11 >> 74 LOAD_FAST 1 ( count )
+76 LOAD_FAST 0 ( n )
+78 COMPARE_OP 2 ( == )
+80 POP_JUMP_IF_FALSE 14
+
+12 82 LOAD_FAST 2 ( curr )
+84 RETURN_VALUE
+86 JUMP_ABSOLUTE 14
+>> 88 POP_BLOCK
+
+13 >> 90 LOAD_CONST 4 ( - 1 )
+92 RETURN_VALUE

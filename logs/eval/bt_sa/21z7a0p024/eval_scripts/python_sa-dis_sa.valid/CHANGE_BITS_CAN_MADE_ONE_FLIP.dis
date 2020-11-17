@@ -1,0 +1,78 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    zeros = 0\n    ones = 0\n    for i in range ( 0 , len ( str ) ) :\n        ch = str [ i ] ;\n        if ( ch == '0' ) :\n            zeros = zeros + 1\n        else :\n            ones = ones + 1\n    return ( zeros == 1 or ones == 1 ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (\"00001\",),\n    (\"0000\",),\n    (\"11\",),\n    (\"111110\",),\n    (\"1\",),\n    (\"111010111010\",),\n    (\"hUInqJXNdbfP\",),\n    (\"5191\",),\n    (\"1110101101\",),\n    ('NupSrU xz',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def canMakeAllSame ( str ) :\n    zeros = 0\n    ones = 0\n    for i in range ( 0 , len ( str ) ) :\n        ch = str [ i ] ;\n        if ( ch == '0' ) :\n            zeros = zeros + 1\n        else :\n            ones = ones + 1\n    return ( zeros == 1 or ones == 1 ) ;\n"}
+Disassembly of <code object canMakeAllSame at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( zeros )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 2 ( zeros )
+
+4 8 SETUP_LOOP 76 ( to 84 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_CONST 1 ( 0 )
+14 LOAD_GLOBAL 1 ( len )
+16 LOAD_FAST 0 ( str )
+18 CALL_FUNCTION 1
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 76 ( to 82 )
+26 STORE_FAST 3 ( i )
+
+5 28 LOAD_FAST 0 ( str )
+30 LOAD_FAST 3 ( i )
+32 BINARY_SUBSCR
+34 LOAD_METHOD 2 ( split )
+36 LOAD_CONST 2 ( ',' )
+38 CALL_METHOD 1
+40 STORE_FAST 4 ( n )
+
+6 42 LOAD_FAST 0 ( str )
+44 LOAD_FAST 4 ( n )
+46 BINARY_SUBSCR
+48 LOAD_METHOD 2 ( split )
+50 LOAD_CONST 3 ( ',' )
+52 CALL_METHOD 1
+54 STORE_FAST 5 ( s )
+
+7 56 LOAD_FAST 1 ( zeros )
+58 LOAD_FAST 2 ( zeros )
+60 LOAD_FAST 3 ( i )
+62 BINARY_SUBSCR
+64 LOAD_METHOD 2 ( split )
+66 LOAD_CONST 4 ( ',' )
+68 CALL_METHOD 1
+70 LOAD_CONST 5 ( 1 )
+72 BINARY_SUBSCR
+74 LOAD_FAST 1 ( zeros )
+76 LOAD_FAST 2 ( zeros )
+78 LOAD_FAST 3 ( i )
+80 BINARY_SUBSCR
+82 LOAD_METHOD 2 ( split )
+84 LOAD_CONST 6 ( ',' )
+86 CALL_METHOD 1
+88 BINARY_ADD
+90 STORE_FAST 1 ( zeros )
+
+8 92 LOAD_FAST 1 ( zeros )
+94 LOAD_FAST 4 ( n )
+96 BINARY_SUBSCR
+98 LOAD_FAST 1 ( zeros )
+100 LOAD_FAST 3 ( i )
+102 BINARY_SUBSCR
+104 LOAD_METHOD 2 ( split )
+106 LOAD_CONST 7 ( ',' )
+108 CALL_METHOD 1
+110 BINARY_ADD
+112 STORE_FAST 1 ( zeros )
+
+9 114 LOAD_FAST 1 ( zeros )
+116 LOAD_FAST 2 ( zeros )
+118 LOAD_FAST 3 ( i )
+120 STORE_SUBSCR
+
+10 122 LOAD_FAST 1 ( zeros )
+124 LOAD_FAST 2 ( zeros )
+126 LOAD_FAST 3 ( i )
+128 BINARY_SUBSCR
+130 LOAD_FAST 1 ( zeros )
+132 BUILD_TUPLE 2
+134 RETURN_VALUE

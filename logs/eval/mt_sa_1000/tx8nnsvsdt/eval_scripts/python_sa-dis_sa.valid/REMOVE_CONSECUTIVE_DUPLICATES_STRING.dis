@@ -1,0 +1,63 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( S ) :\n    n = len ( S )\n    if ( n < 2 ) :\n        return\n    j = 0\n    for i in range ( n ) :\n        if ( S [ j ] != S [ i ] ) :\n            j += 1\n            S [ j ] = S [ i ]\n    j += 1\n    S = S [ : j ]\n    return S\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([' ', ' ', ' ', 'A', 'B', 'C', 'E', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'R', 'R', 'S', 'T', 'U', 'W', 'W', 'W', 'a', 'b', 'd', 'd', 'e', 'e', 'e', 'g', 'h', 'l', 'm', 'm', 'n', 'o', 'p', 'p', 'q', 't', 'u', 'u', 'u', 'w', 'w', 'x', 'y', 'z', 'z'],),\n    (['6', '9', '6', '7', '3', '3', '3', '1', '3', '1', '6', '0', '2', '5', '6', '6', '5', '1', '5', '5', '7', '7', '2', '8', '4', '2', '8', '0', '1', '1', '5', '4', '4', '3', '6', '0', '7', '7', '6', '1', '9', '6', '0', '8', '9', '1', '3', '8'],),\n    (['0', '0', '0'],),\n    (['f', 'V', 'u', 'B', 'i', 'f', 'j', 'Z', 'Q', 'r', ' ', 'H', 't', 'g', 'K', 'Y', 'O', 'r', 'c', 'm', 'D', 'c', 'g', 'W', 'm', 'F'],),\n    (['0', '0', '0', '1', '2', '2', '4', '5', '5', '5', '6', '6', '7', '7', '8', '8', '8'],),\n    (['1', '0', '1', '0', '1', '1', '0', '1', '1', '0', '1', '1', '0', '1', '0', '1', '1', '0', '1', '1', '1', '1', '0', '1', '0', '1'],),\n    ([' ', ' ', 'B', 'E', 'E', 'G', 'H', 'J', 'M', 'N', 'O', 'O', 'P', 'P', 'Q', 'S', 'U', 'W', 'Y', 'a', 'c', 'd', 'f', 'h', 'i', 'k', 'k', 'l', 'l', 'm', 'p', 'p', 'p', 's', 't', 'v', 'y', 'z', 'z'],),\n    (['8', '8', '6', '9', '8', '0', '6', '8', '0', '5', '4', '1', '2', '8', '7', '9', '2', '4', '8', '0', '6', '1', '9', '6', '4', '6', '7', '4', '4', '2', '6', '8', '1', '5', '8', '6', '6'],),\n    (['0', '0', '0', '0', '1'],),\n    ([' ', 'z', 'f', 'F', 'V', ' ', 'C', 'S', 'L', 'f', 'n', 'S', 's', 'd', 'N', 'A', 'r', 's', ' ', 'u', 'k', 'l', 'b', 'f', 'p', 'O', 't'],)\n        ]\n    filled_function_param = [\n    ([' ', ' ', ' ', 'A', 'B', 'C', 'E', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'R', 'R', 'S', 'T', 'U', 'W', 'W', 'W', 'a', 'b', 'd', 'd', 'e', 'e', 'e', 'g', 'h', 'l', 'm', 'm', 'n', 'o', 'p', 'p', 'q', 't', 'u', 'u', 'u', 'w', 'w', 'x', 'y', 'z', 'z'],),\n    (['6', '9', '6', '7', '3', '3', '3', '1', '3', '1', '6', '0', '2', '5', '6', '6', '5', '1', '5', '5', '7', '7', '2', '8', '4', '2', '8', '0', '1', '1', '5', '4', '4', '3', '6', '0', '7', '7', '6', '1', '9', '6', '0', '8', '9', '1', '3', '8'],),\n    (['0', '0', '0'],),\n    (['f', 'V', 'u', 'B', 'i', 'f', 'j', 'Z', 'Q', 'r', ' ', 'H', 't', 'g', 'K', 'Y', 'O', 'r', 'c', 'm', 'D', 'c', 'g', 'W', 'm', 'F'],),\n    (['0', '0', '0', '1', '2', '2', '4', '5', '5', '5', '6', '6', '7', '7', '8', '8', '8'],),\n    (['1', '0', '1', '0', '1', '1', '0', '1', '1', '0', '1', '1', '0', '1', '0', '1', '1', '0', '1', '1', '1', '1', '0', '1', '0', '1'],),\n    ([' ', ' ', 'B', 'E', 'E', 'G', 'H', 'J', 'M', 'N', 'O', 'O', 'P', 'P', 'Q', 'S', 'U', 'W', 'Y', 'a', 'c', 'd', 'f', 'h', 'i', 'k', 'k', 'l', 'l', 'm', 'p', 'p', 'p', 's', 't', 'v', 'y', 'z', 'z'],),\n    (['8', '8', '6', '9', '8', '0', '6', '8', '0', '5', '4', '1', '2', '8', '7', '9', '2', '4', '8', '0', '6', '1', '9', '6', '4', '6', '7', '4', '4', '2', '6', '8', '1', '5', '8', '6', '6'],),\n    (['0', '0', '0', '0', '1'],),\n    ([' ', 'z', 'f', 'F', 'V', ' ', 'C', 'S', 'L', 'f', 'n', 'S', 's', 'd', 'N', 'A', 'r', 's', ' ', 'u', 'k', 'l', 'b', 'f', 'p', 'O', 't'],)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def removeDuplicates ( S ) :\n    n = len ( S )\n    if ( n < 2 ) :\n        return\n    j = 0\n    for i in range ( n ) :\n        if ( S [ j ] != S [ i ] ) :\n            j += 1\n            S [ j ] = S [ i ]\n    j += 1\n    S = S [ : j ]\n    return S\n"}
+Disassembly of <code object removeDuplicates at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( S )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+3 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 1 ( 2 )
+12 COMPARE_OP 0 ( < )
+14 POP_JUMP_IF_FALSE 20
+
+4 16 LOAD_CONST 0 ( None )
+18 RETURN_VALUE
+
+5 >> 20 LOAD_CONST 2 ( 0 )
+22 STORE_FAST 2 ( j )
+
+6 24 SETUP_LOOP 54 ( to 82 )
+26 LOAD_GLOBAL 1 ( range )
+28 LOAD_FAST 1 ( n )
+30 CALL_FUNCTION 1
+32 GET_ITER
+>> 34 FOR_ITER 42 ( to 80 )
+36 STORE_FAST 3 ( i )
+
+7 38 LOAD_FAST 0 ( S )
+40 LOAD_FAST 2 ( j )
+42 BINARY_SUBSCR
+44 LOAD_FAST 0 ( S )
+46 LOAD_FAST 3 ( i )
+48 BINARY_SUBSCR
+50 COMPARE_OP 3 ( != )
+52 POP_JUMP_IF_FALSE 34
+
+8 54 LOAD_FAST 2 ( j )
+56 LOAD_CONST 3 ( 1 )
+58 INPLACE_ADD
+60 STORE_FAST 2 ( j )
+
+9 62 LOAD_FAST 0 ( S )
+64 LOAD_FAST 3 ( i )
+66 BINARY_SUBSCR
+68 LOAD_FAST 0 ( S )
+70 LOAD_FAST 2 ( j )
+72 STORE_SUBSCR
+74 JUMP_ABSOLUTE 34
+>> 76 POP_BLOCK
+
+10 >> 78 LOAD_FAST 2 ( j )
+80 LOAD_CONST 3 ( 1 )
+82 INPLACE_ADD
+84 STORE_FAST 2 ( j )
+
+11 86 LOAD_FAST 0 ( S )
+88 LOAD_CONST 0 ( None )
+90 LOAD_FAST 2 ( j )
+92 BUILD_SLICE 2
+94 BINARY_SUBSCR
+96 STORE_FAST 0 ( S )
+
+12 98 LOAD_FAST 0 ( S )
+100 RETURN_VALUE

@@ -1,0 +1,23 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    sm = - 1000000\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            for k in range ( j + 1 , n ) :\n                if ( sm < ( arr [ i ] + arr [ j ] + arr [ k ] ) ) :\n                    sm = arr [ i ] + arr [ j ] + arr [ k ]\n    return sm\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([6, 10, 14, 19, 24, 29, 42, 43, 44, 47, 47, 55, 57, 59, 60, 61, 76, 76, 77, 81, 84, 92, 92, 93, 95, 97],15,),\n    ([-98, 72, 52, -62, 74, -26, -82, -74, 90, 58, 94, -2, 76, -28, 12, 64, -94, 86, 56, 10, 40, 20, 92, -4, -80, 26, -40, 36, 66, -46, 4, -42, -76, 76, -90, -48, 22, 30, 48, 38, 78],28,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],22,),\n    ([96, 96, 38, 26, 2, 36, 15, 51, 78, 98, 94, 31, 62, 21, 7, 68, 37, 4],10,),\n    ([-8, 12, 68, 78, 78],4,),\n    ([0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],35,),\n    ([1, 15, 16, 17, 28, 28, 28, 30, 31, 37, 38, 38, 45, 45, 46, 46, 50, 51, 53, 53, 55, 55, 56, 58, 58, 64, 78, 82, 82, 85, 87, 89, 89, 90, 94, 95],29,),\n    ([-56, -72, -20, 88, 20, 86, 30, 36, -44, -66, -26, -88, 12, -76, 78, 62, 62, 68, -34, 0, -22, 64, 72, 56, -64, -16, -4, 86, 0, 98, -70, 98, -68, 92, -84, -56, 28, -74, 6, -10, -82, 36, -12, -26, 66, -60, -68, 70, 2],36,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],11,),\n    ([85, 31, 15, 68, 92, 89, 32, 56, 27, 70, 82, 58, 63, 83, 89, 95, 78, 9, 27, 34, 24, 42, 66, 6, 1, 71, 55, 23, 75, 26, 19, 58, 25],16,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxTripletSum ( arr , n ) :\n    sm = - 1000000\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            for k in range ( j + 1 , n ) :\n                if ( sm < ( arr [ i ] + arr [ j ] + arr [ k ] ) ) :\n                    sm = arr [ i ] + arr [ j ] + arr [ k ]\n    return sm\n"}
+Disassembly of <code object maxTripletSum at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 1000000 )
+2 STORE_FAST 1 ( n )
+
+27 4 SETUP_LOOP 30 ( to 34 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_FAST 1 ( n )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 14 ( to 32 )
+16 STORE_FAST 2 ( i )
+
+28 18 LOAD_FAST 0 ( arr )
+20 LOAD_METHOD 1 ( append )
+22 LOAD_FAST 2 ( i )
+24 CALL_METHOD 1
+26 POP_TOP
+28 JUMP_ABSOLUTE 14
+>> 30 POP_BLOCK
+>> 32 LOAD_CONST 2 ( None )
+34 RETURN_VALUE
+

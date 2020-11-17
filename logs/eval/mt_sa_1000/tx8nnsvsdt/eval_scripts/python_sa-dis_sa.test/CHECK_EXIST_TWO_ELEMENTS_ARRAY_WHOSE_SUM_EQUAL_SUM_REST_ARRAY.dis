@@ -1,0 +1,93 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    s = set ( )\n    sum = 0\n    for i in range ( n ) :\n        sum += arr [ i ]\n    if sum % 2 != 0 :\n        return False\n    sum = sum / 2\n    for i in range ( n ) :\n        val = sum - arr [ i ]\n        if arr [ i ] not in s :\n            s.add ( arr [ i ] )\n        if val in s :\n            print ( \"Pair elements are\" , arr [ i ] , \"and\" , int ( val ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 11, 5, 1, 4, 7],6,),\n    ([2, 4, 2, 1, 11, 15],6,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],13,),\n    ([69, 6, 24, 30, 75, 37, 61, 76, 19, 18, 90, 9, 49, 24, 58, 97, 18, 85, 24, 93, 71, 98, 92, 59, 75, 75, 75, 70, 35, 58, 50, 1, 64, 66, 33],18,),\n    ([-94, -94, -92, -74, -60, -58, -56, -44, -42, -40, -28, -14, 2, 4, 14, 20, 24, 28, 40, 42, 42, 66, 78, 78, 80, 82, 96],26,),\n    ([1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1],10,),\n    ([21, 26, 26, 27, 61, 62, 96],6,),\n    ([-54, 86, 20, 26],3,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],4,),\n    ([44, 35, 26, 15, 56, 6, 36, 53, 15, 66, 20, 53, 99, 96, 51, 12, 61, 19, 79, 40, 99, 42, 86, 8, 11, 54, 93, 46, 23, 47, 41, 26, 66, 5, 86, 52, 64, 51, 4, 21, 63, 14, 7, 53, 31, 8, 9, 63],31,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkPair ( arr , n ) :\n    s = set ( )\n    sum = 0\n    for i in range ( n ) :\n        sum += arr [ i ]\n    if sum % 2 != 0 :\n        return False\n    sum = sum / 2\n    for i in range ( n ) :\n        val = sum - arr [ i ]\n        if arr [ i ] not in s :\n            s.add ( arr [ i ] )\n        if val in s :\n            print ( \"Pair elements are\" , arr [ i ] , \"and\" , int ( val ) )\n"}
+Disassembly of <code object checkPair at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( set )
+2 CALL_FUNCTION 0
+4 STORE_FAST 2 ( s )
+
+3 6 LOAD_CONST 1 ( 0 )
+8 STORE_FAST 3 ( sum )
+
+4 10 SETUP_LOOP 28 ( to 42 )
+12 LOAD_GLOBAL 1 ( range )
+14 LOAD_FAST 1 ( n )
+16 CALL_FUNCTION 1
+18 GET_ITER
+>> 20 FOR_ITER 16 ( to 40 )
+22 STORE_FAST 4 ( i )
+
+5 24 LOAD_FAST 3 ( sum )
+26 LOAD_FAST 0 ( arr )
+28 LOAD_FAST 4 ( i )
+30 BINARY_SUBSCR
+32 INPLACE_ADD
+34 STORE_FAST 3 ( sum )
+36 JUMP_ABSOLUTE 20
+38 POP_BLOCK
+
+6 >> 40 LOAD_FAST 3 ( sum )
+42 LOAD_CONST 2 ( 2 )
+44 BINARY_TRUE_DIVIDE
+46 LOAD_CONST 1 ( 0 )
+48 COMPARE_OP 3 ( != )
+50 POP_JUMP_IF_FALSE 56
+
+7 52 LOAD_CONST 3 ( False )
+54 RETURN_VALUE
+
+8 >> 56 LOAD_FAST 3 ( sum )
+58 LOAD_CONST 2 ( 2 )
+60 BINARY_TRUE_DIVIDE
+62 STORE_FAST 3 ( sum )
+
+9 64 SETUP_LOOP 44 ( to 112 )
+66 LOAD_GLOBAL 1 ( range )
+68 LOAD_FAST 1 ( n )
+70 CALL_FUNCTION 1
+72 GET_ITER
+>> 74 FOR_ITER 32 ( to 110 )
+76 STORE_FAST 4 ( i )
+
+10 78 LOAD_FAST 3 ( sum )
+80 LOAD_FAST 0 ( arr )
+82 LOAD_FAST 4 ( i )
+84 BINARY_SUBSCR
+86 BINARY_SUBTRACT
+88 STORE_FAST 5 ( val )
+
+11 90 LOAD_FAST 0 ( arr )
+92 LOAD_FAST 4 ( i )
+94 BINARY_SUBSCR
+96 LOAD_FAST 2 ( s )
+98 COMPARE_OP 7 ( not in )
+100 POP_JUMP_IF_FALSE 74
+
+12 102 LOAD_FAST 2 ( s )
+104 LOAD_METHOD 2 ( add )
+106 LOAD_FAST 0 ( arr )
+108 LOAD_FAST 4 ( i )
+110 BINARY_SUBSCR
+112 CALL_METHOD 1
+114 POP_TOP
+116 JUMP_ABSOLUTE 74
+>> 118 POP_BLOCK
+
+13 >> 120 LOAD_FAST 5 ( val )
+122 LOAD_FAST 2 ( s )
+124 COMPARE_OP 6 ( in )
+126 POP_JUMP_IF_FALSE 20
+
+14 128 LOAD_GLOBAL 3 ( print )
+130 LOAD_CONST 4 ( 'Pair elements are' )
+132 LOAD_FAST 0 ( arr )
+134 LOAD_FAST 4 ( i )
+136 BINARY_SUBSCR
+138 LOAD_CONST 5 ( 'and' )
+140 LOAD_GLOBAL 4 ( int )
+142 LOAD_FAST 5 ( val )
+144 CALL_FUNCTION 1
+146 CALL_FUNCTION 4
+148 POP_TOP
+150 JUMP_ABSOLUTE 74
+>> 152 POP_BLOCK
+>> 154 LOAD_CONST 0 ( None )
+156 RETURN_VALUE

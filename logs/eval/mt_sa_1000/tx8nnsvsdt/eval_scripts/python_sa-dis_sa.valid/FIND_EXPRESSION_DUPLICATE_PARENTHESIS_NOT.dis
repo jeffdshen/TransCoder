@@ -1,0 +1,60 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( string ) :\n    Stack = [ ]\n    for ch in string :\n        if ch == ')' :\n            top = Stack.pop ( )\n            elementsInside = 0\n            while top != '(' :\n                elementsInside += 1\n                top = Stack.pop ( )\n            if elementsInside < 1 :\n                return True\n        else :\n            Stack.append ( ch )\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (\"((a+b)+((c+d)))\",),\n    (\"(((a+(b)))+(c+d))\",),\n    (\"(((a+(b))+c+d))\",),\n    (\"((a+b)+(c+d))\",),\n    (\"(8582007)\",),\n    (\"((a+(b))+(c+d))\",),\n    (\"(PylsShEdKAE)\",),\n    ('886980680541',),\n    ('001',),\n    ('jsVmFeOq',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findDuplicateparenthesis ( string ) :\n    Stack = [ ]\n    for ch in string :\n        if ch == ')' :\n            top = Stack.pop ( )\n            elementsInside = 0\n            while top != '(' :\n                elementsInside += 1\n                top = Stack.pop ( )\n            if elementsInside < 1 :\n                return True\n        else :\n            Stack.append ( ch )\n    return False\n"}
+Disassembly of <code object findDuplicateparenthesis at 0x7f2b01639f60, file "<dis>", line 1>:
+2 0 BUILD_LIST 0
+2 STORE_FAST 1 ( Stack )
+
+3 4 SETUP_LOOP 92 ( to 98 )
+6 LOAD_FAST 0 ( string )
+8 GET_ITER
+>> 10 FOR_ITER 84 ( to 96 )
+12 STORE_FAST 2 ( ch )
+
+4 14 LOAD_FAST 2 ( ch )
+16 LOAD_CONST 1 ( ')' )
+18 COMPARE_OP 2 ( == )
+20 POP_JUMP_IF_FALSE 96
+
+5 22 LOAD_FAST 1 ( Stack )
+24 LOAD_METHOD 0 ( pop )
+26 CALL_METHOD 0
+28 STORE_FAST 3 ( top )
+
+6 30 LOAD_CONST 2 ( 0 )
+32 STORE_FAST 4 ( elementsInside )
+
+7 34 SETUP_LOOP 30 ( to 74 )
+>> 36 LOAD_FAST 3 ( top )
+38 LOAD_CONST 3 ( '(' )
+40 COMPARE_OP 3 ( != )
+42 POP_JUMP_IF_FALSE 72
+
+8 44 LOAD_FAST 4 ( elementsInside )
+46 LOAD_CONST 4 ( 1 )
+48 INPLACE_ADD
+50 STORE_FAST 4 ( elementsInside )
+
+9 52 LOAD_FAST 1 ( Stack )
+54 LOAD_METHOD 0 ( pop )
+56 CALL_METHOD 0
+58 STORE_FAST 3 ( top )
+60 JUMP_ABSOLUTE 36
+>> 62 POP_BLOCK
+
+10 >> 64 LOAD_FAST 4 ( elementsInside )
+66 LOAD_CONST 4 ( 1 )
+68 COMPARE_OP 0 ( < )
+70 POP_JUMP_IF_FALSE 80
+
+11 72 LOAD_CONST 5 ( True )
+74 RETURN_VALUE
+
+13 >> 76 LOAD_FAST 1 ( Stack )
+78 LOAD_METHOD 1 ( append )
+80 LOAD_FAST 2 ( ch )
+82 CALL_METHOD 1
+84 POP_TOP
+86 JUMP_ABSOLUTE 10
+>> 88 POP_BLOCK
+
+14 >> 90 LOAD_CONST 6 ( False )
+92 RETURN_VALUE

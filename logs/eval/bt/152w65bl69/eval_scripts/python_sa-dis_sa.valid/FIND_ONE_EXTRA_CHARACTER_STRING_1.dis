@@ -1,0 +1,25 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( strA , strB ) :\n    res = 0\n    for i in range ( 0 , len ( strA ) ) :\n        res = res ^ ( ord ) ( strA [ i ] )\n    for i in range ( 0 , len ( strB ) ) :\n        res = res ^ ( ord ) ( strB [ i ] )\n    return ( ( chr ) ( res ) ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('obfLA mmMYvghH','obfLA  mmMYvghH',),\n    ('2941','2941',),\n    ('0111111','0111111',),\n    ('oWvbFstI','oWvbFstI',),\n    ('4937516500','4937516500',),\n    ('101110100','101110100',),\n    ('hYZscJQFBE','hYZscJQFBE',),\n    ('58443','58443',),\n    ('1100','1100',),\n    ('ZUdYuIBVNaeeb','ZUdYuIBVNaeeb',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findExtraCharcter ( strA , strB ) :\n    res = 0\n    for i in range ( 0 , len ( strA ) ) :\n        res = res ^ ( ord ) ( strA [ i ] )\n    for i in range ( 0 , len ( strB ) ) :\n        res = res ^ ( ord ) ( strB [ i ] )\n    return ( ( chr ) ( res ) ) ;\n"}
+Disassembly of <code object findExtraCharcter at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( strA )
+
+27 4 LOAD_GLOBAL 0 ( res )
+6 LOAD_METHOD 1 ( ord )
+8 LOAD_FAST 1 ( strA )
+10 CALL_METHOD 1
+12 STORE_FAST 2 ( strA )
+
+28 14 LOAD_FAST 0 ( strA )
+16 LOAD_METHOD 2 ( append )
+18 LOAD_FAST 2 ( strA )
+20 CALL_METHOD 1
+22 POP_TOP
+
+29 24 LOAD_FAST 0 ( strA )
+26 LOAD_METHOD 3 ( append )
+28 LOAD_FAST 1 ( strA )
+30 CALL_METHOD 1
+32 POP_TOP
+34 LOAD_CONST 0 ( None )
+36 RETURN_VALUE
+

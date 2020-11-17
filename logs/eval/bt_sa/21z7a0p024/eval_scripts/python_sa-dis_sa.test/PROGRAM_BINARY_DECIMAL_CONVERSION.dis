@@ -1,0 +1,48 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    num = n ;\n    dec_value = 0 ;\n    base = 1 ;\n    temp = num ;\n    while ( temp ) :\n        last_digit = temp % 10 ;\n        temp = int ( temp / 10 ) ;\n        dec_value += last_digit * base ;\n        base = base * 2 ;\n    return dec_value ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (70,),\n    (95,),\n    (41,),\n    (97,),\n    (8,),\n    (16,),\n    (41,),\n    (57,),\n    (81,),\n    (78,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def binaryToDecimal ( n ) :\n    num = n ;\n    dec_value = 0 ;\n    base = 1 ;\n    temp = num ;\n    while ( temp ) :\n        last_digit = temp % 10 ;\n        temp = int ( temp / 10 ) ;\n        dec_value += last_digit * base ;\n        base = base * 2 ;\n    return dec_value ;\n"}
+Disassembly of <code object binaryToDecimal at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 STORE_FAST 1 ( num )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 2 ( dec_value )
+
+4 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 3 ( base )
+
+5 12 LOAD_CONST 1 ( 0 )
+14 STORE_FAST 4 ( prev_digit )
+
+6 16 SETUP_LOOP 64 ( to 76 )
+18 LOAD_FAST 1 ( num )
+20 GET_ITER
+>> 22 FOR_ITER 64 ( to 74 )
+24 STORE_FAST 5 ( i )
+
+7 26 LOAD_FAST 2 ( dec_value )
+28 LOAD_FAST 5 ( i )
+30 COMPARE_OP 0 ( < )
+32 POP_JUMP_IF_FALSE 42
+
+8 34 LOAD_FAST 2 ( dec_value )
+36 LOAD_FAST 5 ( i )
+38 BINARY_SUBSCR
+40 STORE_FAST 6 ( dec_value )
+
+9 >> 42 LOAD_FAST 6 ( dec_value )
+44 LOAD_FAST 6 ( dec_value )
+46 COMPARE_OP 4 ( > )
+48 POP_JUMP_IF_FALSE 22
+
+10 50 LOAD_FAST 2 ( dec_value )
+52 LOAD_FAST 6 ( dec_value )
+54 INPLACE_ADD
+56 STORE_FAST 2 ( dec_value )
+58 JUMP_ABSOLUTE 22
+>> 60 POP_BLOCK
+
+11 >> 62 LOAD_FAST 2 ( dec_value )
+64 LOAD_FAST 3 ( base )
+66 LOAD_FAST 4 ( prev_digit )
+68 STORE_SUBSCR
+70 LOAD_CONST 0 ( None )
+72 RETURN_VALUE

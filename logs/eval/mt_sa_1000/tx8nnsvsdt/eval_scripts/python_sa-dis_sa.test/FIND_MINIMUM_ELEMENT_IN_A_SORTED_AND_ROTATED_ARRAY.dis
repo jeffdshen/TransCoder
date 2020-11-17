@@ -1,0 +1,99 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , low , high ) :\n    if high < low :\n        return arr [ 0 ]\n    if high == low :\n        return arr [ low ]\n    mid = int ( ( low + high ) / 2 )\n    if mid < high and arr [ mid + 1 ] < arr [ mid ] :\n        return arr [ mid + 1 ]\n    if mid > low and arr [ mid ] < arr [ mid - 1 ] :\n        return arr [ mid ]\n    if arr [ high ] > arr [ mid ] :\n        return f_gold ( arr , low , mid - 1 )\n    return f_gold ( arr , mid + 1 , high )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([16, 22, 50, 64, 68, 79, 84, 88, 89],4,6,),\n    ([88, -38, 46, 24, -52, -12, -90, 28, 18, 14, -72, 58, -98, 28, -84, 44, -42, -32, -22, -22, -82, -30, 90, 18, 62, 62, 92, 6, 60, 28, -90, 92, 82, 62, 98, -68, 48, -74, -8, 50, 62, 24, 30, -86, 98, -96, -98],42,31,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],28,21,),\n    ([26, 66, 94, 28, 38, 31, 92, 66, 81, 8, 36, 64, 80, 32, 48, 71, 72, 54, 61, 60, 89],19,17,),\n    ([-46, -26, -22, -14, 46, 62],4,4,),\n    ([0, 1, 1, 1],2,2,),\n    ([14, 81, 87],1,1,),\n    ([4],0,0,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],15,17,),\n    ([3, 41, 40, 53, 82, 9, 90, 43, 90, 59, 37, 21, 92, 98, 36, 99, 35, 67, 24, 29, 40, 31, 46, 12, 29, 8, 93, 67, 44, 83, 71, 29, 22, 32, 33, 11, 44, 97, 84, 44, 8, 10, 31, 50, 22, 8],42,31,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMin ( arr , low , high ) :\n    if high < low :\n        return arr [ 0 ]\n    if high == low :\n        return arr [ low ]\n    mid = int ( ( low + high ) / 2 )\n    if mid < high and arr [ mid + 1 ] < arr [ mid ] :\n        return arr [ mid + 1 ]\n    if mid > low and arr [ mid ] < arr [ mid - 1 ] :\n        return arr [ mid ]\n    if arr [ high ] > arr [ mid ] :\n        return findMin ( arr , low , mid - 1 )\n    return findMin ( arr , mid + 1 , high )\n"}
+Disassembly of <code object findMin at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 2 ( high )
+2 LOAD_FAST 1 ( low )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 16
+
+3 8 LOAD_FAST 0 ( arr )
+10 LOAD_CONST 1 ( 0 )
+12 BINARY_SUBSCR
+14 RETURN_VALUE
+
+4 >> 16 LOAD_FAST 2 ( high )
+18 LOAD_FAST 1 ( low )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 32
+
+5 24 LOAD_FAST 0 ( arr )
+26 LOAD_FAST 1 ( low )
+28 BINARY_SUBSCR
+30 RETURN_VALUE
+
+6 >> 32 LOAD_GLOBAL 0 ( int )
+34 LOAD_FAST 1 ( low )
+36 LOAD_FAST 2 ( high )
+38 BINARY_ADD
+40 LOAD_CONST 2 ( 2 )
+42 BINARY_TRUE_DIVIDE
+44 CALL_FUNCTION 1
+46 STORE_FAST 3 ( mid )
+
+7 48 LOAD_FAST 3 ( mid )
+50 LOAD_FAST 2 ( high )
+52 COMPARE_OP 0 ( < )
+54 POP_JUMP_IF_FALSE 80
+56 LOAD_FAST 0 ( arr )
+58 LOAD_FAST 3 ( mid )
+60 LOAD_CONST 3 ( 1 )
+62 BINARY_ADD
+64 BINARY_SUBSCR
+66 LOAD_FAST 0 ( arr )
+68 LOAD_FAST 3 ( mid )
+70 BINARY_SUBSCR
+72 COMPARE_OP 0 ( < )
+74 POP_JUMP_IF_FALSE 80
+
+8 76 LOAD_FAST 0 ( arr )
+78 LOAD_FAST 3 ( mid )
+80 LOAD_CONST 3 ( 1 )
+82 BINARY_ADD
+84 BINARY_SUBSCR
+86 RETURN_VALUE
+
+9 >> 88 LOAD_FAST 3 ( mid )
+90 LOAD_FAST 1 ( low )
+92 COMPARE_OP 4 ( > )
+94 POP_JUMP_IF_FALSE 116
+96 LOAD_FAST 0 ( arr )
+98 LOAD_FAST 3 ( mid )
+100 BINARY_SUBSCR
+102 LOAD_FAST 0 ( arr )
+104 LOAD_FAST 3 ( mid )
+106 LOAD_CONST 3 ( 1 )
+108 BINARY_SUBTRACT
+110 BINARY_SUBSCR
+112 COMPARE_OP 0 ( < )
+114 POP_JUMP_IF_FALSE 116
+
+10 >> 116 LOAD_FAST 0 ( arr )
+118 LOAD_FAST 3 ( mid )
+120 BINARY_SUBSCR
+122 RETURN_VALUE
+
+11 >> 124 LOAD_FAST 0 ( arr )
+126 LOAD_FAST 2 ( high )
+128 BINARY_SUBSCR
+130 LOAD_FAST 0 ( arr )
+132 LOAD_FAST 3 ( mid )
+134 BINARY_SUBSCR
+136 COMPARE_OP 4 ( > )
+138 POP_JUMP_IF_FALSE 148
+
+12 140 LOAD_GLOBAL 1 ( findMin )
+142 LOAD_FAST 0 ( arr )
+144 LOAD_FAST 1 ( low )
+146 LOAD_FAST 3 ( mid )
+148 LOAD_CONST 3 ( 1 )
+150 BINARY_SUBTRACT
+152 CALL_FUNCTION 3
+154 RETURN_VALUE
+
+13 >> 156 LOAD_GLOBAL 1 ( findMin )
+158 LOAD_FAST 0 ( arr )
+160 LOAD_FAST 3 ( mid )
+162 LOAD_CONST 3 ( 1 )
+164 BINARY_ADD
+166 LOAD_FAST 2 ( high )
+168 CALL_FUNCTION 3
+170 RETURN_VALUE

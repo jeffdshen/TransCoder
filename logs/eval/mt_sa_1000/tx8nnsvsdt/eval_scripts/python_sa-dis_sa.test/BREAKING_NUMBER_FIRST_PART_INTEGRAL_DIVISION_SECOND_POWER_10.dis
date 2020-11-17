@@ -1,0 +1,90 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( N ) :\n    length = len ( N )\n    l = int ( ( length ) / 2 )\n    count = 0\n    for i in range ( l + 1 ) :\n        s = N [ 0 : 0 + i ]\n        l1 = len ( s )\n        t = N [ i : l1 + i ]\n        try :\n            if s [ 0 ] == '0' or t [ 0 ] == '0' :\n                continue\n        except :\n            continue\n        if s == t :\n            count += 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('ZCoQhuM',),\n    ('2674377254',),\n    ('11',),\n    ('LbuGlvRyWAPBpo',),\n    ('26382426486138',),\n    ('111010111010',),\n    ('hUInqJXNdbfP',),\n    ('5191',),\n    ('1110101101',),\n    ('2202200',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def calculate ( N ) :\n    length = len ( N )\n    l = int ( ( length ) / 2 )\n    count = 0\n    for i in range ( l + 1 ) :\n        s = N [ 0 : 0 + i ]\n        l1 = len ( s )\n        t = N [ i : l1 + i ]\n        try :\n            if s [ 0 ] == '0' or t [ 0 ] == '0' :\n                continue\n        except :\n            continue\n        if s == t :\n            count += 1\n    return count\n"}
+Disassembly of <code object calculate at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( N )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( length )
+
+3 8 LOAD_GLOBAL 1 ( int )
+10 LOAD_FAST 1 ( length )
+12 LOAD_CONST 1 ( 2 )
+14 BINARY_TRUE_DIVIDE
+16 CALL_FUNCTION 1
+18 STORE_FAST 2 ( l )
+
+4 20 LOAD_CONST 2 ( 0 )
+22 STORE_FAST 3 ( count )
+
+5 24 SETUP_LOOP 104 ( to 128 )
+26 LOAD_GLOBAL 2 ( range )
+28 LOAD_FAST 2 ( l )
+30 LOAD_CONST 3 ( 1 )
+32 BINARY_ADD
+34 CALL_FUNCTION 1
+36 GET_ITER
+>> 38 FOR_ITER 88 ( to 126 )
+40 STORE_FAST 4 ( i )
+
+6 42 LOAD_FAST 0 ( N )
+44 LOAD_CONST 2 ( 0 )
+46 LOAD_CONST 2 ( 0 )
+48 LOAD_FAST 4 ( i )
+50 BINARY_ADD
+52 BUILD_SLICE 2
+54 BINARY_SUBSCR
+56 STORE_FAST 5 ( s )
+
+7 58 LOAD_GLOBAL 0 ( len )
+60 LOAD_FAST 5 ( s )
+62 CALL_FUNCTION 1
+64 STORE_FAST 6 ( l1 )
+
+8 66 LOAD_FAST 0 ( N )
+68 LOAD_FAST 4 ( i )
+70 LOAD_FAST 6 ( l1 )
+72 LOAD_FAST 4 ( i )
+74 BINARY_ADD
+76 BUILD_SLICE 2
+78 BINARY_SUBSCR
+80 STORE_FAST 7 ( t )
+
+9 82 SETUP_EXCEPT 44 ( to 112 )
+
+10 84 LOAD_FAST 5 ( s )
+86 LOAD_CONST 2 ( 0 )
+88 BINARY_SUBSCR
+90 LOAD_CONST 4 ( '0' )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_TRUE 110
+96 LOAD_FAST 7 ( t )
+98 LOAD_CONST 2 ( 0 )
+100 BINARY_SUBSCR
+102 LOAD_CONST 4 ( '0' )
+104 COMPARE_OP 2 ( == )
+106 POP_JUMP_IF_FALSE 110
+
+11 108 JUMP_ABSOLUTE 38
+
+12 >> 110 POP_BLOCK
+112 JUMP_FORWARD 12 ( to 126 )
+
+13 >> 114 POP_TOP
+116 POP_TOP
+118 POP_TOP
+
+14 120 POP_EXCEPT
+122 JUMP_FORWARD 2 ( to 126 )
+124 END_FINALLY
+
+15 >> 126 LOAD_FAST 5 ( s )
+128 LOAD_FAST 7 ( t )
+130 COMPARE_OP 2 ( == )
+132 POP_JUMP_IF_FALSE 38
+
+16 134 LOAD_FAST 3 ( count )
+136 LOAD_CONST 3 ( 1 )
+138 INPLACE_ADD
+140 STORE_FAST 3 ( count )
+
+17 >> 142 LOAD_FAST 3 ( count )
+144 RETURN_VALUE

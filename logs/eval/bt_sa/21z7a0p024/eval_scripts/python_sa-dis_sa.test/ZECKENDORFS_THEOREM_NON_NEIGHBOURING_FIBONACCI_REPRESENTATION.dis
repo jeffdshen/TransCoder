@@ -1,0 +1,100 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    if ( n == 0 or n == 1 ) :\n        return n\n    f1 , f2 , f3 = 0 , 1 , 1\n    while ( f3 <= n ) :\n        f1 = f2 ;\n        f2 = f3 ;\n        f3 = f1 + f2 ;\n    return f2 ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (54,),\n    (71,),\n    (64,),\n    (71,),\n    (96,),\n    (43,),\n    (70,),\n    (94,),\n    (95,),\n    (69,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def nearestSmallerEqFib ( n ) :\n    if ( n == 0 or n == 1 ) :\n        return n\n    f1 , f2 , f3 = 0 , 1 , 1\n    while ( f3 <= n ) :\n        f1 = f2 ;\n        f2 = f3 ;\n        f3 = f1 + f2 ;\n    return f2 ;\n"}
+Disassembly of <code object nearestSmallerEqFib at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 14
+
+3 8 LOAD_FAST 0 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+4 16 LOAD_FAST 0 ( n )
+18 LOAD_CONST 3 ( 0 )
+20 BINARY_SUBSCR
+22 RETURN_VALUE
+
+5 >> 24 LOAD_FAST 0 ( n )
+26 LOAD_CONST 4 ( 2 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 36
+
+6 32 LOAD_FAST 0 ( n )
+34 LOAD_CONST 3 ( 0 )
+36 BINARY_SUBSCR
+38 RETURN_VALUE
+
+8 >> 40 LOAD_FAST 0 ( n )
+42 LOAD_CONST 4 ( 2 )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 64
+
+9 48 LOAD_FAST 0 ( n )
+50 LOAD_CONST 5 ( 1 )
+52 BINARY_SUBSCR
+54 RETURN_VALUE
+
+10 >> 56 LOAD_FAST 0 ( n )
+58 LOAD_CONST 6 ( 3 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 64
+
+11 64 LOAD_FAST 0 ( n )
+66 LOAD_CONST 7 ( 4 )
+68 BINARY_SUBSCR
+70 RETURN_VALUE
+
+12 >> 72 LOAD_FAST 0 ( n )
+74 LOAD_CONST 3 ( 0 )
+76 BINARY_SUBSCR
+78 RETURN_VALUE
+
+13 >> 80 LOAD_FAST 0 ( n )
+82 LOAD_CONST 3 ( 0 )
+84 COMPARE_OP 2 ( == )
+86 POP_JUMP_IF_FALSE 92
+
+14 88 LOAD_FAST 0 ( n )
+90 LOAD_CONST 3 ( 0 )
+92 BINARY_SUBSCR
+94 RETURN_VALUE
+
+15 >> 96 LOAD_FAST 0 ( n )
+98 LOAD_CONST 3 ( 0 )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 114
+104 LOAD_FAST 0 ( n )
+106 LOAD_CONST 3 ( 0 )
+108 BINARY_SUBSCR
+110 RETURN_VALUE
+
+16 >> 112 LOAD_FAST 0 ( n )
+114 LOAD_CONST 3 ( 0 )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 128
+
+17 120 LOAD_FAST 0 ( n )
+122 LOAD_CONST 3 ( 0 )
+124 BINARY_SUBSCR
+126 RETURN_VALUE
+
+18 >> 128 LOAD_FAST 0 ( n )
+130 LOAD_CONST 3 ( 0 )
+132 COMPARE_OP 2 ( == )
+134 POP_JUMP_IF_FALSE 128
+
+19 136 LOAD_FAST 0 ( n )
+138 LOAD_CONST 3 ( 0 )
+140 BINARY_SUBSCR
+142 RETURN_VALUE
+
+19 >> 144 LOAD_FAST 0 ( n )
+146 LOAD_CONST 3 ( 0 )
+148 BINARY_SUBSCR
+150 RETURN_VALUE
+
+20 >> 152 LOAD_FAST 0 ( n )
+154 LOAD_CONST 4 ( 2 )
+156 COMPARE_OP 2 ( == )
+158

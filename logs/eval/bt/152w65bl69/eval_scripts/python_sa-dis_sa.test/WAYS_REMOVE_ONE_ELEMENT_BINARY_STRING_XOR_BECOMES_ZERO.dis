@@ -1,0 +1,88 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    one_count = 0\n    zero_count = 0\n    n = len ( str )\n    for i in range ( 0 , n , 1 ) :\n        if ( str [ i ] == '1' ) :\n            one_count += 1\n        else :\n            zero_count += 1\n    if ( one_count % 2 == 0 ) :\n        return zero_count\n    return one_count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('KfcTJNP',),\n    ('05312505872',),\n    ('100111',),\n    ('tDEEhKxrQ',),\n    ('50824233019',),\n    ('10001110010',),\n    ('T SEZaNm MYQ',),\n    ('838415739',),\n    ('01110100',),\n    ('WYQiAey H',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def xorZero ( str ) :\n    one_count = 0\n    zero_count = 0\n    n = len ( str )\n    for i in range ( 0 , n , 1 ) :\n        if ( str [ i ] == '1' ) :\n            one_count += 1\n        else :\n            zero_count += 1\n    if ( one_count % 2 == 0 ) :\n        return zero_count\n    return one_count\n"}
+Disassembly of <code object xorZero at 0x7f816a673a50, file "<dis>", line 16>:
+17 0 LOAD_FAST 1 ( one_count )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 2 ( new_count )
+
+18 8 LOAD_FAST 2 ( new_count )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 3 ( new_count )
+
+19 16 LOAD_FAST 2 ( new_count )
+18 LOAD_CONST 3 ( 1 )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+20 24 LOAD_FAST 2 ( new_count )
+26 LOAD_CONST 4 ( 1 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 44
+
+21 32 LOAD_FAST 2 ( new_count )
+34 LOAD_CONST 5 ( 1 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+40 LOAD_FAST 2 ( new_count )
+42 LOAD_CONST 6 ( 2 )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 44
+
+22 48 LOAD_FAST 2 ( new_count )
+50 LOAD_CONST 7 ( 1 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 44
+
+23 56 LOAD_FAST 2 ( new_count )
+58 LOAD_CONST 8 ( 2 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 44
+
+24 64 LOAD_FAST 2 ( new_count )
+66 LOAD_CONST 9 ( 1 )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 80
+72 LOAD_FAST 2 ( new_count )
+74 LOAD_CONST 10 ( 2 )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 80
+
+25 80 LOAD_FAST 2 ( new_count )
+82 LOAD_CONST 11 ( 1 )
+84 INPLACE_ADD
+86 STORE_FAST 2 ( new_count )
+
+26 >> 88 LOAD_FAST 2 ( new_count )
+90 LOAD_CONST 12 ( 2 )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 102
+
+27 96 LOAD_FAST 2 ( new_count )
+98 LOAD_CONST 13 ( 1 )
+100 INPLACE_ADD
+102 STORE_FAST 2 ( new_count )
+
+28 104 LOAD_FAST 2 ( new_count )
+106 LOAD_CONST 14 ( 2 )
+108 COMPARE_OP 2 ( == )
+110 POP_JUMP_IF_FALSE 106
+
+29 112 LOAD_FAST 2 ( new_count )
+114 LOAD_CONST 15 ( 1 )
+116 INPLACE_ADD
+118 STORE_FAST 2 ( new_count )
+
+30 >> 120 LOAD_FAST 2 ( new_count )
+122 LOAD_CONST 16 ( 2 )
+124 INPLACE_ADD
+126 STORE_FAST 2 ( new_count )
+128 JUMP_FORWARD 2 ( to 108 )
+
+31 >> 130 LOAD_FAST 2 ( new_count )
+132 LOAD_CONST 17 ( 1 )
+134 INPLACE_ADD
+136 STORE_FAST 2 2 ( new_count )
+
+32 >> 138 LOAD_FAST 2 ( new_count )
+140 RETURN_VALUE

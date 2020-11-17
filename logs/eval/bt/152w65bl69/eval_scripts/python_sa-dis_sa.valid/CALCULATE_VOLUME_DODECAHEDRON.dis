@@ -1,0 +1,44 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( side ) :\n    return ( ( ( 15 + ( 7 * ( math.sqrt ( 5 ) ) ) ) / 4 ) * ( math.pow ( side , 3 ) ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (56,),\n    (73,),\n    (22,),\n    (10,),\n    (84,),\n    (20,),\n    (51,),\n    (91,),\n    (10,),\n    (83,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def vol_of_dodecahedron ( side ) :\n    return ( ( ( 15 + ( 7 * ( math.sqrt ( 5 ) ) ) ) / 4 ) * ( math.pow ( side , 3 ) ) )\n"}
+Disassembly of <code object vol_of_dodecaron at 0x7f816a601660, file "<dis>", line 166>:
+167 0 LOAD_CONST 1 ( ( 15 + 7 ) * math . pow ( 5 ) )
+2 LOAD_CONST 2 ( ( 3 , 3 ) )
+4 COMPARE_OP 4 ( > )
+6 POP_JUMP_IF_FALSE 20
+
+168 8 LOAD_CONST 3 ( '%s(%s)' )
+10 LOAD_FAST 0 ( side )
+12 BINARY_MODULO
+14 STORE_FAST 1 ( s )
+
+169 16 LOAD_FAST 1 ( s )
+18 LOAD_CONST 4 ( '%s(%s)' )
+20 LOAD_FAST 0 ( side )
+22 BINARY_MODULO
+24 STORE_FAST 1 ( s )
+
+170 26 LOAD_FAST 1 ( s )
+28 LOAD_CONST 5 ( '%s(%s)' )
+30 LOAD_FAST 0 ( side )
+32 BINARY_MODULO
+34 LOAD_CONST 6 ( '%s(%s)' )
+36 LOAD_FAST 0 ( side )
+38 BINARY_MODULO
+40 BINARY_MODULO
+42 STORE_FAST 1 ( s )
+
+171 44 LOAD_FAST 1 ( s )
+46 LOAD_CONST 7 ( '%s(%s)' )
+48 LOAD_FAST 0 ( side )
+50 BINARY_MODULO
+52 STORE_FAST 1 ( s )
+
+172 54 LOAD_FAST 1 ( s )
+56 LOAD_CONST 8 ( '%s(%s)' )
+58 LOAD_FAST 0 ( side )
+60 BINARY_MODULO
+62 LOAD_FAST 1 ( s )
+64 BINARY_MODULO
+66 BUILD_TUPLE 2
+68 BINARY_MODULO
+70 RETURN_VALUE
+

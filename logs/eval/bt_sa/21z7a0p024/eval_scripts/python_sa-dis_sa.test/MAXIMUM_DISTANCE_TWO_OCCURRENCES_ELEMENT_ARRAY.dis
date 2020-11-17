@@ -1,0 +1,65 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    mp = { }\n    maxDict = 0\n    for i in range ( n ) :\n        if arr [ i ] not in mp.keys ( ) :\n            mp [ arr [ i ] ] = i\n        else :\n            maxDict = max ( maxDict , i - mp [ arr [ i ] ] )\n    return maxDict\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 20, 25, 28, 29, 31, 34, 35, 38, 39, 41, 43, 46, 55, 56, 60, 65, 66, 74, 77, 79, 80, 81, 83, 84, 88, 88, 88, 90, 91, 99],27,),\n    ([26, 14, 56, 84, -56, -84, -98, 12, -78, 18, -42, 58, 46, -66, -46, 66, 98, 34, -16, 8, -20, 66, 74, 26, 42, -84, 38, 86, 14, 86, 26, -42, -30, 6, -54, -76, -66, 18, 58, 66, 74, -62, 8, -42, 62, -14, -90, 98, -24],34,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],11,),\n    ([69, 87],1,),\n    ([-98, -88, -86, -62, -52, -26, -24, -20, -12, 6, 8, 26, 36, 40, 42, 54, 68, 72, 84, 92, 94, 98, 98],12,),\n    ([1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0],29,),\n    ([11, 16, 17, 19, 20, 21, 21, 22, 27, 37, 45, 49, 64, 77, 81, 85, 96],9,),\n    ([-20, 0, 18, -96],2,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],22,),\n    ([54, 5, 98, 71, 9, 34, 60, 28, 58, 66, 28, 45, 4],10,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxDistance ( arr , n ) :\n    mp = { }\n    maxDict = 0\n    for i in range ( n ) :\n        if arr [ i ] not in mp.keys ( ) :\n            mp [ arr [ i ] ] = i\n        else :\n            maxDict = max ( maxDict , i - mp [ arr [ i ] ] )\n    return maxDict\n"}
+Disassembly of <code object maxDistance at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 BUILD_MAP 0
+2 STORE_FAST 2 ( mp )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 3 ( mp )
+
+4 8 SETUP_LOOP 64 ( to 76 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_FAST 1 ( n )
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 64 ( to 74 )
+20 STORE_FAST 4 ( i )
+
+5 22 LOAD_FAST 0 ( arr )
+24 LOAD_FAST 4 ( i )
+26 BINARY_SUBSCR
+28 LOAD_FAST 1 ( n )
+30 COMPARE_OP 7 ( not in )
+32 POP_JUMP_IF_FALSE 42
+
+6 34 LOAD_FAST 2 ( mp )
+36 LOAD_METHOD 1 ( append )
+38 LOAD_FAST 4 ( i )
+40 CALL_METHOD 1
+42 POP_TOP
+44 JUMP_ABSOLUTE 18
+
+8 >> 46 LOAD_FAST 2 ( mp )
+48 LOAD_METHOD 1 ( append )
+50 LOAD_FAST 4 ( i )
+52 CALL_METHOD 1
+54 POP_TOP
+
+9 56 LOAD_FAST 2 ( mp )
+58 LOAD_METHOD 1 ( append )
+60 LOAD_FAST 4 ( i )
+62 CALL_METHOD 1
+64 POP_TOP
+66 JUMP_ABSOLUTE 18
+>> 68 POP_BLOCK
+
+10 >> 70 LOAD_FAST 2 ( mp )
+72 LOAD_METHOD 1 ( append )
+74 LOAD_FAST 3 ( mp )
+76 LOAD_METHOD 2 ( keys )
+78 CALL_METHOD 0
+80 CALL_METHOD 1
+82 POP_TOP
+84 JUMP_ABSOLUTE 18
+>> 86 POP_BLOCK
+
+11 >> 88 LOAD_FAST 2 ( mp )
+90 LOAD_METHOD 1 ( append )
+92 LOAD_FAST 3 ( mp )
+94 LOAD_METHOD 2 ( keys )
+96 CALL_METHOD 0
+98 CALL_METHOD 1
+100 POP_TOP
+102 JUMP_ABSOLUTE 18
+>> 104 POP_BLOCK
+>> 106 LOAD_CONST 0 ( None )
+108 RETURN_VALUE

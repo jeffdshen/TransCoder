@@ -1,0 +1,53 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    if ( n < 0 ) :\n        return 0 ;\n    if ( n <= 1 ) :\n        return 1 ;\n    digits = 0 ;\n    for i in range ( 2 , n + 1 ) :\n        digits += math.log10 ( i ) ;\n    return math.floor ( digits ) + 1 ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (66,),\n    (7,),\n    (55,),\n    (37,),\n    (76,),\n    (16,),\n    (17,),\n    (95,),\n    (71,),\n    (90,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findDigits ( n ) :\n    if ( n < 0 ) :\n        return 0 ;\n    if ( n <= 1 ) :\n        return 1 ;\n    digits = 0 ;\n    for i in range ( 2 , n + 1 ) :\n        digits += math.log10 ( i ) ;\n    return math.floor ( digits ) + 1 ;\n"}
+Disassembly of <code object findDigits at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 1 ( 0 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_FAST 0 ( n )
+14 LOAD_CONST 2 ( 1 )
+16 COMPARE_OP 1 ( <= )
+18 POP_JUMP_IF_FALSE 24
+
+5 20 LOAD_CONST 2 ( 1 )
+22 RETURN_VALUE
+
+6 >> 24 LOAD_CONST 1 ( 0 )
+26 STORE_FAST 1 ( digits )
+
+7 28 SETUP_LOOP 42 ( to 78 )
+30 LOAD_GLOBAL 0 ( range )
+32 LOAD_CONST 3 ( 2 )
+34 LOAD_FAST 0 ( n )
+36 LOAD_CONST 2 ( 1 )
+38 BINARY_ADD
+40 CALL_FUNCTION 2
+42 GET_ITER
+>> 44 FOR_ITER 24 ( to 76 )
+46 STORE_FAST 2 ( i )
+
+8 48 LOAD_FAST 1 ( digits )
+50 LOAD_GLOBAL 1 ( math )
+52 LOAD_METHOD 2 ( log10 )
+54 LOAD_FAST 2 ( i )
+56 CALL_METHOD 1
+58 INPLACE_ADD
+60 STORE_FAST 1 ( digits )
+62 JUMP_ABSOLUTE 44
+64 POP_BLOCK
+66 LOAD_CONST 0 ( None )
+>> 68 WITH_CLEANUP_START
+70 WITH_CLEANUP_FINISH
+72 END_FINALLY
+
+9 74 LOAD_GLOBAL 1 ( math )
+76 LOAD_METHOD 3 ( floor )
+78 LOAD_FAST 1 ( digits )
+80 CALL_METHOD 1
+82 LOAD_CONST 2 ( 1 )
+84 BINARY_ADD
+86 RETURN_VALUE

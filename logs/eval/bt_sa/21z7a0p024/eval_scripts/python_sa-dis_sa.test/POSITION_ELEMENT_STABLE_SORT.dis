@@ -1,0 +1,60 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , idx ) :\n    result = 0\n    for i in range ( n ) :\n        if ( arr [ i ] < arr [ idx ] ) :\n            result += 1\n        if ( arr [ i ] == arr [ idx ] and i < idx ) :\n            result += 1\n    return result ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 8, 9, 12, 15, 16, 18, 28, 28, 31, 33, 36, 36, 37, 40, 41, 44, 44, 46, 50, 50, 50, 52, 52, 54, 55, 60, 61, 65, 68, 71, 75, 75, 78, 81, 84, 87, 89, 90, 92, 94, 97, 97, 98, 98, 99],37,32,),\n    ([-16, 86, 94, -86, -38, 64, 96, -64, 94, 10, -10, -62, -50, -46, -62, -32, -4, 72, 14, 36, 74, -66, 46, 82, -44, -22, -26, 16, -8, 0, -90, 94, -50, 22, -82, 8, 92, -84, -34, -36, -66],31,27,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],30,34,),\n    ([66, 8, 30, 84, 36, 96, 45, 63, 23, 23, 14, 34, 86, 51, 18, 97, 21, 39, 96, 70, 28, 96, 78, 68, 88, 66, 13, 24, 74, 94],26,21,),\n    ([-94, -90, -86, -86, -72, -72, -58, -50, -32, -22, -18, -10, -4, -2, -2, 0, 0, 6, 14, 22, 22, 36, 36, 40, 44, 58, 60, 70, 70, 76, 82, 82, 84, 88, 96],17,31,),\n    ([1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],30,36,),\n    ([3, 5, 6, 7, 8, 10, 17, 20, 20, 26, 27, 27, 27, 32, 32, 38, 40, 44, 45, 45, 45, 45, 47, 50, 57, 57, 57, 58, 62, 63, 63, 67, 68, 73, 75, 76, 77, 79, 79, 80, 85, 88, 89, 89, 89, 94, 96, 98],42,35,),\n    ([98, -92, 18, -18, 44, -88, -90, -66, -38, 78, -22, -46, -20, 64, -10, 54],14,12,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,31,),\n    ([14, 17],1,1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def getIndexInSortedArray ( arr , n , idx ) :\n    result = 0\n    for i in range ( n ) :\n        if ( arr [ i ] < arr [ idx ] ) :\n            result += 1\n        if ( arr [ i ] == arr [ idx ] and i < idx ) :\n            result += 1\n    return result ;\n"}
+Disassembly of <code object getIndexInSortedArray at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( result )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 3 ( result )
+
+4 8 SETUP_LOOP 64 ( to 76 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_FAST 1 ( n )
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 64 ( to 74 )
+20 STORE_FAST 4 ( i )
+
+5 22 LOAD_FAST 2 ( result )
+24 LOAD_FAST 4 ( i )
+26 BINARY_SUBSCR
+28 LOAD_FAST 0 ( arr )
+30 COMPARE_OP 0 ( < )
+32 POP_JUMP_IF_FALSE 42
+
+6 34 LOAD_FAST 2 ( result )
+36 LOAD_FAST 4 ( i )
+38 BINARY_SUBSCR
+40 LOAD_FAST 0 ( arr )
+42 COMPARE_OP 4 ( > )
+44 POP_JUMP_IF_FALSE 18
+
+7 46 LOAD_FAST 2 ( result )
+48 LOAD_FAST 4 ( i )
+50 BINARY_SUBSCR
+52 LOAD_FAST 0 ( arr )
+54 COMPARE_OP 4 ( > )
+56 POP_JUMP_IF_FALSE 18
+
+8 58 LOAD_FAST 2 ( result )
+60 LOAD_FAST 4 ( i )
+62 BINARY_SUBSCR
+64 LOAD_FAST 0 ( arr )
+66 LOAD_FAST 4 ( i )
+68 BINARY_SUBSCR
+70 INPLACE_ADD
+72 STORE_FAST 2 ( result )
+
+9 74 LOAD_FAST 2 ( result )
+76 LOAD_FAST 4 ( i )
+78 BINARY_SUBSCR
+80 LOAD_FAST 0 ( arr )
+82 LOAD_FAST 4 ( i )
+84 STORE_SUBSCR
+
+10 86 LOAD_FAST 2 ( result )
+88 RETURN_VALUE
+>> 90 JUMP_ABSOLUTE 18
+>> 92 POP_BLOCK
+
+11 >> 94 LOAD_FAST 2 ( result )
+96 RETURN_VALUE

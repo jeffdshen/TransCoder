@@ -1,0 +1,67 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    n = len ( str )\n    res = - 1\n    for i in range ( 0 , n - 1 ) :\n        for j in range ( i + 1 , n ) :\n            if ( str [ i ] == str [ j ] ) :\n                res = max ( res , abs ( j - i - 1 ) )\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('cI',),\n    ('76478',),\n    ('1',),\n    ('tr',),\n    ('10',),\n    ('01',),\n    ('Rmhzp',),\n    ('5784080133917',),\n    ('1100',),\n    ('OK',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maximumChars ( str ) :\n    n = len ( str )\n    res = - 1\n    for i in range ( 0 , n - 1 ) :\n        for j in range ( i + 1 , n ) :\n            if ( str [ i ] == str [ j ] ) :\n                res = max ( res , abs ( j - i - 1 ) )\n    return res\n"}
+Disassembly of <code object maximumChars at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( str )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+3 8 LOAD_CONST 1 ( - 1 )
+10 STORE_FAST 2 ( res )
+
+4 12 SETUP_LOOP 74 ( to 92 )
+14 LOAD_GLOBAL 1 ( range )
+16 LOAD_CONST 2 ( 0 )
+18 LOAD_FAST 1 ( n )
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 74 ( to 90 )
+26 STORE_FAST 3 ( j )
+
+5 28 SETUP_LOOP 48 ( to 88 )
+30 LOAD_GLOBAL 1 ( range )
+32 LOAD_CONST 2 ( 0 )
+34 LOAD_FAST 1 ( n )
+36 CALL_FUNCTION 2
+38 GET_ITER
+>> 40 FOR_ITER 40 ( to 86 )
+42 STORE_FAST 4 ( j )
+
+6 44 LOAD_FAST 0 ( str )
+46 LOAD_FAST 4 ( j )
+48 BINARY_SUBSCR
+50 LOAD_FAST 2 ( res )
+52 LOAD_FAST 3 ( j )
+54 BINARY_SUBSCR
+56 LOAD_FAST 2 ( res )
+58 LOAD_FAST 3 ( j )
+60 STORE_SUBSCR
+
+7 62 LOAD_FAST 0 ( str )
+64 LOAD_FAST 4 ( j )
+66 BINARY_SUBSCR
+68 LOAD_FAST 2 ( res )
+70 LOAD_FAST 3 ( j )
+72 STORE_SUBSCR
+
+8 74 LOAD_FAST 0 ( str )
+76 LOAD_FAST 4 ( j )
+78 BINARY_SUBSCR
+80 LOAD_FAST 2 ( res )
+82 LOAD_FAST 3 ( j )
+84 STORE_SUBSCR
+
+9 86 LOAD_FAST 0 ( str )
+88 LOAD_FAST 4 ( j )
+90 BINARY_SUBSCR
+92 LOAD_FAST 2 ( res )
+94 LOAD_FAST 3 ( j )
+96 STORE_SUBSCR
+98 JUMP_ABSOLUTE 24
+>> 100 POP_BLOCK
+>> 102 JUMP_ABSOLUTE 24
+>> 104 POP_BLOCK
+>> 106 JUMP_ABSOLUTE 24
+>> 108 POP_BLOCK
+
+10 >> 110 LOAD_FAST 2 ( res )
+112 RETURN_VALUE

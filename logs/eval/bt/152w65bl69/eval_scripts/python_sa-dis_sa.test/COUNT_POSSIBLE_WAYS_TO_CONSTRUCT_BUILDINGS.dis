@@ -1,0 +1,72 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( N ) :\n    if ( N == 1 ) :\n        return 4\n    countB = 1\n    countS = 1\n    for i in range ( 2 , N + 1 ) :\n        prev_countB = countB\n        prev_countS = countS\n        countS = prev_countB + prev_countS\n        countB = prev_countS\n    result = countS + countB\n    return ( result * result )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (17,),\n    (66,),\n    (53,),\n    (97,),\n    (34,),\n    (54,),\n    (9,),\n    (99,),\n    (59,),\n    (87,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countWays ( N ) :\n    if ( N == 1 ) :\n        return 4\n    countB = 1\n    countS = 1\n    for i in range ( 2 , N + 1 ) :\n        prev_countB = countB\n        prev_countS = countS\n        countS = prev_countB + prev_countS\n        countB = prev_countS\n    result = countS + countB\n    return ( result * result )\n"}
+Disassembly of <code object countWays at 0x7f816a673a50, file "<dis>", line 19>:
+20 0 LOAD_FAST 0 ( N )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+21 8 LOAD_CONST 2 ( '%s' )
+10 LOAD_FAST 0 ( N )
+12 BINARY_MODULO
+14 STORE_FAST 1 ( s )
+
+22 >> 16 LOAD_FAST 1 ( s )
+18 LOAD_CONST 3 ( '%s' )
+20 LOAD_FAST 0 ( N )
+22 BINARY_MODULO
+24 STORE_FAST 1 ( s )
+
+23 26 LOAD_FAST 1 ( s )
+28 LOAD_CONST 3 ( '%s' )
+30 LOAD_FAST 0 ( N )
+32 BINARY_MODULO
+34 STORE_FAST 1 ( s )
+
+24 36 LOAD_FAST 1 ( s )
+38 LOAD_CONST 4 ( '%s' )
+40 LOAD_FAST 0 ( N )
+42 BINARY_MODULO
+44 STORE_FAST 1 ( s )
+
+25 46 LOAD_FAST 1 ( s )
+48 LOAD_CONST 5 ( '%s' )
+50 LOAD_FAST 0 ( N )
+52 BINARY_MODULO
+54 STORE_FAST 1 ( s )
+
+26 56 LOAD_FAST 1 ( s )
+58 LOAD_CONST 6 ( '%s' )
+60 LOAD_FAST 0 ( N )
+62 BINARY_MODULO
+64 STORE_FAST 1 ( s )
+
+27 66 LOAD_FAST 1 ( s )
+68 LOAD_CONST 7 ( '%s' )
+70 LOAD_FAST 0 ( N )
+72 BINARY_MODULO
+74 LOAD_FAST 1 ( s )
+76 BINARY_MODULO
+78 STORE_FAST 1 ( s )
+
+28 80 LOAD_FAST 1 ( s )
+82 LOAD_FAST 0 ( N )
+84 BINARY_MODULO
+86 STORE_FAST 1 ( s )
+
+29 88 LOAD_FAST 1 ( s )
+90 LOAD_FAST 0 ( N )
+92 BINARY_MODULO
+94 STORE_FAST 1 ( s )
+
+30 96 LOAD_FAST 1 ( s )
+98 LOAD_FAST 0 ( N )
+100 BINARY_MODULO
+102 STORE_FAST 1 ( s )
+
+31 104 LOAD_FAST 1 ( s )
+106 LOAD_FAST 0 ( N )
+108 LOAD_FAST 1 ( s )
+110 BUILD_TUPLE 2
+112 BINARY_MODULO
+114 RETURN_VALUE
+

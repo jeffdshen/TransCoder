@@ -1,0 +1,62 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    tmp = str + str\n    n = len ( str )\n    for i in range ( 1 , n + 1 ) :\n        substring = tmp [ i : i + n ]\n        if ( str == substring ) :\n            return i\n    return n\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('vdevdNdQSopPtj',),\n    ('5',),\n    ('100010101011',),\n    ('tlDOvJHAyMllu',),\n    ('06',),\n    ('101',),\n    ('DYgtU',),\n    ('4',),\n    ('00',),\n    ('Dt',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findRotations ( str ) :\n    tmp = str + str\n    n = len ( str )\n    for i in range ( 1 , n + 1 ) :\n        substring = tmp [ i : n ]\n        if ( str == substring ) :\n            return i\n    return n\n"}
+Disassembly of <code object findRotations at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( str )
+2 LOAD_FAST 1 ( n )
+4 BINARY_ADD
+6 STORE_FAST 2 ( tmp )
+
+3 8 LOAD_GLOBAL 0 ( len )
+10 LOAD_FAST 2 ( tmp )
+12 CALL_FUNCTION 1
+14 LOAD_CONST 1 ( 1 )
+16 BINARY_ADD
+18 STORE_FAST 3 ( substring )
+
+4 20 SETUP_LOOP 64 ( to 92 )
+22 LOAD_GLOBAL 1 ( range )
+24 LOAD_CONST 2 ( 1 )
+26 LOAD_FAST 1 ( n )
+28 CALL_FUNCTION 2
+30 GET_ITER
+>> 32 FOR_ITER 64 ( to 90 )
+34 STORE_FAST 4 ( i )
+
+5 36 LOAD_FAST 2 ( tmp )
+38 LOAD_FAST 4 ( i )
+40 BINARY_SUBSCR
+42 STORE_FAST 5 ( substring )
+
+6 44 LOAD_FAST 2 ( tmp )
+46 LOAD_FAST 5 ( substring )
+48 COMPARE_OP 6 ( in )
+50 POP_JUMP_IF_FALSE 32
+
+7 52 LOAD_FAST 2 ( tmp )
+54 LOAD_FAST 5 ( substring )
+56 COMPARE_OP 6 ( in )
+58 POP_JUMP_IF_FALSE 32
+
+8 60 LOAD_FAST 2 ( tmp )
+62 LOAD_FAST 5 ( substring )
+64 COMPARE_OP 6 ( in )
+66 POP_JUMP_IF_FALSE 32
+
+9 68 LOAD_FAST 2 ( tmp )
+70 LOAD_FAST 5 ( substring )
+72 COMPARE_OP 6 ( in )
+74 POP_JUMP_IF_FALSE 32
+
+10 76 LOAD_FAST 2 ( tmp )
+78 LOAD_FAST 5 ( substring )
+80 COMPARE_OP 6 ( in )
+82 POP_JUMP_IF_FALSE 32
+
+11 84 LOAD_FAST 2 ( tmp )
+86 LOAD_FAST 5 ( substring )
+88 INPLACE_ADD
+90 STORE_FAST 2 ( tmp )
+92 JUMP_ABSOLUTE 32
+>> 94 POP_BLOCK
+
+12 >> 96 LOAD_FAST 2 ( tmp )
+98 RETURN_VALUE

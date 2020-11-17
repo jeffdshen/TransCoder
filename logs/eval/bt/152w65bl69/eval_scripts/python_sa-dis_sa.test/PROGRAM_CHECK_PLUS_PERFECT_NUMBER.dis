@@ -1,0 +1,93 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( x ) :\n    temp = x\n    n = 0\n    while ( x != 0 ) :\n        x = x // 10\n        n = n + 1\n    x = temp\n    sm = 0\n    while ( x != 0 ) :\n        sm = sm + ( int ) ( math.pow ( x % 10 , n ) )\n        x = x // 10\n    return ( sm == temp )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (371,),\n    (9474,),\n    (85,),\n    (35,),\n    (54,),\n    (17,),\n    (97,),\n    (63,),\n    (12,),\n    (43,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def checkplusperfect ( x ) :\n    temp = x\n    n = 0\n    while ( x != 0 ) :\n        x = x // 10\n        n = n + 1\n    x = temp\n    sm = 0\n    while ( x != 0 ) :\n        sm = sm + ( int ) ( math.pow ( x % 10 , n ) )\n        x = x // 10\n    return ( sm == temp )\n"}
+Disassembly of <code object checkplusperfect at 0x7f816a673a50, file "<dis>", line 16>:
+17 0 LOAD_FAST 0 ( x )
+2 LOAD_CONST 1 ( 10 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 12
+
+18 8 LOAD_FAST 0 ( x )
+10 LOAD_CONST 2 ( 0 )
+12 COMPARE_OP 4 ( > )
+14 POP_JUMP_IF_FALSE 28
+
+19 16 LOAD_FAST 0 ( x )
+18 LOAD_CONST 3 ( 1 )
+20 COMPARE_OP 4 ( > )
+22 POP_JUMP_IF_FALSE 28
+
+20 >> 24 LOAD_FAST 0 ( x )
+26 LOAD_CONST 4 ( 0 )
+28 COMPARE_OP 4 ( > )
+30 POP_JUMP_IF_FALSE 44
+
+21 32 LOAD_FAST 0 ( x )
+34 LOAD_CONST 5 ( 1 )
+36 COMPARE_OP 4 ( > )
+38 POP_JUMP_IF_FALSE 44
+
+22 40 LOAD_FAST 0 ( x )
+42 LOAD_CONST 6 ( 0 )
+44 COMPARE_OP 4 ( > )
+46 POP_JUMP_IF_FALSE 44
+
+23 48 LOAD_FAST 0 ( x )
+50 LOAD_CONST 7 ( 0 )
+52 COMPARE_OP 4 ( > )
+54 POP_JUMP_IF_FALSE 44
+
+24 56 LOAD_FAST 0 ( x )
+58 LOAD_CONST 8 ( 0 )
+60 COMPARE_OP 4 ( > )
+62 POP_JUMP_IF_FALSE 44
+
+25 64 LOAD_FAST 0 ( x )
+66 LOAD_CONST 9 ( 1 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 44
+
+26 >> 72 LOAD_FAST 0 ( x )
+74 LOAD_CONST 10 ( 0 )
+76 COMPARE_OP 4 ( > )
+78 POP_JUMP_IF_FALSE 90
+
+27 80 LOAD_FAST 0 ( x )
+82 LOAD_CONST 11 ( 1 )
+84 INPLACE_ADD
+86 STORE_FAST 0 ( x )
+
+28 >> 88 LOAD_FAST 0 ( x )
+90 LOAD_CONST 12 ( 0 )
+92 COMPARE_OP 4 ( > )
+94 POP_JUMP_IF_FALSE 92
+
+29 96 LOAD_FAST 0 ( x )
+98 LOAD_CONST 12 ( 0 )
+100 COMPARE_OP 4 ( > )
+102 POP_JUMP_IF_FALSE 94
+
+30 104 LOAD_FAST 0 ( x )
+106 LOAD_CONST 13 ( 1 )
+108 INPLACE_ADD
+110 STORE_FAST 0 ( x )
+
+31 >> 112 LOAD_FAST 0 ( x )
+114 LOAD_CONST 6 ( 0 )
+116 COMPARE_OP 4 ( > )
+118 POP_JUMP_IF_FALSE 120
+
+32 120 LOAD_FAST 0 ( x )
+122 LOAD_CONST 6 ( 0 )
+124 COMPARE_OP 4 ( > )
+126 POP_JUMP_IF_FALSE 128
+
+33 128 LOAD_FAST 0 ( x )
+130 LOAD_CONST 6 ( 0 )
+132 COMPARE_OP 4 ( > )
+134 POP_JUMP_IF_FALSE 130
+
+34 136 LOAD_FAST 0 ( x )
+138 LOAD_CONST 6 ( 0 )
+140 COMPARE_OP 4 ( > )
+142 POP_JUMP_IF_FALSE 130
+
+35 144 LOAD_FAST 0 ( x )

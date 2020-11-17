@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , k ) :\n    count = 0\n    arr.sort ( )\n    l = 0\n    r = 0\n    while r < n :\n        if arr [ r ] - arr [ l ] == k :\n            count += 1\n            l += 1\n            r += 1\n        elif arr [ r ] - arr [ l ] > k :\n            l += 1\n        else :\n            r += 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([5, 5, 10, 19, 29, 32, 40, 60, 65, 70, 72, 89, 92],7,12,),\n    ([-38, 40, 8, 64, -38, 56, 4, 8, 84, 60, -48, -78, -82, -88, -30, 58, -58, 62, -52, -98, 24, 22, 14, 68, -74, 48, -56, -72, -90, 26, -10, 58, 40, 36, -80, 68, 58, -74, -46, -62, -12, 74, -58],24,36,),\n    ([0, 0, 1],1,1,),\n    ([16, 80, 59, 29, 14, 44, 13, 76, 7, 65, 62, 1, 34, 49, 70, 96, 73, 71, 42, 73, 66, 96],12,16,),\n    ([-98, -88, -58, -56, -48, -34, -22, -18, -14, -14, -8, -4, -2, 2, 18, 38, 42, 46, 54, 68, 70, 90, 94, 96, 98],23,22,),\n    ([0, 1, 1],2,1,),\n    ([11, 43, 50, 58, 60, 68, 75],4,4,),\n    ([86, 94, -80, 0, 52, -56, 42, 88, -10, 24, 6, 8],11,9,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],29,30,),\n    ([54, 99, 4, 14, 9, 34, 81, 36, 80, 50, 34, 9, 7],9,8,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPairsWithDiffK ( arr , n , k ) :\n    count = 0\n    arr.sort ( )\n    l = 0\n    r = 0\n    while r < n :\n        if arr [ r ] - arr [ l ] == k :\n            count += 1\n            l += 1\n            r += 1\n        elif arr [ r ] - arr [ l ] > k :\n            l += 1\n        else :\n            r += 1\n    return count\n"}
+Disassembly of <code object countPairsWithDiffK at 0x7f816a673a50, file "<dis>", line 163>:
+164 0 LOAD_FAST 0 ( arr )
+2 LOAD_METHOD 0 ( sort )
+4 CALL_METHOD 0
+6 STORE_FAST 1 ( n )
+
+165 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 1 ( 0 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( n )
+
+166 16 LOAD_FAST 2 ( n )
+18 LOAD_CONST 1 ( 0 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( n )
+
+167 24 LOAD_FAST 3 ( n )
+26 LOAD_CONST 2 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 3 ( 1 )
+32 BINARY_SUBSCR
+34 STORE_FAST 4 ( n )
+
+168 36 LOAD_FAST 0 ( arr )
+38 LOAD_CONST 4 ( 1 )
+40 BINARY_SUBSCR
+42 STORE_FAST 5 ( n )
+
+169 44 LOAD_FAST 5 ( n )
+46 LOAD_CONST 2 ( 1 )
+48 BINARY_SUBSCR
+50 LOAD_CONST 5 ( 1 )
+52 BINARY_SUBSCR
+54 LOAD_CONST 6 ( 2 )
+56 BINARY_SUBSCR
+58 LOAD_CONST 7 ( 3 )
+60 COMPARE_OP 4 ( > )
+62 POP_JUMP_IF_FALSE 66
+
+170 64 LOAD_FAST 5 ( n )
+66 LOAD_CONST 2 ( 1 )
+68 BINARY_SUBSCR
+70 LOAD_CONST 8 ( 2 )
+72 COMPARE_OP 4 ( > )
+74 POP_JUMP_IF_FALSE 80
+
+171 76 LOAD_FAST 5 ( n )
+78 LOAD_CONST 9 ( 1 )
+80 BINARY_SUBSCR
+82 LOAD_CONST 10 ( 2 )
+84 BINARY_SUBSCR
+86 STORE_FAST 6 ( n )
+
+172 >> 88 LOAD_FAST 5 ( n )
+90 LOAD_CONST 2 ( 1 )
+92 BINARY_SUBSCR
+94 LOAD_CONST 11 ( 2 )
+96 BINARY_SUBSCR
+98 STORE_FAST 7 ( n )
+
+173 100 LOAD_FAST 7 ( n )
+102 LOAD_CONST 2 ( 1 )
+104 BINARY_SUBSCR
+106 STORE_FAST 8 ( n )
+
+174 108 LOAD_FAST 0 ( arr )
+110 LOAD_CONST 2 ( 1 )
+112 BINARY_SUBSCR
+114 STORE_FAST 9 ( n )
+
+175 116 LOAD_FAST 0 ( arr )
+118 LOAD_CONST 2 ( 1 )
+120 BINARY_SUBSCR
+122 LOAD_CONST 3 ( 1 )
+124 BINARY_SUBSCR
+126 STORE_FAST 10 ( n )
+
+176 128 LOAD_FAST 0 ( arr )
+130 LOAD_CONST 2 ( 1 )
+132 BINARY_SUBSCR
+134 LOAD_FAST 8 ( n )
+136 LOAD_CONST 2 ( 1 )
+138 BINARY_SUBSCR
+140 LOAD_FAST 9 ( n )
+142 LOAD_CONST 3 ( 1 )
+144 BINARY_SUBSCR
+146 LOAD_FAST 10 ( n )
+148 LOAD_CONST 2 ( 1 )
+150 BINARY_SUBSCR
+152 LOAD_FAST 10 ( n )
+154 LOAD_CONST 3 ( 1 )
+156 BINARY_SUBSCR
+158 LOAD_FAST 10 ( n )
+160 LOAD_CONST 2 ( 1 )

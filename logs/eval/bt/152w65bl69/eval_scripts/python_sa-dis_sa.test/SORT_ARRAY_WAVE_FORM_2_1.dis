@@ -1,0 +1,28 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    for i in range ( 0 , n , 2 ) :\n        if ( i > 0 and arr [ i ] < arr [ i - 1 ] ) :\n            arr [ i ] , arr [ i - 1 ] = arr [ i - 1 ] , arr [ i ]\n        if ( i < n - 1 and arr [ i ] < arr [ i + 1 ] ) :\n            arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([78, 81],1,),\n    ([-44, -6, -7, -16, -15, 89, -78, -65, -84, -50, 22, 28, 13, 71, -83, -20, 86, 30, 32, -15, 67, -6, 34, -19, -31],16,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],15,),\n    ([97, 18, 71, 65, 97, 1, 88, 4, 4, 82, 27, 43, 59, 32, 33, 28, 55, 60, 70, 62, 80, 34, 87, 88, 56, 13, 56, 18, 54, 77, 43, 39, 61, 42, 81, 79, 18, 23, 54, 30, 98, 58, 68, 67, 71, 18],32,),\n    ([-60, -51, -48, -32, -30, 14, 93],5,),\n    ([0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0],22,),\n    ([1, 14, 17, 18, 19, 22, 22, 29, 30, 30, 31, 35, 37, 38, 41, 42, 44, 52, 56, 56, 57, 62, 65, 67, 70, 75, 79, 84, 85, 87, 89, 93, 93, 98, 98],17,),\n    ([-79],0,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,),\n    ([44, 53, 71, 79, 34, 46, 68],4,)\n        ]\n    filled_function_param = [\n    ([78, 81],1,),\n    ([-44, -6, -7, -16, -15, 89, -78, -65, -84, -50, 22, 28, 13, 71, -83, -20, 86, 30, 32, -15, 67, -6, 34, -19, -31],16,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],15,),\n    ([97, 18, 71, 65, 97, 1, 88, 4, 4, 82, 27, 43, 59, 32, 33, 28, 55, 60, 70, 62, 80, 34, 87, 88, 56, 13, 56, 18, 54, 77, 43, 39, 61, 42, 81, 79, 18, 23, 54, 30, 98, 58, 68, 67, 71, 18],32,),\n    ([-60, -51, -48, -32, -30, 14, 93],5,),\n    ([0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0],22,),\n    ([1, 14, 17, 18, 19, 22, 22, 29, 30, 30, 31, 35, 37, 38, 41, 42, 44, 52, 56, 56, 57, 62, 65, 67, 70, 75, 79, 84, 85, 87, 89, 93, 93, 98, 98],17,),\n    ([-79],0,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,),\n    ([44, 53, 71, 79, 34, 46, 68],4,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def sortInWave ( arr , n ) :\n    for i in range ( 0 , n , 2 ) :\n        if ( i > 0 and arr [ i ] < arr [ i - 1 ] ) :\n            arr [ i ] , arr [ i - 1 ] = arr [ i - 1 ] , arr [ i ]\n        if ( i < n - 1 and arr [ i ] < arr [ i + 1 ] ) :\n            arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i ]\n"}
+Disassembly of <code object sortInWave at 0x7f816a673a50, file "<dis>", line 163>:
+164 0 SETUP_LOOP 22 ( to 24 )
+2 LOAD_FAST 0 ( arr )
+4 GET_ITER
+>> 6 FOR_ITER 14 ( to 22 )
+8 STORE_FAST 1 ( n )
+
+165 10 LOAD_FAST 1 ( n )
+12 LOAD_CONST 1 ( 0 )
+14 COMPARE_OP 4 ( > )
+16 POP_JUMP_IF_FALSE 6
+
+166 18 LOAD_FAST 1 ( n )
+20 LOAD_CONST 2 ( 1 )
+22 INPLACE_ADD
+24 STORE_FAST 1 ( n )
+
+167 26 LOAD_FAST 1 ( n )
+28 LOAD_CONST 3 ( 1 )
+30 INPLACE_ADD
+32 STORE_FAST 1 ( n )
+34 JUMP_ABSOLUTE 6
+>> 36 POP_BLOCK
+
+168 >> 38 LOAD_FAST 1 ( n )
+40 RETURN_VALUE
+

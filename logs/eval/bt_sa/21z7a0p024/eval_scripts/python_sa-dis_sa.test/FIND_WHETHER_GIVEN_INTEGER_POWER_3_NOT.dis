@@ -1,0 +1,6 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    return 1162261467 % n == 0\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1,),\n    (3,),\n    (27,),\n    (9,),\n    (-9,),\n    (11,),\n    (57,),\n    (21,),\n    (60,),\n    (44,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def check ( n ) :\n    return 1162261467 % n == 0\n"}
+Disassembly of <code object check at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( 1161161467 )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 RETURN_VALUE

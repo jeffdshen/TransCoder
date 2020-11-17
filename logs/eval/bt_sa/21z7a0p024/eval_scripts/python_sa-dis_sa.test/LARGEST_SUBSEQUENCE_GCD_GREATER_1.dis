@@ -1,0 +1,50 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    ans = 0\n    maxele = max ( arr )\n    for i in range ( 2 , maxele + 1 ) :\n        count = 0\n        for j in range ( n ) :\n            if ( arr [ j ] % i == 0 ) :\n                count += 1\n        ans = max ( ans , count )\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([10, 18, 22, 22, 22, 29, 30, 32, 33, 34, 37, 39, 40, 41, 44, 47, 49, 50, 50, 51, 53, 67, 69, 70, 71, 71, 73, 75, 78, 80, 81, 82, 91, 91, 93, 97, 97, 99],35,),\n    ([-42, 62, 6, 98, 38, -4, -38, 72, 42, 4, -22, -94, 78, -90, 14],10,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],23,),\n    ([89, 92, 96, 71, 24, 27, 18, 19, 41, 1, 45, 8],7,),\n    ([-98, -94, -92, -90, -82, -80, -76, -76, -72, -62, -60, -58, -56, -52, -42, -36, -32, -32, -24, -22, -20, -10, -10, -10, -8, -2, -2, 0, 2, 4, 6, 6, 8, 10, 14, 18, 22, 26, 30, 46, 46, 62, 68, 74, 78, 82, 86, 86],40,),\n    ([1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],41,),\n    ([4, 8, 10, 10, 11, 17, 18, 25, 32, 33, 34, 37, 40, 41, 44, 47, 47, 52, 63, 77, 85, 87, 89, 89, 91, 95, 96, 98],23,),\n    ([-86, 52, -48, 70, 10, -94, 16, 14, 38, 62],9,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],30,),\n    ([95, 32, 87, 37, 86, 71, 30, 88, 96, 52, 88, 92, 79, 86, 19, 5, 74, 67],13,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def largestGCDSubsequence ( arr , n ) :\n    ans = 0\n    maxele = max ( arr )\n    for i in range ( 2 , maxele + 1 ) :\n        count = 0\n        for j in range ( n ) :\n            if ( arr [ j ] % i == 0 ) :\n                count += 1\n        ans = max ( ans , count )\n    return ans\n"}
+Disassembly of <code object largestGSubsequence at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( ans )
+
+3 4 LOAD_GLOBAL 0 ( max )
+6 LOAD_FAST 0 ( arr )
+8 CALL_FUNCTION 1
+10 STORE_FAST 3 ( ans )
+
+4 12 SETUP_LOOP 76 ( to 92 )
+14 LOAD_GLOBAL 1 ( range )
+16 LOAD_CONST 2 ( 2 )
+18 LOAD_FAST 1 ( maxele )
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 74 ( to 90 )
+26 STORE_FAST 4 ( i )
+
+5 28 LOAD_FAST 3 ( ans )
+30 LOAD_FAST 4 ( i )
+32 BINARY_SUBSCR
+34 STORE_FAST 5 ( ans )
+
+6 36 LOAD_FAST 5 ( ans )
+38 LOAD_FAST 4 ( i )
+40 BINARY_SUBSCR
+42 STORE_FAST 6 ( ans )
+
+7 44 LOAD_FAST 5 ( ans )
+46 LOAD_FAST 6 ( ans )
+48 BINARY_SUBSCR
+50 STORE_FAST 7 ( ans )
+
+8 52 LOAD_FAST 5 ( ans )
+54 LOAD_FAST 6 ( ans )
+56 BINARY_SUBSCR
+58 LOAD_FAST 7 ( ans )
+60 LOAD_FAST 6 ( ans )
+62 STORE_SUBSCR
+
+9 64 LOAD_FAST 5 ( ans )
+66 LOAD_FAST 6 ( ans )
+68 LOAD_FAST 7 ( ans )
+70 STORE_SUBSCR
+72 JUMP_ABSOLUTE 24
+>> 74 POP_BLOCK
+
+10 >> 76 LOAD_FAST 2 ( ans )
+78 RETURN_VALUE

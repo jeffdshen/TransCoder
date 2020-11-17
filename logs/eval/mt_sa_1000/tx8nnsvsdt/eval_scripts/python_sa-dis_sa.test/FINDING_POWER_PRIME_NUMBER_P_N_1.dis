@@ -1,0 +1,32 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , p ) :\n    ans = 0\n    temp = p\n    while ( temp <= n ) :\n        ans += n / temp\n        temp = temp * p\n    return int ( ans )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (76,43,),\n    (77,91,),\n    (9,42,),\n    (59,67,),\n    (8,52,),\n    (97,8,),\n    (78,24,),\n    (41,88,),\n    (72,61,),\n    (71,28,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def PowerOFPINnfactorial ( n , p ) :\n    ans = 0\n    temp = p\n    while ( temp <= n ) :\n        ans += n / temp\n        temp = temp * p\n    return int ( ans )\n"}
+Disassembly of <code object PowerOFPINnfactorial at 0x7f2b01639f60, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( ans )
+
+3 4 LOAD_FAST 1 ( p )
+6 STORE_FAST 3 ( temp )
+
+4 8 SETUP_LOOP 30 ( to 38 )
+>> 10 LOAD_FAST 3 ( temp )
+12 LOAD_FAST 0 ( n )
+14 COMPARE_OP 1 ( <= )
+16 POP_JUMP_IF_FALSE 36
+
+5 18 LOAD_FAST 2 ( ans )
+20 LOAD_FAST 0 ( n )
+22 LOAD_FAST 3 ( temp )
+24 BINARY_TRUE_DIVIDE
+26 INPLACE_ADD
+28 STORE_FAST 2 ( ans )
+
+6 30 LOAD_FAST 3 ( temp )
+32 LOAD_FAST 1 ( p )
+34 BINARY_MULTIPLY
+36 STORE_FAST 3 ( temp )
+38 JUMP_ABSOLUTE 10
+>> 40 POP_BLOCK
+
+7 >> 42 LOAD_GLOBAL 0 ( int )
+44 LOAD_FAST 2 ( ans )
+46 CALL_FUNCTION 1
+48 RETURN_VALUE

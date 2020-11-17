@@ -1,0 +1,89 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , c ) :\n    if a > b :\n        if ( b > c ) :\n            return b\n        elif ( a > c ) :\n            return c\n        else :\n            return a\n    else :\n        if ( a > c ) :\n            return a\n        elif ( b > c ) :\n            return c\n        else :\n            return b\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (43,24,7,),\n    (76,54,66,),\n    (57,5,40,),\n    (10,13,4,),\n    (59,47,56,),\n    (92,14,50,),\n    (49,62,65,),\n    (16,95,12,),\n    (33,41,90,),\n    (66,63,46,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def middleOfThree ( a , b , c ) :\n    if a > b :\n        if ( b > c ) :\n            return b\n        elif ( a > c ) :\n            return c\n        else :\n            return a\n    else :\n        if ( a > c ) :\n            return a\n        elif ( b > c ) :\n            return c\n        else :\n            return b\n"}
+Disassembly of <code object middleOfThree at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_FAST 1 ( b )
+2 LOAD_CONST 1 ( '' )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+66 8 LOAD_FAST 1 ( b )
+10 LOAD_CONST 2 ( '' )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+67 16 LOAD_FAST 1 ( b )
+18 LOAD_CONST 3 ( '' )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+68 >> 24 LOAD_FAST 1 ( b )
+26 LOAD_CONST 4 ( '' )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 28
+
+69 32 LOAD_FAST 1 ( b )
+34 LOAD_CONST 5 ( '' )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 42
+
+70 40 LOAD_FAST 1 ( b )
+42 LOAD_CONST 6 ( '' )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 50
+
+71 48 LOAD_FAST 1 ( b )
+50 LOAD_CONST 7 ( '' )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 50
+
+72 56 LOAD_FAST 1 ( b )
+58 LOAD_CONST 8 ( '' )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 50
+
+73 64 LOAD_FAST 1 ( b )
+66 LOAD_CONST 9 ( '' )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 50
+
+74 72 LOAD_FAST 1 ( b )
+74 LOAD_CONST 10 ( '' )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 80
+
+75 80 LOAD_FAST 1 ( b )
+82 LOAD_CONST 11 ( '' )
+84 COMPARE_OP 2 ( == )
+86 POP_JUMP_IF_FALSE 80
+
+76 88 LOAD_FAST 1 ( b )
+90 LOAD_CONST 12 ( '' )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 98
+
+77 96 LOAD_FAST 1 ( b )
+98 LOAD_CONST 13 ( '' )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 106
+
+78 104 LOAD_FAST 1 ( b )
+106 LOAD_CONST 14 ( '' )
+108 COMPARE_OP 2 ( == )
+110 POP_JUMP_IF_FALSE 106
+
+79 112 LOAD_FAST 1 ( b )
+114 114 LOAD_CONST 15 ( '' )
+116 JUMP_FORWARD 2 ( to 110 )
+>> 112 LOAD_CONST 16 ( '' )
+>> 114 STORE_FAST 1 ( b )
+
+80 >> 116 LOAD_FAST 1 ( b )
+118 LOAD_CONST 15 ( '' )
+120 COMPARE_OP 2 ( == )
+122 POP_JUMP_IF_FALSE 126
+
+81 124 LOAD_FAST 1 ( b )
+126 LOAD_CONST 15 ( '' )
+128 COMPARE_OP 2 ( == )
+130 POP_JUMP_IF_FALSE 130
+
+82 132 LOAD_FAST 1

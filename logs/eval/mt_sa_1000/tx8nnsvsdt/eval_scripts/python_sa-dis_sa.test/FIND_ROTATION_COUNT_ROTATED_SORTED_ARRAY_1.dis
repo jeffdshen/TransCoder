@@ -1,0 +1,96 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , low , high ) :\n    if ( high < low ) :\n        return 0\n    if ( high == low ) :\n        return low\n    mid = low + ( high - low ) / 2 ;\n    mid = int ( mid )\n    if ( mid < high and arr [ mid + 1 ] < arr [ mid ] ) :\n        return ( mid + 1 )\n    if ( mid > low and arr [ mid ] < arr [ mid - 1 ] ) :\n        return mid\n    if ( arr [ high ] > arr [ mid ] ) :\n        return f_gold ( arr , low , mid - 1 ) ;\n    return f_gold ( arr , mid + 1 , high )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 16, 38, 39, 48, 74, 79],6,6,),\n    ([-46, 72, 72, -66, 96, 92, 40, 8, 94, -84, 6, -90, 38, -6, 48, -20, -86, -76, 88, -50, -44, -14, 54, -6, -2, 72, 8, -64, -46, 44, -88, 50, 86, 38, 42, -56],32,21,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],16,29,),\n    ([48, 74, 59, 57, 95, 11, 25, 61, 46, 54, 34, 84, 7, 97, 62, 57, 99, 93, 76, 5, 76, 93, 35, 84, 37, 60, 65, 16, 30, 73, 42, 61, 74, 77, 48, 62, 84, 93, 64, 57, 68, 46, 28, 77],24,26,),\n    ([-72, -68, -66, -66, -62, -62, -52, -48, -42, -42, -42, -38, -30, -22, -20, -20, -16, -16, -14, 0, 2, 2, 2, 4, 12, 20, 22, 26, 32, 34, 46, 46, 64, 64, 64, 66, 68, 68, 68, 74, 80, 84, 84, 88, 88, 90, 96, 98],29,43,),\n    ([1],0,0,),\n    ([7, 11, 20, 21, 22, 27, 30, 30, 34, 35, 36, 37, 38, 60, 61, 63, 63, 69, 70, 75, 80, 84, 88, 97],23,22,),\n    ([-2, 70, -40],2,1,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],30,17,),\n    ([71, 71, 27, 10, 97, 43, 55, 71, 6, 6, 77, 48, 77, 2, 83, 51, 61, 19, 2, 51, 26, 70, 20, 23, 54, 15, 6, 92, 35, 75, 8, 57, 50, 49, 88, 21, 36],24,22,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countRotations ( arr , low , high ) :\n    if ( high < low ) :\n        return 0\n    if ( high == low ) :\n        return low\n    mid = low + ( high - low ) / 2 ;\n    mid = int ( mid )\n    if ( mid < high and arr [ mid + 1 ] < arr [ mid ] ) :\n        return ( mid + 1 )\n    if ( mid > low and arr [ mid ] < arr [ mid - 1 ] ) :\n        return mid\n    if ( arr [ high ] > arr [ mid ] ) :\n        return countRotations ( arr , low , mid - 1 ) ;\n    return countRotations ( arr , mid + 1 , high )\n"}
+Disassembly of <code object countRotations at 0x7f2b01639f60, file "<dis>", line 1>:
+2 0 LOAD_FAST 2 ( high )
+2 LOAD_FAST 1 ( low )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 1 ( 0 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_FAST 2 ( high )
+14 LOAD_FAST 1 ( low )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 24
+
+5 20 LOAD_FAST 1 ( low )
+22 RETURN_VALUE
+
+6 >> 24 LOAD_FAST 1 ( low )
+26 LOAD_FAST 2 ( high )
+28 LOAD_FAST 1 ( low )
+30 BINARY_SUBTRACT
+32 LOAD_CONST 2 ( 2 )
+34 BINARY_TRUE_DIVIDE
+36 BINARY_ADD
+38 STORE_FAST 3 ( mid )
+
+7 40 LOAD_GLOBAL 0 ( int )
+42 LOAD_FAST 3 ( mid )
+44 CALL_FUNCTION 1
+46 STORE_FAST 3 ( mid )
+
+8 48 LOAD_FAST 3 ( mid )
+50 LOAD_FAST 2 ( high )
+52 COMPARE_OP 0 ( < )
+54 POP_JUMP_IF_FALSE 80
+56 LOAD_FAST 0 ( arr )
+58 LOAD_FAST 3 ( mid )
+60 LOAD_CONST 3 ( 1 )
+62 BINARY_ADD
+64 BINARY_SUBSCR
+66 LOAD_FAST 0 ( arr )
+68 LOAD_FAST 3 ( mid )
+70 BINARY_SUBSCR
+72 COMPARE_OP 0 ( < )
+74 POP_JUMP_IF_FALSE 80
+
+9 76 LOAD_FAST 3 ( mid )
+78 LOAD_CONST 3 ( 1 )
+80 BINARY_ADD
+82 RETURN_VALUE
+
+10 >> 84 LOAD_FAST 3 ( mid )
+86 LOAD_FAST 1 ( low )
+88 COMPARE_OP 4 ( > )
+90 POP_JUMP_IF_FALSE 106
+92 LOAD_FAST 0 ( arr )
+94 LOAD_FAST 3 ( mid )
+96 BINARY_SUBSCR
+98 LOAD_FAST 0 ( arr )
+100 LOAD_FAST 3 ( mid )
+102 LOAD_CONST 3 ( 1 )
+104 BINARY_SUBTRACT
+106 BINARY_SUBSCR
+108 COMPARE_OP 0 ( < )
+110 POP_JUMP_IF_FALSE 106
+
+11 112 LOAD_FAST 3 ( mid )
+114 RETURN_VALUE
+
+12 >> 116 LOAD_FAST 0 ( arr )
+118 LOAD_FAST 2 ( high )
+120 BINARY_SUBSCR
+122 LOAD_FAST 0 ( arr )
+124 LOAD_FAST 3 ( mid )
+126 BINARY_SUBSCR
+128 COMPARE_OP 4 ( > )
+130 POP_JUMP_IF_FALSE 136
+
+13 132 LOAD_GLOBAL 1 ( countRotations )
+134 LOAD_FAST 0 ( arr )
+136 LOAD_FAST 1 ( low )
+138 LOAD_FAST 3 ( mid )
+140 LOAD_CONST 3 ( 1 )
+142 BINARY_SUBTRACT
+144 CALL_FUNCTION 3
+146 RETURN_VALUE
+
+14 >> 148 LOAD_GLOBAL 1 ( countRotations )
+150 LOAD_FAST 0 ( arr )
+152 LOAD_FAST 3 ( mid )
+154 LOAD_CONST 3 ( 1 )
+156 BINARY_ADD
+158 LOAD_FAST 2 ( high )
+160 CALL_FUNCTION 3
+162 RETURN_VALUE

@@ -1,0 +1,96 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s , n ) :\n    s1 = s\n    for i in range ( 1 , n ) :\n        s += s1\n    return s\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('LPWsaI',41,),\n    ('9037515104',72,),\n    ('00100010010111',95,),\n    ('SbwipuE',27,),\n    ('574314109',5,),\n    ('1101',70,),\n    ('f',91,),\n    ('068',50,),\n    ('000011001',38,),\n    ('BWbUtIkC',79,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def repeat ( s , n ) :\n    s1 = s\n    for i in range ( 1 , n ) :\n        s += s1\n    return s\n"}
+Disassembly of <code object repeat at 0x7f816a673a50, file "<dis>", line 156>:
+157 0 LOAD_FAST 0 ( s )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 LOAD_FAST 0 ( s )
+8 LOAD_CONST 2 ( 1 )
+10 BINARY_SUBSCR
+12 LOAD_CONST 3 ( 2 )
+14 BINARY_SUBSCR
+16 LOAD_CONST 4 ( 3 )
+18 COMPARE_OP 2 ( == )
+20 POP_JUMP_IF_FALSE 26
+
+158 22 LOAD_FAST 0 ( s )
+24 LOAD_CONST 5 ( 1 )
+26 BINARY_SUBSCR
+28 LOAD_CONST 6 ( 2 )
+30 COMPARE_OP 2 ( == )
+32 POP_JUMP_IF_FALSE 32
+
+159 34 LOAD_FAST 0 ( s )
+36 LOAD_CONST 7 ( 1 )
+38 BINARY_SUBSCR
+40 LOAD_CONST 8 ( 2 )
+42 COMPARE_OP 2 ( == )
+44 POP_JUMP_IF_FALSE 48
+
+160 46 LOAD_FAST 0 ( s )
+48 LOAD_CONST 5 ( 1 )
+50 BINARY_SUBSCR
+52 LOAD_CONST 6 ( 2 )
+54 COMPARE_OP 2 ( == )
+56 POP_JUMP_IF_FALSE 48
+
+161 58 LOAD_FAST 0 ( s )
+60 LOAD_CONST 5 ( 1 )
+62 BINARY_SUBSCR
+64 LOAD_CONST 6 ( 2 )
+66 COMPARE_OP 2 ( == )
+68 POP_JUMP_IF_FALSE 48
+
+162 70 LOAD_FAST 0 ( s )
+72 LOAD_CONST 5 ( 1 )
+74 BINARY_SUBSCR
+76 LOAD_CONST 6 ( 2 )
+78 COMPARE_OP 2 ( == )
+80 POP_JUMP_IF_FALSE 48
+
+163 82 LOAD_FAST 0 ( s )
+84 LOAD_CONST 7 ( 1 )
+86 BINARY_SUBSCR
+88 LOAD_CONST 8 ( 2 )
+90 COMPARE_OP 2 ( == )
+92 POP_JUMP_IF_FALSE 92
+
+164 94 LOAD_FAST 0 ( s )
+96 LOAD_CONST 9 ( 2 )
+98 BINARY_SUBSCR
+100 LOAD_CONST 10 ( 2 )
+102 COMPARE_OP 2 ( == )
+104 POP_JUMP_IF_FALSE 94
+
+165 106 LOAD_FAST 0 ( s )
+108 LOAD_CONST 5 ( 1 )
+110 BINARY_SUBSCR
+112 LOAD_CONST 6 ( 2 )
+114 COMPARE_OP 2 ( == )
+116 POP_JUMP_IF_FALSE 120
+
+166 118 LOAD_FAST 0 ( s )
+120 LOAD_CONST 5 ( 1 )
+122 BINARY_SUBSCR
+124 LOAD_CONST 6 ( 2 )
+126 COMPARE_OP 2 ( == )
+128 POP_JUMP_IF_FALSE 120
+
+167 130 LOAD_FAST 0 ( s )
+132 LOAD_CONST 5 ( 1 )
+134 BINARY_SUBSCR
+136 LOAD_CONST 6 ( 2 )
+138 COMPARE_OP 2 ( == )
+140 POP_JUMP_IF_FALSE 120
+
+168 142 LOAD_FAST 0 ( s )
+144 LOAD_CONST 5 ( 1 )
+146 BINARY_SUBSCR
+148 LOAD_CONST 6 ( 2 )
+150 COMPARE_OP 2 ( == )
+152 POP_JUMP_IF_FALSE 126
+
+169 154 LOAD_FAST 0 ( s )
+156 LOAD_CONST 5 ( 1 )
+158 BINARY_SUBSCR
+>> 160 RETURN_VALUE
+

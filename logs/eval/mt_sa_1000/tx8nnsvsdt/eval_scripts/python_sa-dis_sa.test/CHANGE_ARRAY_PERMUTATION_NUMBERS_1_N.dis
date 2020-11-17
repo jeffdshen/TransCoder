@@ -1,0 +1,102 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , n ) :\n    count = dict ( )\n    for i in range ( n ) :\n        if count.get ( a [ i ] ) :\n            count [ a [ i ] ] += 1\n        else :\n            count [ a [ i ] ] = 1 ;\n    next_missing = 1\n    for i in range ( n ) :\n        if count [ a [ i ] ] != 1 or a [ i ] > n or a [ i ] < 1 :\n            count [ a [ i ] ] -= 1\n            while count.get ( next_missing ) :\n                next_missing += 1\n            a [ i ] = next_missing\n            count [ next_missing ] = 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([19],0,),\n    ([-47, 72],1,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],18,),\n    ([93, 3, 20, 59, 36, 19, 90, 67, 19, 20, 96, 71, 52, 33, 40, 39],9,),\n    ([-98, -93, -91, -89, -63, -58, -52, -52, -46, -40, -25, -16, -10, -1, -1, 4, 12, 12, 13, 13, 16, 20, 29, 29, 31, 40, 44, 47, 48, 51, 52, 52, 59, 60, 61, 64, 66, 78, 85, 97],22,),\n    ([0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0],12,),\n    ([4, 6, 8, 17, 19, 21, 22, 24, 27, 27, 28, 30, 30, 30, 32, 33, 35, 37, 38, 44, 46, 46, 48, 49, 51, 53, 54, 59, 60, 61, 63, 64, 64, 69, 76, 85, 86, 87, 92, 93, 93, 95, 97, 97, 97, 98, 99, 99],26,),\n    ([-75, -46, -42, -33, 4, 74, -76, 14, -68, 75, -14, 51, 94, 27, 55, 30, -83, 4],9,),\n    ([0, 0, 0, 0, 0, 1, 1, 1, 1],5,),\n    ([24, 13, 60, 7, 57, 36, 45, 20, 65, 8, 16, 14, 76, 87, 15, 92, 98, 66, 32, 87, 63, 86, 51, 25, 58],24,)\n        ]\n    filled_function_param = [\n    ([19],0,),\n    ([-47, 72],1,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],18,),\n    ([93, 3, 20, 59, 36, 19, 90, 67, 19, 20, 96, 71, 52, 33, 40, 39],9,),\n    ([-98, -93, -91, -89, -63, -58, -52, -52, -46, -40, -25, -16, -10, -1, -1, 4, 12, 12, 13, 13, 16, 20, 29, 29, 31, 40, 44, 47, 48, 51, 52, 52, 59, 60, 61, 64, 66, 78, 85, 97],22,),\n    ([0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0],12,),\n    ([4, 6, 8, 17, 19, 21, 22, 24, 27, 27, 28, 30, 30, 30, 32, 33, 35, 37, 38, 44, 46, 46, 48, 49, 51, 53, 54, 59, 60, 61, 63, 64, 64, 69, 76, 85, 86, 87, 92, 93, 93, 95, 97, 97, 97, 98, 99, 99],26,),\n    ([-75, -46, -42, -33, 4, 74, -76, 14, -68, 75, -14, 51, 94, 27, 55, 30, -83, 4],9,),\n    ([0, 0, 0, 0, 0, 1, 1, 1, 1],5,),\n    ([24, 13, 60, 7, 57, 36, 45, 20, 65, 8, 16, 14, 76, 87, 15, 92, 98, 66, 32, 87, 63, 86, 51, 25, 58],24,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def makePermutation ( a , n ) :\n    count = dict ( )\n    for i in range ( n ) :\n        if count.get ( a [ i ] ) :\n            count [ a [ i ] ] += 1\n        else :\n            count [ a [ i ] ] = 1 ;\n    next_missing = 1\n    for i in range ( n ) :\n        if count [ a [ i ] ] != 1 or a [ i ] > n or a [ i ] < 1 :\n            count [ a [ i ] ] -= 1\n            while count.get ( next_missing ) :\n                next_missing += 1\n            a [ i ] = next_missing\n            count [ next_missing ] = 1\n"}
+Disassembly of <code object makePermutation at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( dict )
+2 CALL_FUNCTION 0
+4 STORE_FAST 2 ( count )
+
+3 6 SETUP_LOOP 56 ( to 66 )
+8 LOAD_GLOBAL 1 ( range )
+10 LOAD_FAST 1 ( n )
+12 CALL_FUNCTION 1
+14 GET_ITER
+>> 16 FOR_ITER 44 ( to 64 )
+18 STORE_FAST 3 ( i )
+
+4 20 LOAD_FAST 2 ( count )
+22 LOAD_METHOD 2 ( get )
+24 LOAD_FAST 0 ( a )
+26 LOAD_FAST 3 ( i )
+28 BINARY_SUBSCR
+30 CALL_METHOD 1
+32 POP_JUMP_IF_FALSE 58
+
+5 34 LOAD_FAST 2 ( count )
+36 LOAD_FAST 0 ( a )
+38 LOAD_FAST 3 ( i )
+40 BINARY_SUBSCR
+42 LOAD_CONST 1 ( 1 )
+44 INPLACE_ADD
+46 STORE_FAST 2 ( count )
+48 JUMP_ABSOLUTE 16
+
+7 >> 50 LOAD_CONST 1 ( 1 )
+52 LOAD_FAST 2 ( count )
+54 LOAD_FAST 0 ( a )
+56 LOAD_FAST 3 ( i )
+58 BINARY_SUBSCR
+60 STORE_SUBSCR
+62 JUMP_ABSOLUTE 16
+>> 64 POP_BLOCK
+
+8 >> 66 LOAD_CONST 1 ( 1 )
+68 STORE_FAST 4 ( next_missing )
+
+9 70 SETUP_LOOP 108 ( to 174 )
+72 LOAD_GLOBAL 1 ( range )
+74 LOAD_FAST 1 ( n )
+76 CALL_FUNCTION 1
+78 GET_ITER
+>> 80 FOR_ITER 96 ( to 172 )
+82 STORE_FAST 3 ( i )
+
+10 84 LOAD_FAST 2 ( count )
+86 LOAD_FAST 0 ( a )
+88 LOAD_FAST 3 ( i )
+90 BINARY_SUBSCR
+92 BINARY_SUBSCR
+94 LOAD_CONST 1 ( 1 )
+96 COMPARE_OP 3 ( != )
+98 POP_JUMP_IF_TRUE 110
+100 LOAD_FAST 0 ( a )
+102 LOAD_FAST 3 ( i )
+104 BINARY_SUBSCR
+106 LOAD_FAST 1 ( n )
+108 COMPARE_OP 4 ( > )
+>> 110 POP_JUMP_IF_FALSE 38
+
+11 112 LOAD_FAST 2 ( count )
+114 LOAD_FAST 0 ( a )
+116 LOAD_FAST 3 ( i )
+118 BINARY_SUBSCR
+120 DUP_TOP_TWO
+122 BINARY_SUBSCR
+124 LOAD_CONST 1 ( 1 )
+126 INPLACE_SUBTRACT
+128 ROT_THREE
+130 STORE_SUBSCR
+
+12 132 SETUP_LOOP 54 ( to 170 )
+>> 134 LOAD_FAST 2 ( count )
+136 LOAD_METHOD 2 ( get )
+138 LOAD_FAST 4 ( next_missing )
+140 CALL_METHOD 1
+142 POP_JUMP_IF_FALSE 168
+
+13 144 LOAD_FAST 4 ( next_missing )
+146 LOAD_CONST 1 ( 1 )
+148 INPLACE_ADD
+150 STORE_FAST 4 ( next_missing )
+
+14 >> 152 LOAD_FAST 4 ( next_missing )
+154 LOAD_FAST 0 ( a )
+156 LOAD_FAST 3 ( i )
+158 STORE_SUBSCR
+
+15 160 LOAD_CONST 1 ( 1 )
+162 LOAD_FAST 2 ( count )
+164 LOAD_FAST 4 ( next_missing )
+166 STORE_SUBSCR
+>> 168 JUMP_ABSOLUTE 134
+>> 170 POP_BLOCK
+>> 172 LOAD_CONST 0 ( None )
+174 RETURN_VALUE

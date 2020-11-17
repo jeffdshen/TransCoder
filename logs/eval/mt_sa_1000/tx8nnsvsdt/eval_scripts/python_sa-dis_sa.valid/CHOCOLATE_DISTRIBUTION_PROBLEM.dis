@@ -1,0 +1,101 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport sys\n\ndef f_gold ( arr , n , m ) :\n    if ( m == 0 or n == 0 ) :\n        return 0\n    arr.sort ( )\n    if ( n < m ) :\n        return - 1\n    min_diff = sys.maxsize\n    first = 0\n    last = 0\n    i = 0\n    while ( i + m - 1 < n ) :\n        diff = arr [ i + m - 1 ] - arr [ i ]\n        if ( diff < min_diff ) :\n            min_diff = diff\n            first = i\n            last = i + m - 1\n        i += 1\n    return ( arr [ last ] - arr [ first ] )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 5, 11, 23, 33, 35, 39, 51, 52, 56, 74, 76, 76, 79, 85, 88, 93, 98],16,13,),\n    ([-42, 76, -34, -74, 16, 4, 88, -70, -88, -94, -24, 4, -14, -56, 56, -18, 84, 0, -48, -94, 72, 42, 36, 52, 74, -84, -50, 16, 30],15,28,),\n    ([0, 0, 1, 1, 1, 1],5,5,),\n    ([29, 49, 88, 44, 92, 43, 12, 5, 38, 75, 57, 3, 85, 16, 86, 62, 16, 40, 76, 37, 5, 69, 16, 63, 84, 78, 74, 18, 4, 89, 73, 67, 60],25,18,),\n    ([-98, -80, -50, -44, -42, -36, -36, -28, -10, -8, -4, -2, 2, 10, 18, 18, 26, 32, 36, 56, 80, 86, 88, 90],16,12,),\n    ([0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1],13,14,),\n    ([13, 15, 62, 65, 87],3,4,),\n    ([-50, 58, 78, 28, 4, 18, -8, 18, -88, -48, -26, -32, 64, 48, 60, 94, -92, 48, -36, 30, -80, -60, 82, -62, 32, -36, -76, -88, -60, 22, -14, 72, 30],31,17,),\n    ([0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],9,6,),\n    ([25, 17, 58, 40, 53, 73, 23, 77, 38],8,6,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMinDiff ( arr , n , m ) :\n    if ( m == 0 or n == 0 ) :\n        return 0\n    arr.sort ( )\n    if ( n < m ) :\n        return - 1\n    min_diff = sys.maxsize\n    first = 0\n    last = 0\n    i = 0\n    while ( i + m - 1 < n ) :\n        diff = arr [ i + m - 1 ] - arr [ i ]\n        if ( diff < min_diff ) :\n            min_diff = diff\n            first = i\n            last = i + m - 1\n        i += 1\n    return ( arr [ last ] - arr [ first ] )\n"}
+Disassembly of <code object findMinDiff at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 2 ( m )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_TRUE 16
+8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 1 ( 0 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 20
+
+3 >> 16 LOAD_CONST 1 ( 0 )
+18 RETURN_VALUE
+
+4 >> 20 LOAD_FAST 0 ( arr )
+22 LOAD_METHOD 0 ( sort )
+24 CALL_METHOD 0
+26 POP_TOP
+
+5 28 LOAD_FAST 1 ( n )
+30 LOAD_FAST 2 ( m )
+32 COMPARE_OP 0 ( < )
+34 POP_JUMP_IF_FALSE 40
+
+6 36 LOAD_CONST 2 ( - 1 )
+38 RETURN_VALUE
+
+7 >> 40 LOAD_GLOBAL 1 ( sys )
+42 LOAD_ATTR 2 ( maxsize )
+44 STORE_FAST 3 ( min_diff )
+
+8 46 LOAD_CONST 1 ( 0 )
+48 STORE_FAST 4 ( first )
+
+9 50 LOAD_CONST 1 ( 0 )
+52 STORE_FAST 5 ( i )
+
+10 54 LOAD_CONST 1 ( 0 )
+56 STORE_FAST 6 ( i )
+
+11 58 SETUP_LOOP 104 ( to 160 )
+>> 60 LOAD_FAST 6 ( i )
+62 LOAD_FAST 2 ( m )
+64 BINARY_ADD
+66 LOAD_CONST 3 ( 1 )
+68 BINARY_SUBTRACT
+70 LOAD_FAST 1 ( n )
+72 COMPARE_OP 0 ( < )
+74 POP_JUMP_IF_FALSE 158
+
+12 76 LOAD_FAST 0 ( arr )
+78 LOAD_FAST 6 ( i )
+80 LOAD_FAST 2 ( m )
+82 BINARY_ADD
+84 LOAD_CONST 3 ( 1 )
+86 BINARY_SUBTRACT
+88 BINARY_SUBSCR
+90 LOAD_FAST 0 ( arr )
+92 LOAD_FAST 6 ( i )
+94 BINARY_SUBSCR
+96 BINARY_SUBTRACT
+98 STORE_FAST 7 ( diff )
+
+13 100 LOAD_FAST 7 ( diff )
+102 LOAD_FAST 3 ( min_diff )
+104 COMPARE_OP 0 ( < )
+106 POP_JUMP_IF_FALSE 124
+
+14 108 LOAD_FAST 7 ( diff )
+110 STORE_FAST 3 ( min_diff )
+
+15 112 LOAD_FAST 6 ( i )
+114 STORE_FAST 4 ( first )
+
+16 116 LOAD_FAST 6 ( i )
+118 LOAD_FAST 2 ( m )
+120 BINARY_ADD
+122 LOAD_CONST 3 ( 1 )
+124 BINARY_SUBTRACT
+126 STORE_FAST 4 ( last )
+
+17 >> 128 LOAD_FAST 6 ( i )
+130 LOAD_CONST 3 ( 1 )
+132 INPLACE_ADD
+134 STORE_FAST 6 ( i )
+136 JUMP_ABSOLUTE 60
+>> 138 POP_BLOCK
+
+18 >> 140 LOAD_FAST 6 ( i )
+142 LOAD_CONST 3 ( 1 )
+144 INPLACE_ADD
+146 STORE_FAST 6 ( i )
+
+19 148 LOAD_FAST 0 ( arr )
+150 LOAD_FAST 4 ( last )
+152 BINARY_SUBSCR
+154 LOAD_FAST 0 ( arr )
+156 LOAD_FAST 4 ( first )
+158 BINARY_SUBSCR
+160 BINARY_SUBTRACT
+162 RETURN_VALUE

@@ -1,0 +1,72 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    table = [ 0 ] * ( n + 1 )\n    for i in range ( n + 1 ) :\n        table [ i ] = n - i\n    for i in range ( n , 0 , - 1 ) :\n        if ( not ( i % 2 ) ) :\n            table [ i // 2 ] = min ( table [ i ] + 1 , table [ i // 2 ] )\n        if ( not ( i % 3 ) ) :\n            table [ i // 3 ] = min ( table [ i ] + 1 , table [ i // 3 ] )\n    return table [ 1 ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (59,),\n    (7,),\n    (90,),\n    (78,),\n    (49,),\n    (15,),\n    (45,),\n    (56,),\n    (7,),\n    (70,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def getMinSteps ( n ) :\n    table = [ 0 ] * ( n + 1 )\n    for i in range ( n + 1 ) :\n        table [ i ] = n - i\n    for i in range ( n , 0 , - 1 ) :\n        if ( not ( i % 2 ) ) :\n            table [ i // 2 ] = min ( table [ i ] + 1 , table [ i // 2 ] )\n        if ( not ( i % 3 ) ) :\n            table [ i // 3 ] = min ( table [ i ] + 1 , table [ i // 3 ] )\n    return table [ 1 ]\n    "}
+Disassembly of <code object getMinSteps at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 LOAD_CONST 2 ( ( 'n' , ) )
+4 IMPORT_NAME 0 ( table )
+6 IMPORT_FROM 1 ( n )
+8 STORE_FAST 1 ( n )
+10 POP_TOP
+
+3 12 SETUP_LOOP 48 ( to 64 )
+14 LOAD_GLOBAL 2 ( range )
+16 LOAD_CONST 3 ( 1 )
+18 LOAD_CONST 2 ( 1 )
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 40 ( to 62 )
+26 STORE_FAST 2 ( i )
+
+4 28 LOAD_FAST 0 ( n )
+30 LOAD_CONST 4 ( 2 )
+32 BINARY_MODULO
+34 STORE_FAST 3 ( num )
+
+5 36 LOAD_FAST 0 ( n )
+38 LOAD_CONST 5 ( 3 )
+40 BINARY_MODULO
+42 STORE_FAST 4 ( num )
+
+6 44 LOAD_FAST 0 ( n )
+46 LOAD_CONST 6 ( 4 )
+48 BINARY_MODULO
+50 STORE_FAST 5 ( num )
+
+7 52 LOAD_FAST 0 ( n )
+54 LOAD_CONST 7 ( 5 )
+56 BINARY_MODULO
+58 STORE_FAST 6 ( num )
+
+8 60 LOAD_FAST 0 ( n )
+62 LOAD_CONST 8 ( 3 )
+64 BINARY_MODULO
+66 STORE_FAST 7 ( num )
+
+9 68 LOAD_FAST 0 ( n )
+70 LOAD_CONST 9 ( 3 )
+72 COMPARE_OP 2 ( == )
+74 POP_JUMP_IF_FALSE 24
+
+10 76 LOAD_FAST 0 ( n )
+78 LOAD_CONST 10 ( 1 )
+80 INPLACE_ADD
+82 STORE_FAST 0 ( n )
+
+11 84 LOAD_FAST 0 ( n )
+86 LOAD_CONST 11 ( 5 )
+88 BINARY_MODULO
+90 STORE_FAST 0 ( n )
+
+12 92 LOAD_FAST 0 ( n )
+94 LOAD_CONST 12 ( 3 )
+96 INPLACE_ADD
+98 STORE_FAST 0 ( n )
+
+13 100 LOAD_FAST 0 ( n )
+102 LOAD_CONST 13 ( 5 )
+104 BINARY_MODULO
+106 STORE_FAST 0 ( n )
+108 JUMP_ABSOLUTE 24
+>> 110 POP_BLOCK
+
+14 >> 112 LOAD_FAST 0 ( n )
+114 RETURN_VALUE

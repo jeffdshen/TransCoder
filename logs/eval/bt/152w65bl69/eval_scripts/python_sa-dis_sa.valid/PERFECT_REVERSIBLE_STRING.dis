@@ -1,0 +1,22 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    i = 0 ; j = len ( str ) - 1 ;\n    while ( i < j ) :\n        if ( str [ i ] != str [ j ] ) :\n            return False ;\n        i += 1 ;\n        j -= 1 ;\n    return True ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('ab',),\n    ('303',),\n    ('11110000',),\n    ('aba',),\n    ('404',),\n    ('10101',),\n    ('abab',),\n    ('6366',),\n    ('001',),\n    ('',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isReversible ( str ) :\n    i = 0 ; j = len ( str ) - 1 ;\n    while ( i < j ) :\n        if ( str [ i ] != str [ j ] ) :\n            return False ;\n        i += 1 ;\n        j -= 1 ;\n    return True ;\n"}
+Disassembly of <code object isReversible at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 0 )
+2 LOAD_CONST 2 ( ( 'i' , ) )
+4 IMPORT_NAME 0 ( i . e . i . , )
+6 IMPORT_FROM 1 ( i )
+8 STORE_FAST 1 ( i )
+10 POP_TOP
+
+27 12 LOAD_FAST 1 ( i )
+14 LOAD_CONST 3 ( 1 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 28
+
+28 20 LOAD_CONST 4 ( 'i' )
+22 RETURN_VALUE
+
+29 >> 24 LOAD_CONST 5 ( 'i' )
+26 RETURN_VALUE
+28 LOAD_CONST 0 ( None )
+30 RETURN_VALUE
+

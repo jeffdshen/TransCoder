@@ -1,0 +1,112 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , k ) :\n    if ( n == 1 ) :\n        return 0\n    arr.sort ( )\n    ans = arr [ n - 1 ] - arr [ 0 ]\n    small = arr [ 0 ] + k\n    big = arr [ n - 1 ] - k\n    if ( small > big ) :\n        small , big = big , small\n    for i in range ( 1 , n - 1 ) :\n        subtract = arr [ i ] - k\n        add = arr [ i ] + k\n        if ( subtract >= small or add <= big ) :\n            continue\n        if ( big - subtract <= add - small ) :\n            small = subtract\n        else :\n            big = add\n    return min ( ans , big - small )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([31, 33, 40, 43, 44, 51, 52, 56, 60, 64, 66, 79, 91, 93, 99],10,13,),\n    ([-16, 34, 54, -86, -62],3,4,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],29,22,),\n    ([27, 84, 57, 45, 70, 41, 67, 3, 5, 67, 16, 74, 99, 90, 48, 90, 7, 86, 59, 88, 45, 11, 21, 91, 17, 67, 59, 60, 36, 9, 5, 55, 68, 58, 91, 51, 44, 92, 77, 38],28,28,),\n    ([-88, -84, -78, -72, -66, -66, -58, -56, -56, -56, -54, -50, -50, -38, -24, -18, -12, -10, -8, -4, 0, 6, 8, 10, 14, 40, 44, 50, 58, 64, 64, 68],22,28,),\n    ([1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0],10,8,),\n    ([6, 11, 13, 14, 22, 25, 26, 28, 30, 31, 37, 37, 55, 57, 61, 62, 64, 67, 69, 70, 71, 73, 73, 75, 80, 81, 82, 88, 90, 98],29,26,),\n    ([-86, 4, -90, 66, -10, -36, -18, 82, 20, 6, -78, 98, -64, 52, -22, 20, 44, -70, -32, 88, -80, 24, -38, -62, 92],23,18,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],20,19,),\n    ([2],0,0,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def getMinDiff ( arr , n , k ) :\n    if ( n == 1 ) :\n        return 0\n    arr.sort ( )\n    ans = arr [ n - 1 ] - arr [ 0 ]\n    small = arr [ 0 ] + k\n    big = arr [ n - 1 ] - k\n    if ( small > big ) :\n        small , big = big , small\n    for i in range ( 1 , n - 1 ) :\n        subtract = arr [ i ] - k\n        add = arr [ i ] + k\n        if ( subtract >= small or add <= big ) :\n            continue\n        if ( big - subtract <= add - small ) :\n            small = subtract\n        else :\n            big = add\n    return min ( ans , big - small )\n"}
+Disassembly of <code object getMinDiff at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 1 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 2 ( 0 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_FAST 0 ( arr )
+14 LOAD_METHOD 0 ( sort )
+16 CALL_METHOD 0
+18 POP_TOP
+
+5 20 LOAD_FAST 0 ( arr )
+22 LOAD_FAST 1 ( n )
+24 LOAD_CONST 1 ( 1 )
+26 BINARY_SUBTRACT
+28 BINARY_SUBSCR
+30 LOAD_FAST 0 ( arr )
+32 LOAD_CONST 2 ( 0 )
+34 BINARY_SUBSCR
+36 BINARY_SUBTRACT
+38 STORE_FAST 3 ( ans )
+
+6 40 LOAD_FAST 0 ( arr )
+42 LOAD_CONST 2 ( 0 )
+44 BINARY_SUBSCR
+46 LOAD_FAST 2 ( k )
+48 BINARY_ADD
+50 STORE_FAST 4 ( small )
+
+7 52 LOAD_FAST 0 ( arr )
+54 LOAD_FAST 1 ( n )
+56 LOAD_CONST 1 ( 1 )
+58 BINARY_SUBTRACT
+60 BINARY_SUBSCR
+62 LOAD_FAST 2 ( k )
+64 BINARY_SUBTRACT
+66 STORE_FAST 5 ( big )
+
+8 68 LOAD_FAST 4 ( small )
+70 LOAD_FAST 5 ( big )
+72 COMPARE_OP 4 ( > )
+74 POP_JUMP_IF_FALSE 80
+
+9 76 LOAD_FAST 5 ( big )
+78 LOAD_FAST 4 ( small )
+80 ROT_TWO
+82 STORE_FAST 4 ( small )
+84 STORE_FAST 5 ( big )
+
+10 86 SETUP_LOOP 104 ( to 160 )
+88 LOAD_GLOBAL 1 ( range )
+90 LOAD_CONST 1 ( 1 )
+92 LOAD_FAST 1 ( n )
+94 LOAD_CONST 1 ( 1 )
+96 BINARY_SUBTRACT
+98 CALL_FUNCTION 2
+100 GET_ITER
+>> 102 FOR_ITER 66 ( to 158 )
+104 STORE_FAST 6 ( i )
+
+11 106 LOAD_FAST 0 ( arr )
+108 LOAD_FAST 6 ( i )
+110 BINARY_SUBSCR
+112 LOAD_FAST 2 ( k )
+114 BINARY_SUBTRACT
+116 STORE_FAST 7 ( subtract )
+
+12 118 LOAD_FAST 0 ( arr )
+120 LOAD_FAST 6 ( i )
+122 BINARY_SUBSCR
+124 LOAD_FAST 2 ( k )
+126 BINARY_ADD
+128 STORE_FAST 8 ( add )
+
+13 130 LOAD_FAST 7 ( subtract )
+132 LOAD_FAST 4 ( small )
+134 COMPARE_OP 5 ( >= )
+136 POP_JUMP_IF_TRUE 146
+138 LOAD_FAST 8 ( add )
+140 LOAD_FAST 5 ( big )
+142 COMPARE_OP 1 ( <= )
+144 POP_JUMP_IF_FALSE 146
+
+14 >> 146 JUMP_ABSOLUTE 102
+
+15 >> 148 LOAD_FAST 5 ( big )
+150 LOAD_FAST 7 ( subtract )
+152 BINARY_SUBTRACT
+154 LOAD_FAST 8 ( add )
+156 LOAD_FAST 4 ( small )
+158 BINARY_SUBTRACT
+160 COMPARE_OP 1 ( <= )
+162 POP_JUMP_IF_FALSE 168
+
+16 164 LOAD_FAST 7 ( subtract )
+166 STORE_FAST 4 ( small )
+
+17 >> 168 LOAD_FAST 8 ( add )
+170 STORE_FAST 5 ( big )
+172 JUMP_ABSOLUTE 102
+174 POP_BLOCK
+
+18 >> 176 LOAD_GLOBAL 2 ( min )
+178 LOAD_FAST 3 ( ans )
+180 LOAD_FAST 4 ( small )
+182 BINARY_SUBTRACT
+184 CALL_FUNCTION 2
+186 RETURN_VALUE

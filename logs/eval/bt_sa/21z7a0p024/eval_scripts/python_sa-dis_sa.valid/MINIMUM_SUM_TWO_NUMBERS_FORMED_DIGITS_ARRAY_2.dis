@@ -1,0 +1,64 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , n ) :\n    a = sorted ( a )\n    num1 , num2 = 0 , 0\n    for i in range ( n ) :\n        if i % 2 == 0 :\n            num1 = num1 * 10 + a [ i ]\n        else :\n            num2 = num2 * 10 + a [ i ]\n    return num2 + num1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 16, 29, 30, 38, 83],5,),\n    ([58, 74, -28, -60, -6, 66, -76, 46, 0, -24, 28, -16, -14, 24, -94, -56, -80, 40, -18, -68, -8, -94, -88, -12, -20, -8],16,),\n    ([0, 1],1,),\n    ([7, 12, 78, 8],3,),\n    ([-78, -48, -48, -26, 8, 34],4,),\n    ([1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0],27,),\n    ([2, 3, 5, 7, 25, 30, 31, 38, 42, 45, 52, 53, 56, 59, 60, 71, 74, 76, 80, 90, 91, 98],13,),\n    ([40, -62, -2, -58, 60, 38, 48, -4, 0, 62, -52, -80, 56, 38, 58, -72, 32, -26, -14, 70, 58, -86, -32, 56, -40, 84, 24, 60, -46, -32, 78, 78, -66, 20, -32, 98, 84, 44, 48, 4, 54, -66, 6, -62, 58],34,),\n    ([0, 0, 0, 0, 0, 0, 1, 1, 1],8,),\n    ([59, 9, 3, 20, 83, 87, 48, 4, 86, 67, 89, 96, 17, 36, 39, 45, 99, 8, 56, 92, 63, 81, 7, 75, 32, 10, 71, 82, 97, 92, 65, 23, 22, 47, 70, 79, 57, 81, 65, 50],35,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minSum ( a , n ) :\n    a = sorted ( a )\n    num1 , num2 = 0 , 0\n    for i in range ( n ) :\n        if i % 2 == 0 :\n            num1 = num1 * 10 + a [ i ]\n        else :\n            num2 = num2 * 10 + a [ i ]\n    return num2 + num1\n"}
+Disassembly of <code object minSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( sorted )
+2 LOAD_FAST 0 ( a )
+4 CALL_FUNCTION 1
+6 STORE_FAST 2 ( a )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 3 ( num1 )
+
+4 12 SETUP_LOOP 64 ( to 76 )
+14 LOAD_GLOBAL 1 ( range )
+16 LOAD_FAST 2 ( a )
+18 CALL_FUNCTION 1
+20 GET_ITER
+>> 22 FOR_ITER 48 ( to 74 )
+24 STORE_FAST 4 ( i )
+
+5 26 LOAD_FAST 4 ( i )
+28 LOAD_CONST 2 ( 1 )
+30 COMPARE_OP 2 ( == )
+32 POP_JUMP_IF_FALSE 42
+
+6 34 LOAD_FAST 4 ( i )
+36 LOAD_CONST 2 ( 1 )
+38 INPLACE_ADD
+40 STORE_FAST 4 ( i )
+
+7 >> 42 LOAD_FAST 1 ( n )
+44 LOAD_CONST 2 ( 1 )
+46 COMPARE_OP 2 ( == )
+48 POP_JUMP_IF_FALSE 22
+
+8 50 LOAD_FAST 1 ( n )
+52 LOAD_CONST 2 ( 1 )
+54 INPLACE_SUBTRACT
+56 STORE_FAST 1 ( n )
+58 JUMP_ABSOLUTE 22
+>> 60 POP_BLOCK
+
+9 >> 62 LOAD_FAST 2 ( a )
+64 LOAD_CONST 2 ( 1 )
+66 INPLACE_SUBTRACT
+68 STORE_FAST 2 ( a )
+
+10 70 LOAD_FAST 2 ( a )
+72 LOAD_CONST 2 ( 1 )
+74 INPLACE_SUBTRACT
+76 STORE_FAST 2 ( a )
+
+11 78 LOAD_FAST 2 ( a )
+80 LOAD_CONST 2 ( 1 )
+82 INPLACE_SUBTRACT
+84 STORE_FAST 2 ( a )
+
+12 86 LOAD_FAST 2 ( a )
+88 LOAD_CONST 2 ( 1 )
+90 INPLACE_SUBTRACT
+92 STORE_FAST 2 ( a )
+94 JUMP_ABSOLUTE 22
+>> 96 POP_BLOCK
+
+13 >> 98 LOAD_FAST 2 ( a )
+100 RETURN_VALUE

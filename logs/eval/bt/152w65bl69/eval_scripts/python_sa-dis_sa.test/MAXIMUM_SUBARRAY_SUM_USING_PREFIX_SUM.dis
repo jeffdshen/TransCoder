@@ -1,0 +1,46 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( arr , n ) :\n    min_prefix_sum = 0\n    res = - math.inf\n    prefix_sum = [ ]\n    prefix_sum.append ( arr [ 0 ] )\n    for i in range ( 1 , n ) :\n        prefix_sum.append ( prefix_sum [ i - 1 ] + arr [ i ] )\n    for i in range ( n ) :\n        res = max ( res , prefix_sum [ i ] - min_prefix_sum )\n        min_prefix_sum = min ( min_prefix_sum , prefix_sum [ i ] )\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([8, 9, 11, 17, 18, 19, 23, 24, 27, 30, 31, 31, 35, 44, 46, 47, 49, 51, 55, 58, 59, 61, 65, 67, 71, 71, 71, 71, 78, 78, 82, 91, 98],20,),\n    ([-82, -28, -66, -52, -36, 36, -88, 52, -62, 46, 42, 26, -60, 18, -52, 38, 94, -68, 44, -94, 14, 36, -70],15,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,),\n    ([28, 36, 42, 42, 5, 52, 74, 86, 55, 82, 59, 81, 4, 90, 24, 34, 20, 99, 86, 25, 52, 48, 62, 5, 67, 83, 60, 72, 80, 73, 38, 55, 8, 70, 95],19,),\n    ([-92, -52, -24, 36, 56],3,),\n    ([0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0],13,),\n    ([1, 1, 4, 4, 7, 7, 17, 18, 20, 26, 26, 32, 37, 38, 42, 44, 44, 46, 50, 53, 57, 58, 58, 60, 61, 61, 64, 74, 75, 77, 83, 83, 84, 84, 85, 87, 88, 90, 95, 96, 97, 98, 99, 99],25,),\n    ([-86, 2, 26, 54, -16, 16, 48, 24, 50, -10, -32, -62, 48, -12, -66],13,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,),\n    ([58, 14, 79, 11, 31, 28, 61, 86, 25, 27, 75, 78, 32, 55, 86, 48, 15, 51, 6, 78, 23, 82, 16, 62, 35, 51, 91, 16, 79, 38, 97, 30, 23, 58, 95, 57, 82, 35, 57, 43, 22, 41, 58, 69, 25, 65, 13, 79],39,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maximumSumSubarray ( arr , n ) :\n    min_prefix_sum = 0\n    res = - math.inf\n    prefix_sum = [ ]\n    prefix_sum.append ( arr [ 0 ] )\n    for i in range ( 1 , n ) :\n        prefix_sum.append ( prefix_sum [ i - 1 ] + arr [ i ] )\n    for i in range ( n ) :\n        res = max ( res , prefix_sum [ i ] - min_prefix_sum )\n        min_prefix_sum = min ( min_prefix_sum , prefix_sum [ i ] )\n    return res\n"}
+Disassembly of <code object maximumSumSubarray at 0x7f816a673a50, file "<dis>", line 16>:
+17 0 LOAD_FAST 1 ( n )
+2 LOAD_CONST 1 ( math )
+4 BINARY_MULTIPLY
+6 STORE_FAST 2 ( x )
+
+18 8 LOAD_FAST 0 ( arr )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 3 ( y )
+
+19 16 LOAD_FAST 2 ( x )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 LOAD_FAST 3 ( y )
+24 LOAD_CONST 4 ( 2 )
+26 BINARY_SUBSCR
+28 LOAD_FAST 3 ( y )
+30 LOAD_CONST 5 ( 3 )
+32 BINARY_SUBSCR
+34 LOAD_FAST 3 ( y )
+36 LOAD_CONST 6 ( ( 'x' , 'y' ) )
+38 BUILD_CONST_KEY_MAP 3
+40 BINARY_SUBSCR
+42 LOAD_FAST 3 ( y )
+44 LOAD_CONST 7 ( 3 )
+46 BINARY_SUBSCR
+48 LOAD_FAST 3 ( y )
+50 LOAD_CONST 8 ( ( 'x' , 'y' ) )
+52 BUILD_CONST_KEY_MAP 3
+54 BINARY_SUBSCR
+56 LOAD_CONST 9 ( 1 )
+58 BINARY_SUBSCR
+60 LOAD_FAST 3 ( y )
+62 LOAD_CONST 10 ( ( 'x' , 'y' ) )
+64 BUILD_CONST_KEY_MAP 3
+66 BINARY_SUBSCR
+68 LOAD_CONST 11 ( ( 'x' , 'y' ) )
+70 BUILD_CONST_KEY_MAP 2
+72 BINARY_SUBSCR
+74 LOAD_CONST 12 ( ( 'x' , 'y' ) )
+76 BUILD_CONST_KEY_MAP 2
+78 BINARY_SUBSCR
+80 RETURN_VALUE
+

@@ -1,0 +1,98 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , p ) :\n    ans = 0\n    temp = p\n    while ( temp <= n ) :\n        ans += n / temp\n        temp = temp * p\n    return int ( ans )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (76,43,),\n    (77,91,),\n    (9,42,),\n    (59,67,),\n    (8,52,),\n    (97,8,),\n    (78,24,),\n    (41,88,),\n    (72,61,),\n    (71,28,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def PowerOFPINnfactorial ( n , p ) :\n    ans = 0\n    temp = p\n    while ( temp <= n ) :\n        ans += n / temp\n        temp = temp * p\n    return int ( ans )\n"}
+Disassembly of <code object PowerOOINfactorial at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( ans )
+
+3 4 SETUP_LOOP 64 ( to 66 )
+6 LOAD_FAST 0 ( n )
+8 GET_ITER
+>> 10 FOR_ITER 56 ( to 64 )
+12 STORE_FAST 3 ( n )
+
+4 14 LOAD_FAST 2 ( ans )
+16 LOAD_FAST 3 ( n )
+18 COMPARE_OP 1 ( <= )
+20 POP_JUMP_IF_FALSE 48
+
+5 22 LOAD_FAST 2 ( ans )
+24 LOAD_FAST 3 ( n )
+26 BINARY_SUBTRACT
+28 LOAD_FAST 1 ( p )
+30 BINARY_MULTIPLY
+32 INPLACE_ADD
+34 STORE_FAST 2 ( ans )
+
+6 36 LOAD_FAST 2 ( ans )
+38 LOAD_FAST 3 ( n )
+40 INPLACE_ADD
+42 STORE_FAST 2 ( ans )
+
+7 44 LOAD_FAST 2 ( ans )
+46 LOAD_FAST 3 ( n )
+48 INPLACE_ADD
+50 STORE_FAST 2 ( ans )
+
+8 >> 52 LOAD_FAST 2 ( ans )
+54 LOAD_FAST 3 ( n )
+56 BINARY_SUBTRACT
+58 STORE_FAST 2 ( ans )
+
+9 60 LOAD_FAST 2 ( ans )
+62 LOAD_FAST 3 ( n )
+64 BINARY_SUBTRACT
+66 LOAD_FAST 1 ( p )
+68 BINARY_MULTIPLY
+70 LOAD_FAST 2 ( ans )
+72 LOAD_FAST 3 ( n )
+74 BINARY_SUBTRACT
+76 BINARY_MULTIPLY
+78 LOAD_FAST 2 ( ans )
+80 LOAD_FAST 3 ( n )
+82 BINARY_SUBTRACT
+84 BINARY_MULTIPLY
+86 LOAD_FAST 2 ( ans )
+88 LOAD_FAST 3 ( n )
+90 BINARY_SUBTRACT
+92 BINARY_MULTIPLY
+94 LOAD_FAST 2 ( ans )
+96 BINARY_SUBTRACT
+98 LOAD_FAST 1 ( p )
+100 BINARY_MULTIPLY
+102 LOAD_FAST 2 ( ans )
+104 BINARY_SUBTRACT
+106 STORE_FAST 4 ( ans )
+
+10 108 LOAD_FAST 2 ( ans )
+110 LOAD_FAST 3 ( n )
+112 BINARY_SUBTRACT
+114 LOAD_FAST 4 ( ans )
+116 BINARY_SUBTRACT
+118 LOAD_FAST 3 ( n )
+120 BINARY_SUBTRACT
+122 LOAD_FAST 4 ( ans )
+124 BINARY_SUBTRACT
+126 LOAD_FAST 1 ( p )
+128 BINARY_MULTIPLY
+130 BINARY_SUBTRACT
+132 STORE_FAST 5 ( ans )
+
+11 134 LOAD_FAST 5 ( ans )
+136 LOAD_FAST 3 ( n )
+138 LOAD_FAST 4 ( ans )
+140 BINARY_SUBTRACT
+142 LOAD_FAST 4 ( ans )
+144 BINARY_SUBTRACT
+146 LOAD_FAST 5 ( ans )
+148 BINARY_SUBTRACT
+150 LOAD_FAST 1 ( p )
+152 BINARY_MULTIPLY
+154 BINARY_SUBTRACT
+156 LOAD_FAST 5 ( ans )
+158 BINARY_SUBTRACT
+160 BINARY_MULTIPLY
+162 LOAD_FAST 2 ( ans )
+164 BINARY_SUBTRACT
+166 LOAD_FAST 1 ( p )
+168 BINARY_MULTIPLY
+170 BINARY_SUBTRACT
+172 RETURN_VALUE

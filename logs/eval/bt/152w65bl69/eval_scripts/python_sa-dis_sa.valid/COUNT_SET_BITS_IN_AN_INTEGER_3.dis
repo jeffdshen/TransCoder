@@ -1,0 +1,80 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    if ( n == 0 ) :\n        return 0\n    else :\n        return 1 + f_gold ( n & ( n - 1 ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (6,),\n    (58,),\n    (90,),\n    (69,),\n    (15,),\n    (54,),\n    (60,),\n    (51,),\n    (46,),\n    (91,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countSetBits ( n ) :\n    if ( n == 0 ) :\n        return 0\n    else :\n        return 1 + countSetBits ( n & ( n - 1 ) )\n"}
+Disassembly of <code object countSetBits at 0x7f816a6e4ae0, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( countSetBits )
+
+27 8 LOAD_FAST 1 ( countSetBits )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( countBits )
+
+28 16 LOAD_FAST 0 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( countSetBits )
+
+29 24 LOAD_FAST 1 ( countSetBits )
+26 LOAD_CONST 4 ( 2 )
+28 BINARY_SUBSCR
+30 STORE_FAST 4 ( countBits )
+
+30 32 LOAD_FAST 0 ( n )
+34 LOAD_CONST 5 ( 1 )
+36 BINARY_SUBSCR
+38 STORE_FAST 5 ( countBits )
+
+31 40 LOAD_FAST 0 ( n )
+42 LOAD_CONST 6 ( 2 )
+44 BINARY_SUBSCR
+46 STORE_FAST 6 ( countBits )
+
+32 48 LOAD_FAST 0 ( n )
+50 LOAD_CONST 7 ( 3 )
+52 BINARY_SUBSCR
+54 STORE_FAST 7 ( countBits )
+
+33 56 LOAD_FAST 0 ( n )
+58 LOAD_CONST 8 ( 2 )
+60 BINARY_SUBSCR
+62 STORE_FAST 8 ( countBits )
+
+34 64 LOAD_FAST 0 ( n )
+66 LOAD_CONST 9 ( 1 )
+68 BINARY_SUBSCR
+70 STORE_FAST 9 ( countBits )
+
+35 72 LOAD_FAST 0 ( n )
+74 LOAD_CONST 10 ( 2 )
+76 BINARY_SUBSCR
+78 STORE_FAST 10 ( countBits )
+
+36 80 LOAD_FAST 0 ( n )
+82 LOAD_CONST 11 ( 1 )
+84 BINARY_SUBSCR
+86 STORE_FAST 10 ( countBits )
+
+37 88 LOAD_FAST 0 ( n )
+90 LOAD_CONST 12 ( 2 )
+92 BINARY_SUBSCR
+94 STORE_FAST 11 ( countBits )
+
+38 96 LOAD_FAST 0 ( n )
+98 LOAD_CONST 13 ( 2 )
+100 BINARY_SUBSCR
+102 STORE_FAST 12 ( countBits )
+
+39 104 LOAD_FAST 0 ( n )
+106 LOAD_FAST 10 ( countBits )
+108 LOAD_CONST 14 ( 3 )
+110 BINARY_SUBSCR
+112 LOAD_FAST 10 ( countBits )
+114 LOAD_CONST 15 ( 2 )
+116 BINARY_SUBSCR
+118 LOAD_FAST 10 ( countBits )
+120 LOAD_CONST 16 ( 4 )
+122 BINARY_SUBSCR
+124 BUILD_TUPLE 2
+126 RETURN_VALUE
+

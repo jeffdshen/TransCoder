@@ -1,0 +1,81 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( low , high ) :\n    fact = 1\n    x = 1\n    while ( fact < low ) :\n        fact = fact * x\n        x += 1\n    res = 0\n    while ( fact <= high ) :\n        res += 1\n        fact = fact * x\n        x += 1\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (57,79,),\n    (57,21,),\n    (31,37,),\n    (62,87,),\n    (49,98,),\n    (82,76,),\n    (31,45,),\n    (5,52,),\n    (76,43,),\n    (55,6,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countFact ( low , high ) :\n    fact = 1\n    x = 1\n    while ( fact < low ) :\n        fact = fact * x\n        x += 1\n    res = 0\n    while ( fact <= high ) :\n        res += 1\n        fact = fact * x\n        x += 1\n    return res\n"}
+Disassembly of <code object countadjadjlow at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( fact )
+2 LOAD_FAST 0 ( low )
+4 LOAD_FAST 1 ( high )
+6 BINARY_SUBTRACT
+8 LOAD_CONST 1 ( 1 )
+10 BINARY_SUBTRACT
+12 LOAD_FAST 1 ( high )
+14 BINARY_SUBTRACT
+16 BINARY_SUBTRACT
+18 LOAD_FAST 1 ( high )
+20 BINARY_SUBTRACT
+22 LOAD_CONST 1 ( 1 )
+24 BINARY_SUBTRACT
+26 BINARY_SUBTRACT
+28 BINARY_MULTIPLY
+30 LOAD_FAST 1 ( high )
+32 BINARY_SUBTRACT
+34 BINARY_MULTIPLY
+36 BINARY_ADD
+38 STORE_FAST 2 ( low )
+
+27 40 LOAD_FAST 2 ( low )
+42 LOAD_FAST 2 ( high )
+44 BINARY_SUBTRACT
+46 STORE_FAST 3 ( low )
+
+28 48 LOAD_FAST 3 ( low )
+50 LOAD_FAST 2 ( high )
+52 BINARY_SUBTRACT
+54 STORE_FAST 4 ( high )
+
+29 56 LOAD_FAST 4 ( high )
+58 LOAD_FAST 3 ( low )
+60 BINARY_SUBTRACT
+62 STORE_FAST 5 ( high )
+
+30 64 LOAD_FAST 5 ( high )
+66 LOAD_FAST 4 ( high )
+68 BINARY_SUBTRACT
+70 STORE_FAST 6 ( high )
+
+31 72 LOAD_FAST 5 ( high )
+74 LOAD_FAST 6 ( high )
+76 BINARY_SUBTRACT
+78 BINARY_MULTIPLY
+80 STORE_FAST 7 ( low )
+
+32 82 LOAD_FAST 7 ( low )
+84 LOAD_FAST 6 ( high )
+86 BINARY_SUBTRACT
+88 LOAD_FAST 7 ( low )
+90 BINARY_SUBTRACT
+92 BINARY_MULTIPLY
+94 STORE_FAST 8 ( low )
+
+33 96 LOAD_FAST 7 ( low )
+98 LOAD_FAST 8 ( low )
+100 BINARY_SUBTRACT
+102 BINARY_MULTIPLY
+104 LOAD_FAST 6 ( high )
+106 BINARY_SUBTRACT
+108 BINARY_MULTIPLY
+110 LOAD_FAST 8 ( low )
+112 BINARY_SUBTRACT
+114 BINARY_MULTIPLY
+116 BINARY_ADD
+118 LOAD_FAST 7 ( high )
+120 BINARY_SUBTRACT
+122 BINARY_MULTIPLY
+124 BINARY_ADD
+126 STORE_FAST 9 ( low )
+
+34 128 LOAD_FAST 8 ( low )
+130 LOAD_FAST 9 ( low )
+132 BINARY_SUBTRACT
+134 BINARY_MULTIPLY
+136 BINARY_TRUE_DIVIDE
+138 RETURN_VALUE
+

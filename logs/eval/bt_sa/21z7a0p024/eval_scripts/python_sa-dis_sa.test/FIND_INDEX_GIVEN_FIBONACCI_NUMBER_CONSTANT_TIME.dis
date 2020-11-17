@@ -1,0 +1,58 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    if ( n <= 1 ) :\n        return n\n    a = 0\n    b = 1\n    c = 1\n    res = 1\n    while ( c < n ) :\n        c = a + b\n        res = res + 1\n        a = b\n        b = c\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (5,),\n    (19,),\n    (7,),\n    (94,),\n    (58,),\n    (65,),\n    (69,),\n    (96,),\n    (80,),\n    (14,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findIndex ( n ) :\n    if ( n <= 1 ) :\n        return n\n    a = 0\n    b = 1\n    c = 1\n    res = 1\n    while ( c < n ) :\n        c = a + b\n        res = res + 1\n        a = b\n        b = c\n    return res\n"}
+Disassembly of <code object findIndex at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 1 ( <= )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_FAST 0 ( n )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_CONST 2 ( 0 )
+14 STORE_FAST 1 ( a )
+
+5 16 LOAD_CONST 1 ( 1 )
+18 STORE_FAST 2 ( b )
+
+6 20 SETUP_LOOP 64 ( to 92 )
+22 LOAD_FAST 0 ( n )
+24 GET_ITER
+>> 26 FOR_ITER 64 ( to 90 )
+28 STORE_FAST 3 ( a )
+
+7 30 LOAD_FAST 1 ( a )
+32 LOAD_FAST 3 ( b )
+34 COMPARE_OP 0 ( < )
+36 POP_JUMP_IF_FALSE 26
+
+8 38 LOAD_FAST 1 ( a )
+40 LOAD_FAST 3 ( b )
+42 COMPARE_OP 0 ( < )
+44 POP_JUMP_IF_FALSE 26
+
+9 46 LOAD_FAST 1 ( a )
+48 LOAD_FAST 3 ( b )
+50 COMPARE_OP 4 ( > )
+52 POP_JUMP_IF_FALSE 26
+
+10 54 LOAD_FAST 1 ( a )
+56 LOAD_FAST 3 ( b )
+58 BINARY_SUBSCR
+60 LOAD_FAST 3 ( a )
+62 COMPARE_OP 4 ( > )
+64 POP_JUMP_IF_FALSE 26
+
+11 66 LOAD_FAST 1 ( a )
+68 LOAD_FAST 3 ( b )
+70 BINARY_SUBSCR
+72 LOAD_FAST 3 ( a )
+74 LOAD_FAST 3 ( b )
+76 BINARY_SUBSCR
+78 LOAD_FAST 3 ( a )
+80 LOAD_FAST 3 ( b )
+82 STORE_SUBSCR
+84 JUMP_ABSOLUTE 26
+>> 86 POP_BLOCK
+
+12 >> 88 LOAD_FAST 1 ( a )
+90 RETURN_VALUE

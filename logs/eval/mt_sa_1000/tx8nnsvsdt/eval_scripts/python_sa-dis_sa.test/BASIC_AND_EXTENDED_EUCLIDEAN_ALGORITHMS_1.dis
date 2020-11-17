@@ -1,0 +1,45 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , x , y ) :\n    if a == 0 :\n        x = 0\n        y = 1\n        return b\n    x1 = 1\n    y1 = 1\n    gcd = f_gold ( b % a , a , x1 , y1 )\n    x = y1 - ( b / a ) * x1\n    y = x1\n    return gcd\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (44,17,10,65,),\n    (33,81,67,20,),\n    (39,77,21,34,),\n    (52,96,23,97,),\n    (64,48,17,33,),\n    (45,32,89,3,),\n    (53,88,24,74,),\n    (86,19,29,21,),\n    (57,67,30,32,),\n    (11,86,96,81,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def gcdExtended ( a , b , x , y ) :\n    if a == 0 :\n        x = 0\n        y = 1\n        return b\n    x1 = 1\n    y1 = 1\n    gcd = gcdExtended ( b % a , a , x1 , y1 )\n    x = y1 - ( b / a ) * x1\n    y = x1\n    return gcd\n"}
+Disassembly of <code object gcdExtended at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 16
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 4 ( x )
+
+4 12 LOAD_CONST 2 ( 1 )
+14 STORE_FAST 5 ( y )
+
+5 16 LOAD_FAST 1 ( b )
+18 RETURN_VALUE
+
+6 >> 20 LOAD_CONST 2 ( 1 )
+22 STORE_FAST 6 ( x1 )
+
+7 24 LOAD_CONST 2 ( 1 )
+26 STORE_FAST 7 ( y1 )
+
+8 28 LOAD_GLOBAL 0 ( gcdExtended )
+30 LOAD_FAST 1 ( b )
+32 LOAD_FAST 0 ( a )
+34 BINARY_MODULO
+36 LOAD_FAST 6 ( x1 )
+38 LOAD_FAST 7 ( y1 )
+40 CALL_FUNCTION 4
+42 STORE_FAST 8 ( gcd )
+
+9 44 LOAD_FAST 7 ( y1 )
+46 LOAD_FAST 1 ( b )
+48 LOAD_FAST 0 ( a )
+50 BINARY_TRUE_DIVIDE
+52 LOAD_FAST 6 ( x1 )
+54 BINARY_MULTIPLY
+56 BINARY_SUBTRACT
+58 STORE_FAST 4 ( x )
+
+10 60 LOAD_FAST 6 ( x1 )
+62 STORE_FAST 5 ( y )
+
+11 64 LOAD_FAST 8 ( gcd )
+66 RETURN_VALUE

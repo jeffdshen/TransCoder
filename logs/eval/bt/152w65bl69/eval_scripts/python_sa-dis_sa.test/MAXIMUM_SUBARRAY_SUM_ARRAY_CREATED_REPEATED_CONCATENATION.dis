@@ -1,0 +1,37 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , n , k ) :\n    max_so_far = - 2147483648\n    max_ending_here = 0\n    for i in range ( n * k ) :\n        max_ending_here = max_ending_here + a [ i % n ]\n        if ( max_so_far < max_ending_here ) :\n            max_so_far = max_ending_here\n        if ( max_ending_here < 0 ) :\n            max_ending_here = 0\n    return max_so_far\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([5, 6, 12, 20, 23, 28, 33, 37, 47, 51, 53, 56, 63, 65, 65, 68, 69, 76, 76, 78, 83],18,20,),\n    ([68, 10, 52, -44, 34, -4, -34, 2, 50, -60, 50, 94, -98, -98, -44, -36, -4, -62, -2, -92, -70, -48, -78, -10, 94],22,22,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],34,29,),\n    ([71, 59, 21, 82, 73, 29, 30, 25, 21, 10, 85, 22, 60, 43, 49, 20, 34, 39, 69, 6, 44, 27, 50, 33, 57, 29, 65, 18, 68, 56, 50, 28],23,30,),\n    ([-84, -74, -74, -56, -54, -48, -48, -46, -42, -34, -32, -30, -18, -16, -16, 6, 12, 20, 24, 26, 30, 32, 34, 42, 42, 42, 44, 46, 46, 50, 50, 62, 72, 78, 90],17,23,),\n    ([0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0],16,25,),\n    ([3, 7, 11, 11, 26, 60, 68, 71, 77, 91, 95],8,10,),\n    ([28, 48, -86, -52, 6, 4, 30, 18, -32, 60, -2, 16, -88, -36],8,11,),\n    ([1],0,0,),\n    ([76],0,0,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxSubArraySumRepeated ( a , n , k ) :\n    max_so_far = - 2147483648\n    max_ending_here = 0\n    for i in range ( n * k ) :\n        max_ending_here = max_ending_here + a [ i % n ]\n        if ( max_so_far < max_ending_here ) :\n            max_so_far = max_ending_here\n        if ( max_ending_here < 0 ) :\n            max_ending_here = 0\n    return max_so_far\n"}
+Disassembly of <code object maxSubArraySumSumated at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( n )
+2 LOAD_CONST 1 ( 2147483648 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 16
+
+27 8 LOAD_CONST 2 ( 0.0 )
+10 RETURN_VALUE
+
+28 >> 12 LOAD_FAST 1 ( n )
+14 LOAD_CONST 3 ( - 2147483648 )
+16 COMPARE_OP 4 ( > )
+18 POP_JUMP_IF_FALSE 30
+
+29 20 LOAD_CONST 4 ( 0.0 )
+22 RETURN_VALUE
+
+30 >> 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 5 ( - 1 )
+28 COMPARE_OP 4 ( > )
+30 POP_JUMP_IF_FALSE 30
+
+31 32 LOAD_CONST 6 ( 0.0 )
+34 RETURN_VALUE
+
+32 >> 36 LOAD_FAST 1 ( n )
+38 LOAD_CONST 7 ( 1 )
+40 COMPARE_OP 4 ( > )
+42 POP_JUMP_IF_FALSE 46
+
+33 44 LOAD_CONST 8 ( 0.0 )
+46 RETURN_VALUE
+48 JUMP_FORWARD 2 ( to 50 )
+>> 50 LOAD_CONST 9 ( 0.0 )
+>> 52 RETURN_VALUE
+

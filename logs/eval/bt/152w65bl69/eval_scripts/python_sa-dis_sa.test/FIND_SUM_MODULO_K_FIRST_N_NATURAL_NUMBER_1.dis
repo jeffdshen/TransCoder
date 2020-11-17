@@ -1,0 +1,103 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( N , K ) :\n    ans = 0 ;\n    y = N / K ;\n    x = N % K ;\n    ans = ( ( K * ( K - 1 ) / 2 ) * y + ( x * ( x + 1 ) ) / 2 ) ;\n    return int ( ans ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (40,90,),\n    (46,64,),\n    (97,20,),\n    (63,1,),\n    (92,52,),\n    (60,35,),\n    (67,40,),\n    (61,62,),\n    (74,61,),\n    (67,41,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSum ( N , K ) :\n    ans = 0 ;\n    y = N / K ;\n    x = N % K ;\n    ans = ( ( K * ( K - 1 ) / 2 ) * y + ( x * ( x + 1 ) ) / 2 ) ;\n    return int ( ans ) ;\n"}
+Disassembly of <code object findSum at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 0 )
+2 LOAD_CONST 2 ( N )
+4 BINARY_MULTIPLY
+6 STORE_FAST 1 ( K )
+
+27 8 LOAD_GLOBAL 0 ( K )
+10 LOAD_CONST 3 ( 1 )
+12 LOAD_CONST 4 ( 2 )
+14 BINARY_MULTIPLY
+16 LOAD_FAST 1 ( K )
+18 LOAD_CONST 5 ( 3 )
+20 BINARY_MULTIPLY
+22 LOAD_FAST 1 ( K )
+24 LOAD_CONST 6 ( 4 )
+26 BINARY_MULTIPLY
+28 LOAD_FAST 1 ( K )
+30 LOAD_CONST 7 ( 3 )
+32 BINARY_MULTIPLY
+34 LOAD_FAST 1 ( K )
+36 LOAD_CONST 8 ( 4 )
+38 BINARY_MULTIPLY
+40 LOAD_FAST 1 ( K )
+42 LOAD_CONST 9 ( 4 )
+44 BINARY_MULTIPLY
+46 LOAD_FAST 1 ( K )
+48 LOAD_CONST 10 ( 4 )
+50 BINARY_MULTIPLY
+52 LOAD_FAST 1 ( K )
+54 LOAD_CONST 11 ( 4 )
+56 BINARY_MULTIPLY
+58 BINARY_ADD
+60 LOAD_FAST 1 ( K )
+62 LOAD_CONST 12 ( 4 )
+64 BINARY_MULTIPLY
+66 BINARY_MULTIPLY
+68 BINARY_ADD
+70 LOAD_FAST 1 ( K )
+72 LOAD_CONST 13 ( 4 )
+74 BINARY_MULTIPLY
+76 BINARY_ADD
+78 BINARY_MULTIPLY
+80 BINARY_ADD
+82 LOAD_FAST 1 ( K )
+84 LOAD_CONST 14 ( 4 )
+86 BINARY_MULTIPLY
+88 BINARY_ADD
+90 LOAD_FAST 1 ( K )
+92 LOAD_CONST 15 ( 4 )
+94 BINARY_MULTIPLY
+96 BINARY_ADD
+98 LOAD_FAST 1 ( K )
+100 LOAD_CONST 16 ( 4 )
+102 BINARY_MULTIPLY
+104 BINARY_ADD
+106 LOAD_FAST 1 ( K )
+108 LOAD_CONST 17 ( 4 )
+110 BINARY_MULTIPLY
+112 BINARY_ADD
+114 LOAD_FAST 1 ( K )
+116 LOAD_CONST 18 ( 4 )
+118 BINARY_MULTIPLY
+120 BINARY_ADD
+122 LOAD_FAST 1 ( K )
+124 LOAD_CONST 19 ( 4 )
+126 BINARY_MULTIPLY
+128 BINARY_ADD
+130 LOAD_FAST 1 ( K )
+132 LOAD_CONST 20 ( 4 )
+134 BINARY_MULTIPLY
+136 BINARY_ADD
+138 LOAD_FAST 1 ( K )
+140 LOAD_CONST 21 ( 4 )
+142 BINARY_MULTIPLY
+144 BINARY_ADD
+146 BINARY_MULTIPLY
+148 BINARY_ADD
+150 LOAD_FAST 1 ( K )
+152 LOAD_CONST 22 ( 4 )
+154 BINARY_MULTIPLY
+156 BINARY_ADD
+158 BINARY_MULTIPLY
+
+29 156 LOAD_FAST 1 ( K )
+158 LOAD_CONST 21 ( 4 )
+160 BINARY_MULTIPLY
+162 BINARY_ADD
+164 BINARY_MULTIPLY
+166 BINARY_ADD
+164 LOAD_FAST 1 ( K )
+168 LOAD_CONST 23 ( 4 )
+170 BINARY_MULTIPLY
+172 BINARY_ADD
+174 BINARY_MULTIPLY
+176 BINARY_ADD
+
+30 30 LOAD_FAST 1 ( K )
+32 LOAD_CONST 23 ( 4 )
+34 BINARY_MULTIPLY
+36 BINARY_ADD
+38 LOAD_FAST 1 ( K )
+40 LOAD_CONST 23 ( 4

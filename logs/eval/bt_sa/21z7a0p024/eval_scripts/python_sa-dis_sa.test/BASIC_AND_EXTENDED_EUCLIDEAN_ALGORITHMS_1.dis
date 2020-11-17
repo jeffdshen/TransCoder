@@ -1,0 +1,98 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , x , y ) :\n    if a == 0 :\n        x = 0\n        y = 1\n        return b\n    x1 = 1\n    y1 = 1\n    gcd = f_gold ( b % a , a , x1 , y1 )\n    x = y1 - ( b / a ) * x1\n    y = x1\n    return gcd\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (44,17,10,65,),\n    (33,81,67,20,),\n    (39,77,21,34,),\n    (52,96,23,97,),\n    (64,48,17,33,),\n    (45,32,89,3,),\n    (53,88,24,74,),\n    (86,19,29,21,),\n    (57,67,30,32,),\n    (11,86,96,81,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def gcdExtended ( a , b , x , y ) :\n    if a == 0 :\n        x = 0\n        y = 1\n        return b\n    x1 = 1\n    y1 = 1\n    gcd = gcdExtended ( b % a , a , x1 , y1 )\n    x = y1 - ( b / a ) * x1\n    y = x1\n    return gcd\n"}
+Disassembly of <code object gcdExtended at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 2 ( x )
+
+4 >> 12 LOAD_FAST 2 ( x )
+14 LOAD_CONST 2 ( 1 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 32
+
+5 20 LOAD_CONST 1 ( 0 )
+22 STORE_FAST 2 ( y )
+
+6 24 LOAD_FAST 2 ( x )
+26 LOAD_CONST 2 ( 1 )
+28 BINARY_SUBSCR
+30 STORE_FAST 2 ( y )
+
+7 >> 32 LOAD_FAST 2 ( x )
+34 LOAD_CONST 3 ( 2 )
+36 BINARY_SUBSCR
+38 STORE_FAST 3 ( c )
+
+8 40 LOAD_FAST 1 ( c )
+42 LOAD_CONST 4 ( 2 )
+44 BINARY_SUBSCR
+46 STORE_FAST 4 ( c )
+
+9 48 LOAD_FAST 2 ( x )
+50 LOAD_CONST 5 ( 3 )
+52 BINARY_SUBSCR
+54 LOAD_FAST 2 ( y )
+56 LOAD_CONST 6 ( 4 )
+58 BINARY_SUBSCR
+60 LOAD_FAST 2 ( y )
+62 LOAD_CONST 7 ( 4 )
+64 BINARY_SUBSCR
+66 BINARY_SUBTRACT
+68 LOAD_FAST 2 ( y )
+70 LOAD_CONST 8 ( 5 )
+72 BINARY_SUBSCR
+74 BINARY_SUBTRACT
+76 LOAD_FAST 2 ( y )
+78 LOAD_CONST 9 ( 5 )
+80 BINARY_SUBSCR
+82 BINARY_SUBTRACT
+84 LOAD_FAST 2 ( y )
+86 LOAD_CONST 10 ( 3 )
+88 BINARY_SUBSCR
+90 BINARY_SUBTRACT
+92 LOAD_FAST 2 ( y )
+94 LOAD_CONST 11 ( 4 )
+96 BINARY_SUBSCR
+98 BINARY_SUBTRACT
+100 LOAD_FAST 2 ( y )
+102 LOAD_CONST 12 ( 5 )
+104 BINARY_SUBSCR
+106 BINARY_SUBTRACT
+108 LOAD_FAST 2 ( y )
+110 LOAD_CONST 13 ( 4 )
+112 BINARY_SUBSCR
+114 BINARY_SUBTRACT
+116 LOAD_FAST 2 ( y )
+118 LOAD_CONST 14 ( 4 )
+120 BINARY_SUBSCR
+122 BINARY_SUBTRACT
+124 LOAD_FAST 2 ( y )
+126 LOAD_CONST 15 ( 4 )
+128 BINARY_SUBSCR
+130 BINARY_SUBTRACT
+132 LOAD_FAST 2 ( y )
+134 LOAD_CONST 16 ( 5 )
+136 BINARY_SUBSCR
+138 BINARY_SUBTRACT
+140 LOAD_FAST 2 ( y )
+142 LOAD_CONST 15 ( 4 )
+144 BINARY_SUBSCR
+146 BINARY_SUBTRACT
+148 LOAD_FAST 2 ( y )
+150 LOAD_CONST 16 ( 5 )
+152 BINARY_SUBSCR
+154 BINARY_SUBTRACT
+156 LOAD_FAST 2 ( y )
+158 LOAD_CONST 17 ( 5 )
+160 BINARY_SUBSCR
+162 BINARY_SUBTRACT
+164 LOAD_FAST 2 ( y )
+166 LOAD_CONST 16 ( 5 )
+168 BINARY_SUBSCR
+170 BINARY_SUBTRACT
+172 LOAD_FAST 2 ( y )
+174 LOAD_CONST 17 ( 5 )
+176 STORE_SUBSCR

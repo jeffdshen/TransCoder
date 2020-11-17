@@ -1,0 +1,87 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    prevPrev = 1\n    prev = 2\n    curr = 3\n    while n > 0 :\n        prevPrev = prev\n        prev = curr\n        curr = prevPrev + prev\n        n = n - ( curr - prev - 1 )\n    n = n + ( curr - prev - 1 )\n    return prev + n\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (76,),\n    (91,),\n    (62,),\n    (65,),\n    (83,),\n    (57,),\n    (76,),\n    (6,),\n    (2,),\n    (86,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def nonFibonacci ( n ) :\n    prevPrev = 1\n    prev = 2\n    curr = 3\n    while n > 0 :\n        prevPrev = prev\n        prev = curr\n        curr = prevPrev + prev\n        n = n - ( curr - prev - 1 )\n    n = n + ( curr - prev - 1 )\n    return prev + n\n"}
+Disassembly of <code object nonFibonacci at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 1 ( prevPrev )
+
+3 4 LOAD_CONST 2 ( 2 )
+6 STORE_FAST 2 ( prevPrev )
+
+4 8 LOAD_CONST 3 ( 3 )
+10 STORE_FAST 3 ( curr )
+
+5 12 SETUP_LOOP 64 ( to 76 )
+14 LOAD_FAST 0 ( n )
+16 GET_ITER
+>> 18 FOR_ITER 64 ( to 74 )
+20 STORE_FAST 4 ( n )
+
+6 22 LOAD_FAST 1 ( prevPrev )
+24 LOAD_FAST 4 ( n )
+26 BINARY_SUBSCR
+28 LOAD_FAST 1 ( prevPrev )
+30 COMPARE_OP 2 ( == )
+32 POP_JUMP_IF_FALSE 42
+
+7 34 LOAD_FAST 2 ( prevPrev )
+36 LOAD_FAST 4 ( n )
+38 BINARY_SUBSCR
+40 LOAD_FAST 1 ( prevPrev )
+42 COMPARE_OP 2 ( == )
+44 POP_JUMP_IF_FALSE 18
+
+8 46 LOAD_FAST 2 ( prevPrev )
+48 LOAD_FAST 4 ( n )
+50 BINARY_SUBSCR
+52 STORE_FAST 2 ( prevPrev )
+
+9 54 LOAD_FAST 2 ( prevPrev )
+56 LOAD_FAST 4 ( n )
+58 BINARY_SUBSCR
+60 LOAD_FAST 1 ( prevprev )
+62 COMPARE_OP 2 ( == )
+64 POP_JUMP_IF_FALSE 18
+
+10 66 LOAD_FAST 2 ( prevPrev )
+68 LOAD_FAST 4 ( n )
+70 BINARY_SUBSCR
+72 STORE_FAST 2 ( prevPrev )
+
+11 74 LOAD_FAST 2 ( prevPrev )
+76 LOAD_FAST 4 ( n )
+78 BINARY_SUBSCR
+80 LOAD_FAST 1 ( prevPrev )
+82 COMPARE_OP 2 ( == )
+84 POP_JUMP_IF_FALSE 18
+
+12 86 LOAD_FAST 2 ( prevPrev )
+88 LOAD_FAST 4 ( n )
+90 BINARY_SUBSCR
+92 STORE_FAST 2 ( prevPrev )
+94 JUMP_ABSOLUTE 18
+>> 96 POP_BLOCK
+
+13 >> 98 LOAD_FAST 2 ( prevPrev )
+100 LOAD_FAST 1 ( prevPrev )
+102 COMPARE_OP 2 ( == )
+104 POP_JUMP_IF_FALSE 126
+
+14 106 LOAD_FAST 2 ( prevPrev )
+108 LOAD_FAST 4 ( n )
+110 BINARY_SUBSCR
+112 LOAD_FAST 1 ( prevPrev )
+114 COMPARE_OP 2 ( == )
+116 POP_JUMP_IF_FALSE 126
+
+15 118 LOAD_FAST 2 ( prevPrev )
+120 LOAD_FAST 4 ( n )
+122 BINARY_SUBSCR
+124 LOAD_FAST 1 ( prevPrev )
+126 COMPARE_OP 2 ( == )
+128 POP_JUMP_IF_FALSE 148
+
+16 130 LOAD_FAST 2 ( prevPrev )
+132 LOAD_FAST 2 ( prevPrev )
+134 LOAD_FAST 3 ( curr )
+136 STORE_SUBSCR
+
+17 >> 138

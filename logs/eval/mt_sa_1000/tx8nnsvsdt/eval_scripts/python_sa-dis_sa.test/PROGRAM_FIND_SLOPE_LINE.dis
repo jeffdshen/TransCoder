@@ -1,0 +1,12 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x1 , y1 , x2 , y2 ) :\n    return ( float ) ( y2 - y1 ) / ( x2 - x1 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (236.27324548309292,5792.493225762838,7177.837879115863,1289.5700425822731,),\n    (-9201.144918204123,-2716.3347716140406,-5161.142121227645,-3205.784279961129,),\n    (3480.4716834445326,3577.9608612055613,8611.515262945342,6744.864707668983,),\n    (-6915.538971485092,-4113.601103381095,-748.3462104020822,-9245.271700539257,),\n    (8887.97173657486,1678.4080012662428,8709.574949883017,8548.492675510739,),\n    (-3785.5177159369946,-3084.67461899163,-7415.76208254121,-887.5389305564152,),\n    (3037.6696554256832,4432.445827549,8387.304165588026,611.3373507518394,),\n    (-7925.458496016523,-3350.27411882042,-5619.767086756504,-1185.7423219907591,),\n    (1404.2919985268031,8971.636233373416,3039.112051378511,1947.6756252708972,),\n    (-4748.744241168378,-675.557388148954,-5998.241086029875,-4236.658178504375,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def slope ( x1 , y1 , x2 , y2 ) :\n    return ( float ) ( y2 - y1 ) / ( x2 - x1 )\n"}
+Disassembly of <code object slope at slope, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( float )
+2 LOAD_FAST 3 ( y2 )
+4 LOAD_FAST 1 ( y1 )
+6 BINARY_SUBTRACT
+8 CALL_FUNCTION 1
+10 LOAD_FAST 2 ( x2 )
+12 LOAD_FAST 0 ( x1 )
+14 BINARY_SUBTRACT
+16 BINARY_TRUE_DIVIDE
+18 RETURN_VALUE

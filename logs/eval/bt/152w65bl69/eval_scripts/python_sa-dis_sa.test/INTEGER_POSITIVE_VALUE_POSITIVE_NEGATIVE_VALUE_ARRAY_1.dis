@@ -1,0 +1,93 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    neg = 0\n    pos = 0\n    sum = 0\n    for i in range ( 0 , n ) :\n        sum += arr [ i ]\n        if ( arr [ i ] < 0 ) :\n            neg += 1\n        else :\n            pos += 1\n    return ( sum / abs ( neg - pos ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([49, 98],1,),\n    ([82, 66, -68, 24, -10],2,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],8,),\n    ([56, 3, 18, 5, 20, 56, 47, 29, 60, 98, 60, 40, 42, 2, 54, 56, 91, 8, 93, 14, 31, 27, 61, 49, 23, 12, 71],25,),\n    ([-94, -94, -92, -86, -50, -48, -6, 8, 28, 40, 44, 58, 62, 72, 94],12,),\n    ([0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1],36,),\n    ([16, 56, 56],1,),\n    ([74, -90, -92, 30, -18, 66, -66, 22],5,),\n    ([0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],7,),\n    ([21, 64, 82, 78, 30, 34, 35],5,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findInteger ( arr , n ) :\n    neg = 0\n    pos = 0\n    sum = 0\n    for i in range ( 0 , n ) :\n        sum += arr [ i ]\n        if ( arr [ i ] < 0 ) :\n            neg += 1\n        else :\n            pos += 1\n    return ( sum / abs ( neg - pos ) )\n"}
+Disassembly of <code object findInteger at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( arr )
+2 LOAD_METHOD 0 ( sum )
+4 CALL_METHOD 0
+6 STORE_FAST 1 ( n )
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 1 ( 0 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( a )
+
+28 16 LOAD_FAST 2 ( a )
+18 LOAD_CONST 2 ( 1 )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+29 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 3 ( 1 )
+28 INPLACE_ADD
+30 STORE_FAST 1 ( n )
+
+30 >> 32 LOAD_FAST 1 ( n )
+34 LOAD_CONST 4 ( - 1 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+
+31 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 5 ( - 1 )
+44 INPLACE_ADD
+46 STORE_FAST 1 ( n )
+
+32 >> 48 LOAD_FAST 1 ( n )
+50 LOAD_CONST 6 ( - 1 )
+52 INPLACE_ADD
+54 STORE_FAST 1 ( n )
+
+33 56 LOAD_FAST 1 ( n )
+58 LOAD_CONST 7 ( - 1 )
+60 INPLACE_ADD
+62 STORE_FAST 1 ( n )
+
+34 64 LOAD_FAST 1 ( n )
+66 LOAD_CONST 8 ( - 1 )
+68 INPLACE_ADD
+70 STORE_FAST 1 ( n )
+
+35 72 LOAD_FAST 1 ( n )
+74 LOAD_CONST 9 ( 1 )
+76 INPLACE_ADD
+78 STORE_FAST 1 ( n )
+80 JUMP_FORWARD 14 ( to 106 )
+
+36 >> 82 LOAD_FAST 1 ( n )
+84 LOAD_CONST 10 ( - 1 )
+86 INPLACE_ADD
+88 STORE_FAST 1 ( n )
+
+37 >> 90 LOAD_FAST 1 ( n )
+92 LOAD_CONST 11 ( - 1 )
+94 INPLACE_ADD
+96 STORE_FAST 1 ( n )
+
+38 98 LOAD_FAST 1 ( n )
+100 LOAD_CONST 12 ( - 1 )
+102 INPLACE_ADD
+104 STORE_FAST 1 ( n )
+
+39 106 LOAD_FAST 1 ( n )
+108 LOAD_FAST 0 ( arr )
+110 LOAD_CONST 12 ( - 1 )
+112 INPLACE_ADD
+114 STORE_FAST 1 ( n )
+
+40 >> 116 LOAD_FAST 1 ( n )
+118 LOAD_CONST 13 ( - 1 )
+120 INPLACE_ADD
+122 STORE_FAST 1 ( n )
+
+41 124 LOAD_FAST 1 ( n )
+126 LOAD_FAST 0 ( arr )
+128 LOAD_CONST 14 ( - 1 )
+130 INPLACE_ADD
+132 STORE_FAST 1 ( n )
+
+42 134 LOAD_FAST 1 ( n )
+136 LOAD_CONST 15 ( - 1 )
+138 INPLACE_ADD
+140 STORE_FAST 1 ( n )
+
+43 142 LOAD_FAST 1 ( n )
+144 RETURN_VALUE
+

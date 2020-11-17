@@ -1,0 +1,56 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    arr.sort ( ) ;\n    min_xor = 999999\n    val = 0\n    for i in range ( 0 , n - 1 ) :\n        for j in range ( i + 1 , n - 1 ) :\n            val = arr [ i ] ^ arr [ j ]\n            min_xor = min ( min_xor , val )\n    return min_xor\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 5, 7, 10, 10, 11, 14, 19, 21, 24, 27, 27, 27, 28, 28, 28, 33, 34, 41, 42, 43, 48, 52, 53, 53, 59, 62, 64, 66, 71, 77, 78, 78, 79, 80, 82, 90, 97, 99, 99],34,),\n    ([-68, -58, 52, 88, 90, 66, -66, -84, -70, -64, 56, 42, 94, -10, 0, 80, 8, 28, -94, 36, 90, 56, 56, 80, -94, 50, 90, -28, -22, -2, -96, 74, -16, -14],17,),\n    ([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],9,),\n    ([57, 63, 11, 73, 60, 73, 25, 65, 39, 48, 31, 17, 23, 94, 10, 97, 42, 45, 83, 75, 97, 96],21,),\n    ([-92, -92, -90, -88, -84, -82, -66, -64, -64, -62, -44, -42, -40, -28, -22, -12, -4, -2, 0, 4, 16, 22, 28, 34, 54, 60, 72, 74, 78, 86, 94],18,),\n    ([1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0],36,),\n    ([2, 2, 6, 13, 16, 16, 17, 19, 19, 20, 22, 25, 27, 29, 34, 34, 34, 36, 38, 39, 42, 49, 49, 53, 59, 59, 71, 77, 79, 82, 83, 83, 84, 84, 86, 86, 87, 88, 93, 96],36,),\n    ([-14, 20, 36, 12, -54, -50, 92, -28, 44, -46, 6, 96, 82, 70, -20, 24, -96, -14, 46, -28, -46, -28, 22, -82, 36, -94, -48, -92, 96, 74, 14],20,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],39,),\n    ([50, 48, 94, 64, 60, 48, 79, 75, 77, 62, 33, 42, 22, 78, 32, 99, 27, 23, 76, 51, 34, 54, 70, 12, 19, 17, 13, 82, 96, 70, 4, 12, 5, 11, 23, 23, 18, 93, 38, 69],30,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minXOR ( arr , n ) :\n    arr.sort ( ) ;\n    min_xor = 999999\n    val = 0\n    for i in range ( 0 , n - 1 ) :\n        for j in range ( i + 1 , n - 1 ) :\n            val = arr [ i ] ^ arr [ j ]\n            min_xor = min ( min_xor , val )\n    return min_xor\n"}
+Disassembly of <code object minXOR at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( arr )
+2 LOAD_METHOD 0 ( sort )
+4 CALL_METHOD 0
+6 POP_TOP
+
+3 8 LOAD_CONST 1 ( 999999 )
+10 STORE_FAST 2 ( min_xor )
+
+4 12 LOAD_CONST 2 ( 0 )
+14 STORE_FAST 3 ( val )
+
+5 16 SETUP_LOOP 64 ( to 82 )
+18 LOAD_GLOBAL 1 ( range )
+20 LOAD_CONST 2 ( 0 )
+22 LOAD_FAST 1 ( n )
+24 LOAD_CONST 3 ( 1 )
+26 BINARY_SUBTRACT
+28 CALL_FUNCTION 2
+30 GET_ITER
+>> 32 FOR_ITER 52 ( to 80 )
+34 STORE_FAST 4 ( i )
+
+6 36 SETUP_LOOP 44 ( to 78 )
+38 LOAD_GLOBAL 1 ( range )
+40 LOAD_FAST 4 ( i )
+42 LOAD_CONST 3 ( 1 )
+44 BINARY_ADD
+46 LOAD_FAST 1 ( n )
+48 LOAD_CONST 3 ( 1 )
+50 BINARY_SUBTRACT
+52 CALL_FUNCTION 2
+54 GET_ITER
+>> 56 FOR_ITER 28 ( to 76 )
+58 STORE_FAST 5 ( j )
+
+7 60 LOAD_FAST 0 ( arr )
+62 LOAD_FAST 4 ( i )
+64 BINARY_SUBSCR
+66 LOAD_FAST 0 ( arr )
+68 LOAD_FAST 5 ( j )
+70 BINARY_SUBSCR
+72 BINARY_XOR
+74 STORE_FAST 3 ( val )
+
+8 >> 76 LOAD_GLOBAL 2 ( min )
+78 LOAD_FAST 2 ( min_xor )
+80 LOAD_FAST 3 ( val )
+82 CALL_FUNCTION 2
+84 STORE_FAST 2 ( min_xor )
+86 JUMP_ABSOLUTE 56
+>> 88 POP_BLOCK
+
+9 >> 90 LOAD_FAST 2 ( min_xor )
+92 RETURN_VALUE

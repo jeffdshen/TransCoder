@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    max_count = 0\n    max_index = 0\n    prev_zero = - 1\n    prev_prev_zero = - 1\n    for curr in range ( n ) :\n        if ( arr [ curr ] == 0 ) :\n            if ( curr - prev_prev_zero > max_count ) :\n                max_count = curr - prev_prev_zero\n                max_index = prev_zero\n            prev_prev_zero = prev_zero\n            prev_zero = curr\n    if ( n - prev_prev_zero > max_count ) :\n        max_index = prev_zero\n    return max_index\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 8, 9, 13, 13, 19, 19, 21, 21, 24, 28, 28, 29, 29, 29, 32, 34, 38, 39, 43, 45, 46, 57, 59, 62, 63, 67, 67, 68, 69, 70, 70, 71, 72, 74, 74, 76, 78, 79, 81, 90, 90, 95, 96, 98],36,),\n    ([28, 92, -16, 0, 6, 12, -88, 42, -48, 72, 2, -38, 80, 82, 96, 32, -42, -38, 62, -76, 20, -10, 2, -48, 4, 88, -24, -72, 32, -42, -48, -62, 38],20,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],39,),\n    ([70, 83, 9, 51, 11, 81, 27, 26, 37, 46],7,),\n    ([50, 88],1,),\n    ([0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1],6,),\n    ([96],0,),\n    ([18, 78, 14, 60, -12, -86, 32, 74, 74, 96, 58, 28, -42, 28, -18, -58, -82, -58, 22, 6, 2, -6, -4, -98],21,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,),\n    ([58, 22, 15, 85, 8, 74, 93, 76, 44, 51, 43, 93, 20, 51, 52, 35, 17, 13, 96, 82, 23, 51, 44, 18, 45, 79, 66, 48, 16, 31, 62, 99, 46, 66, 53, 89, 87, 2, 87, 20, 30],24,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxOnesIndex ( arr , n ) :\n    max_count = 0\n    max_index = 0\n    prev_zero = - 1\n    prev_prev_zero = - 1\n    for curr in range ( n ) :\n        if ( arr [ curr ] == 0 ) :\n            if ( curr - prev_prev_zero > max_count ) :\n                max_count = curr - prev_prev_zero\n                max_index = prev_zero\n            prev_prev_zero = prev_zero\n            prev_zero = curr\n    if ( n - prev_prev_zero > max_count ) :\n        max_index = prev_zero\n    return max_index\n"}
+Disassembly of <code object maxOnesIndex at 0x7f816a673a50, file "<dis>", line 100>:
+101 0 LOAD_FAST 1 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 INPLACE_ADD
+6 STORE_FAST 1 ( n )
+
+102 8 LOAD_FAST 0 ( arr )
+10 LOAD_CONST 2 ( 0 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( curr )
+
+103 16 LOAD_FAST 2 ( curr )
+18 LOAD_CONST 3 ( 1 )
+20 INPLACE_ADD
+22 STORE_FAST 1 ( n )
+
+104 24 LOAD_FAST 2 ( curr )
+26 LOAD_CONST 4 ( 2 )
+28 INPLACE_ADD
+30 STORE_FAST 1 ( n )
+
+105 32 LOAD_FAST 1 ( n )
+34 LOAD_CONST 5 ( 1 )
+36 INPLACE_ADD
+38 STORE_FAST 1 ( n )
+
+106 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 6 ( 2 )
+44 INPLACE_ADD
+46 STORE_FAST 1 ( n )
+
+107 48 LOAD_FAST 1 ( n )
+50 LOAD_CONST 7 ( 3 )
+52 INPLACE_ADD
+54 STORE_FAST 1 ( n )
+
+108 56 LOAD_FAST 1 ( n )
+58 LOAD_CONST 8 ( 2 )
+60 INPLACE_ADD
+62 STORE_FAST 1 ( n )
+
+109 64 LOAD_FAST 1 ( n )
+66 LOAD_CONST 9 ( 4 )
+68 INPLACE_ADD
+70 STORE_FAST 1 ( n )
+
+110 72 LOAD_FAST 1 ( n )
+74 LOAD_CONST 10 ( 4 )
+76 INPLACE_ADD
+78 STORE_FAST 1 ( n )
+80 LOAD_CONST 11 ( 2 )
+82 INPLACE_ADD
+84 STORE_FAST 1 ( n )
+
+111 86 LOAD_FAST 1 ( n )
+88 LOAD_CONST 12 ( 2 )
+90 INPLACE_ADD
+92 STORE_FAST 1 ( n )
+
+112 94 LOAD_FAST 1 ( n )
+96 LOAD_CONST 13 ( 2 )
+98 INPLACE_ADD
+100 STORE_FAST 1 ( n )
+
+113 102 LOAD_FAST 1 ( n )
+104 LOAD_FAST 0 ( arr )
+106 INPLACE_ADD
+108 STORE_FAST 1 ( n )
+110 STORE_FAST 2 ( curr )
+
+114 112 LOAD_FAST 1 ( n )
+114 LOAD_FAST 2 ( curr )
+116 INPLACE_ADD
+118 STORE_FAST 1 ( n )
+
+115 120 LOAD_FAST 1 ( n )
+122 LOAD_FAST 2 ( curr )
+124 INPLACE_ADD
+126 STORE_FAST 1 ( n )
+
+116 128 LOAD_FAST 1 ( n )
+130 LOAD_FAST 2 ( curr )
+132 INPLACE_ADD
+134 STORE_FAST 1 ( n )
+136 STORE_FAST 2 ( curr )
+
+117 138 LOAD_FAST 1 ( n )
+140 LOAD_CONST 6 ( 2 )
+142 INPLACE_ADD
+144 STORE_FAST 1 ( n )
+
+118 146 LOAD_FAST 2 ( curr )
+148 RETURN_VALUE
+

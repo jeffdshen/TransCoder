@@ -1,0 +1,51 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    if ( n == 1 ) : return True\n    arr.sort ( )\n    d = arr [ 1 ] - arr [ 0 ]\n    for i in range ( 2 , n ) :\n        if ( arr [ i ] - arr [ i - 1 ] != d ) :\n            return False\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1,4,64,16],4,),\n    ([0, 12, 4, 8],4,),\n    ([-2, 2, 0, 4, 6],5,),\n    ([0,0,0,0,0,0,0,0,0,0,0,0],7,),\n    ([66,56,86,76,46],5,),\n    ([66,56,56,86,76,46],6,),\n    ([7, 9, 11, 21, 44, 45, 61, 67, 78, 97, 98, 99],11,),\n    ([66, -28, -26, 50, -18, 54, 84, -2, -70, -74, 6, -34, 44, -36, -4, 36, 14, 24, 64, 74, 86, -96, 54, -68, -84, -62, -36, 34, -36, 70, -50, 6, 62, -50, -34, -38, -28, 74, 78, -2, -12, -4],33,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],33,),\n    ([18, 93, 79, 20, 44, 36, 69, 37, 33, 82, 19, 51, 32, 22, 1, 54, 89, 20, 58, 35, 70, 70, 61, 63, 61, 57, 3, 95, 99, 45, 15, 17, 15, 5, 86, 46, 11, 64, 92, 14, 39, 67],40,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkIsAP ( arr , n ) :\n    if ( n == 1 ) : return True\n    arr.sort ( )\n    d = arr [ 1 ] - arr [ 0 ]\n    for i in range ( 2 , n ) :\n        if ( arr [ i ] - arr [ i - 1 ] != d ) :\n            return False\n    return True\n"}
+Disassembly of <code object checkIsAP at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( arr )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 2 ( True )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_FAST 0 ( arr )
+14 LOAD_CONST 1 ( 1 )
+16 BINARY_SUBSCR
+18 LOAD_CONST 3 ( '-' )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+5 24 LOAD_CONST 4 ( False )
+26 RETURN_VALUE
+
+6 >> 28 LOAD_CONST 5 ( False )
+30 RETURN_VALUE
+
+7 >> 32 SETUP_LOOP 64 ( to 102 )
+34 LOAD_GLOBAL 0 ( range )
+36 LOAD_CONST 1 ( 1 )
+38 CALL_FUNCTION 1
+40 GET_ITER
+>> 42 FOR_ITER 64 ( to 100 )
+44 STORE_FAST 2 ( i )
+
+8 46 LOAD_FAST 0 ( arr )
+48 LOAD_CONST 6 ( 0 )
+50 BINARY_SUBSCR
+52 LOAD_CONST 7 ( '-' )
+54 COMPARE_OP 2 ( == )
+56 POP_JUMP_IF_FALSE 64
+
+9 58 LOAD_CONST 8 ( False )
+60 RETURN_VALUE
+
+10 >> 62 LOAD_CONST 9 ( True )
+64 RETURN_VALUE
+
+11 >> 66 LOAD_CONST 10 ( False )
+68 RETURN_VALUE
+70 JUMP_ABSOLUTE 42
+>> 72 POP_BLOCK
+
+12 >> 74 LOAD_CONST 11 ( False )
+76 RETURN_VALUE

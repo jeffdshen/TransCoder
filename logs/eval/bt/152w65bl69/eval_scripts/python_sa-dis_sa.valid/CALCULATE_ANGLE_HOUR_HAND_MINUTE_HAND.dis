@@ -1,0 +1,59 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( h , m ) :\n    if ( h < 0 or m < 0 or h > 12 or m > 60 ) :\n        print ( 'Wrong input' )\n    if ( h == 12 ) :\n        h = 0\n    if ( m == 60 ) :\n        m = 0\n    hour_angle = 0.5 * ( h * 60 + m )\n    minute_angle = 6 * m\n    angle = abs ( hour_angle - minute_angle )\n    angle = min ( 360 - angle , angle )\n    return angle\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (7322.337365895532,6996.326968156217,),\n    (-0.5025472034247969,-2910.070017192333,),\n    (8735.336068205026,1910.3752934680874,),\n    (-5478.862697905712,-9470.18148108585,),\n    (8264.126919165505,7058.937313484608,),\n    (-9671.311773842834,-3867.070379361206,),\n    (9995.328351000411,2145.339179488316,),\n    (-5274.574323066984,-3583.7503371694124,),\n    (1310.8711644223736,5214.059687285893,),\n    (-2829.678131972794,-9371.556600288217,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def calcAngle ( h , m ) :\n    if ( h < 0 or m < 0 or h > 12 or m > 60 ) :\n        print ( 'Wrong input' )\n    if ( h == 12 ) :\n        h = 0\n    if ( m == 60 ) :\n        m = 0\n    hour_angle = 0.5 * ( h * 60 + m )\n    minute_angle = 6 * m\n    angle = abs ( hour_angle - minute_angle )\n    angle = min ( 360 - angle , angle )\n    return angle\n"}
+Disassembly of <code object calcAngle at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( h )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 4 ( > )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_GLOBAL 0 ( print )
+10 LOAD_CONST 2 ( 'Wrong input' )
+12 CALL_FUNCTION 1
+14 POP_TOP
+
+28 >> 16 LOAD_FAST 0 ( h )
+18 LOAD_CONST 1 ( 0 )
+20 COMPARE_OP 4 ( > )
+22 POP_JUMP_IF_FALSE 28
+
+29 24 LOAD_GLOBAL 1 ( print )
+26 LOAD_CONST 3 ( 'Wrong input input input input input input input input input input input input input input input input.' )
+28 CALL_FUNCTION 1
+30 POP_TOP
+
+30 32 LOAD_FAST 0 ( h )
+34 LOAD_CONST 1 ( 0 )
+36 COMPARE_OP 4 ( > )
+38 POP_JUMP_IF_FALSE 52
+
+31 40 LOAD_GLOBAL 2 ( print )
+42 LOAD_CONST 4 ( 'Wrong input input input input input input input input input input input input input input.' )
+44 CALL_FUNCTION 1
+46 POP_TOP
+
+32 48 LOAD_FAST 0 ( h )
+50 LOAD_CONST 1 ( 0 )
+52 COMPARE_OP 4 ( > )
+54 POP_JUMP_IF_FALSE 60
+
+33 56 LOAD_GLOBAL 3 ( print )
+58 LOAD_CONST 5 ( 'Wrong input input input input input input input input input input input input input input input input input input input.' )
+60 CALL_FUNCTION 1
+62 POP_TOP
+
+34 64 LOAD_FAST 0 ( h )
+66 LOAD_CONST 1 ( 0 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 106
+
+35 72 LOAD_GLOBAL 4 ( print )
+74 LOAD_CONST 6 ( 'Wrong input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input input.' )
+
+36 76 LOAD_FAST 0 ( h )
+78 LOAD_FAST 1 ( m )
+80 LOAD_FAST 2 ( input )
+82 LOAD_FAST 3 ( input )
+84 CALL_FUNCTION 4
+86 POP_TOP
+88 LOAD_CONST 1 ( 0 )
+90 RETURN_VALUE
+

@@ -1,0 +1,45 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , p1 , p2 , n ) :\n    set1 = ( x >> p1 ) & ( ( 1 << n ) - 1 )\n    set2 = ( x >> p2 ) & ( ( 1 << n ) - 1 )\n    xor = ( set1 ^ set2 )\n    xor = ( xor << p1 ) | ( xor << p2 )\n    result = x ^ xor\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (95,88,97,92,),\n    (16,26,59,42,),\n    (55,56,40,41,),\n    (75,35,79,30,),\n    (90,12,59,34,),\n    (58,65,25,19,),\n    (69,64,17,94,),\n    (5,1,59,38,),\n    (36,33,97,44,),\n    (62,69,66,9,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def swapBits ( x , p1 , p2 , n ) :\n    set1 = ( x >> p1 ) & ( ( 1 << n ) - 1 )\n    set2 = ( x >> p2 ) & ( ( 1 << n ) - 1 )\n    xor = ( set1 ^ set2 )\n    xor = ( xor << p1 ) | ( xor << p2 )\n    result = x ^ xor\n    return result\n"}
+Disassembly of <code object swapBits at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( x )
+2 LOAD_FAST 1 ( p1 )
+4 BINARY_RSHIFT
+6 LOAD_CONST 1 ( 1 )
+8 LOAD_FAST 3 ( n )
+10 BINARY_LSHIFT
+12 LOAD_CONST 1 ( 1 )
+14 BINARY_SUBTRACT
+16 BINARY_AND
+18 STORE_FAST 4 ( set1 )
+
+3 20 LOAD_FAST 0 ( x )
+22 LOAD_FAST 2 ( p2 )
+24 BINARY_RSHIFT
+26 LOAD_CONST 2 ( ( 1 << n ) )
+28 LOAD_FAST 3 ( n )
+30 BINARY_LSHIFT
+32 LOAD_CONST 1 ( 1 )
+34 BINARY_SUBTRACT
+36 BINARY_AND
+38 STORE_FAST 5 ( set2 )
+
+4 40 LOAD_FAST 5 ( set1 )
+42 LOAD_FAST 4 ( set2 )
+44 BINARY_XOR
+46 STORE_FAST 6 ( xor )
+
+5 48 LOAD_FAST 6 ( xor )
+50 LOAD_FAST 1 ( p1 )
+52 BINARY_LSHIFT
+54 LOAD_FAST 6 ( xor )
+56 LOAD_FAST 2 ( p2 )
+58 BINARY_LSHIFT
+60 BINARY_OR
+62 STORE_FAST 6 ( xor )
+
+6 64 LOAD_FAST 0 ( x )
+66 LOAD_FAST 6 ( xor )
+68 BINARY_LSHIFT
+70 STORE_FAST 7 ( result )
+
+7 72 LOAD_FAST 7 ( result )
+74 RETURN_VALUE

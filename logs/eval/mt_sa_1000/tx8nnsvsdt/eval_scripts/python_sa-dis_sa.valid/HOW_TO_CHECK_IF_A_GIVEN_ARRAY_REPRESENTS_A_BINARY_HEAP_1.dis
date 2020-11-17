@@ -1,0 +1,62 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    for i in range ( int ( ( n - 2 ) / 2 ) + 1 ) :\n        if arr [ 2 * i + 1 ] > arr [ i ] :\n            return False\n        if ( 2 * i + 2 < n and arr [ 2 * i + 2 ] > arr [ i ] ) :\n            return False\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 2, 2, 7, 10, 14, 24, 38, 42, 50, 59, 60, 72, 73, 79, 83, 89],9,),\n    ([-48, 98, 96, -56, -2, 58, 52, -50, 58, 50, 62, 86, -26, -98, 34, 20, -28, 56, -36],9,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],20,),\n    ([91, 50, 37],2,),\n    ([-80, -26, 0, 0, 6, 14, 22, 76, 82, 88, 98],10,),\n    ([1, 0],1,),\n    ([9, 24, 24, 33, 48, 50, 55, 61, 69, 79, 83],8,),\n    ([30, 32, -82, -48, 88, -24, 74, 2, 90, 98, 68, 82, 32, -60, 2, -94, 18, 14, 46, 50, -60, -74, -76, 66, -76, -34, -20, 82, -44, -62, 34, 48, -56, 2, 64, -78, -64, 98, -10, -28, 78, -42],27,),\n    ([0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],6,),\n    ([38, 74, 99, 75, 44, 75, 24, 70, 78, 74, 60, 59, 34, 27, 7, 23, 19, 95, 4, 35, 38, 22, 46, 1, 44, 20, 52, 1, 96, 57, 5, 76, 49, 1, 37, 35],31,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isHeap ( arr , n ) :\n    for i in range ( int ( ( n - 2 ) / 2 ) + 1 ) :\n        if arr [ 2 * i + 1 ] > arr [ i ] :\n            return False\n        if ( 2 * i + 2 < n and arr [ 2 * i + 2 ] > arr [ i ] ) :\n            return False\n    return True\n"}
+Disassembly of <code object isHeap at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 96 ( to 98 )
+2 LOAD_GLOBAL 0 ( range )
+4 LOAD_GLOBAL 1 ( int )
+6 LOAD_FAST 1 ( n )
+8 LOAD_CONST 1 ( 2 )
+10 BINARY_SUBTRACT
+12 LOAD_CONST 1 ( 2 )
+14 BINARY_TRUE_DIVIDE
+16 CALL_FUNCTION 1
+18 LOAD_CONST 2 ( 1 )
+20 BINARY_ADD
+22 CALL_FUNCTION 1
+24 GET_ITER
+>> 26 FOR_ITER 82 ( to 96 )
+28 STORE_FAST 2 ( i )
+
+3 30 LOAD_FAST 0 ( arr )
+32 LOAD_CONST 1 ( 2 )
+34 LOAD_FAST 2 ( i )
+36 BINARY_MULTIPLY
+38 LOAD_CONST 2 ( 1 )
+40 BINARY_ADD
+42 BINARY_SUBSCR
+44 LOAD_FAST 0 ( arr )
+46 LOAD_FAST 2 ( i )
+48 BINARY_SUBSCR
+50 COMPARE_OP 4 ( > )
+52 POP_JUMP_IF_FALSE 58
+
+4 54 LOAD_CONST 3 ( False )
+56 RETURN_VALUE
+
+5 >> 58 LOAD_CONST 1 ( 2 )
+60 LOAD_FAST 2 ( i )
+62 BINARY_MULTIPLY
+64 LOAD_CONST 1 ( 2 )
+66 BINARY_ADD
+68 LOAD_FAST 1 ( n )
+70 COMPARE_OP 0 ( < )
+72 POP_JUMP_IF_FALSE 26
+74 LOAD_FAST 0 ( arr )
+76 LOAD_CONST 1 ( 2 )
+78 LOAD_FAST 2 ( i )
+80 BINARY_MULTIPLY
+82 LOAD_CONST 1 ( 2 )
+84 BINARY_ADD
+86 BINARY_SUBSCR
+88 LOAD_FAST 0 ( arr )
+90 LOAD_FAST 2 ( i )
+92 BINARY_SUBSCR
+94 COMPARE_OP 4 ( > )
+96 POP_JUMP_IF_FALSE 26
+
+6 98 LOAD_CONST 3 ( False )
+100 RETURN_VALUE
+102 JUMP_ABSOLUTE 26
+>> 104 POP_BLOCK
+
+7 >> 106 LOAD_CONST 4 ( True )
+108 RETURN_VALUE

@@ -1,0 +1,55 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( r ) :\n    if ( r <= 0 ) :\n        return 0\n    result = 4\n    for x in range ( 1 , r ) :\n        ySquare = r * r - x * x\n        y = int ( math.sqrt ( ySquare ) )\n        if ( y * y == ySquare ) :\n            result += 4\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (34,),\n    (56,),\n    (90,),\n    (47,),\n    (36,),\n    (63,),\n    (21,),\n    (76,),\n    (18,),\n    (75,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countLattice ( r ) :\n    if ( r <= 0 ) :\n        return 0\n    result = 4\n    for x in range ( 1 , r ) :\n        ySquare = r * r - x * x\n        y = int ( math.sqrt ( ySquare ) )\n        if ( y * y == ySquare ) :\n            result += 4\n    return result\n"}
+Disassembly of <code object countLattice at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( r )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 1 ( <= )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 1 ( 0 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_CONST 2 ( 4 )
+14 STORE_FAST 1 ( result )
+
+5 16 SETUP_LOOP 68 ( to 82 )
+18 LOAD_GLOBAL 0 ( range )
+20 LOAD_CONST 3 ( 1 )
+22 LOAD_FAST 0 ( r )
+24 CALL_FUNCTION 2
+26 GET_ITER
+>> 28 FOR_ITER 56 ( to 80 )
+30 STORE_FAST 2 ( x )
+
+6 32 LOAD_FAST 0 ( r )
+34 LOAD_FAST 0 ( r )
+36 BINARY_MULTIPLY
+38 LOAD_FAST 2 ( x )
+40 LOAD_FAST 2 ( x )
+42 BINARY_MULTIPLY
+44 BINARY_SUBTRACT
+46 STORE_FAST 3 ( ySquare )
+
+7 48 LOAD_GLOBAL 1 ( int )
+50 LOAD_GLOBAL 2 ( math )
+52 LOAD_METHOD 3 ( sqrt )
+54 LOAD_FAST 3 ( ySquare )
+56 CALL_METHOD 1
+58 CALL_FUNCTION 1
+60 STORE_FAST 4 ( y )
+
+8 62 LOAD_FAST 4 ( y )
+64 LOAD_FAST 4 ( y )
+66 BINARY_MULTIPLY
+68 LOAD_FAST 3 ( ySquare )
+70 COMPARE_OP 2 ( == )
+72 POP_JUMP_IF_FALSE 28
+
+9 74 LOAD_FAST 1 ( result )
+76 LOAD_CONST 2 ( 4 )
+78 INPLACE_ADD
+80 STORE_FAST 1 ( result )
+82 JUMP_ABSOLUTE 28
+>> 84 POP_BLOCK
+
+10 >> 86 LOAD_FAST 1 ( result )
+88 RETURN_VALUE

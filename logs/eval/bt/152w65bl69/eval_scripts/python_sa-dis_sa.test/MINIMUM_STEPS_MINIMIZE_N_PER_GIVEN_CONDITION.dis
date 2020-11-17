@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    table = [ 0 ] * ( n + 1 )\n    for i in range ( n + 1 ) :\n        table [ i ] = n - i\n    for i in range ( n , 0 , - 1 ) :\n        if ( not ( i % 2 ) ) :\n            table [ i // 2 ] = min ( table [ i ] + 1 , table [ i // 2 ] )\n        if ( not ( i % 3 ) ) :\n            table [ i // 3 ] = min ( table [ i ] + 1 , table [ i // 3 ] )\n    return table [ 1 ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (59,),\n    (7,),\n    (90,),\n    (78,),\n    (49,),\n    (15,),\n    (45,),\n    (56,),\n    (7,),\n    (70,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def getMinSteps ( n ) :\n    table = [ 0 ] * ( n + 1 )\n    for i in range ( n + 1 ) :\n        table [ i ] = n - i\n    for i in range ( n , 0 , - 1 ) :\n        if ( not ( i % 2 ) ) :\n            table [ i // 2 ] = min ( table [ i ] + 1 , table [ i // 2 ] )\n        if ( not ( i % 3 ) ) :\n            table [ i // 3 ] = min ( table [ i ] + 1 , table [ i // 3 ] )\n    return table [ 1 ]\n    "}
+Disassembly of <code object getMinSteps at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 BINARY_SUBSCR
+6 LOAD_CONST 2 ( 2 )
+8 COMPARE_OP 2 ( == )
+10 POP_JUMP_IF_FALSE 16
+
+27 12 LOAD_FAST 0 ( n )
+14 LOAD_CONST 3 ( 1 )
+16 BINARY_SUBSCR
+18 STORE_FAST 1 ( n )
+
+28 >> 20 LOAD_FAST 1 ( n )
+22 LOAD_CONST 4 ( 3 )
+24 COMPARE_OP 2 ( == )
+26 POP_JUMP_IF_FALSE 32
+
+29 28 LOAD_FAST 0 ( n )
+30 LOAD_CONST 5 ( 1 )
+32 INPLACE_ADD
+34 STORE_FAST 1 ( n )
+
+30 >> 36 LOAD_FAST 1 ( n )
+38 LOAD_CONST 6 ( 2 )
+40 COMPARE_OP 2 ( == )
+42 POP_JUMP_IF_FALSE 52
+
+31 44 LOAD_FAST 0 ( n )
+46 LOAD_CONST 7 ( 2 )
+48 INPLACE_ADD
+50 STORE_FAST 1 ( n )
+52 JUMP_FORWARD 14 ( to 52 )
+
+33 >> 54 LOAD_FAST 1 ( n )
+56 LOAD_CONST 8 ( 2 )
+58 COMPARE_OP 2 ( == )
+60 POP_JUMP_IF_FALSE 52
+
+34 62 LOAD_FAST 0 ( n )
+64 LOAD_CONST 9 ( 2 )
+66 INPLACE_ADD
+68 STORE_FAST 1 ( n )
+
+35 >> 70 LOAD_FAST 1 ( n )
+72 LOAD_CONST 10 ( 2 )
+74 INPLACE_ADD
+76 STORE_FAST 1 ( n )
+
+36 78 LOAD_FAST 1 ( n )
+80 LOAD_CONST 11 ( 2 )
+82 INPLACE_ADD
+84 STORE_FAST 1 ( n )
+
+37 86 LOAD_FAST 1 ( n )
+88 LOAD_CONST 12 ( 3 )
+90 INPLACE_ADD
+92 STORE_FAST 1 ( n )
+
+38 94 LOAD_FAST 1 ( n )
+96 LOAD_CONST 13 ( 2 )
+98 INPLACE_ADD
+100 STORE_FAST 1 ( n )
+
+39 102 LOAD_FAST 1 ( n )
+104 LOAD_CONST 14 ( 2 )
+106 INPLACE_ADD
+108 STORE_FAST 1 ( n )
+
+40 110 LOAD_FAST 1 ( n )
+112 LOAD_CONST 15 ( 2 )
+114 INPLACE_ADD
+116 STORE_FAST 1 ( n )
+
+41 118 LOAD_FAST 1 ( n )
+120 LOAD_CONST 16 ( 2 )
+122 INPLACE_ADD
+124 STORE_FAST 1 ( n )
+
+42 126 LOAD_FAST 1 ( n )
+128 LOAD_FAST 1 ( n )
+130 INPLACE_ADD
+132 STORE_FAST 1 ( n )
+
+43 134 LOAD_FAST 1 ( n )
+136 LOAD_FAST 1 ( n )
+138 INPLACE_ADD
+140 STORE_FAST 1 ( n )
+142 INPLACE_ADD
+144 STORE_FAST 1 ( n )
+
+44 146 LOAD_FAST 1 ( n )
+148 RETURN_VALUE
+

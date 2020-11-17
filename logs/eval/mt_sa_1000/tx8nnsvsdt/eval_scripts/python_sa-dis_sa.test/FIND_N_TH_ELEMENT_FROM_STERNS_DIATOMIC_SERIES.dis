@@ -1,0 +1,82 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    DP = [ 0 ] * ( n + 1 )\n    DP [ 0 ] = 0\n    DP [ 1 ] = 1\n    for i in range ( 2 , n + 1 ) :\n        if ( int ( i % 2 ) == 0 ) :\n            DP [ i ] = DP [ int ( i / 2 ) ]\n        else :\n            DP [ i ] = ( DP [ int ( ( i - 1 ) / 2 ) ] + DP [ int ( ( i + 1 ) / 2 ) ] )\n    return DP [ n ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (37,),\n    (24,),\n    (13,),\n    (56,),\n    (26,),\n    (67,),\n    (82,),\n    (60,),\n    (64,),\n    (65,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSDSFunc ( n ) :\n    DP = [ 0 ] * ( n + 1 )\n    DP [ 0 ] = 0\n    DP [ 1 ] = 1\n    for i in range ( 2 , n + 1 ) :\n        if ( int ( i % 2 ) == 0 ) :\n            DP [ i ] = DP [ int ( i / 2 ) ]\n        else :\n            DP [ i ] = ( DP [ int ( ( i - 1 ) / 2 ) ] + DP [ int ( ( i + 1 ) / 2 ) ] )\n    return DP [ n ]\n"}
+Disassembly of <code object findSDSFunc at 0x7f2b016399c0, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 BUILD_LIST 1
+4 LOAD_FAST 0 ( n )
+6 LOAD_CONST 2 ( 1 )
+8 BINARY_ADD
+10 BINARY_MULTIPLY
+12 STORE_FAST 1 ( DP )
+
+3 14 LOAD_CONST 1 ( 0 )
+16 LOAD_FAST 1 ( DP )
+18 LOAD_CONST 1 ( 0 )
+20 STORE_SUBSCR
+
+4 22 LOAD_CONST 2 ( 1 )
+24 LOAD_FAST 1 ( DP )
+26 LOAD_CONST 2 ( 1 )
+28 STORE_SUBSCR
+
+5 30 SETUP_LOOP 92 ( to 132 )
+32 LOAD_GLOBAL 0 ( range )
+34 LOAD_CONST 3 ( 2 )
+36 LOAD_FAST 0 ( n )
+38 LOAD_CONST 2 ( 1 )
+40 BINARY_ADD
+42 CALL_FUNCTION 2
+44 GET_ITER
+>> 46 FOR_ITER 70 ( to 130 )
+48 STORE_FAST 2 ( i )
+
+6 50 LOAD_GLOBAL 1 ( int )
+52 LOAD_FAST 2 ( i )
+54 LOAD_CONST 3 ( 2 )
+56 BINARY_MODULO
+58 CALL_FUNCTION 1
+60 LOAD_CONST 1 ( 0 )
+62 COMPARE_OP 2 ( == )
+64 POP_JUMP_IF_FALSE 82
+
+7 66 LOAD_FAST 1 ( DP )
+68 LOAD_GLOBAL 1 ( int )
+70 LOAD_FAST 2 ( i )
+72 LOAD_CONST 3 ( 2 )
+74 BINARY_TRUE_DIVIDE
+76 CALL_FUNCTION 1
+78 BINARY_SUBSCR
+80 LOAD_FAST 1 ( DP )
+82 LOAD_FAST 2 ( i )
+84 STORE_SUBSCR
+86 JUMP_ABSOLUTE 46
+
+9 >> 88 LOAD_FAST 1 ( DP )
+90 LOAD_GLOBAL 1 ( int )
+92 LOAD_FAST 2 ( i )
+94 LOAD_CONST 2 ( 1 )
+96 BINARY_SUBTRACT
+98 CALL_FUNCTION 1
+100 LOAD_CONST 3 ( 2 )
+102 BINARY_TRUE_DIVIDE
+104 CALL_FUNCTION 1
+106 BINARY_SUBSCR
+108 LOAD_FAST 1 ( DP )
+110 LOAD_GLOBAL 1 ( int )
+112 LOAD_FAST 2 ( i )
+114 LOAD_CONST 2 ( 1 )
+116 BINARY_ADD
+118 LOAD_CONST 3 ( 2 )
+120 BINARY_TRUE_DIVIDE
+122 CALL_FUNCTION 1
+124 BINARY_SUBSCR
+126 BINARY_ADD
+128 LOAD_FAST 1 ( DP )
+130 LOAD_FAST 2 ( i )
+132 STORE_SUBSCR
+134 JUMP_ABSOLUTE 46
+>> 136 POP_BLOCK
+
+10 >> 138 LOAD_FAST 1 ( DP )
+140 LOAD_FAST 0 ( n )
+142 BINARY_SUBSCR
+144 RETURN_VALUE

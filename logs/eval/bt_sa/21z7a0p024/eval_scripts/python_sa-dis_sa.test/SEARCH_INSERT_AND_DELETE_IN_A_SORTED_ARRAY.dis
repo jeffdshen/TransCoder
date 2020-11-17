@@ -1,0 +1,37 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , low , high , key ) :\n    if ( high < low ) :\n        return - 1\n    mid = ( low + high ) / 2\n    if ( key == arr [ int ( mid ) ] ) :\n        return mid\n    if ( key > arr [ int ( mid ) ] ) :\n        return f_gold ( arr , ( mid + 1 ) , high , key )\n    return ( f_gold ( arr , low , ( mid - 1 ) , key ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 10, 73, 91, 98],2,4,4,),\n    ([30, 24, 24, -8, 64, 50, 46, -76, 26, 8, -92, -78, 40, -86, 96, 14, 60, 38, 6, -72, -6, -20, 26, -26, 0, 2],20,13,21,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],30,27,29,),\n    ([30, 79, 3, 76, 18],3,2,2,),\n    ([-96, -90, -88, -84, -78, -78, -70, -68, -66, -66, -64, -64, -58, -56, -52, -42, -40, -38, -36, -30, -30, -28, -14, -8, 0, 14, 16, 22, 24, 26, 36, 40, 40, 48, 48, 50, 52, 54, 54, 58, 64, 74, 82, 88, 94],35,30,40,),\n    ([1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1],25,26,30,),\n    ([2, 8, 8, 14, 15, 16, 17, 17, 18, 18, 24, 25, 25, 26, 36, 37, 39, 39, 40, 44, 46, 47, 51, 54, 56, 57, 57, 61, 61, 67, 68, 69, 72, 76, 77, 81, 82, 82, 82, 85, 85, 87, 94, 94, 98, 99],33,40,26,),\n    ([-4, 84, 20, -84, -6, -78, 20, 56, 40, 0, 98, 80, -94, 36, -6, -98, 50, 66, -12, -58, -34, 68, -80, -30, -82, -76, -38, -60, 92, 94, 48, -84, 20, -66, -32, -92, 16, -96, -68, 94, -46, 30, 32, -34, 96, -92, -96, -86, -22],34,27,34,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,13,19,),\n    ([71, 70, 13, 18, 70, 62, 88, 27, 17, 44, 89, 28, 74, 41, 20, 91, 95, 79, 40, 43, 38, 20, 5],21,22,22,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def binarySearch ( arr , low , high , key ) :\n    if ( high < low ) :\n        return - 1\n    mid = ( low + high ) / 2\n    if ( key == arr [ int ( mid ) ] ) :\n        return mid\n    if ( key > arr [ int ( mid ) ] ) :\n        return binarySearch ( arr , ( mid + 1 ) , high , key )\n    return ( binarySearch ( arr , low , ( mid - 1 ) , key ) )\n"}
+Disassembly of <code object binarySearch at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( arr )
+2 LOAD_FAST 1 ( low )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 1 ( - 1 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_FAST 0 ( arr )
+14 LOAD_FAST 1 ( low )
+16 BINARY_SUBSCR
+18 LOAD_CONST 2 ( '-' )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 32
+
+5 24 LOAD_FAST 0 ( arr )
+26 LOAD_FAST 1 ( low )
+28 BINARY_SUBSCR
+30 RETURN_VALUE
+
+6 >> 32 LOAD_GLOBAL 0 ( binarySearch )
+34 LOAD_FAST 0 ( arr )
+36 LOAD_FAST 1 ( low )
+38 BINARY_SUBSCR
+40 CALL_FUNCTION 1
+42 RETURN_VALUE
+
+7 >> 44 LOAD_GLOBAL 1 ( detect_Search )
+46 LOAD_FAST 0 ( arr )
+48 LOAD_FAST 1 ( low )
+50 BINARY_SUBSCR
+52 CALL_FUNCTION 1
+54 RETURN_VALUE
+56 LOAD_CONST 0 ( None )
+58 RETURN_VALUE

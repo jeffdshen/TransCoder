@@ -1,0 +1,53 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s , n ) :\n    s1 = s\n    for i in range ( 1 , n ) :\n        s += s1\n    return s\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('LPWsaI',41,),\n    ('9037515104',72,),\n    ('00100010010111',95,),\n    ('SbwipuE',27,),\n    ('574314109',5,),\n    ('1101',70,),\n    ('f',91,),\n    ('068',50,),\n    ('000011001',38,),\n    ('BWbUtIkC',79,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def repeat ( s , n ) :\n    s1 = s\n    for i in range ( 1 , n ) :\n        s += s1\n    return s\n"}
+Disassembly of <code object repeat at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( s )
+2 STORE_FAST 1 ( s1 )
+
+3 4 SETUP_LOOP 74 ( to 76 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 1 ( 1 )
+10 LOAD_FAST 1 ( s1 )
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 74 ( to 74 )
+18 STORE_FAST 2 ( i )
+
+4 20 LOAD_FAST 0 ( s )
+22 LOAD_FAST 2 ( i )
+24 BINARY_SUBSCR
+26 STORE_FAST 3 ( s1 )
+
+5 28 LOAD_FAST 3 ( s1 )
+30 LOAD_FAST 2 ( i )
+32 BINARY_SUBSCR
+34 STORE_FAST 4 ( s1 )
+
+6 36 LOAD_FAST 1 ( s1 )
+38 LOAD_FAST 2 ( i )
+40 BINARY_SUBSCR
+42 STORE_FAST 5 ( s1 )
+
+7 44 LOAD_FAST 1 ( s1 )
+46 LOAD_FAST 2 ( i )
+48 BINARY_SUBSCR
+50 LOAD_FAST 4 ( s1 )
+52 LOAD_FAST 2 ( i )
+54 BINARY_SUBSCR
+56 LOAD_FAST 5 ( s1 )
+58 LOAD_FAST 2 ( i )
+60 STORE_SUBSCR
+
+8 62 LOAD_FAST 1 ( s1 )
+64 LOAD_FAST 2 ( i )
+66 BINARY_SUBSCR
+68 LOAD_FAST 5 ( s1 )
+70 LOAD_FAST 2 ( i )
+72 STORE_SUBSCR
+
+9 74 LOAD_FAST 1 ( s1 )
+76 LOAD_FAST 2 ( i )
+78 STORE_SUBSCR
+80 JUMP_ABSOLUTE 16
+>> 82 POP_BLOCK
+>> 84 LOAD_CONST 0 ( None )
+86 RETURN_VALUE

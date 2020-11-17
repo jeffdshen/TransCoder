@@ -1,0 +1,83 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , sum ) :\n    for i in range ( n ) :\n        curr_sum = arr [ i ]\n        j = i + 1\n        while j <= n :\n            if curr_sum == sum :\n                print ( \"Sum found between\" )\n                print ( \"indexes %d and %d\" % ( i , j - 1 ) )\n                return 1\n            if curr_sum > sum or j == n :\n                break\n            curr_sum = curr_sum + arr [ j ]\n            j += 1\n    print ( \"No subarray found\" )\n    return 0\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 8, 8, 10, 15, 18, 19, 22, 25, 26, 30, 32, 35, 36, 40, 41, 43, 48, 53, 57, 59, 63, 64, 68, 71, 76, 76, 77, 78, 89, 96, 97],26,23,),\n    ([-78, 16, -16, -10, -2, -38, 58, -72, -78, 50, -68, -16, -96, 82, 70, 2, -20],9,12,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],9,11,),\n    ([16, 10, 55, 43, 46, 74, 57, 65, 86, 60, 28, 6, 92],10,6,),\n    ([-98, -98, -90, -84, -84, -80, -76, -76, -70, -54, -48, -46, -44, -42, -38, -14, -12, -4, 6, 8, 24, 28, 32, 40, 40, 42, 64, 84, 98],23,19,),\n    ([0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],12,8,),\n    ([2, 10, 40, 45, 56, 66, 66, 70, 75, 83, 93, 98],10,10,),\n    ([-20, 30, 56, -68, 54, -6, 78, -86, 88, -66, 76, -66, 62, 78, 22, 46, -94, -10, 18, 16, -36, 34, -98, -84, -40, 98, 82, 10, 12, 54, -88],30,17,),\n    ([0, 0, 1, 1],2,2,),\n    ([38, 24, 12],1,1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def subArraySum ( arr , n , sum ) :\n    for i in range ( n ) :\n        curr_sum = arr [ i ]\n        j = i + 1\n        while j <= n :\n            if curr_sum == sum :\n                print ( \"Sum found between\" )\n                print ( \"indexes %d and %d\" % ( i , j - 1 ) )\n                return 1\n            if curr_sum > sum or j == n :\n                break\n            curr_sum = curr_sum + arr [ j ]\n            j += 1\n    print ( \"No subarray found\" )\n    return 0\n"}
+Disassembly of <code object subArraySum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 120 ( to 122 )
+2 LOAD_GLOBAL 0 ( range )
+4 LOAD_FAST 1 ( n )
+6 CALL_FUNCTION 1
+8 GET_ITER
+>> 10 FOR_ITER 106 ( to 120 )
+12 STORE_FAST 3 ( i )
+
+3 14 LOAD_FAST 0 ( arr )
+16 LOAD_FAST 3 ( i )
+18 BINARY_SUBSCR
+20 STORE_FAST 4 ( curr_sum )
+
+4 22 LOAD_FAST 3 ( i )
+24 LOAD_CONST 1 ( 1 )
+26 BINARY_ADD
+28 STORE_FAST 5 ( j )
+
+5 30 SETUP_LOOP 54 ( to 88 )
+>> 32 LOAD_FAST 5 ( j )
+34 LOAD_FAST 1 ( n )
+36 COMPARE_OP 1 ( <= )
+38 POP_JUMP_IF_FALSE 86
+
+6 40 LOAD_FAST 4 ( curr_sum )
+42 LOAD_FAST 2 ( sum )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 86
+
+7 48 LOAD_GLOBAL 1 ( print )
+50 LOAD_CONST 2 ( 'Sum found between' )
+52 CALL_FUNCTION 1
+54 POP_TOP
+
+8 56 LOAD_GLOBAL 1 ( print )
+58 LOAD_CONST 3 ( 'indexes %d and %d' )
+60 LOAD_FAST 3 ( i )
+62 LOAD_FAST 5 ( j )
+64 LOAD_CONST 1 ( 1 )
+66 BINARY_SUBTRACT
+68 BUILD_TUPLE 2
+70 BINARY_MODULO
+72 CALL_FUNCTION 1
+74 POP_TOP
+
+9 76 LOAD_CONST 1 ( 1 )
+78 RETURN_VALUE
+
+10 >> 80 LOAD_FAST 4 ( curr_sum )
+82 LOAD_FAST 2 ( sum )
+84 COMPARE_OP 4 ( > )
+86 POP_JUMP_IF_TRUE 92
+88 LOAD_FAST 5 ( j )
+90 LOAD_FAST 1 ( n )
+>> 92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 100
+
+11 96 BREAK_LOOP
+98 JUMP_ABSOLUTE 32
+
+12 >> 100 LOAD_FAST 4 ( curr_sum )
+102 LOAD_FAST 0 ( arr )
+104 LOAD_FAST 5 ( j )
+106 BINARY_SUBSCR
+108 BINARY_ADD
+110 STORE_FAST 4 ( curr_sum )
+
+13 112 LOAD_FAST 5 ( j )
+114 LOAD_CONST 1 ( 1 )
+116 INPLACE_ADD
+118 STORE_FAST 5 ( j )
+120 JUMP_ABSOLUTE 32
+>> 122 POP_BLOCK
+
+14 >> 124 LOAD_GLOBAL 1 ( print )
+126 LOAD_CONST 4 ( 'No subarray found' )
+128 CALL_FUNCTION 1
+130 POP_TOP
+
+15 132 LOAD_CONST 5 ( 0 )
+134 RETURN_VALUE

@@ -1,0 +1,116 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( bin ) :\n    n = len ( bin )\n    if ( bin [ n - 1 ] == '1' ) :\n        return False\n    sum = 0\n    i = n - 2\n    while i >= 0 :\n        if ( bin [ i ] == '1' ) :\n            posFromRight = n - i - 1\n            if ( posFromRight % 4 == 1 ) :\n                sum = sum + 2\n            elif ( posFromRight % 4 == 2 ) :\n                sum = sum + 4\n            elif ( posFromRight % 4 == 3 ) :\n                sum = sum + 8\n            elif ( posFromRight % 4 == 0 ) :\n                sum = sum + 6\n        i = i - 1\n    if ( sum % 10 == 0 ) :\n        return True\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('101000',),\n    ('39613456759141',),\n    ('11',),\n    ('PoiHjo',),\n    ('2',),\n    ('0000101',),\n    ('T  s dZKeDX gK',),\n    ('3944713969',),\n    ('1000',),\n    ('ifYUgdpmt',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isDivisibleBy10 ( bin ) :\n    n = len ( bin )\n    if ( bin [ n - 1 ] == '1' ) :\n        return False\n    sum = 0\n    i = n - 2\n    while i >= 0 :\n        if ( bin [ i ] == '1' ) :\n            posFromRight = n - i - 1\n            if ( posFromRight % 4 == 1 ) :\n                sum = sum + 2\n            elif ( posFromRight % 4 == 2 ) :\n                sum = sum + 4\n            elif ( posFromRight % 4 == 3 ) :\n                sum = sum + 8\n            elif ( posFromRight % 4 == 0 ) :\n                sum = sum + 6\n        i = i - 1\n    if ( sum % 10 == 0 ) :\n        return True\n    return False\n"}
+Disassembly of <code object isDivisibleBy10 at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( bin )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+3 8 LOAD_FAST 0 ( bin )
+10 LOAD_FAST 1 ( n )
+12 LOAD_CONST 1 ( 1 )
+14 BINARY_SUBTRACT
+16 BINARY_SUBSCR
+18 LOAD_CONST 2 ( '1' )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+4 24 LOAD_CONST 3 ( False )
+26 RETURN_VALUE
+
+5 >> 28 LOAD_CONST 4 ( 0 )
+30 STORE_FAST 2 ( sum )
+
+6 32 LOAD_FAST 1 ( n )
+34 LOAD_CONST 5 ( 2 )
+36 BINARY_SUBTRACT
+38 STORE_FAST 3 ( i )
+
+7 40 SETUP_LOOP 142 ( to 184 )
+>> 42 LOAD_FAST 3 ( i )
+44 LOAD_CONST 4 ( 0 )
+46 COMPARE_OP 5 ( >= )
+48 POP_JUMP_IF_FALSE 182
+
+8 50 LOAD_FAST 0 ( bin )
+52 LOAD_FAST 3 ( i )
+54 BINARY_SUBSCR
+56 LOAD_CONST 2 ( '1' )
+58 COMPARE_OP 2 ( == )
+60 POP_JUMP_IF_FALSE 74
+
+9 62 LOAD_FAST 1 ( n )
+64 LOAD_FAST 3 ( i )
+66 BINARY_SUBTRACT
+68 LOAD_CONST 1 ( 1 )
+70 BINARY_SUBTRACT
+72 STORE_FAST 4 ( posFromRight )
+
+10 >> 74 LOAD_FAST 4 ( posFromRight )
+76 LOAD_CONST 6 ( 4 )
+78 BINARY_MODULO
+80 LOAD_CONST 1 ( 1 )
+82 COMPARE_OP 2 ( == )
+84 POP_JUMP_IF_FALSE 94
+
+11 86 LOAD_FAST 2 ( sum )
+88 LOAD_CONST 5 ( 2 )
+90 BINARY_ADD
+92 STORE_FAST 2 ( sum )
+
+12 >> 94 LOAD_FAST 4 ( posFromRight )
+96 LOAD_CONST 6 ( 4 )
+98 BINARY_MODULO
+100 LOAD_CONST 5 ( 2 )
+102 COMPARE_OP 2 ( == )
+104 POP_JUMP_IF_FALSE 110
+
+13 106 LOAD_FAST 2 ( sum )
+108 LOAD_CONST 6 ( 4 )
+110 BINARY_ADD
+112 STORE_FAST 2 ( sum )
+114 JUMP_ABSOLUTE 42
+
+14 >> 116 LOAD_FAST 4 ( posFromRight )
+118 LOAD_CONST 6 ( 4 )
+120 BINARY_MODULO
+122 LOAD_CONST 7 ( 3 )
+124 COMPARE_OP 2 ( == )
+126 POP_JUMP_IF_FALSE 138
+
+15 128 LOAD_FAST 2 ( sum )
+130 LOAD_CONST 6 ( 4 )
+132 BINARY_ADD
+134 STORE_FAST 2 ( sum )
+136 JUMP_ABSOLUTE 42
+
+16 >> 138 LOAD_FAST 4 ( posFromRight )
+140 LOAD_CONST 6 ( 4 )
+142 BINARY_MODULO
+144 LOAD_CONST 4 ( 0 )
+146 COMPARE_OP 2 ( == )
+148 POP_JUMP_IF_FALSE 162
+
+17 150 LOAD_FAST 2 ( sum )
+152 LOAD_CONST 6 ( 4 )
+154 BINARY_ADD
+156 STORE_FAST 2 ( sum )
+158 JUMP_ABSOLUTE 42
+160 POP_BLOCK
+
+18 >> 162 LOAD_FAST 3 ( i )
+164 LOAD_CONST 1 ( 1 )
+166 BINARY_SUBTRACT
+168 STORE_FAST 3 ( i )
+
+19 >> 170 LOAD_FAST 2 ( sum )
+172 LOAD_CONST 8 ( 10 )
+174 BINARY_MODULO
+176 LOAD_CONST 4 ( 0 )
+178 COMPARE_OP 2 ( == )
+180 POP_JUMP_IF_FALSE 184
+
+20 182 LOAD_CONST 9 ( True )
+184 RETURN_VALUE
+
+21 >> 186 LOAD_CONST 3 ( False )
+188 RETURN_VALUE

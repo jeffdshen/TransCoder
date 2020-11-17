@@ -1,0 +1,59 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , y ) :\n    if ( y == 0 ) : return 1\n    elif ( int ( y % 2 ) == 0 ) :\n        return ( f_gold ( x , int ( y / 2 ) ) * f_gold ( x , int ( y / 2 ) ) )\n    else :\n        return ( x * f_gold ( x , int ( y / 2 ) ) * f_gold ( x , int ( y / 2 ) ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (46,92,),\n    (99,87,),\n    (30,32,),\n    (1,86,),\n    (26,81,),\n    (1,49,),\n    (27,46,),\n    (10,52,),\n    (26,38,),\n    (29,80,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def power ( x , y ) :\n    if ( y == 0 ) : return 1\n    elif ( int ( y % 2 ) == 0 ) :\n        return ( power ( x , int ( y / 2 ) ) * power ( x , int ( y / 2 ) ) )\n    else :\n        return ( x * power ( x , int ( y / 2 ) ) * power ( x , int ( y / 2 ) ) )\n"}
+Disassembly of <code object power at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 1 ( y )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+8 LOAD_CONST 2 ( 1 )
+10 RETURN_VALUE
+
+3 >> 12 LOAD_GLOBAL 0 ( int )
+14 LOAD_FAST 1 ( y )
+16 LOAD_CONST 3 ( 2 )
+18 BINARY_MODULO
+20 CALL_FUNCTION 1
+22 LOAD_CONST 1 ( 0 )
+24 COMPARE_OP 2 ( == )
+26 POP_JUMP_IF_FALSE 62
+
+4 28 LOAD_GLOBAL 1 ( power )
+30 LOAD_FAST 0 ( x )
+32 LOAD_GLOBAL 0 ( int )
+34 LOAD_FAST 1 ( y )
+36 LOAD_CONST 3 ( 2 )
+38 BINARY_TRUE_DIVIDE
+40 CALL_FUNCTION 1
+42 CALL_FUNCTION 2
+44 LOAD_GLOBAL 1 ( power )
+46 LOAD_FAST 0 ( x )
+48 LOAD_GLOBAL 0 ( int )
+50 LOAD_FAST 1 ( y )
+52 LOAD_CONST 3 ( 2 )
+54 BINARY_TRUE_DIVIDE
+56 CALL_FUNCTION 1
+58 CALL_FUNCTION 2
+60 BINARY_MULTIPLY
+62 RETURN_VALUE
+
+6 >> 64 LOAD_FAST 0 ( x )
+66 LOAD_GLOBAL 1 ( power )
+68 LOAD_FAST 0 ( x )
+70 LOAD_GLOBAL 0 ( int )
+72 LOAD_FAST 1 ( y )
+74 LOAD_CONST 3 ( 2 )
+76 BINARY_TRUE_DIVIDE
+78 CALL_FUNCTION 1
+80 CALL_FUNCTION 2
+82 BINARY_MULTIPLY
+84 LOAD_GLOBAL 1 ( power )
+86 LOAD_FAST 0 ( x )
+88 LOAD_GLOBAL 0 ( int )
+90 LOAD_FAST 1 ( y )
+92 LOAD_CONST 3 ( 2 )
+94 BINARY_TRUE_DIVIDE
+96 CALL_FUNCTION 1
+98 CALL_FUNCTION 2
+100 BINARY_MULTIPLY
+102 RETURN_VALUE
+104 LOAD_CONST 0 ( None )
+106 RETURN_VALUE

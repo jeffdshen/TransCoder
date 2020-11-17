@@ -1,0 +1,38 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    l = 0\n    _sum = 0\n    ans = 360\n    for i in range ( n ) :\n        _sum += arr [ i ]\n        while _sum >= 180 :\n            ans = min ( ans , 2 * abs ( 180 - _sum ) )\n            _sum -= arr [ l ]\n            l += 1\n        ans = min ( ans , 2 * abs ( 180 - _sum ) )\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 4, 5, 5, 13, 14, 14, 16, 19, 20, 30, 31, 32, 33, 35, 38, 38, 42, 44, 44, 48, 48, 52, 58, 60, 64, 65, 66, 68, 69, 70, 70, 71, 72, 73, 79, 81, 83, 83, 84, 86, 87, 88, 88, 91, 92, 95, 95, 98],27,),\n    ([-56, 88, -50, 70, 20, 58, 42, -56, -52, -78, 98, 20, -26, 4, 20, -66, -46, -58, 74, 74, -72, 2, 16, -78, -4, 10, 58, 60, -46, -2, 32, -96, 24, -6, 90, -64, -24, -38, 26, 66, -42, -86, 48, 92, 28, 6, -54, -6],29,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],25,),\n    ([52, 67, 62],1,),\n    ([-56, -22, 32, 42, 66],4,),\n    ([1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0],10,),\n    ([38, 46, 58, 72],2,),\n    ([16, 62, 90, 40, 30, -56, -92, -56, 60, 42, -64, 92, -30, -70, 42, -48, -54, 54, 48, 94, -44, -46, 10, 48, 22, -24, -62, 34, 60, 24, -60, 50, 40, 34],20,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],37,),\n    ([86, 43, 74, 84, 86, 14, 45, 7, 92, 36, 79, 13, 67, 18, 96, 77, 13, 22, 28, 36, 57, 56, 99, 57, 8, 48, 5, 79, 65, 64, 96, 6, 36, 91, 53, 55, 11, 12, 80, 99, 50, 40, 4, 9, 52, 41],40,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMinimumAngle ( arr , n ) :\n    l = 0\n    _sum = 0\n    ans = 360\n    for i in range ( n ) :\n        _sum += arr [ i ]\n        while _sum >= 180 :\n            ans = min ( ans , 2 * abs ( 180 - _sum ) )\n            _sum -= arr [ l ]\n            l += 1\n        ans = min ( ans , 2 * abs ( 180 - _sum ) )\n    return ans\n"}
+Disassembly of <code object findDumpAngle at 0x7f816a681780, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( n )
+2 LOAD_FAST 0 ( arr )
+4 BINARY_MULTIPLY
+6 STORE_FAST 2 ( a )
+
+27 8 LOAD_FAST 2 ( a )
+10 LOAD_FAST 0 ( arr )
+12 BINARY_MULTIPLY
+14 STORE_FAST 3 ( b )
+
+28 16 LOAD_FAST 2 ( a )
+18 LOAD_FAST 0 ( arr )
+20 BINARY_MULTIPLY
+22 LOAD_FAST 3 ( b )
+24 BINARY_MULTIPLY
+26 LOAD_FAST 0 ( arr )
+28 BINARY_MULTIPLY
+30 LOAD_FAST 0 ( arr )
+32 BINARY_MULTIPLY
+34 BINARY_ADD
+36 LOAD_FAST 0 ( arr )
+38 BINARY_MULTIPLY
+40 BINARY_ADD
+42 LOAD_FAST 0 ( arr )
+44 BINARY_MULTIPLY
+46 BINARY_ADD
+48 LOAD_FAST 2 ( a )
+50 BINARY_MULTIPLY
+52 BINARY_ADD
+54 LOAD_FAST 0 ( arr )
+56 BINARY_MULTIPLY
+58 BINARY_ADD
+60 BINARY_MULTIPLY
+62 BINARY_ADD
+64 RETURN_VALUE
+

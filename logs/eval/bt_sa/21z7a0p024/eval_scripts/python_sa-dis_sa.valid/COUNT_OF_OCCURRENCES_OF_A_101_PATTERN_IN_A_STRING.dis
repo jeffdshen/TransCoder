@@ -1,0 +1,96 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    length = len ( s )\n    oneSeen = False\n    count = 0\n    for i in range ( length ) :\n        if ( s [ i ] == '1' and oneSeen ) :\n            if ( s [ i - 1 ] == '0' ) :\n                count += 1\n        if ( s [ i ] == '1' and oneSeen == 0 ) :\n            oneSeen = True\n        if ( s [ i ] != '0' and s [ i ] != '1' ) :\n            oneSeen = False\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('1001ab010abc01001',),\n    ('1001010001',),\n    ('010100010100',),\n    ('DLCu',),\n    ('7072430592',),\n    ('011',),\n    ('pnJpypYOza',),\n    ('1037',),\n    ('111',),\n    ('HxK',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPattern ( s ) :\n    length = len ( s )\n    oneSeen = False\n    count = 0\n    for i in range ( length ) :\n        if ( s [ i ] == '1' and oneSeen ) :\n            if ( s [ i - 1 ] == '0' ) :\n                count += 1\n        if ( s [ i ] == '1' and oneSeen == 0 ) :\n            oneSeen = True\n        if ( s [ i ] != '0' and s [ i ] != '1' ) :\n            oneSeen = False\n    return count\n"}
+Disassembly of <code object countPattern at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( s )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( length )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 2 ( oneSeen )
+
+4 12 LOAD_CONST 2 ( 1 )
+14 STORE_FAST 3 ( count )
+
+5 16 SETUP_LOOP 64 ( to 80 )
+18 LOAD_GLOBAL 1 ( range )
+20 LOAD_FAST 1 ( length )
+22 CALL_FUNCTION 1
+24 GET_ITER
+>> 26 FOR_ITER 64 ( to 78 )
+28 STORE_FAST 4 ( i )
+
+6 30 LOAD_FAST 0 ( s )
+32 LOAD_FAST 4 ( i )
+34 BINARY_SUBSCR
+36 STORE_FAST 5 ( word )
+
+7 38 LOAD_FAST 0 ( s )
+40 LOAD_FAST 4 ( i )
+42 BINARY_SUBSCR
+44 LOAD_FAST 5 ( word )
+46 COMPARE_OP 2 ( == )
+48 POP_JUMP_IF_FALSE 26
+
+8 50 LOAD_FAST 0 ( s )
+52 LOAD_FAST 4 ( i )
+54 BINARY_SUBSCR
+56 STORE_FAST 6 ( word )
+
+9 58 LOAD_FAST 0 ( s )
+60 LOAD_FAST 4 ( i )
+62 BINARY_SUBSCR
+64 LOAD_FAST 5 ( word )
+66 COMPARE_OP 2 ( == )
+68 POP_JUMP_IF_FALSE 26
+
+10 70 LOAD_FAST 0 ( s )
+72 LOAD_FAST 4 ( i )
+74 BINARY_SUBSCR
+76 STORE_FAST 6 ( word )
+
+11 78 LOAD_FAST 0 ( s )
+80 LOAD_FAST 4 ( i )
+82 BINARY_SUBSCR
+84 LOAD_FAST 6 ( word )
+86 COMPARE_OP 2 ( == )
+88 POP_JUMP_IF_FALSE 26
+
+12 90 LOAD_FAST 0 ( s )
+92 LOAD_FAST 4 ( i )
+94 BINARY_SUBSCR
+96 LOAD_FAST 6 ( word )
+98 COMPARE_OP 2 ( == )
+100 POP_JUMP_IF_FALSE 26
+
+13 102 LOAD_FAST 0 ( s )
+104 LOAD_FAST 4 ( i )
+106 BINARY_SUBSCR
+108 STORE_FAST 6 ( word )
+
+14 110 LOAD_FAST 0 ( s )
+112 LOAD_FAST 4 ( i )
+114 BINARY_SUBSCR
+116 LOAD_FAST 6 ( word )
+118 COMPARE_OP 2 ( == )
+120 POP_JUMP_IF_FALSE 26
+
+15 122 LOAD_FAST 0 ( s )
+124 LOAD_FAST 4 ( i )
+126 BINARY_SUBSCR
+128 LOAD_FAST 6 ( word )
+130 COMPARE_OP 2 ( == )
+132 POP_JUMP_IF_FALSE 26
+
+16 134 LOAD_FAST 0 ( s )
+136 LOAD_FAST 4 ( i )
+138 BINARY_SUBSCR
+140 LOAD_FAST 6 ( word )
+142 COMPARE_OP 2 ( == )
+144 POP_JUMP_IF_FALSE 26
+
+17 146 LOAD_FAST 0 ( s )
+148 LOAD_FAST 4 ( i )
+150 STORE_SUBSCR
+>> 152 JUMP_ABSOLUTE 26
+>> 154 POP_BLOCK
+

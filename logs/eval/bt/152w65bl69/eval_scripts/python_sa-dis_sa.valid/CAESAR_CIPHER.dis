@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( text , s ) :\n    result = \"\"\n    for i in range ( len ( text ) ) :\n        char = text [ i ]\n        if ( char.isupper ( ) ) :\n            result += chr ( ( ord ( char ) + s - 65 ) % 26 + 65 )\n        else :\n            result += chr ( ( ord ( char ) + s - 97 ) % 26 + 97 )\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('LsvbpcviVPwq',15,),\n    ('35225904',2,),\n    ('010010',36,),\n    ('QnYd',44,),\n    ('2571694',11,),\n    ('101101011010',94,),\n    ('jb',22,),\n    ('928874',83,),\n    ('11',93,),\n    ('FbvbkMb',37,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def encrypt ( text , s ) :\n    result = \"\"\n    for i in range ( len ( text ) ) :\n        char = text [ i ]\n        if ( char.isupper ( ) ) :\n            result += chr ( ( ord ( char ) + s - 65 ) % 26 + 65 )\n        else :\n            result += chr ( ( ord ( char ) + s - 97 ) % 26 + 97 )\n    return result\n"}
+Disassembly of <code object encrypt at 0x7f816a673a50, file "<dis>", line 21>:
+22 0 LOAD_CONST 1 ( "'')
+2STORE_FAST1( s )
+
+23 4 LOAD_FAST 1 ( s )
+6 LOAD_FAST 0 ( text )
+8 COMPARE_OP 6 ( in )
+10 POP_JUMP_IF_FALSE 20
+
+24 12 LOAD_FAST 1 ( s )
+14 LOAD_FAST 0 ( text )
+16 COMPARE_OP 6 ( in )
+18 POP_JUMP_IF_FALSE 26
+
+25 20 LOAD_FAST 1 ( s )
+22 LOAD_FAST 0 ( text )
+24 COMPARE_OP 6 ( in )
+26 POP_JUMP_IF_FALSE 26
+
+26 28 LOAD_FAST 1 ( s )
+30 LOAD_FAST 0 ( text )
+32 COMPARE_OP 6 ( in )
+34 POP_JUMP_IF_FALSE 40
+
+27 36 LOAD_FAST 1 ( s )
+38 LOAD_FAST 0 ( text )
+40 COMPARE_OP 6 ( in )
+42 POP_JUMP_IF_FALSE 48
+
+28 44 LOAD_FAST 1 ( s )
+46 LOAD_FAST 0 ( text )
+48 COMPARE_OP 6 ( in )
+50 POP_JUMP_IF_FALSE 48
+
+29 52 LOAD_FAST 1 ( s )
+54 LOAD_FAST 0 ( text )
+56 COMPARE_OP 6 ( in )
+58 POP_JUMP_IF_FALSE 48
+
+30 60 LOAD_FAST 1 ( s )
+62 LOAD_FAST 0 ( text )
+64 LOAD_FAST 0 ( text )
+66 BINARY_ADD
+68 LOAD_CONST 2 ( '' )
+70 BINARY_ADD
+72 BINARY_ADD
+74 LOAD_CONST 2 ( '' )
+76 BINARY_ADD
+78 BINARY_ADD
+80 STORE_FAST 1 ( s )
+
+31 >> 82 LOAD_FAST 1 ( s )
+84 LOAD_FAST 0 ( text )
+86 LOAD_FAST 0 ( text )
+88 BINARY_ADD
+90 LOAD_CONST 2 ( '' )
+92 BINARY_ADD
+94 BINARY_ADD
+96 LOAD_FAST 1 ( s )
+98 BINARY_ADD
+100 BINARY_ADD
+102 LOAD_CONST 2 ( '' )
+104 BINARY_ADD
+106 BINARY_ADD
+108 LOAD_FAST 1 ( s )
+110 BINARY_ADD
+112 BINARY_ADD
+114 STORE_FAST 1 ( s )
+
+32 >> 116 LOAD_FAST 1 ( s )
+118 LOAD_FAST 0 ( text )
+120 LOAD_FAST 0 ( text )
+122 BINARY_ADD
+124 LOAD_FAST 1 ( s )
+126 BINARY_ADD
+128 LOAD_FAST 1 ( s )
+130 BINARY_ADD
+132 BINARY_ADD
+134 LOAD_FAST 1 ( s )
+136 BINARY_ADD
+138 BINARY_ADD
+140 LOAD_FAST 1 ( s )
+142 BINARY_ADD
+144 LOAD_FAST 0 ( text )
+146 BINARY_ADD
+148 BINARY_ADD
+150 LOAD_FAST 1 ( s )
+152 BINARY_ADD
+154 BINARY_ADD
+156 RETURN_VALUE
+

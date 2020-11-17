@@ -1,0 +1,75 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , p1 , p2 , n ) :\n    set1 = ( x >> p1 ) & ( ( 1 << n ) - 1 )\n    set2 = ( x >> p2 ) & ( ( 1 << n ) - 1 )\n    xor = ( set1 ^ set2 )\n    xor = ( xor << p1 ) | ( xor << p2 )\n    result = x ^ xor\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (95,88,97,92,),\n    (16,26,59,42,),\n    (55,56,40,41,),\n    (75,35,79,30,),\n    (90,12,59,34,),\n    (58,65,25,19,),\n    (69,64,17,94,),\n    (5,1,59,38,),\n    (36,33,97,44,),\n    (62,69,66,9,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def swapBits ( x , p1 , p2 , n ) :\n    set1 = ( x >> p1 ) & ( ( 1 << n ) - 1 )\n    set2 = ( x >> p2 ) & ( ( 1 << n ) - 1 )\n    xor = ( set1 ^ set2 )\n    xor = ( xor << p1 ) | ( xor << p2 )\n    result = x ^ xor\n    return result\n"}
+Disassembly of <code object swapBits at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( set1 )
+2 LOAD_FAST 0 ( x )
+4 LOAD_FAST 1 ( p1 )
+6 CALL_FUNCTION 2
+8 POP_TOP
+
+3 10 LOAD_GLOBAL 0 ( set1 )
+12 LOAD_FAST 0 ( x )
+14 LOAD_FAST 1 ( p1 )
+16 CALL_FUNCTION 2
+18 POP_TOP
+
+4 20 LOAD_GLOBAL 0 ( set1 )
+22 LOAD_FAST 0 ( x )
+24 LOAD_FAST 1 ( p1 )
+26 CALL_FUNCTION 2
+28 POP_TOP
+
+5 30 LOAD_GLOBAL 0 ( set1 )
+32 LOAD_FAST 0 ( x )
+34 LOAD_FAST 1 ( p1 )
+36 CALL_FUNCTION 2
+38 POP_TOP
+
+6 40 LOAD_GLOBAL 0 ( set1 )
+42 LOAD_FAST 0 ( x )
+44 LOAD_FAST 1 ( p1 )
+46 CALL_FUNCTION 2
+48 POP_TOP
+
+7 50 LOAD_GLOBAL 0 ( set1 )
+52 LOAD_FAST 0 ( x )
+54 LOAD_FAST 1 ( p1 )
+56 CALL_FUNCTION 2
+58 POP_TOP
+
+8 60 LOAD_GLOBAL 0 ( set1 )
+62 LOAD_FAST 0 ( x )
+64 LOAD_FAST 1 ( p1 )
+66 CALL_FUNCTION 2
+68 POP_TOP
+
+9 70 LOAD_GLOBAL 0 ( set1 )
+72 LOAD_FAST 0 ( x )
+74 LOAD_FAST 1 ( p1 )
+76 CALL_FUNCTION 2
+78 POP_TOP
+
+10 80 LOAD_GLOBAL 0 ( set1 )
+82 LOAD_FAST 0 ( x )
+84 LOAD_FAST 1 ( p1 )
+86 CALL_FUNCTION 2
+88 POP_TOP
+
+11 90 LOAD_GLOBAL 0 ( set1 )
+92 LOAD_FAST 0 ( x )
+94 LOAD_FAST 1 ( p1 )
+96 CALL_FUNCTION 2
+98 POP_TOP
+
+12 100 LOAD_GLOBAL 0 ( set1 )
+102 LOAD_FAST 0 ( x )
+104 LOAD_FAST 1 ( p1 )
+106 CALL_FUNCTION 2
+108 POP_TOP
+
+13 110 LOAD_GLOBAL 0 ( set1 )
+112 LOAD_FAST 0 ( x )
+114 LOAD_FAST 1 ( p1 )
+116 CALL_FUNCTION 2
+118 POP_TOP
+120 LOAD_CONST 0 ( None )
+122 RETURN_VALUE

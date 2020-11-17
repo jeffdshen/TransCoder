@@ -1,0 +1,18 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    return ( 1 + ( n * 2 ) + ( n * ( ( n * n ) - 1 ) // 2 ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (55,),\n    (36,),\n    (69,),\n    (92,),\n    (73,),\n    (16,),\n    (88,),\n    (19,),\n    (66,),\n    (68,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countStr ( n ) :\n    return ( 1 + ( n * 2 ) + ( n * ( ( n * n ) - 1 ) // 2 ) )\n"}
+Disassembly of <code object countStr at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 LOAD_FAST 0 ( n )
+4 LOAD_CONST 2 ( 2 )
+6 BINARY_MULTIPLY
+8 BINARY_ADD
+10 LOAD_FAST 0 ( n )
+12 LOAD_FAST 0 ( n )
+14 LOAD_FAST 0 ( n )
+16 BINARY_MULTIPLY
+18 LOAD_CONST 1 ( 1 )
+20 BINARY_SUBTRACT
+22 LOAD_CONST 2 ( 2 )
+24 BINARY_FLOOR_DIVIDE
+26 BINARY_MULTIPLY
+28 BINARY_ADD
+30 RETURN_VALUE

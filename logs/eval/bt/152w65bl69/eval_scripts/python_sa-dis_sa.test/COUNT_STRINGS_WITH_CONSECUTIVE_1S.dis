@@ -1,0 +1,97 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    a = [ 0 ] * n\n    b = [ 0 ] * n\n    a [ 0 ] = b [ 0 ] = 1\n    for i in range ( 1 , n ) :\n        a [ i ] = a [ i - 1 ] + b [ i - 1 ]\n        b [ i ] = a [ i - 1 ]\n    return ( 1 << n ) - a [ n - 1 ] - b [ n - 1 ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (27,),\n    (72,),\n    (13,),\n    (83,),\n    (75,),\n    (33,),\n    (57,),\n    (51,),\n    (10,),\n    (1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countStrings ( n ) :\n    a = [ 0 ] * n\n    b = [ 0 ] * n\n    a [ 0 ] = b [ 0 ] = 1\n    for i in range ( 1 , n ) :\n        a [ i ] = a [ i - 1 ] + b [ i - 1 ]\n        b [ i ] = a [ i - 1 ]\n    return ( 1 << n ) - a [ n - 1 ] - b [ n - 1 ]\n"}
+Disassembly of <code object countStrings at 0x7f816a677930, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( n )
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( n )
+
+28 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( count )
+
+29 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 4 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 5 ( 1 )
+32 BINARY_SUBSCR
+34 STORE_FAST 4 ( count )
+
+30 36 LOAD_FAST 1 ( n )
+38 LOAD_CONST 6 ( 2 )
+40 BINARY_SUBSCR
+42 STORE_FAST 5 ( count )
+
+31 44 LOAD_FAST 1 ( n )
+46 LOAD_CONST 7 ( 1 )
+48 BINARY_SUBSCR
+50 STORE_FAST 6 ( count )
+
+32 52 LOAD_FAST 1 ( n )
+54 LOAD_CONST 8 ( 2 )
+56 BINARY_SUBSCR
+58 STORE_FAST 7 ( count )
+
+33 60 LOAD_FAST 1 ( n )
+62 LOAD_CONST 9 ( 1 )
+64 BINARY_SUBSCR
+66 LOAD_CONST 10 ( 2 )
+68 BINARY_SUBSCR
+70 STORE_FAST 8 ( count )
+
+34 72 LOAD_FAST 1 ( n )
+74 LOAD_CONST 11 ( 1 )
+76 BINARY_SUBSCR
+78 STORE_FAST 9 ( count )
+
+35 80 LOAD_FAST 1 ( n )
+82 LOAD_CONST 12 ( 2 )
+84 BINARY_SUBSCR
+86 STORE_FAST 10 ( count )
+
+36 88 LOAD_FAST 1 ( n )
+90 LOAD_CONST 13 ( 1 )
+92 BINARY_SUBSCR
+94 LOAD_CONST 14 ( 2 )
+96 BINARY_SUBSCR
+98 STORE_FAST 11 ( count )
+
+37 100 LOAD_FAST 1 ( n )
+102 LOAD_CONST 12 ( 2 )
+104 BINARY_SUBSCR
+106 STORE_FAST 10 ( count )
+
+38 108 LOAD_FAST 1 ( n )
+110 LOAD_FAST 10 ( count )
+112 LOAD_CONST 15 ( 1 )
+114 BINARY_SUBSCR
+116 LOAD_CONST 16 ( 2 )
+118 BINARY_SUBSCR
+120 LOAD_CONST 17 ( 1 )
+122 BINARY_SUBSCR
+124 LOAD_CONST 18 ( 2 )
+126 BINARY_SUBSCR
+128 STORE_FAST 10 ( count )
+
+39 130 LOAD_FAST 1 ( n )
+132 LOAD_FAST 10 ( count )
+134 LOAD_CONST 18 ( 2 )
+136 BINARY_SUBSCR
+138 LOAD_FAST 10 ( count )
+140 LOAD_CONST 19 ( 1 )
+142 BINARY_SUBSCR
+144 LOAD_CONST 20 ( 2 )
+146 BINARY_SUBSCR
+148 LOAD_CONST 21 ( 1 )
+150 BINARY_SUBSCR
+152 BINARY_SUBTRACT
+154 LOAD_FAST 10 ( count )
+156 LOAD_CONST 21 ( 1 )
+158 BINARY_SUBSCR
+160 LOAD_CONST 21 ( 1 )
+162 COMPARE_OP 4 (

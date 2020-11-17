@@ -1,0 +1,415 @@
+INFO - 11/16/20 23:31:04 - 0:00:00 - ============ Initialized logger ============
+INFO - 11/16/20 23:31:04 - 0:00:00 - accumulate_gradients: 1
+                                     ae_steps: ['python_sa', 'dis_sa']
+                                     amp: 2
+                                     attention_dropout: 0
+                                     batch_size: 4
+                                     beam_size: 1
+                                     bptt: 256
+                                     bt_sample_temperature: 0
+                                     bt_src_langs: ['python_sa', 'dis_sa']
+                                     bt_steps: [('python_sa', 'dis_sa', 'python_sa'), ('dis_sa', 'python_sa', 'dis_sa')]
+                                     clip_grad_norm: 5
+                                     clm_steps: []
+                                     command: python XLM/train.py --n_heads 8 --max_vocab '-1' --word_blank '0.1' --n_layers 6 --generate_hypothesis true --max_len 1000 --bptt 256 --fp16 true --share_inout_emb true --has_sentences_ids true --split_data false --amp 2 --emb_dim 1024 --eval_only True --retry_mistmatching_types 0 --encoder_only False --exp_name mt_sa_1000 --lgs 'python_sa-dis_sa' --ae_steps 'python_sa,dis_sa' --bt_steps 'python_sa-dis_sa-python_sa,dis_sa-python_sa-dis_sa' --dump_path '/home/ubuntu/TransCoder/models/eval' --data_path '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/' --batch_size 4 --tokens_per_batch 1000 --max_batch_size 32 --eval_computation true --eval_bleu true --beam_size 1 --reload_model '/home/ubuntu/TransCoder/models/mt_sa_1000/e7k2a5krml/periodic-220.pth,/home/ubuntu/TransCoder/models/mt_sa_1000/e7k2a5krml/periodic-220.pth' --exp_id "tx8nnsvsdt"
+                                     context_size: 0
+                                     data_path: /home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/
+                                     debug: False
+                                     debug_slurm: False
+                                     debug_train: False
+                                     dropout: 0
+                                     dump_path: /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt
+                                     early_stopping: False
+                                     emb_dim: 1024
+                                     emb_dim_decoder: 1024
+                                     emb_dim_encoder: 1024
+                                     encoder_only: False
+                                     epoch_size: 100000
+                                     eval_bleu: True
+                                     eval_bleu_test_only: False
+                                     eval_computation: True
+                                     eval_only: True
+                                     eval_temperature: None
+                                     exp_id: tx8nnsvsdt
+                                     exp_name: mt_sa_1000
+                                     fp16: True
+                                     gelu_activation: False
+                                     gen_tpb_multiplier: 1
+                                     generate_hypothesis: True
+                                     global_rank: 0
+                                     group_by_size: True
+                                     has_sentences_ids: True
+                                     id2lang: {0: 'dis_sa', 1: 'python_sa'}
+                                     is_master: True
+                                     is_slurm_job: False
+                                     lambda_ae: 1
+                                     lambda_bt: 1
+                                     lambda_clm: 1
+                                     lambda_mlm: 1
+                                     lambda_mt: 1
+                                     lang2id: {'dis_sa': 0, 'python_sa': 1}
+                                     langs: ['python_sa', 'dis_sa']
+                                     length_penalty: 1
+                                     lg_sampling_factor: -1
+                                     lgs: python_sa-dis_sa
+                                     local_rank: 0
+                                     master_port: -1
+                                     max_batch_size: 32
+                                     max_epoch: 100000
+                                     max_len: 1000
+                                     max_vocab: -1
+                                     min_count: 0
+                                     mlm_steps: []
+                                     mono_dataset: {'python_sa': {'train': '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/train.python_sa.pth', 'valid': '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/valid.python_sa.pth', 'test': '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/test.python_sa.pth'}, 'dis_sa': {'train': '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/train.dis_sa.pth', 'valid': '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/valid.dis_sa.pth', 'test': '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/test.dis_sa.pth'}}
+                                     mt_steps: []
+                                     multi_gpu: False
+                                     multi_node: False
+                                     n_gpu_per_node: 1
+                                     n_heads: 8
+                                     n_langs: 2
+                                     n_layers: 6
+                                     n_layers_decoder: 6
+                                     n_layers_encoder: 6
+                                     n_nodes: 1
+                                     n_share_dec: 0
+                                     node_id: 0
+                                     number_samples: 1
+                                     optimizer: adam,lr=0.0001
+                                     para_dataset: {('dis_sa', 'python_sa'): {'valid': ('/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/valid.dis_sa-python_sa.dis_sa.pth', '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/valid.dis_sa-python_sa.python_sa.pth'), 'test': ('/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/test.dis_sa-python_sa.dis_sa.pth', '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/test.dis_sa-python_sa.python_sa.pth')}}
+                                     pred_any: False
+                                     reload_checkpoint: 
+                                     reload_emb: 
+                                     reload_model: /home/ubuntu/TransCoder/models/mt_sa_1000/e7k2a5krml/periodic-220.pth,/home/ubuntu/TransCoder/models/mt_sa_1000/e7k2a5krml/periodic-220.pth
+                                     retry_mistmatching_types: False
+                                     sample_alpha: 0
+                                     save_periodic: 0
+                                     separate_decoders: False
+                                     share_inout_emb: True
+                                     sinusoidal_embeddings: False
+                                     split_data: False
+                                     split_data_accross_gpu: local
+                                     stopping_criterion: 
+                                     tokens_per_batch: 1000
+                                     use_lang_emb: True
+                                     validation_metrics: 
+                                     word_blank: 0.1
+                                     word_dropout: 0
+                                     word_keep: 0.1
+                                     word_mask: 0.8
+                                     word_mask_keep_rand: 0.8,0.1,0.1
+                                     word_pos_permute: False
+                                     word_pred: 0.15
+                                     word_rand: 0.1
+                                     word_shuffle: 0
+                                     world_size: 1
+INFO - 11/16/20 23:31:04 - 0:00:00 - The experiment will be stored in /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt
+                                     
+INFO - 11/16/20 23:31:04 - 0:00:00 - Running command: python XLM/train.py --n_heads 8 --max_vocab '-1' --word_blank '0.1' --n_layers 6 --generate_hypothesis true --max_len 1000 --bptt 256 --fp16 true --share_inout_emb true --has_sentences_ids true --split_data false --amp 2 --emb_dim 1024 --eval_only True --retry_mistmatching_types 0 --encoder_only False --exp_name mt_sa_1000 --lgs 'python_sa-dis_sa' --ae_steps 'python_sa,dis_sa' --bt_steps 'python_sa-dis_sa-python_sa,dis_sa-python_sa-dis_sa' --dump_path '/home/ubuntu/TransCoder/models/eval' --data_path '/home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/' --batch_size 4 --tokens_per_batch 1000 --max_batch_size 32 --eval_computation true --eval_bleu true --beam_size 1 --reload_model '/home/ubuntu/TransCoder/models/mt_sa_1000/e7k2a5krml/periodic-220.pth,/home/ubuntu/TransCoder/models/mt_sa_1000/e7k2a5krml/periodic-220.pth'
+
+WARNING - 11/16/20 23:31:04 - 0:00:00 - Signal handler installed.
+INFO - 11/16/20 23:31:04 - 0:00:00 - ============ Monolingual data (python_sa)
+INFO - 11/16/20 23:31:04 - 0:00:00 - Loading data from /home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/valid.python_sa.pth ...
+INFO - 11/16/20 23:31:04 - 0:00:00 - 60473 words (45758 unique) in 473 sentences. 91 unknown words (31 unique) covering 0.15% of the data.
+INFO - 11/16/20 23:31:04 - 0:00:00 - Removed 0 empty sentences.
+
+INFO - 11/16/20 23:31:04 - 0:00:00 - Loading data from /home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/test.python_sa.pth ...
+INFO - 11/16/20 23:31:04 - 0:00:00 - 94192 words (45758 unique) in 742 sentences. 160 unknown words (47 unique) covering 0.17% of the data.
+INFO - 11/16/20 23:31:04 - 0:00:00 - Removed 0 empty sentences.
+
+INFO - 11/16/20 23:31:04 - 0:00:00 - ============ Monolingual data (dis_sa)
+INFO - 11/16/20 23:31:04 - 0:00:00 - Loading data from /home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/valid.dis_sa.pth ...
+INFO - 11/16/20 23:31:04 - 0:00:00 - 193677 words (45758 unique) in 473 sentences. 91 unknown words (31 unique) covering 0.05% of the data.
+INFO - 11/16/20 23:31:04 - 0:00:00 - Removed 0 empty sentences.
+
+INFO - 11/16/20 23:31:04 - 0:00:00 - Loading data from /home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/test.dis_sa.pth ...
+INFO - 11/16/20 23:31:04 - 0:00:00 - 302943 words (45758 unique) in 742 sentences. 162 unknown words (47 unique) covering 0.05% of the data.
+INFO - 11/16/20 23:31:05 - 0:00:01 - Removed 0 empty sentences.
+
+
+INFO - 11/16/20 23:31:05 - 0:00:01 - ============ Parallel data (dis_sa-python_sa)
+INFO - 11/16/20 23:31:05 - 0:00:01 - Loading data from /home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/valid.dis_sa-python_sa.dis_sa.pth ...
+INFO - 11/16/20 23:31:05 - 0:00:01 - 193677 words (45758 unique) in 473 sentences. 91 unknown words (31 unique) covering 0.05% of the data.
+INFO - 11/16/20 23:31:05 - 0:00:01 - Loading data from /home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/valid.dis_sa-python_sa.python_sa.pth ...
+INFO - 11/16/20 23:31:05 - 0:00:01 - 60473 words (45758 unique) in 473 sentences. 91 unknown words (31 unique) covering 0.15% of the data.
+INFO - 11/16/20 23:31:05 - 0:00:01 - Removed 0 empty sentences.
+INFO - 11/16/20 23:31:05 - 0:00:01 - Removed 0 empty sentences.
+INFO - 11/16/20 23:31:05 - 0:00:01 - Removed 12 too long sentences.
+
+INFO - 11/16/20 23:31:05 - 0:00:01 - Loading data from /home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/test.dis_sa-python_sa.dis_sa.pth ...
+INFO - 11/16/20 23:31:05 - 0:00:01 - 302943 words (45758 unique) in 742 sentences. 162 unknown words (47 unique) covering 0.05% of the data.
+INFO - 11/16/20 23:31:05 - 0:00:01 - Loading data from /home/ubuntu/TransCoder/data/dataset-128-sa-eval/processed.XLM-syml/test.dis_sa-python_sa.python_sa.pth ...
+INFO - 11/16/20 23:31:05 - 0:00:01 - 94192 words (45758 unique) in 742 sentences. 160 unknown words (47 unique) covering 0.17% of the data.
+INFO - 11/16/20 23:31:05 - 0:00:01 - Removed 0 empty sentences.
+INFO - 11/16/20 23:31:05 - 0:00:01 - Removed 0 empty sentences.
+INFO - 11/16/20 23:31:05 - 0:00:01 - Removed 23 too long sentences.
+
+
+INFO - 11/16/20 23:31:05 - 0:00:01 - ============ Data summary
+INFO - 11/16/20 23:31:05 - 0:00:01 - Monolingual data   - valid -    python_sa:       473
+INFO - 11/16/20 23:31:05 - 0:00:01 - Monolingual data   -  test -    python_sa:       742
+INFO - 11/16/20 23:31:05 - 0:00:01 - Monolingual data   - valid -       dis_sa:       473
+INFO - 11/16/20 23:31:05 - 0:00:01 - Monolingual data   -  test -       dis_sa:       742
+INFO - 11/16/20 23:31:05 - 0:00:01 - Parallel data      - valid - dis_sa-python_sa:       461
+INFO - 11/16/20 23:31:05 - 0:00:01 - Parallel data      -  test - dis_sa-python_sa:       719
+
+INFO - 11/16/20 23:31:09 - 0:00:05 - Reloading encoder from /home/ubuntu/TransCoder/models/mt_sa_1000/e7k2a5krml/periodic-220.pth ...
+INFO - 11/16/20 23:31:31 - 0:00:27 - Reloading decoders from /home/ubuntu/TransCoder/models/mt_sa_1000/e7k2a5krml/periodic-220.pth ...
+DEBUG - 11/16/20 23:31:32 - 0:00:28 - Encoder: TransformerModel(
+                                        (position_embeddings): Embedding(1024, 1024)
+                                        (lang_embeddings): Embedding(2, 1024)
+                                        (embeddings): Embedding(45758, 1024, padding_idx=2)
+                                        (layer_norm_emb): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                        (attentions): ModuleList(
+                                          (0): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (1): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (2): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (3): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (4): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (5): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                        )
+                                        (layer_norm1): ModuleList(
+                                          (0): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (1): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (2): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (3): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (4): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (5): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                        )
+                                        (ffns): ModuleList(
+                                          (0): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (1): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (2): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (3): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (4): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (5): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                        )
+                                        (layer_norm2): ModuleList(
+                                          (0): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (1): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (2): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (3): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (4): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (5): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                        )
+                                        (pred_layer): PredLayer(
+                                          (proj): Linear(in_features=1024, out_features=45758, bias=True)
+                                        )
+                                      )
+DEBUG - 11/16/20 23:31:32 - 0:00:28 - Decoder: [TransformerModel(
+                                        (position_embeddings): Embedding(1024, 1024)
+                                        (lang_embeddings): Embedding(2, 1024)
+                                        (embeddings): Embedding(45758, 1024, padding_idx=2)
+                                        (layer_norm_emb): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                        (attentions): ModuleList(
+                                          (0): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (1): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (2): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (3): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (4): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (5): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                        )
+                                        (layer_norm1): ModuleList(
+                                          (0): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (1): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (2): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (3): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (4): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (5): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                        )
+                                        (ffns): ModuleList(
+                                          (0): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (1): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (2): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (3): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (4): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                          (5): TransformerFFN(
+                                            (lin1): Linear(in_features=1024, out_features=4096, bias=True)
+                                            (lin2): Linear(in_features=4096, out_features=1024, bias=True)
+                                          )
+                                        )
+                                        (layer_norm2): ModuleList(
+                                          (0): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (1): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (2): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (3): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (4): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (5): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                        )
+                                        (layer_norm15): ModuleList(
+                                          (0): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (1): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (2): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (3): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (4): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                          (5): LayerNorm((1024,), eps=1e-12, elementwise_affine=True)
+                                        )
+                                        (encoder_attn): ModuleList(
+                                          (0): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (1): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (2): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (3): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (4): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                          (5): MultiHeadAttention(
+                                            (q_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (k_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (v_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                            (out_lin): Linear(in_features=1024, out_features=1024, bias=True)
+                                          )
+                                        )
+                                        (pred_layer): PredLayer(
+                                          (proj): Linear(in_features=1024, out_features=45758, bias=True)
+                                        )
+                                      )]
+INFO - 11/16/20 23:31:32 - 0:00:28 - Number of parameters (encoder): 123531966
+INFO - 11/16/20 23:31:32 - 0:00:28 - Number of parameters (decoders): 148734654
+INFO - 11/16/20 23:31:32 - 0:00:28 - Number of decoders: 1
+INFO - 11/16/20 23:31:32 - 0:00:28 - Found 264 parameters in model.
+INFO - 11/16/20 23:31:32 - 0:00:28 - Optimizers: model
+INFO - 11/16/20 23:43:03 - 0:12:00 - Computation res valid dis_sa python_sa : {"error": 88, "failure": 21, "identical_gold": 22, "script_not_found": 262, "success": 87, "timeout": 3, "total": 461, "total_evaluated": 199}
+INFO - 11/16/20 23:43:04 - 0:12:00 - BLEU /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt/hypotheses/hyp0.dis_sa-python_sa.valid_beam0.txt /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt/hypotheses/ref.dis_sa-python_sa.valid.txt : 81.440000
+INFO - 11/17/20 00:16:27 - 0:45:23 - Computation res valid python_sa dis_sa : {"error": 123, "failure": 19, "identical_gold": 32, "script_not_found": 262, "success": 47, "timeout": 10, "total": 461, "total_evaluated": 199}
+INFO - 11/17/20 00:16:28 - 0:45:24 - BLEU /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt/hypotheses/hyp0.python_sa-dis_sa.valid_beam0.txt /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt/hypotheses/ref.python_sa-dis_sa.valid.txt : 82.270000
+INFO - 11/17/20 00:31:54 - 1:00:50 - Computation res test dis_sa python_sa : {"error": 127, "failure": 32, "identical_gold": 39, "script_not_found": 405, "success": 149, "timeout": 6, "total": 719, "total_evaluated": 314}
+INFO - 11/17/20 00:31:54 - 1:00:50 - BLEU /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt/hypotheses/hyp0.dis_sa-python_sa.test_beam0.txt /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt/hypotheses/ref.dis_sa-python_sa.test.txt : 82.110000
+INFO - 11/17/20 01:22:13 - 1:51:09 - Computation res test python_sa dis_sa : {"error": 220, "failure": 25, "identical_gold": 43, "script_not_found": 405, "success": 57, "timeout": 12, "total": 719, "total_evaluated": 314}
+INFO - 11/17/20 01:22:15 - 1:51:11 - BLEU /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt/hypotheses/hyp0.python_sa-dis_sa.test_beam0.txt /home/ubuntu/TransCoder/models/eval/mt_sa_1000/tx8nnsvsdt/hypotheses/ref.python_sa-dis_sa.test.txt : 81.900000
+INFO - 11/17/20 01:22:15 - 1:51:11 - epoch -> 0.000000
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_dis_sa-python_sa_mt_ppl -> 1.329751
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_dis_sa-python_sa_mt_acc -> 94.118837
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_dis_sa-python_sa_mt_comp_acc -> 0.437186
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_dis_sa-python_samt_comp_acc_contrib_beam_0 -> 0.437186
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_dis_sa-python_sa_mt_bleu -> 81.440000
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_python_sa-dis_sa_mt_ppl -> 1.287277
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_python_sa-dis_sa_mt_acc -> 96.414459
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_python_sa-dis_sa_mt_comp_acc -> 0.236181
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_python_sa-dis_samt_comp_acc_contrib_beam_0 -> 0.236181
+INFO - 11/17/20 01:22:15 - 1:51:11 - valid_python_sa-dis_sa_mt_bleu -> 82.270000
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_dis_sa-python_sa_mt_ppl -> 1.332950
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_dis_sa-python_sa_mt_acc -> 94.177069
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_dis_sa-python_sa_mt_comp_acc -> 0.474522
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_dis_sa-python_samt_comp_acc_contrib_beam_0 -> 0.474522
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_dis_sa-python_sa_mt_bleu -> 82.110000
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_python_sa-dis_sa_mt_ppl -> 1.337620
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_python_sa-dis_sa_mt_acc -> 96.096525
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_python_sa-dis_sa_mt_comp_acc -> 0.181529
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_python_sa-dis_samt_comp_acc_contrib_beam_0 -> 0.181529
+INFO - 11/17/20 01:22:15 - 1:51:11 - test_python_sa-dis_sa_mt_bleu -> 81.900000
+INFO - 11/17/20 01:22:15 - 1:51:11 - __log__:{"epoch": 0, "valid_dis_sa-python_sa_mt_ppl": 1.3297513601568245, "valid_dis_sa-python_sa_mt_acc": 94.11883671075516, "valid_dis_sa-python_sa_mt_comp_acc": 0.4371859296482412, "valid_dis_sa-python_samt_comp_acc_contrib_beam_0": 0.4371859296482412, "valid_dis_sa-python_sa_mt_bleu": 81.44, "valid_python_sa-dis_sa_mt_ppl": 1.287277409298445, "valid_python_sa-dis_sa_mt_acc": 96.41445907082232, "valid_python_sa-dis_sa_mt_comp_acc": 0.23618090452261306, "valid_python_sa-dis_samt_comp_acc_contrib_beam_0": 0.23618090452261306, "valid_python_sa-dis_sa_mt_bleu": 82.27, "test_dis_sa-python_sa_mt_ppl": 1.3329498529189985, "test_dis_sa-python_sa_mt_acc": 94.17706867297144, "test_dis_sa-python_sa_mt_comp_acc": 0.4745222929936306, "test_dis_sa-python_samt_comp_acc_contrib_beam_0": 0.4745222929936306, "test_dis_sa-python_sa_mt_bleu": 82.11, "test_python_sa-dis_sa_mt_ppl": 1.3376200254639927, "test_python_sa-dis_sa_mt_acc": 96.09652531609576, "test_python_sa-dis_sa_mt_comp_acc": 0.18152866242038215, "test_python_sa-dis_samt_comp_acc_contrib_beam_0": 0.18152866242038215, "test_python_sa-dis_sa_mt_bleu": 81.9}

@@ -1,0 +1,35 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    sum = 0 ;\n    while ( n > 0 ) :\n        sum += ( n % 10 ) ;\n        n //= 10 ;\n    if ( sum == 1 ) :\n        return 10 ;\n    return sum ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (2,),\n    (39,),\n    (31,),\n    (45,),\n    (35,),\n    (94,),\n    (67,),\n    (50,),\n    (4,),\n    (63,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minSum ( n ) :\n    sum = 0 ;\n    while ( n > 0 ) :\n        sum += ( n % 10 ) ;\n        n //= 10 ;\n    if ( sum == 1 ) :\n        return 10 ;\n    return sum ;\n"}
+Disassembly of <code object minSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( sum )
+
+3 4 SETUP_LOOP 38 ( to 44 )
+>> 6 LOAD_FAST 0 ( n )
+8 LOAD_CONST 1 ( 0 )
+10 COMPARE_OP 4 ( > )
+12 POP_JUMP_IF_FALSE 42
+
+4 14 LOAD_FAST 1 ( sum )
+16 LOAD_FAST 0 ( n )
+18 LOAD_CONST 2 ( 10 )
+20 BINARY_MODULO
+22 INPLACE_ADD
+24 STORE_FAST 1 ( sum )
+
+5 26 LOAD_FAST 0 ( n )
+28 LOAD_CONST 2 ( 10 )
+30 INPLACE_RSHIFT
+32 STORE_FAST 0 ( n )
+34 JUMP_ABSOLUTE 6
+36 POP_BLOCK
+
+6 >> 38 LOAD_FAST 1 ( sum )
+40 LOAD_CONST 3 ( 1 )
+42 COMPARE_OP 2 ( == )
+44 POP_JUMP_IF_FALSE 50
+
+7 46 LOAD_CONST 2 ( 10 )
+48 RETURN_VALUE
+
+8 >> 50 LOAD_FAST 1 ( sum )
+52 RETURN_VALUE

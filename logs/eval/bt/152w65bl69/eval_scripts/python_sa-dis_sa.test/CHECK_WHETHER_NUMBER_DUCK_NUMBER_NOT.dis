@@ -1,0 +1,40 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num ) :\n    l = len ( num )\n    count_zero = 0\n    i = 1\n    while i < l :\n        ch = num [ i ]\n        if ( ch == \"0\" ) :\n            count_zero = count_zero + 1\n        i = i + 1\n    return count_zero\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('HLlQWSphZcIC',),\n    ('080287724',),\n    ('0000100000',),\n    (' Q',),\n    ('4247040983',),\n    ('00001011101',),\n    ('LbNsnYTHmLbCf',),\n    ('24',),\n    ('110',),\n    ('ie',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def check_duck ( num ) :\n    l = len ( num )\n    count_zero = 0\n    i = 1\n    while i < l :\n        ch = num [ i ]\n        if ( ch == \"0\" ) :\n            count_zero = count_zero + 1\n        i = i + 1\n    return count_zero\n"}
+Disassembly of <code object check_duck at 0x7f816a683c00, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( l )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 LOAD_CONST 2 ( 1 )
+8 COMPARE_OP 2 ( == )
+10 POP_JUMP_IF_TRUE 16
+12 LOAD_GLOBAL 0 ( AssertionError )
+14 RAISE_VARARGS 1
+
+27 >> 16 LOAD_FAST 1 ( l )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 LOAD_CONST 4 ( 2 )
+24 COMPARE_OP 2 ( == )
+26 POP_JUMP_IF_TRUE 32
+28 LOAD_GLOBAL 0 ( AssertionError )
+30 RAISE_VARARGS 1
+
+28 >> 32 LOAD_FAST 1 ( l )
+34 LOAD_CONST 5 ( 1 )
+36 BINARY_SUBSCR
+38 LOAD_CONST 6 ( 2 )
+40 COMPARE_OP 2 ( == )
+42 POP_JUMP_IF_TRUE 48
+44 LOAD_GLOBAL 0 ( AssertionError )
+46 RAISE_VARARGS 1
+
+29 >> 48 LOAD_FAST 1 ( l )
+50 LOAD_CONST 7 ( 1 )
+52 BINARY_SUBSCR
+54 LOAD_CONST 8 ( 2 )
+56 COMPARE_OP 2 ( == )
+58 POP_JUMP_IF_TRUE 60
+60 LOAD_GLOBAL 0 ( AssertionError )
+62 RAISE_VARARGS 1
+>> 64 LOAD_CONST 0 ( None )
+66 RETURN_VALUE
+

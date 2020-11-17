@@ -1,0 +1,8 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    return n & ( n - 1 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (9,),\n    (54,),\n    (60,),\n    (32,),\n    (41,),\n    (64,),\n    (4,),\n    (51,),\n    (57,),\n    (92,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def fun ( n ) :\n    return n & ( n - 1 )\n"}
+Disassembly of <code object fun at 0x7f2b0164d4b0, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 LOAD_CONST 2 ( - 1 )
+6 BINARY_SUBTRACT
+8 BINARY_MODULO
+10 RETURN_VALUE

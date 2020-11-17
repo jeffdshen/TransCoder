@@ -1,0 +1,63 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , n ) :\n    count = 0\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            if ( a [ i ] & a [ j ] ) == 0 :\n                count += 2\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([17, 20, 32, 35, 35, 36, 43, 47, 59, 59, 68, 69, 70, 70, 75, 82, 88, 94, 96, 99],17,),\n    ([-78, -40, 58, -36, 34, -12, -38, 48, -66, 16, 50, -26, -22, 46, -70, -68, -44, -52, -78, -50],11,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],23,),\n    ([49, 57, 17, 37, 56, 61, 10, 3, 33, 33, 70, 35, 50, 85, 48, 65, 83, 21, 96, 19, 66, 43, 69, 17, 60, 87, 82, 3, 83, 44, 63, 19, 55, 58, 77, 76, 50, 96],37,),\n    ([-94, -88, -86, -80, -80, -72, -64, -60, -58, -58, -58, -50, -44, -32, -8, -8, 0, 6, 8, 10, 14, 14, 18, 28, 34, 34, 46, 54, 56, 56, 56, 64, 66, 66, 70, 82, 84, 88, 96],33,),\n    ([1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0],13,),\n    ([1, 3, 10, 11, 13, 14, 15, 17, 20, 25, 26, 26, 27, 29, 32, 36, 36, 36, 42, 46, 47, 49, 51, 54, 54, 55, 60, 66, 67, 68, 68, 68, 72, 77, 78, 79, 83, 84, 92, 98],32,),\n    ([-76, -72, 16, 38, -60, 44, -2, -76, -76, -56, 40, 36, 50, -50, -32, 48, -96, 80, 84, 60, 84, 38, -54, -42, 48, 30, 66, -62, -52, -94, 64, -16, 54, 98],28,),\n    ([0, 0, 1, 1, 1, 1],5,),\n    ([63, 82, 22, 84, 11, 62, 18, 43, 57, 25, 4, 27, 62, 46, 55, 16, 1, 9, 10, 73, 36, 80, 95, 87, 47, 64, 27, 25, 70],22,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPairs ( a , n ) :\n    count = 0\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            if ( a [ i ] & a [ j ] ) == 0 :\n                count += 2\n    return count\n"}
+Disassembly of <code object countPairs at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( count )
+
+3 4 SETUP_LOOP 64 ( to 66 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 0 )
+10 LOAD_FAST 0 ( a )
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 48 ( to 64 )
+18 STORE_FAST 3 ( i )
+
+4 20 SETUP_LOOP 40 ( to 62 )
+22 LOAD_GLOBAL 0 ( range )
+24 LOAD_CONST 2 ( 0 )
+26 LOAD_FAST 1 ( n )
+28 CALL_FUNCTION 2
+30 GET_ITER
+>> 32 FOR_ITER 24 ( to 60 )
+34 STORE_FAST 4 ( i )
+
+5 36 LOAD_FAST 2 ( count )
+38 LOAD_FAST 3 ( i )
+40 BINARY_SUBSCR
+42 STORE_FAST 5 ( count )
+
+6 44 LOAD_FAST 2 ( count )
+46 LOAD_FAST 3 ( i )
+48 BINARY_SUBSCR
+50 LOAD_FAST 5 ( count )
+52 COMPARE_OP 4 ( > )
+54 POP_JUMP_IF_FALSE 32
+
+7 56 LOAD_FAST 2 ( count )
+58 LOAD_FAST 3 ( i )
+60 BINARY_SUBSCR
+62 LOAD_FAST 5 ( count )
+64 COMPARE_OP 4 ( > )
+66 POP_JUMP_IF_FALSE 32
+
+8 68 LOAD_FAST 2 ( count )
+70 LOAD_FAST 3 ( i )
+72 BINARY_SUBSCR
+74 LOAD_FAST 5 ( count )
+76 INPLACE_ADD
+78 STORE_FAST 2 ( count )
+
+9 80 LOAD_FAST 2 ( count )
+82 LOAD_FAST 3 ( i )
+84 BINARY_SUBSCR
+86 LOAD_FAST 5 ( count )
+88 STORE_SUBSCR
+
+10 90 LOAD_FAST 2 ( count )
+92 LOAD_FAST 3 ( i )
+94 STORE_SUBSCR
+96 JUMP_ABSOLUTE 32
+>> 98 POP_BLOCK
+
+11 >> 100 LOAD_FAST 2 ( count )
+102 RETURN_VALUE

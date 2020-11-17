@@ -1,0 +1,91 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport sys\n\ndef f_gold ( arr , n ) :\n    res = - sys.maxsize - 1\n    for i in range ( n ) :\n        prefix_sum = arr [ i ]\n        for j in range ( i ) :\n            prefix_sum += arr [ j ]\n        suffix_sum = arr [ i ]\n        j = n - 1\n        while ( j > i ) :\n            suffix_sum += arr [ j ]\n            j -= 1\n        if ( prefix_sum == suffix_sum ) :\n            res = max ( res , prefix_sum )\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 3, 9, 19, 22, 27, 32, 41, 45, 63, 66, 67, 81, 91],13,),\n    ([-64, -2, 68, -48, 22, -14, -98],4,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,),\n    ([86, 79, 23, 55, 4, 22, 37, 1, 72, 22, 82, 62, 96, 47],8,),\n    ([-96, -96, -96, -96, -92, -82, -72, -72, -62, -58, -52, -48, -44, -44, -40, -34, -28, -26, -26, 0, 0, 2, 4, 4, 12, 12, 18, 34, 36, 40, 48, 48, 54, 60, 66, 66, 72, 76, 78, 82, 82, 96, 98],33,),\n    ([0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0],38,),\n    ([2, 3, 7, 13, 20, 24, 39, 49, 53, 58, 72, 80, 90, 99],11,),\n    ([-48, 44, 60, -30, 8, 20, 70, -50, 80, -2, -28, -14],11,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],16,),\n    ([64, 13, 18, 3, 22, 29, 51, 45, 21, 13, 47, 15, 17, 34, 60, 99, 30, 54, 16, 47, 13, 49, 60, 66, 28, 57, 85, 66, 65, 7, 62, 29, 9],21,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMaxSum ( arr , n ) :\n    res = - sys.maxsize - 1\n    for i in range ( n ) :\n        prefix_sum = arr [ i ]\n        for j in range ( i ) :\n            prefix_sum += arr [ j ]\n        suffix_sum = arr [ i ]\n        j = n - 1\n        while ( j > i ) :\n            suffix_sum += arr [ j ]\n            j -= 1\n        if ( prefix_sum == suffix_sum ) :\n            res = max ( res , prefix_sum )\n    return res\n"}
+Disassembly of <code object findMaxSum at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( - sys )
+2 STORE_FAST 1 ( n )
+
+27 4 LOAD_GLOBAL 0 ( len )
+6 LOAD_FAST 1 ( n )
+8 CALL_FUNCTION 1
+10 LOAD_CONST 2 ( 1 )
+12 COMPARE_OP 4 ( > )
+14 POP_JUMP_IF_FALSE 20
+
+28 16 LOAD_GLOBAL 1 ( len )
+18 LOAD_FAST 1 ( n )
+20 CALL_FUNCTION 1
+22 LOAD_CONST 3 ( 1 )
+24 COMPARE_OP 4 ( > )
+26 POP_JUMP_IF_FALSE 32
+
+29 28 LOAD_FAST 1 ( n )
+30 LOAD_CONST 4 ( 0 )
+32 BINARY_SUBSCR
+34 LOAD_CONST 5 ( 1 )
+36 COMPARE_OP 4 ( > )
+38 POP_JUMP_IF_FALSE 40
+
+30 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 6 ( 1 )
+44 BINARY_SUBSCR
+46 LOAD_CONST 7 ( 1 )
+48 COMPARE_OP 4 ( > )
+50 POP_JUMP_IF_FALSE 52
+
+31 52 LOAD_FAST 1 ( n )
+54 LOAD_CONST 8 ( 1 )
+56 INPLACE_ADD
+58 STORE_FAST 1 ( n )
+
+32 >> 60 LOAD_FAST 1 ( n )
+62 LOAD_CONST 9 ( 1 )
+64 INPLACE_ADD
+66 STORE_FAST 1 ( n )
+
+33 68 LOAD_FAST 1 ( n )
+70 LOAD_CONST 10 ( 1 )
+72 INPLACE_ADD
+74 STORE_FAST 1 ( n )
+
+34 76 LOAD_FAST 1 ( n )
+78 LOAD_CONST 11 ( 2 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( n )
+
+35 84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 12 ( 2 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( n )
+
+36 92 LOAD_FAST 1 ( n )
+94 LOAD_CONST 13 ( 2 )
+96 INPLACE_ADD
+98 STORE_FAST 1 ( n )
+
+37 100 LOAD_FAST 1 ( n )
+102 LOAD_FAST 1 ( n )
+104 INPLACE_ADD
+106 STORE_FAST 1 ( n )
+
+38 108 LOAD_FAST 1 ( n )
+110 LOAD_FAST 1 ( n )
+112 INPLACE_ADD
+114 STORE_FAST 1 ( n )
+
+39 116 LOAD_FAST 1 ( n )
+118 LOAD_FAST 0 ( arr )
+120 INPLACE_ADD
+122 STORE_FAST 1 ( n )
+
+40 124 LOAD_FAST 1 ( n )
+126 LOAD_FAST 1 ( n )
+128 INPLACE_ADD
+130 STORE_FAST 1 ( n )
+
+41 132 LOAD_FAST 1 ( n )
+134 LOAD_FAST 1 ( n )
+136 INPLACE_ADD
+138 STORE_FAST 1 ( n )
+
+42 140 LOAD_FAST 1 ( n )
+142 RETURN_VALUE
+

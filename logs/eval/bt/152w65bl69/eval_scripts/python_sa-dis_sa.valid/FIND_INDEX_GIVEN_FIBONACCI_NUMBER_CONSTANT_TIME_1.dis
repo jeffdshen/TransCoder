@@ -1,0 +1,21 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    fibo = 2.078087 * math.log ( n ) + 1.672276\n    return round ( fibo )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (20,),\n    (95,),\n    (39,),\n    (21,),\n    (94,),\n    (79,),\n    (56,),\n    (62,),\n    (23,),\n    (3,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findIndex ( n ) :\n    fibo = 2.078087 * math.log ( n ) + 1.672276\n    return round ( fibo )\n"}
+Disassembly of <code object findIndex at 0x7f8169feb660, file "<dis>", line 73>:
+74 0 LOAD_GLOBAL 0 ( fibo )
+2 LOAD_METHOD 1 ( log )
+4 LOAD_CONST 1 ( 1.67509 )
+6 CALL_METHOD 1
+8 POP_TOP
+
+75 10 LOAD_GLOBAL 2 ( round )
+12 LOAD_FAST 0 ( n )
+14 LOAD_CONST 2 ( 10 )
+16 BINARY_MULTIPLY
+18 CALL_FUNCTION 1
+20 LOAD_CONST 3 ( 2 )
+22 BINARY_MULTIPLY
+24 CALL_FUNCTION 1
+26 LOAD_CONST 4 ( 0.0.509 )
+28 BINARY_MULTIPLY
+30 CALL_FUNCTION 1
+32 RETURN_VALUE
+

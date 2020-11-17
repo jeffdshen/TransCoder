@@ -1,0 +1,27 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , y ) :\n    while ( y != 0 ) :\n        carry = x & y\n        x = x ^ y\n        y = carry << 1\n    return x\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (56,60,),\n    (17,44,),\n    (73,96,),\n    (75,3,),\n    (27,54,),\n    (61,1,),\n    (65,63,),\n    (22,19,),\n    (61,9,),\n    (97,23,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def Add ( x , y ) :\n    while ( y != 0 ) :\n        carry = x & y\n        x = x ^ y\n        y = carry << 1\n    return x\n"}
+Disassembly of <code object Add at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 28 ( to 30 )
+>> 2 LOAD_FAST 1 ( y )
+4 LOAD_CONST 1 ( 0 )
+6 COMPARE_OP 3 ( != )
+8 POP_JUMP_IF_FALSE 28
+
+3 10 LOAD_FAST 0 ( x )
+12 LOAD_FAST 1 ( y )
+14 BINARY_AND
+16 STORE_FAST 2 ( carry )
+
+4 18 LOAD_FAST 0 ( x )
+20 LOAD_FAST 1 ( y )
+22 BINARY_XOR
+24 STORE_FAST 0 ( x )
+
+5 26 LOAD_FAST 2 ( carry )
+28 LOAD_CONST 2 ( 1 )
+30 BINARY_LSHIFT
+32 STORE_FAST 1 ( y )
+34 JUMP_ABSOLUTE 2
+>> 36 POP_BLOCK
+
+6 >> 38 LOAD_FAST 0 ( x )
+40 RETURN_VALUE

@@ -1,0 +1,22 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    res = n\n    for j in range ( len ( n ) - 1 , - 1 , - 1 ) :\n        res += n [ j ]\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('lSUhEvxcgfI',),\n    ('77329283',),\n    ('010111111',),\n    ('Stazb',),\n    ('0702',),\n    ('01111111',),\n    ('a',),\n    ('359118754930',),\n    ('11011010010',),\n    ('rznb',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def evenlength ( n ) :\n    res = n\n    for j in range ( len ( n ) - 1 , - 1 , - 1 ) :\n        res += n [ j ]\n    return res\n"}
+Disassembly of <code object evenlength at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( res )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 LOAD_CONST 2 ( 1 )
+8 BINARY_SUBSCR
+10 LOAD_CONST 3 ( 2 )
+12 BINARY_SUBSCR
+14 LOAD_CONST 4 ( 3 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 24
+
+27 20 LOAD_FAST 1 ( res )
+22 LOAD_CONST 5 ( '%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d' )
+
+27 28 LOAD_FAST 1 ( res )
+30 LOAD_FAST 0 ( n )
+32 BUILD_TUPLE 3
+34 BINARY_MODULO
+36 RETURN_VALUE
+

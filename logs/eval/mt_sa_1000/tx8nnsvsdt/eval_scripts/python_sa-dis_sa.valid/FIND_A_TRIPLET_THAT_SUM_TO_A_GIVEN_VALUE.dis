@@ -1,0 +1,73 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( A , arr_size , sum ) :\n    for i in range ( 0 , arr_size - 2 ) :\n        for j in range ( i + 1 , arr_size - 1 ) :\n            for k in range ( j + 1 , arr_size ) :\n                if A [ i ] + A [ j ] + A [ k ] == sum :\n                    print ( \"Triplet is\" , A [ i ] , \", \" , A [ j ] , \", \" , A [ k ] )\n                    return True\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([15, 18, 38, 47, 75, 88],5,4,),\n    ([28, -2, 62, 38, 86, -86, 56, 58, 96, 6, -28, 8, 68, -16, -80, -4, 98, -92, 4, -4, 58, -62, 46, 64],22,18,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],27,23,),\n    ([19, 77, 17, 91, 6, 35, 22, 4, 30, 23, 97, 56, 78, 16, 22, 23, 95, 57, 43, 27, 47, 44, 23, 10, 3, 94, 55, 22, 93, 32, 89, 28, 64, 22, 13, 24, 38, 44, 6, 1, 80],22,29,),\n    ([-98, -98, -94, -88, -80, -74, -68, -68, -64, -44, -36, -24, -10, -8, -8, 0, 4, 6, 8, 8, 12, 14, 16, 38, 50, 52, 54, 56, 66, 68, 76, 88],18,19,),\n    ([1, 1, 0, 0, 1, 0, 1, 1],4,5,),\n    ([7, 22, 24, 30, 42, 44, 49, 49, 65, 70, 70, 74, 74, 75, 90, 95, 96],8,13,),\n    ([40, -76, -68, -86, -14, 82, -20, 54, -26, 56, -24, -44, 44, 60, 52, -20, 80, -24, -90, -30, -2],11,18,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],15,17,),\n    ([33, 92, 6, 99, 83, 97, 49, 97, 85, 52],6,7,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def find3Numbers ( A , arr_size , sum ) :\n    for i in range ( 0 , arr_size - 2 ) :\n        for j in range ( i + 1 , arr_size - 1 ) :\n            for k in range ( j + 1 , arr_size ) :\n                if A [ i ] + A [ j ] + A [ k ] == sum :\n                    print ( \"Triplet is\" , A [ i ] , \", \" , A [ j ] , \", \" , A [ k ] )\n                    return True\n    return False\n"}
+Disassembly of <code object find3Numbers at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 120 ( to 122 )
+2 LOAD_GLOBAL 0 ( range )
+4 LOAD_CONST 1 ( 0 )
+6 LOAD_FAST 1 ( arr_size )
+8 LOAD_CONST 2 ( 2 )
+10 BINARY_SUBTRACT
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 106 ( to 120 )
+18 STORE_FAST 3 ( i )
+
+3 20 SETUP_LOOP 94 ( to 118 )
+22 LOAD_GLOBAL 0 ( range )
+24 LOAD_FAST 3 ( i )
+26 LOAD_CONST 3 ( 1 )
+28 BINARY_ADD
+30 LOAD_FAST 1 ( arr_size )
+32 LOAD_CONST 3 ( 1 )
+34 BINARY_SUBTRACT
+36 CALL_FUNCTION 2
+38 GET_ITER
+>> 40 FOR_ITER 82 ( to 116 )
+42 STORE_FAST 4 ( j )
+
+4 44 SETUP_LOOP 74 ( to 114 )
+46 LOAD_GLOBAL 0 ( range )
+48 LOAD_FAST 4 ( j )
+50 LOAD_CONST 3 ( 1 )
+52 BINARY_ADD
+54 LOAD_FAST 2 ( arr_size )
+56 CALL_FUNCTION 2
+58 GET_ITER
+>> 60 FOR_ITER 60 ( to 112 )
+62 STORE_FAST 5 ( k )
+
+5 64 LOAD_FAST 0 ( A )
+66 LOAD_FAST 3 ( i )
+68 BINARY_SUBSCR
+70 LOAD_FAST 0 ( A )
+72 LOAD_FAST 4 ( j )
+74 BINARY_SUBSCR
+76 BINARY_ADD
+78 LOAD_FAST 0 ( A )
+80 LOAD_FAST 5 ( k )
+82 BINARY_SUBSCR
+84 BINARY_ADD
+86 LOAD_FAST 2 ( sum )
+88 COMPARE_OP 2 ( == )
+90 POP_JUMP_IF_FALSE 60
+
+6 92 LOAD_GLOBAL 1 ( print )
+94 LOAD_CONST 4 ( 'Triplet is' )
+96 LOAD_FAST 0 ( A )
+98 LOAD_FAST 3 ( i )
+100 BINARY_SUBSCR
+102 LOAD_CONST 5 ( ', ' )
+104 LOAD_FAST 0 ( A )
+106 LOAD_FAST 4 ( j )
+108 BINARY_SUBSCR
+110 CALL_FUNCTION 5
+112 POP_TOP
+
+7 114 LOAD_CONST 6 ( True )
+116 RETURN_VALUE
+118 JUMP_ABSOLUTE 60
+>> 120 POP_BLOCK
+>> 122 JUMP_ABSOLUTE 40
+>> 124 POP_BLOCK
+
+8 >> 126 LOAD_CONST 7 ( False )
+128 RETURN_VALUE

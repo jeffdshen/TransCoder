@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( strA , strB ) :\n    res = 0\n    for i in range ( 0 , len ( strA ) ) :\n        res = res ^ ( ord ) ( strA [ i ] )\n    for i in range ( 0 , len ( strB ) ) :\n        res = res ^ ( ord ) ( strB [ i ] )\n    return ( ( chr ) ( res ) ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('obfLA mmMYvghH','obfLA  mmMYvghH',),\n    ('2941','2941',),\n    ('0111111','0111111',),\n    ('oWvbFstI','oWvbFstI',),\n    ('4937516500','4937516500',),\n    ('101110100','101110100',),\n    ('hYZscJQFBE','hYZscJQFBE',),\n    ('58443','58443',),\n    ('1100','1100',),\n    ('ZUdYuIBVNaeeb','ZUdYuIBVNaeeb',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findExtraCharcter ( strA , strB ) :\n    res = 0\n    for i in range ( 0 , len ( strA ) ) :\n        res = res ^ ( ord ) ( strA [ i ] )\n    for i in range ( 0 , len ( strB ) ) :\n        res = res ^ ( ord ) ( strB [ i ] )\n    return ( ( chr ) ( res ) ) ;\n"}
+Disassembly of <code object findeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeCharcter at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( res )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 3 ( res )
+
+4 8 SETUP_LOOP 64 ( to 76 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_CONST 2 ( 0 )
+14 LOAD_GLOBAL 1 ( len )
+16 LOAD_FAST 0 ( strA )
+18 CALL_FUNCTION 1
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 48 ( to 74 )
+26 STORE_FAST 4 ( i )
+
+5 28 LOAD_FAST 0 ( strA )
+30 LOAD_FAST 4 ( i )
+32 BINARY_SUBSCR
+34 LOAD_FAST 1 ( strB )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 48
+
+6 40 LOAD_FAST 2 ( res )
+42 LOAD_FAST 4 ( i )
+44 BINARY_SUBSCR
+46 LOAD_FAST 1 ( strB )
+48 COMPARE_OP 2 ( == )
+50 POP_JUMP_IF_FALSE 24
+
+7 52 LOAD_FAST 2 ( res )
+54 LOAD_FAST 4 ( i )
+56 BINARY_SUBSCR
+58 STORE_FAST 2 ( res )
+
+8 >> 60 LOAD_FAST 2 ( res )
+62 LOAD_FAST 4 ( i )
+64 BINARY_SUBSCR
+66 LOAD_FAST 1 ( strB )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 24
+
+9 72 LOAD_FAST 2 ( res )
+74 LOAD_FAST 4 ( i )
+76 BINARY_SUBSCR
+78 LOAD_FAST 1 ( strB )
+80 COMPARE_OP 2 ( == )
+82 POP_JUMP_IF_FALSE 24
+
+10 84 LOAD_FAST 2 ( res )
+86 LOAD_FAST 4 ( i )
+88 BINARY_SUBSCR
+90 LOAD_FAST 1 ( strB )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 24
+
+11 96 LOAD_FAST 2 ( res )
+98 LOAD_FAST 4 ( i )
+100 BINARY_SUBSCR
+102 LOAD_FAST 1 ( strB )
+104 COMPARE_OP 2 ( == )
+106 POP_JUMP_IF_FALSE 120
+
+12 108 LOAD_FAST 2 ( res )
+110 LOAD_FAST 4 ( i )
+112 BINARY_SUBSCR
+114 LOAD_FAST 1 ( strB )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 120
+
+13 120 LOAD_FAST 2 ( res )
+122 LOAD_FAST 4 ( i )
+124 BINARY_SUBSCR
+126 LOAD_FAST 1 ( strB )
+128 COMPARE_OP 2 ( == )
+130 POP_JUMP_IF_FALSE 24
+
+14 132 LOAD_FAST 2 ( res )
+134 LOAD_FAST 4 ( i )
+136 BINARY_SUBSCR
+138 LOAD_FAST 1 ( strB )
+140 COMPARE_OP 2 ( == )
+142 POP_JUMP_IF_FALSE 24
+
+15 144 LOAD_FAST 2 ( res )
+146 RETURN_VALUE
+
+17 >> 148 LOAD_FAST 2 ( res )
+150 RETURN_VALUE

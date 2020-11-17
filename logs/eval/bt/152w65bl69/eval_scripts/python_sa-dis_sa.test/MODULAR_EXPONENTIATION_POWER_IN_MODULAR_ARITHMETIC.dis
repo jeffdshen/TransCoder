@@ -1,0 +1,20 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , y , p ) :\n    res = 1\n    x = x % p\n    while ( y > 0 ) :\n        if ( ( y & 1 ) == 1 ) :\n            res = ( res * x ) % p\n        y = y >> 1\n        x = ( x * x ) % p\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (45,5,68,),\n    (67,25,49,),\n    (26,91,44,),\n    (33,61,9,),\n    (35,8,13,),\n    (68,41,5,),\n    (14,76,20,),\n    (5,89,13,),\n    (23,42,45,),\n    (37,63,56,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def power ( x , y , p ) :\n    res = 1\n    x = x % p\n    while ( y > 0 ) :\n        if ( ( y & 1 ) == 1 ) :\n            res = ( res * x ) % p\n        y = y >> 1\n        x = ( x * x ) % p\n    return res\n"}
+Disassembly of <code object power at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( x )
+2 LOAD_FAST 0 ( self )
+4 STORE_ATTR 0 ( x )
+
+27 6 LOAD_FAST 1 ( x )
+8 LOAD_FAST 0 ( self )
+10 STORE_ATTR 1 ( y )
+
+28 12 LOAD_FAST 1 ( x )
+14 LOAD_FAST 0 ( self )
+16 STORE_ATTR 2 ( y )
+
+29 18 LOAD_FAST 1 ( x )
+20 LOAD_FAST 0 ( self )
+22 STORE_ATTR 3 ( y )
+24 LOAD_CONST 0 ( None )
+26 RETURN_VALUE
+

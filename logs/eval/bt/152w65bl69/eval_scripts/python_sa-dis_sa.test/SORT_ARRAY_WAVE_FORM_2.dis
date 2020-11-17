@@ -1,0 +1,91 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    arr.sort ( )\n    for i in range ( 0 , n - 1 , 2 ) :\n        arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([5, 11, 14, 14, 17, 20, 30, 35, 43, 44, 44, 45, 51, 56, 56, 61, 63, 65, 70, 71, 83],20,),\n    ([52, 80, -10, 54, 58, -78, -30, -98],6,),\n    ([0, 0, 0, 1, 1, 1, 1, 1, 1],5,),\n    ([26, 83, 21, 22, 58, 42, 4, 14, 11, 53, 33, 3, 92, 44],10,),\n    ([-94, -78, -76, -42, -26, -16, -10, 4, 16, 38, 60, 86, 98],9,),\n    ([1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0],8,),\n    ([5, 12, 20, 26, 30, 35, 39, 44, 54, 56, 70, 72, 74, 74, 79, 80, 88, 95, 95, 98],10,),\n    ([-80, 22, 36, 90, -22, -10, 40, -10, -68, 88, 48, 22, 8, 2, -76, -88, -2, 66, -84, 42, 0],12,),\n    ([0, 0, 0, 1, 1, 1, 1, 1, 1],4,),\n    ([61, 79, 82, 75, 51, 64, 20, 42, 57, 70, 9, 22, 64, 38, 60, 53, 53, 56, 24, 37, 52, 67, 47, 2, 59, 89, 82, 11, 22],20,)\n        ]\n    filled_function_param = [\n    ([5, 11, 14, 14, 17, 20, 30, 35, 43, 44, 44, 45, 51, 56, 56, 61, 63, 65, 70, 71, 83],20,),\n    ([52, 80, -10, 54, 58, -78, -30, -98],6,),\n    ([0, 0, 0, 1, 1, 1, 1, 1, 1],5,),\n    ([26, 83, 21, 22, 58, 42, 4, 14, 11, 53, 33, 3, 92, 44],10,),\n    ([-94, -78, -76, -42, -26, -16, -10, 4, 16, 38, 60, 86, 98],9,),\n    ([1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0],8,),\n    ([5, 12, 20, 26, 30, 35, 39, 44, 54, 56, 70, 72, 74, 74, 79, 80, 88, 95, 95, 98],10,),\n    ([-80, 22, 36, 90, -22, -10, 40, -10, -68, 88, 48, 22, 8, 2, -76, -88, -2, 66, -84, 42, 0],12,),\n    ([0, 0, 0, 1, 1, 1, 1, 1, 1],4,),\n    ([61, 79, 82, 75, 51, 64, 20, 42, 57, 70, 9, 22, 64, 38, 60, 53, 53, 56, 24, 37, 52, 67, 47, 2, 59, 89, 82, 11, 22],20,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def sortInWave ( arr , n ) :\n    arr.sort ( )\n    for i in range ( 0 , n - 1 , 2 ) :\n        arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i ]\n"}
+Disassembly of <code object sortInWave at 0x7f816a673a50, file "<dis>", line 163>:
+164 0 LOAD_FAST 0 ( arr )
+2 LOAD_METHOD 0 ( sort )
+4 CALL_METHOD 0
+6 STORE_FAST 1 ( n )
+
+165 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 1 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( ret )
+
+166 16 LOAD_FAST 2 ( ret )
+18 LOAD_CONST 2 ( 0 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( ret )
+
+167 24 LOAD_FAST 3 ( ret )
+26 LOAD_CONST 3 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 4 ( 2 )
+32 BINARY_SUBSCR
+34 STORE_FAST 4 ( ret )
+
+168 36 LOAD_FAST 0 ( arr )
+38 LOAD_CONST 5 ( 1 )
+40 BINARY_SUBSCR
+42 LOAD_CONST 6 ( 2 )
+44 BINARY_SUBSCR
+46 STORE_FAST 5 ( ret )
+
+169 48 LOAD_FAST 0 ( arr )
+50 LOAD_CONST 7 ( 3 )
+52 BINARY_SUBSCR
+54 STORE_FAST 6 ( ret )
+
+170 56 LOAD_FAST 0 ( arr )
+58 LOAD_CONST 8 ( 0 )
+60 BINARY_SUBSCR
+62 STORE_FAST 7 ( ret )
+
+171 64 LOAD_FAST 0 ( arr )
+66 LOAD_CONST 9 ( 1 )
+68 BINARY_SUBSCR
+70 STORE_FAST 8 ( ret )
+
+172 72 LOAD_FAST 0 ( arr )
+74 LOAD_CONST 10 ( 0 )
+76 BINARY_SUBSCR
+78 LOAD_CONST 11 ( 1 )
+80 BINARY_SUBSCR
+82 LOAD_CONST 12 ( 2 )
+84 BINARY_SUBSCR
+86 STORE_FAST 9 ( ret )
+
+173 88 LOAD_FAST 0 ( arr )
+90 LOAD_CONST 13 ( 1 )
+92 BINARY_SUBSCR
+94 LOAD_CONST 14 ( 2 )
+96 BINARY_SUBSCR
+98 STORE_FAST 10 ( ret )
+
+174 100 LOAD_FAST 0 ( arr )
+102 LOAD_CONST 15 ( 1 )
+104 BINARY_SUBSCR
+106 STORE_FAST 11 ( ret )
+
+175 108 LOAD_FAST 0 ( arr )
+110 LOAD_CONST 16 ( 0 )
+112 BINARY_SUBSCR
+114 LOAD_FAST 7 ( ret )
+116 LOAD_CONST 17 ( 1 )
+118 BINARY_SUBSCR
+120 LOAD_CONST 18 ( 2 )
+122 BINARY_SUBSCR
+124 LOAD_FAST 8 ( ret )
+126 LOAD_CONST 19 ( 1 )
+128 BINARY_SUBSCR
+130 LOAD_FAST 9 ( ret )
+132 LOAD_CONST 20 ( 0 )
+134 BINARY_SUBSCR
+136 BUILD_TUPLE 3
+138 COMPARE_OP 4 ( > )
+140 POP_JUMP_IF_FALSE 146
+
+176 142 LOAD_FAST 0 ( arr )
+144 RETURN_VALUE
+
+177 >> 146 LOAD_FAST 0 ( arr )
+148 RETURN_VALUE
+

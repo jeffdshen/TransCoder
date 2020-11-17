@@ -1,0 +1,82 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , k ) :\n    if ( k <= 0 ) :\n        return n\n    return ( n & ~ ( 1 << ( k - 1 ) ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (49,15,),\n    (59,69,),\n    (76,20,),\n    (27,76,),\n    (61,60,),\n    (67,27,),\n    (63,71,),\n    (85,25,),\n    (90,64,),\n    (24,55,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def turnOffK ( n , k ) :\n    if ( k <= 0 ) :\n        return n\n    return ( n & ~ ( 1 << ( k - 1 ) ) )\n"}
+Disassembly of <code object turnOffK at 0x7f816a601660, file "<dis>", line 148>:
+149 0 LOAD_FAST 1 ( k )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 2 ( l )
+
+150 8 LOAD_FAST 0 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 3 ( l )
+
+151 16 LOAD_FAST 2 ( l )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 4 ( l )
+
+152 24 LOAD_FAST 3 ( l )
+26 LOAD_CONST 4 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 5 ( 1 )
+32 BINARY_SUBSCR
+34 STORE_FAST 5 ( l )
+
+153 36 LOAD_FAST 5 ( l )
+38 LOAD_CONST 6 ( '%s %s %s' )
+40 LOAD_FAST 4 ( l )
+42 LOAD_FAST 5 ( l )
+44 LOAD_FAST 1 ( k )
+46 LOAD_FAST 5 ( l )
+48 LOAD_FAST 6 ( l )
+50 LOAD_FAST 5 ( l )
+52 LOAD_FAST 1 ( k )
+54 LOAD_FAST 5 ( l )
+56 LOAD_FAST 6 ( l )
+58 LOAD_FAST 1 ( k )
+60 LOAD_FAST 5 ( l )
+62 LOAD_FAST 6 ( l )
+64 LOAD_FAST 7 ( l )
+66 LOAD_FAST 8 ( l )
+68 LOAD_FAST 9 ( l )
+70 LOAD_FAST 10 ( l )
+72 LOAD_FAST 11 ( l )
+74 LOAD_FAST 12 ( l )
+76 LOAD_FAST 13 ( l )
+78 LOAD_FAST 14 ( l )
+80 LOAD_FAST 15 ( l )
+82 LOAD_FAST 14 ( l )
+84 LOAD_FAST 15 ( l )
+86 LOAD_FAST 16 ( l )
+88 LOAD_FAST 15 ( l )
+90 LOAD_FAST 15 ( l )
+92 LOAD_FAST 16 ( l )
+94 LOAD_FAST 17 ( l )
+96 LOAD_FAST 18 ( l )
+98 LOAD_FAST 19 ( l )
+100 LOAD_FAST 20 ( l )
+102 LOAD_FAST 21 ( l )
+104 LOAD_FAST 20 ( l )
+106 LOAD_FAST 22 ( l )
+108 LOAD_FAST 21 ( l )
+110 LOAD_FAST 22 ( l )
+112 LOAD_FAST 23 ( l )
+114 BUILD_TUPLE 15
+116 LOAD_FAST 20 ( l )
+118 LOAD_FAST 21 ( l )
+120 LOAD_FAST 22 ( l )
+122 LOAD_FAST 23 ( l )
+124 LOAD_FAST 22 ( l )
+126 BUILD_TUPLE 15
+128 LOAD_FAST 20 ( l )
+130 LOAD_FAST 21 ( l )
+132 LOAD_FAST 22 ( l )
+134 BUILD_TUPLE 15
+136 BINARY_ADD
+138 LOAD_FAST 20 ( l )
+140 BUILD_TUPLE 15
+142 BINARY_ADD
+144 LOAD_FAST 5 ( l )
+146 BINARY_ADD
+148 RETURN_VALUE
+

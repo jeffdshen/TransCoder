@@ -1,0 +1,64 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , x , y ) :\n    min_dist = 99999999\n    for i in range ( n ) :\n        for j in range ( i + 1 , n ) :\n            if ( x == arr [ i ] and y == arr [ j ] or y == arr [ i ] and x == arr [ j ] ) and min_dist > abs ( i - j ) :\n                min_dist = abs ( i - j )\n        return min_dist\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 7, 7, 8, 11, 14, 16, 25, 34, 35, 36, 36, 38, 40, 41, 43, 45, 47, 57, 60, 64, 72, 73, 74, 75, 82, 83, 83, 84, 84, 84, 92],22,7,40,),\n    ([96, 70, 88, -64, -42, 58, 92, 66, -14, 90, -66, 12, 88, -12, 48, -4, 90, 24, 98, 14, 32, 38, 98, 78, 2, 26, 12, -36, 90, 80, 40, 58, 88, 64, 16],25,58,70,),\n    ([0, 0, 1],1,1,1,),\n    ([46, 96, 82, 73, 30, 36, 56, 20, 5, 36, 4, 7, 89, 63, 54, 97, 80, 56, 93, 34, 90, 56, 25, 27, 75, 68, 14, 90],26,54,82,),\n    ([-96, -88, -82, -66, -62, -52, -52, -46, -46, -40, -40, -28, -24, -12, 0, 4, 10, 24, 42, 46, 48, 48, 50, 60, 62, 64, 64, 70, 92, 98],24,0,4,),\n    ([0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1],10,0,1,),\n    ([1, 2, 2, 6, 10, 14, 15, 18, 19, 22, 23, 29, 30, 37, 40, 40, 41, 41, 42, 42, 44, 46, 46, 54, 56, 72, 73, 81, 83, 83, 86, 88, 93],27,1,42,),\n    ([46, 86, -52, 18, -32, 86, 2, 38, 72, 72, -60, 70, -58, 66, -66, -72, -74, 58, 52, 58, 16, 64, 62, -62, 80, -70, -96, -44, -20, -74, -10, 14, -32, 48, 30, 76, -16, 80, 66, -46, -92, 26, -86, 28, -76, -24, -98, 54, 50],30,25,45,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],38,0,0,),\n    ([32, 65, 10, 72, 17, 58, 79, 28, 67, 36, 18, 35],7,10,7,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minDist ( arr , n , x , y ) :\n    min_dist = 99999999\n    for i in range ( n ) :\n        for j in range ( i + 1 , n ) :\n            if ( x == arr [ i ] and y == arr [ j ] or y == arr [ i ] and x == arr [ j ] ) and min_dist > abs ( i - j ) :\n                min_dist = abs ( i - j )\n        return min_dist\n"}
+Disassembly of <code object minDist at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 99999999 )
+2 STORE_FAST 4 ( min_dist )
+
+3 4 SETUP_LOOP 96 ( to 102 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_FAST 1 ( n )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 82 ( to 100 )
+16 STORE_FAST 5 ( i )
+
+4 18 SETUP_LOOP 76 ( to 98 )
+20 LOAD_GLOBAL 0 ( range )
+22 LOAD_FAST 5 ( i )
+24 LOAD_CONST 2 ( 1 )
+26 BINARY_ADD
+28 LOAD_FAST 1 ( n )
+30 CALL_FUNCTION 2
+32 GET_ITER
+>> 34 FOR_ITER 60 ( to 96 )
+36 STORE_FAST 6 ( j )
+
+5 38 LOAD_FAST 2 ( x )
+40 LOAD_FAST 0 ( arr )
+42 LOAD_FAST 5 ( i )
+44 BINARY_SUBSCR
+46 COMPARE_OP 2 ( == )
+48 POP_JUMP_IF_FALSE 34
+50 LOAD_FAST 3 ( y )
+52 LOAD_FAST 0 ( arr )
+54 LOAD_FAST 6 ( j )
+56 BINARY_SUBSCR
+58 COMPARE_OP 2 ( == )
+60 POP_JUMP_IF_TRUE 34
+62 LOAD_FAST 2 ( x )
+64 LOAD_FAST 0 ( arr )
+66 LOAD_FAST 6 ( j )
+68 BINARY_SUBSCR
+70 COMPARE_OP 2 ( == )
+72 POP_JUMP_IF_FALSE 34
+74 LOAD_FAST 4 ( min_dist )
+76 LOAD_GLOBAL 1 ( abs )
+78 LOAD_FAST 5 ( i )
+80 LOAD_FAST 6 ( j )
+82 BINARY_SUBTRACT
+84 CALL_FUNCTION 1
+86 COMPARE_OP 4 ( > )
+88 POP_JUMP_IF_FALSE 34
+
+6 90 LOAD_GLOBAL 1 ( abs )
+92 LOAD_FAST 5 ( i )
+94 LOAD_FAST 6 ( j )
+96 BINARY_SUBTRACT
+98 CALL_FUNCTION 1
+100 STORE_FAST 4 ( min_dist )
+102 JUMP_ABSOLUTE 34
+>> 104 POP_BLOCK
+>> 106 JUMP_ABSOLUTE 14
+>> 108 POP_BLOCK
+
+7 >> 110 LOAD_FAST 4 ( min_dist )
+112 RETURN_VALUE

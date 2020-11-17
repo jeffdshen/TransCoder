@@ -1,0 +1,59 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    n = len ( str )\n    for i in range ( n ) :\n        if ( str [ i ] != 'a' ) :\n            break\n    if ( i * 2 != n ) :\n        return False\n    for j in range ( i , n ) :\n        if ( str [ j ] != 'b' ) :\n            return False\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('ba',),\n    ('aabb',),\n    ('abab',),\n    ('aaabb',),\n    ('aabbb',),\n    ('abaabbaa',),\n    ('abaababb',),\n    ('bbaa',),\n    ('11001000',),\n    ('ZWXv te',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isAnBn ( str ) :\n    n = len ( str )\n    for i in range ( n ) :\n        if ( str [ i ] != 'a' ) :\n            break\n    if ( i * 2 != n ) :\n        return False\n    for j in range ( i , n ) :\n        if ( str [ j ] != 'b' ) :\n            return False\n    return True\n"}
+Disassembly of <code object isAnBn at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( str )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+3 8 SETUP_LOOP 34 ( to 44 )
+10 LOAD_GLOBAL 1 ( range )
+12 LOAD_FAST 1 ( n )
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 20 ( to 42 )
+20 STORE_FAST 2 ( i )
+
+4 22 LOAD_FAST 0 ( str )
+24 LOAD_FAST 2 ( i )
+26 BINARY_SUBSCR
+28 LOAD_CONST 1 ( 'a' )
+30 COMPARE_OP 3 ( != )
+32 POP_JUMP_IF_FALSE 18
+
+5 34 BREAK_LOOP
+36 JUMP_ABSOLUTE 18
+>> 38 POP_BLOCK
+
+6 40 LOAD_FAST 2 ( i )
+42 LOAD_CONST 2 ( 2 )
+44 BINARY_MULTIPLY
+46 LOAD_FAST 1 ( n )
+48 COMPARE_OP 3 ( != )
+50 POP_JUMP_IF_FALSE 56
+
+7 52 LOAD_CONST 3 ( False )
+54 RETURN_VALUE
+
+8 >> 56 SETUP_LOOP 30 ( to 92 )
+58 LOAD_GLOBAL 1 ( range )
+60 LOAD_FAST 2 ( i )
+62 LOAD_FAST 1 ( n )
+64 CALL_FUNCTION 2
+66 GET_ITER
+>> 68 FOR_ITER 20 ( to 90 )
+70 STORE_FAST 3 ( j )
+
+9 72 LOAD_FAST 0 ( str )
+74 LOAD_FAST 3 ( j )
+76 BINARY_SUBSCR
+78 LOAD_CONST 4 ( 'b' )
+80 COMPARE_OP 3 ( != )
+82 POP_JUMP_IF_FALSE 68
+
+10 84 LOAD_CONST 3 ( False )
+86 RETURN_VALUE
+88 JUMP_ABSOLUTE 68
+>> 90 POP_BLOCK
+
+11 >> 92 LOAD_CONST 5 ( True )
+94 RETURN_VALUE

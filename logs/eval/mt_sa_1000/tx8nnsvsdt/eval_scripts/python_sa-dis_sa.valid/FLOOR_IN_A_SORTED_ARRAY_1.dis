@@ -1,0 +1,96 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , low , high , x ) :\n    if ( low > high ) :\n        return - 1\n    if ( x >= arr [ high ] ) :\n        return high\n    mid = int ( ( low + high ) / 2 )\n    if ( arr [ mid ] == x ) :\n        return mid\n    if ( mid > 0 and arr [ mid - 1 ] <= x and x < arr [ mid ] ) :\n        return mid - 1\n    if ( x < arr [ mid ] ) :\n        return f_gold ( arr , low , mid - 1 , x )\n    return f_gold ( arr , mid + 1 , high , x )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([5, 11, 20, 42, 42, 55, 58, 98, 99],5,7,6,),\n    ([50, -90, -38, -46, -10, -22, -66, 72, -52, 38, 90, 34, -12, -44, -6, 0, -20, -38, 86, 26, 64, -24, 40, 90, -26, -2, -28, 12, 22, -14],26,28,23,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],11,9,18,),\n    ([69, 28, 68, 98, 24, 67, 86, 2, 18, 22, 44, 77, 52, 62, 24, 46],15,11,13,),\n    ([-96, -94, -88, -84, -68, -60, -52, -52, -42, -34, -32, -16, -12, -6, -6, -4, -2, 0, 16, 18, 38, 58, 70, 72, 76, 78, 90, 92, 98],22,27,20,),\n    ([0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0],24,15,26,),\n    ([1, 6, 7, 9, 10, 11, 19, 19, 22, 22, 26, 34, 36, 37, 37, 38, 39, 40, 49, 54, 60, 62, 65, 67, 71, 76, 78, 79, 82, 82, 89, 95, 97],22,26,25,),\n    ([76, -32, -98, -18, -80, 74, -22, -82, 40, -64, 58, -18, -64, 34, -44, -82, -46, 62, -80, -76, 32, 44, -32, 98, -26, 62, 16, 86, -52, -72, -90, -30, 6],28,31,24,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],28,29,30,),\n    ([81, 69, 15, 52, 49, 54, 18, 92, 33, 21, 91, 21, 5, 25, 77, 92, 26, 58, 72, 55, 76, 18, 13, 59, 9, 12, 31, 24, 36, 33, 71, 87, 55, 19, 42, 25],35,19,33,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def floorSearch ( arr , low , high , x ) :\n    if ( low > high ) :\n        return - 1\n    if ( x >= arr [ high ] ) :\n        return high\n    mid = int ( ( low + high ) / 2 )\n    if ( arr [ mid ] == x ) :\n        return mid\n    if ( mid > 0 and arr [ mid - 1 ] <= x and x < arr [ mid ] ) :\n        return mid - 1\n    if ( x < arr [ mid ] ) :\n        return floorSearch ( arr , low , mid - 1 , x )\n    return floorSearch ( arr , mid + 1 , high , x )\n"}
+Disassembly of <code object floorSearch at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 1 ( low )
+2 LOAD_FAST 2 ( high )
+4 COMPARE_OP 4 ( > )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 1 ( - 1 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_FAST 3 ( x )
+14 LOAD_FAST 0 ( arr )
+16 LOAD_FAST 2 ( high )
+18 BINARY_SUBSCR
+20 COMPARE_OP 5 ( >= )
+22 POP_JUMP_IF_FALSE 28
+
+5 24 LOAD_FAST 2 ( high )
+26 RETURN_VALUE
+
+6 >> 28 LOAD_GLOBAL 0 ( int )
+30 LOAD_FAST 1 ( low )
+32 LOAD_FAST 2 ( high )
+34 BINARY_ADD
+36 LOAD_CONST 2 ( 2 )
+38 BINARY_TRUE_DIVIDE
+40 CALL_FUNCTION 1
+42 STORE_FAST 4 ( mid )
+
+7 44 LOAD_FAST 0 ( arr )
+46 LOAD_FAST 4 ( mid )
+48 BINARY_SUBSCR
+50 LOAD_FAST 3 ( x )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 60
+
+8 56 LOAD_FAST 4 ( mid )
+58 RETURN_VALUE
+
+9 >> 60 LOAD_FAST 4 ( mid )
+62 LOAD_CONST 3 ( 0 )
+64 COMPARE_OP 4 ( > )
+66 POP_JUMP_IF_FALSE 98
+68 LOAD_FAST 0 ( arr )
+70 LOAD_FAST 4 ( mid )
+72 LOAD_CONST 4 ( 1 )
+74 BINARY_SUBTRACT
+76 BINARY_SUBSCR
+78 LOAD_FAST 3 ( x )
+80 COMPARE_OP 1 ( <= )
+82 POP_JUMP_IF_FALSE 98
+84 LOAD_FAST 3 ( x )
+86 LOAD_FAST 0 ( arr )
+88 LOAD_FAST 4 ( mid )
+90 BINARY_SUBSCR
+92 COMPARE_OP 0 ( < )
+94 POP_JUMP_IF_FALSE 98
+96 LOAD_FAST 3 ( x )
+98 LOAD_FAST 0 ( arr )
+100 LOAD_FAST 4 ( mid )
+102 BINARY_SUBSCR
+104 COMPARE_OP 0 ( < )
+106 POP_JUMP_IF_FALSE 98
+
+10 108 LOAD_FAST 4 ( mid )
+110 LOAD_CONST 4 ( 1 )
+112 BINARY_SUBTRACT
+114 RETURN_VALUE
+
+11 >> 116 LOAD_FAST 3 ( x )
+118 LOAD_FAST 0 ( arr )
+120 LOAD_FAST 0 ( arr )
+122 LOAD_FAST 4 ( mid )
+124 BINARY_SUBSCR
+126 COMPARE_OP 0 ( < )
+128 POP_JUMP_IF_FALSE 140
+
+12 130 LOAD_GLOBAL 1 ( floorSearch )
+132 LOAD_FAST 0 ( arr )
+134 LOAD_FAST 1 ( low )
+136 LOAD_FAST 4 ( mid )
+138 LOAD_CONST 4 ( 1 )
+140 BINARY_SUBTRACT
+142 LOAD_FAST 3 ( x )
+144 CALL_FUNCTION 4
+146 RETURN_VALUE
+
+13 >> 148 LOAD_GLOBAL 1 ( floorSearch )
+150 LOAD_FAST 0 ( arr )
+152 LOAD_FAST 4 ( mid )
+154 LOAD_CONST 4 ( 1 )
+156 BINARY_ADD
+158 LOAD_FAST 2 ( high )
+160 LOAD_FAST 3 ( x )
+162 CALL_FUNCTION 3
+164 RETURN_VALUE

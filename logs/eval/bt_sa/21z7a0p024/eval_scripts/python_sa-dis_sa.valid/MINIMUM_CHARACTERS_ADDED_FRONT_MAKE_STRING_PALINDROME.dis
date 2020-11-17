@@ -1,0 +1,82 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    l = len ( s )\n    i = 0\n    j = l - 1\n    while i <= j :\n        if ( s [ i ] != s [ j ] ) :\n            return False\n        i += 1\n        j -= 1\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('aadaa',),\n    ('2674377254',),\n    ('11',),\n    ('0011000 ',),\n    ('26382426486138',),\n    ('111010111010',),\n    ('abccba',),\n    ('5191',),\n    ('1110101101',),\n    ('abcdecbe',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def ispalindrome ( s ) :\n    l = len ( s )\n    i = 0\n    j = l - 1\n    while i <= j :\n        if ( s [ i ] != s [ j ] ) :\n            return False\n        i += 1\n        j -= 1\n    return True\n"}
+Disassembly of <code object ispalindrome at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( s )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( l )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 2 ( l )
+
+4 12 LOAD_CONST 2 ( 1 )
+14 STORE_FAST 3 ( l )
+
+5 16 LOAD_FAST 1 ( l )
+18 LOAD_CONST 2 ( 1 )
+20 COMPARE_OP 3 ( != )
+22 POP_JUMP_IF_FALSE 32
+
+6 24 LOAD_FAST 1 ( l )
+26 LOAD_CONST 2 ( 1 )
+28 INPLACE_ADD
+30 STORE_FAST 1 ( l )
+
+7 >> 32 LOAD_FAST 2 ( l )
+34 LOAD_CONST 2 ( 1 )
+36 INPLACE_ADD
+38 STORE_FAST 2 ( l )
+
+8 40 LOAD_FAST 3 ( l )
+42 LOAD_CONST 2 ( 1 )
+44 INPLACE_ADD
+46 STORE_FAST 2 ( l )
+
+9 48 LOAD_FAST 2 ( l )
+50 LOAD_CONST 2 ( 1 )
+52 INPLACE_ADD
+54 STORE_FAST 2 ( l )
+
+10 56 LOAD_FAST 2 ( l )
+58 LOAD_CONST 2 ( 1 )
+60 INPLACE_ADD
+62 STORE_FAST 2 ( l )
+
+11 64 LOAD_FAST 2 ( l )
+66 LOAD_CONST 2 ( 1 )
+68 INPLACE_ADD
+70 STORE_FAST 2 ( l )
+
+12 72 LOAD_FAST 2 ( l )
+74 LOAD_CONST 2 ( 1 )
+76 INPLACE_ADD
+78 STORE_FAST 2 ( l )
+
+13 80 LOAD_FAST 2 ( l )
+82 LOAD_CONST 2 ( 1 )
+84 INPLACE_ADD
+86 STORE_FAST 2 ( l )
+
+14 88 LOAD_FAST 2 ( l )
+90 LOAD_CONST 2 ( 1 )
+92 INPLACE_ADD
+94 STORE_FAST 2 ( l )
+
+15 96 LOAD_FAST 2 ( l )
+98 LOAD_CONST 2 ( 1 )
+100 INPLACE_ADD
+102 STORE_FAST 2 ( l )
+
+16 104 LOAD_FAST 2 ( l )
+106 LOAD_CONST 2 ( 1 )
+108 INPLACE_ADD
+110 STORE_FAST 2 ( l )
+
+17 112 LOAD_FAST 2 ( l )
+114 LOAD_CONST 2 ( 1 )
+116 INPLACE_ADD
+118 STORE_FAST 2 ( l )
+120 JUMP_ABSOLUTE 14
+>> 122 POP_BLOCK
+
+18 >> 124 LOAD_FAST 2 ( l )
+126 RETURN_VALUE

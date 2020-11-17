@@ -1,0 +1,90 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x ) :\n    return ( x and ( not ( x & ( x - 1 ) ) ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1,),\n    (2,),\n    (8,),\n    (1024,),\n    (24,),\n    (7,),\n    (46,),\n    (61,),\n    (73,),\n    (66,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPowerOfTwo ( x ) :\n    return ( x and ( not ( x & ( x - 1 ) ) ) )\n"}
+Disassembly of <code object isPowerOfTwo at 0x7f816a673a50, file "<dis>", line 16>:
+17 0 LOAD_FAST 0 ( x )
+2 LOAD_CONST 1 ( ( 1 , - 1 ) )
+4 COMPARE_OP 3 ( != )
+6 POP_JUMP_IF_FALSE 12
+
+18 8 LOAD_FAST 0 ( x )
+10 LOAD_CONST 2 ( - 1 )
+12 COMPARE_OP 3 ( != )
+14 POP_JUMP_IF_FALSE 28
+
+19 16 LOAD_FAST 0 ( x )
+18 LOAD_CONST 3 ( - 1 )
+20 COMPARE_OP 3 ( != )
+22 POP_JUMP_IF_FALSE 28
+
+20 >> 24 LOAD_FAST 0 ( x )
+26 LOAD_CONST 4 ( - 1 )
+28 COMPARE_OP 3 ( != )
+30 POP_JUMP_IF_FALSE 28
+
+21 32 LOAD_FAST 0 ( x )
+34 LOAD_CONST 5 ( - 1 )
+36 COMPARE_OP 3 ( != )
+38 POP_JUMP_IF_FALSE 48
+
+22 40 LOAD_FAST 0 ( x )
+42 LOAD_CONST 6 ( - 1 )
+44 COMPARE_OP 3 ( != )
+46 POP_JUMP_IF_FALSE 48
+
+23 48 LOAD_FAST 0 ( x )
+50 LOAD_CONST 7 ( - 1 )
+52 COMPARE_OP 3 ( != )
+54 POP_JUMP_IF_FALSE 48
+
+24 56 LOAD_FAST 0 ( x )
+58 LOAD_CONST 8 ( - 1 )
+60 COMPARE_OP 3 ( != )
+62 POP_JUMP_IF_FALSE 48
+
+25 64 LOAD_FAST 0 ( x )
+66 LOAD_CONST 9 ( - 1 )
+68 COMPARE_OP 3 ( != )
+70 POP_JUMP_IF_FALSE 48
+
+26 72 LOAD_FAST 0 ( x )
+74 LOAD_CONST 10 ( - 1 )
+76 COMPARE_OP 3 ( != )
+78 POP_JUMP_IF_FALSE 48
+
+27 80 LOAD_FAST 0 ( x )
+82 LOAD_CONST 11 ( - 1 )
+84 COMPARE_OP 3 ( != )
+86 POP_JUMP_IF_FALSE 48
+
+28 88 LOAD_FAST 0 ( x )
+90 LOAD_CONST 12 ( - 1 )
+92 COMPARE_OP 3 ( != )
+94 POP_JUMP_IF_FALSE 48
+
+29 96 LOAD_FAST 0 ( x )
+98 LOAD_CONST 13 ( - 1 )
+100 COMPARE_OP 3 ( != )
+102 POP_JUMP_IF_FALSE 48
+
+30 104 LOAD_FAST 0 ( x )
+106 LOAD_CONST 14 ( - 1 )
+108 COMPARE_OP 3 ( != )
+110 POP_JUMP_IF_FALSE 48
+
+31 112 LOAD_FAST 0 ( x )
+114 LOAD_CONST 15 ( - 1 )
+116 COMPARE_OP 3 ( != )
+118 POP_JUMP_IF_FALSE 48
+
+32 120 LOAD_FAST 0 ( x )
+122 LOAD_CONST 15 ( - 1 )
+124 COMPARE_OP 3 ( != )
+126 POP_JUMP_IF_FALSE 130
+
+33 >> 128 LOAD_FAST 0 ( x )
+130 LOAD_CONST 16 ( - 1 )
+132 COMPARE_OP 3 ( != )
+134 POP_JUMP_IF_FALSE 130
+
+34 >> 136 LOAD_FAST 0 ( x )
+138 RETURN_VALUE
+

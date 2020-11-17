@@ -1,0 +1,89 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport sys\n\ndef f_gold ( str , l , h ) :\n    if ( l > h ) :\n        return sys.maxsize\n    if ( l == h ) :\n        return 0\n    if ( l == h - 1 ) :\n        return 0 if ( str [ l ] == str [ h ] ) else 1\n    if ( str [ l ] == str [ h ] ) :\n        return f_gold ( str , l + 1 , h - 1 )\n    else :\n        return ( min ( f_gold ( str , l , h - 1 ) , f_gold ( str , l + 1 , h ) ) + 1 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (['F', 'F', 'J', 'K', 'K', 'L', 'P', 'S', 'T', 'V', 'W', 'Y', 'b', 'd', 'j', 'l', 't', 'u', 'x', 'y'],11,11,),\n    (['0', '1', '8', '8', '8', '4', '4', '3', '9', '6', '5', '2', '8', '2', '0', '2', '6', '0', '7', '7', '3', '2', '4', '5', '9', '7', '2', '4', '1', '8', '7', '9', '8', '0', '8', '5', '4', '2', '3'],19,22,),\n    (['1'],0,0,),\n    (['g', 'y', 'r', 'M', 'v', 'z', ' ', 'k', 'S', 'P', 'x', 'p', 'E', 'z', 'T', 'K', 'k', 'B', 's', 'P', 'p', 'e', 'G', 't', 'r', 'M', 'p', ' ', 'H', 'a'],24,27,),\n    (['0', '1', '1', '1', '1', '1', '1', '2', '2', '2', '2', '3', '3', '3', '3', '3', '4', '4', '4', '5', '5', '5', '5', '5', '6', '6', '6', '6', '6', '6', '6', '7', '8', '8', '8', '9', '9'],33,34,),\n    (['1', '1', '0', '1', '0', '1', '0', '1', '0', '1', '1', '1', '1', '1', '1', '0'],13,8,),\n    ([' ', ' ', ' ', 'B', 'C', 'C', 'D', 'I', 'K', 'O', 'P', 'R', 'T', 'V', 'W', 'a', 'b', 'd', 'j', 'y'],16,14,),\n    (['5', '0', '8', '6', '9', '3', '0', '3', '2', '0', '6', '2', '3', '7', '8', '9', '2', '0', '1', '9', '4', '1', '3', '1', '9', '2', '3', '4', '1', '2', '3', '8', '1'],31,25,),\n    (['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],37,35,),\n    (['X', 'B', 'E', 'v', 'K', 't', 'k', 'K', 'Q', 's', 'V', 'N', 'l', 'k', 'T', 'N', 'J', 'z', 'f', 'p', 'J', 'g', 'S', 'P', 'M', 'b', 'H', 'L', 'v', 'E', 'A', 'n', 'D', 'U', 'c', 's', 'M', 'Q', 'P', 'g', 'g', ' '],26,27,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMinInsertions ( str , l , h ) :\n    if ( l > h ) :\n        return sys.maxsize\n    if ( l == h ) :\n        return 0\n    if ( l == h - 1 ) :\n        return 0 if ( str [ l ] == str [ h ] ) else 1\n    if ( str [ l ] == str [ h ] ) :\n        return findMinInsertions ( str , l + 1 , h - 1 )\n    else :\n        return ( min ( findMinInsertions ( str , l , h - 1 ) , findMinInsertions ( str , l + 1 , h ) ) + 1 )\n"}
+Disassembly of <code object findMinInsertions at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( self )
+2 LOAD_ATTR 0 ( maxsize )
+4 POP_JUMP_IF_FALSE 20
+
+27 6 LOAD_GLOBAL 1 ( findMinInsertions )
+8 LOAD_FAST 0 ( self )
+10 LOAD_ATTR 0 ( maxsize )
+12 CALL_FUNCTION 1
+14 POP_JUMP_IF_FALSE 20
+
+28 16 LOAD_GLOBAL 1 ( findMinInsertions )
+18 LOAD_FAST 0 ( self )
+20 LOAD_ATTR 0 ( maxsize )
+22 CALL_FUNCTION 1
+24 STORE_FAST 1 ( l )
+
+29 26 LOAD_FAST 1 ( l )
+28 LOAD_FAST 0 ( self )
+30 LOAD_ATTR 0 ( maxsize )
+32 COMPARE_OP 4 ( > )
+34 POP_JUMP_IF_FALSE 40
+
+30 36 LOAD_FAST 1 ( l )
+38 LOAD_FAST 0 ( self )
+40 LOAD_ATTR 0 ( maxsize )
+42 COMPARE_OP 4 ( > )
+44 POP_JUMP_IF_FALSE 50
+
+31 46 LOAD_FAST 1 ( l )
+48 LOAD_FAST 0 ( self )
+50 LOAD_ATTR 0 ( maxsize )
+52 COMPARE_OP 4 ( > )
+54 POP_JUMP_IF_FALSE 50
+
+32 56 LOAD_FAST 1 ( l )
+58 LOAD_FAST 0 ( self )
+60 LOAD_ATTR 0 ( maxsize )
+62 COMPARE_OP 4 ( > )
+64 POP_JUMP_IF_FALSE 70
+
+33 66 LOAD_FAST 1 ( l )
+68 LOAD_FAST 0 ( self )
+70 LOAD_ATTR 0 ( maxsize )
+72 COMPARE_OP 4 ( > )
+74 POP_JUMP_IF_FALSE 82
+
+34 76 LOAD_FAST 1 ( l )
+78 LOAD_FAST 0 ( self )
+80 LOAD_ATTR 0 ( maxsize )
+82 COMPARE_OP 4 ( > )
+84 POP_JUMP_IF_FALSE 98
+
+35 86 LOAD_FAST 1 ( l )
+88 LOAD_FAST 0 ( self )
+90 LOAD_ATTR 0 ( maxsize )
+92 COMPARE_OP 4 ( > )
+94 POP_JUMP_IF_FALSE 98
+
+36 96 LOAD_FAST 1 ( l )
+98 LOAD_FAST 0 ( self )
+100 LOAD_ATTR 0 ( maxsize )
+102 COMPARE_OP 4 ( > )
+104 POP_JUMP_IF_FALSE 98
+
+37 >> 106 LOAD_FAST 1 ( l )
+108 LOAD_FAST 0 ( self )
+110 LOAD_ATTR 0 ( maxsize )
+112 COMPARE_OP 4 ( > )
+114 POP_JUMP_IF_FALSE 98
+
+38 116 LOAD_FAST 1 ( l )
+118 LOAD_FAST 0 ( self )
+120 LOAD_ATTR 0 ( maxsize )
+122 COMPARE_OP 4 ( > )
+124 POP_JUMP_IF_FALSE 98
+
+39 126 LOAD_FAST 1 ( l )
+128 LOAD_FAST 0 ( self )
+130 LOAD_ATTR 0 ( maxsize )
+132 COMPARE_OP 4 ( > )
+134 POP_JUMP_IF_FALSE 138
+
+40 136 LOAD_FAST 1 ( l )
+138 LOAD_FAST 0 ( self )
+140 LOAD_ATTR 0 ( maxsize )
+142 INPLACE_ADD
+144 STORE_FAST 1 ( l

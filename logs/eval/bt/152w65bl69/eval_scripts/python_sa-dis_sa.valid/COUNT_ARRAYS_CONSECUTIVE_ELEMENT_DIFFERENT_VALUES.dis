@@ -1,0 +1,12 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , k , x ) :\n    dp = list ( )\n    dp.append ( 0 )\n    dp.append ( 1 )\n    i = 2\n    while i < n :\n        dp.append ( ( k - 2 ) * dp [ i - 1 ] + ( k - 1 ) * dp [ i - 2 ] )\n        i = i + 1\n    return ( ( k - 1 ) * dp [ n - 2 ] if x == 1 else dp [ n - 1 ] )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (9,40,38,),\n    (97,47,30,),\n    (16,28,13,),\n    (16,82,70,),\n    (6,81,29,),\n    (58,10,55,),\n    (6,47,20,),\n    (22,4,64,),\n    (51,46,66,),\n    (58,25,53,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countarray ( n , k , x ) :\n    dp = list ( )\n    dp.append ( 0 )\n    dp.append ( 1 )\n    i = 2\n    while i < n :\n        dp.append ( ( k - 2 ) * dp [ i - 1 ] + ( k - 1 ) * dp [ i - 2 ] )\n        i = i + 1\n    return ( ( k - 1 ) * dp [ n - 2 ] if x == 1 else dp [ n - 1 ] )\n"}
+Disassembly of <code object countarray at 0x7f816a673a50, file "<dis>", line 19>:
+20 0 LOAD_GLOBAL 0 ( dp )
+2 LOAD_METHOD 1 ( append )
+4 LOAD_FAST 0 ( n )
+6 LOAD_FAST 1 ( k )
+8 LOAD_FAST 2 ( v )
+10 CALL_METHOD 2
+12 POP_TOP
+14 LOAD_CONST 0 ( None )
+16 RETURN_VALUE
+

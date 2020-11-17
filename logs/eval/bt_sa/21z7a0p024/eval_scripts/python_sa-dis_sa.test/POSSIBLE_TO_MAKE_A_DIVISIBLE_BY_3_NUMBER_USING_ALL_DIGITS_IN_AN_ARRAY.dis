@@ -1,0 +1,71 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    remainder = 0\n    for i in range ( 0 , n ) :\n        remainder = ( remainder + arr [ i ] ) % 3\n    return ( remainder == 0 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 4, 9, 11, 12, 15, 16, 19, 21, 21, 23, 23, 24, 30, 31, 31, 32, 34, 37, 41, 41, 43, 45, 46, 47, 54, 58, 60, 62, 66, 66, 74, 74, 75, 75, 77, 77, 85, 89, 90, 92, 92, 93, 95, 98],30,),\n    ([0, 66, 92, 24, -8, 88, -92, 86, 80, 82, 42, -20, -56, -2, -84, 32],14,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],29,),\n    ([99, 83, 11, 99, 80, 76, 32, 12, 94, 66, 76],5,),\n    ([-88, -84, -80, -80, -80, -80, -72, -68, -64, -62, -60, -52, -48, -44, -36, -24, -20, -18, -14, -8, -6, -6, -4, 6, 10, 14, 18, 24, 26, 26, 50, 50, 52, 60, 76, 90, 96, 98],19,),\n    ([0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1],14,),\n    ([6, 6, 8, 8, 10, 24, 24, 26, 27, 30, 34, 34, 36, 36, 39, 40, 41, 44, 45, 50, 52, 53, 57, 62, 64, 64, 70, 71, 72, 78, 78, 79, 80, 82, 89, 95, 96],28,),\n    ([-28, -84, -14, -20, -14, -26, 28, -66, 48, 82, -46, -10, -94, 76, 56, -6, 72, -92, -32, 66, 50, -72, 64, 12, 48, 88, -36, -12, -6, -18, -36, -34, 44, 40, -54],25,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,),\n    ([17, 47, 89, 75, 57, 69, 70, 57, 83, 79, 57, 49],8,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPossibleToMakeDivisible ( arr , n ) :\n    remainder = 0\n    for i in range ( 0 , n ) :\n        remainder = ( remainder + arr [ i ] ) % 3\n    return ( remainder == 0 )\n"}
+Disassembly of <code object isPossibleToDiDivisible at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( remainder )
+
+3 4 SETUP_LOOP 26 ( to 32 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 0 )
+10 LOAD_FAST 1 ( n )
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 18 ( to 30 )
+18 STORE_FAST 3 ( i )
+
+4 20 LOAD_FAST 2 ( remainder )
+22 LOAD_FAST 3 ( i )
+24 BINARY_SUBSCR
+26 LOAD_CONST 3 ( 3 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 16
+
+5 32 LOAD_FAST 2 ( remainder )
+34 LOAD_FAST 3 ( i )
+36 BINARY_SUBSCR
+38 LOAD_CONST 4 ( 3 )
+40 COMPARE_OP 2 ( == )
+42 POP_JUMP_IF_FALSE 16
+
+6 44 LOAD_FAST 2 ( remainder )
+46 LOAD_FAST 3 ( i )
+48 BINARY_SUBSCR
+50 LOAD_CONST 5 ( 1 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 16
+
+7 56 LOAD_FAST 2 ( remainder )
+58 LOAD_FAST 3 ( i )
+60 BINARY_SUBSCR
+62 LOAD_CONST 6 ( 2 )
+64 COMPARE_OP 2 ( == )
+66 POP_JUMP_IF_FALSE 16
+
+8 68 LOAD_FAST 2 ( remainder )
+70 LOAD_FAST 3 ( i )
+72 BINARY_SUBSCR
+74 LOAD_CONST 7 ( 3 )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 16
+
+9 80 LOAD_FAST 2 ( remainder )
+82 LOAD_FAST 3 ( i )
+84 BINARY_SUBSCR
+86 LOAD_CONST 8 ( 4 )
+88 COMPARE_OP 2 ( == )
+90 POP_JUMP_IF_FALSE 16
+
+10 92 LOAD_FAST 2 ( remainder )
+94 LOAD_FAST 3 ( i )
+96 BINARY_SUBSCR
+98 LOAD_CONST 9 ( 4 )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 16
+
+11 104 LOAD_FAST 2 ( remainder )
+106 LOAD_FAST 3 ( i )
+108 BINARY_SUBSCR
+110 RETURN_VALUE
+>> 112 JUMP_ABSOLUTE 16
+>> 114 POP_BLOCK
+>> 116 LOAD_CONST 0 ( None )
+118 RETURN_VALUE

@@ -1,0 +1,26 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , k ) :\n    count = 0\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            if arr [ i ] - arr [ j ] == k or arr [ j ] - arr [ i ] == k :\n                count += 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([9, 14, 17, 19, 22, 23, 23, 27, 30, 31, 34, 37, 37, 39, 39, 42, 57, 61, 68, 73, 77, 79, 91, 96, 97],19,19,),\n    ([-78, -42, 28, -88, 18, -52],3,4,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],16,14,),\n    ([8, 46, 57, 28, 80, 2, 75, 57, 83, 45, 32, 49, 77, 30, 94, 33, 23, 29, 35, 81, 85],15,11,),\n    ([-90, -72, -72, -62, -62, -54, -54, -52, -48, -38, -22, -22, -22, -12, -12, -8, -8, -8, -6, -6, -2, 6, 12, 26, 26, 28, 28, 38, 40, 48, 52, 52, 58, 60, 68, 70, 72, 76, 76, 76, 92],22,25,),\n    ([0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1],45,39,),\n    ([3, 13, 19, 23, 27, 32, 49, 52, 54, 57, 58, 58, 63, 67, 68, 68, 69, 70, 75, 80, 86, 90, 91, 95],19,21,),\n    ([-56, 40, -66, 42, 8, -40, -8, -42],7,6,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],16,28,),\n    ([99, 12, 90, 10, 86, 86, 81, 19, 1, 1, 98, 82, 34, 39, 34, 1, 54, 47, 39, 82, 21, 50, 82, 41, 98, 47, 88, 46, 72, 28, 28, 29, 60, 87, 92, 53, 93, 29, 74, 75, 11, 32, 48, 47, 85, 16, 20],24,45,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPairsWithDiffK ( arr , n , k ) :\n    count = 0\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            if arr [ i ] - arr [ j ] == k or arr [ j ] - arr [ i ] == k :\n                count += 1\n    return count\n"}
+Disassembly of <code object countPairsWithDiffK at 0x7f816a673a50, file "<dis>", line 163>:
+164 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( n )
+
+165 4 SETUP_LOOP 28 ( to 34 )
+6 LOAD_FAST 0 ( arr )
+8 LOAD_ATTR 0 ( shape )
+10 GET_ITER
+>> 12 FOR_ITER 14 ( to 32 )
+14 STORE_FAST 2 ( i )
+
+166 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 2 ( 1 )
+20 INPLACE_ADD
+22 STORE_FAST 1 ( n )
+
+167 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 3 ( 1 )
+28 INPLACE_ADD
+30 STORE_FAST 1 ( n )
+32 JUMP_ABSOLUTE 12
+>> 34 POP_BLOCK
+
+168 >> 36 LOAD_FAST 1 ( n )
+38 RETURN_VALUE

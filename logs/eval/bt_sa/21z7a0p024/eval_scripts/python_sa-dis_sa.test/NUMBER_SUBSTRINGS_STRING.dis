@@ -1,0 +1,26 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    n = len ( str ) ;\n    return int ( n * ( n + 1 ) / 2 ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('gZFGZsHCimLf',),\n    ('505357',),\n    ('011011101',),\n    ('ovfwP Osauz',),\n    ('92132238746026',),\n    ('01100',),\n    ('RaOWYQRfiWKSyC',),\n    ('861330202',),\n    ('001100010',),\n    ('uvpKlGUBLOMba',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countNonEmptySubstr ( str ) :\n    n = len ( str ) ;\n    return int ( n * ( n + 1 ) / 2 ) ;\n"}
+Disassembly of <code object countNonEmptySubstr at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( str )
+4 CALL_FUNCTION 1
+6 LOAD_CONST 1 ( 2 )
+8 COMPARE_OP 2 ( == )
+10 POP_JUMP_IF_FALSE 20
+
+3 12 LOAD_GLOBAL 1 ( int )
+14 LOAD_FAST 0 ( str )
+16 LOAD_CONST 2 ( 1 )
+18 LOAD_CONST 3 ( 2 )
+20 LOAD_CONST 4 ( 2 )
+22 LOAD_CONST 5 ( 4 )
+24 LOAD_CONST 6 ( ( '' , '' ) )
+26 CALL_FUNCTION_KW 3
+28 CALL_FUNCTION 1
+30 RETURN_VALUE
+
+5 >> 32 LOAD_GLOBAL 2 ( countcountSubSubstr )
+34 LOAD_FAST 0 ( str )
+36 CALL_FUNCTION 1
+38 RETURN_VALUE
+40 LOAD_CONST 0 ( None )
+42 RETURN_VALUE

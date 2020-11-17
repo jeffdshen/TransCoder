@@ -1,0 +1,101 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    mpis = [ 0 ] * ( n )\n    for i in range ( n ) :\n        mpis [ i ] = arr [ i ]\n    for i in range ( 1 , n ) :\n        for j in range ( i ) :\n            if ( arr [ i ] > arr [ j ] and mpis [ i ] < ( mpis [ j ] * arr [ i ] ) ) :\n                mpis [ i ] = mpis [ j ] * arr [ i ]\n    return max ( mpis )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 1, 4, 7, 7, 9, 12, 20, 45, 53, 58, 63, 65, 65, 86, 98, 98],12,),\n    ([46, -58, 70, 60, 74, 42, 6, -26, 78, 32, 14, -56, -48, 86, -2, 94, -44, -62, -50, -8, -4, -36, -62, -98, -98, -78, 56, 92, 88],27,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,),\n    ([13, 71, 93, 68, 43, 75, 44, 15, 1, 91, 7, 9, 65, 85, 46, 87, 37, 74, 19, 30, 87, 27, 82, 92, 12, 36, 6, 27, 76, 80, 30, 83, 67, 83, 65, 28, 81, 59, 63, 11, 70],20,),\n    ([-96, -94, -92, -88, -84, -80, -74, -70, -62, -56, -48, -46, -40, -34, -32, -26, -22, -22, -12, -10, -8, -6, -2, 0, 2, 4, 6, 18, 18, 30, 34, 34, 38, 38, 40, 48, 54, 56, 60, 84, 88, 88, 90, 94, 96],30,),\n    ([1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],22,),\n    ([1, 1, 5, 5, 6, 7, 18, 35, 39, 51, 64, 73, 87, 90, 91, 92],11,),\n    ([-54, 8, -92, -28, 72, 54, -74, 36, -10, 54, -30, -16, -72, -32, -92, 38, -76, -76, -50, -92, 48],19,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],26,),\n    ([47, 57, 72, 40, 53, 46, 62, 51, 42, 89, 9, 91, 58, 67, 20, 91, 63, 50, 32, 6, 63, 49, 3, 89, 87, 54, 65, 72, 72, 62, 31, 6, 48, 87, 17, 95, 59, 57],30,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def lis ( arr , n ) :\n    mpis = [ 0 ] * ( n )\n    for i in range ( n ) :\n        mpis [ i ] = arr [ i ]\n    for i in range ( 1 , n ) :\n        for j in range ( i ) :\n            if ( arr [ i ] > arr [ j ] and mpis [ i ] < ( mpis [ j ] * arr [ i ] ) ) :\n                mpis [ i ] = mpis [ j ] * arr [ i ]\n    return max ( mpis )\n"}
+Disassembly of <code object lis at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( arr )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( n )
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( n )
+
+28 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( n )
+
+29 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 4 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 5 ( 1 )
+32 BINARY_SUBSCR
+34 LOAD_CONST 6 ( 2 )
+36 BINARY_SUBSCR
+38 STORE_FAST 4 ( n )
+
+30 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 7 ( 1 )
+44 BINARY_SUBSCR
+46 LOAD_FAST 4 ( n )
+48 LOAD_CONST 8 ( 2 )
+50 BINARY_SUBSCR
+52 LOAD_CONST 9 ( 1 )
+54 BINARY_SUBSCR
+56 LOAD_CONST 10 ( 2 )
+58 BINARY_SUBSCR
+60 LOAD_FAST 4 ( n )
+62 LOAD_CONST 11 ( 3 )
+64 BINARY_SUBSCR
+66 LOAD_CONST 12 ( 1 )
+68 BINARY_SUBSCR
+70 LOAD_CONST 13 ( 1 )
+72 BINARY_SUBSCR
+74 LOAD_CONST 14 ( 2 )
+76 BINARY_SUBSCR
+78 LOAD_CONST 15 ( 1 )
+80 BINARY_SUBSCR
+82 LOAD_CONST 16 ( 2 )
+84 BINARY_SUBSCR
+86 LOAD_CONST 17 ( 1 )
+88 BINARY_SUBSCR
+90 LOAD_CONST 16 ( 2 )
+92 BINARY_SUBSCR
+94 LOAD_CONST 17 ( 1 )
+96 BINARY_SUBSCR
+98 LOAD_CONST 18 ( 2 )
+100 BINARY_SUBSCR
+102 LOAD_CONST 19 ( 1 )
+104 BINARY_SUBSCR
+106 LOAD_CONST 20 ( 2 )
+108 BINARY_SUBSCR
+110 LOAD_CONST 21 ( 1 )
+112 BINARY_SUBSCR
+114 LOAD_CONST 22 ( 2 )
+116 BINARY_SUBSCR
+118 LOAD_CONST 21 ( 1 )
+120 BINARY_SUBSCR
+122 LOAD_CONST 22 ( 2 )
+124 BINARY_SUBSCR
+126 LOAD_CONST 21 ( 1 )
+128 BINARY_SUBSCR
+130 LOAD_CONST 22 ( 2 )
+132 BINARY_SUBSCR
+134 LOAD_CONST 23 ( 1 )
+136 BINARY_SUBSCR
+138 LOAD_CONST 22 ( 2 )
+140 BINARY_SUBSCR
+142 LOAD_CONST 23 ( 1 )
+144 BINARY_SUBSCR
+146 LOAD_CONST 22 ( 2 )
+148 BINARY_SUBSCR
+150 LOAD_CONST 23 ( 1 )
+152 BINARY_SUBSCR
+154 LOAD_CONST 22 ( 2 )
+156 BINARY_SUBSCR
+158 LOAD_CONST 23 ( 1 )
+160 BINARY_SUBSCR
+162 LOAD_CONST 24 ( 2 )
+164 BINARY_SUBSCR
+166 LOAD_CONST 25 ( 1 )
+168 BINARY_SUBSCR
+170 LOAD_CONST 24 ( 2 )
+172 BINARY_SUBSCR
+174 LOAD_CONST 24 ( 2 )
+176 BUILD_SLICE 2
+174 BINARY_SUBSCR
+176 BUILD_TUPLE 2
+
+29 178 LOAD_FAST 1 ( n )
+180 RETURN_VALUE
+

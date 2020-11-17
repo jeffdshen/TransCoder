@@ -1,0 +1,23 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    i = 0\n    ans = 0\n    while ( ( 1 << i ) <= n ) :\n        k = 0\n        change = 1 << i\n        for j in range ( 0 , n + 1 ) :\n            ans += k\n            if change == 1 :\n                k = not k\n                change = 1 << i\n            else :\n                change -= 1\n        i += 1\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (90,),\n    (56,),\n    (43,),\n    (31,),\n    (77,),\n    (35,),\n    (43,),\n    (66,),\n    (15,),\n    (95,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countSetBits ( n ) :\n    i = 0\n    ans = 0\n    while ( ( 1 << i ) <= n ) :\n        k = 0\n        change = 1 << i\n        for j in range ( 0 , n + 1 ) :\n            ans += k\n            if change == 1 :\n                k = not k\n                change = 1 << i\n            else :\n                change -= 1\n        i += 1\n    return ans\n"}
+Disassembly of <code object countSetBits at 0x7f816a6e4b70, file "<dis>", line 17>:
+18 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+19 8 LOAD_CONST 2 ( 1 )
+10 RETURN_VALUE
+
+20 >> 12 LOAD_FAST 0 ( n )
+14 LOAD_CONST 1 ( 0 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 28
+
+21 20 LOAD_CONST 3 ( 1 )
+22 RETURN_VALUE
+
+22 >> 24 LOAD_CONST 4 ( 1 )
+26 RETURN_VALUE
+28 LOAD_CONST 0 ( None )
+30 RETURN_VALUE
+

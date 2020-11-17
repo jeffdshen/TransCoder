@@ -1,0 +1,44 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , k ) :\n    result = + 2147483647\n    arr.sort ( )\n    for i in range ( n - k + 1 ) :\n        result = int ( min ( result , arr [ i + k - 1 ] - arr [ i ] ) )\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 1, 2, 7, 8, 14, 16, 20, 20, 23, 24, 24, 29, 30, 32, 34, 35, 37, 38, 43, 44, 46, 50, 52, 55, 57, 61, 71, 79, 86, 86, 89, 91, 91, 95],33,17,),\n    ([78, -4, 76, 0, -62, 54, -70, 62, 90, -80, -68, 90, -34, -66, -46, 34, -18, -74, -66, 34, 34, -28, 6, 80, 58, -50, -60, 54, 8, -52, -60, 68, 42, 16, 42, 72, 54, 88, 44, 46, 84, -34],33,33,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],8,13,),\n    ([32],0,0,),\n    ([-96, -78, -76, -72, -72, -70, -54, -46, -40, -34, -30, -26, -24, -22, -18, -16, -6, -4, -4, 2, 6, 14, 16, 18, 30, 30, 36, 54, 54, 58, 66, 72, 78, 80, 80, 82, 88, 98],26,25,),\n    ([0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1],39,41,),\n    ([3, 13, 14, 18, 23, 32, 67, 72, 75, 76, 87, 95],10,8,),\n    ([8, 30],1,1,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],27,33,),\n    ([31, 15, 19, 41, 73, 29, 67, 36, 87, 74, 95, 27, 36, 83, 37, 33, 30, 86, 94, 93, 9, 42, 3, 95, 3, 69, 67, 63, 16, 53, 35, 52, 2, 57, 57, 25, 21, 7, 72, 52, 78, 40],36,37,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minDiff ( arr , n , k ) :\n    result = + 2147483647\n    arr.sort ( )\n    for i in range ( n - k + 1 ) :\n        result = int ( min ( result , arr [ i + k - 1 ] - arr [ i ] ) )\n    return result\n"}
+Disassembly of <code object minDiff at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 2147483647 )
+2 STORE_FAST 3 ( result )
+
+3 4 LOAD_FAST 0 ( arr )
+6 LOAD_METHOD 0 ( sort )
+8 CALL_METHOD 0
+10 POP_TOP
+
+4 12 SETUP_LOOP 46 ( to 60 )
+14 LOAD_GLOBAL 1 ( range )
+16 LOAD_FAST 1 ( n )
+18 LOAD_FAST 2 ( k )
+20 BINARY_SUBTRACT
+22 LOAD_CONST 2 ( 1 )
+24 BINARY_ADD
+26 CALL_FUNCTION 1
+28 GET_ITER
+>> 30 FOR_ITER 30 ( to 58 )
+32 STORE_FAST 4 ( i )
+
+5 34 LOAD_GLOBAL 2 ( int )
+36 LOAD_GLOBAL 3 ( min )
+38 LOAD_FAST 3 ( result )
+40 LOAD_FAST 0 ( arr )
+42 LOAD_FAST 4 ( i )
+44 LOAD_FAST 2 ( k )
+46 BINARY_ADD
+48 LOAD_CONST 2 ( 1 )
+50 BINARY_SUBTRACT
+52 BINARY_SUBSCR
+54 LOAD_FAST 0 ( arr )
+56 LOAD_FAST 4 ( i )
+58 BINARY_SUBSCR
+60 BINARY_SUBTRACT
+62 CALL_FUNCTION 2
+64 CALL_FUNCTION 1
+66 STORE_FAST 3 ( result )
+68 JUMP_ABSOLUTE 30
+>> 70 POP_BLOCK
+
+6 72 LOAD_FAST 3 ( result )
+74 RETURN_VALUE

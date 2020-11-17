@@ -1,0 +1,85 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , n ) :\n    a = sorted ( a )\n    num1 , num2 = 0 , 0\n    for i in range ( n ) :\n        if i % 2 == 0 :\n            num1 = num1 * 10 + a [ i ]\n        else :\n            num2 = num2 * 10 + a [ i ]\n    return num2 + num1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 16, 29, 30, 38, 83],5,),\n    ([58, 74, -28, -60, -6, 66, -76, 46, 0, -24, 28, -16, -14, 24, -94, -56, -80, 40, -18, -68, -8, -94, -88, -12, -20, -8],16,),\n    ([0, 1],1,),\n    ([7, 12, 78, 8],3,),\n    ([-78, -48, -48, -26, 8, 34],4,),\n    ([1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0],27,),\n    ([2, 3, 5, 7, 25, 30, 31, 38, 42, 45, 52, 53, 56, 59, 60, 71, 74, 76, 80, 90, 91, 98],13,),\n    ([40, -62, -2, -58, 60, 38, 48, -4, 0, 62, -52, -80, 56, 38, 58, -72, 32, -26, -14, 70, 58, -86, -32, 56, -40, 84, 24, 60, -46, -32, 78, 78, -66, 20, -32, 98, 84, 44, 48, 4, 54, -66, 6, -62, 58],34,),\n    ([0, 0, 0, 0, 0, 0, 1, 1, 1],8,),\n    ([59, 9, 3, 20, 83, 87, 48, 4, 86, 67, 89, 96, 17, 36, 39, 45, 99, 8, 56, 92, 63, 81, 7, 75, 32, 10, 71, 82, 97, 92, 65, 23, 22, 47, 70, 79, 57, 81, 65, 50],35,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minSum ( a , n ) :\n    a = sorted ( a )\n    num1 , num2 = 0 , 0\n    for i in range ( n ) :\n        if i % 2 == 0 :\n            num1 = num1 * 10 + a [ i ]\n        else :\n            num2 = num2 * 10 + a [ i ]\n    return num2 + num1\n"}
+Disassembly of <code object minSum at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( sorted )
+2 LOAD_FAST 0 ( a )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 1 ( 0 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( num1 )
+
+28 16 LOAD_FAST 2 ( num1 )
+18 LOAD_CONST 2 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( num2 )
+
+29 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 3 ( 1 )
+28 BINARY_SUBSCR
+30 STORE_FAST 4 ( num2 )
+
+30 32 LOAD_FAST 0 ( a )
+34 LOAD_FAST 4 ( num2 )
+36 LOAD_CONST 4 ( 2 )
+38 BINARY_SUBSCR
+40 LOAD_FAST 3 ( num2 )
+42 LOAD_CONST 5 ( 3 )
+44 BINARY_SUBSCR
+46 LOAD_FAST 4 ( num2 )
+48 LOAD_CONST 6 ( 4 )
+50 BINARY_SUBSCR
+52 LOAD_FAST 4 ( num2 )
+54 LOAD_CONST 7 ( 3 )
+56 BINARY_SUBSCR
+58 LOAD_FAST 4 ( num2 )
+60 LOAD_CONST 8 ( 4 )
+62 BINARY_SUBSCR
+64 LOAD_FAST 4 ( num2 )
+66 LOAD_CONST 9 ( 4 )
+68 BINARY_SUBSCR
+70 LOAD_FAST 4 ( num2 )
+72 LOAD_CONST 10 ( 4 )
+74 BINARY_SUBSCR
+76 LOAD_FAST 4 ( num2 )
+78 LOAD_CONST 11 ( 4 )
+80 BINARY_SUBSCR
+82 LOAD_FAST 4 ( num2 )
+84 LOAD_CONST 12 ( 4 )
+86 BINARY_SUBSCR
+88 LOAD_FAST 4 ( num2 )
+90 LOAD_CONST 13 ( 4 )
+92 BINARY_SUBSCR
+94 LOAD_FAST 4 ( num2 )
+96 LOAD_CONST 14 ( 4 )
+98 BINARY_SUBSCR
+100 LOAD_FAST 4 ( num2 )
+102 LOAD_CONST 7 ( 3 )
+104 BINARY_SUBSCR
+106 LOAD_CONST 12 ( 4 )
+108 BINARY_SUBSCR
+110 LOAD_FAST 4 ( num2 )
+112 LOAD_CONST 14 ( 4 )
+114 BINARY_SUBSCR
+116 LOAD_CONST 15 ( 4 )
+118 BINARY_SUBSCR
+120 LOAD_FAST 4 ( num2 )
+122 LOAD_CONST 16 ( 4 )
+124 BINARY_SUBSCR
+126 LOAD_FAST 4 ( num2 )
+128 LOAD_CONST 17 ( 4 )
+130 BINARY_SUBSCR
+132 LOAD_FAST 4 ( num2 )
+134 LOAD_CONST 18 ( 4 )
+136 BINARY_SUBSCR
+138 LOAD_FAST 4 ( num2 )
+140 LOAD_CONST 19 ( 4 )
+142 BINARY_SUBSCR
+144 LOAD_FAST 4 ( num2 )
+146 LOAD_CONST 19 ( 4 )
+148 BINARY_SUBSCR
+150 BUILD_TUPLE 4
+152 BINARY_SUBSCR
+154 CALL_FUNCTION 1
+156 RETURN_VALUE

@@ -1,0 +1,94 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    num = n ;\n    dec_value = 0 ;\n    base = 1 ;\n    temp = num ;\n    while ( temp ) :\n        last_digit = temp % 10 ;\n        temp = int ( temp / 10 ) ;\n        dec_value += last_digit * base ;\n        base = base * 8 ;\n    return dec_value ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (37,),\n    (25,),\n    (63,),\n    (66,),\n    (32,),\n    (5,),\n    (41,),\n    (82,),\n    (54,),\n    (5,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def octalToDecimal ( n ) :\n    num = n ;\n    dec_value = 0 ;\n    base = 1 ;\n    temp = num ;\n    while ( temp ) :\n        last_digit = temp % 10 ;\n        temp = int ( temp / 10 ) ;\n        dec_value += last_digit * base ;\n        base = base * 8 ;\n    return dec_value ;\n"}
+Disassembly of <code object octalToDecimal at 0x7f816a6e4b70, file "<dis>", line 19>:
+20 0 LOAD_FAST 1 ( num )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 2 ( length )
+
+21 8 LOAD_FAST 0 ( n )
+10 LOAD_CONST 2 ( 10 )
+12 BINARY_SUBSCR
+14 STORE_FAST 3 ( length )
+
+22 16 LOAD_FAST 2 ( length )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 4 ( length )
+
+23 24 LOAD_FAST 0 ( n )
+26 LOAD_CONST 4 ( 10 )
+28 COMPARE_OP 0 ( < )
+30 POP_JUMP_IF_FALSE 52
+
+24 32 LOAD_FAST 0 ( n )
+34 LOAD_CONST 5 ( 1 )
+36 BINARY_SUBSCR
+38 STORE_FAST 5 ( length )
+
+25 40 LOAD_FAST 0 ( n )
+42 LOAD_CONST 6 ( 2 )
+44 BINARY_SUBSCR
+46 STORE_FAST 6 ( length )
+
+26 48 LOAD_FAST 0 ( n )
+50 LOAD_CONST 7 ( 3 )
+52 BINARY_SUBSCR
+54 STORE_FAST 7 ( length )
+
+27 56 LOAD_FAST 0 ( n )
+58 LOAD_CONST 8 ( 10 )
+60 COMPARE_OP 0 ( < )
+62 POP_JUMP_IF_FALSE 66
+64 LOAD_FAST 0 ( n )
+66 LOAD_CONST 9 ( 4 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 66
+
+28 72 LOAD_FAST 0 ( n )
+74 LOAD_CONST 10 ( 4 )
+76 COMPARE_OP 4 ( > )
+78 POP_JUMP_IF_FALSE 82
+
+29 80 LOAD_FAST 0 ( n )
+82 LOAD_CONST 11 ( 4 )
+84 COMPARE_OP 4 ( > )
+86 POP_JUMP_IF_FALSE 82
+
+30 88 LOAD_FAST 0 ( n )
+90 LOAD_CONST 12 ( 10 )
+92 COMPARE_OP 4 ( > )
+94 POP_JUMP_IF_FALSE 82
+
+31 96 LOAD_FAST 0 ( n )
+98 LOAD_CONST 12 ( 10 )
+100 COMPARE_OP 4 ( > )
+102 POP_JUMP_IF_FALSE 106
+104 LOAD_FAST 0 ( n )
+106 LOAD_CONST 13 ( 4 )
+108 COMPARE_OP 4 ( > )
+110 POP_JUMP_IF_FALSE 106
+
+32 112 LOAD_FAST 0 ( n )
+114 LOAD_CONST 14 ( 10 )
+116 COMPARE_OP 4 ( > )
+118 POP_JUMP_IF_FALSE 106
+
+33 120 LOAD_FAST 0 ( n )
+122 LOAD_CONST 15 ( 4 )
+124 INPLACE_ADD
+126 STORE_FAST 1 ( num )
+
+34 >> 128 LOAD_FAST 0 ( n )
+130 LOAD_CONST 16 ( 10 )
+132 COMPARE_OP 4 ( > )
+134 POP_JUMP_IF_FALSE 130
+136 LOAD_FAST 0 ( n )
+138 LOAD_CONST 16 ( 10 )
+140 COMPARE_OP 4 ( > )
+142 POP_JUMP_IF_FALSE 130
+
+35 144 LOAD_FAST 0 ( n )
+146 RETURN_VALUE
+
+36 >> 148 LOAD_FAST 0 ( n )
+150 RETURN_VALUE

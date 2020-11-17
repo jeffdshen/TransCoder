@@ -1,0 +1,52 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , k ) :\n    total = k\n    mod = 1000000007\n    same , diff = 0 , k\n    for i in range ( 2 , n + 1 ) :\n        same = diff\n        diff = total * ( k - 1 )\n        diff = diff % mod\n        total = ( same + diff ) % mod\n    return total\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (6,30,),\n    (23,87,),\n    (89,31,),\n    (63,36,),\n    (23,68,),\n    (44,66,),\n    (81,18,),\n    (43,73,),\n    (9,42,),\n    (41,98,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countWays ( n , k ) :\n    total = k\n    mod = 1000000007\n    same , diff = 0 , k\n    for i in range ( 2 , n + 1 ) :\n        same = diff\n        diff = total * ( k - 1 )\n        diff = diff % mod\n        total = ( same + diff ) % mod\n    return total\n"}
+Disassembly of <code object countWays at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 STORE_FAST 1 ( total )
+
+3 4 LOAD_CONST 1 ( 1000000007 )
+6 STORE_FAST 2 ( total )
+
+4 8 LOAD_CONST 2 ( 0 )
+10 STORE_FAST 3 ( diff )
+
+5 12 SETUP_LOOP 64 ( to 76 )
+14 LOAD_GLOBAL 0 ( range )
+16 LOAD_CONST 2 ( 2 )
+18 LOAD_FAST 1 ( total )
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 56 ( to 74 )
+26 STORE_FAST 4 ( i )
+
+6 28 LOAD_FAST 2 ( total )
+30 LOAD_FAST 3 ( diff )
+32 LOAD_FAST 4 ( i )
+34 BINARY_SUBSCR
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 24
+
+7 40 LOAD_FAST 2 ( total )
+42 LOAD_FAST 3 ( diff )
+44 LOAD_FAST 4 ( i )
+46 BINARY_SUBSCR
+48 COMPARE_OP 2 ( == )
+50 POP_JUMP_IF_FALSE 24
+
+8 52 LOAD_FAST 2 ( total )
+54 LOAD_FAST 3 ( diff )
+56 LOAD_FAST 4 ( i )
+58 BINARY_SUBSCR
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 24
+
+9 64 LOAD_FAST 2 ( total )
+66 LOAD_FAST 3 ( diff )
+68 LOAD_FAST 4 ( i )
+70 BINARY_SUBSCR
+72 INPLACE_ADD
+74 STORE_FAST 2 ( total )
+76 JUMP_ABSOLUTE 24
+>> 78 POP_BLOCK
+
+10 >> 80 LOAD_FAST 2 ( total )
+82 RETURN_VALUE

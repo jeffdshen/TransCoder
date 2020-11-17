@@ -1,0 +1,74 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    n = len ( s )\n    s1 = \"\"\n    s1 = s1 + s [ 0 ].lower ( )\n    i = 1\n    while i < n :\n        if ( s [ i ] == ' ' and i <= n ) :\n            s1 = s1 + \" \" + ( s [ i + 1 ] ).lower ( )\n            i = i + 1\n        else :\n            s1 = s1 + ( s [ i ] ).upper ( )\n        i = i + 1\n    return s1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('TEYndweqZA',),\n    ('01865',),\n    ('11001100',),\n    ('CzwznJmQet',),\n    ('318305446',),\n    ('0000001111110',),\n    ('yzT',),\n    ('38630230',),\n    ('01101',),\n    ('zoizI',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def convert ( s ) :\n    n = len ( s )\n    s1 = \"\"\n    s1 = s1 + s [ 0 ].lower ( )\n    i = 1\n    while i < n :\n        if ( s [ i ] == ' ' and i <= n ) :\n            s1 = s1 + \" \" + ( s [ i + 1 ] ).lower ( )\n            i = i + 1\n        else :\n            s1 = s1 + ( s [ i ] ).upper ( )\n        i = i + 1\n    return s1\n"}
+Disassembly of <code object convert at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( s )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+3 8 LOAD_CONST 1 ( '' )
+10 STORE_FAST 2 ( s1 )
+
+4 12 LOAD_FAST 2 ( s1 )
+14 LOAD_FAST 0 ( s )
+16 LOAD_CONST 2 ( 0 )
+18 BINARY_SUBSCR
+20 LOAD_METHOD 1 ( lower )
+22 CALL_METHOD 0
+24 BINARY_ADD
+26 STORE_FAST 2 ( s1 )
+
+5 28 LOAD_CONST 3 ( 1 )
+30 STORE_FAST 3 ( i )
+
+6 32 SETUP_LOOP 72 ( to 104 )
+>> 34 LOAD_FAST 3 ( i )
+36 LOAD_FAST 1 ( n )
+38 COMPARE_OP 0 ( < )
+40 POP_JUMP_IF_FALSE 102
+
+7 42 LOAD_FAST 0 ( s )
+44 LOAD_FAST 3 ( i )
+46 BINARY_SUBSCR
+48 LOAD_CONST 1 ( ' ' )
+50 COMPARE_OP 2 ( == )
+52 POP_JUMP_IF_FALSE 80
+54 LOAD_FAST 3 ( i )
+56 LOAD_FAST 1 ( n )
+58 COMPARE_OP 1 ( <= )
+60 POP_JUMP_IF_FALSE 80
+
+8 62 LOAD_FAST 2 ( s1 )
+64 LOAD_CONST 1 ( ' ' )
+66 BINARY_ADD
+68 LOAD_FAST 0 ( s )
+70 LOAD_FAST 3 ( i )
+72 LOAD_CONST 3 ( 1 )
+74 BINARY_ADD
+76 BINARY_SUBSCR
+78 LOAD_METHOD 1 ( lower )
+80 CALL_METHOD 0
+82 BINARY_ADD
+84 STORE_FAST 2 ( s1 )
+
+9 86 LOAD_FAST 3 ( i )
+88 LOAD_CONST 3 ( 1 )
+90 BINARY_ADD
+92 STORE_FAST 3 ( i )
+94 JUMP_FORWARD 18 ( to 124 )
+
+11 >> 96 LOAD_FAST 2 ( s1 )
+98 LOAD_FAST 0 ( s )
+100 LOAD_FAST 3 ( i )
+102 BINARY_SUBSCR
+104 LOAD_METHOD 2 ( upper )
+106 CALL_METHOD 0
+108 BINARY_ADD
+110 STORE_FAST 2 ( s1 )
+
+12 >> 112 LOAD_FAST 3 ( i )
+114 LOAD_CONST 3 ( 1 )
+116 BINARY_ADD
+118 STORE_FAST 3 ( i )
+
+13 >> 120 LOAD_FAST 2 ( s1 )
+122 RETURN_VALUE

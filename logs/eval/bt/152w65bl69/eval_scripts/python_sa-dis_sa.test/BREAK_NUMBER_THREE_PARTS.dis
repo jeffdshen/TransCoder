@@ -1,0 +1,27 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    count = 0\n    for i in range ( 0 , n + 1 ) :\n        for j in range ( 0 , n + 1 ) :\n            for k in range ( 0 , n + 1 ) :\n                if ( i + j + k == n ) :\n                    count = count + 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (52,),\n    (47,),\n    (75,),\n    (36,),\n    (68,),\n    (16,),\n    (99,),\n    (38,),\n    (84,),\n    (45,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def count_of_ways ( n ) :\n    count = 0\n    for i in range ( 0 , n + 1 ) :\n        for j in range ( 0 , n + 1 ) :\n            for k in range ( 0 , n + 1 ) :\n                if ( i + j + k == n ) :\n                    count = count + 1\n    return count\n"}
+Disassembly of <code object count_of_ways at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( count )
+
+27 4 SETUP_LOOP 52 ( to 54 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 1 )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 52 ( to 52 )
+16 STORE_FAST 2 ( i )
+
+28 18 LOAD_FAST 0 ( n )
+20 LOAD_CONST 3 ( 1 )
+22 COMPARE_OP 0 ( < )
+24 POP_JUMP_IF_FALSE 34
+
+29 26 LOAD_FAST 0 ( n )
+28 LOAD_CONST 4 ( 1 )
+30 INPLACE_ADD
+32 STORE_FAST 1 ( count )
+34 JUMP_ABSOLUTE 14
+>> 36 POP_BLOCK
+
+30 >> 38 LOAD_FAST 1 ( count )
+40 RETURN_VALUE

@@ -1,0 +1,115 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( price , n ) :\n    profit = [ 0 ] * n\n    max_price = price [ n - 1 ]\n    for i in range ( n - 2 , 0 , - 1 ) :\n        if price [ i ] > max_price :\n            max_price = price [ i ]\n        profit [ i ] = max ( profit [ i + 1 ] , max_price - price [ i ] )\n    min_price = price [ 0 ]\n    for i in range ( 1 , n ) :\n        if price [ i ] < min_price :\n            min_price = price [ i ]\n        profit [ i ] = max ( profit [ i - 1 ] , profit [ i ] + ( price [ i ] - min_price ) )\n    result = profit [ n - 1 ]\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([9, 10, 10, 12, 17, 18, 23, 32, 41, 44, 47, 50, 59, 69, 69, 75, 82, 84, 87, 89, 97, 99],20,),\n    ([6, 6, 60, 40, 32, -70, -92, 88, 10, -8, -54, 4, 16, 8, -44, 80, -70, 36, 36, -74, -94, 18, -64, -66, -46, 0, -54, -84, 16, -88, -34, -24, 92, 84, 62],34,),\n    ([0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],13,),\n    ([2, 67, 50, 8, 20, 42, 37, 69, 86, 74, 85, 96, 78, 89, 91],8,),\n    ([-68, -52, -14, -2, 18, 22, 30, 34, 64, 64, 70],9,),\n    ([1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1],21,),\n    ([4, 17, 19, 28, 29, 30, 30, 30, 35, 36, 36, 38, 40, 40, 42, 43, 45, 51, 55, 57, 58, 59, 64, 65, 66, 82, 84, 85, 87, 91, 92, 94, 98, 98],25,),\n    ([52, 88, -40, 60, 30, 8, -96, 66, -96, -28, -56, -14, 76, -92, 56, 58, 64, -60, -90, 26, 64, -2, 54, -24, 54, -46, -44],14,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],22,),\n    ([82, 14, 51, 12, 5, 15, 50, 88, 91, 82, 16, 98, 23, 58, 86, 91, 30, 81, 7, 73, 67, 47, 10, 50, 43, 31, 19, 2, 22],18,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxProfit ( price , n ) :\n    profit = [ 0 ] * n\n    max_price = price [ n - 1 ]\n    for i in range ( n - 2 , 0 , - 1 ) :\n        if price [ i ] > max_price :\n            max_price = price [ i ]\n        profit [ i ] = max ( profit [ i + 1 ] , max_price - price [ i ] )\n    min_price = price [ 0 ]\n    for i in range ( 1 , n ) :\n        if price [ i ] < min_price :\n            min_price = price [ i ]\n        profit [ i ] = max ( profit [ i - 1 ] , profit [ i ] + ( price [ i ] - min_price ) )\n    result = profit [ n - 1 ]\n    return result\n"}
+Disassembly of <code object maxProfit at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 BUILD_LIST 1
+4 LOAD_FAST 1 ( n )
+6 BINARY_MULTIPLY
+8 STORE_FAST 2 ( profit )
+
+3 10 LOAD_FAST 0 ( price )
+12 LOAD_FAST 1 ( n )
+14 LOAD_CONST 2 ( 1 )
+16 BINARY_SUBTRACT
+18 BINARY_SUBSCR
+20 STORE_FAST 3 ( max_price )
+
+4 22 SETUP_LOOP 46 ( to 66 )
+24 LOAD_GLOBAL 0 ( range )
+26 LOAD_FAST 1 ( n )
+28 LOAD_CONST 3 ( 2 )
+30 BINARY_SUBTRACT
+32 LOAD_CONST 1 ( 0 )
+34 LOAD_CONST 4 ( - 1 )
+36 CALL_FUNCTION 3
+38 GET_ITER
+>> 40 FOR_ITER 30 ( to 64 )
+42 STORE_FAST 4 ( i )
+
+5 44 LOAD_FAST 0 ( price )
+46 LOAD_FAST 4 ( i )
+48 BINARY_SUBSCR
+50 LOAD_FAST 3 ( max_price )
+52 COMPARE_OP 4 ( > )
+54 POP_JUMP_IF_FALSE 40
+
+6 56 LOAD_FAST 0 ( price )
+58 LOAD_FAST 4 ( i )
+60 BINARY_SUBSCR
+62 STORE_FAST 3 ( max_price )
+
+7 >> 64 LOAD_GLOBAL 1 ( max )
+66 LOAD_FAST 2 ( profit )
+68 LOAD_FAST 4 ( i )
+70 LOAD_CONST 2 ( 1 )
+72 BINARY_ADD
+74 BINARY_SUBSCR
+76 LOAD_FAST 3 ( max_price )
+78 LOAD_FAST 0 ( price )
+80 LOAD_FAST 4 ( i )
+82 BINARY_SUBSCR
+84 BINARY_SUBTRACT
+86 CALL_FUNCTION 2
+88 LOAD_FAST 2 ( profit )
+90 LOAD_FAST 4 ( i )
+92 STORE_SUBSCR
+94 JUMP_ABSOLUTE 40
+>> 96 POP_BLOCK
+
+8 >> 98 LOAD_FAST 0 ( price )
+100 LOAD_CONST 1 ( 0 )
+102 BINARY_SUBSCR
+104 STORE_FAST 5 ( min_price )
+
+9 106 SETUP_LOOP 68 ( to 158 )
+108 LOAD_GLOBAL 0 ( range )
+110 LOAD_CONST 2 ( 1 )
+112 LOAD_FAST 1 ( n )
+114 CALL_FUNCTION 2
+116 GET_ITER
+>> 118 FOR_ITER 50 ( to 156 )
+120 STORE_FAST 4 ( i )
+
+10 122 LOAD_FAST 0 ( price )
+124 LOAD_FAST 4 ( i )
+126 BINARY_SUBSCR
+128 LOAD_FAST 5 ( min_price )
+130 COMPARE_OP 0 ( < )
+132 POP_JUMP_IF_FALSE 148
+
+11 134 LOAD_FAST 0 ( price )
+136 LOAD_FAST 4 ( i )
+138 BINARY_SUBSCR
+140 STORE_FAST 5 ( min_price )
+
+12 >> 142 LOAD_GLOBAL 1 ( max )
+144 LOAD_FAST 2 ( profit )
+146 LOAD_FAST 4 ( i )
+148 LOAD_CONST 2 ( 1 )
+150 BINARY_SUBTRACT
+152 BINARY_SUBSCR
+154 LOAD_FAST 2 ( profit )
+156 LOAD_FAST 4 ( i )
+158 BINARY_SUBSCR
+160 LOAD_FAST 0 ( price )
+162 LOAD_FAST 4 ( i )
+164 BINARY_SUBSCR
+166 LOAD_FAST 5 ( min_price )
+168 BINARY_SUBTRACT
+170 BINARY_ADD
+172 CALL_FUNCTION 2
+174 CALL_FUNCTION 2
+176 LOAD_FAST 2 ( profit )
+178 LOAD_FAST 4 ( i )
+180 STORE_SUBSCR
+182 JUMP_ABSOLUTE 118
+>> 184 POP_BLOCK
+
+13 >> 186 LOAD_FAST 2 ( profit )
+188 LOAD_FAST 1 ( n )
+190 LOAD_CONST 2 ( 1 )
+192 BINARY_SUBTRACT
+194 BINARY_SUBSCR
+196 STORE_FAST 6 ( result )
+
+14 198 LOAD_FAST 6 ( result )
+200 RETURN_VALUE

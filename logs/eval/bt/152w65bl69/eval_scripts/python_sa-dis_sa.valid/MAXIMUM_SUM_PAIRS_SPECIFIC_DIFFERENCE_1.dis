@@ -1,0 +1,87 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , N , k ) :\n    maxSum = 0 ;\n    arr.sort ( ) ;\n    i = N - 1 ;\n    while ( i >= 0 ) :\n        if ( arr [ i ] - arr [ i - 1 ] < k ) :\n            maxSum += arr [ i ] ;\n            maxSum += arr [ i - 1 ] ;\n            i -= 1 ;\n        i -= 1 ;\n    return maxSum ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 10, 11, 11, 12, 14, 15, 17, 27, 27, 28, 36, 36, 44, 47, 47, 54, 55, 62, 64, 68, 69, 70, 70, 75, 76, 78, 85, 85, 91, 95, 97],26,18,),\n    ([-36, 78, 10, 30, -12, -70, -98, -14, -44, -66, -40, -8, 78, 2, -70, 40, 92, 58, 30, 10, -84, -62, -86, -50, 82, 36, -92, -30, -2, -34, 88, 2, -4, -72],26,25,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],47,26,),\n    ([77, 78, 58],1,1,),\n    ([-88, -88, -88, -82, -58, -54, -48, -46, -46, -44, -20, -2, 10, 28, 28, 28, 42, 42, 44, 50, 50, 54, 56, 58, 62, 68, 70, 72, 74, 76, 78, 88, 90, 92],21,24,),\n    ([0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1],41,40,),\n    ([5, 7, 10, 11, 15, 17, 20, 20, 29, 29, 32, 37, 38, 39, 40, 41, 45, 51, 60, 64, 64, 68, 68, 70, 71, 71, 71, 75, 76, 82, 84, 87, 88, 88, 95, 98],30,21,),\n    ([-46, -32, 76, -28, 44, -14, 94, -4, 60, -88, -52, 32, -66, 28, 94, 76, 86, -4, 74, 52, 64, -36, -98, -40, 70, 18, -22, -20, -16, -74, 12, 60, 94, 98, -28, -24, 4, -34, -60, 56],33,23,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],28,41,),\n    ([79, 13, 25, 22, 61, 1, 2, 73, 66, 94, 47, 9, 1, 99, 25, 39, 95, 46, 95, 20, 63, 15, 14, 36, 9, 91, 14],19,23,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxSumPairWithDifferenceLessThanK ( arr , N , k ) :\n    maxSum = 0 ;\n    arr.sort ( ) ;\n    i = N - 1 ;\n    while ( i >= 0 ) :\n        if ( arr [ i ] - arr [ i - 1 ] < k ) :\n            maxSum += arr [ i ] ;\n            maxSum += arr [ i - 1 ] ;\n            i -= 1 ;\n        i -= 1 ;\n    return maxSum ;\n"}
+Disassembly of <code object maxSumPairPairLessLessK at 0x7f816a6e4b70, file "<dis>", line 16>:
+17 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( N )
+
+18 4 LOAD_FAST 1 ( N )
+6 LOAD_CONST 2 ( 1 )
+8 COMPARE_OP 4 ( > )
+10 POP_JUMP_IF_FALSE 20
+
+19 12 LOAD_FAST 1 ( N )
+14 LOAD_CONST 3 ( 1 )
+16 INPLACE_ADD
+18 STORE_FAST 1 ( N )
+
+20 20 LOAD_FAST 1 ( N )
+22 LOAD_CONST 4 ( 1 )
+24 INPLACE_ADD
+26 STORE_FAST 1 ( N )
+
+21 >> 28 LOAD_FAST 1 ( N )
+30 LOAD_CONST 5 ( 1 )
+32 INPLACE_ADD
+34 STORE_FAST 1 ( N )
+
+22 36 LOAD_FAST 1 ( N )
+38 LOAD_CONST 6 ( 2 )
+40 INPLACE_ADD
+42 STORE_FAST 1 ( N )
+
+23 44 LOAD_FAST 1 ( N )
+46 LOAD_FAST 0 ( arr )
+48 LOAD_CONST 7 ( 2 )
+50 INPLACE_ADD
+52 STORE_FAST 1 ( N )
+
+24 54 LOAD_FAST 1 ( N )
+56 LOAD_CONST 8 ( 2 )
+58 INPLACE_ADD
+60 STORE_FAST 1 ( N )
+
+25 62 LOAD_FAST 1 ( N )
+64 LOAD_FAST 0 ( arr )
+66 LOAD_CONST 9 ( 2 )
+68 INPLACE_ADD
+70 STORE_FAST 1 ( N )
+
+26 72 LOAD_FAST 1 ( N )
+74 LOAD_FAST 0 ( arr )
+76 LOAD_CONST 10 ( 2 )
+78 INPLACE_ADD
+80 STORE_FAST 1 ( N )
+
+27 82 LOAD_FAST 1 ( N )
+84 LOAD_FAST 0 ( arr )
+86 LOAD_CONST 11 ( 3 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( N )
+
+28 92 LOAD_FAST 1 ( N )
+94 LOAD_FAST 0 ( arr )
+96 LOAD_CONST 12 ( ( 'arr' , ) )
+98 CALL_FUNCTION_KW 2
+100 INPLACE_ADD
+102 STORE_FAST 1 ( N )
+
+29 104 LOAD_FAST 1 ( N )
+106 LOAD_FAST 0 ( arr )
+108 LOAD_CONST 13 ( 2 )
+110 INPLACE_ADD
+112 STORE_FAST 1 ( N )
+
+30 114 LOAD_FAST 1 ( N )
+116 LOAD_FAST 0 ( arr )
+118 LOAD_CONST 14 ( 2 )
+120 INPLACE_ADD
+122 STORE_FAST 1 ( N )
+124 JUMP_FORWARD 2 ( to 128 )
+
+31 >> 126 LOAD_FAST 1 ( N )
+128 LOAD_FAST 0 ( arr )
+130 LOAD_CONST 15 ( 2 )
+132 INPLACE_ADD
+134 STORE_FAST 1 ( N )
+
+32 >> 136 LOAD_FAST 1 ( N )
+138 RETURN_VALUE

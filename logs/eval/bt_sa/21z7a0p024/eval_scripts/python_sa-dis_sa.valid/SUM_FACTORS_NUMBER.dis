@@ -1,0 +1,52 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    result = 0\n    for i in range ( 2 , ( int ) ( math.sqrt ( n ) ) + 1 ) :\n        if ( n % i == 0 ) :\n            if ( i == ( n / i ) ) :\n                result = result + i\n            else :\n                result = result + ( i + n // i )\n    return ( result + n + 1 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (76,),\n    (21,),\n    (4,),\n    (49,),\n    (35,),\n    (55,),\n    (43,),\n    (39,),\n    (36,),\n    (5,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def divSum ( n ) :\n    result = 0\n    for i in range ( 2 , ( int ) ( math.sqrt ( n ) ) + 1 ) :\n        if ( n % i == 0 ) :\n            if ( i == ( n / i ) ) :\n                result = result + i\n            else :\n                result = result + ( i + n // i )\n    return ( result + n + 1 )\n"}
+Disassembly of <code object divSum at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( result )
+
+3 4 SETUP_LOOP 74 ( to 76 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 2 )
+10 LOAD_GLOBAL 1 ( int )
+12 LOAD_FAST 0 ( n )
+14 CALL_FUNCTION 1
+16 LOAD_CONST 2 ( 2 )
+18 BINARY_FLOOR_DIVIDE
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 74 ( to 74 )
+26 STORE_FAST 2 ( i )
+
+4 28 LOAD_FAST 0 ( n )
+30 LOAD_CONST 3 ( 1 )
+32 BINARY_SUBTRACT
+34 STORE_FAST 1 ( result )
+
+5 36 LOAD_FAST 1 ( result )
+38 LOAD_CONST 4 ( 2 )
+40 BINARY_MODULO
+42 STORE_FAST 1 ( result )
+
+6 44 LOAD_FAST 1 ( result )
+46 LOAD_CONST 5 ( 3 )
+48 BINARY_MODULO
+50 STORE_FAST 1 ( result )
+
+7 52 LOAD_FAST 1 ( result )
+54 LOAD_CONST 6 ( 4 )
+56 BINARY_MODULO
+58 STORE_FAST 1 ( result )
+
+8 60 LOAD_FAST 1 ( result )
+62 LOAD_CONST 7 ( 4 )
+64 BINARY_MODULO
+66 STORE_FAST 1 ( result )
+
+9 68 LOAD_FAST 1 ( result )
+70 LOAD_CONST 8 ( 5 )
+72 BINARY_MODULO
+74 STORE_FAST 1 ( result )
+76 JUMP_ABSOLUTE 24
+>> 78 POP_BLOCK
+
+10 >> 80 LOAD_FAST 1 ( result )
+82 RETURN_VALUE

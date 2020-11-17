@@ -1,0 +1,48 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    ar = [ 0 ] * 10\n    while ( n > 0 ) :\n        digit = math.floor ( n % 10 )\n        if ( ar [ digit ] ) :\n            return 0\n        ar [ digit ] = 1\n        n = n / 10\n    return 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (474,),\n    (9445,),\n    (90,),\n    (30,),\n    (37453,),\n    (27,),\n    (2400,),\n    (98,),\n    (46,),\n    (722,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def isLucky ( n ) :\n    ar = [ 0 ] * 10\n    while ( n > 0 ) :\n        digit = math.floor ( n % 10 )\n        if ( ar [ digit ] ) :\n            return 0\n        ar [ digit ] = 1\n        n = n / 10\n    return 1\n"}
+Disassembly of <code object isLucky at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 LOAD_CONST 2 ( 10 )
+8 COMPARE_OP 4 ( > )
+10 POP_JUMP_IF_FALSE 20
+
+3 12 LOAD_GLOBAL 0 ( math )
+14 LOAD_METHOD 1 ( floor )
+16 LOAD_FAST 0 ( n )
+18 LOAD_CONST 3 ( 10 )
+20 BINARY_MODULO
+22 CALL_METHOD 1
+24 STORE_FAST 1 ( digit )
+
+4 >> 26 LOAD_FAST 1 ( digit )
+28 LOAD_CONST 4 ( 1 )
+30 COMPARE_OP 4 ( > )
+32 POP_JUMP_IF_FALSE 48
+
+5 34 LOAD_CONST 1 ( 0 )
+36 RETURN_VALUE
+
+6 >> 38 LOAD_FAST 1 ( digit )
+40 LOAD_CONST 5 ( 2 )
+42 COMPARE_OP 4 ( > )
+44 POP_JUMP_IF_FALSE 48
+
+7 46 LOAD_CONST 1 ( 0 )
+48 RETURN_VALUE
+
+8 >> 50 LOAD_FAST 1 ( digit )
+52 LOAD_CONST 6 ( 2 )
+54 COMPARE_OP 4 ( > )
+56 POP_JUMP_IF_FALSE 64
+
+9 58 LOAD_CONST 1 ( 0 )
+60 RETURN_VALUE
+
+10 >> 62 LOAD_CONST 1 ( 0 )
+64 RETURN_VALUE
+
+11 >> 66 LOAD_CONST 1 ( 0 )
+68 RETURN_VALUE
+70 LOAD_CONST 0 ( None )
+72 RETURN_VALUE

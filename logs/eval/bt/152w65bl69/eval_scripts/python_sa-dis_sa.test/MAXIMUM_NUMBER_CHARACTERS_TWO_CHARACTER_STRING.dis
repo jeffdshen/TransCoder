@@ -1,0 +1,54 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    n = len ( str )\n    res = - 1\n    for i in range ( 0 , n - 1 ) :\n        for j in range ( i + 1 , n ) :\n            if ( str [ i ] == str [ j ] ) :\n                res = max ( res , abs ( j - i - 1 ) )\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('cI',),\n    ('76478',),\n    ('1',),\n    ('tr',),\n    ('10',),\n    ('01',),\n    ('Rmhzp',),\n    ('5784080133917',),\n    ('1100',),\n    ('OK',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maximumChars ( str ) :\n    n = len ( str )\n    res = - 1\n    for i in range ( 0 , n - 1 ) :\n        for j in range ( i + 1 , n ) :\n            if ( str [ i ] == str [ j ] ) :\n                res = max ( res , abs ( j - i - 1 ) )\n    return res\n"}
+Disassembly of <code object maximumChars at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 BINARY_SUBSCR
+6 STORE_FAST 2 ( n )
+
+27 8 SETUP_LOOP 44 ( to 54 )
+>> 10 LOAD_FAST 2 ( n )
+12 LOAD_CONST 2 ( 0 )
+14 BINARY_SUBSCR
+16 GET_ITER
+>> 18 FOR_ITER 22 ( to 52 )
+20 STORE_FAST 3 ( i )
+
+28 22 LOAD_FAST 3 ( i )
+24 LOAD_CONST 3 ( 1 )
+26 BINARY_SUBSCR
+28 STORE_FAST 4 ( i )
+
+29 30 LOAD_FAST 4 ( i )
+32 LOAD_CONST 4 ( 2 )
+34 BINARY_SUBSCR
+36 STORE_FAST 5 ( i )
+
+30 38 LOAD_FAST 3 ( i )
+40 LOAD_CONST 5 ( 1 )
+42 BINARY_SUBSCR
+44 LOAD_FAST 4 ( i )
+46 LOAD_CONST 6 ( 2 )
+48 BINARY_SUBSCR
+50 LOAD_CONST 7 ( 3 )
+52 BINARY_SUBSCR
+54 LOAD_FAST 4 ( i )
+56 LOAD_CONST 8 ( 3 )
+58 BINARY_SUBSCR
+60 LOAD_CONST 9 ( 4 )
+62 BINARY_SUBSCR
+64 LOAD_FAST 5 ( i )
+66 LOAD_CONST 10 ( 4 )
+68 BINARY_SUBSCR
+70 BINARY_SUBTRACT
+72 LOAD_CONST 11 ( 3 )
+74 BINARY_SUBSCR
+76 LOAD_CONST 12 ( ( 'size' , 'num' , 'num' ) )
+78 BUILD_CONST_KEY_MAP 3
+80 STORE_SUBSCR
+82 JUMP_ABSOLUTE 18
+>> 84 POP_BLOCK
+>> 86 JUMP_ABSOLUTE 18
+>> 88 POP_BLOCK
+>> 90 LOAD_CONST 0 ( None )
+92 RETURN_VALUE
+

@@ -1,0 +1,81 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x ) :\n    res = 0 ;\n    count = 0 ;\n    count += 1 ;\n    if ( count == 1 ) :\n        res = x ;\n    else :\n        i = random.randrange ( count ) ;\n        if ( i == count - 1 ) :\n            res = x ;\n    return res ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (64,),\n    (36,),\n    (21,),\n    (3,),\n    (18,),\n    (82,),\n    (76,),\n    (99,),\n    (70,),\n    (31,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def selectRandom ( x ) :\n    res = 0 ;\n    count = 0 ;\n    count += 1 ;\n    if ( count == 1 ) :\n        res = x ;\n    else :\n        i = random.randrange ( count ) ;\n        if ( i == count - 1 ) :\n            res = x ;\n    return res ;\n"}
+Disassembly of <code object selectRandom at 0x7f816a6e4b70, file "<dis>", line 30>:
+31 0 LOAD_CONST 1 ( 0 )
+2 LOAD_CONST 2 ( ( 'count' , ) )
+4 IMPORT_NAME 0 ( random . random )
+6 IMPORT_FROM 1 ( count )
+8 STORE_FAST 1 ( count )
+10 POP_TOP
+
+32 12 LOAD_FAST 1 ( count )
+14 LOAD_CONST 3 ( 1 )
+16 LOAD_CONST 4 ( 2 )
+18 COMPARE_OP 2 ( == )
+20 POP_JUMP_IF_FALSE 30
+
+33 22 LOAD_FAST 1 ( count )
+24 LOAD_CONST 5 ( 1 )
+26 LOAD_CONST 6 ( 2 )
+28 BUILD_SLICE 2
+30 BINARY_SUBSCR
+32 LOAD_CONST 7 ( 3 )
+34 COMPARE_OP 2 ( == )
+36 POP_JUMP_IF_FALSE 44
+
+34 38 LOAD_FAST 1 ( count )
+40 LOAD_CONST 8 ( 1 )
+42 LOAD_CONST 9 ( 2 )
+44 BUILD_SLICE 2
+46 BINARY_SUBSCR
+48 LOAD_CONST 10 ( 3 )
+50 LOAD_CONST 11 ( 2 )
+52 BUILD_SLICE 2
+54 BINARY_SUBSCR
+56 LOAD_CONST 12 ( 2 )
+58 BUILD_SLICE 2
+60 BINARY_SUBSCR
+62 LOAD_CONST 13 ( 2 )
+64 LOAD_CONST 6 ( 2 )
+66 BUILD_SLICE 2
+68 BINARY_SUBSCR
+70 LOAD_CONST 14 ( 2 )
+72 BUILD_SLICE 2
+74 BINARY_SUBSCR
+76 LOAD_CONST 15 ( 3 )
+78 BUILD_SLICE 2
+80 BINARY_SUBSCR
+82 LOAD_CONST 16 ( 3 )
+84 LOAD_CONST 17 ( 2 )
+86 BUILD_SLICE 2
+88 BINARY_SUBSCR
+90 LOAD_CONST 18 ( 2 )
+92 BUILD_SLICE 2
+94 BINARY_SUBSCR
+96 LOAD_CONST 16 ( 3 )
+98 LOAD_CONST 17 ( 2 )
+100 BUILD_SLICE 2
+102 BINARY_SUBSCR
+104 LOAD_CONST 18 ( 2 )
+106 BUILD_SLICE 2
+108 BINARY_SUBSCR
+110 LOAD_CONST 19 ( 2 )
+112 BUILD_SLICE 2
+114 BINARY_SUBSCR
+116 LOAD_CONST 20 ( 3 )
+118 BUILD_SLICE 2
+120 BINARY_SUBSCR
+122 LOAD_CONST 21 ( 2 )
+124 BUILD_SLICE 2
+126 BINARY_SUBSCR
+128 LOAD_CONST 22 ( 2 )
+130 BUILD_SLICE 2
+132 BINARY_SUBSCR
+134 LOAD_CONST 21 ( 2 )
+136 BUILD_SLICE 2
+138 BINARY_SUBSCR
+140 LOAD_CONST 22 ( 2 )
+142 BUILD_SLICE 2
+144 BINARY_SUBSCR
+146 BUILD_TUPLE 2
+148 RETURN_VALUE
+

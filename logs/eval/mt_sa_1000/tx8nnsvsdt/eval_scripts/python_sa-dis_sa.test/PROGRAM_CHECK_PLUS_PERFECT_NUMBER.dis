@@ -1,0 +1,63 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( x ) :\n    temp = x\n    n = 0\n    while ( x != 0 ) :\n        x = x // 10\n        n = n + 1\n    x = temp\n    sm = 0\n    while ( x != 0 ) :\n        sm = sm + ( int ) ( math.pow ( x % 10 , n ) )\n        x = x // 10\n    return ( sm == temp )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (371,),\n    (9474,),\n    (85,),\n    (35,),\n    (54,),\n    (17,),\n    (97,),\n    (63,),\n    (12,),\n    (43,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def checkplusperfect ( x ) :\n    temp = x\n    n = 0\n    while ( x != 0 ) :\n        x = x // 10\n        n = n + 1\n    x = temp\n    sm = 0\n    while ( x != 0 ) :\n        sm = sm + ( int ) ( math.pow ( x % 10 , n ) )\n        x = x // 10\n    return ( sm == temp )\n"}
+Disassembly of <code object checkplusperfect at 0x7f2b01639f60, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( x )
+2 STORE_FAST 1 ( temp )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 2 ( n )
+
+4 8 SETUP_LOOP 34 ( to 44 )
+>> 10 LOAD_FAST 0 ( x )
+12 LOAD_CONST 1 ( 0 )
+14 COMPARE_OP 3 ( != )
+16 POP_JUMP_IF_FALSE 42
+
+5 18 LOAD_FAST 0 ( x )
+20 LOAD_CONST 2 ( 10 )
+22 BINARY_FLOOR_DIVIDE
+24 STORE_FAST 0 ( x )
+
+6 26 LOAD_FAST 2 ( n )
+28 LOAD_CONST 3 ( 1 )
+30 BINARY_ADD
+32 STORE_FAST 2 ( n )
+
+7 >> 34 LOAD_FAST 1 ( temp )
+36 STORE_FAST 0 ( x )
+
+8 38 LOAD_CONST 1 ( 0 )
+40 STORE_FAST 3 ( sm )
+
+9 42 SETUP_LOOP 46 ( to 92 )
+>> 44 LOAD_FAST 0 ( x )
+46 LOAD_CONST 1 ( 0 )
+48 COMPARE_OP 3 ( != )
+50 POP_JUMP_IF_FALSE 90
+
+10 52 LOAD_FAST 3 ( sm )
+54 LOAD_GLOBAL 0 ( int )
+56 CALL_FUNCTION 1
+58 LOAD_GLOBAL 1 ( math )
+60 LOAD_METHOD 2 ( pow )
+62 LOAD_FAST 0 ( x )
+64 LOAD_CONST 2 ( 10 )
+66 BINARY_MODULO
+68 LOAD_FAST 2 ( n )
+70 CALL_METHOD 2
+72 CALL_FUNCTION 1
+74 BINARY_ADD
+76 STORE_FAST 3 ( sm )
+
+11 78 LOAD_FAST 0 ( x )
+80 LOAD_CONST 2 ( 10 )
+82 BINARY_FLOOR_DIVIDE
+84 STORE_FAST 0 ( x )
+86 JUMP_ABSOLUTE 44
+88 POP_BLOCK
+>> 90 JUMP_ABSOLUTE 44
+>> 92 POP_BLOCK
+
+12 >> 94 LOAD_FAST 3 ( sm )
+96 LOAD_FAST 1 ( temp )
+98 COMPARE_OP 2 ( == )
+100 RETURN_VALUE

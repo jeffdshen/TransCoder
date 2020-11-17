@@ -1,0 +1,93 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    count = 0\n    while ( n ) :\n        count += n & 1\n        n >>= 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (58,),\n    (92,),\n    (73,),\n    (52,),\n    (24,),\n    (14,),\n    (58,),\n    (11,),\n    (8,),\n    (52,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countSetBits ( n ) :\n    count = 0\n    while ( n ) :\n        count += n & 1\n        n >>= 1\n    return count\n"}
+Disassembly of <code object countSetBits at 0x7f816a6e4ae0, file "<dis>", line 17>:
+18 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( count )
+
+19 4 LOAD_FAST 1 ( count )
+6 LOAD_CONST 1 ( 0 )
+8 COMPARE_OP 4 ( > )
+10 POP_JUMP_IF_FALSE 20
+
+20 12 LOAD_CONST 2 ( 1 )
+14 STORE_FAST 1 ( count )
+
+21 >> 16 LOAD_FAST 1 ( count )
+18 LOAD_CONST 3 ( 1 )
+20 COMPARE_OP 4 ( > )
+22 POP_JUMP_IF_FALSE 28
+
+22 24 LOAD_CONST 4 ( 1 )
+26 STORE_FAST 1 ( count )
+
+24 >> 28 LOAD_FAST 1 ( count )
+30 LOAD_CONST 5 ( 1 )
+32 COMPARE_OP 4 ( > )
+34 POP_JUMP_IF_FALSE 44
+
+25 36 LOAD_CONST 6 ( 1 )
+38 STORE_FAST 1 ( count )
+
+26 >> 40 LOAD_FAST 1 ( count )
+42 LOAD_CONST 7 ( 1 )
+44 COMPARE_OP 4 ( > )
+46 POP_JUMP_IF_FALSE 44
+
+27 48 LOAD_CONST 8 ( 1 )
+50 STORE_FAST 1 ( count )
+
+28 >> 52 LOAD_FAST 1 ( count )
+54 LOAD_CONST 9 ( 1 )
+56 INPLACE_ADD
+58 STORE_FAST 1 ( count )
+
+29 60 LOAD_FAST 1 ( count )
+62 LOAD_CONST 10 ( 1 )
+64 INPLACE_ADD
+66 STORE_FAST 1 ( count )
+
+30 >> 68 LOAD_FAST 1 ( count )
+70 LOAD_CONST 11 ( 2 )
+72 INPLACE_ADD
+74 STORE_FAST 1 ( count )
+
+31 76 LOAD_FAST 1 ( count )
+78 LOAD_CONST 12 ( 2 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( count )
+
+32 84 LOAD_FAST 1 ( count )
+86 LOAD_CONST 13 ( 2 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( count )
+
+33 92 LOAD_FAST 1 ( count )
+94 LOAD_CONST 14 ( 2 )
+96 INPLACE_ADD
+98 STORE_FAST 1 ( count )
+
+34 100 LOAD_FAST 1 ( count )
+102 LOAD_CONST 15 ( 1 )
+104 INPLACE_ADD
+106 STORE_FAST 1 ( count )
+108 JUMP_FORWARD 14 ( to 128 )
+
+35 >> 110 LOAD_FAST 1 ( count )
+112 LOAD_CONST 16 ( 1 )
+114 INPLACE_ADD
+116 STORE_FAST 1 ( count )
+
+36 >> 118 LOAD_FAST 1 ( count )
+120 LOAD_CONST 16 ( 1 )
+122 INPLACE_ADD
+124 STORE_FAST 1 ( count )
+126 JUMP_FORWARD 2 ( to 128 )
+
+37 >> 128 LOAD_FAST 1 ( count )
+130 LOAD_CONST 17 ( 1 )
+132 INPLACE_ADD
+134 STORE_FAST 1 ( count )
+
+38 >> 136 LOAD_FAST 1 ( count )
+138 LOAD_CONST 18 ( 1 )
+140 INPLACE_ADD
+142 STORE_FAST 1 ( count )

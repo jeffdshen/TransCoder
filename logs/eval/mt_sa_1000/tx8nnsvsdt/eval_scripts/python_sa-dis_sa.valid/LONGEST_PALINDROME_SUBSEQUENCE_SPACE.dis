@@ -1,0 +1,100 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    n = len ( s )\n    a = [ 0 ] * n\n    for i in range ( n - 1 , - 1 , - 1 ) :\n        back_up = 0\n        for j in range ( i , n ) :\n            if j == i :\n                a [ j ] = 1\n            elif s [ i ] == s [ j ] :\n                temp = a [ j ]\n                a [ j ] = back_up + 2\n                back_up = temp\n            else :\n                back_up = a [ j ]\n                a [ j ] = max ( a [ j - 1 ] , a [ j ] )\n    return a [ n - 1 ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (' E',),\n    ('0845591950',),\n    ('00101011',),\n    ('pLSvlwrACvFaoT',),\n    ('7246',),\n    ('1010101100000',),\n    ('obPkcLSFp',),\n    ('914757557818',),\n    ('1',),\n    ('PKvUWIQ',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def lps ( s ) :\n    n = len ( s )\n    a = [ 0 ] * n\n    for i in range ( n - 1 , - 1 , - 1 ) :\n        back_up = 0\n        for j in range ( i , n ) :\n            if j == i :\n                a [ j ] = 1\n            elif s [ i ] == s [ j ] :\n                temp = a [ j ]\n                a [ j ] = back_up + 2\n                back_up = temp\n            else :\n                back_up = a [ j ]\n                a [ j ] = max ( a [ j - 1 ] , a [ j ] )\n    return a [ n - 1 ]\n"}
+Disassembly of <code object lps at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( s )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 BUILD_LIST 1
+12 LOAD_FAST 1 ( n )
+14 BINARY_MULTIPLY
+16 STORE_FAST 2 ( a )
+
+4 18 SETUP_LOOP 164 ( to 180 )
+20 LOAD_GLOBAL 1 ( range )
+22 LOAD_FAST 1 ( n )
+24 LOAD_CONST 2 ( 1 )
+26 BINARY_SUBTRACT
+28 LOAD_CONST 3 ( - 1 )
+30 LOAD_CONST 3 ( - 1 )
+32 CALL_FUNCTION 3
+34 GET_ITER
+>> 36 FOR_ITER 144 ( to 178 )
+38 STORE_FAST 3 ( i )
+
+5 40 LOAD_CONST 1 ( 0 )
+42 STORE_FAST 4 ( back_up )
+
+6 44 SETUP_LOOP 140 ( to 180 )
+46 LOAD_GLOBAL 1 ( range )
+48 LOAD_FAST 3 ( i )
+50 LOAD_FAST 1 ( n )
+52 CALL_FUNCTION 2
+54 GET_ITER
+>> 56 FOR_ITER 128 ( to 178 )
+58 STORE_FAST 5 ( j )
+
+7 60 LOAD_FAST 5 ( j )
+62 LOAD_FAST 3 ( i )
+64 COMPARE_OP 2 ( == )
+66 POP_JUMP_IF_FALSE 82
+
+8 68 LOAD_CONST 2 ( 1 )
+70 LOAD_FAST 2 ( a )
+72 LOAD_FAST 5 ( j )
+74 STORE_SUBSCR
+76 JUMP_ABSOLUTE 56
+
+9 >> 78 LOAD_FAST 0 ( s )
+80 LOAD_FAST 3 ( i )
+82 BINARY_SUBSCR
+84 LOAD_FAST 0 ( s )
+86 LOAD_FAST 5 ( j )
+88 BINARY_SUBSCR
+90 COMPARE_OP 2 ( == )
+92 POP_JUMP_IF_FALSE 56
+
+10 94 LOAD_FAST 2 ( a )
+96 LOAD_FAST 5 ( j )
+98 BINARY_SUBSCR
+100 STORE_FAST 6 ( temp )
+
+11 102 LOAD_FAST 4 ( back_up )
+104 LOAD_CONST 4 ( 2 )
+106 BINARY_ADD
+108 STORE_FAST 4 ( back_up )
+
+12 110 LOAD_FAST 6 ( temp )
+112 STORE_FAST 4 ( back_up )
+114 JUMP_ABSOLUTE 56
+
+14 >> 116 LOAD_FAST 2 ( a )
+118 LOAD_FAST 5 ( j )
+120 BINARY_SUBSCR
+122 STORE_FAST 4 ( back_up )
+
+15 124 LOAD_GLOBAL 2 ( max )
+126 LOAD_FAST 2 ( a )
+128 LOAD_FAST 5 ( j )
+130 LOAD_CONST 2 ( 1 )
+132 BINARY_SUBTRACT
+134 BINARY_SUBSCR
+136 LOAD_FAST 2 ( a )
+138 LOAD_FAST 5 ( j )
+140 BINARY_SUBSCR
+142 CALL_FUNCTION 2
+144 LOAD_FAST 2 ( a )
+146 LOAD_FAST 5 ( j )
+148 STORE_SUBSCR
+150 JUMP_ABSOLUTE 56
+>> 152 POP_BLOCK
+>> 154 JUMP_ABSOLUTE 36
+>> 156 POP_BLOCK
+
+16 158 LOAD_FAST 2 ( a )
+160 LOAD_FAST 1 ( n )
+162 LOAD_CONST 2 ( 1 )
+164 BINARY_SUBTRACT
+166 BINARY_SUBSCR
+168 RETURN_VALUE

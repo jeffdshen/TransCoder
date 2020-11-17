@@ -1,0 +1,96 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    ans = 0 ; temp = 0 ;\n    for i in range ( 1 , n + 1 ) :\n        if temp < n :\n            temp = i - 1\n            num = 1\n            while temp < n :\n                if temp + i <= n :\n                    ans += i * num\n                else :\n                    ans += ( n - temp ) * num\n                temp += i\n                num += 1\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (35,),\n    (93,),\n    (7,),\n    (81,),\n    (80,),\n    (47,),\n    (7,),\n    (41,),\n    (59,),\n    (34,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSum ( n ) :\n    ans = 0 ; temp = 0 ;\n    for i in range ( 1 , n + 1 ) :\n        if temp < n :\n            temp = i - 1\n            num = 1\n            while temp < n :\n                if temp + i <= n :\n                    ans += i * num\n                else :\n                    ans += ( n - temp ) * num\n                temp += i\n                num += 1\n    return ans\n"}
+Disassembly of <code object findSum at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( n )
+
+27 4 LOAD_FAST 1 ( n )
+6 LOAD_CONST 2 ( 1 )
+8 INPLACE_ADD
+10 STORE_FAST 1 ( n )
+
+28 12 LOAD_FAST 1 ( n )
+14 LOAD_CONST 3 ( 1 )
+16 INPLACE_ADD
+18 STORE_FAST 1 ( n )
+
+29 20 LOAD_FAST 1 ( n )
+22 LOAD_CONST 4 ( - 1 )
+24 INPLACE_ADD
+26 STORE_FAST 1 ( n )
+
+30 28 LOAD_FAST 1 ( n )
+30 LOAD_CONST 5 ( - 1 )
+32 INPLACE_ADD
+34 STORE_FAST 1 ( n )
+
+31 36 LOAD_FAST 1 ( n )
+38 LOAD_CONST 6 ( - 1 )
+40 INPLACE_ADD
+42 STORE_FAST 1 ( n )
+
+32 44 LOAD_FAST 1 ( n )
+46 LOAD_CONST 7 ( 1 )
+48 INPLACE_ADD
+50 STORE_FAST 1 ( n )
+
+33 52 LOAD_FAST 1 ( n )
+54 LOAD_CONST 8 ( - 1 )
+56 INPLACE_ADD
+58 STORE_FAST 1 ( n )
+
+34 60 LOAD_FAST 1 ( n )
+62 LOAD_CONST 9 ( 1 )
+64 INPLACE_ADD
+66 STORE_FAST 1 ( n )
+
+35 68 LOAD_FAST 1 ( n )
+70 LOAD_CONST 10 ( - 1 )
+72 INPLACE_ADD
+74 STORE_FAST 1 ( n )
+
+36 76 LOAD_FAST 1 ( n )
+78 LOAD_CONST 11 ( 1 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( n )
+
+37 84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 12 ( - 1 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( n )
+
+38 92 LOAD_FAST 1 ( n )
+94 LOAD_FAST 0 ( n )
+96 INPLACE_ADD
+98 STORE_FAST 1 ( n )
+
+39 100 LOAD_FAST 1 ( n )
+102 LOAD_FAST 0 ( n )
+104 INPLACE_ADD
+106 STORE_FAST 1 ( n )
+108 LOAD_CONST 13 ( 1 )
+110 INPLACE_ADD
+112 STORE_FAST 1 ( n )
+
+40 114 LOAD_FAST 1 ( n )
+116 LOAD_FAST 0 ( n )
+118 INPLACE_ADD
+120 STORE_FAST 1 ( n )
+
+41 122 LOAD_FAST 1 ( n )
+124 LOAD_FAST 0 ( n )
+126 INPLACE_ADD
+128 STORE_FAST 1 ( n )
+
+42 130 LOAD_FAST 1 ( n )
+132 LOAD_FAST 0 ( n )
+134 INPLACE_ADD
+136 STORE_FAST 1 ( n )
+
+43 138 LOAD_FAST 1 ( n )
+140 LOAD_FAST 0 ( n )
+142 INPLACE_ADD
+144 STORE_FAST 1 ( n )
+
+44 146 LOAD_FAST 1 ( n )
+148 RETURN_VALUE
+

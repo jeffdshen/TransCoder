@@ -1,0 +1,139 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    hash_map = { } ;\n    curr_sum = 0 ;\n    max_len = 0 ;\n    ending_index = - 1 ;\n    for i in range ( 0 , n ) :\n        if ( arr [ i ] == 0 ) :\n            arr [ i ] = - 1 ;\n        else :\n            arr [ i ] = 1 ;\n    for i in range ( 0 , n ) :\n        curr_sum = curr_sum + arr [ i ] ;\n        if ( curr_sum == 0 ) :\n            max_len = i + 1 ;\n            ending_index = i ;\n        if ( curr_sum + n ) in hash_map :\n            max_len = max ( max_len , i - hash_map [ curr_sum + n ] )\n        else :\n            hash_map [ curr_sum ] = i ;\n    for i in range ( 0 , n ) :\n        if ( arr [ i ] == - 1 ) :\n            arr [ i ] = 0 ;\n        else :\n            arr [ i ] = 1 ;\n    print ( ending_index - max_len + 1 , end = \" \" ) ;\n    print ( \"to\" , end = \" \" ) ;\n    print ( ending_index ) ;\n    return max_len ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 6, 16, 16, 18, 19, 22, 39, 40, 42, 60, 66, 69, 70, 70, 73, 74, 80, 99],9,),\n    ([-88, -66],1,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,),\n    ([85, 98, 67, 27, 98, 13, 96, 32, 26, 44, 32],8,),\n    ([-96, -94, -90, -88, -86, -66, -64, -52, -46, -46, -42, -40, -38, -32, -28, -22, -16, -10, -8, -8, -4, 2, 10, 26, 26, 28, 28, 40, 40, 42, 50, 60, 66, 68, 72, 74, 86, 92, 94],34,),\n    ([1, 1, 1, 1, 1, 1, 0, 0, 0],4,),\n    ([25, 64, 86],1,),\n    ([-4, 78, -76, 12, 4, -38, -98, -26, -8, -98, 56, 0, -34, 36, -90, -36, 54, -68, 12, -44, 62, 60, -34, -52, 18],17,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],9,),\n    ([2, 25, 45, 98, 71, 8, 58, 94, 53],8,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxLen ( arr , n ) :\n    hash_map = { } ;\n    curr_sum = 0 ;\n    max_len = 0 ;\n    ending_index = - 1 ;\n    for i in range ( 0 , n ) :\n        if ( arr [ i ] == 0 ) :\n            arr [ i ] = - 1 ;\n        else :\n            arr [ i ] = 1 ;\n    for i in range ( 0 , n ) :\n        curr_sum = curr_sum + arr [ i ] ;\n        if ( curr_sum == 0 ) :\n            max_len = i + 1 ;\n            ending_index = i ;\n        if ( curr_sum + n ) in hash_map :\n            max_len = max ( max_len , i - hash_map [ curr_sum + n ] )\n        else :\n            hash_map [ curr_sum ] = i ;\n    for i in range ( 0 , n ) :\n        if ( arr [ i ] == - 1 ) :\n            arr [ i ] = 0 ;\n        else :\n            arr [ i ] = 1 ;\n    print ( ending_index - max_len + 1 , end = \" \" ) ;\n    print ( \"to\" , end = \" \" ) ;\n    print ( ending_index ) ;\n    return max_len ;\n"}
+Disassembly of <code object maxLen at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 BUILD_MAP 0
+2 STORE_FAST 2 ( hash_map )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 3 ( curr_sum )
+
+4 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 4 ( max_len )
+
+5 12 LOAD_CONST 2 ( - 1 )
+14 STORE_FAST 5 ( ending_index )
+
+6 16 SETUP_LOOP 56 ( to 80 )
+18 LOAD_GLOBAL 0 ( range )
+20 LOAD_CONST 1 ( 0 )
+22 LOAD_FAST 1 ( n )
+24 CALL_FUNCTION 2
+26 GET_ITER
+>> 28 FOR_ITER 44 ( to 78 )
+30 STORE_FAST 6 ( i )
+
+7 32 LOAD_FAST 0 ( arr )
+34 LOAD_FAST 6 ( i )
+36 BINARY_SUBSCR
+38 LOAD_CONST 1 ( 0 )
+40 COMPARE_OP 2 ( == )
+42 POP_JUMP_IF_FALSE 56
+
+8 44 LOAD_CONST 2 ( - 1 )
+46 LOAD_FAST 0 ( arr )
+48 LOAD_FAST 6 ( i )
+50 STORE_SUBSCR
+52 JUMP_ABSOLUTE 28
+
+10 >> 54 LOAD_CONST 3 ( 1 )
+56 LOAD_FAST 0 ( arr )
+58 LOAD_FAST 6 ( i )
+60 STORE_SUBSCR
+62 JUMP_ABSOLUTE 28
+
+12 >> 64 SETUP_LOOP 78 ( to 124 )
+66 LOAD_GLOBAL 0 ( range )
+68 LOAD_CONST 1 ( 0 )
+70 LOAD_FAST 1 ( n )
+72 CALL_FUNCTION 2
+74 GET_ITER
+>> 76 FOR_ITER 66 ( to 122 )
+78 STORE_FAST 6 ( i )
+
+13 80 LOAD_FAST 3 ( curr_sum )
+82 LOAD_FAST 0 ( arr )
+84 LOAD_FAST 6 ( i )
+86 BINARY_SUBSCR
+88 BINARY_ADD
+90 STORE_FAST 3 ( curr_sum )
+
+14 92 LOAD_FAST 3 ( curr_sum )
+94 LOAD_CONST 1 ( 0 )
+96 COMPARE_OP 2 ( == )
+98 POP_JUMP_IF_FALSE 108
+
+15 100 LOAD_FAST 6 ( i )
+102 LOAD_CONST 3 ( 1 )
+104 BINARY_ADD
+106 STORE_FAST 4 ( max_len )
+
+16 >> 108 LOAD_FAST 3 ( curr_sum )
+110 LOAD_FAST 1 ( n )
+112 BINARY_ADD
+114 LOAD_FAST 2 ( hash_map )
+116 COMPARE_OP 6 ( in )
+118 POP_JUMP_IF_FALSE 134
+
+17 120 LOAD_GLOBAL 1 ( max )
+122 LOAD_FAST 4 ( max_len )
+124 LOAD_FAST 6 ( i )
+126 LOAD_FAST 2 ( hash_map )
+128 LOAD_FAST 3 ( curr_sum )
+130 LOAD_FAST 1 ( n )
+132 BINARY_ADD
+134 BINARY_SUBSCR
+136 BINARY_SUBTRACT
+138 CALL_FUNCTION 2
+140 STORE_FAST 4 ( max_len )
+142 JUMP_FORWARD 12 ( to 154 )
+
+19 >> 144 LOAD_FAST 6 ( i )
+146 LOAD_FAST 2 ( hash_map )
+148 LOAD_FAST 3 ( curr_sum )
+150 STORE_SUBSCR
+152 JUMP_ABSOLUTE 76
+
+21 >> 154 SETUP_LOOP 54 ( to 206 )
+156 LOAD_GLOBAL 0 ( range )
+158 LOAD_CONST 1 ( 0 )
+160 LOAD_FAST 1 ( n )
+162 CALL_FUNCTION 2
+164 GET_ITER
+>> 166 FOR_ITER 32 ( to 204 )
+168 STORE_FAST 6 ( i )
+
+22 170 LOAD_FAST 0 ( arr )
+172 LOAD_FAST 6 ( i )
+174 BINARY_SUBSCR
+176 LOAD_CONST 2 ( - 1 )
+178 COMPARE_OP 2 ( == )
+180 POP_JUMP_IF_FALSE 178
+
+23 182 LOAD_CONST 1 ( 0 )
+184 LOAD_FAST 0 ( arr )
+186 LOAD_FAST 6 ( i )
+188 STORE_SUBSCR
+190 JUMP_ABSOLUTE 166
+
+25 >> 192 LOAD_CONST 3 ( 1 )
+194 LOAD_FAST 0 ( arr )
+196 LOAD_FAST 6 ( i )
+198 STORE_SUBSCR
+
+26 >> 200 LOAD_GLOBAL 2 ( print )
+202 LOAD_FAST 5 ( ending_index )
+204 LOAD_FAST 4 ( max_len )
+206 BINARY_SUBTRACT
+208 LOAD_CONST 3 ( 1 )
+210 BINARY_ADD
+212 LOAD_CONST 4 ( ' ' )
+214 LOAD_CONST 5 ( ( 'end' , ) )
+216 CALL_FUNCTION_KW 2
+218 POP_TOP
+
+27 220 LOAD_GLOBAL 2 ( print )
+222 LOAD_FAST 5 ( ending_index )
+224 CALL_FUNCTION 1
+226 POP_TOP
+
+28 228 LOAD_FAST 4 ( max_len )
+230 RETURN_VALUE

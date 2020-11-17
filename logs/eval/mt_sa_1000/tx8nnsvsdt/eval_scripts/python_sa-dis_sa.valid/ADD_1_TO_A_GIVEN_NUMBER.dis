@@ -1,0 +1,30 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x ) :\n    m = 1 ;\n    while ( x & m ) :\n        x = x ^ m\n        m <<= 1\n    x = x ^ m\n    return x\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (96,),\n    (66,),\n    (67,),\n    (13,),\n    (75,),\n    (78,),\n    (1,),\n    (83,),\n    (27,),\n    (65,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def addOne ( x ) :\n    m = 1 ;\n    while ( x & m ) :\n        x = x ^ m\n        m <<= 1\n    x = x ^ m\n    return x\n"}
+Disassembly of <code object addOne at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 1 ( m )
+
+3 4 SETUP_LOOP 28 ( to 34 )
+>> 6 LOAD_FAST 0 ( x )
+8 LOAD_FAST 1 ( m )
+10 BINARY_AND
+12 POP_JUMP_IF_FALSE 32
+
+4 14 LOAD_FAST 0 ( x )
+16 LOAD_FAST 1 ( m )
+18 BINARY_XOR
+20 STORE_FAST 0 ( x )
+
+5 22 LOAD_FAST 1 ( m )
+24 LOAD_CONST 1 ( 1 )
+26 INPLACE_SUBTRACT
+28 STORE_FAST 1 ( m )
+30 JUMP_ABSOLUTE 6
+>> 32 POP_BLOCK
+
+6 >> 34 LOAD_FAST 0 ( x )
+36 LOAD_FAST 1 ( m )
+38 BINARY_XOR
+40 STORE_FAST 0 ( x )
+
+7 42 LOAD_FAST 0 ( x )
+44 RETURN_VALUE

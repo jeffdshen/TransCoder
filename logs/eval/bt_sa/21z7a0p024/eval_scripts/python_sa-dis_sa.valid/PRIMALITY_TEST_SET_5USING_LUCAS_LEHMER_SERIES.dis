@@ -1,0 +1,100 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( p ) :\n    checkNumber = 2 ** p - 1\n    nextval = 4 % checkNumber\n    for i in range ( 1 , p - 1 ) :\n        nextval = ( nextval * nextval - 2 ) % checkNumber\n    if ( nextval == 0 ) : return True\n    else : return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (11,),\n    (27,),\n    (31,),\n    (47,),\n    (3,),\n    (14,),\n    (41,),\n    (72,),\n    (39,),\n    (22,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPrime ( p ) :\n    checkNumber = 2 ** p - 1\n    nextval = 4 % checkNumber\n    for i in range ( 1 , p - 1 ) :\n        nextval = ( nextval * nextval - 2 ) % checkNumber\n    if ( nextval == 0 ) : return True\n    else : return False\n"}
+Disassembly of <code object isPrime at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( p )
+2 LOAD_CONST 1 ( 2 )
+4 LOAD_CONST 2 ( 1 )
+6 BINARY_SUBTRACT
+8 LOAD_CONST 3 ( 2 )
+10 BINARY_POWER
+12 STORE_FAST 1 ( nextval )
+
+3 14 SETUP_LOOP 64 ( to 74 )
+16 LOAD_GLOBAL 0 ( range )
+18 LOAD_CONST 1 ( 1 )
+20 LOAD_FAST 1 ( nextval )
+22 LOAD_CONST 2 ( 1 )
+24 BINARY_SUBTRACT
+26 CALL_FUNCTION 2
+28 GET_ITER
+>> 30 FOR_ITER 48 ( to 72 )
+32 STORE_FAST 2 ( i )
+
+4 34 LOAD_FAST 0 ( p )
+36 LOAD_CONST 1 ( 2 )
+38 BINARY_POWER
+40 LOAD_FAST 2 ( i )
+42 LOAD_CONST 2 ( 1 )
+44 BINARY_SUBTRACT
+46 BINARY_MODULO
+48 STORE_FAST 0 ( p )
+
+5 50 LOAD_FAST 0 ( p )
+52 LOAD_CONST 1 ( 2 )
+54 BINARY_POWER
+56 LOAD_FAST 2 ( i )
+58 LOAD_CONST 2 ( 1 )
+60 BINARY_SUBTRACT
+62 BINARY_POWER
+64 LOAD_FAST 0 ( p )
+66 LOAD_CONST 1 ( 2 )
+68 BINARY_SUBTRACT
+70 BINARY_POWER
+72 LOAD_FAST 0 ( p )
+74 LOAD_CONST 1 ( 2 )
+76 BINARY_SUBTRACT
+78 BINARY_POWER
+80 LOAD_FAST 0 ( p )
+82 LOAD_CONST 1 ( 2 )
+84 BINARY_SUBTRACT
+86 BINARY_POWER
+88 BINARY_MULTIPLY
+90 BINARY_SUBTRACT
+92 LOAD_FAST 0 ( p )
+94 LOAD_CONST 1 ( 2 )
+96 BINARY_SUBTRACT
+98 BINARY_POWER
+100 LOAD_FAST 0 ( p )
+102 LOAD_CONST 1 ( 2 )
+104 BINARY_SUBTRACT
+106 BINARY_POWER
+108 BINARY_SUBTRACT
+110 LOAD_FAST 0 ( p )
+112 LOAD_CONST 1 ( 2 )
+114 BINARY_SUBTRACT
+116 BINARY_POWER
+118 BINARY_SUBTRACT
+120 LOAD_FAST 0 ( p )
+122 LOAD_CONST 1 ( 2 )
+124 BINARY_SUBTRACT
+126 BINARY_POWER
+128 LOAD_FAST 0 ( p )
+130 LOAD_CONST 1 ( 2 )
+132 BINARY_SUBTRACT
+134 BINARY_POWER
+136 LOAD_FAST 0 ( p )
+138 LOAD_CONST 1 ( 2 )
+140 BINARY_SUBTRACT
+142 BINARY_POWER
+144 LOAD_FAST 0 ( p )
+146 LOAD_CONST 1 ( 2 )
+148 BINARY_SUBTRACT
+150 BINARY_MULTIPLY
+152 BINARY_SUBTRACT
+154 LOAD_FAST 0 ( p )
+156 LOAD_CONST 1 ( 2 )
+158 BINARY_SUBTRACT
+160 BINARY_TRUE_DIVIDE
+162 BINARY_SUBTRACT
+164 LOAD_FAST 0 ( p )
+166 LOAD_CONST 1 ( 2 )
+168 BINARY_SUBTRACT
+170 LOAD_FAST 0 ( p )
+172 LOAD_CONST 1 ( 2 )
+174 BINARY_SUBTRACT
+176 LOAD_FAST 0 ( p )
+178 LOAD_CONST 1 ( 2 )
+180 BINARY_SUBTRACT
+178 BINARY_TRUE_DIVIDE
+176 BINARY_SUBTRACT
+174 LOAD_FAST 0 ( p )
+176 LOAD_CONST 1 ( 2

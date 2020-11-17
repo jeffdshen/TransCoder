@@ -1,0 +1,88 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num1 ) :\n    l = len ( num1 ) ;\n    num = list ( num1 ) ;\n    i = l - 1 ;\n    while ( i >= 0 ) :\n        if ( num [ i ] == '0' ) :\n            num [ i ] = '1' ;\n            break ;\n        else :\n            num [ i ] = '0' ;\n        i -= 1 ;\n    num1 = ''.join ( num ) ;\n    if ( i < 0 ) :\n        num1 = '1' + num1 ;\n    return num1 ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('DXh',),\n    ('48703586411816',),\n    ('0001',),\n    ('yWg WvjNKS',),\n    ('8408568459',),\n    ('01',),\n    ('DFECZ CWtN',),\n    ('37742236',),\n    ('001101',),\n    ('LDxERLmYn',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def nextGreater ( num1 ) :\n    l = len ( num1 ) ;\n    num = list ( num1 ) ;\n    i = l - 1 ;\n    while ( i >= 0 ) :\n        if ( num [ i ] == '0' ) :\n            num [ i ] = '1' ;\n            break ;\n        else :\n            num [ i ] = '0' ;\n        i -= 1 ;\n    num1 = ''.join ( num ) ;\n    if ( i < 0 ) :\n        num1 = '1' + num1 ;\n    return num1 ;\n"}
+Disassembly of <code object nextGreater at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( num1 )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 4 ( > )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_FAST 0 ( num1 )
+10 LOAD_CONST 1 ( 1 )
+12 COMPARE_OP 4 ( > )
+14 POP_JUMP_IF_FALSE 28
+
+28 16 LOAD_FAST 0 ( num1 )
+18 LOAD_CONST 1 ( 1 )
+20 COMPARE_OP 4 ( > )
+22 POP_JUMP_IF_FALSE 28
+
+29 >> 24 LOAD_FAST 0 ( num1 )
+26 LOAD_CONST 1 ( 1 )
+28 COMPARE_OP 4 ( > )
+30 POP_JUMP_IF_FALSE 44
+
+30 32 LOAD_FAST 0 ( num1 )
+34 LOAD_CONST 1 ( 1 )
+36 COMPARE_OP 4 ( > )
+38 POP_JUMP_IF_FALSE 44
+
+31 40 LOAD_FAST 0 ( num1 )
+42 LOAD_CONST 1 ( 1 )
+44 COMPARE_OP 4 ( > )
+46 POP_JUMP_IF_FALSE 44
+
+32 48 LOAD_FAST 0 ( num1 )
+50 LOAD_CONST 1 ( 1 )
+52 INPLACE_ADD
+54 STORE_FAST 1 ( num1 )
+
+33 >> 56 LOAD_FAST 0 ( num1 )
+58 LOAD_CONST 1 ( 1 )
+60 COMPARE_OP 4 ( > )
+62 POP_JUMP_IF_FALSE 80
+
+34 64 LOAD_FAST 0 ( num1 )
+66 LOAD_CONST 1 ( 1 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 80
+
+35 72 LOAD_FAST 0 ( num1 )
+74 LOAD_CONST 1 ( 1 )
+76 INPLACE_ADD
+78 STORE_FAST 1 ( num1 )
+80 JUMP_FORWARD 4 ( to 82 )
+
+36 >> 82 LOAD_FAST 0 ( num1 )
+84 LOAD_CONST 1 ( 1 )
+86 INPLACE_ADD
+88 STORE_FAST 1 ( num1 )
+90 JUMP_FORWARD 4 ( to 82 )
+
+37 >> 92 LOAD_FAST 0 ( num1 )
+94 LOAD_CONST 1 ( 1 )
+96 INPLACE_ADD
+98 STORE_FAST 1 ( num1 )
+
+38 >> 100 LOAD_FAST 0 ( num1 )
+102 LOAD_CONST 1 ( 1 )
+104 INPLACE_ADD
+106 STORE_FAST 1 ( num1 )
+108 JUMP_FORWARD 4 ( to 82 )
+
+39 >> 110 LOAD_FAST 1 ( num1 )
+112 LOAD_CONST 1 ( 1 )
+114 INPLACE_ADD
+116 STORE_FAST 1 ( num1 )
+
+40 >> 118 LOAD_FAST 1 ( num1 )
+120 LOAD_CONST 1 ( 1 )
+122 INPLACE_ADD
+124 STORE_FAST 1 ( num1 )
+
+41 126 LOAD_FAST 1 ( num1 )
+128 LOAD_CONST 1 ( 1 )
+130 INPLACE_ADD
+132 STORE_FAST 1 ( num1 )
+134 JUMP_FORWARD 4 ( to 82 )
+
+42 >> 136 LOAD_FAST 1 ( num1 )
+138 RETURN_VALUE

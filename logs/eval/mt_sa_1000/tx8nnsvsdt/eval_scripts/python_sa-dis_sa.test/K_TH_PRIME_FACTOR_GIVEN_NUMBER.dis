@@ -1,0 +1,105 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n , k ) :\n    while ( n % 2 == 0 ) :\n        k = k - 1\n        n = n / 2\n        if ( k == 0 ) :\n            return 2\n    i = 3\n    while i <= math.sqrt ( n ) :\n        while ( n % i == 0 ) :\n            if ( k == 1 ) :\n                return i\n            k = k - 1\n            n = n / i\n        i = i + 2\n    if ( n > 2 and k == 1 ) :\n        return n\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (94,0),\n    (99,1),\n    (64,3),\n    (27,3),\n    (24,4),\n    (84,6),\n    (69,98),\n    (69,39),\n    (22,60),\n    (39,57)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def kPrimeFactor ( n , k ) :\n    while ( n % 2 == 0 ) :\n        k = k - 1\n        n = n / 2\n        if ( k == 0 ) :\n            return 2\n    i = 3\n    while i <= math.sqrt ( n ) :\n        while ( n % i == 0 ) :\n            if ( k == 1 ) :\n                return i\n            k = k - 1\n            n = n / i\n        i = i + 2\n    if ( n > 2 and k == 1 ) :\n        return n\n    return - 1\n"}
+Disassembly of <code object kPrimeFactor at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 46 ( to 48 )
+>> 2 LOAD_FAST 0 ( n )
+4 LOAD_CONST 1 ( 2 )
+6 BINARY_MODULO
+8 LOAD_CONST 2 ( 0 )
+10 COMPARE_OP 2 ( == )
+12 POP_JUMP_IF_FALSE 46
+
+3 14 LOAD_FAST 1 ( k )
+16 LOAD_CONST 3 ( 1 )
+18 BINARY_SUBTRACT
+20 STORE_FAST 1 ( k )
+
+4 22 LOAD_FAST 0 ( n )
+24 LOAD_CONST 1 ( 2 )
+26 BINARY_TRUE_DIVIDE
+28 STORE_FAST 0 ( n )
+
+5 30 LOAD_FAST 1 ( k )
+32 LOAD_CONST 2 ( 0 )
+34 COMPARE_OP 2 ( == )
+36 POP_JUMP_IF_FALSE 42
+
+6 38 LOAD_CONST 1 ( 2 )
+40 RETURN_VALUE
+
+7 >> 42 LOAD_CONST 4 ( 3 )
+44 STORE_FAST 2 ( i )
+
+8 >> 46 SETUP_LOOP 74 ( to 124 )
+>> 48 LOAD_FAST 2 ( i )
+50 LOAD_GLOBAL 0 ( math )
+52 LOAD_METHOD 1 ( sqrt )
+54 LOAD_FAST 0 ( n )
+56 CALL_METHOD 1
+58 COMPARE_OP 1 ( <= )
+60 POP_JUMP_IF_FALSE 122
+
+9 62 SETUP_LOOP 40 ( to 122 )
+>> 64 LOAD_FAST 0 ( n )
+66 LOAD_FAST 2 ( i )
+68 BINARY_MODULO
+70 LOAD_CONST 2 ( 0 )
+72 COMPARE_OP 2 ( == )
+74 POP_JUMP_IF_FALSE 92
+
+10 76 LOAD_FAST 1 ( k )
+78 LOAD_CONST 3 ( 1 )
+80 COMPARE_OP 2 ( == )
+82 POP_JUMP_IF_FALSE 88
+
+11 84 LOAD_FAST 2 ( i )
+86 RETURN_VALUE
+
+12 >> 88 LOAD_FAST 1 ( k )
+90 LOAD_CONST 3 ( 1 )
+92 BINARY_SUBTRACT
+94 STORE_FAST 1 ( k )
+
+13 96 LOAD_FAST 0 ( n )
+98 LOAD_FAST 2 ( i )
+100 BINARY_TRUE_DIVIDE
+102 STORE_FAST 0 ( n )
+104 JUMP_ABSOLUTE 64
+>> 106 POP_BLOCK
+
+14 >> 108 LOAD_FAST 2 ( i )
+110 LOAD_CONST 1 ( 2 )
+112 BINARY_ADD
+114 STORE_FAST 2 ( i )
+116 JUMP_ABSOLUTE 2
+>> 118 POP_BLOCK
+
+15 >> 120 LOAD_FAST 0 ( n )
+122 LOAD_CONST 1 ( 2 )
+124 BINARY_ADD
+126 STORE_FAST 2 ( i )
+
+16 128 LOAD_FAST 0 ( n )
+130 LOAD_CONST 1 ( 2 )
+132 BINARY_ADD
+134 STORE_FAST 2 ( i )
+136 JUMP_ABSOLUTE 2
+138 POP_BLOCK
+
+17 >> 140 LOAD_FAST 0 ( n )
+142 LOAD_CONST 1 ( 2 )
+144 COMPARE_OP 4 ( > )
+146 POP_JUMP_IF_FALSE 154
+148 LOAD_FAST 1 ( k )
+150 LOAD_CONST 3 ( 1 )
+152 COMPARE_OP 2 ( == )
+>> 154 POP_JUMP_IF_FALSE 158
+156 LOAD_FAST 1 ( k )
+158 LOAD_CONST 3 ( 1 )
+160 COMPARE_OP 2 ( == )
+162 POP_JUMP_IF_FALSE 166
+
+18 164 LOAD_FAST 0 ( n )
+166 RETURN_VALUE
+
+19 >> 168 LOAD_CONST 4 ( - 1 )
+170 RETURN_VALUE

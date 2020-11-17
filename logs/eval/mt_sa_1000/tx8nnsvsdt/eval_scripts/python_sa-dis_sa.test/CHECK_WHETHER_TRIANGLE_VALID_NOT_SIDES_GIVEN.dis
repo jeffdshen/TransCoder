@@ -1,0 +1,31 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , c ) :\n    if ( a + b <= c ) or ( a + c <= b ) or ( b + c <= a ) :\n        return False\n    else :\n        return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (29,19,52,),\n    (83,34,49,),\n    (48,14,65,),\n    (59,12,94,),\n    (56,39,22,),\n    (68,85,9,),\n    (63,36,41,),\n    (95,34,37,),\n    (2,90,27,),\n    (11,16,1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkValidity ( a , b , c ) :\n    if ( a + b <= c ) or ( a + c <= b ) or ( b + c <= a ) :\n        return False\n    else :\n        return True\n"}
+Disassembly of <code object checkINSERT at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_FAST 1 ( b )
+4 BINARY_ADD
+6 LOAD_FAST 2 ( c )
+8 COMPARE_OP 1 ( <= )
+10 POP_JUMP_IF_TRUE 28
+12 LOAD_FAST 0 ( a )
+14 LOAD_FAST 2 ( c )
+16 BINARY_ADD
+18 LOAD_FAST 1 ( b )
+20 LOAD_FAST 2 ( c )
+22 BINARY_ADD
+24 LOAD_FAST 0 ( a )
+26 COMPARE_OP 1 ( <= )
+>> 28 POP_JUMP_IF_FALSE 42
+30 LOAD_FAST 1 ( b )
+32 LOAD_FAST 2 ( c )
+34 BINARY_ADD
+36 LOAD_FAST 0 ( a )
+38 COMPARE_OP 1 ( <= )
+40 POP_JUMP_IF_FALSE 46
+
+3 >> 42 LOAD_CONST 1 ( False )
+44 RETURN_VALUE
+
+5 >> 46 LOAD_CONST 2 ( True )
+48 RETURN_VALUE
+50 LOAD_CONST 0 ( None )
+52 RETURN_VALUE

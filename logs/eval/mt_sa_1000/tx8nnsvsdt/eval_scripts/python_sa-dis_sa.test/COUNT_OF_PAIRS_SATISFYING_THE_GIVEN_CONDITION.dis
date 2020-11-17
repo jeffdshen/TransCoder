@@ -1,0 +1,65 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b ) :\n    s = str ( b )\n    i = 0\n    while i < ( len ( s ) ) :\n        if ( s [ i ] != '9' ) :\n            break\n        i += 1\n    result = 0\n    if ( i == len ( s ) ) :\n        result = a * len ( s )\n    else :\n        result = a * ( len ( s ) - 1 )\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (31,91,),\n    (72,85,),\n    (23,49,),\n    (42,32,),\n    (13,7,),\n    (93,5,),\n    (33,32,),\n    (94,76,),\n    (60,60,),\n    (11,26,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPair ( a , b ) :\n    s = str ( b )\n    i = 0\n    while i < ( len ( s ) ) :\n        if ( s [ i ] != '9' ) :\n            break\n        i += 1\n    result = 0\n    if ( i == len ( s ) ) :\n        result = a * len ( s )\n    else :\n        result = a * ( len ( s ) - 1 )\n    return result\n"}
+Disassembly of <code object countPair at 0x7f2b016399c0, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( str )
+2 LOAD_FAST 1 ( b )
+4 CALL_FUNCTION 1
+6 STORE_FAST 2 ( s )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 3 ( i )
+
+4 12 SETUP_LOOP 46 ( to 60 )
+>> 14 LOAD_FAST 3 ( i )
+16 LOAD_GLOBAL 1 ( len )
+18 LOAD_FAST 2 ( s )
+20 CALL_FUNCTION 1
+22 COMPARE_OP 0 ( < )
+24 POP_JUMP_IF_FALSE 58
+
+5 26 LOAD_FAST 2 ( s )
+28 LOAD_FAST 3 ( i )
+30 BINARY_SUBSCR
+32 LOAD_CONST 2 ( '9' )
+34 COMPARE_OP 3 ( != )
+36 POP_JUMP_IF_FALSE 38
+
+6 >> 38 BREAK_LOOP
+40 JUMP_ABSOLUTE 14
+42 POP_BLOCK
+
+7 44 LOAD_FAST 3 ( i )
+46 LOAD_CONST 3 ( 1 )
+48 INPLACE_ADD
+50 STORE_FAST 3 ( i )
+52 JUMP_ABSOLUTE 14
+>> 54 POP_BLOCK
+
+8 56 LOAD_CONST 1 ( 0 )
+58 STORE_FAST 4 ( result )
+
+9 >> 60 LOAD_FAST 3 ( i )
+62 LOAD_GLOBAL 1 ( len )
+64 LOAD_FAST 2 ( s )
+66 CALL_FUNCTION 1
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 82
+
+10 72 LOAD_FAST 0 ( a )
+74 LOAD_GLOBAL 1 ( len )
+76 LOAD_FAST 2 ( s )
+78 CALL_FUNCTION 1
+80 BINARY_MULTIPLY
+82 STORE_FAST 4 ( result )
+84 JUMP_FORWARD 18 ( to 102 )
+
+12 >> 86 LOAD_FAST 0 ( a )
+88 LOAD_GLOBAL 1 ( len )
+90 LOAD_FAST 2 ( s )
+92 CALL_FUNCTION 1
+94 LOAD_CONST 3 ( 1 )
+96 BINARY_SUBTRACT
+98 BINARY_MULTIPLY
+100 STORE_FAST 4 ( result )
+
+13 >> 102 LOAD_FAST 4 ( result )
+104 RETURN_VALUE

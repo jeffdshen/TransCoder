@@ -1,0 +1,38 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , n ) :\n    result = 1\n    for i in range ( 1 , n ) :\n        y = ( i * ( i + 1 ) ) / 2\n        if ( y < n ) :\n            result = i\n        else :\n            break\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([8, 10, 11, 14, 14, 17, 20, 20, 22, 22, 22, 23, 25, 30, 33, 39, 39, 41, 43, 45, 46, 46, 46, 50, 51, 53, 57, 59, 60, 64, 64, 66, 72, 72, 75, 77, 85, 85, 87, 88, 90, 91, 93, 94, 94, 95],38,),\n    ([-44, -90, 20, 4, -56, -50, -80, 74, -82, 20, 62, -26, -10, -14, -76, 82, -88, 92, 30, 44, -62, -86, -20, -96, -60, -88, -78, -40, -48, -92, 62, 58, 94, 68, 68, 44, 80, 4, 48, -92, 30, -76, -46, -20, 4],36,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],28,),\n    ([8, 34, 48, 10, 5, 12, 80, 7, 67, 1, 79, 59, 63, 13, 16, 23, 62, 56, 99, 89, 7, 80],12,),\n    ([-88, -46, -40, -40, 38],3,),\n    ([1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1],44,),\n    ([8, 15, 35, 39, 49, 81, 86, 91],7,),\n    ([-24, 56, -74, -76, -80, 86, 90, 0, -26, 18, 72, 78, -66, -28, 22, 22, 72, 78, -50, -12, 20, 12, -68, -2, -58, -44, 28, -58, 90, -28, 32, -70, -48, -66, -94, -50, 18, -12, 80, 12, 82, 56, -64, 10, -22],36,),\n    ([0, 0],1,),\n    ([62, 93, 69, 40, 26, 2, 29, 83, 66, 68, 67, 73, 12, 65, 89, 57, 38, 99, 42, 27, 38, 24, 43, 4, 4, 54, 72, 47, 52, 46, 53, 24, 3, 41, 64, 33, 88, 3, 1, 7, 17, 31, 20, 33, 69, 21, 9, 24, 59],26,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def MaximumHeight ( a , n ) :\n    result = 1\n    for i in range ( 1 , n ) :\n        y = ( i * ( i + 1 ) ) / 2\n        if ( y < n ) :\n            result = i\n        else :\n            break\n    return result\n"}
+Disassembly of <code object MaximumHeight at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 2 ( result )
+
+3 4 SETUP_LOOP 62 ( to 68 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 1 ( 1 )
+10 LOAD_FAST 1 ( n )
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 44 ( to 66 )
+18 STORE_FAST 3 ( i )
+
+4 20 LOAD_FAST 3 ( i )
+22 LOAD_FAST 3 ( i )
+24 LOAD_CONST 1 ( 1 )
+26 BINARY_ADD
+28 BINARY_MULTIPLY
+30 LOAD_CONST 2 ( 2 )
+32 BINARY_TRUE_DIVIDE
+34 STORE_FAST 4 ( y )
+
+5 36 LOAD_FAST 4 ( y )
+38 LOAD_FAST 1 ( n )
+40 COMPARE_OP 0 ( < )
+42 POP_JUMP_IF_FALSE 52
+
+6 44 LOAD_FAST 3 ( i )
+46 STORE_FAST 2 ( result )
+48 JUMP_ABSOLUTE 16
+
+8 >> 50 BREAK_LOOP
+52 JUMP_ABSOLUTE 16
+>> 54 POP_BLOCK
+
+9 56 LOAD_FAST 2 ( result )
+58 RETURN_VALUE

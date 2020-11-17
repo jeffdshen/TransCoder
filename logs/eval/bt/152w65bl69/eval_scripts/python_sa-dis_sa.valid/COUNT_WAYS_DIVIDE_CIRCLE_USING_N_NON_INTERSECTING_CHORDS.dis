@@ -1,0 +1,47 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( A ) :\n    n = 2 * A\n    dpArray = [ 0 ] * ( n + 1 )\n    dpArray [ 0 ] = 1\n    dpArray [ 2 ] = 1\n    for i in range ( 4 , n + 1 , 2 ) :\n        for j in range ( 0 , i - 1 , 2 ) :\n            dpArray [ i ] += ( dpArray [ j ] * dpArray [ i - 2 - j ] )\n    return int ( dpArray [ n ] )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (32,),\n    (52,),\n    (52,),\n    (32,),\n    (73,),\n    (31,),\n    (29,),\n    (75,),\n    (39,),\n    (49,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def chordCnt ( A ) :\n    n = 2 * A\n    dpArray = [ 0 ] * ( n + 1 )\n    dpArray [ 0 ] = 1\n    dpArray [ 2 ] = 1\n    for i in range ( 4 , n + 1 , 2 ) :\n        for j in range ( 0 , i - 1 , 2 ) :\n            dpArray [ i ] += ( dpArray [ j ] * dpArray [ i - 2 - j ] )\n    return int ( dpArray [ n ] )\n"}
+Disassembly of <code object chordCnt at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( n )
+2 LOAD_CONST 1 ( 2 )
+4 BINARY_MULTIPLY
+6 STORE_FAST 2 ( ni )
+
+27 8 LOAD_FAST 0 ( A )
+10 LOAD_CONST 2 ( - 1 )
+12 BINARY_MULTIPLY
+14 STORE_FAST 3 ( ni )
+
+28 16 LOAD_FAST 0 ( A )
+18 LOAD_CONST 3 ( - 1 )
+20 BINARY_MULTIPLY
+22 LOAD_FAST 2 ( ni )
+24 BINARY_MULTIPLY
+26 LOAD_FAST 3 ( ni )
+28 BINARY_MULTIPLY
+30 LOAD_FAST 2 ( ni )
+32 BINARY_MULTIPLY
+34 BINARY_ADD
+36 LOAD_FAST 3 ( ni )
+38 BINARY_MULTIPLY
+40 BINARY_ADD
+42 LOAD_FAST 3 ( ni )
+44 BINARY_MULTIPLY
+46 BINARY_ADD
+48 STORE_FAST 4 ( ni )
+
+29 50 LOAD_FAST 0 ( A )
+52 LOAD_CONST 4 ( - 1 )
+54 BINARY_MULTIPLY
+56 LOAD_FAST 4 ( ni )
+58 BINARY_MULTIPLY
+60 BINARY_MULTIPLY
+62 LOAD_FAST 2 ( ni )
+64 BINARY_MULTIPLY
+66 BINARY_ADD
+68 LOAD_FAST 4 ( ni )
+70 BINARY_MULTIPLY
+72 BINARY_ADD
+74 LOAD_FAST 3 ( ni )
+76 BINARY_MULTIPLY
+78 BINARY_ADD
+80 RETURN_VALUE
+

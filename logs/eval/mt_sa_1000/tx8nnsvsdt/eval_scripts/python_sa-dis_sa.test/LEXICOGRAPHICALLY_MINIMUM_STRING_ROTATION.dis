@@ -1,0 +1,47 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str_ ) :\n    n = len ( str_ )\n    arr = [ 0 ] * n\n    concat = str_ + str_\n    for i in range ( n ) :\n        arr [ i ] = concat [ i : n + i ]\n    arr.sort ( )\n    return arr [ 0 ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('onWEchl',),\n    ('2',),\n    ('100',),\n    ('GHbCZA',),\n    ('50568798206105',),\n    ('001011110001',),\n    ('lljpYhznnyu',),\n    ('54499921759984',),\n    ('11101',),\n    ('qvypgCYEjsyjwZ',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minLexRotation ( str_ ) :\n    n = len ( str_ )\n    arr = [ 0 ] * n\n    concat = str_ + str_\n    for i in range ( n ) :\n        arr [ i ] = concat [ i : n + i ]\n    arr.sort ( )\n    return arr [ 0 ]\n"}
+Disassembly of <code object minLexRotation at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( str_ )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 BUILD_LIST 1
+12 LOAD_FAST 1 ( n )
+14 BINARY_MULTIPLY
+16 STORE_FAST 2 ( arr )
+
+4 18 LOAD_FAST 0 ( str_ )
+20 LOAD_FAST 0 ( str_ )
+22 BINARY_ADD
+24 STORE_FAST 3 ( concat )
+
+5 26 SETUP_LOOP 34 ( to 62 )
+28 LOAD_GLOBAL 1 ( range )
+30 LOAD_FAST 1 ( n )
+32 CALL_FUNCTION 1
+34 GET_ITER
+>> 36 FOR_ITER 26 ( to 60 )
+38 STORE_FAST 4 ( i )
+
+6 40 LOAD_FAST 3 ( concat )
+42 LOAD_FAST 4 ( i )
+44 LOAD_FAST 1 ( n )
+46 BINARY_ADD
+48 BUILD_SLICE 2
+50 BINARY_SUBSCR
+52 LOAD_FAST 2 ( arr )
+54 LOAD_FAST 4 ( i )
+56 STORE_SUBSCR
+58 JUMP_ABSOLUTE 36
+>> 60 POP_BLOCK
+
+7 >> 62 LOAD_FAST 2 ( arr )
+64 LOAD_METHOD 2 ( sort )
+66 CALL_METHOD 0
+68 POP_TOP
+
+8 70 LOAD_FAST 2 ( arr )
+72 LOAD_CONST 1 ( 0 )
+74 BINARY_SUBSCR
+76 RETURN_VALUE

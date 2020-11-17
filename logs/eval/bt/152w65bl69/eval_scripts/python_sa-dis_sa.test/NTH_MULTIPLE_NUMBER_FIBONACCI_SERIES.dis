@@ -1,0 +1,77 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( k , n ) :\n    f1 = 0\n    f2 = 1\n    i = 2 ;\n    while i != 0 :\n        f3 = f1 + f2 ;\n        f1 = f2 ;\n        f2 = f3 ;\n        if f2 % k == 0 :\n            return n * i\n        i += 1\n    return\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (50,60,),\n    (52,45,),\n    (42,17,),\n    (2,68,),\n    (37,43,),\n    (48,46,),\n    (31,4,),\n    (9,64,),\n    (78,14,),\n    (64,80,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findPosition ( k , n ) :\n    f1 = 0\n    f2 = 1\n    i = 2 ;\n    while i != 0 :\n        f3 = f1 + f2 ;\n        f1 = f2 ;\n        f2 = f3 ;\n        if f2 % k == 0 :\n            return n * i\n        i += 1\n    return\n"}
+Disassembly of <code object findPosition at 0x7f816a601660, file "<dis>", line 75>:
+76 0 LOAD_FAST 0 ( k )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 3 ( != )
+6 POP_JUMP_IF_FALSE 12
+
+77 8 LOAD_FAST 0 ( k )
+10 LOAD_CONST 2 ( 1 )
+12 INPLACE_ADD
+14 STORE_FAST 0 ( k )
+16 JUMP_FORWARD 2 ( to 12 )
+>> 18 LOAD_CONST 3 ( 1 )
+>> 20 STORE_FAST 0 ( k )
+
+78 22 LOAD_FAST 0 ( k )
+24 LOAD_CONST 4 ( 2 )
+26 COMPARE_OP 3 ( != )
+28 POP_JUMP_IF_FALSE 38
+
+79 30 LOAD_FAST 0 ( k )
+32 LOAD_CONST 5 ( 3 )
+34 COMPARE_OP 3 ( != )
+36 POP_JUMP_IF_FALSE 38
+
+80 38 LOAD_FAST 0 ( k )
+40 LOAD_CONST 6 ( 4 )
+42 INPLACE_ADD
+44 STORE_FAST 0 ( k )
+46 JUMP_FORWARD 2 ( to 38 )
+>> 48 LOAD_CONST 7 ( 2 )
+50 STORE_FAST 0 ( k )
+52 JUMP_FORWARD 2 ( to 38 )
+
+82 >> 54 LOAD_FAST 0 ( k )
+56 LOAD_CONST 6 ( 4 )
+58 INPLACE_ADD
+60 STORE_FAST 0 ( k )
+
+83 >> 62 LOAD_FAST 0 ( k )
+64 LOAD_CONST 6 ( 4 )
+66 INPLACE_ADD
+68 STORE_FAST 0 ( k )
+
+84 70 LOAD_FAST 0 ( k )
+72 LOAD_CONST 6 ( 4 )
+74 INPLACE_ADD
+76 STORE_FAST 0 ( k )
+78 JUMP_FORWARD 2 ( to 38 )
+>> 80 LOAD_CONST 7 ( 2 )
+82 STORE_FAST 0 ( k )
+
+85 >> 84 LOAD_FAST 0 ( k )
+86 LOAD_FAST 0 ( k )
+88 LOAD_FAST 0 ( k )
+90 LOAD_FAST 0 ( k )
+92 LOAD_FAST 0 ( k )
+94 LOAD_FAST 0 ( k )
+96 BUILD_TUPLE 2
+98 INPLACE_ADD
+100 STORE_FAST 0 ( k )
+
+86 >> 102 LOAD_FAST 0 ( k )
+104 LOAD_FAST 0 ( k )
+106 LOAD_FAST 0 ( k )
+108 LOAD_FAST 0 ( k )
+110 LOAD_FAST 0 ( k )
+112 LOAD_FAST 0 ( k )
+114 BUILD_TUPLE 2
+116 LOAD_FAST 0 ( k )
+118 LOAD_FAST 0 ( k )
+120 LOAD_FAST 0 ( k )
+122 BUILD_TUPLE 2
+124 STORE_SUBSCR
+126 LOAD_CONST 0 ( None )
+128 RETURN_VALUE
+

@@ -1,0 +1,56 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    result = \"\"\n    v = True\n    for i in range ( len ( str ) ) :\n        if ( str [ i ] == ' ' ) :\n            v = True\n        elif ( str [ i ] != ' ' and v == True ) :\n            result += ( str [ i ] )\n            v = False\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('t a',),\n    ('77 78 2 600 7',),\n    ('011 10 10',),\n    ('kV Co O iR',),\n    ('2',),\n    ('0 11',),\n    ('Y sT wgheC',),\n    ('58 824 6',),\n    ('00 100 001 0111',),\n    ('Q',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def firstLetterWord ( str ) :\n    result = \"\"\n    v = True\n    for i in range ( len ( str ) ) :\n        if ( str [ i ] == ' ' ) :\n            v = True\n        elif ( str [ i ] != ' ' and v == True ) :\n            result += ( str [ i ] )\n            v = False\n    return result\n"}
+Disassembly of <code object firstLetterWord at 0x7f2b01639f60, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( '' )
+2 STORE_FAST 1 ( result )
+
+3 4 LOAD_CONST 2 ( True )
+6 STORE_FAST 2 ( v )
+
+4 8 SETUP_LOOP 74 ( to 84 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_GLOBAL 1 ( len )
+14 LOAD_FAST 0 ( str )
+16 CALL_FUNCTION 1
+18 CALL_FUNCTION 1
+20 GET_ITER
+>> 22 FOR_ITER 58 ( to 82 )
+24 STORE_FAST 3 ( i )
+
+5 26 LOAD_FAST 0 ( str )
+28 LOAD_FAST 3 ( i )
+30 BINARY_SUBSCR
+32 LOAD_CONST 3 ( ' ' )
+34 COMPARE_OP 2 ( == )
+36 POP_JUMP_IF_FALSE 46
+
+6 38 LOAD_CONST 2 ( True )
+40 STORE_FAST 2 ( v )
+42 JUMP_ABSOLUTE 22
+44 JUMP_ABSOLUTE 22
+
+7 >> 46 LOAD_FAST 0 ( str )
+48 LOAD_FAST 3 ( i )
+50 BINARY_SUBSCR
+52 LOAD_CONST 3 ( ' ' )
+54 COMPARE_OP 3 ( != )
+56 POP_JUMP_IF_FALSE 22
+58 LOAD_FAST 2 ( v )
+60 LOAD_CONST 2 ( True )
+62 COMPARE_OP 2 ( == )
+64 POP_JUMP_IF_FALSE 22
+
+8 66 LOAD_FAST 1 ( result )
+68 LOAD_GLOBAL 0 ( str )
+70 LOAD_FAST 3 ( i )
+72 BINARY_SUBSCR
+74 CALL_FUNCTION 1
+76 INPLACE_ADD
+78 STORE_FAST 1 ( result )
+
+9 80 LOAD_CONST 4 ( False )
+82 STORE_FAST 2 ( v )
+84 JUMP_ABSOLUTE 22
+>> 86 POP_BLOCK
+
+10 >> 88 LOAD_FAST 1 ( result )
+90 RETURN_VALUE

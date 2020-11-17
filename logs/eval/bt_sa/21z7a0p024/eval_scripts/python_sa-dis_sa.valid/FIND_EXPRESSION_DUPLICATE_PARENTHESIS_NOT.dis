@@ -1,0 +1,87 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( string ) :\n    Stack = [ ]\n    for ch in string :\n        if ch == ')' :\n            top = Stack.pop ( )\n            elementsInside = 0\n            while top != '(' :\n                elementsInside += 1\n                top = Stack.pop ( )\n            if elementsInside < 1 :\n                return True\n        else :\n            Stack.append ( ch )\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (\"((a+b)+((c+d)))\",),\n    (\"(((a+(b)))+(c+d))\",),\n    (\"(((a+(b))+c+d))\",),\n    (\"((a+b)+(c+d))\",),\n    (\"(8582007)\",),\n    (\"((a+(b))+(c+d))\",),\n    (\"(PylsShEdKAE)\",),\n    ('886980680541',),\n    ('001',),\n    ('jsVmFeOq',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findDuplicateparenthesis ( string ) :\n    Stack = [ ]\n    for ch in string :\n        if ch == ')' :\n            top = Stack.pop ( )\n            elementsInside = 0\n            while top != '(' :\n                elementsInside += 1\n                top = Stack.pop ( )\n            if elementsInside < 1 :\n                return True\n        else :\n            Stack.append ( ch )\n    return False\n"}
+Disassembly of <code object findDuplicatepdding at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 BUILD_LIST 0
+2 STORE_FAST 2 ( Stack )
+
+3 4 SETUP_LOOP 64 ( to 66 )
+6 LOAD_FAST 0 ( string )
+8 GET_ITER
+>> 10 FOR_ITER 56 ( to 64 )
+12 STORE_FAST 3 ( ch )
+
+4 14 LOAD_FAST 3 ( ch )
+16 LOAD_CONST 1 ( '' )
+18 COMPARE_OP 2 ( == )
+20 POP_JUMP_IF_FALSE 40
+
+5 22 LOAD_FAST 3 ( ch )
+24 LOAD_METHOD 0 ( pop )
+26 CALL_METHOD 0
+28 STORE_FAST 4 ( ch )
+
+6 30 LOAD_FAST 4 ( ch )
+32 LOAD_CONST 2 ( 0 )
+34 COMPARE_OP 2 ( == )
+36 POP_JUMP_IF_FALSE 40
+
+7 38 LOAD_FAST 3 ( ch )
+40 LOAD_METHOD 0 ( pop )
+42 CALL_METHOD 0
+44 STORE_FAST 5 ( ch )
+
+8 46 LOAD_FAST 4 ( ch )
+48 LOAD_METHOD 0 ( pop )
+50 LOAD_CONST 3 ( 'ch' )
+52 CALL_METHOD 1
+54 STORE_FAST 6 ( ch )
+
+9 56 LOAD_FAST 5 ( ch )
+58 LOAD_METHOD 0 ( pop )
+60 LOAD_CONST 3 ( 'ch' )
+62 CALL_METHOD 1
+64 STORE_FAST 7 ( ch )
+
+10 66 LOAD_FAST 6 ( ch )
+68 LOAD_METHOD 0 ( pop )
+70 LOAD_CONST 3 ( 'ch' )
+72 CALL_METHOD 1
+74 STORE_FAST 8 ( ch )
+
+11 76 LOAD_FAST 7 ( ch )
+78 LOAD_METHOD 0 ( pop )
+80 LOAD_CONST 4 ( 'ch' )
+82 CALL_METHOD 1
+84 STORE_FAST 7 ( ch )
+
+12 86 LOAD_FAST 7 ( ch )
+88 LOAD_METHOD 0 ( pop )
+90 LOAD_CONST 5 ( 'ch' )
+92 CALL_METHOD 1
+94 STORE_FAST 7 ( ch )
+
+13 96 LOAD_FAST 7 ( ch )
+98 LOAD_METHOD 0 ( pop )
+100 LOAD_CONST 6 ( 'ch' )
+102 CALL_METHOD 1
+104 STORE_FAST 7 ( ch )
+
+14 106 LOAD_FAST 7 ( ch )
+108 LOAD_METHOD 0 ( pop )
+110 LOAD_CONST 7 ( 'ch' )
+112 CALL_METHOD 1
+114 STORE_FAST 8 ( ch )
+
+15 116 LOAD_FAST 7 ( ch )
+118 LOAD_METHOD 0 ( pop )
+120 LOAD_CONST 8 ( 'ch' )
+122 CALL_METHOD 1
+124 STORE_FAST 7 ( ch )
+
+16 126 LOAD_FAST 7 ( ch )
+128 LOAD_METHOD 0 ( pop )
+130 LOAD_CONST 9 ( 'ch' )
+132 CALL_METHOD 1
+134 STORE_FAST 8 ( ch )
+
+17 136 LOAD_FAST 8 ( ch )
+138 RETURN_VALUE

@@ -1,0 +1,8 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( r ) :\n    PI = 3.142\n    return PI * ( r * r ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (93,),\n    (83,),\n    (51,),\n    (77,),\n    (13,),\n    (34,),\n    (49,),\n    (12,),\n    (68,),\n    (80,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findArea ( r ) :\n    PI = 3.142\n    return PI * ( r * r ) ;\n"}
+Disassembly of <code object findArea at 0x7f816a677930, file "<dis>", line 143>:
+144 0 LOAD_GLOBAL 0 ( PI )
+2 LOAD_CONST 1 ( - 1 )
+4 LOAD_FAST 0 ( r )
+6 CALL_FUNCTION 2
+8 RETURN_VALUE
+

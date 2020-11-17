@@ -1,0 +1,110 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a1 , a2 , a3 , n1 , n2 , n3 , sum ) :\n    for i in range ( 0 , n1 ) :\n        for j in range ( 0 , n2 ) :\n            for k in range ( 0 , n3 ) :\n                if ( a1 [ i ] + a2 [ j ] + a3 [ k ] == sum ) :\n                    return True\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 9, 10, 19, 24, 25, 26, 30, 36, 43, 44, 49, 52, 62, 66, 69, 72, 77, 80, 80, 82, 84, 90, 93, 94, 98],[4, 8, 17, 20, 22, 25, 27, 30, 31, 33, 35, 35, 38, 41, 49, 51, 60, 61, 66, 67, 69, 82, 84, 85, 86, 88],[12, 14, 17, 20, 22, 27, 29, 31, 32, 38, 41, 43, 56, 59, 59, 64, 66, 67, 68, 69, 71, 76, 83, 83, 85, 99],25,18,16,222,),\n    ([-24, -80, -72, 80, -96, -94, 64, 18, 12, 16, 74, 16, 54, 66, -96, -90, 54, 72, -32, -2, 90, -18, -98, 12, -42, -30, -82, -56, -86, 40],[30, -60, -24, 18, 40, 44, -40, 62, 66, -38, 50, -74, -42, -86, -82, -8, 50, -72, -2, -48, -38, -20, -8, 56, -32, 68, 94, 80, -48, 0],[-24, 80, 50, -56, -92, 20, 86, -42, -30, 96, 40, -32, -64, 54, -38, -72, -70, 54, -28, 98, 60, 98, -12, -30, -30, 68, -66, 68, -58, 52],26,22,20,21,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],14,14,14,2,),\n    ([28, 15, 21, 28, 85, 68, 24],[57, 46, 47, 49, 16, 81, 60],[76, 49, 6, 44, 71, 24, 57],6,5,5,73,),\n    ([-86, -82, -66, -44, -44, -38, -22, -6, -2, 14, 26, 40, 54, 58, 60, 66, 72, 80, 94, 96, 98],[-96, -86, -74, -56, -52, -42, -32, -22, -16, -10, -4, -4, 10, 42, 48, 52, 58, 62, 84, 90, 96],[-92, -92, -90, -82, -62, -44, -42, -40, -38, -36, -22, -20, -8, 12, 22, 26, 30, 44, 54, 64, 86],13,20,17,6,),\n    ([1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1],[0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1],[1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0],25,25,23,0,),\n    ([44, 53, 85, 85, 86, 88, 93],[4, 5, 8, 15, 29, 40, 91],[30, 53, 71, 75, 76, 82, 84],5,3,4,3,),\n    ([70, -38, 62, -34, 74, -32, -58, -34, -54],[48, -86, -18, 14, 88, 92, -56, -8, -74],[8, 8, 32, 76, 76, 94, 22, -60, -42],6,6,6,7,),\n    ([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],15,14,10,13,),\n    ([41, 64, 39, 96, 54, 54, 57, 4, 82, 43, 44, 56, 1],[44, 58, 40, 87, 22, 82, 8, 81, 88, 42, 15, 14, 81],[64, 20, 24, 42, 37, 46, 6, 47, 12, 93, 8, 5, 11],7,8,6,10,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findTriplet ( a1 , a2 , a3 , n1 , n2 , n3 , sum ) :\n    for i in range ( 0 , n1 ) :\n        for j in range ( 0 , n2 ) :\n            for k in range ( 0 , n3 ) :\n                if ( a1 [ i ] + a2 [ j ] + a3 [ k ] == sum ) :\n                    return True\n    return False\n"}
+Disassembly of <code object findTriplet at 0x7f816a673a50, file "<dis>", line 67>:
+68 0 SETUP_LOOP 22 ( to 24 )
+2 LOAD_FAST 1 ( n1 )
+4 GET_ITER
+>> 6 FOR_ITER 14 ( to 22 )
+8 STORE_FAST 2 ( c )
+
+69 10 LOAD_FAST 0 ( a1 )
+12 LOAD_FAST 2 ( c )
+14 LOAD_FAST 1 ( n1 )
+16 LOAD_FAST 3 ( n2 )
+18 BINARY_SUBTRACT
+20 BINARY_MULTIPLY
+22 LOAD_FAST 2 ( c )
+24 LOAD_FAST 1 ( n1 )
+26 BINARY_SUBTRACT
+28 BINARY_MULTIPLY
+30 BINARY_ADD
+32 STORE_FAST 4 ( n2 )
+
+70 34 LOAD_FAST 0 ( a1 )
+36 LOAD_FAST 4 ( n2 )
+38 LOAD_FAST 2 ( c )
+40 LOAD_FAST 3 ( n2 )
+42 BINARY_MULTIPLY
+44 BINARY_ADD
+46 LOAD_FAST 4 ( n2 )
+48 BINARY_MULTIPLY
+50 BINARY_ADD
+52 LOAD_FAST 4 ( n2 )
+54 BINARY_MULTIPLY
+56 BINARY_ADD
+58 BINARY_ADD
+60 STORE_FAST 5 ( n2 )
+
+71 62 LOAD_FAST 0 ( a1 )
+64 LOAD_FAST 5 ( n2 )
+66 LOAD_FAST 2 ( c )
+68 LOAD_FAST 3 ( n2 )
+70 BINARY_MULTIPLY
+72 BINARY_ADD
+74 LOAD_FAST 4 ( n2 )
+76 BINARY_MULTIPLY
+78 BINARY_ADD
+80 LOAD_FAST 5 ( n2 )
+82 BINARY_MULTIPLY
+84 BINARY_ADD
+86 LOAD_FAST 4 ( n2 )
+88 BINARY_MULTIPLY
+90 BINARY_ADD
+92 LOAD_FAST 5 ( n2 )
+94 BINARY_ADD
+96 BINARY_MULTIPLY
+98 BINARY_ADD
+100 STORE_FAST 6 ( n2 )
+
+72 102 LOAD_FAST 0 ( a1 )
+104 LOAD_FAST 6 ( n2 )
+106 BINARY_MULTIPLY
+108 BINARY_ADD
+110 LOAD_FAST 6 ( n2 )
+112 BINARY_MULTIPLY
+114 BINARY_ADD
+116 LOAD_FAST 6 ( n2 )
+118 BINARY_MULTIPLY
+120 BINARY_ADD
+122 LOAD_FAST 6 ( n2 )
+124 BINARY_MULTIPLY
+126 BINARY_ADD
+128 LOAD_FAST 6 ( n2 )
+130 BINARY_MULTIPLY
+132 BINARY_ADD
+134 LOAD_FAST 5 ( n2 )
+136 BINARY_ADD
+138 BINARY_MULTIPLY
+140 BINARY_ADD
+142 LOAD_FAST 6 ( n2 )
+144 BINARY_MULTIPLY
+146 BINARY_ADD
+148 LOAD_FAST 6 ( n2 )
+150 BINARY_ADD
+152 BINARY_ADD
+154 BINARY_MULTIPLY
+156 BINARY_ADD
+158 LOAD_FAST 6 ( n2 )
+160 BINARY_ADD
+162 BINARY_ADD
+164 LOAD_FAST 6 ( n2 )
+166 BINARY_ADD
+164 BINARY_ADD
+
+73 168 LOAD_FAST 6 ( n2 )
+170 BINARY_ADD
+172 BINARY_MULTIPLY
+174 BINARY_ADD
+
+74 172 LOAD_FAST 6 ( n2 )
+174 BINARY_ADD
+176 BINARY_ADD
+178 LOAD_FAST 6 ( n2 )
+180 BINARY_ADD
+182 BINARY_ADD
+
+75 180 LOAD_FAST 6 ( n2 )
+182 LOAD_FAST 6 ( n2 )
+184 BINARY_ADD
+
+76 186 LOAD_FAST 5 ( n2 )
+188 LOAD_FAST 6

@@ -1,0 +1,10 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , y ) :\n    while ( y != 0 ) :\n        carry = x & y\n        x = x ^ y\n        y = carry << 1\n    return x\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (56,60,),\n    (17,44,),\n    (73,96,),\n    (75,3,),\n    (27,54,),\n    (61,1,),\n    (65,63,),\n    (22,19,),\n    (61,9,),\n    (97,23,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def Add ( x , y ) :\n    while ( y != 0 ) :\n        carry = x & y\n        x = x ^ y\n        y = carry << 1\n    return x\n"}
+Disassembly of <code object Add at 0x7f816a673a50, file "<dis>", line 68>:
+69 0 LOAD_FAST 0 ( self )
+2 LOAD_ATTR 0 ( carry )
+4 LOAD_FAST 1 ( y )
+6 LOAD_FAST 2 ( y )
+8 LOAD_FAST 3 ( y )
+10 BUILD_TUPLE 4
+12 RETURN_VALUE
+

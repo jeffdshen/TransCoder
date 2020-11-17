@@ -1,0 +1,83 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    i = - 1\n    j = 0\n    while ( j != n ) :\n        if ( arr [ j ] % 2 == 0 ) :\n            i = i + 1\n            arr [ i ] , arr [ j ] = arr [ j ] , arr [ i ]\n        j = j + 1\n    for i in arr :\n        print ( str ( i ) + \" \" , end = '' )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([20, 67],1,),\n    ([-54, 22, -42, -22, -48, -20, 34, -50, -22, -30, -94, 62, -24, 70, -54, -38, 84],11,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],20,),\n    ([62, 45, 87, 31, 67, 53, 61, 9, 20, 8, 99, 18, 69, 54, 99, 64, 35, 88, 85, 74, 58, 93, 65, 30, 96, 4, 77, 24, 54, 88, 43, 84, 62, 34, 93],28,),\n    ([-28, -6, 18, 42, 98],2,),\n    ([0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0],21,),\n    ([10, 42, 46],2,),\n    ([88, 4, -88, 2, -16, -74, -18, -60, 86, 88, -2, 82, -8, 54, -84, -4, 32, 20],17,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],35,),\n    ([80, 52, 9, 56, 68, 69, 48, 40, 64, 73, 44, 4, 97, 20, 25, 66, 46, 64, 72, 79, 24],15,)\n        ]\n    filled_function_param = [\n    ([20, 67],1,),\n    ([-54, 22, -42, -22, -48, -20, 34, -50, -22, -30, -94, 62, -24, 70, -54, -38, 84],11,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],20,),\n    ([62, 45, 87, 31, 67, 53, 61, 9, 20, 8, 99, 18, 69, 54, 99, 64, 35, 88, 85, 74, 58, 93, 65, 30, 96, 4, 77, 24, 54, 88, 43, 84, 62, 34, 93],28,),\n    ([-28, -6, 18, 42, 98],2,),\n    ([0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0],21,),\n    ([10, 42, 46],2,),\n    ([88, 4, -88, 2, -16, -74, -18, -60, 86, 88, -2, 82, -8, 54, -84, -4, 32, 20],17,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],35,),\n    ([80, 52, 9, 56, 68, 69, 48, 40, 64, 73, 44, 4, 97, 20, 25, 66, 46, 64, 72, 79, 24],15,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def arrayEvenAndOdd ( arr , n ) :\n    i = - 1\n    j = 0\n    while ( j != n ) :\n        if ( arr [ j ] % 2 == 0 ) :\n            i = i + 1\n            arr [ i ] , arr [ j ] = arr [ j ] , arr [ i ]\n        j = j + 1\n    for i in arr :\n        print ( str ( i ) + \" \" , end = '' )\n"}
+Disassembly of <code object arrayEvenAndOdd at 0x7f816a673a50, file "<dis>", line 16>:
+17 0 LOAD_CONST 1 ( - 1 )
+2 STORE_FAST 1 ( n )
+
+18 4 LOAD_FAST 1 ( n )
+6 LOAD_CONST 2 ( 0 )
+8 COMPARE_OP 4 ( > )
+10 POP_JUMP_IF_FALSE 32
+
+19 12 LOAD_FAST 1 ( n )
+14 LOAD_CONST 3 ( 1 )
+16 INPLACE_ADD
+18 STORE_FAST 1 ( n )
+
+20 20 LOAD_FAST 1 ( n )
+22 LOAD_CONST 4 ( 2 )
+24 INPLACE_ADD
+26 STORE_FAST 1 ( n )
+
+21 >> 28 LOAD_FAST 1 ( n )
+30 LOAD_CONST 5 ( 1 )
+32 INPLACE_ADD
+34 STORE_FAST 1 ( n )
+36 JUMP_FORWARD 2 ( to 38 )
+
+22 >> 38 LOAD_FAST 1 ( n )
+40 LOAD_CONST 6 ( 2 )
+42 INPLACE_ADD
+44 STORE_FAST 1 ( n )
+
+23 46 LOAD_FAST 1 ( n )
+48 LOAD_CONST 7 ( 3 )
+50 INPLACE_ADD
+52 STORE_FAST 1 ( n )
+
+24 54 LOAD_FAST 1 ( n )
+56 LOAD_CONST 8 ( 2 )
+58 INPLACE_ADD
+60 STORE_FAST 1 ( n )
+
+25 62 LOAD_FAST 1 ( n )
+64 LOAD_CONST 9 ( 2 )
+66 INPLACE_ADD
+68 STORE_FAST 1 ( n )
+
+26 70 LOAD_FAST 1 ( n )
+72 LOAD_CONST 10 ( 3 )
+74 INPLACE_ADD
+76 STORE_FAST 1 ( n )
+78 JUMP_FORWARD 2 ( to 38 )
+
+27 >> 80 LOAD_FAST 1 ( n )
+82 LOAD_CONST 10 ( 3 )
+84 INPLACE_ADD
+86 STORE_FAST 1 ( n )
+
+28 88 LOAD_FAST 1 ( n )
+90 LOAD_CONST 11 ( 2 )
+92 INPLACE_ADD
+94 STORE_FAST 1 ( n )
+
+29 >> 96 LOAD_FAST 1 ( n )
+98 LOAD_FAST 0 ( arr )
+100 LOAD_FAST 0 ( arr )
+102 LOAD_FAST 0 ( arr )
+104 LOAD_FAST 0 ( arr )
+106 LOAD_FAST 0 ( arr )
+108 LOAD_FAST 0 ( arr )
+110 LOAD_FAST 0 ( arr )
+112 LOAD_FAST 0 ( arr )
+114 LOAD_FAST 0 ( arr )
+116 LOAD_FAST 0 ( arr )
+118 LOAD_FAST 0 ( arr )
+120 LOAD_FAST 0 ( arr )
+122 LOAD_FAST 0 ( arr )
+124 LOAD_FAST 0 ( arr )
+126 LOAD_FAST 0 ( arr )
+128 LOAD_FAST 1 ( n )
+130 STORE_SUBSCR
+132 LOAD_CONST 0 ( None )
+134 RETURN_VALUE
+

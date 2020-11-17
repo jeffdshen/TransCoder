@@ -1,0 +1,19 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( k ) :\n    return k * k * k\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (57,),\n    (96,),\n    (14,),\n    (64,),\n    (24,),\n    (74,),\n    (85,),\n    (27,),\n    (78,),\n    (1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def kthgroupsum ( k ) :\n    return k * k * k\n"}
+Disassembly of <code object kthgroupsum at 0x7f816a6e4ae0, file "<dis>", line 19>:
+20 0 LOAD_FAST 0 ( k )
+2 LOAD_CONST 1 ( k )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+21 8 LOAD_GLOBAL 0 ( kthgroupsum )
+10 LOAD_FAST 0 ( k )
+12 CALL_FUNCTION 1
+14 RETURN_VALUE
+
+22 >> 16 LOAD_GLOBAL 1 ( kthgroupsum )
+18 LOAD_FAST 0 ( k )
+20 CALL_FUNCTION 1
+22 RETURN_VALUE
+24 LOAD_CONST 2 ( None )
+26 RETURN_VALUE
+

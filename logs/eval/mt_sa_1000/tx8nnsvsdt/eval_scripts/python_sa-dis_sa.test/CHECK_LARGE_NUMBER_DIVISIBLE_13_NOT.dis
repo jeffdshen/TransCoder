@@ -1,0 +1,152 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num ) :\n    length = len ( num )\n    if ( length == 1 and num [ 0 ] == '0' ) :\n        return True\n    if ( length % 3 == 1 ) :\n        num = str ( num ) + \"00\"\n        length += 2\n    elif ( length % 3 == 2 ) :\n        num = str ( num ) + \"0\"\n        length += 1\n    sum = 0\n    p = 1\n    for i in range ( length - 1 , - 1 , - 1 ) :\n        group = 0\n        group += ord ( num [ i ] ) - ord ( '0' )\n        i -= 1\n        group += ( ord ( num [ i ] ) - ord ( '0' ) ) * 10\n        i -= 1\n        group += ( ord ( num [ i ] ) - ord ( '0' ) ) * 100\n        sum = sum + group * p\n        p *= ( - 1 )\n    sum = abs ( sum )\n    return ( sum % 13 == 0 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('vzTUaItpCpLnjY',),\n    ('33855',),\n    ('0011110101011',),\n    ('MMQ',),\n    ('439340517954',),\n    ('000000000',),\n    ('UugAuRRJbjEgl',),\n    ('6406553695441',),\n    ('011001',),\n    ('yjFqEEvgiNjEX',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkDivisibility ( num ) :\n    length = len ( num )\n    if ( length == 1 and num [ 0 ] == '0' ) :\n        return True\n    if ( length % 3 == 1 ) :\n        num = str ( num ) + \"00\"\n        length += 2\n    elif ( length % 3 == 2 ) :\n        num = str ( num ) + \"0\"\n        length += 1\n    sum = 0\n    p = 1\n    for i in range ( length - 1 , - 1 , - 1 ) :\n        group = 0\n        group += ord ( num [ i ] ) - ord ( '0' )\n        i -= 1\n        group += ( ord ( num [ i ] ) - ord ( '0' ) ) * 10\n        i -= 1\n        group += ( ord ( num [ i ] ) - ord ( '0' ) ) * 100\n        sum = sum + group * p\n        p *= ( - 1 )\n    sum = abs ( sum )\n    return ( sum % 13 == 0 )\n"}
+Disassembly of <code object checkDivisibility at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( num )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( length )
+
+3 8 LOAD_FAST 1 ( length )
+10 LOAD_CONST 1 ( 1 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 32
+16 LOAD_FAST 0 ( num )
+18 LOAD_CONST 2 ( 0 )
+20 BINARY_SUBSCR
+22 LOAD_CONST 3 ( '0' )
+24 COMPARE_OP 2 ( == )
+26 POP_JUMP_IF_FALSE 32
+
+4 28 LOAD_CONST 4 ( True )
+30 RETURN_VALUE
+
+5 >> 32 LOAD_FAST 1 ( length )
+34 LOAD_CONST 5 ( 3 )
+36 BINARY_MODULO
+38 LOAD_CONST 1 ( 1 )
+40 COMPARE_OP 2 ( == )
+42 POP_JUMP_IF_FALSE 66
+
+6 44 LOAD_GLOBAL 1 ( str )
+46 LOAD_FAST 0 ( num )
+48 CALL_FUNCTION 1
+50 LOAD_CONST 6 ( '00' )
+52 BINARY_ADD
+54 STORE_FAST 0 ( num )
+
+7 56 LOAD_FAST 1 ( length )
+58 LOAD_CONST 7 ( 2 )
+60 INPLACE_ADD
+62 STORE_FAST 1 ( length )
+64 JUMP_FORWARD 44 ( to 108 )
+
+8 >> 66 LOAD_FAST 1 ( length )
+68 LOAD_CONST 5 ( 3 )
+70 BINARY_MODULO
+72 LOAD_CONST 7 ( 2 )
+74 COMPARE_OP 2 ( == )
+76 POP_JUMP_IF_FALSE 108
+
+9 78 LOAD_GLOBAL 1 ( str )
+80 LOAD_FAST 0 ( num )
+82 CALL_FUNCTION 1
+84 LOAD_CONST 3 ( '0' )
+86 BINARY_ADD
+88 STORE_FAST 0 ( num )
+
+10 90 LOAD_FAST 1 ( length )
+92 LOAD_CONST 1 ( 1 )
+94 INPLACE_ADD
+96 STORE_FAST 1 ( length )
+
+11 >> 98 LOAD_CONST 2 ( 0 )
+100 STORE_FAST 2 ( p )
+
+12 102 SETUP_LOOP 76 ( to 198 )
+104 LOAD_GLOBAL 2 ( range )
+106 LOAD_FAST 1 ( length )
+108 LOAD_CONST 1 ( 1 )
+110 BINARY_SUBTRACT
+112 LOAD_CONST 8 ( - 1 )
+114 LOAD_CONST 8 ( - 1 )
+116 CALL_FUNCTION 3
+118 GET_ITER
+>> 120 FOR_ITER 60 ( to 196 )
+122 STORE_FAST 3 ( i )
+
+13 124 LOAD_CONST 2 ( 0 )
+126 STORE_FAST 4 ( group )
+
+14 128 LOAD_FAST 4 ( group )
+130 LOAD_GLOBAL 3 ( ord )
+132 LOAD_FAST 0 ( num )
+134 LOAD_FAST 3 ( i )
+136 BINARY_SUBSCR
+138 CALL_FUNCTION 1
+140 LOAD_GLOBAL 3 ( ord )
+142 LOAD_CONST 3 ( '0' )
+144 CALL_FUNCTION 1
+146 BINARY_SUBTRACT
+148 INPLACE_ADD
+150 STORE_FAST 4 ( group )
+
+15 152 LOAD_FAST 3 ( i )
+154 LOAD_CONST 1 ( 1 )
+156 INPLACE_SUBTRACT
+158 STORE_FAST 3 ( i )
+
+16 160 LOAD_FAST 3 ( i )
+162 LOAD_CONST 1 ( 1 )
+164 INPLACE_SUBTRACT
+166 STORE_FAST 3 ( i )
+
+17 168 LOAD_FAST 4 ( group )
+170 LOAD_GLOBAL 3 ( ord )
+172 LOAD_FAST 0 ( num )
+174 LOAD_FAST 3 ( i )
+176 BINARY_SUBSCR
+178 CALL_FUNCTION 1
+180 LOAD_GLOBAL 3 ( ord )
+182 LOAD_CONST 3 ( '0' )
+184 CALL_FUNCTION 1
+186 BINARY_SUBTRACT
+188 CALL_FUNCTION 1
+190 LOAD_CONST 9 ( 10 )
+192 BINARY_MULTIPLY
+194 INPLACE_ADD
+196 STORE_FAST 4 ( group )
+
+18 198 LOAD_FAST 4 ( group )
+200 LOAD_GLOBAL 3 ( ord )
+202 LOAD_FAST 0 ( num )
+204 LOAD_FAST 3 ( i )
+206 BINARY_SUBSCR
+208 CALL_FUNCTION 1
+210 LOAD_GLOBAL 3 ( ord )
+212 LOAD_CONST 3 ( '0' )
+214 CALL_FUNCTION 1
+216 BINARY_SUBTRACT
+218 LOAD_CONST 10 ( 100 )
+220 BINARY_MULTIPLY
+222 INPLACE_ADD
+224 STORE_FAST 3 ( i )
+
+19 226 LOAD_FAST 4 ( group )
+228 LOAD_FAST 4 ( group )
+230 LOAD_FAST 3 ( i )
+232 BINARY_MULTIPLY
+234 INPLACE_MULTIPLY
+236 STORE_FAST 4 ( group )
+238 JUMP_ABSOLUTE 120
+>> 240 POP_BLOCK
+
+20 >> 242 LOAD_GLOBAL 4 ( abs )
+244 LOAD_FAST 4 ( sum )
+246 CALL_FUNCTION 1
+248 STORE_FAST 4 ( sum )
+
+21 250 LOAD_FAST 4 ( sum )
+252 LOAD_CONST 11 ( 13 )
+254 BINARY_MODULO
+256 LOAD_CONST 2 ( 0 )
+258 COMPARE_OP 2 ( == )
+260 RETURN_VALUE

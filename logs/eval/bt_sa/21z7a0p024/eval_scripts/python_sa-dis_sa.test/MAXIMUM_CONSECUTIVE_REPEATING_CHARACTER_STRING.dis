@@ -1,0 +1,73 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    l = len ( str )\n    count = 0\n    res = str [ 0 ]\n    for i in range ( l ) :\n        cur_count = 1\n        for j in range ( i + 1 , l ) :\n            if ( str [ i ] != str [ j ] ) :\n                break\n            cur_count += 1\n        if cur_count > count :\n            count = cur_count\n            res = str [ i ]\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('geeekk',),\n    ('3786868',),\n    ('110',),\n    ('aaaabbcbbb',),\n    ('11',),\n    ('011101',),\n    ('WoHNyJYLC',),\n    ('3141711779',),\n    ('10111101101',),\n    ('aabbabababcc',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxRepeating ( str ) :\n    l = len ( str )\n    count = 0\n    res = str [ 0 ]\n    for i in range ( l ) :\n        cur_count = 1\n        for j in range ( i + 1 , l ) :\n            if ( str [ i ] != str [ j ] ) :\n                break\n            cur_count += 1\n        if cur_count > count :\n            count = cur_count\n            res = str [ i ]\n    return res\n"}
+Disassembly of <code object maxRepeating at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( str )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( l )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 2 ( count )
+
+4 12 SETUP_LOOP 64 ( to 76 )
+14 LOAD_GLOBAL 1 ( range )
+16 LOAD_FAST 1 ( l )
+18 CALL_FUNCTION 1
+20 GET_ITER
+>> 22 FOR_ITER 48 ( to 74 )
+24 STORE_FAST 3 ( i )
+
+5 26 LOAD_FAST 3 ( i )
+28 LOAD_CONST 2 ( 1 )
+30 INPLACE_ADD
+32 STORE_FAST 3 ( i )
+
+6 34 LOAD_FAST 2 ( count )
+36 LOAD_CONST 2 ( 1 )
+38 INPLACE_ADD
+40 STORE_FAST 2 ( count )
+
+7 42 LOAD_FAST 2 ( count )
+44 LOAD_CONST 2 ( 1 )
+46 INPLACE_ADD
+48 STORE_FAST 2 ( count )
+50 JUMP_ABSOLUTE 22
+>> 52 POP_BLOCK
+
+8 >> 54 LOAD_FAST 2 ( count )
+56 LOAD_CONST 2 ( 1 )
+58 INPLACE_ADD
+60 STORE_FAST 2 ( count )
+62 JUMP_ABSOLUTE 22
+>> 64 POP_BLOCK
+
+9 >> 66 LOAD_FAST 2 ( count )
+68 LOAD_CONST 2 ( 1 )
+70 INPLACE_ADD
+72 STORE_FAST 2 ( count )
+
+10 74 LOAD_FAST 2 ( count )
+76 LOAD_CONST 2 ( 1 )
+78 INPLACE_ADD
+80 STORE_FAST 2 ( count )
+
+11 82 LOAD_FAST 2 ( count )
+84 LOAD_CONST 2 ( 1 )
+86 INPLACE_ADD
+88 STORE_FAST 2 ( count )
+
+12 90 LOAD_FAST 2 ( count )
+92 LOAD_CONST 2 ( 1 )
+94 INPLACE_ADD
+96 STORE_FAST 2 ( count )
+98 JUMP_ABSOLUTE 22
+>> 100 POP_BLOCK
+
+13 >> 102 LOAD_FAST 2 ( count )
+104 LOAD_CONST 2 ( 1 )
+106 INPLACE_ADD
+108 STORE_FAST 2 ( count )
+110 JUMP_ABSOLUTE 22
+>> 112 POP_BLOCK
+
+14 >> 114 LOAD_FAST 2 ( count )
+116 RETURN_VALUE

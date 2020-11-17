@@ -1,0 +1,66 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    for i in range ( 0 , n - 1 ) :\n        if ( arr [ i ] > arr [ i + 1 ] ) :\n            if ( arr [ i ] - arr [ i + 1 ] == 1 ) :\n                arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i ]\n            else :\n                return False\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 4, 12, 16, 37, 44, 47, 51, 55, 57, 57, 62, 62, 62, 64, 69, 69, 70, 72, 81, 81, 88, 89, 97],15,),\n    ([-86, 0, 14, -16, -12, -72, 62, -34, -72, 30, 84, -60, 84, -64, 50, 74, 18, -82, -64, -64, -74, -56, 86, 84, -32, -10, 20, 4, 8, 96, 82, 26, 42],18,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],31,),\n    ([48, 66, 83, 12, 77, 98, 18, 33, 21, 16, 28, 24, 46, 43],13,),\n    ([-92, -58, -36, -28, -6, 2, 4, 26, 48, 58, 60, 62, 62, 98],10,),\n    ([1, 0, 0, 0, 0, 1],4,),\n    ([22, 38, 41, 41, 42, 51, 54, 58, 68, 76, 80, 85],9,),\n    ([84, -38, 52, -72, -24, 82, 54, 74, 0],8,),\n    ([0, 1, 1],2,),\n    ([63, 31, 14, 19, 77, 64, 62, 23, 22, 19, 39, 9, 79, 1, 87, 29, 58, 3, 3, 39, 1, 39, 35, 64, 64],13,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkForSorting ( arr , n ) :\n    for i in range ( 0 , n - 1 ) :\n        if ( arr [ i ] > arr [ i + 1 ] ) :\n            if ( arr [ i ] - arr [ i + 1 ] == 1 ) :\n                arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i ]\n            else :\n                return False\n    return True\n"}
+Disassembly of <code object checkForSorting at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 64 ( to 66 )
+2 LOAD_GLOBAL 0 ( range )
+4 LOAD_CONST 1 ( 0 )
+6 LOAD_CONST 2 ( - 1 )
+8 CALL_FUNCTION 2
+10 GET_ITER
+>> 12 FOR_ITER 48 ( to 64 )
+14 STORE_FAST 2 ( i )
+
+3 16 LOAD_FAST 0 ( arr )
+18 LOAD_FAST 2 ( i )
+20 BINARY_SUBSCR
+22 LOAD_FAST 1 ( n )
+24 COMPARE_OP 4 ( > )
+26 POP_JUMP_IF_FALSE 12
+
+4 28 LOAD_FAST 0 ( arr )
+30 LOAD_FAST 2 ( i )
+32 BINARY_SUBSCR
+34 LOAD_FAST 1 ( n )
+36 COMPARE_OP 4 ( > )
+38 POP_JUMP_IF_FALSE 12
+
+5 40 LOAD_FAST 0 ( arr )
+42 LOAD_FAST 2 ( i )
+44 BINARY_SUBSCR
+46 LOAD_FAST 1 ( n )
+48 COMPARE_OP 4 ( > )
+50 POP_JUMP_IF_FALSE 12
+
+6 52 LOAD_FAST 0 ( arr )
+54 LOAD_FAST 2 ( i )
+56 BINARY_SUBSCR
+58 LOAD_FAST 1 ( n )
+60 BINARY_SUBSCR
+62 LOAD_FAST 1 ( n )
+64 BINARY_SUBSCR
+66 LOAD_FAST 1 ( n )
+68 BINARY_SUBSCR
+70 LOAD_FAST 1 ( n )
+72 BINARY_SUBSCR
+74 LOAD_FAST 1 ( n )
+76 BINARY_SUBSCR
+78 LOAD_FAST 1 ( n )
+80 BINARY_SUBSCR
+82 LOAD_FAST 1 ( n )
+84 BINARY_SUBSCR
+86 LOAD_FAST 1 ( n )
+88 STORE_SUBSCR
+
+7 90 LOAD_FAST 0 ( arr )
+92 LOAD_FAST 2 ( i )
+94 BINARY_SUBSCR
+96 LOAD_FAST 1 ( n )
+98 STORE_SUBSCR
+
+8 100 LOAD_FAST 0 ( arr )
+102 LOAD_FAST 2 ( i )
+104 BINARY_SUBSCR
+106 LOAD_FAST 1 ( n )
+108 STORE_SUBSCR
+
+9 110 LOAD_FAST 0 ( arr )
+112 RETURN_VALUE

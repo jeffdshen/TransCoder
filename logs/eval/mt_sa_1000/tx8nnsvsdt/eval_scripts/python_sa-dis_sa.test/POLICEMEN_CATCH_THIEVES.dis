@@ -1,0 +1,137 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , k ) :\n    i = 0\n    l = 0\n    r = 0\n    res = 0\n    thi = [ ]\n    pol = [ ]\n    while i < n :\n        if arr [ i ] == 'P' :\n            pol.append ( i )\n        elif arr [ i ] == 'T' :\n            thi.append ( i )\n        i += 1\n    while l < len ( thi ) and r < len ( pol ) :\n        if ( abs ( thi [ l ] - pol [ r ] ) <= k ) :\n            res += 1\n            l += 1\n            r += 1\n        elif thi [ l ] < pol [ r ] :\n            l += 1\n        else :\n            r += 1\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (['A', 'B', 'B', 'D', 'E', 'E', 'F', 'G', 'G', 'G', 'I', 'J', 'O', 'P', 'Q', 'Q', 'Q', 'Q', 'R', 'R', 'S', 'U', 'X', 'Y', 'Y', 'c', 'd', 'h', 'i', 'i', 'i', 'i', 'k', 'k', 'l', 'l', 'l', 'l', 'm', 'p', 'r', 'r', 's', 't', 't', 'u', 'x', 'z'],33,45,),\n    (['7', '6', '0', '1', '0', '1'],3,3,),\n    (['0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1'],9,10,),\n    (['y', 'k', 'S', 'i', 's', 'r', 'i', 'z', 'y', 'f', 'E', 'U', 'y', 'G', 'f', 'f', 's', 'v', 'v', 'D', 'v', 'V', 'S', 'D', 'K', 'S', 'f', 'V', 'g', 'I', 'J', 'p', 'j', 'k', 'R', 'n', 'm', 'O', 'L', 'X', 'y', 'U', 'y', 'k', 'w'],24,44,),\n    (['1', '1', '5', '8', '8'],2,2,),\n    (['0', '1', '0', '0', '1', '1', '1', '0', '0', '0', '1', '0', '1', '0', '1', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0'],23,18,),\n    (['A', 'I', 'K', 'Q', 'Q', 'X', 'Z', 'f', 'g'],5,8,),\n    (['7', '0', '6', '9', '7', '5', '1', '3', '9', '8', '0', '0', '1', '3', '9', '2', '5', '5', '2', '7', '9', '3', '3', '9', '3', '8', '5', '5', '0', '4', '6', '2', '7', '4', '0', '4', '6', '4', '2', '3'],35,28,),\n    (['0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1'],8,10,),\n    (['D', 'C', 'P', 'H', 'G', 'o', 'u', 'P', 'T', 'G', 'E', 'U', 'n', 'E', 'U'],11,12,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def policeThief ( arr , n , k ) :\n    i = 0\n    l = 0\n    r = 0\n    res = 0\n    thi = [ ]\n    pol = [ ]\n    while i < n :\n        if arr [ i ] == 'P' :\n            pol.append ( i )\n        elif arr [ i ] == 'T' :\n            thi.append ( i )\n        i += 1\n    while l < len ( thi ) and r < len ( pol ) :\n        if ( abs ( thi [ l ] - pol [ r ] ) <= k ) :\n            res += 1\n            l += 1\n            r += 1\n        elif thi [ l ] < pol [ r ] :\n            l += 1\n        else :\n            r += 1\n    return res\n"}
+Disassembly of <code object policeThief at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 3 ( i )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 4 ( r )
+
+4 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 5 ( res )
+
+5 12 LOAD_CONST 1 ( 0 )
+14 STORE_FAST 6 ( res )
+
+6 16 BUILD_LIST 0
+18 STORE_FAST 7 ( thi )
+
+7 20 BUILD_LIST 0
+22 STORE_FAST 8 ( pol )
+
+8 24 BUILD_LIST 0
+26 STORE_FAST 9 ( pol )
+
+9 28 SETUP_LOOP 56 ( to 84 )
+>> 30 LOAD_FAST 3 ( i )
+32 LOAD_FAST 1 ( n )
+34 COMPARE_OP 0 ( < )
+36 POP_JUMP_IF_FALSE 82
+
+10 38 LOAD_FAST 0 ( arr )
+40 LOAD_FAST 3 ( i )
+42 BINARY_SUBSCR
+44 LOAD_CONST 2 ( 'P' )
+46 COMPARE_OP 2 ( == )
+48 POP_JUMP_IF_FALSE 62
+
+11 50 LOAD_FAST 8 ( pol )
+52 LOAD_METHOD 0 ( append )
+54 LOAD_FAST 3 ( i )
+56 CALL_METHOD 1
+58 POP_TOP
+60 JUMP_ABSOLUTE 30
+
+12 >> 62 LOAD_FAST 0 ( arr )
+64 LOAD_FAST 3 ( i )
+66 BINARY_SUBSCR
+68 LOAD_CONST 3 ( 'T' )
+70 COMPARE_OP 2 ( == )
+72 POP_JUMP_IF_FALSE 82
+
+13 74 LOAD_FAST 7 ( thi )
+76 LOAD_METHOD 0 ( append )
+78 LOAD_FAST 3 ( i )
+80 CALL_METHOD 1
+82 POP_TOP
+84 JUMP_ABSOLUTE 30
+
+14 >> 86 LOAD_FAST 3 ( i )
+88 LOAD_CONST 4 ( 1 )
+90 INPLACE_ADD
+92 STORE_FAST 3 ( i )
+94 JUMP_ABSOLUTE 30
+>> 96 POP_BLOCK
+
+15 >> 98 SETUP_LOOP 78 ( to 206 )
+>> 100 LOAD_FAST 4 ( r )
+102 LOAD_GLOBAL 1 ( len )
+104 LOAD_FAST 7 ( thi )
+106 CALL_FUNCTION 1
+108 COMPARE_OP 0 ( < )
+110 POP_JUMP_IF_FALSE 204
+112 LOAD_FAST 4 ( r )
+114 LOAD_GLOBAL 1 ( len )
+116 LOAD_FAST 8 ( pol )
+118 CALL_FUNCTION 1
+120 COMPARE_OP 0 ( < )
+122 POP_JUMP_IF_FALSE 204
+
+16 124 LOAD_GLOBAL 2 ( abs )
+126 LOAD_FAST 7 ( thi )
+128 LOAD_FAST 4 ( r )
+130 BINARY_SUBSCR
+132 LOAD_FAST 8 ( pol )
+134 LOAD_FAST 4 ( r )
+136 BINARY_SUBSCR
+138 BINARY_SUBTRACT
+140 LOAD_FAST 2 ( k )
+142 COMPARE_OP 1 ( <= )
+144 POP_JUMP_IF_FALSE 158
+
+17 146 LOAD_FAST 5 ( res )
+148 LOAD_CONST 4 ( 1 )
+150 INPLACE_ADD
+152 STORE_FAST 5 ( res )
+
+18 154 LOAD_FAST 4 ( r )
+156 LOAD_CONST 4 ( 1 )
+158 INPLACE_ADD
+160 STORE_FAST 4 ( r )
+162 JUMP_FORWARD 52 ( to 204 )
+
+19 >> 164 LOAD_FAST 7 ( thi )
+166 LOAD_FAST 4 ( r )
+168 BINARY_SUBSCR
+170 LOAD_FAST 8 ( pol )
+172 LOAD_FAST 4 ( r )
+174 BINARY_SUBSCR
+176 COMPARE_OP 0 ( < )
+178 POP_JUMP_IF_FALSE 202
+
+20 180 LOAD_FAST 4 ( r )
+182 LOAD_CONST 4 ( 1 )
+184 INPLACE_ADD
+186 STORE_FAST 4 ( r )
+188 JUMP_FORWARD 8 ( to 204 )
+
+22 >> 190 LOAD_FAST 4 ( r )
+192 LOAD_CONST 4 ( 1 )
+194 INPLACE_ADD
+196 STORE_FAST 4 ( r )
+198 JUMP_ABSOLUTE 100
+
+23 >> 200 LOAD_FAST 5 ( res )
+202 LOAD_CONST 4 ( 1 )
+204 INPLACE_ADD
+206 STORE_FAST 5 ( res )
+208 JUMP_ABSOLUTE 100
+
+25 >> 210 LOAD_FAST 5 ( res )
+212 LOAD_CONST 4 ( 1 )
+214 INPLACE_ADD
+216 STORE_FAST 5 ( res )
+218 JUMP_ABSOLUTE 100
+>> 220 POP_BLOCK
+
+26 >> 222 LOAD_FAST 6 ( res )
+224 RETURN_VALUE

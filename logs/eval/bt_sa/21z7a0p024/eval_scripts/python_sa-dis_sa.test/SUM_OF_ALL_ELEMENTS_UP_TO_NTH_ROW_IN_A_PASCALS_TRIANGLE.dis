@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    sum = 0\n    for row in range ( n ) :\n        sum = sum + ( 1 << row )\n    return sum\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (21,),\n    (4,),\n    (31,),\n    (79,),\n    (38,),\n    (75,),\n    (36,),\n    (32,),\n    (23,),\n    (65,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def calculateSum ( n ) :\n    sum = 0\n    for row in range ( n ) :\n        sum = sum + ( 1 << row )\n    return sum\n"}
+Disassembly of <code object calculateSum at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( sum )
+
+3 4 SETUP_LOOP 26 ( to 32 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_FAST 0 ( n )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 18 ( to 30 )
+16 STORE_FAST 2 ( row )
+
+4 18 LOAD_FAST 1 ( sum )
+20 LOAD_FAST 2 ( row )
+22 LOAD_FAST 0 ( n )
+24 BINARY_SUBTRACT
+26 BINARY_SUBSCR
+28 STORE_FAST 3 ( n )
+
+5 30 LOAD_FAST 1 ( sum )
+32 LOAD_FAST 2 ( row )
+34 LOAD_FAST 3 ( n )
+36 BINARY_SUBTRACT
+38 BINARY_SUBSCR
+40 LOAD_FAST 3 ( n )
+42 BINARY_SUBTRACT
+44 BINARY_MULTIPLY
+46 LOAD_FAST 1 ( sum )
+48 LOAD_FAST 2 ( row )
+50 BINARY_SUBTRACT
+52 BINARY_MULTIPLY
+54 LOAD_FAST 1 ( sum )
+56 LOAD_FAST 2 ( row )
+58 BINARY_SUBTRACT
+60 BINARY_SUBSCR
+62 BINARY_SUBTRACT
+64 BINARY_MULTIPLY
+66 LOAD_FAST 1 ( sum )
+68 LOAD_FAST 2 ( row )
+70 BINARY_SUBTRACT
+72 BINARY_SUBSCR
+74 LOAD_FAST 1 ( sum )
+76 LOAD_FAST 2 ( row )
+78 BINARY_SUBTRACT
+80 BINARY_SUBSCR
+82 BINARY_SUBTRACT
+84 LOAD_FAST 1 ( sum )
+86 LOAD_FAST 2 ( row )
+88 BINARY_SUBTRACT
+90 STORE_SUBSCR
+
+6 92 LOAD_FAST 1 ( sum )
+94 LOAD_FAST 2 ( row )
+96 LOAD_FAST 3 ( n )
+98 BINARY_SUBTRACT
+100 BINARY_SUBSCR
+102 LOAD_FAST 1 ( sum )
+104 LOAD_FAST 2 ( row )
+106 BINARY_SUBTRACT
+108 BINARY_SUBSCR
+110 LOAD_FAST 1 ( sum )
+112 LOAD_FAST 2 ( row )
+114 BINARY_SUBTRACT
+116 BINARY_SUBSCR
+118 BINARY_SUBTRACT
+120 LOAD_FAST 1 ( sum )
+122 LOAD_FAST 2 ( row )
+124 BINARY_SUBTRACT
+126 BINARY_SUBSCR
+128 BINARY_SUBTRACT
+130 STORE_FAST 1 ( sum )
+
+7 132 LOAD_FAST 1 ( sum )
+134 LOAD_FAST 2 ( row )
+136 LOAD_FAST 3 ( n )
+138 STORE_SUBSCR
+
+8 140 LOAD_FAST 1 ( sum )
+142 LOAD_FAST 2 ( row )
+144 LOAD_FAST 3 ( n )
+146 STORE_SUBSCR
+
+9 148 LOAD_FAST 1 ( sum )
+150 LOAD_FAST 2 ( row )
+152 LOAD_FAST 3 ( n )
+154 STORE_SUBSCR
+156 JUMP_ABSOLUTE 14
+>> 158 POP_BLOCK
+
+10 >> 160 LOAD_FAST 1 ( sum )
+162 RETURN_VALUE

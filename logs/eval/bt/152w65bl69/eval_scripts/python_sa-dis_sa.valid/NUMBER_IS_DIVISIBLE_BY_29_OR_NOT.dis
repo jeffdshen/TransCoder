@@ -1,0 +1,89 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    while ( int ( n / 100 ) ) :\n        last_digit = int ( n % 10 )\n        n = int ( n / 10 )\n        n += last_digit * 3\n    return ( n % 29 == 0 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (29,),\n(0,),\n(65,),\n(1419,),\n(54,),\n(7,),\n(44,),\n(34,),\n(1160,),\n(292929002929,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def isDivisible ( n ) :\n    while ( int ( n / 100 ) ) :\n        last_digit = int ( n % 10 )\n        n = int ( n / 10 )\n        n += last_digit * 3\n    return ( n % 29 == 0 )\n"}
+Disassembly of <code object isDivisible at 0x7f816a673a50, file "<dis>", line 100>:
+101 0 LOAD_GLOBAL 0 ( while )
+2 LOAD_CONST 1 ( 100 )
+4 LOAD_CONST 2 ( 10 )
+6 LOAD_CONST 3 ( 100 )
+8 LOAD_CONST 4 ( 100 )
+10 LOAD_CONST 5 ( ( '%d' ) )
+12 LOAD_FAST 0 ( n )
+14 BINARY_MODULO
+16 CALL_FUNCTION 1
+18 STORE_FAST 1 ( last_digit )
+
+102 20 LOAD_GLOBAL 1 ( int )
+22 LOAD_FAST 1 ( last_digit )
+24 CALL_FUNCTION 1
+26 STORE_FAST 2 ( last_digit )
+
+103 28 LOAD_FAST 2 ( last_digit )
+30 LOAD_CONST 6 ( 1 )
+32 COMPARE_OP 4 ( > )
+34 POP_JUMP_IF_FALSE 44
+
+104 36 LOAD_FAST 2 ( last_digit )
+38 LOAD_CONST 7 ( 1 )
+40 INPLACE_ADD
+42 STORE_FAST 2 ( last_digit )
+
+105 >> 44 LOAD_FAST 2 ( last_digit )
+46 LOAD_CONST 8 ( 2 )
+48 COMPARE_OP 4 ( > )
+50 POP_JUMP_IF_FALSE 44
+
+106 52 LOAD_FAST 2 ( last_digit )
+54 LOAD_CONST 9 ( 1 )
+56 INPLACE_ADD
+58 STORE_FAST 2 ( last_digit )
+
+107 >> 60 LOAD_FAST 2 ( last_digit )
+62 LOAD_CONST 10 ( 2 )
+64 INPLACE_ADD
+66 STORE_FAST 2 ( last_digit )
+
+108 68 LOAD_FAST 2 ( last_digit )
+70 LOAD_CONST 11 ( 1 )
+72 INPLACE_ADD
+74 STORE_FAST 2 ( last_digit )
+
+109 76 LOAD_FAST 2 ( last_digit )
+78 LOAD_CONST 12 ( 2 )
+80 INPLACE_ADD
+82 STORE_FAST 2 ( last_digit )
+
+110 84 LOAD_FAST 2 ( last_digit )
+86 LOAD_CONST 13 ( 1 )
+88 INPLACE_ADD
+90 STORE_FAST 2 ( last_digit )
+
+111 92 LOAD_FAST 2 ( last_digit )
+94 LOAD_CONST 14 ( 2 )
+96 INPLACE_ADD
+98 STORE_FAST 2 ( last_digit )
+
+112 100 LOAD_FAST 2 ( last_digit )
+102 LOAD_CONST 15 ( 1 )
+104 INPLACE_ADD
+106 STORE_FAST 2 ( last_digit )
+
+113 108 LOAD_FAST 2 ( last_digit )
+110 LOAD_CONST 16 ( 2 )
+112 INPLACE_ADD
+114 STORE_FAST 2 ( last_digit )
+
+114 114 LOAD_FAST 2 ( last_digit )
+116 LOAD_CONST 15 ( 1 )
+118 INPLACE_ADD
+120 STORE_FAST 2 ( last_digit )
+
+115 122 LOAD_FAST 2 ( last_digit )
+124 LOAD_CONST 16 ( 2 )
+126 INPLACE_ADD
+128 STORE_FAST 2 ( last_digit )
+
+116 130 LOAD_FAST 2 ( last_digit )
+132 LOAD_CONST 17 ( 1 )
+134 INPLACE_ADD
+136 STORE_FAST 2 ( last_digit )
+
+117 138 LOAD_FAST

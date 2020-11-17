@@ -1,0 +1,45 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    _sum = 0\n    n = 1\n    while ( _sum < s ) :\n        _sum += n * n * n\n        n += 1\n    n -= 1\n    if _sum == s :\n        return n\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (15,),\n    (36,),\n    (39,),\n    (43,),\n    (75,),\n    (49,),\n    (56,),\n    (14,),\n    (62,),\n    (97,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findS ( s ) :\n    _sum = 0\n    n = 1\n    while ( _sum < s ) :\n        _sum += n * n * n\n        n += 1\n    n -= 1\n    if _sum == s :\n        return n\n    return - 1\n"}
+Disassembly of <code object findS at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( _sum )
+
+3 4 LOAD_CONST 2 ( 1 )
+6 STORE_FAST 2 ( n )
+
+4 8 SETUP_LOOP 40 ( to 52 )
+>> 10 LOAD_FAST 1 ( _sum )
+12 LOAD_FAST 0 ( s )
+14 COMPARE_OP 0 ( < )
+16 POP_JUMP_IF_FALSE 50
+
+5 18 LOAD_FAST 1 ( _sum )
+20 LOAD_FAST 2 ( n )
+22 LOAD_FAST 2 ( n )
+24 BINARY_MULTIPLY
+26 LOAD_FAST 2 ( n )
+28 BINARY_MULTIPLY
+30 INPLACE_ADD
+32 STORE_FAST 1 ( _sum )
+
+6 34 LOAD_FAST 2 ( n )
+36 LOAD_CONST 2 ( 1 )
+38 INPLACE_ADD
+40 STORE_FAST 2 ( n )
+42 JUMP_ABSOLUTE 10
+>> 44 POP_BLOCK
+
+7 >> 46 LOAD_FAST 2 ( n )
+48 LOAD_CONST 2 ( 1 )
+50 INPLACE_SUBTRACT
+52 STORE_FAST 2 ( n )
+
+8 54 LOAD_FAST 1 ( _sum )
+56 LOAD_FAST 0 ( s )
+58 COMPARE_OP 2 ( == )
+60 POP_JUMP_IF_FALSE 66
+
+9 62 LOAD_FAST 2 ( n )
+64 RETURN_VALUE
+
+10 >> 66 LOAD_CONST 3 ( - 1 )
+68 RETURN_VALUE

@@ -1,0 +1,47 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    l = len ( s )\n    i = 0\n    j = l - 1\n    while i <= j :\n        if ( s [ i ] != s [ j ] ) :\n            return False\n        i += 1\n        j -= 1\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('aadaa',),\n    ('2674377254',),\n    ('11',),\n    ('0011000 ',),\n    ('26382426486138',),\n    ('111010111010',),\n    ('abccba',),\n    ('5191',),\n    ('1110101101',),\n    ('abcdecbe',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def ispalindrome ( s ) :\n    l = len ( s )\n    i = 0\n    j = l - 1\n    while i <= j :\n        if ( s [ i ] != s [ j ] ) :\n            return False\n        i += 1\n        j -= 1\n    return True\n"}
+Disassembly of <code object ispalindrome at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( s )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( l )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 2 ( i )
+
+4 12 LOAD_FAST 1 ( l )
+14 LOAD_CONST 2 ( 1 )
+16 BINARY_SUBTRACT
+18 STORE_FAST 3 ( j )
+
+5 20 SETUP_LOOP 46 ( to 66 )
+>> 22 LOAD_FAST 2 ( i )
+24 LOAD_FAST 3 ( j )
+26 COMPARE_OP 1 ( <= )
+28 POP_JUMP_IF_FALSE 64
+
+6 30 LOAD_FAST 0 ( s )
+32 LOAD_FAST 2 ( i )
+34 BINARY_SUBSCR
+36 LOAD_FAST 0 ( s )
+38 LOAD_FAST 3 ( j )
+40 BINARY_SUBSCR
+42 COMPARE_OP 3 ( != )
+44 POP_JUMP_IF_FALSE 50
+
+7 46 LOAD_CONST 3 ( False )
+48 RETURN_VALUE
+
+8 >> 50 LOAD_FAST 2 ( i )
+52 LOAD_CONST 2 ( 1 )
+54 INPLACE_ADD
+56 STORE_FAST 2 ( i )
+
+9 58 LOAD_FAST 3 ( j )
+60 LOAD_CONST 2 ( 1 )
+62 INPLACE_SUBTRACT
+64 STORE_FAST 3 ( j )
+66 JUMP_ABSOLUTE 22
+>> 68 POP_BLOCK
+
+10 >> 70 LOAD_CONST 4 ( True )
+72 RETURN_VALUE

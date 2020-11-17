@@ -1,0 +1,18 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( b , m ) :\n    return ( b / m - 1 ) * ( b / m ) / 2\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (40,74,),\n    (38,35,),\n    (47,71,),\n    (52,29,),\n    (21,9,),\n    (50,33,),\n    (8,82,),\n    (56,80,),\n    (93,5,),\n    (21,90,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxSquare ( b , m ) :\n    return ( b / m - 1 ) * ( b / m ) / 2\n"}
+Disassembly of <code object maxSquare at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( b )
+2 LOAD_CONST 1 ( ( 'a' , 1 ) )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 20
+
+3 8 LOAD_FAST 0 ( b )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBTRACT
+14 LOAD_CONST 2 ( 2 )
+16 BINARY_TRUE_DIVIDE
+18 RETURN_VALUE
+
+4 >> 20 LOAD_FAST 0 ( b )
+22 LOAD_CONST 1 ( 2 )
+24 BINARY_TRUE_DIVIDE
+26 RETURN_VALUE

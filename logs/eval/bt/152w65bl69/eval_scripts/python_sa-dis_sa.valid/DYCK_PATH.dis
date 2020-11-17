@@ -1,0 +1,97 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    res = 1\n    for i in range ( 0 , n ) :\n        res *= ( 2 * n - i )\n        res /= ( i + 1 )\n    return res / ( n + 1 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (72,),\n    (90,),\n    (61,),\n    (28,),\n    (70,),\n    (13,),\n    (7,),\n    (98,),\n    (99,),\n    (67,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countDyckPaths ( n ) :\n    res = 1\n    for i in range ( 0 , n ) :\n        res *= ( 2 * n - i )\n        res /= ( i + 1 )\n    return res / ( n + 1 )\n"}
+Disassembly of <code object countDyckPaths at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 1 ( n )
+
+27 4 LOAD_FAST 0 ( n )
+6 LOAD_CONST 2 ( 1 )
+8 INPLACE_ADD
+10 STORE_FAST 1 ( n )
+
+28 12 LOAD_FAST 1 ( n )
+14 LOAD_CONST 3 ( 1 )
+16 INPLACE_ADD
+18 STORE_FAST 1 ( n )
+
+29 20 LOAD_FAST 1 ( n )
+22 LOAD_CONST 4 ( 2 )
+24 INPLACE_ADD
+26 STORE_FAST 1 ( n )
+
+30 28 LOAD_FAST 1 ( n )
+30 LOAD_CONST 5 ( 1 )
+32 INPLACE_ADD
+34 STORE_FAST 1 ( n )
+
+31 36 LOAD_FAST 1 ( n )
+38 LOAD_CONST 6 ( 2 )
+40 INPLACE_ADD
+42 STORE_FAST 1 ( n )
+
+32 44 LOAD_FAST 1 ( n )
+46 LOAD_CONST 7 ( 3 )
+48 INPLACE_ADD
+50 STORE_FAST 1 ( n )
+
+33 52 LOAD_FAST 1 ( n )
+54 LOAD_CONST 8 ( 2 )
+56 INPLACE_ADD
+58 STORE_FAST 1 ( n )
+
+34 60 LOAD_FAST 1 ( n )
+62 LOAD_CONST 9 ( 2 )
+64 INPLACE_ADD
+66 STORE_FAST 1 ( n )
+
+35 68 LOAD_FAST 1 ( n )
+70 LOAD_CONST 10 ( 2 )
+72 INPLACE_ADD
+74 STORE_FAST 1 ( n )
+
+36 76 LOAD_FAST 1 ( n )
+78 LOAD_CONST 11 ( 3 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( n )
+
+37 84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 12 ( 2 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( n )
+
+38 92 LOAD_FAST 1 ( n )
+94 LOAD_CONST 13 ( 3 )
+96 INPLACE_ADD
+98 STORE_FAST 1 ( n )
+
+39 100 LOAD_FAST 1 ( n )
+102 LOAD_CONST 14 ( 2 )
+104 INPLACE_ADD
+106 STORE_FAST 1 ( n )
+108 STORE_FAST 2 ( n )
+
+40 110 LOAD_FAST 1 ( n )
+112 LOAD_CONST 15 ( 2 )
+114 INPLACE_ADD
+116 STORE_FAST 1 ( n )
+
+41 118 LOAD_FAST 1 ( n )
+120 LOAD_CONST 16 ( 2 )
+122 INPLACE_ADD
+124 STORE_FAST 1 ( n )
+
+42 126 LOAD_FAST 1 ( n )
+128 LOAD_FAST 2 ( n )
+130 INPLACE_ADD
+132 STORE_FAST 1 ( n )
+
+43 134 LOAD_FAST 1 ( n )
+136 LOAD_FAST 2 ( n )
+138 INPLACE_ADD
+140 STORE_FAST 1 ( n )
+
+44 142 LOAD_FAST 1 ( n )
+144 LOAD_CONST 17 ( 3 )
+146 INPLACE_ADD
+148 STORE_FAST 1 ( n )
+
+45 150 LOAD_FAST 1

@@ -1,0 +1,10 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num , divisor ) :\n    return ( num - divisor * ( num // divisor ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (80,54,),\n    (63,21,),\n    (1,56,),\n    (22,39,),\n    (66,7,),\n    (61,67,),\n    (45,63,),\n    (29,44,),\n    (95,65,),\n    (9,68,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def getRemainder ( num , divisor ) :\n    return ( num - divisor * ( num // divisor ) )\n"}
+Disassembly of <code object getRemainder at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( num )
+2 LOAD_FAST 1 ( divisor )
+4 BINARY_MULTIPLY
+6 LOAD_FAST 2 ( divisor )
+8 LOAD_FAST 3 ( divisor )
+10 BINARY_MULTIPLY
+12 BINARY_ADD
+14 RETURN_VALUE

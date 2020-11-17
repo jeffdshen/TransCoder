@@ -1,0 +1,51 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    if ( n <= 1 ) :\n        return n\n    a = 0\n    b = 1\n    c = 1\n    res = 1\n    while ( c < n ) :\n        c = a + b\n        res = res + 1\n        a = b\n        b = c\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (5,),\n    (19,),\n    (7,),\n    (94,),\n    (58,),\n    (65,),\n    (69,),\n    (96,),\n    (80,),\n    (14,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findIndex ( n ) :\n    if ( n <= 1 ) :\n        return n\n    a = 0\n    b = 1\n    c = 1\n    res = 1\n    while ( c < n ) :\n        c = a + b\n        res = res + 1\n        a = b\n        b = c\n    return res\n"}
+Disassembly of <code object findIndex at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 1 ( <= )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_FAST 0 ( n )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_CONST 2 ( 0 )
+14 STORE_FAST 1 ( a )
+
+5 16 LOAD_CONST 1 ( 1 )
+18 STORE_FAST 2 ( b )
+
+6 20 LOAD_CONST 1 ( 1 )
+22 STORE_FAST 3 ( c )
+
+7 24 LOAD_CONST 1 ( 1 )
+26 STORE_FAST 4 ( c )
+
+8 28 LOAD_CONST 1 ( 1 )
+30 STORE_FAST 5 ( res )
+
+9 32 SETUP_LOOP 46 ( to 78 )
+>> 34 LOAD_FAST 3 ( c )
+36 LOAD_FAST 0 ( n )
+38 COMPARE_OP 0 ( < )
+40 POP_JUMP_IF_FALSE 76
+
+10 42 LOAD_FAST 1 ( a )
+44 LOAD_FAST 2 ( b )
+46 BINARY_ADD
+48 STORE_FAST 3 ( c )
+
+11 50 LOAD_FAST 5 ( res )
+52 LOAD_CONST 1 ( 1 )
+54 BINARY_ADD
+56 STORE_FAST 1 ( a )
+
+12 58 LOAD_FAST 2 ( b )
+60 STORE_FAST 2 ( b )
+
+13 62 LOAD_FAST 3 ( c )
+64 STORE_FAST 2 ( b )
+66 JUMP_ABSOLUTE 34
+>> 68 POP_BLOCK
+
+14 >> 70 LOAD_FAST 5 ( res )
+72 RETURN_VALUE

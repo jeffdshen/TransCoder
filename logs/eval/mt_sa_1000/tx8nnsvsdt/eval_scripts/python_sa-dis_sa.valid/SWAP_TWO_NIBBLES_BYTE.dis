@@ -1,0 +1,14 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x ) :\n    return ( ( x & 0x0F ) << 4 | ( x & 0xF0 ) >> 4 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (57,),\n    (99,),\n    (66,),\n    (97,),\n    (95,),\n    (42,),\n    (95,),\n    (89,),\n    (3,),\n    (84,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def swapNibbles ( x ) :\n    return ( ( x & 0x0F ) << 4 | ( x & 0xF0 ) >> 4 )\n"}
+Disassembly of <code object swapNibbles at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( x )
+2 LOAD_CONST 1 ( 2.0 )
+4 BINARY_AND
+6 LOAD_CONST 2 ( 4 )
+8 BINARY_LSHIFT
+10 LOAD_FAST 0 ( x )
+12 LOAD_CONST 3 ( 0xF0 )
+14 BINARY_AND
+16 BINARY_OR
+18 LOAD_CONST 2 ( 4 )
+20 BINARY_RSHIFT
+22 RETURN_VALUE

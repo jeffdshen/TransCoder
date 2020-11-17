@@ -1,0 +1,20 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num ) :\n    if ( num < 0 ) :\n        return False\n    sum , n = 0 , 1\n    while ( sum <= num ) :\n        sum = sum + n\n        if ( sum == num ) :\n            return True\n        n += 1\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (97,),\n    (97,),\n    (32,),\n    (40,),\n    (18,),\n    (14,),\n    (90,),\n    (39,),\n    (1,),\n    (57,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isTriangular ( num ) :\n    if ( num < 0 ) :\n        return False\n    sum , n = 0 , 1\n    while ( sum <= num ) :\n        sum = sum + n\n        if ( sum == num ) :\n            return True\n        n += 1\n    return False\n"}
+Disassembly of <code object isTriangular at 0x7f816a3a2390, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( num )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_FAST 0 ( num )
+10 LOAD_CONST 2 ( 1 )
+12 COMPARE_OP 0 ( < )
+14 POP_JUMP_IF_FALSE 28
+
+28 >> 16 LOAD_CONST 3 ( False )
+18 RETURN_VALUE
+
+29 >> 20 LOAD_CONST 4 ( False )
+22 RETURN_VALUE
+24 LOAD_CONST 0 ( None )
+26 RETURN_VALUE
+

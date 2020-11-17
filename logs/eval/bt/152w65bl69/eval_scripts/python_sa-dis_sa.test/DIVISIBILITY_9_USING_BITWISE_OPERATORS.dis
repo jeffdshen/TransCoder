@@ -1,0 +1,24 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    if ( n == 0 or n == 9 ) :\n        return True\n    if ( n < 9 ) :\n        return False\n    return f_gold ( ( int ) ( n >> 3 ) - ( int ) ( n & 7 ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (96,),\n    (85,),\n    (54,),\n    (14,),\n    (47,),\n    (11,),\n    (49,),\n    (99,),\n    (28,),\n    (82,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isDivBy9 ( n ) :\n    if ( n == 0 or n == 9 ) :\n        return True\n    if ( n < 9 ) :\n        return False\n    return isDivBy9 ( ( int ) ( n >> 3 ) - ( int ) ( n & 7 ) )\n"}
+Disassembly of <code object isDivBy9 at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 9 )
+4 COMPARE_OP 9 ( is not )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_CONST 2 ( False )
+10 RETURN_VALUE
+
+28 >> 12 LOAD_GLOBAL 0 ( isDivBy9 )
+14 LOAD_FAST 0 ( n )
+16 LOAD_CONST 1 ( 9 )
+18 COMPARE_OP 9 ( is not )
+20 POP_JUMP_IF_FALSE 32
+
+29 22 LOAD_CONST 3 ( False )
+24 RETURN_VALUE
+
+30 >> 26 LOAD_CONST 4 ( False )
+28 RETURN_VALUE
+30 LOAD_CONST 0 ( None )
+32 RETURN_VALUE
+

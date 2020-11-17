@@ -1,0 +1,79 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    max_ele = arr [ n - 1 ]\n    min_ele = arr [ 0 ]\n    for i in range ( n ) :\n        if i % 2 == 0 :\n            arr [ i ] = max_ele\n            max_ele -= 1\n        else :\n            arr [ i ] = min_ele\n            min_ele += 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 4, 8, 10, 12, 14, 14, 17, 18, 19, 20, 25, 28, 29, 30, 31, 34, 35, 37, 38, 40, 41, 42, 45, 47, 49, 54, 54, 55, 58, 58, 63, 65, 66, 66, 67, 67, 72, 74, 75, 75, 80, 82, 86, 92, 95, 96, 99],40,),\n    ([45, 42, -91, 90, -6, 49, 65, 39, -80, -65, -47, 75, 10, 80, 36, -96, 55, 72, 68, 2, -53, -6, 72, -52, -9, 80, -16, -32, 39, 25, -27, -96, -24, -27, -23, -52],23,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],28,),\n    ([12, 84, 16],2,),\n    ([-85, -77, -70, -67, -55, -51, -49, -41, -37, -24, -18, -8, -6, 77, 87, 90],13,),\n    ([0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0],12,),\n    ([5, 8, 15, 16, 20, 22, 25, 33, 46, 48, 52, 54, 55, 57, 57, 61, 61, 66, 72, 73, 83, 87, 88, 89, 98],12,),\n    ([31, 2, -46, -86, -64, 5, -18, -33, -90, -51, 11, -35, -43, -73, 13, 33, -29, -17, -43, 20, -7, -85],13,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],31,),\n    ([20, 75, 12, 62, 18, 94, 63, 84, 25, 12],9,)\n        ]\n    filled_function_param = [\n    ([3, 4, 8, 10, 12, 14, 14, 17, 18, 19, 20, 25, 28, 29, 30, 31, 34, 35, 37, 38, 40, 41, 42, 45, 47, 49, 54, 54, 55, 58, 58, 63, 65, 66, 66, 67, 67, 72, 74, 75, 75, 80, 82, 86, 92, 95, 96, 99],40,),\n    ([45, 42, -91, 90, -6, 49, 65, 39, -80, -65, -47, 75, 10, 80, 36, -96, 55, 72, 68, 2, -53, -6, 72, -52, -9, 80, -16, -32, 39, 25, -27, -96, -24, -27, -23, -52],23,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],28,),\n    ([12, 84, 16],2,),\n    ([-85, -77, -70, -67, -55, -51, -49, -41, -37, -24, -18, -8, -6, 77, 87, 90],13,),\n    ([0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0],12,),\n    ([5, 8, 15, 16, 20, 22, 25, 33, 46, 48, 52, 54, 55, 57, 57, 61, 61, 66, 72, 73, 83, 87, 88, 89, 98],12,),\n    ([31, 2, -46, -86, -64, 5, -18, -33, -90, -51, 11, -35, -43, -73, 13, 33, -29, -17, -43, 20, -7, -85],13,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],31,),\n    ([20, 75, 12, 62, 18, 94, 63, 84, 25, 12],9,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def rearrange ( arr , n ) :\n    max_ele = arr [ n - 1 ]\n    min_ele = arr [ 0 ]\n    for i in range ( n ) :\n        if i % 2 == 0 :\n            arr [ i ] = max_ele\n            max_ele -= 1\n        else :\n            arr [ i ] = min_ele\n            min_ele += 1\n"}
+Disassembly of <code object rearrange at 0x7f816afaa150, file "<dis>", line 15>:
+16 0 LOAD_FAST 1 ( n )
+2 LOAD_CONST 1 ( - 1 )
+4 BINARY_SUBSCR
+6 STORE_FAST 2 ( n )
+
+17 8 LOAD_FAST 0 ( arr )
+10 LOAD_CONST 2 ( 0 )
+12 BINARY_SUBSCR
+14 STORE_FAST 3 ( n )
+
+18 16 LOAD_FAST 2 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 4 ( n )
+
+19 24 LOAD_FAST 3 ( n )
+26 LOAD_CONST 4 ( 2 )
+28 BINARY_SUBSCR
+30 STORE_FAST 5 ( n )
+
+20 32 LOAD_FAST 0 ( arr )
+34 LOAD_FAST 1 ( n )
+36 LOAD_CONST 5 ( 1 )
+38 BINARY_SUBSCR
+40 LOAD_FAST 2 ( n )
+42 LOAD_CONST 6 ( 2 )
+44 BINARY_SUBSCR
+46 LOAD_FAST 1 ( n )
+48 LOAD_CONST 7 ( 3 )
+50 BINARY_SUBSCR
+52 LOAD_FAST 1 ( n )
+54 LOAD_CONST 8 ( 2 )
+56 BINARY_SUBSCR
+58 LOAD_FAST 1 ( n )
+60 LOAD_CONST 9 ( 2 )
+62 BINARY_SUBSCR
+64 LOAD_FAST 1 ( n )
+66 LOAD_CONST 10 ( 2 )
+68 BINARY_SUBSCR
+70 LOAD_FAST 1 ( n )
+72 LOAD_CONST 11 ( 2 )
+74 BINARY_SUBSCR
+76 LOAD_CONST 12 ( 3 )
+78 BINARY_SUBSCR
+80 LOAD_FAST 1 ( n )
+82 LOAD_CONST 13 ( 2 )
+84 BINARY_SUBSCR
+86 LOAD_CONST 14 ( 2 )
+88 BINARY_SUBSCR
+90 LOAD_FAST 1 ( n )
+92 LOAD_CONST 6 ( 2 )
+94 BINARY_SUBSCR
+96 LOAD_CONST 15 ( 3 )
+98 BINARY_SUBSCR
+100 LOAD_FAST 1 ( n )
+102 LOAD_CONST 6 ( 2 )
+104 BINARY_SUBSCR
+106 LOAD_CONST 8 ( 2 )
+108 BINARY_SUBSCR
+110 LOAD_CONST 6 ( 2 )
+112 BINARY_SUBSCR
+114 LOAD_CONST 8 ( 2 )
+116 BINARY_SUBSCR
+118 LOAD_CONST 6 ( 2 )
+120 BINARY_SUBSCR
+122 LOAD_CONST 6 ( 2 )
+124 BINARY_SUBSCR
+126 LOAD_CONST 7 ( 3 )
+128 BINARY_SUBSCR
+130 LOAD_FAST 1 ( n )
+132 LOAD_CONST 6 ( 2 )
+134 BINARY_SUBSCR
+136 LOAD_CONST 8 ( 2 )
+138 STORE_SUBSCR
+140 LOAD_CONST 9 ( 2 )
+142 RETURN_VALUE
+

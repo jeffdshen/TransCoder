@@ -1,0 +1,23 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    return max ( arr )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([10, 12, 14, 16, 17, 17, 20, 24, 26, 28, 37, 38, 41, 45, 49, 50, 59, 61, 63, 65, 65, 66, 69, 70, 70, 73, 73, 74, 81, 81, 83, 87, 94, 97],17,),\n    ([-56, 38, -22, 84, -60, 2, 68, -78, 62, -98, 24, 26, 48, 62, -80, -14, -84, 12, -54, -12, -20, -82, 10, -34, -50, -72, 78, 16, 30, -76, 72, 34, 6, 52, 44, 18, -38, 48, -14],25,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],11,),\n    ([92, 5, 40, 65, 86, 51, 14, 29, 66, 6, 62, 92, 29, 13, 88, 54, 15, 60, 45, 2, 51, 9, 33, 51, 31, 11, 62, 61, 77, 38, 11, 4, 27, 54, 72, 64, 85, 46, 24, 44, 39, 73, 82, 85],40,),\n    ([-92, -90, -84, -80, -80, -76, -70, -70, -48, -44, -38, -28, -14, -14, -12, -2, 2, 4, 6, 10, 16, 16, 20, 22, 24, 26, 50, 52, 56, 56, 58, 58, 74, 80, 82, 84, 86],33,),\n    ([0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0],29,),\n    ([5, 19, 20, 26, 31, 32, 34, 37, 39, 40, 46, 46, 50, 53, 58, 58, 59, 65, 72, 72, 75, 76, 77, 78, 81, 83, 83, 95, 98, 99],28,),\n    ([32, -84, -84, 86, -24, 36, -12, 82, 48, -12, 82, -76, 84, -20, -12, -18, 46, -74, -14, -86],14,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],33,),\n    ([95, 73, 74, 14, 73, 74, 19, 93, 34, 53, 85, 75, 80, 15, 36, 57, 15, 98, 51, 37, 8, 9, 62, 71, 28, 24, 37, 53, 84, 76, 22, 48, 15, 19, 43, 88, 58, 38, 63, 68, 27, 22, 37, 76, 59, 66, 22],34,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def largest ( arr , n ) :\n    return max ( arr )\n"}
+Disassembly of <code object largest at 0x7f816a6e4b70, file "<dis>", line 16>:
+17 0 LOAD_GLOBAL 0 ( max )
+2 LOAD_FAST 0 ( arr )
+4 CALL_FUNCTION 1
+6 LOAD_FAST 0 ( arr )
+8 LOAD_CONST 1 ( 1 )
+10 BINARY_SUBTRACT
+12 LOAD_FAST 0 ( arr )
+14 LOAD_CONST 2 ( 2 )
+16 BINARY_POWER
+18 LOAD_FAST 0 ( arr )
+20 LOAD_CONST 3 ( 1 )
+22 BINARY_SUBTRACT
+24 BINARY_MULTIPLY
+26 LOAD_FAST 0 ( arr )
+28 LOAD_CONST 4 ( 2 )
+30 BINARY_POWER
+32 BINARY_MULTIPLY
+34 LOAD_FAST 0 ( arr )
+36 LOAD_CONST 5 ( ( 'axis' , ) )
+38 CALL_FUNCTION_KW 3
+40 RETURN_VALUE

@@ -1,0 +1,10 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( m , n ) :\n    return math.factorial ( min ( m , n ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (81,39,),\n    (19,94,),\n    (49,37,),\n    (40,88,),\n    (36,28,),\n    (11,46,),\n    (82,94,),\n    (80,37,),\n    (82,75,),\n    (56,9,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def gcdOfFactorial ( m , n ) :\n    return math.factorial ( min ( m , n ) )\n"}
+Disassembly of <code object gcdOfOfFactorial at 0x7f816a683a50, file "<dis>", line 64>:
+65 0 LOAD_GLOBAL 0 ( math )
+2 LOAD_METHOD 1 ( factorial )
+4 LOAD_FAST 0 ( m )
+6 LOAD_FAST 1 ( n )
+8 LOAD_FAST 2 ( n )
+10 CALL_METHOD 2
+12 RETURN_VALUE
+

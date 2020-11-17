@@ -1,0 +1,44 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    max1 = max ( arr )\n    min1 = min ( arr )\n    m = max1 - min1 + 1\n    if ( m > n ) :\n        return False\n    visited = [ 0 ] * m\n    for i in range ( 0 , n ) :\n        visited [ arr [ i ] - min1 ] = True\n    for i in range ( 0 , m ) :\n        if ( visited [ i ] == False ) :\n            return False\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 4, 19, 25, 65, 72, 75, 83, 90, 92],8,),\n    ([46, 2, 28, -44, 74, -36, -8, 30, -96, 60, 52, -58, 16, -38, 78, 38, -28, 16, 26, -42, 48, 40, 6, 72],14,),\n    ([0, 1, 1, 1],2,),\n    ([50, 21, 9, 29, 86, 2, 82, 49, 34, 18, 77, 83, 44, 67, 85, 58, 15, 85, 22, 3, 39, 67, 42, 37, 6, 35, 18, 57, 41, 32, 39, 30, 41, 68, 84, 36, 64, 36],23,),\n    ([-92, -82, -80, -78, -66, -66, -62, -58, -54, -52, -48, -30, -26, -22, -20, -20, -18, -14, -2, 12, 20, 24, 26, 26, 28, 28, 32, 36, 42, 48, 50, 52, 56, 64, 70, 72, 72, 80, 82, 84, 86, 92],26,),\n    ([1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0],43,),\n    ([18, 19, 21, 23, 30, 33, 38, 40, 45, 56, 63, 68, 93, 96],8,),\n    ([20, -90, -42, 48, 18, -46, 82, -12, -88, 82, 62, 24, 20, 64, -68, -34, -38, 8, -54, -20, -92, 34, -90, 78, 18, 8, -6, 10, 98, -24, 72, -92, 76, -22, 12, -44, 2, 68, -72, 42, 34, 20, -48],34,),\n    ([0, 0, 0, 0, 0, 1, 1, 1, 1],8,),\n    ([81, 25, 50, 48, 35, 38, 49, 21, 47, 94, 94, 55, 23, 45, 92, 23, 93, 33, 64, 9, 90, 64, 81, 17, 2, 73, 8, 7, 35, 36, 72],27,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def areElementsContiguous ( arr , n ) :\n    max1 = max ( arr )\n    min1 = min ( arr )\n    m = max1 - min1 + 1\n    if ( m > n ) :\n        return False\n    visited = [ 0 ] * m\n    for i in range ( 0 , n ) :\n        visited [ arr [ i ] - min1 ] = True\n    for i in range ( 0 , m ) :\n        if ( visited [ i ] == False ) :\n            return False\n    return True\n"}
+Disassembly of <code object areElementstitititious at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( max )
+2 LOAD_FAST 0 ( arr )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( max1 )
+
+3 8 LOAD_GLOBAL 0 ( max )
+10 LOAD_FAST 1 ( max1 )
+12 CALL_FUNCTION 1
+14 STORE_FAST 2 ( m )
+
+4 16 LOAD_FAST 2 ( m )
+18 LOAD_CONST 1 ( 0 )
+20 COMPARE_OP 4 ( > )
+22 POP_JUMP_IF_FALSE 28
+
+5 24 LOAD_CONST 2 ( False )
+26 RETURN_VALUE
+
+7 >> 28 LOAD_FAST 2 ( m )
+30 LOAD_CONST 1 ( 0 )
+32 COMPARE_OP 4 ( > )
+34 POP_JUMP_IF_FALSE 48
+
+8 36 LOAD_CONST 2 ( False )
+38 RETURN_VALUE
+
+9 >> 40 LOAD_FAST 2 ( m )
+42 LOAD_CONST 1 ( 0 )
+44 COMPARE_OP 4 ( > )
+46 POP_JUMP_IF_FALSE 64
+
+10 48 LOAD_CONST 2 ( False )
+50 RETURN_VALUE
+
+11 >> 52 LOAD_CONST 2 ( False )
+54 RETURN_VALUE
+
+12 >> 56 LOAD_CONST 3 ( False )
+58 RETURN_VALUE
+
+13 >> 60 LOAD_CONST 4 ( False )
+62 RETURN_VALUE

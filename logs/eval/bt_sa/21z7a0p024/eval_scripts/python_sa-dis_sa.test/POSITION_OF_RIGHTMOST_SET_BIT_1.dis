@@ -1,0 +1,40 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    position = 1\n    m = 1\n    while ( not ( n & m ) ) :\n        m = m << 1\n        position += 1\n    return position\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (17,),\n    (97,),\n    (73,),\n    (68,),\n    (6,),\n    (84,),\n    (72,),\n    (66,),\n    (57,),\n    (11,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def PositionRightmostSetbit ( n ) :\n    position = 1\n    m = 1\n    while ( not ( n & m ) ) :\n        m = m << 1\n        position += 1\n    return position\n"}
+Disassembly of <code object PositionRightSetbit at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 1 ( position )
+
+3 4 LOAD_CONST 1 ( 1 )
+6 STORE_FAST 2 ( position )
+
+4 8 SETUP_LOOP 64 ( to 76 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_FAST 1 ( position )
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 64 ( to 74 )
+20 STORE_FAST 3 ( m )
+
+5 22 LOAD_FAST 2 ( position )
+24 LOAD_CONST 2 ( 2 )
+26 INPLACE_ADD
+28 STORE_FAST 2 ( position )
+
+6 30 LOAD_FAST 2 ( position )
+32 LOAD_CONST 2 ( 2 )
+34 INPLACE_ADD
+36 STORE_FAST 2 ( position )
+
+7 38 LOAD_FAST 2 ( position )
+40 LOAD_CONST 2 ( 2 )
+42 INPLACE_ADD
+44 STORE_FAST 2 ( position )
+
+8 46 LOAD_FAST 2 ( position )
+48 LOAD_CONST 2 ( 2 )
+50 INPLACE_ADD
+52 STORE_FAST 2 ( position )
+54 JUMP_ABSOLUTE 18
+>> 56 POP_BLOCK
+
+9 >> 58 LOAD_FAST 1 ( position )
+60 RETURN_VALUE

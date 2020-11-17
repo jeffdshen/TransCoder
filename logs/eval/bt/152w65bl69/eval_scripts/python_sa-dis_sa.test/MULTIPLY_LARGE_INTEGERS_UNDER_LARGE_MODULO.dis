@@ -1,0 +1,22 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , mod ) :\n    res = 0 ;\n    a = a % mod ;\n    while ( b ) :\n        if ( b & 1 ) :\n            res = ( res + a ) % mod ;\n        a = ( 2 * a ) % mod ;\n        b >>= 1 ;\n    return res ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (60,24,58,),\n    (46,43,29,),\n    (4,50,71,),\n    (67,1,66,),\n    (93,35,73,),\n    (89,97,8,),\n    (8,78,55,),\n    (53,73,22,),\n    (96,92,83,),\n    (38,64,83,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def moduloMultiplication ( a , b , mod ) :\n    res = 0 ;\n    a = a % mod ;\n    while ( b ) :\n        if ( b & 1 ) :\n            res = ( res + a ) % mod ;\n        a = ( 2 * a ) % mod ;\n        b >>= 1 ;\n    return res ;\n"}
+Disassembly of <code object moduloMultiplication at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( '%s; = %s; while %s' )
+2 LOAD_FAST 0 ( a )
+4 BINARY_MODULO
+6 STORE_FAST 1 ( a )
+
+27 8 LOAD_FAST 1 ( a )
+10 LOAD_FAST 1 ( a )
+12 LOAD_FAST 2 ( b )
+14 LOAD_FAST 3 ( b )
+16 BUILD_TUPLE 2
+18 BINARY_MODULO
+20 STORE_FAST 2 ( b )
+
+28 22 LOAD_FAST 0 ( a )
+24 LOAD_FAST 2 ( b )
+26 LOAD_FAST 1 ( a )
+28 BUILD_TUPLE 2
+30 BINARY_MODULO
+32 RETURN_VALUE
+

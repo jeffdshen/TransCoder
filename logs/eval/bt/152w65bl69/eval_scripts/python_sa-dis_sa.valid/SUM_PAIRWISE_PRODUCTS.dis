@@ -1,0 +1,85 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    sm = 0\n    for i in range ( 1 , n + 1 ) :\n        for j in range ( i , n + 1 ) :\n            sm = sm + i * j\n    return sm\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (21,),\n    (32,),\n    (16,),\n    (38,),\n    (9,),\n    (3,),\n    (5,),\n    (46,),\n    (45,),\n    (87,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSum ( n ) :\n    sm = 0\n    for i in range ( 1 , n + 1 ) :\n        for j in range ( i , n + 1 ) :\n            sm = sm + i * j\n    return sm\n"}
+Disassembly of <code object findSum at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( sm )
+2 LOAD_METHOD 1 ( count )
+4 LOAD_CONST 1 ( 1 )
+6 CALL_METHOD 1
+8 STORE_FAST 1 ( n )
+
+27 10 LOAD_FAST 1 ( n )
+12 LOAD_CONST 2 ( 0 )
+14 COMPARE_OP 4 ( > )
+16 POP_JUMP_IF_FALSE 22
+18 LOAD_FAST 1 ( n )
+20 LOAD_CONST 3 ( 1 )
+22 COMPARE_OP 4 ( > )
+24 POP_JUMP_IF_FALSE 22
+
+28 26 LOAD_FAST 1 ( n )
+28 LOAD_CONST 4 ( 0 )
+30 COMPARE_OP 4 ( > )
+32 POP_JUMP_IF_FALSE 22
+
+29 34 LOAD_FAST 1 ( n )
+36 LOAD_CONST 5 ( 1 )
+38 COMPARE_OP 4 ( > )
+40 POP_JUMP_IF_FALSE 22
+
+30 42 LOAD_FAST 1 ( n )
+44 LOAD_CONST 6 ( 0 )
+46 COMPARE_OP 4 ( > )
+48 POP_JUMP_IF_FALSE 22
+
+31 50 LOAD_FAST 1 ( n )
+52 LOAD_CONST 7 ( 1 )
+54 INPLACE_ADD
+56 STORE_FAST 1 ( n )
+
+32 >> 58 LOAD_FAST 1 ( n )
+60 LOAD_CONST 8 ( 0 )
+62 COMPARE_OP 4 ( > )
+64 POP_JUMP_IF_FALSE 74
+
+33 66 LOAD_FAST 1 ( n )
+68 LOAD_CONST 9 ( 1 )
+70 INPLACE_ADD
+72 STORE_FAST 1 ( n )
+74 JUMP_FORWARD 4 ( to 78 )
+
+34 >> 76 LOAD_FAST 1 ( n )
+78 LOAD_CONST 10 ( 0 )
+80 COMPARE_OP 4 ( > )
+82 POP_JUMP_IF_FALSE 82
+
+35 84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 11 ( 1 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( n )
+
+36 >> 92 LOAD_FAST 1 ( n )
+94 LOAD_CONST 12 ( 0 )
+96 COMPARE_OP 4 ( > )
+98 POP_JUMP_IF_FALSE 106
+
+37 100 LOAD_FAST 1 ( n )
+102 LOAD_CONST 12 ( 0 )
+104 COMPARE_OP 4 ( > )
+106 POP_JUMP_IF_FALSE 106
+
+38 108 LOAD_FAST 1 ( n )
+110 LOAD_CONST 13 ( 1 )
+112 INPLACE_ADD
+114 STORE_FAST 1 ( n )
+
+39 >> 116 LOAD_FAST 1 ( n )
+118 LOAD_CONST 14 ( 0 )
+120 COMPARE_OP 4 ( > )
+122 POP_JUMP_IF_FALSE 130
+124 LOAD_FAST 1 ( n )
+126 LOAD_CONST 15 ( 1 )
+128 INPLACE_ADD
+130 STORE_FAST 1 ( n )
+
+40 >> 132 LOAD_FAST 1 ( n )
+134 RETURN_VALUE
+

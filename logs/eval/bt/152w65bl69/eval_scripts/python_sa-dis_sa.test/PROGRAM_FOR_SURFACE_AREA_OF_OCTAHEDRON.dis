@@ -1,0 +1,80 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( side ) :\n    return ( 2 * ( math.sqrt ( 3 ) ) * ( side * side ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1449.255716877097,),\n    (-8772.104874265995,),\n    (2948.419328234334,),\n    (-1184.220109553511,),\n    (7422.825800698956,),\n    (-5808.280006171851,),\n    (829.8963781665169,),\n    (-7368.438572511732,),\n    (5572.033890611617,),\n    (-3998.9441642787706,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def surface_area_octahedron ( side ) :\n    return ( 2 * ( math.sqrt ( 3 ) ) * ( side * side ) )\n"}
+Disassembly of <code object surface_area_octaron at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_CONST 1 ( 2 )
+2 LOAD_CONST 2 ( 3 )
+4 LOAD_CONST 3 ( 4 )
+6 LOAD_CONST 4 ( 6 )
+8 LOAD_CONST 5 ( ( 'max_length' , 'max_length' ) )
+10 BUILD_CONST_KEY_MAP 3
+12 STORE_FAST 1 ( w )
+
+66 14 LOAD_FAST 0 ( side )
+16 LOAD_CONST 6 ( '' )
+18 COMPARE_OP 2 ( == )
+20 POP_JUMP_IF_FALSE 30
+
+67 22 LOAD_FAST 0 ( side )
+24 LOAD_CONST 7 ( '' )
+26 COMPARE_OP 2 ( == )
+28 POP_JUMP_IF_FALSE 30
+
+68 30 LOAD_FAST 0 ( side )
+32 LOAD_CONST 8 ( '' )
+34 COMPARE_OP 2 ( == )
+36 POP_JUMP_IF_FALSE 38
+
+69 38 LOAD_FAST 0 ( side )
+40 LOAD_CONST 9 ( '' )
+42 COMPARE_OP 2 ( == )
+44 POP_JUMP_IF_FALSE 44
+
+70 46 LOAD_FAST 0 ( side )
+48 LOAD_CONST 10 ( '' )
+50 COMPARE_OP 2 ( == )
+52 POP_JUMP_IF_FALSE 44
+
+71 54 LOAD_FAST 0 ( side )
+56 LOAD_CONST 10 ( '' )
+58 COMPARE_OP 2 ( == )
+60 POP_JUMP_IF_FALSE 44
+
+72 62 LOAD_FAST 0 ( side )
+64 LOAD_CONST 11 ( '' )
+66 COMPARE_OP 2 ( == )
+68 POP_JUMP_IF_FALSE 44
+
+73 70 LOAD_FAST 0 ( side )
+72 LOAD_CONST 12 ( '' )
+74 COMPARE_OP 2 ( == )
+76 POP_JUMP_IF_FALSE 44
+
+74 78 LOAD_FAST 0 ( side )
+80 LOAD_CONST 13 ( '' )
+82 COMPARE_OP 2 ( == )
+84 POP_JUMP_IF_FALSE 44
+
+75 86 LOAD_FAST 0 ( side )
+88 LOAD_CONST 6 ( '' )
+90 COMPARE_OP 2 ( == )
+92 POP_JUMP_IF_FALSE 44
+
+76 94 LOAD_FAST 0 ( side )
+96 LOAD_CONST 6 ( '' )
+98 JUMP_FORWARD 2 ( to 44 )
+>> 100 LOAD_CONST 7 ( '' )
+>> 102 COMPARE_OP 2 ( == )
+104 POP_JUMP_IF_FALSE 44
+
+77 106 LOAD_FAST 0 ( side )
+108 LOAD_CONST 6 ( '' )
+110 COMPARE_OP 2 ( == )
+112 POP_JUMP_IF_FALSE 44
+
+78 114 LOAD_FAST 0 ( side )
+116 LOAD_CONST 6 ( '' )
+118 COMPARE_OP 2 ( == )
+120 POP_JUMP_IF_FALSE 44
+
+80 >> 122 LOAD_FAST 0 ( side )
+124 RETURN_VALUE
+

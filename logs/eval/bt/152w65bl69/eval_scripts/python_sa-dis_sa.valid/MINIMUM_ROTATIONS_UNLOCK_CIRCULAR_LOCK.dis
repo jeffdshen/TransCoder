@@ -1,0 +1,86 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( input , unlock_code ) :\n    rotation = 0 ;\n    while ( input > 0 or unlock_code > 0 ) :\n        input_digit = input % 10 ;\n        code_digit = unlock_code % 10 ;\n        rotation += min ( abs ( input_digit - code_digit ) , 10 - abs ( input_digit - code_digit ) ) ;\n        input = int ( input / 10 ) ;\n        unlock_code = int ( unlock_code / 10 ) ;\n    return rotation ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (71,46,),\n    (90,65,),\n    (28,84,),\n    (41,23,),\n    (32,58,),\n    (39,82,),\n    (33,58,),\n    (89,32,),\n    (50,51,),\n    (92,77,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minRotation ( input , unlock_code ) :\n    rotation = 0 ;\n    while ( input > 0 or unlock_code > 0 ) :\n        input_digit = input % 10 ;\n        code_digit = unlock_code % 10 ;\n        rotation += min ( abs ( input_digit - code_digit ) , 10 - abs ( input_digit - code_digit ) ) ;\n        input = int ( input / 10 ) ;\n        unlock_code = int ( unlock_code / 10 ) ;\n    return rotation ;\n"}
+Disassembly of <code object minRotation at 0x7f816a673a50, file "<dis>", line 21>:
+22 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( unlock_code )
+
+23 4 LOAD_FAST 1 ( unlock_code )
+6 LOAD_CONST 2 ( 10 )
+8 COMPARE_OP 0 ( < )
+10 POP_JUMP_IF_FALSE 20
+
+24 12 LOAD_CONST 3 ( 0 )
+14 STORE_FAST 2 ( unlock_code )
+
+25 16 LOAD_FAST 1 ( unlock_code )
+18 LOAD_CONST 4 ( 1 )
+20 INPLACE_ADD
+22 STORE_FAST 1 ( unlock_code )
+
+26 >> 24 LOAD_FAST 1 ( unlock_code )
+26 LOAD_CONST 5 ( 1 )
+28 INPLACE_ADD
+30 STORE_FAST 1 ( unlock_code )
+
+27 32 LOAD_FAST 1 ( unlock_code )
+34 LOAD_CONST 6 ( 2 )
+36 INPLACE_ADD
+38 STORE_FAST 1 ( unlock_code )
+40 STORE_FAST 2 ( unlock_code )
+
+28 42 LOAD_FAST 1 ( unlock_code )
+44 LOAD_CONST 7 ( 2 )
+46 INPLACE_ADD
+48 STORE_FAST 1 ( unlock_code )
+
+29 50 LOAD_FAST 1 ( unlock_code )
+52 LOAD_CONST 8 ( 2 )
+54 INPLACE_ADD
+56 STORE_FAST 1 ( unlock_code )
+
+30 58 LOAD_FAST 1 ( unlock_code )
+60 LOAD_CONST 9 ( 2 )
+62 INPLACE_ADD
+64 STORE_FAST 1 ( unlock_code )
+
+31 66 LOAD_FAST 1 ( unlock_code )
+68 LOAD_CONST 10 ( 2 )
+70 INPLACE_ADD
+72 STORE_FAST 1 ( unlock_code )
+74 JUMP_FORWARD 2 ( to 80 )
+
+32 >> 76 LOAD_FAST 1 ( unlock_code )
+78 LOAD_CONST 11 ( 2 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( unlock_code )
+
+33 >> 84 LOAD_FAST 1 ( unlock_code )
+86 LOAD_FAST 2 ( unlock_code )
+88 LOAD_CONST 12 ( 2 )
+90 INPLACE_ADD
+92 STORE_FAST 1 ( unlock_code )
+
+34 94 LOAD_FAST 1 ( unlock_code )
+96 LOAD_FAST 2 ( unlock_code )
+98 LOAD_CONST 12 ( 2 )
+100 INPLACE_ADD
+102 STORE_FAST 1 ( unlock_code )
+
+35 104 LOAD_FAST 1 ( unlock_code )
+106 LOAD_FAST 2 ( unlock_code )
+108 LOAD_CONST 13 ( 2 )
+110 INPLACE_ADD
+112 STORE_FAST 1 ( unlock_code )
+
+36 114 LOAD_FAST 1 ( unlock_code )
+116 LOAD_CONST 14 ( 2 )
+118 INPLACE_ADD
+120 STORE_FAST 1 ( unlock_code )
+
+37 122 LOAD_FAST 1 ( unlock_code )
+124 LOAD_CONST 15 ( 2 )
+126 INPLACE_ADD
+128 STORE_FAST 1 ( unlock_code )
+
+38 130 LOAD_FAST 1 ( unlock_code )
+132 RETURN_VALUE
+

@@ -1,0 +1,88 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , k ) :\n    p = a ** b\n    count = 0\n    while ( p > 0 and count < k ) :\n        rem = p % 10\n        count = count + 1\n        if ( count == k ) :\n            return rem\n        p = p / 10 ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (11,2,1),\n    (41,3,3),\n    (5,4,3),\n    (1,2,4),\n    (24,1,5),\n    (5,2,3),\n    (66,5,8),\n    (7,10,3),\n    (77,30,10),\n    (60,50,1)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def kthdigit ( a , b , k ) :\n    p = a ** b\n    count = 0\n    while ( p > 0 and count < k ) :\n        rem = p % 10\n        count = count + 1\n        if ( count == k ) :\n            return rem\n        p = p / 10 ;\n"}
+Disassembly of <code object kthdigit at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_FAST 1 ( b )
+4 LOAD_FAST 2 ( k )
+6 BINARY_MULTIPLY
+8 LOAD_CONST 1 ( 0 )
+10 COMPARE_OP 4 ( > )
+12 POP_JUMP_IF_FALSE 20
+
+3 14 LOAD_CONST 2 ( 1 )
+16 STORE_FAST 3 ( rem )
+18 JUMP_FORWARD 4 ( to 26 )
+
+5 >> 20 LOAD_CONST 3 ( '' )
+22 STORE_FAST 3 ( rem )
+
+6 24 LOAD_FAST 3 ( rem )
+26 LOAD_CONST 4 ( 1 )
+28 COMPARE_OP 4 ( > )
+30 POP_JUMP_IF_FALSE 36
+
+7 32 LOAD_FAST 3 ( rem )
+34 LOAD_CONST 5 ( 2 )
+36 INPLACE_ADD
+38 STORE_FAST 3 ( rem )
+40 JUMP_FORWARD 4 ( to 48 )
+
+8 >> 42 LOAD_FAST 3 ( rem )
+44 LOAD_CONST 6 ( - 1 )
+46 INPLACE_SUBTRACT
+>> 48 STORE_FAST 3 ( rem )
+50 JUMP_FORWARD 4 ( to 48 )
+
+10 >> 52 LOAD_FAST 3 ( rem )
+54 LOAD_CONST 7 ( - 1 )
+56 INPLACE_SUBTRACT
+58 STORE_FAST 3 ( rem )
+
+11 >> 60 LOAD_FAST 3 ( rem )
+62 LOAD_CONST 8 ( - 1 )
+64 INPLACE_SUBTRACT
+66 STORE_FAST 3 ( rem )
+
+12 68 LOAD_FAST 3 ( rem )
+70 LOAD_CONST 9 ( - 1 )
+72 INPLACE_SUBTRACT
+74 STORE_FAST 3 ( rem )
+
+13 76 LOAD_FAST 3 ( rem )
+78 LOAD_CONST 10 ( - 1 )
+80 INPLACE_SUBTRACT
+82 STORE_FAST 3 ( rem )
+
+14 84 LOAD_FAST 3 ( rem )
+86 LOAD_CONST 11 ( - 1 )
+88 INPLACE_SUBTRACT
+90 STORE_FAST 3 ( rem )
+
+15 92 LOAD_FAST 3 ( rem )
+94 LOAD_CONST 12 ( - 1 )
+96 INPLACE_SUBTRACT
+98 STORE_FAST 3 ( rem )
+
+16 100 LOAD_FAST 3 ( rem )
+102 LOAD_FAST 3 ( rem )
+104 LOAD_FAST 3 ( rem )
+106 STORE_SUBSCR
+
+17 108 LOAD_FAST 3 ( rem )
+110 LOAD_CONST 13 ( - 1 )
+112 INPLACE_SUBTRACT
+114 STORE_FAST 3 ( rem )
+
+18 116 LOAD_FAST 3 ( rem )
+118 LOAD_CONST 14 ( - 1 )
+120 INPLACE_SUBTRACT
+122 STORE_FAST 3 ( rem )
+
+19 124 LOAD_FAST 3 ( rem )
+126 LOAD_FAST 3 ( rem )
+128 LOAD_FAST 3 ( rem )
+130 STORE_SUBSCR
+132 JUMP_ABSOLUTE 18
+>> 134 POP_BLOCK
+
+20 >> 136 LOAD_FAST 3 ( rem )
+138 RETURN_VALUE

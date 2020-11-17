@@ -1,0 +1,14 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( N ) :\n    B_Number = 0\n    cnt = 0\n    while ( N != 0 ) :\n        rem = N % 2\n        c = pow ( 10 , cnt )\n        B_Number += rem * c\n        N //= 2\n        cnt += 1\n    return B_Number\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (18,),\n    (92,),\n    (87,),\n    (50,),\n    (56,),\n    (88,),\n    (3,),\n    (16,),\n    (45,),\n    (58,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def decimalToBinary ( N ) :\n    B_Number = 0\n    cnt = 0\n    while ( N != 0 ) :\n        rem = N % 2\n        c = pow ( 10 , cnt )\n        B_Number += rem * c\n        N //= 2\n        cnt += 1\n    return B_Number\n"}
+Disassembly of <code object decimalToBinary at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_GLOBAL 0 ( B_Number )
+2 LOAD_FAST 0 ( N )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( cnt )
+
+66 8 LOAD_GLOBAL 1 ( np )
+10 LOAD_METHOD 2 ( pow )
+12 LOAD_FAST 1 ( cnt )
+14 LOAD_FAST 1 ( cnt )
+16 CALL_METHOD 2
+18 RETURN_VALUE
+

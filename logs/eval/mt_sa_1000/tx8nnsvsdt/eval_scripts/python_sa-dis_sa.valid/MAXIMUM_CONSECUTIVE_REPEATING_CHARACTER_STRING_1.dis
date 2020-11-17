@@ -1,0 +1,68 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    n = len ( str )\n    count = 0\n    res = str [ 0 ]\n    cur_count = 1\n    for i in range ( n ) :\n        if ( i < n - 1 and str [ i ] == str [ i + 1 ] ) :\n            cur_count += 1\n        else :\n            if cur_count > count :\n                count = cur_count\n                res = str [ i ]\n            cur_count = 1\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('geeekk',),\n    ('3786868',),\n    ('110',),\n    ('aaaabbcbbb',),\n    ('11',),\n    ('011101',),\n    ('WoHNyJYLC',),\n    ('3141711779',),\n    ('10111101101',),\n    ('aabbabababcc',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxRepeating ( str ) :\n    n = len ( str )\n    count = 0\n    res = str [ 0 ]\n    cur_count = 1\n    for i in range ( n ) :\n        if ( i < n - 1 and str [ i ] == str [ i + 1 ] ) :\n            cur_count += 1\n        else :\n            if cur_count > count :\n                count = cur_count\n                res = str [ i ]\n            cur_count = 1\n    return res\n"}
+Disassembly of <code object maxRepeating at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( str )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 2 ( count )
+
+4 12 LOAD_FAST 0 ( str )
+14 LOAD_CONST 1 ( 0 )
+16 BINARY_SUBSCR
+18 STORE_FAST 3 ( res )
+
+5 20 LOAD_CONST 2 ( 1 )
+22 STORE_FAST 4 ( cur_count )
+
+6 24 SETUP_LOOP 92 ( to 126 )
+26 LOAD_GLOBAL 1 ( range )
+28 LOAD_FAST 1 ( n )
+30 CALL_FUNCTION 1
+32 GET_ITER
+>> 34 FOR_ITER 80 ( to 124 )
+36 STORE_FAST 5 ( i )
+
+7 38 LOAD_FAST 5 ( i )
+40 LOAD_FAST 1 ( n )
+42 COMPARE_OP 0 ( < )
+44 POP_JUMP_IF_FALSE 74
+46 LOAD_FAST 0 ( str )
+48 LOAD_FAST 5 ( i )
+50 BINARY_SUBSCR
+52 LOAD_FAST 0 ( str )
+54 LOAD_FAST 5 ( i )
+56 LOAD_CONST 2 ( 1 )
+58 BINARY_ADD
+60 BINARY_SUBSCR
+62 COMPARE_OP 2 ( == )
+64 POP_JUMP_IF_FALSE 74
+
+8 66 LOAD_FAST 4 ( cur_count )
+68 LOAD_CONST 2 ( 1 )
+70 INPLACE_ADD
+72 STORE_FAST 4 ( cur_count )
+
+10 >> 74 LOAD_FAST 4 ( cur_count )
+76 LOAD_FAST 2 ( count )
+78 COMPARE_OP 4 ( > )
+80 POP_JUMP_IF_FALSE 92
+
+11 82 LOAD_FAST 4 ( cur_count )
+84 STORE_FAST 2 ( count )
+
+12 86 LOAD_FAST 0 ( str )
+88 LOAD_FAST 5 ( i )
+90 BINARY_SUBSCR
+92 STORE_FAST 3 ( res )
+94 JUMP_ABSOLUTE 34
+>> 96 POP_BLOCK
+
+13 >> 98 LOAD_CONST 2 ( 1 )
+100 STORE_FAST 4 ( cur_count )
+102 JUMP_ABSOLUTE 34
+>> 104 POP_BLOCK
+
+14 >> 106 LOAD_FAST 3 ( res )
+108 RETURN_VALUE

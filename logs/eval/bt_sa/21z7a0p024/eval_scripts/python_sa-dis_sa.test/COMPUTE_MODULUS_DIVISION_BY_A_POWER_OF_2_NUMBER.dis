@@ -1,0 +1,7 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , d ) :\n    return ( n & ( d - 1 ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (54,59,),\n    (39,84,),\n    (35,81,),\n    (9,60,),\n    (62,68,),\n    (16,16,),\n    (93,96,),\n    (32,38,),\n    (39,62,),\n    (63,16,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def getModulo ( n , d ) :\n    return ( n & ( d - 1 ) )\n"}
+Disassembly of <code object getModulo at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 LOAD_CONST 2 ( ( 'd' , ) )
+6 BUILD_CONST_KEY_MAP 2
+8 RETURN_VALUE

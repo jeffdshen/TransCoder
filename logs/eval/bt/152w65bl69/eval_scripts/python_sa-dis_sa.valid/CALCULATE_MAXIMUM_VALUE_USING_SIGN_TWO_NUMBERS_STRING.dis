@@ -1,0 +1,86 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    res = ord ( str [ 0 ] ) - 48\n    for i in range ( 1 , len ( str ) ) :\n        if ( str [ i ] == '0' or str [ i ] == '1' or res < 2 ) :\n            res += ord ( str [ i ] ) - 48\n        else :\n            res *= ord ( str [ i ] ) - 48\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('pR',),\n    ('9518',),\n    ('1',),\n    ('nNMCIXUCpRMmvO',),\n    ('3170487',),\n    ('0100101010',),\n    ('Z rONcUqWb',),\n    ('00419297',),\n    ('00',),\n    ('r',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def calcMaxValue ( str ) :\n    res = ord ( str [ 0 ] ) - 48\n    for i in range ( 1 , len ( str ) ) :\n        if ( str [ i ] == '0' or str [ i ] == '1' or res < 2 ) :\n            res += ord ( str [ i ] ) - 48\n        else :\n            res *= ord ( str [ i ] ) - 48\n    return res\n"}
+Disassembly of <code object calcMaxValue at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( ord )
+2 LOAD_FAST 0 ( str )
+4 CALL_FUNCTION 1
+6 LOAD_CONST 1 ( '0' )
+8 COMPARE_OP 2 ( == )
+10 POP_JUMP_IF_FALSE 16
+
+27 12 LOAD_FAST 0 ( str )
+14 LOAD_CONST 2 ( '0' )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 28
+
+28 20 LOAD_FAST 0 ( str )
+22 LOAD_CONST 3 ( '0' )
+24 COMPARE_OP 2 ( == )
+26 POP_JUMP_IF_FALSE 28
+
+29 28 LOAD_FAST 0 ( str )
+30 LOAD_CONST 4 ( '0' )
+32 COMPARE_OP 2 ( == )
+34 POP_JUMP_IF_FALSE 38
+
+30 36 LOAD_FAST 0 ( str )
+38 LOAD_CONST 5 ( '0' )
+40 COMPARE_OP 2 ( == )
+42 POP_JUMP_IF_FALSE 44
+
+31 44 LOAD_FAST 0 ( str )
+46 LOAD_CONST 6 ( '0' )
+48 COMPARE_OP 2 ( == )
+50 POP_JUMP_IF_FALSE 52
+
+32 52 LOAD_FAST 0 ( str )
+54 LOAD_CONST 7 ( '0' )
+56 COMPARE_OP 2 ( == )
+58 POP_JUMP_IF_FALSE 52
+
+33 60 LOAD_FAST 0 ( str )
+62 LOAD_CONST 8 ( '0' )
+64 COMPARE_OP 2 ( == )
+66 POP_JUMP_IF_FALSE 68
+
+34 68 LOAD_FAST 0 ( str )
+70 LOAD_CONST 9 ( '0' )
+72 COMPARE_OP 2 ( == )
+74 POP_JUMP_IF_FALSE 68
+
+35 76 LOAD_FAST 0 ( str )
+78 LOAD_CONST 10 ( '0' )
+80 COMPARE_OP 2 ( == )
+82 POP_JUMP_IF_FALSE 80
+
+36 84 LOAD_FAST 0 ( str )
+86 LOAD_CONST 11 ( '0' )
+88 LOAD_CONST 12 ( '0' )
+90 COMPARE_OP 2 ( == )
+92 POP_JUMP_IF_FALSE 80
+
+37 94 LOAD_FAST 0 ( str )
+96 LOAD_CONST 12 ( '0' )
+98 LOAD_CONST 13 ( '0' )
+100 LOAD_CONST 14 ( '0' )
+102 LOAD_CONST 15 ( '0' )
+104 LOAD_CONST 16 ( '0' )
+106 LOAD_CONST 17 ( '0' )
+108 LOAD_CONST 18 ( '0' )
+110 LOAD_CONST 19 ( '0' )
+112 LOAD_CONST 20 ( '0' )
+114 LOAD_CONST 21 ( '0' )
+116 LOAD_CONST 22 ( '0' )
+118 LOAD_CONST 23 ( '0' )
+120 LOAD_CONST 22 ( '0' )
+122 LOAD_CONST 23 ( '0' )
+124 LOAD_CONST 23 ( '0' )
+126 LOAD_CONST 22 ( '0' )
+128 LOAD_CONST 23 ( '0' )
+130 LOAD_CONST 23 ( '0' )
+132 LOAD_CONST 23 ( '0' )
+134 LOAD_CONST 23 ( '0' )
+136 LOAD_CONST 23 ( '0' )
+138 LOAD_CONST 24 ( '0' )
+140 LOAD_CONST 23 ( '0' )
+142 LOAD_CONST 23 ( '0' )
+144 LOAD_CONST 23 ( '0' )

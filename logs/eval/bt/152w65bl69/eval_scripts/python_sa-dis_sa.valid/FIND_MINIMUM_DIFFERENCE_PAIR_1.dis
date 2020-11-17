@@ -1,0 +1,71 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    arr = sorted ( arr )\n    diff = 10 ** 20\n    for i in range ( n - 1 ) :\n        if arr [ i + 1 ] - arr [ i ] < diff :\n            diff = arr [ i + 1 ] - arr [ i ]\n    return diff\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 25, 44, 46, 54, 60, 81],3,),\n    ([82, 68, -98, -66, -36, -42, 98, -38, 58, -6, -28, 70, -24, 18, 16, 10, 92, 44, 28, -96, -72, 24, 28, -80, -4, 38, 88, 76],22,),\n    ([1, 1, 1],2,),\n    ([87, 25, 80, 45, 44, 20, 48, 47, 51, 54, 68, 47, 89, 95, 15, 29, 5, 45, 2, 64, 53, 96, 94, 22, 23, 43, 61, 75, 74, 50],15,),\n    ([-74, -48, -42, -26, -16, -12, 0, 4, 8, 18, 46, 46, 62, 70, 74, 88, 92, 96, 98],18,),\n    ([0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0],36,),\n    ([27, 42, 59, 80],2,),\n    ([-96, -94, 10, -36, 18, -40],4,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],12,),\n    ([96],0,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMinDiff ( arr , n ) :\n    arr = sorted ( arr )\n    diff = 10 ** 20\n    for i in range ( n - 1 ) :\n        if arr [ i + 1 ] - arr [ i ] < diff :\n            diff = arr [ i + 1 ] - arr [ i ]\n    return diff\n"}
+Disassembly of <code object findMinDiff at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( arr )
+2 LOAD_METHOD 1 ( sorted )
+4 LOAD_FAST 0 ( arr )
+6 CALL_METHOD 1
+8 STORE_FAST 1 ( n )
+
+27 10 LOAD_FAST 1 ( n )
+12 LOAD_CONST 1 ( 1 )
+14 COMPARE_OP 4 ( > )
+16 POP_JUMP_IF_FALSE 26
+
+28 18 LOAD_FAST 1 ( n )
+20 LOAD_CONST 2 ( 2 )
+22 COMPARE_OP 4 ( > )
+24 POP_JUMP_IF_FALSE 26
+
+29 26 LOAD_FAST 1 ( n )
+28 LOAD_CONST 3 ( 1 )
+30 INPLACE_ADD
+32 STORE_FAST 1 ( n )
+34 JUMP_FORWARD 4 ( to 28 )
+
+30 >> 36 LOAD_FAST 1 ( n )
+38 LOAD_CONST 4 ( 2 )
+40 COMPARE_OP 4 ( > )
+42 POP_JUMP_IF_FALSE 52
+
+31 44 LOAD_FAST 1 ( n )
+46 LOAD_CONST 5 ( 1 )
+48 INPLACE_ADD
+50 STORE_FAST 1 ( n )
+
+32 >> 52 LOAD_FAST 1 ( n )
+54 LOAD_CONST 6 ( 2 )
+56 INPLACE_ADD
+58 STORE_FAST 1 ( n )
+
+33 60 LOAD_FAST 1 ( n )
+62 LOAD_CONST 7 ( 3 )
+64 INPLACE_ADD
+66 STORE_FAST 1 ( n )
+
+34 >> 68 LOAD_FAST 1 ( n )
+70 LOAD_CONST 8 ( 2 )
+72 INPLACE_ADD
+74 STORE_FAST 1 ( n )
+
+35 76 LOAD_FAST 1 ( n )
+78 LOAD_CONST 9 ( 4 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( n )
+
+36 84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 10 ( 4 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( n )
+
+37 92 LOAD_FAST 1 ( n )
+94 LOAD_FAST 0 ( arr )
+96 LOAD_CONST 11 ( 4 )
+98 INPLACE_ADD
+100 STORE_FAST 1 ( n )
+
+38 102 LOAD_FAST 1 ( n )
+104 LOAD_FAST 0 ( arr )
+106 LOAD_CONST 12 ( ( 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' , 'n' ) )
+108 BUILD_CONST_KEY_MAP 5
+110 RETURN_VALUE
+

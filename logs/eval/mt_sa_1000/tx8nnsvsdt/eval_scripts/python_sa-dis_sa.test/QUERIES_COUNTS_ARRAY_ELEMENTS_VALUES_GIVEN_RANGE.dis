@@ -1,0 +1,35 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , x , y ) :\n    count = 0 ;\n    for i in range ( n ) :\n        if ( arr [ i ] >= x and arr [ i ] <= y ) :\n            count += 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([9, 16, 19, 24, 36, 38, 42, 49, 51, 53, 53, 57, 57, 58, 71, 78, 78, 92, 92, 93],13,12,13,),\n    ([28, -74, -18, 10, 26, 28, -96, -80, 82, 94, 22, 50, 72, -90, 76, 50, 20, -44, -80],18,13,13,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],30,21,31,),\n    ([25, 8, 66, 90, 50, 65, 76, 90, 27],4,8,5,),\n    ([-98, -96, -90, -82, -80, -78, -70, -66, -60, -60, -50, -48, -34, -26, -24, -16, -14, -8, -6, 4, 22, 24, 26, 30, 30, 48, 52, 56, 60, 62, 74, 76, 78, 86],32,24,24,),\n    ([1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0],15,16,12,),\n    ([4, 6, 17, 19, 24, 29, 30, 31, 32, 37, 37, 40, 43, 44, 44, 45, 57, 64, 69, 70, 73, 78, 86, 89, 91, 92, 94],17,21,15,),\n    ([32, -88, 70, -6, 28, -48],4,3,4,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],13,12,11,),\n    ([37, 84, 97, 74, 12, 26, 47, 10, 14, 33],5,9,8,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countInRange ( arr , n , x , y ) :\n    count = 0 ;\n    for i in range ( n ) :\n        if ( arr [ i ] >= x and arr [ i ] <= y ) :\n            count += 1\n    return count\n"}
+Disassembly of <code object countInRange at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 4 ( count )
+
+3 4 SETUP_LOOP 54 ( to 60 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_FAST 1 ( n )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 42 ( to 58 )
+16 STORE_FAST 5 ( i )
+
+4 18 LOAD_FAST 0 ( arr )
+20 LOAD_FAST 5 ( i )
+22 BINARY_SUBSCR
+24 LOAD_FAST 2 ( x )
+26 COMPARE_OP 5 ( >= )
+28 POP_JUMP_IF_FALSE 14
+30 LOAD_FAST 0 ( arr )
+32 LOAD_FAST 5 ( i )
+34 BINARY_SUBSCR
+36 LOAD_FAST 3 ( y )
+38 COMPARE_OP 1 ( <= )
+40 POP_JUMP_IF_FALSE 14
+
+5 42 LOAD_FAST 4 ( count )
+44 LOAD_CONST 2 ( 1 )
+46 INPLACE_ADD
+48 STORE_FAST 4 ( count )
+50 JUMP_ABSOLUTE 14
+52 POP_BLOCK
+
+6 >> 54 LOAD_FAST 4 ( count )
+56 RETURN_VALUE

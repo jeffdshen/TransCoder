@@ -1,0 +1,47 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    result = 0 ;\n    n = len ( s ) ;\n    for i in range ( n ) :\n        for j in range ( i , n ) :\n            if ( s [ i ] == s [ j ] ) :\n                result = result + 1\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('LZIKA',),\n    ('0556979952',),\n    ('110010',),\n    ('kGaYfd',),\n    ('413567670657',),\n    ('01001',),\n    ('EQPuFa',),\n    ('48848378',),\n    ('110',),\n    ('PLehNeP',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countSubstringWithEqualEnds ( s ) :\n    result = 0 ;\n    n = len ( s ) ;\n    for i in range ( n ) :\n        for j in range ( i , n ) :\n            if ( s [ i ] == s [ j ] ) :\n                result = result + 1\n    return result\n"}
+Disassembly of <code object countSubstringWithEqualEnds at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( result )
+
+3 4 LOAD_GLOBAL 0 ( len )
+6 LOAD_FAST 0 ( s )
+8 CALL_FUNCTION 1
+10 STORE_FAST 2 ( n )
+
+4 12 SETUP_LOOP 62 ( to 78 )
+14 LOAD_GLOBAL 1 ( range )
+16 LOAD_FAST 2 ( n )
+18 CALL_FUNCTION 1
+20 GET_ITER
+>> 22 FOR_ITER 50 ( to 76 )
+24 STORE_FAST 3 ( i )
+
+5 26 SETUP_LOOP 40 ( to 74 )
+28 LOAD_GLOBAL 1 ( range )
+30 LOAD_FAST 3 ( i )
+32 LOAD_FAST 2 ( n )
+34 CALL_FUNCTION 2
+36 GET_ITER
+>> 38 FOR_ITER 28 ( to 72 )
+40 STORE_FAST 4 ( j )
+
+6 42 LOAD_FAST 0 ( s )
+44 LOAD_FAST 3 ( i )
+46 BINARY_SUBSCR
+48 LOAD_FAST 0 ( s )
+50 LOAD_FAST 4 ( j )
+52 BINARY_SUBSCR
+54 COMPARE_OP 2 ( == )
+56 POP_JUMP_IF_FALSE 38
+
+7 58 LOAD_FAST 1 ( result )
+60 LOAD_CONST 2 ( 1 )
+62 BINARY_ADD
+64 STORE_FAST 1 ( result )
+66 JUMP_ABSOLUTE 38
+>> 68 POP_BLOCK
+>> 70 JUMP_ABSOLUTE 22
+>> 72 POP_BLOCK
+
+8 >> 74 LOAD_FAST 1 ( result )
+76 RETURN_VALUE

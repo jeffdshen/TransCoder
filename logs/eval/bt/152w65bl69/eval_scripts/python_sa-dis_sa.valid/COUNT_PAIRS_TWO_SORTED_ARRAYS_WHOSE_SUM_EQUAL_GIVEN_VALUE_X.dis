@@ -1,0 +1,91 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr1 , arr2 , m , n , x ) :\n    count = 0\n    for i in range ( m ) :\n        for j in range ( n ) :\n            if arr1 [ i ] + arr2 [ j ] == x :\n                count = count + 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([11, 13, 16, 23, 26, 28, 31, 34, 37, 39, 44, 48, 56, 59, 79, 91, 96, 98],[1, 1, 9, 14, 17, 23, 26, 31, 33, 36, 53, 60, 71, 75, 76, 84, 87, 88],9,15,11,),\n    ([50, 14, -98, 14, 90, 36, 66, 44, 10, -98, -24, -36, -32, -50],[34, -6, -66, 0, -6, 82, 60, -98, -8, 60, -2, 4, 22, 76],11,12,8,),\n    ([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,9,12,),\n    ([88, 14, 29, 87, 86, 58],[91, 95, 64, 4, 63, 35],3,5,5,),\n    ([-98, -92, -88, -86, -82, -76, -72, -66, -56, -48, -34, -28, -28, -26, -20, -18, -18, -16, -16, -12, -4, 0, 6, 12, 16, 20, 22, 30, 34, 34, 36, 56, 58, 62, 64, 80, 82, 94],[-94, -90, -88, -84, -82, -78, -76, -72, -70, -58, -58, -46, -42, -40, -40, -32, -22, -20, -18, -12, -8, -6, 6, 6, 18, 20, 34, 46, 60, 62, 66, 72, 72, 76, 76, 78, 92, 98],34,32,23,),\n    ([1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0],[1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0],39,26,34,),\n    ([70, 70, 74],[15, 55, 84],1,1,1,),\n    ([-20, -12, -50, 76, 24, 64, -22, -4, -68],[18, 98, -88, 86, 72, -44, 82, 94, 58],5,4,7,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],27,26,37,),\n    ([68, 75, 51, 45, 73, 95, 48, 53, 70, 41, 65, 47, 46, 43, 79, 29, 50],[4, 6, 76, 65, 16, 13, 85, 43, 31, 14, 81, 90, 24, 87, 40, 25, 88],10,10,9,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPairs ( arr1 , arr2 , m , n , x ) :\n    count = 0\n    for i in range ( m ) :\n        for j in range ( n ) :\n            if arr1 [ i ] + arr2 [ j ] == x :\n                count = count + 1\n    return count\n"}
+Disassembly of <code object countPairs at 0x7f816a683c00, file "<dis>", line 49>:
+50 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( arr2 )
+
+51 4 SETUP_LOOP 52 ( to 54 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_FAST 1 ( arr2 )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 52 ( to 52 )
+16 STORE_FAST 2 ( i )
+
+52 18 LOAD_FAST 0 ( arr1 )
+20 LOAD_METHOD 1 ( count )
+22 CALL_METHOD 0
+24 STORE_FAST 3 ( arr2 )
+
+53 26 LOAD_FAST 0 ( arr1 )
+28 LOAD_METHOD 2 ( count )
+30 CALL_METHOD 0
+32 STORE_FAST 4 ( arr2 )
+
+54 34 LOAD_FAST 0 ( arr1 )
+36 LOAD_METHOD 3 ( count )
+38 CALL_METHOD 0
+40 STORE_FAST 5 ( arr2 )
+
+55 42 LOAD_FAST 0 ( arr1 )
+44 LOAD_METHOD 4 ( count )
+46 CALL_METHOD 0
+48 STORE_FAST 6 ( arr2 )
+
+56 50 LOAD_FAST 0 ( arr1 )
+52 LOAD_METHOD 5 ( count )
+54 CALL_METHOD 0
+56 STORE_FAST 7 ( arr2 )
+
+57 58 LOAD_FAST 0 ( arr1 )
+60 LOAD_METHOD 6 ( count )
+62 CALL_METHOD 0
+64 STORE_FAST 8 ( arr2 )
+
+58 66 LOAD_FAST 0 ( arr1 )
+68 LOAD_METHOD 7 ( count )
+70 CALL_METHOD 0
+72 STORE_FAST 9 ( arr2 )
+
+59 74 LOAD_FAST 0 ( arr1 )
+76 LOAD_METHOD 8 ( count )
+78 CALL_METHOD 0
+80 STORE_FAST 10 ( arr2 )
+
+60 82 LOAD_FAST 0 ( arr1 )
+84 LOAD_METHOD 9 ( count )
+86 CALL_METHOD 0
+88 STORE_FAST 11 ( arr2 )
+
+61 90 LOAD_FAST 0 ( arr1 )
+92 LOAD_METHOD 10 ( count )
+94 CALL_METHOD 0
+96 STORE_FAST 11 ( arr2 )
+
+62 98 LOAD_FAST 0 ( arr1 )
+100 LOAD_METHOD 11 ( count )
+102 CALL_METHOD 0
+104 STORE_FAST 12 ( arr2 )
+
+63 106 LOAD_FAST 0 ( arr1 )
+108 LOAD_METHOD 12 ( count )
+110 CALL_METHOD 0
+112 STORE_FAST 13 ( arr2 )
+
+64 114 LOAD_FAST 0 ( arr1 )
+116 LOAD_METHOD 13 ( count )
+118 CALL_METHOD 0
+120 STORE_FAST 14 ( arr2 )
+
+65 122 LOAD_FAST 0 ( arr1 )
+124 LOAD_METHOD 14 ( count )
+126 CALL_METHOD 0
+128 STORE_FAST 15 ( arr2 )
+
+66 130 LOAD_FAST 0 ( arr1 )
+132 LOAD_FAST 15 ( arr2 )
+134 LOAD_FAST 14 ( arr2 )
+136 LOAD_FAST 15 ( arr2 )
+138 LOAD_FAST 15 ( arr2 )
+140 LOAD_FAST 15 ( arr2 )
+142 LOAD_FAST 14 ( arr2 )
+144 LOAD_FAST 15 ( arr2 )

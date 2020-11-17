@@ -1,0 +1,17 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , N ) :\n    if N < 3 :\n        return False\n    arr.sort ( )\n    for i in range ( N - 2 ) :\n        if arr [ i ] + arr [ i + 1 ] > arr [ i + 2 ] :\n            return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 6, 8, 10, 14, 15, 16, 19, 21, 26, 26, 26, 28, 29, 30, 33, 33, 35, 36, 36, 41, 44, 45, 45, 45, 49, 51, 54, 57, 59, 61, 64, 68, 70, 70, 72, 73, 74, 76, 78, 87, 89, 89, 91, 92, 93, 94, 95, 97],25,),\n    ([50, -58, -44, 90, 18, -26, -74, -46, 96, 32, 72, 46, -90, 86, -10, 82, -72, 86, -64, -96, -12, -14, -36, 16, 38, 56, 54, 10, 74, -86, -64, -56, 30, -50, 46, 4, 88, -94, -4, -78, 22, -78],23,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],10,),\n    ([80, 24, 41, 90, 24, 95],4,),\n    ([-90, -88, -84, -82, -82, -80, -70, -66, -62, -60, -60, -48, -46, -44, -42, -20, -16, -4, 18, 26, 28, 32, 36, 46, 60, 62, 68, 72, 78, 98],21,),\n    ([0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0],25,),\n    ([3, 9, 14, 16, 16, 26, 30, 31, 32, 37, 42, 42, 43, 49, 51, 56, 64, 69, 76, 77, 77, 79, 85, 88, 89, 91, 94, 95],19,),\n    ([-60, -90, -30, -42, 80, -66, 94, 60, -68, -74, -50, 42, -38, -34, -84, -58, 30, 98, -52, 6, -60, -60],11,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],18,),\n    ([24, 80, 16, 31, 5, 31, 66, 1, 13, 77, 88, 40, 34, 15, 90, 46, 8, 26, 39, 52, 22, 33, 3, 30, 49, 51, 69, 50, 39, 59],23,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPossibleTriangle ( arr , N ) :\n    if N < 3 :\n        return False\n    arr.sort ( )\n    for i in range ( N - 2 ) :\n        if arr [ i ] + arr [ i + 1 ] > arr [ i + 2 ] :\n            return True\n"}
+Disassembly of <code object isPossibleTriangle at 0x7f816a601660, file "<dis>", line 68>:
+69 0 LOAD_FAST 0 ( arr )
+2 LOAD_CONST 1 ( 2 )
+4 BINARY_MULTIPLY
+6 LOAD_FAST 1 ( N )
+8 BINARY_MULTIPLY
+10 LOAD_FAST 1 ( N )
+12 BINARY_MULTIPLY
+14 LOAD_FAST 1 ( N )
+16 BINARY_MULTIPLY
+18 BINARY_ADD
+20 LOAD_CONST 2 ( 2 )
+22 BINARY_MULTIPLY
+24 BINARY_ADD
+26 RETURN_VALUE
+

@@ -1,0 +1,48 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    S = set ( ) ;\n    for i in range ( n ) :\n        S.add ( arr [ i ] ) ;\n    ans = 0 ;\n    for i in range ( n ) :\n        if S.__contains__ ( arr [ i ] ) :\n            j = arr [ i ] ;\n            while ( S.__contains__ ( j ) ) :\n                j += 1 ;\n            ans = max ( ans , j - arr [ i ] ) ;\n    return ans ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 5, 9, 24, 28, 31, 49, 54, 67, 85, 86, 94, 97, 97],11,),\n    ([-34, 16, -80, -10, 80, 2, 50, -74, -76, 36, -84, -24, 74, -54, -22, 46, 80, 58, -8, 70, 24, -88, 52, 62, 30, 42, 48, 16, 78, -82, 64, -36, 84, -72],29,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],13,),\n    ([49, 61, 68, 4, 90, 89, 71, 74, 45, 61, 35, 41, 59],11,),\n    ([-42, -8, 28, 56, 80, 96],4,),\n    ([1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1],17,),\n    ([3, 4, 6, 6, 13, 27, 27, 29, 32, 36, 46, 50, 52, 65, 69, 70, 71, 83, 87, 91],10,),\n    ([64, -76, 28, 6, 56, 18, 32, -50, -20, 18, -26, -90, 32, 50, -18, 98, 84, 40, 50, 88, -70, -6, -24, -44, -96, -58, 48, -78, -14],15,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],15,),\n    ([50, 48, 61, 87, 7, 78, 93, 44, 16, 88, 98, 15, 73, 93, 43, 46, 42, 34, 1, 35, 79, 35, 84, 60, 18, 79, 17, 4, 78, 1, 20, 64],25,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findLongestConseqSubseq ( arr , n ) :\n    S = set ( ) ;\n    for i in range ( n ) :\n        S.add ( arr [ i ] ) ;\n    ans = 0 ;\n    for i in range ( n ) :\n        if S.__contains__ ( arr [ i ] ) :\n            j = arr [ i ] ;\n            while ( S.__contains__ ( j ) ) :\n                j += 1 ;\n            ans = max ( ans , j - arr [ i ] ) ;\n    return ans ;\n"}
+Disassembly of <code object findpeakgestgestSubseq at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( set )
+2 CALL_FUNCTION 0
+4 STORE_FAST 2 ( S )
+
+3 6 SETUP_LOOP 64 ( to 70 )
+8 LOAD_GLOBAL 1 ( range )
+10 LOAD_FAST 0 ( arr )
+12 CALL_FUNCTION 1
+14 GET_ITER
+>> 16 FOR_ITER 56 ( to 68 )
+18 STORE_FAST 3 ( i )
+
+4 20 LOAD_FAST 2 ( S )
+22 LOAD_METHOD 2 ( __contains__ )
+24 LOAD_FAST 3 ( i )
+26 CALL_METHOD 1
+28 STORE_FAST 4 ( ans )
+
+5 30 LOAD_FAST 2 ( S )
+32 LOAD_METHOD 2 ( __contains__ )
+34 LOAD_FAST 3 ( i )
+36 CALL_METHOD 1
+38 STORE_FAST 5 ( member )
+
+6 40 LOAD_FAST 4 ( ans )
+42 LOAD_METHOD 3 ( append )
+44 LOAD_FAST 5 ( member )
+46 CALL_METHOD 1
+48 POP_TOP
+
+7 50 LOAD_FAST 2 ( S )
+52 LOAD_METHOD 4 ( __contains__ )
+54 LOAD_FAST 3 ( i )
+56 CALL_METHOD 1
+58 POP_TOP
+
+8 60 LOAD_FAST 2 ( S )
+62 LOAD_METHOD 5 ( __contains__ )
+64 LOAD_FAST 3 ( i )
+66 CALL_METHOD 1
+68 POP_TOP
+70 JUMP_ABSOLUTE 16
+>> 72 POP_BLOCK
+
+9 >> 74 LOAD_FAST 2 ( S )
+76 RETURN_VALUE

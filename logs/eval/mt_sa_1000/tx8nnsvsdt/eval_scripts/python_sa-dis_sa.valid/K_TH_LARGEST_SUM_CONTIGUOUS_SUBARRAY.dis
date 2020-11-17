@@ -1,0 +1,133 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport heapq\n\ndef f_gold ( arr , n , k ) :\n    sum = [ ]\n    sum.append ( 0 )\n    sum.append ( arr [ 0 ] )\n    for i in range ( 2 , n + 1 ) :\n        sum.append ( sum [ i - 1 ] + arr [ i - 1 ] )\n    Q = [ ]\n    heapq.heapify ( Q )\n    for i in range ( 1 , n + 1 ) :\n        for j in range ( i , n + 1 ) :\n            x = sum [ j ] - sum [ i - 1 ]\n            if len ( Q ) < k :\n                heapq.heappush ( Q , x )\n            else :\n                if Q [ 0 ] < x :\n                    heapq.heappop ( Q )\n                    heapq.heappush ( Q , x )\n    return Q [ 0 ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 3, 5, 7, 8, 29, 29, 44, 47, 52, 60, 65, 73, 83, 87, 92, 92, 95],10,12,),\n    ([44, -98, -10, 14, -6, -46, 6, -74, -4, 36, 10, -2, 30, 28, 96, -84, -36, -76, 64, -74, -20, 94, -4, 14, 78, 52, -56, 98, -68, -76, -10, 20, 88, -98, 96, 80, 96, -32, -40, -30, 82],34,37,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],16,15,),\n    ([58, 21, 97, 78, 78, 57, 29, 33, 57, 81, 66, 32, 11, 82, 28, 72, 46, 67, 42, 15, 60, 45, 16, 37],14,20,),\n    ([-92, -90, -88, -84, -68, -66, -62, -58, -52, -44, -22, -16, -4, -4, 2, 12, 14, 14, 24, 26, 44, 56, 80, 90, 92, 94, 98],15,25,),\n    ([1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],5,5,),\n    ([3, 4, 8, 12, 13, 14, 17, 19, 23, 24, 28, 29, 30, 35, 35, 38, 44, 47, 47, 53, 55, 56, 56, 58, 66, 67, 70, 71, 72, 73, 74, 75, 77, 78, 82, 84, 87, 87, 87, 88, 88, 93, 94, 96],26,25,),\n    ([20, -58, 94, -70, 18, 16, -46, 38, -44, -92, -20, -70, -30, 50],11,7,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,23,),\n    ([90, 77, 82, 38, 96, 62, 66, 4, 93, 30, 75, 22, 26, 61, 40, 11, 38, 55, 88, 24, 66, 47, 40, 71, 21, 5, 18, 31, 26, 56, 19, 47, 71, 34],28,32,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def kthLargestSum ( arr , n , k ) :\n    sum = [ ]\n    sum.append ( 0 )\n    sum.append ( arr [ 0 ] )\n    for i in range ( 2 , n + 1 ) :\n        sum.append ( sum [ i - 1 ] + arr [ i - 1 ] )\n    Q = [ ]\n    heapq.heapify ( Q )\n    for i in range ( 1 , n + 1 ) :\n        for j in range ( i , n + 1 ) :\n            x = sum [ j ] - sum [ i - 1 ]\n            if len ( Q ) < k :\n                heapq.heappush ( Q , x )\n            else :\n                if Q [ 0 ] < x :\n                    heapq.heappop ( Q )\n                    heapq.heappush ( Q , x )\n    return Q [ 0 ]\n"}
+Disassembly of <code object kthLargestSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 BUILD_LIST 0
+2 STORE_FAST 3 ( sum )
+
+3 4 LOAD_FAST 3 ( sum )
+6 LOAD_METHOD 0 ( append )
+8 LOAD_CONST 1 ( 0 )
+10 CALL_METHOD 1
+12 POP_TOP
+
+4 14 LOAD_FAST 3 ( sum )
+16 LOAD_METHOD 0 ( append )
+18 LOAD_FAST 0 ( arr )
+20 LOAD_CONST 1 ( 0 )
+22 BINARY_SUBSCR
+24 CALL_METHOD 1
+26 POP_TOP
+
+5 28 SETUP_LOOP 46 ( to 78 )
+30 LOAD_GLOBAL 1 ( range )
+32 LOAD_CONST 2 ( 2 )
+34 LOAD_FAST 1 ( n )
+36 LOAD_CONST 3 ( 1 )
+38 BINARY_ADD
+40 CALL_FUNCTION 2
+42 GET_ITER
+>> 44 FOR_ITER 30 ( to 76 )
+46 STORE_FAST 4 ( i )
+
+6 48 LOAD_FAST 3 ( sum )
+50 LOAD_METHOD 0 ( append )
+52 LOAD_FAST 3 ( sum )
+54 LOAD_FAST 4 ( i )
+56 LOAD_CONST 3 ( 1 )
+58 BINARY_SUBTRACT
+60 BINARY_SUBSCR
+62 LOAD_FAST 0 ( arr )
+64 LOAD_FAST 4 ( i )
+66 LOAD_CONST 3 ( 1 )
+68 BINARY_SUBTRACT
+70 BINARY_SUBSCR
+72 BINARY_ADD
+74 CALL_METHOD 1
+>> 76 POP_TOP
+78 JUMP_ABSOLUTE 44
+>> 80 POP_BLOCK
+
+7 >> 82 BUILD_LIST 0
+84 STORE_FAST 5 ( Q )
+
+8 86 LOAD_GLOBAL 2 ( heapq )
+88 LOAD_METHOD 3 ( heapify )
+90 LOAD_FAST 5 ( Q )
+92 CALL_METHOD 1
+94 POP_TOP
+
+9 96 SETUP_LOOP 90 ( to 234 )
+98 LOAD_GLOBAL 1 ( range )
+100 LOAD_CONST 3 ( 1 )
+102 LOAD_FAST 1 ( n )
+104 LOAD_CONST 3 ( 1 )
+106 BINARY_ADD
+108 CALL_FUNCTION 2
+110 GET_ITER
+>> 112 FOR_ITER 78 ( to 232 )
+114 STORE_FAST 4 ( i )
+
+10 116 SETUP_LOOP 78 ( to 230 )
+118 LOAD_GLOBAL 1 ( range )
+120 LOAD_FAST 4 ( i )
+122 LOAD_FAST 1 ( n )
+124 LOAD_CONST 3 ( 1 )
+126 BINARY_ADD
+128 CALL_FUNCTION 2
+130 GET_ITER
+>> 132 FOR_ITER 58 ( to 228 )
+134 STORE_FAST 6 ( j )
+
+11 136 LOAD_FAST 3 ( sum )
+138 LOAD_FAST 6 ( j )
+140 BINARY_SUBSCR
+142 LOAD_FAST 3 ( sum )
+144 LOAD_FAST 4 ( i )
+146 LOAD_CONST 3 ( 1 )
+148 BINARY_SUBTRACT
+150 BINARY_SUBSCR
+152 BINARY_SUBTRACT
+154 STORE_FAST 7 ( x )
+
+12 156 LOAD_GLOBAL 4 ( len )
+158 LOAD_FAST 5 ( Q )
+160 CALL_FUNCTION 1
+162 LOAD_FAST 2 ( k )
+164 COMPARE_OP 0 ( < )
+166 POP_JUMP_IF_FALSE 174
+
+13 168 LOAD_GLOBAL 2 ( heapq )
+170 LOAD_METHOD 5 ( heapp)
+172 LOAD_FAST 5 ( Q )
+174 LOAD_FAST 7 ( x )
+176 CALL_METHOD 2
+178 POP_TOP
+180 JUMP_ABSOLUTE 132
+
+15 >> 182 LOAD_FAST 5 ( Q )
+184 LOAD_CONST 1 ( 0 )
+186 BINARY_SUBSCR
+188 LOAD_FAST 7 ( x )
+190 COMPARE_OP 0 ( < )
+192 POP_JUMP_IF_FALSE 194
+
+16 194 LOAD_GLOBAL 2 ( heapq )
+196 LOAD_METHOD 3 ( heappop )
+198 LOAD_FAST 5 ( Q )
+200 CALL_METHOD 1
+202 POP_TOP
+
+17 204 LOAD_GLOBAL 2 ( heapq )
+206 LOAD_METHOD 5 ( heapp)
+208 LOAD_FAST 5 ( Q )
+210 LOAD_FAST 7 ( x )
+212 CALL_METHOD 2
+214 POP_TOP
+216 JUMP_ABSOLUTE 132
+>> 218 POP_BLOCK
+>> 220 JUMP_ABSOLUTE 112
+>> 222 POP_BLOCK
+
+18 >> 224 LOAD_FAST 5 ( Q )
+226 LOAD_CONST 1 ( 0 )
+228 BINARY_SUBSCR
+230 RETURN_VALUE

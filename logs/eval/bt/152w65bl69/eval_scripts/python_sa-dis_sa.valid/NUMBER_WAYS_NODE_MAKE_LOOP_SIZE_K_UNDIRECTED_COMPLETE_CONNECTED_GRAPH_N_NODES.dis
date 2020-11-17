@@ -1,0 +1,111 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , k ) :\n    p = 1\n    if ( k % 2 ) :\n        p = - 1\n    return ( pow ( n - 1 , k ) + p * ( n - 1 ) ) / n\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (27,59,),\n    (70,87,),\n    (77,40,),\n    (83,26,),\n    (16,2,),\n    (90,66,),\n    (39,72,),\n    (48,26,),\n    (56,77,),\n    (10,47,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def numOfways ( n , k ) :\n    p = 1\n    if ( k % 2 ) :\n        p = - 1\n    return ( pow ( n - 1 , k ) + p * ( n - 1 ) ) / n\n"}
+Disassembly of <code object numOfways at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( k )
+2 LOAD_CONST 1 ( 2 )
+4 BINARY_POWER
+6 LOAD_CONST 2 ( 1 )
+8 BINARY_POWER
+10 LOAD_CONST 3 ( 1 )
+12 BINARY_POWER
+14 LOAD_CONST 4 ( 2 )
+16 BINARY_POWER
+18 LOAD_CONST 5 ( 3 )
+20 BINARY_POWER
+22 LOAD_CONST 6 ( 1 )
+24 BINARY_POWER
+26 LOAD_CONST 7 ( 3 )
+28 BINARY_POWER
+30 LOAD_CONST 8 ( 2 )
+32 BINARY_POWER
+34 LOAD_CONST 9 ( 1 )
+36 BINARY_POWER
+38 LOAD_CONST 10 ( 2 )
+40 BINARY_POWER
+42 LOAD_CONST 11 ( 1 )
+44 BINARY_POWER
+46 LOAD_CONST 12 ( 2 )
+48 BINARY_POWER
+50 BINARY_POWER
+52 LOAD_CONST 13 ( 1 )
+54 BINARY_POWER
+56 LOAD_CONST 14 ( 2 )
+58 BINARY_POWER
+60 BINARY_POWER
+62 LOAD_CONST 15 ( 1 )
+64 BINARY_POWER
+66 LOAD_CONST 16 ( 2 )
+68 BINARY_POWER
+70 LOAD_CONST 17 ( 1 )
+72 BINARY_POWER
+74 LOAD_CONST 16 ( 2 )
+76 BINARY_POWER
+78 BINARY_POWER
+80 LOAD_CONST 17 ( 1 )
+82 BINARY_POWER
+84 LOAD_CONST 16 ( 2 )
+86 BINARY_POWER
+88 BINARY_POWER
+90 LOAD_CONST 17 ( 1 )
+92 BINARY_POWER
+94 LOAD_CONST 18 ( 2 )
+96 BINARY_POWER
+98 BINARY_POWER
+100 LOAD_CONST 17 ( 1 )
+102 BINARY_POWER
+104 LOAD_CONST 18 ( 2 )
+106 BINARY_POWER
+108 BINARY_POWER
+110 LOAD_CONST 19 ( 1 )
+112 BINARY_POWER
+114 BINARY_POWER
+116 LOAD_CONST 20 ( 2 )
+118 BINARY_POWER
+120 LOAD_CONST 21 ( 1 )
+122 BINARY_POWER
+124 BINARY_POWER
+126 LOAD_CONST 22 ( 2 )
+128 BINARY_POWER
+130 LOAD_CONST 23 ( 1 )
+132 BINARY_POWER
+134 LOAD_CONST 22 ( 2 )
+136 BINARY_POWER
+138 BINARY_POWER
+140 LOAD_CONST 24 ( 2 )
+142 BINARY_POWER
+144 BINARY_POWER
+146 LOAD_CONST 23 ( 1 )
+148 BINARY_POWER
+150 LOAD_CONST 24 ( 2 )
+152 BINARY_POWER
+154 BINARY_POWER
+156 LOAD_CONST 25 ( 1 )
+158 BINARY_POWER
+160 BINARY_POWER
+162 LOAD_CONST 26 ( 2 )
+164 BINARY_POWER
+162 BINARY_POWER
+164 LOAD_CONST 24 ( 2 )
+166 BINARY_POWER
+168 BINARY_POWER
+170 LOAD_CONST 25 ( 1 )
+172 BINARY_POWER
+174 BINARY_POWER
+172 BINARY_POWER
+174 LOAD_CONST 26 ( 2 )
+176 BINARY_POWER
+178 BINARY_POWER
+180 LOAD_CONST 27 ( 1 )
+94 BINARY_POWER
+96 BINARY_POWER
+98 LOAD_CONST 28 ( 2 )
+100 BINARY_POWER
+102 BINARY_POWER
+104 BINARY_POWER
+106 LOAD_CONST 2 ( 1 )
+108 BINARY_POWER
+110 BINARY_POWER
+112 LOAD_CONST 27 ( 1 )
+114 BINARY_POWER
+116 BINARY_POWER
+118 BINARY_POWER
+120

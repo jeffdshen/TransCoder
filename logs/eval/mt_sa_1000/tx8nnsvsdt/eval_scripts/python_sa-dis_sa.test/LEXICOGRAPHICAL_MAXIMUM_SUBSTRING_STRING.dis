@@ -1,0 +1,28 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    mx = \"\"\n    for i in range ( len ( str ) ) :\n        mx = max ( mx , str [ i : ] )\n    return mx\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('HCoAefoaan',),\n    ('80336005',),\n    ('01111111110',),\n    ('qIH',),\n    ('4210598472796',),\n    ('10101',),\n    ('imqmKdatcgXjs',),\n    ('950509666021',),\n    ('10111101101',),\n    ('wasqgYFvz',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def LexicographicalMaxString ( str ) :\n    mx = \"\"\n    for i in range ( len ( str ) ) :\n        mx = max ( mx , str [ i : ] )\n    return mx\n"}
+Disassembly of <code object LexicographicalMaxString at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( '' )
+2 STORE_FAST 1 ( mx )
+
+3 4 SETUP_LOOP 34 ( to 42 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_GLOBAL 1 ( len )
+10 LOAD_FAST 0 ( str )
+12 CALL_FUNCTION 1
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 22 ( to 40 )
+20 STORE_FAST 2 ( i )
+
+4 22 LOAD_GLOBAL 2 ( max )
+24 LOAD_FAST 1 ( mx )
+26 LOAD_FAST 0 ( str )
+28 LOAD_FAST 2 ( i )
+30 LOAD_CONST 0 ( None )
+32 BUILD_SLICE 2
+34 BINARY_SUBSCR
+36 CALL_FUNCTION 2
+38 STORE_FAST 1 ( mx )
+>> 40 POP_BLOCK
+
+5 >> 42 LOAD_FAST 1 ( mx )
+44 RETURN_VALUE

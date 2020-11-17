@@ -1,0 +1,94 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    tmp = str + str\n    n = len ( str )\n    for i in range ( 1 , n + 1 ) :\n        substring = tmp [ i : i + n ]\n        if ( str == substring ) :\n            return i\n    return n\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('vdevdNdQSopPtj',),\n    ('5',),\n    ('100010101011',),\n    ('tlDOvJHAyMllu',),\n    ('06',),\n    ('101',),\n    ('DYgtU',),\n    ('4',),\n    ('00',),\n    ('Dt',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findRotations ( str ) :\n    tmp = str + str\n    n = len ( str )\n    for i in range ( 1 , n + 1 ) :\n        substring = tmp [ i : n ]\n        if ( str == substring ) :\n            return i\n    return n\n"}
+Disassembly of <code object findRotations at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( self )
+2 LOAD_METHOD 0 ( substring )
+4 LOAD_FAST 1 ( n )
+6 CALL_METHOD 1
+8 STORE_FAST 2 ( substring )
+
+27 10 LOAD_FAST 2 ( substring )
+12 LOAD_CONST 1 ( 0 )
+14 COMPARE_OP 4 ( > )
+16 POP_JUMP_IF_FALSE 22
+18 LOAD_FAST 2 ( substring )
+20 LOAD_CONST 1 ( 0 )
+22 COMPARE_OP 4 ( > )
+24 POP_JUMP_IF_FALSE 22
+
+28 26 LOAD_FAST 2 ( substring )
+28 LOAD_CONST 1 ( 0 )
+30 COMPARE_OP 4 ( > )
+32 POP_JUMP_IF_FALSE 22
+
+29 34 LOAD_FAST 2 ( substring )
+36 LOAD_CONST 1 ( 0 )
+38 COMPARE_OP 4 ( > )
+40 POP_JUMP_IF_FALSE 22
+
+30 42 LOAD_FAST 2 ( substring )
+44 LOAD_CONST 1 ( 0 )
+46 COMPARE_OP 4 ( > )
+48 POP_JUMP_IF_FALSE 22
+
+31 50 LOAD_FAST 2 ( substring )
+52 LOAD_CONST 1 ( 0 )
+54 BINARY_SUBSCR
+56 LOAD_CONST 1 ( 0 )
+58 COMPARE_OP 4 ( > )
+60 POP_JUMP_IF_FALSE 22
+
+32 62 LOAD_FAST 2 ( substring )
+64 LOAD_CONST 1 ( 0 )
+66 BINARY_SUBSCR
+68 LOAD_CONST 1 ( 0 )
+70 COMPARE_OP 4 ( > )
+72 POP_JUMP_IF_FALSE 22
+
+33 74 LOAD_FAST 2 ( substring )
+76 LOAD_CONST 1 ( 0 )
+78 BINARY_SUBSCR
+80 LOAD_CONST 1 ( 0 )
+82 COMPARE_OP 4 ( > )
+84 POP_JUMP_IF_FALSE 22
+
+34 86 LOAD_FAST 2 ( substring )
+88 LOAD_CONST 1 ( 0 )
+90 BINARY_SUBSCR
+92 LOAD_CONST 1 ( 0 )
+94 COMPARE_OP 4 ( > )
+96 POP_JUMP_IF_FALSE 22
+
+35 98 LOAD_FAST 2 ( substring )
+100 LOAD_CONST 1 ( 0 )
+102 BINARY_SUBSCR
+104 LOAD_CONST 1 ( 0 )
+106 BINARY_SUBSCR
+108 LOAD_CONST 1 ( 0 )
+110 BINARY_SUBSCR
+112 LOAD_CONST 1 ( 0 )
+114 COMPARE_OP 4 ( > )
+116 POP_JUMP_IF_FALSE 22
+
+36 118 LOAD_FAST 2 ( substring )
+120 LOAD_CONST 1 ( 0 )
+122 BINARY_SUBSCR
+124 LOAD_CONST 1 ( 0 )
+126 COMPARE_OP 4 ( > )
+128 POP_JUMP_IF_FALSE 22
+
+37 130 LOAD_FAST 2 ( substring )
+132 LOAD_CONST 1 ( 0 )
+134 BINARY_SUBSCR
+136 LOAD_CONST 1 ( 0 )
+138 COMPARE_OP 4 ( > )
+140 POP_JUMP_IF_FALSE 22
+
+38 142 LOAD_FAST 2 ( substring )
+144 LOAD_CONST 1 ( 0 )
+146 BINARY_SUBSCR
+148 LOAD_CONST 1 ( 0 )
+150 BINARY_SUBSCR
+152 RETURN_VALUE
+>> 154 LOAD_CONST 1 ( 0 )
+156 RETURN_VALUE
+

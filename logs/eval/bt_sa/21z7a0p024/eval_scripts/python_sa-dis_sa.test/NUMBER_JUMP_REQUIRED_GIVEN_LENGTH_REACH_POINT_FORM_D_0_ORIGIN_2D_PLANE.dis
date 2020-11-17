@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , d ) :\n    temp = a\n    a = min ( a , b )\n    b = max ( temp , b )\n    if ( d >= b ) :\n        return ( d + b - 1 ) / b\n    if ( d == 0 ) :\n        return 0\n    if ( d == a ) :\n        return 1\n    return 2\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (35,8,77,),\n    (85,55,33,),\n    (22,23,64,),\n    (8,43,29,),\n    (12,64,11,),\n    (58,25,26,),\n    (65,4,28,),\n    (10,95,55,),\n    (23,13,54,),\n    (5,50,71,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minJumps ( a , b , d ) :\n    temp = a\n    a = min ( a , b )\n    b = max ( temp , b )\n    if ( d >= b ) :\n        return ( d + b - 1 ) / b\n    if ( d == 0 ) :\n        return 0\n    if ( d == a ) :\n        return 1\n    return 2\n"}
+Disassembly of <code object minJumps at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_FAST 1 ( b )
+4 BINARY_MULTIPLY
+6 STORE_FAST 2 ( temp )
+
+3 8 LOAD_GLOBAL 0 ( min )
+10 LOAD_FAST 2 ( temp )
+12 LOAD_FAST 1 ( b )
+14 CALL_FUNCTION 2
+16 STORE_FAST 3 ( temp )
+
+4 18 LOAD_GLOBAL 1 ( max )
+20 LOAD_FAST 2 ( temp )
+22 LOAD_FAST 1 ( b )
+24 CALL_FUNCTION 2
+26 STORE_FAST 4 ( temp )
+
+5 28 LOAD_FAST 3 ( temp )
+30 LOAD_FAST 4 ( temp )
+32 COMPARE_OP 5 ( >= )
+34 POP_JUMP_IF_FALSE 48
+
+6 36 LOAD_FAST 2 ( temp )
+38 LOAD_FAST 4 ( temp )
+40 COMPARE_OP 5 ( >= )
+42 POP_JUMP_IF_FALSE 48
+
+7 44 LOAD_FAST 2 ( temp )
+46 LOAD_FAST 4 ( temp )
+48 BINARY_SUBSCR
+50 STORE_FAST 5 ( temp )
+
+8 >> 52 LOAD_FAST 3 ( temp )
+54 LOAD_FAST 4 ( temp )
+56 COMPARE_OP 5 ( >= )
+58 POP_JUMP_IF_FALSE 70
+
+9 60 LOAD_FAST 2 ( temp )
+62 LOAD_FAST 4 ( temp )
+64 BINARY_SUBSCR
+66 STORE_FAST 6 ( temp )
+68 JUMP_FORWARD 4 ( to 76 )
+
+10 >> 70 LOAD_FAST 2 ( temp )
+72 LOAD_FAST 4 ( temp )
+74 BINARY_SUBSCR
+76 STORE_FAST 6 ( temp )
+78 JUMP_FORWARD 4 ( to 76 )
+
+11 >> 80 LOAD_FAST 2 ( temp )
+82 LOAD_FAST 4 ( temp )
+84 BINARY_SUBSCR
+86 STORE_FAST 6 ( temp )
+
+12 >> 88 LOAD_FAST 3 ( temp )
+90 LOAD_FAST 4 ( temp )
+92 COMPARE_OP 5 ( >= )
+94 POP_JUMP_IF_FALSE 98
+
+13 96 LOAD_FAST 2 ( temp )
+98 LOAD_FAST 4 ( temp )
+100 BINARY_SUBSCR
+102 STORE_FAST 7 ( temp )
+104 JUMP_FORWARD 4 ( to 108 )
+>> 106 LOAD_FAST 2 ( temp )
+>> 108 STORE_FAST 4 ( temp )
+
+14 >> 110 LOAD_FAST 3 ( temp )
+112 LOAD_FAST 4 ( temp )
+114 COMPARE_OP 5 ( >= )
+116 POP_JUMP_IF_FALSE 114
+
+15 118 LOAD_FAST 2 ( temp )
+120 LOAD_FAST 4 ( temp )
+122 BINARY_SUBSCR
+124 LOAD_FAST 6 ( temp )
+126 COMPARE_OP 5 ( >= )
+128 POP_JUMP_IF_FALSE 114
+
+16 130 LOAD_FAST 2 ( temp )
+132 LOAD_FAST 4 ( temp )
+134 BINARY_SUBSCR
+136 STORE_FAST 5 ( temp )
+
+17 >> 138 LOAD_FAST 3 ( temp )
+140 LOAD_FAST 4 ( temp )
+142 COMPARE_OP 5 ( >= )
+144 POP_JUMP_IF_FALSE 146
+
+18 146

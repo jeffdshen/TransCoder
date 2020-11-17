@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    mp = dict ( )\n    for i in range ( n ) :\n        if arr [ i ] in mp.keys ( ) :\n            mp [ arr [ i ] ] += 1\n        else :\n            mp [ arr [ i ] ] = 1\n    ans = 0\n    for it in mp :\n        count = mp [ it ]\n        ans += ( count * ( count - 1 ) ) // 2\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([5, 11, 18, 22, 40, 46, 50, 51, 53, 55, 64, 67, 73, 78, 86],14,),\n    ([14, -98, 98, 58, -82, 90, -80, -56, -30, -36, -56, -30, -58, 68, 72, -76, 38, -90, -72, 4, -32, 32, -28, 2, 12, -72, 54, 2, 0, -74, 8, 12, 46, 72, -84, -66, 70, 18, 26, 72, -26, 44, -8, 20, -32, -56, 28],24,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],13,),\n    ([93, 23, 62, 64, 31, 78, 99],4,),\n    ([-94, -94, -92, -86, -84, -76, -76, -68, -66, -56, -56, -54, -50, -46, -38, -34, -34, -30, -26, -18, -16, 2, 8, 42, 52, 54, 56, 64, 68, 82, 82, 82, 94, 96, 98],19,),\n    ([0],0,),\n    ([3, 18, 18, 20, 21, 23, 24, 27, 35, 36, 38, 40, 46, 50, 50, 51, 52, 53, 59, 61, 63, 63, 65, 66, 68, 68, 70, 71, 74, 75, 96, 98],19,),\n    ([-68, 40, 16, 50, 36, 42, -20, -46, -92, 4, -18, -12, 48, 0, -46, 64, -74, -50, 42, 44, -56, 28, -10, 78, 62, 70, -60, 12, -44, -78],23,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],30,),\n    ([31, 5],1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPairs ( arr , n ) :\n    mp = dict ( )\n    for i in range ( n ) :\n        if arr [ i ] in mp.keys ( ) :\n            mp [ arr [ i ] ] += 1\n        else :\n            mp [ arr [ i ] ] = 1\n    ans = 0\n    for it in mp :\n        count = mp [ it ]\n        ans += ( count * ( count - 1 ) ) // 2\n    return ans\n"}
+Disassembly of <code object countPairs at 0x7f816a683c00, file "<dis>", line 64>:
+65 0 LOAD_GLOBAL 0 ( mp )
+2 LOAD_METHOD 1 ( dict )
+4 LOAD_FAST 0 ( arr )
+6 CALL_METHOD 1
+8 STORE_FAST 1 ( n )
+
+66 10 LOAD_FAST 1 ( n )
+12 LOAD_CONST 1 ( 0 )
+14 COMPARE_OP 4 ( > )
+16 POP_JUMP_IF_FALSE 26
+
+67 18 LOAD_FAST 1 ( n )
+20 LOAD_CONST 1 ( 0 )
+22 COMPARE_OP 4 ( > )
+24 POP_JUMP_IF_FALSE 26
+
+68 26 LOAD_FAST 1 ( n )
+28 LOAD_CONST 2 ( 1 )
+30 INPLACE_ADD
+32 STORE_FAST 1 ( n )
+
+70 >> 34 LOAD_FAST 1 ( n )
+36 LOAD_CONST 3 ( 1 )
+38 INPLACE_ADD
+40 STORE_FAST 1 ( n )
+
+71 42 LOAD_FAST 1 ( n )
+44 LOAD_CONST 4 ( 1 )
+46 INPLACE_ADD
+48 STORE_FAST 1 ( n )
+
+72 50 LOAD_FAST 1 ( n )
+52 LOAD_CONST 5 ( 1 )
+54 INPLACE_ADD
+56 STORE_FAST 1 ( n )
+
+73 58 LOAD_FAST 1 ( n )
+60 LOAD_CONST 6 ( 2 )
+62 INPLACE_ADD
+64 STORE_FAST 1 ( n )
+
+74 66 LOAD_FAST 1 ( n )
+68 LOAD_CONST 7 ( 1 )
+70 INPLACE_ADD
+72 STORE_FAST 1 ( n )
+74 JUMP_FORWARD 4 ( to 80 )
+
+75 >> 76 LOAD_FAST 1 ( n )
+78 LOAD_CONST 8 ( 2 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( n )
+
+76 84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 9 ( 1 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( n )
+
+77 >> 92 LOAD_FAST 1 ( n )
+94 LOAD_CONST 10 ( 2 )
+96 INPLACE_ADD
+98 STORE_FAST 1 ( n )
+
+78 100 LOAD_FAST 1 ( n )
+102 LOAD_CONST 11 ( 3 )
+104 INPLACE_ADD
+106 STORE_FAST 1 ( n )
+108 JUMP_FORWARD 4 ( to 80 )
+
+80 >> 110 LOAD_FAST 1 ( n )
+112 LOAD_CONST 12 ( 2 )
+114 INPLACE_ADD
+116 STORE_FAST 1 ( n )
+
+81 118 LOAD_FAST 1 ( n )
+120 LOAD_CONST 13 ( 1 )
+122 INPLACE_ADD
+124 STORE_FAST 1 ( n )
+
+82 126 LOAD_FAST 1 ( n )
+128 LOAD_FAST 1 ( n )
+130 INPLACE_ADD
+132 STORE_FAST 1 ( n )
+
+83 134 LOAD_FAST 1 ( n )
+136 LOAD_CONST 14 ( 2 )
+138 INPLACE_ADD
+140 STORE_FAST 1 ( n )
+
+84 142 LOAD_FAST 1 ( n )
+144 LOAD_CONST 15 ( 1 )
+146 INPLACE_ADD
+148 STORE_FAST 1 ( n )
+

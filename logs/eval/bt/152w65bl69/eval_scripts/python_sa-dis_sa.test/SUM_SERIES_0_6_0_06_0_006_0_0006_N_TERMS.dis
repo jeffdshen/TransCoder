@@ -1,0 +1,7 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    return ( ( 0.666 ) * ( 1 - 1 / pow ( 10 , n ) ) ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1,),\n    (2,),\n    (3,),\n    (4,),\n    (5,),\n    (74,),\n    (77,),\n    (67,),\n    (9,),\n    (12,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def sumOfSeries ( n ) :\n    return ( ( 0.666 ) * ( 1 - 1 / pow ( 10 , n ) ) ) ;\n"}
+Disassembly of <code object sumOfSeries at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( ( 0.666 ) * pow ( 10 ) )
+2 LOAD_CONST 2 ( 10 )
+4 BINARY_MULTIPLY
+6 RETURN_VALUE
+

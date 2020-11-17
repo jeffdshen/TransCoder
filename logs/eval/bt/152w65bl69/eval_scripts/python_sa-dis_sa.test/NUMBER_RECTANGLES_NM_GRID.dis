@@ -1,0 +1,37 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , m ) :\n    return ( m * n * ( n + 1 ) * ( m + 1 ) ) // 4\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (86,70,),\n    (33,65,),\n    (3,5,),\n    (91,12,),\n    (33,27,),\n    (13,75,),\n    (75,36,),\n    (58,64,),\n    (50,51,),\n    (4,44,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def rectCount ( n , m ) :\n    return ( m * n * ( n + 1 ) * ( m + 1 ) ) // 4\n"}
+Disassembly of <code object rectCount at 0x7f816a677930, file "<dis>", line 49>:
+50 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 4 ( > )
+6 POP_JUMP_IF_FALSE 12
+
+51 8 LOAD_GLOBAL 0 ( int )
+10 LOAD_FAST 0 ( n )
+12 CALL_FUNCTION 1
+14 LOAD_CONST 2 ( 0 )
+16 COMPARE_OP 4 ( > )
+18 POP_JUMP_IF_FALSE 28
+
+52 20 LOAD_GLOBAL 1 ( int )
+22 LOAD_FAST 0 ( n )
+24 CALL_FUNCTION 1
+26 LOAD_CONST 3 ( 1 )
+28 COMPARE_OP 4 ( > )
+30 POP_JUMP_IF_FALSE 28
+
+53 32 LOAD_GLOBAL 2 ( int )
+34 LOAD_FAST 0 ( n )
+36 CALL_FUNCTION 1
+38 LOAD_CONST 4 ( > )
+40 COMPARE_OP 4 ( > )
+42 POP_JUMP_IF_FALSE 48
+
+54 44 LOAD_GLOBAL 3 ( ValueError )
+46 LOAD_CONST 5 ( 'Unknown cell %s must be a string of %s (%s) to %s (%s) to %s' )
+48 LOAD_FAST 0 ( n )
+50 BINARY_MODULO
+52 CALL_FUNCTION 1
+54 RAISE_VARARGS 1
+>> 56 LOAD_CONST 6 ( None )
+58 RETURN_VALUE
+

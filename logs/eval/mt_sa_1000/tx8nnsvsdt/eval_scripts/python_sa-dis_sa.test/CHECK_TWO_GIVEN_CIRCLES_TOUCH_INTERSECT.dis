@@ -1,0 +1,47 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x1 , y1 , x2 , y2 , r1 , r2 ) :\n    distSq = ( x1 - x2 ) * ( x1 - x2 ) + ( y1 - y2 ) * ( y1 - y2 ) ;\n    radSumSq = ( r1 + r2 ) * ( r1 + r2 ) ;\n    if ( distSq == radSumSq ) :\n        return 1\n    elif ( distSq > radSumSq ) :\n        return - 1\n    else :\n        return 0\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (11,36,62,64,50,4,),\n    (87,1,62,64,54,41,),\n    (51,1,47,90,14,71,),\n    (89,67,9,52,94,21,),\n    (64,10,79,45,67,78,),\n    (57,86,99,43,83,63,),\n    (65,90,42,82,77,32,),\n    (32,23,28,26,60,45,),\n    (73,61,63,77,92,76,),\n    (3,99,6,19,21,28,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def circle ( x1 , y1 , x2 , y2 , r1 , r2 ) :\n    distSq = ( x1 - x2 ) * ( x1 - x2 ) + ( y1 - y2 ) * ( y1 - y2 ) ;\n    radSumSq = ( r1 + r2 ) * ( r1 + r2 ) ;\n    if ( distSq == radSumSq ) :\n        return 1\n    elif ( distSq > radSumSq ) :\n        return - 1\n    else :\n        return 0\n"}
+Disassembly of <code object circle at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( x1 )
+2 LOAD_FAST 2 ( x2 )
+4 BINARY_SUBTRACT
+6 LOAD_FAST 0 ( x1 )
+8 LOAD_FAST 2 ( x2 )
+10 BINARY_SUBTRACT
+12 LOAD_FAST 1 ( y1 )
+14 LOAD_FAST 3 ( y2 )
+16 BINARY_SUBTRACT
+18 LOAD_FAST 1 ( y1 )
+20 LOAD_FAST 3 ( y2 )
+22 BINARY_SUBTRACT
+24 BINARY_MULTIPLY
+26 BINARY_ADD
+28 STORE_FAST 6 ( distSq )
+
+3 30 LOAD_FAST 4 ( r1 )
+32 LOAD_FAST 5 ( r2 )
+34 BINARY_ADD
+36 LOAD_FAST 4 ( r1 )
+38 LOAD_FAST 5 ( r2 )
+40 BINARY_ADD
+42 BINARY_MULTIPLY
+44 STORE_FAST 7 ( radSumSq )
+
+4 46 LOAD_FAST 6 ( distSq )
+48 LOAD_FAST 7 ( radSumSq )
+50 COMPARE_OP 2 ( == )
+52 POP_JUMP_IF_FALSE 58
+
+5 54 LOAD_CONST 1 ( 1 )
+56 RETURN_VALUE
+
+6 >> 58 LOAD_FAST 6 ( distSq )
+60 LOAD_FAST 7 ( radSumSq )
+62 COMPARE_OP 4 ( > )
+64 POP_JUMP_IF_FALSE 70
+
+7 66 LOAD_CONST 2 ( - 1 )
+68 RETURN_VALUE
+
+8 >> 70 LOAD_CONST 3 ( 0 )
+72 RETURN_VALUE
+74 LOAD_CONST 0 ( None )
+76 RETURN_VALUE

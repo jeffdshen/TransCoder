@@ -1,0 +1,70 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( a , b ) :\n    AM = ( a + b ) / 2\n    GM = math.sqrt ( a * b )\n    HM = ( GM * GM ) / AM\n    return HM\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (54,83,),\n    (42,56,),\n    (63,12,),\n    (19,76,),\n    (41,50,),\n    (7,26,),\n    (39,42,),\n    (11,64,),\n    (96,81,),\n    (15,54,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def compute ( a , b ) :\n    AM = ( a + b ) / 2\n    GM = math.sqrt ( a * b )\n    HM = ( GM * GM ) / AM\n    return HM\n"}
+Disassembly of <code object compute at 0x7f816a6e4b70, file "<dis>", line 55>:
+58 0 LOAD_GLOBAL 0 ( AM )
+2 LOAD_CONST 1 ( b '/' )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( b )
+
+59 8 LOAD_GLOBAL 1 ( GM )
+10 LOAD_CONST 2 ( '//' )
+12 CALL_FUNCTION 1
+14 STORE_FAST 2 ( a )
+
+60 16 LOAD_GLOBAL 2 ( PM )
+18 LOAD_FAST 1 ( b )
+20 CALL_FUNCTION 1
+22 STORE_FAST 3 ( a )
+
+61 24 LOAD_GLOBAL 3 ( PM )
+26 LOAD_FAST 2 ( a )
+28 CALL_FUNCTION 1
+30 STORE_FAST 4 ( b )
+
+62 32 LOAD_FAST 3 ( a )
+34 LOAD_FAST 4 ( b )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+
+63 40 LOAD_FAST 3 ( a )
+42 LOAD_FAST 4 ( b )
+44 LOAD_FAST 4 ( b )
+46 LOAD_FAST 1 ( b )
+48 LOAD_FAST 2 ( a )
+50 LOAD_FAST 4 ( b )
+52 LOAD_FAST 1 ( b )
+54 LOAD_FAST 2 ( a )
+56 LOAD_FAST 3 ( a )
+58 LOAD_FAST 4 ( b )
+60 LOAD_FAST 1 ( b )
+62 LOAD_FAST 2 ( a )
+64 LOAD_FAST 4 ( b )
+66 LOAD_FAST 1 ( b )
+68 LOAD_FAST 4 ( b )
+70 BUILD_TUPLE 4
+72 CALL_FUNCTION 3
+74 RETURN_VALUE
+
+64 >> 76 LOAD_GLOBAL 4 ( PM )
+78 LOAD_FAST 1 ( b )
+80 LOAD_FAST 4 ( b )
+82 LOAD_FAST 2 ( a )
+84 LOAD_FAST 3 ( a )
+86 LOAD_FAST 4 ( b )
+88 LOAD_FAST 1 ( b )
+90 LOAD_FAST 4 ( b )
+92 LOAD_FAST 1 ( b )
+94 LOAD_FAST 4 ( b )
+96 LOAD_FAST 2 ( a )
+98 LOAD_FAST 3 ( a )
+100 LOAD_FAST 4 ( b )
+102 LOAD_FAST 1 ( b )
+104 LOAD_FAST 4 ( b )
+106 LOAD_FAST 4 ( b )
+108 LOAD_FAST 1 ( b )
+110 LOAD_FAST 4 ( b )
+112 LOAD_FAST 1 ( b )
+114 LOAD_FAST 4 ( b )
+116 BUILD_TUPLE 4
+118 CALL_FUNCTION 3
+120 RETURN_VALUE
+

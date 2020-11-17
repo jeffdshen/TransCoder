@@ -1,0 +1,87 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    count = 0\n    if ( n and ( not ( n & ( n - 1 ) ) ) ) :\n        while ( n > 1 ) :\n            n >>= 1\n            count += 1\n        if ( count % 2 == 0 ) :\n            return True\n        else :\n            return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1,),\n    (4,),\n    (64,),\n    (-64,),\n    (128,),\n    (1024,),\n    (45,),\n    (33,),\n    (66,),\n    (74,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPowerOfFour ( n ) :\n    count = 0\n    if ( n and ( not ( n & ( n - 1 ) ) ) ) :\n        while ( n > 1 ) :\n            n >>= 1\n            count += 1\n        if ( count % 2 == 0 ) :\n            return True\n        else :\n            return False\n"}
+Disassembly of <code object isPowerOfFour at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( count )
+
+3 4 LOAD_GLOBAL 0 ( ( ( ( ( ( ( ( ( ( n & 1 ) ) ) ) )
+6 LOAD_CONST 2 ( 1 )
+8 BINARY_SUBTRACT
+10 LOAD_FAST 0 ( n )
+12 COMPARE_OP 4 ( > )
+14 POP_JUMP_IF_FALSE 28
+
+4 16 LOAD_CONST 3 ( 1 )
+18 STORE_FAST 1 ( count )
+20 JUMP_FORWARD 4 ( to 38 )
+
+6 >> 22 LOAD_CONST 4 ( 2 )
+24 STORE_FAST 1 ( count )
+26 JUMP_FORWARD 4 ( to 38 )
+
+8 >> 28 LOAD_CONST 5 ( '' )
+30 STORE_FAST 1 ( count )
+
+9 >> 32 LOAD_CONST 6 ( '' )
+34 STORE_FAST 1 ( count )
+36 JUMP_FORWARD 4 ( to 38 )
+
+10 >> 38 LOAD_CONST 7 ( '' )
+40 STORE_FAST 1 ( count )
+
+11 >> 42 LOAD_FAST 1 ( count )
+44 LOAD_CONST 8 ( 2 )
+46 COMPARE_OP 4 ( > )
+48 POP_JUMP_IF_FALSE 64
+
+12 50 LOAD_CONST 9 ( 0 )
+52 STORE_FAST 1 ( count )
+
+13 54 LOAD_CONST 10 ( 1 )
+56 STORE_FAST 1 ( count )
+
+14 58 LOAD_CONST 11 ( 0 )
+60 STORE_FAST 2 ( count )
+62 JUMP_FORWARD 4 ( to 74 )
+
+15 >> 64 LOAD_FAST 1 ( count )
+66 LOAD_CONST 12 ( 2 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 92
+
+16 72 LOAD_CONST 13 ( 1 )
+74 STORE_FAST 2 ( count )
+
+17 >> 76 LOAD_FAST 1 ( count )
+78 LOAD_CONST 14 ( 3 )
+80 COMPARE_OP 4 ( > )
+82 POP_JUMP_IF_FALSE 92
+
+18 84 LOAD_CONST 15 ( 1 )
+86 STORE_FAST 2 ( count )
+88 JUMP_FORWARD 4 ( to 96 )
+
+19 >> 90 LOAD_CONST 15 ( 1 )
+92 STORE_FAST 2 ( count )
+94 JUMP_FORWARD 4 ( to 96 )
+
+20 >> 96 LOAD_CONST 16 ( 1 )
+98 STORE_FAST 2 ( count )
+
+21 >> 100 LOAD_FAST 1 ( count )
+102 LOAD_CONST 17 ( 2 )
+104 COMPARE_OP 4 ( > )
+106 POP_JUMP_IF_FALSE 124
+
+20 108 LOAD_CONST 17 ( 1 )
+110 STORE_FAST 2 ( count )
+
+21 >> 112 LOAD_FAST 2 ( count )
+114 LOAD_CONST 18 ( 3 )
+116 COMPARE_OP 4 ( > )
+118 POP_JUMP_IF_FALSE 124
+
+20 20 LOAD_FAST 2 ( count )
+122 RETURN_VALUE
+
+21 >> 124 LOAD_FAST 2 ( count )
+126 RETURN_VALUE

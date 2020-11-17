@@ -1,0 +1,88 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( a , b ) :\n    if ( a == 0 or b == 0 ) :\n        return 1\n    return math.floor ( math.log10 ( abs ( a ) ) + math.log10 ( abs ( b ) ) ) + 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (97,91,),\n    (52,49,),\n    (95,34,),\n    (35,40,),\n    (40,85,),\n    (18,97,),\n    (92,15,),\n    (73,98,),\n    (10,62,),\n    (82,22,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countDigits ( a , b ) :\n    if ( a == 0 or b == 0 ) :\n        return 1\n    return math.floor ( math.log10 ( abs ( a ) ) + math.log10 ( abs ( b ) ) ) + 1\n"}
+Disassembly of <code object countDigits at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( a )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_GLOBAL 0 ( math )
+10 LOAD_METHOD 1 ( log10 )
+12 LOAD_FAST 0 ( a )
+14 CALL_METHOD 1
+16 LOAD_CONST 2 ( 1 )
+18 COMPARE_OP 2 ( == )
+20 POP_JUMP_IF_FALSE 28
+
+28 22 LOAD_GLOBAL 2 ( math )
+24 LOAD_METHOD 3 ( log10 )
+26 LOAD_FAST 0 ( a )
+28 CALL_METHOD 1
+30 LOAD_CONST 3 ( 1 )
+32 COMPARE_OP 2 ( == )
+34 POP_JUMP_IF_FALSE 38
+
+29 36 LOAD_GLOBAL 2 ( math )
+38 LOAD_METHOD 4 ( floor )
+40 LOAD_FAST 0 ( a )
+42 CALL_METHOD 1
+44 LOAD_CONST 4 ( - 1 )
+46 COMPARE_OP 2 ( == )
+48 POP_JUMP_IF_FALSE 52
+
+30 50 LOAD_GLOBAL 2 ( math )
+52 LOAD_METHOD 5 ( floor )
+54 LOAD_FAST 0 ( a )
+56 CALL_METHOD 1
+58 LOAD_CONST 5 ( - 1 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 52
+
+31 64 LOAD_GLOBAL 2 ( math )
+66 LOAD_METHOD 6 ( floor )
+68 LOAD_FAST 0 ( a )
+70 CALL_METHOD 1
+72 LOAD_CONST 6 ( - 1 )
+74 COMPARE_OP 2 ( == )
+76 POP_JUMP_IF_FALSE 82
+78 LOAD_GLOBAL 2 ( math )
+80 LOAD_METHOD 7 ( floor )
+82 LOAD_FAST 0 ( a )
+84 CALL_METHOD 1
+86 LOAD_CONST 7 ( - 1 )
+88 COMPARE_OP 2 ( == )
+90 POP_JUMP_IF_FALSE 92
+
+32 92 LOAD_GLOBAL 2 ( math )
+94 LOAD_METHOD 8 ( floor )
+96 LOAD_FAST 0 ( a )
+98 CALL_METHOD 1
+100 LOAD_CONST 8 ( - 1 )
+102 COMPARE_OP 2 ( == )
+104 POP_JUMP_IF_FALSE 106
+
+33 106 LOAD_GLOBAL 2 ( math )
+108 LOAD_METHOD 9 ( floor )
+110 LOAD_FAST 0 ( a )
+112 CALL_METHOD 1
+114 LOAD_CONST 9 ( - 1 )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 106
+
+34 120 LOAD_GLOBAL 2 ( math )
+122 LOAD_METHOD 10 ( floor )
+124 LOAD_FAST 0 ( a )
+126 CALL_METHOD 1
+128 LOAD_CONST 10 ( - 1 )
+130 COMPARE_OP 2 ( == )
+132 POP_JUMP_IF_FALSE 134
+134 LOAD_FAST 0 ( a )
+136 LOAD_CONST 11 ( - 1 )
+138 COMPARE_OP 2 ( == )
+140 POP_JUMP_IF_FALSE 138
+142 LOAD_FAST 0 ( a )
+144 LOAD_CONST 12 ( - 1 )
+146 COMPARE_OP 2 ( == )
+148 POP_JUMP_IF_FALSE 138
+
+35 150 LOAD_CONST 12 ( 1 )
+152 RETURN_VALUE

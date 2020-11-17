@@ -1,0 +1,85 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( A , B ) :\n    variable = 1\n    if ( A == B ) :\n        return 1\n    elif ( ( B - A ) >= 5 ) :\n        return 0\n    else :\n        for i in range ( A + 1 , B + 1 ) :\n            variable = ( variable * ( i % 10 ) ) % 10\n        return variable % 10\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (79,84,),\n    (61,29,),\n    (39,77,),\n    (39,65,),\n    (61,78,),\n    (86,73,),\n    (7,92,),\n    (86,50,),\n    (86,63,),\n    (11,2,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def computeLastDigit ( A , B ) :\n    variable = 1\n    if ( A == B ) :\n        return 1\n    elif ( ( B - A ) >= 5 ) :\n        return 0\n    else :\n        for i in range ( A + 1 , B + 1 ) :\n            variable = ( variable * ( i % 10 ) ) % 10\n        return variable % 10\n"}
+Disassembly of <code object computeLastDigit at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( B )
+2 LOAD_FAST 0 ( A )
+4 COMPARE_OP 5 ( >= )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_GLOBAL 0 ( np )
+10 LOAD_METHOD 1 ( array )
+12 LOAD_FAST 1 ( B )
+14 CALL_METHOD 1
+16 STORE_FAST 1 ( B )
+
+28 18 LOAD_GLOBAL 2 ( len )
+20 LOAD_FAST 1 ( B )
+22 CALL_FUNCTION 1
+24 LOAD_CONST 1 ( 0 )
+26 COMPARE_OP 4 ( > )
+28 POP_JUMP_IF_FALSE 44
+
+29 30 LOAD_FAST 1 ( B )
+32 LOAD_FAST 0 ( A )
+34 COMPARE_OP 4 ( > )
+36 POP_JUMP_IF_FALSE 44
+
+30 >> 38 LOAD_FAST 1 ( B )
+40 LOAD_FAST 0 ( A )
+42 COMPARE_OP 4 ( > )
+44 POP_JUMP_IF_FALSE 44
+
+31 46 LOAD_FAST 1 ( B )
+48 LOAD_FAST 0 ( A )
+50 COMPARE_OP 4 ( > )
+52 POP_JUMP_IF_FALSE 44
+
+32 54 LOAD_FAST 1 ( B )
+56 LOAD_FAST 0 ( A )
+58 COMPARE_OP 4 ( > )
+60 POP_JUMP_IF_FALSE 44
+
+33 62 LOAD_FAST 1 ( B )
+64 LOAD_FAST 0 ( A )
+66 COMPARE_OP 4 ( > )
+68 POP_JUMP_IF_FALSE 80
+
+34 70 LOAD_FAST 1 ( B )
+72 LOAD_FAST 0 ( A )
+74 COMPARE_OP 4 ( > )
+76 POP_JUMP_IF_FALSE 80
+78 LOAD_FAST 1 ( B )
+80 LOAD_FAST 0 ( A )
+82 COMPARE_OP 4 ( > )
+84 POP_JUMP_IF_FALSE 80
+
+35 86 LOAD_FAST 1 ( B )
+88 LOAD_FAST 0 ( A )
+90 COMPARE_OP 4 ( > )
+92 POP_JUMP_IF_FALSE 90
+
+36 94 LOAD_FAST 1 ( B )
+96 LOAD_FAST 0 ( A )
+98 COMPARE_OP 4 ( > )
+100 POP_JUMP_IF_FALSE 94
+
+37 102 LOAD_FAST 1 ( B )
+104 LOAD_FAST 0 ( A )
+106 LOAD_FAST 0 ( A )
+108 LOAD_FAST 0 ( A )
+110 LOAD_FAST 0 ( A )
+112 BUILD_TUPLE 2
+114 BINARY_SUBSCR
+116 LOAD_FAST 0 ( A )
+118 LOAD_FAST 0 ( A )
+120 LOAD_FAST 0 ( A )
+122 BUILD_TUPLE 2
+124 BINARY_SUBSCR
+126 RETURN_VALUE
+
+38 >> 128 LOAD_FAST 1 ( B )
+130 LOAD_FAST 0 ( A )
+132 BUILD_TUPLE 2
+134 RETURN_VALUE
+136 LOAD_CONST 1 ( 0 )
+138 RETURN_VALUE
+

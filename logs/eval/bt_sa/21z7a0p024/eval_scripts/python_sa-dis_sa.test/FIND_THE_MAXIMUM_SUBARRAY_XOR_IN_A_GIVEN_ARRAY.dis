@@ -1,0 +1,62 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    ans = - 2147483648\n    for i in range ( n ) :\n        curr_xor = 0\n        for j in range ( i , n ) :\n            curr_xor = curr_xor ^ arr [ j ]\n            ans = max ( ans , curr_xor )\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 7, 7, 11, 12, 18, 20, 23, 27, 30, 44, 47, 53, 53, 55, 57, 57, 58, 61, 62, 67, 74, 76, 80, 86, 86],13,),\n    ([-34, -4, 68, -82, 54, 20, 6, -18, -70, 98, -40, 80, -28, 78, 28, 56, 26, 2, 2, -56, -66, 44, 0, -72, 12, 54, -40, 18, 28, -48, -56, 72, 84, 60, 76, 26, -8, 62],21,),\n    ([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],12,),\n    ([33, 98],1,),\n    ([-92, -80, -76, -76, -74, -58, -44, -38, -34, -32, -30, -24, -20, -18, -4, -2, 2, 8, 44, 52, 52, 56, 70, 72, 80, 80, 98],15,),\n    ([0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0],33,),\n    ([1, 2, 3, 6, 9, 15, 15, 18, 19, 25, 31, 31, 33, 37, 39, 47, 49, 51, 51, 52, 52, 54, 58, 59, 59, 61, 62, 62, 65, 66, 66, 66, 66, 67, 71, 76, 77, 78, 79, 80, 83, 86, 87, 92, 97, 97, 98, 99],38,),\n    ([34, -90, 64, 88, -46, -4, -96, 76, -32, 10, -8, -24, 32, -4, 86, -20, -86, -88, -72, 64, 12, 66, -96, -84, 16, -58, -48, 80, -80, 70, -94, -84, 56, 8, -14, 86, 72, -16, -18, 74, 40, 34, 20, 80],35,),\n    ([1, 1],1,),\n    ([57, 76, 2, 30, 24, 12, 49, 12, 5, 75, 55, 17, 62, 87, 21, 91, 88, 10, 20, 49, 46, 79, 51, 33, 94, 59, 48, 97, 70, 49],25,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxSubarrayXOR ( arr , n ) :\n    ans = - 2147483648\n    for i in range ( n ) :\n        curr_xor = 0\n        for j in range ( i , n ) :\n            curr_xor = curr_xor ^ arr [ j ]\n            ans = max ( ans , curr_xor )\n    return ans\n"}
+Disassembly of <code object maxSubarrayXOR at 0x7f2b0164d4b0, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 2147483648 )
+2 STORE_FAST 1 ( ans )
+
+3 4 LOAD_CONST 2 ( - 2147483648 )
+6 STORE_FAST 2 ( ans )
+
+4 8 SETUP_LOOP 76 ( to 84 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_FAST 1 ( ans )
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 76 ( to 82 )
+20 STORE_FAST 3 ( i )
+
+5 22 SETUP_LOOP 76 ( to 80 )
+24 LOAD_GLOBAL 0 ( range )
+26 LOAD_FAST 1 ( ans )
+28 CALL_FUNCTION 1
+30 GET_ITER
+>> 32 FOR_ITER 76 ( to 78 )
+34 STORE_FAST 4 ( i )
+
+6 36 LOAD_FAST 2 ( ans )
+38 LOAD_FAST 4 ( i )
+40 BINARY_SUBSCR
+42 STORE_FAST 5 ( ans )
+
+7 44 LOAD_FAST 2 ( ans )
+46 LOAD_FAST 5 ( ans )
+48 BINARY_SUBSCR
+50 LOAD_FAST 5 ( ans )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 64
+
+8 56 LOAD_FAST 2 ( ans )
+58 LOAD_FAST 5 ( ans )
+60 BINARY_SUBSCR
+62 LOAD_FAST 5 ( ans )
+64 LOAD_FAST 4 ( i )
+66 BINARY_SUBSCR
+68 LOAD_FAST 5 ( ans )
+70 COMPARE_OP 2 ( == )
+72 POP_JUMP_IF_FALSE 32
+
+9 74 LOAD_FAST 2 ( ans )
+76 LOAD_FAST 5 ( ans )
+78 BINARY_SUBSCR
+80 LOAD_FAST 5 ( ans )
+82 BINARY_SUBSCR
+84 LOAD_FAST 5 ( ans )
+86 STORE_SUBSCR
+88 JUMP_ABSOLUTE 32
+>> 90 POP_BLOCK
+>> 92 JUMP_ABSOLUTE 18
+>> 94 POP_BLOCK
+>> 96 JUMP_ABSOLUTE 18
+>> 98 POP_BLOCK
+
+10 >> 100 LOAD_FAST 2 ( ans )
+102 RETURN_VALUE

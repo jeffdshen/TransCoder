@@ -1,0 +1,69 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    if ( n <= 0 ) :\n        return 0\n    fibo = [ 0 ] * ( n + 1 )\n    fibo [ 1 ] = 1\n    sm = fibo [ 0 ] + fibo [ 1 ]\n    for i in range ( 2 , n + 1 ) :\n        fibo [ i ] = fibo [ i - 1 ] + fibo [ i - 2 ]\n        sm = sm + fibo [ i ]\n    return sm\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (9,),\n    (50,),\n    (7,),\n    (21,),\n    (21,),\n    (91,),\n    (11,),\n    (25,),\n    (62,),\n    (4,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def calculateSum ( n ) :\n    if ( n <= 0 ) :\n        return 0\n    fibo = [ 0 ] * ( n + 1 )\n    fibo [ 1 ] = 1\n    sm = fibo [ 0 ] + fibo [ 1 ]\n    for i in range ( 2 , n + 1 ) :\n        fibo [ i ] = fibo [ i - 1 ] + fibo [ i - 2 ]\n        sm = sm + fibo [ i ]\n    return sm\n"}
+Disassembly of <code object calculateSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 1 ( <= )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 1 ( 0 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_CONST 1 ( 0 )
+14 BUILD_LIST 1
+16 LOAD_FAST 0 ( n )
+18 LOAD_CONST 2 ( 1 )
+20 BINARY_ADD
+22 BINARY_MULTIPLY
+24 STORE_FAST 1 ( fibo )
+
+5 26 LOAD_CONST 2 ( 1 )
+28 LOAD_FAST 1 ( fibo )
+30 LOAD_CONST 2 ( 1 )
+32 STORE_SUBSCR
+
+6 34 LOAD_FAST 1 ( fibo )
+36 LOAD_CONST 1 ( 0 )
+38 BINARY_SUBSCR
+40 LOAD_FAST 1 ( fibo )
+42 LOAD_CONST 2 ( 1 )
+44 BINARY_SUBSCR
+46 BINARY_ADD
+48 STORE_FAST 2 ( sm )
+
+7 50 SETUP_LOOP 64 ( to 118 )
+52 LOAD_GLOBAL 0 ( range )
+54 LOAD_CONST 3 ( 2 )
+56 LOAD_FAST 0 ( n )
+58 LOAD_CONST 2 ( 1 )
+60 BINARY_ADD
+62 CALL_FUNCTION 2
+64 GET_ITER
+>> 66 FOR_ITER 44 ( to 116 )
+68 STORE_FAST 3 ( i )
+
+8 70 LOAD_FAST 1 ( fibo )
+72 LOAD_FAST 3 ( i )
+74 LOAD_CONST 2 ( 1 )
+76 BINARY_SUBTRACT
+78 BINARY_SUBSCR
+80 LOAD_FAST 1 ( fibo )
+82 LOAD_FAST 3 ( i )
+84 LOAD_CONST 3 ( 2 )
+86 BINARY_SUBTRACT
+88 BINARY_SUBSCR
+90 BINARY_ADD
+92 LOAD_FAST 1 ( fibo )
+94 LOAD_FAST 3 ( i )
+96 STORE_SUBSCR
+
+9 98 LOAD_FAST 2 ( sm )
+100 LOAD_FAST 1 ( fibo )
+102 LOAD_FAST 3 ( i )
+104 BINARY_SUBSCR
+106 BINARY_ADD
+108 STORE_FAST 2 ( sm )
+110 JUMP_ABSOLUTE 66
+>> 112 POP_BLOCK
+
+10 >> 114 LOAD_FAST 2 ( sm )
+116 RETURN_VALUE

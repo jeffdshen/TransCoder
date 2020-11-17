@@ -1,0 +1,14 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x ) :\n    return ( x and ( not ( x & ( x - 1 ) ) ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1,),\n    (2,),\n    (8,),\n    (1024,),\n    (24,),\n    (7,),\n    (46,),\n    (61,),\n    (73,),\n    (66,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPowerOfTwo ( x ) :\n    return ( x and ( not ( x & ( x - 1 ) ) ) )\n"}
+Disassembly of <code object isPowerOfTwo at 0x7f2b0164d780, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( x )
+2 POP_JUMP_IF_FALSE 20
+4 LOAD_FAST 0 ( x )
+6 LOAD_FAST 0 ( x )
+8 LOAD_CONST 1 ( 1 )
+10 BINARY_SUBTRACT
+12 UNARY_INVERT
+14 BINARY_AND
+16 UNARY_NOT
+18 RETURN_VALUE
+>> 20 LOAD_CONST 0 ( None )
+22 RETURN_VALUE

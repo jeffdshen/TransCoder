@@ -1,0 +1,20 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    if ( n == 0 or n == 1 ) :\n        return 1 ;\n    return n * f_gold ( n - 2 ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (52,),\n    (93,),\n    (15,),\n    (72,),\n    (61,),\n    (21,),\n    (83,),\n    (87,),\n    (75,),\n    (75,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def doublefactorial ( n ) :\n    if ( n == 0 or n == 1 ) :\n        return 1 ;\n    return n * doublefactorial ( n - 2 ) ;\n"}
+Disassembly of <code object doublefactorial at 0x7f816a673a50, file "<dis>", line 148>:
+149 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+150 8 LOAD_FAST 0 ( n )
+10 LOAD_CONST 2 ( 2 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+151 16 LOAD_CONST 3 ( 1 )
+18 RETURN_VALUE
+
+152 >> 20 LOAD_CONST 4 ( 1 )
+22 RETURN_VALUE
+24 LOAD_CONST 0 ( None )
+26 RETURN_VALUE
+

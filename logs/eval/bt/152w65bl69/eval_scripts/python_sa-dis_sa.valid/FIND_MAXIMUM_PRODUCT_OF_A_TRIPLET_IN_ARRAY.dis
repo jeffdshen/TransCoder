@@ -1,0 +1,97 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport sys\n\ndef f_gold ( arr , n ) :\n    if n < 3 :\n        return - 1\n    max_product = - ( sys.maxsize - 1 )\n    for i in range ( 0 , n - 2 ) :\n        for j in range ( i + 1 , n - 1 ) :\n            for k in range ( j + 1 , n ) :\n                max_product = max ( max_product , arr [ i ] * arr [ j ] * arr [ k ] )\n    return max_product\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([41, 66, 77],2,),\n    ([92, -34, -36, -50, 20, -94, 2, -86, 22, -50, 74, 84, 52, -84, 98, -50, 88, 26, -36, -36, 6, -50, -48, -84, 38, -96, -62, 34, 52, 92, 40, -84, 18, -90, 54, -38, -74, -98, -8, -92, -60, 86, -36, 94, 56],40,),\n    ([0, 0, 1],1,),\n    ([2, 77, 99, 95, 78, 15, 69, 39, 34, 43, 66, 45, 97, 27, 67, 62, 64, 2, 28, 94, 41, 87, 97, 52, 14, 61, 78, 50],26,),\n    ([-62, -28, 40, 76],3,),\n    ([0, 1, 1, 0, 1, 1, 1, 1, 1],5,),\n    ([2, 6, 10, 11, 12, 12, 17, 18, 18, 19, 20, 22, 24, 25, 30, 35, 36, 37, 40, 41, 42, 47, 60, 60, 64, 69, 69, 70, 73, 79, 80, 83, 97, 97, 97],25,),\n    ([-72, 98, 68, 18, 92, -84, 50, 32, -90, -40, 50, 60, -50, -50, 50, 24, 30, 94, -98, -6, 46, -46, -24, -62, -20, 62, -76],14,),\n    ([0, 0, 0, 0, 0, 1, 1, 1],7,),\n    ([85, 36, 7, 69, 9, 45, 18, 47, 1, 78, 72, 53, 37, 20, 95, 71, 58, 41],14,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxProduct ( arr , n ) :\n    if n < 3 :\n        return - 1\n    max_product = - ( sys.maxsize - 1 )\n    for i in range ( 0 , n - 2 ) :\n        for j in range ( i + 1 , n - 1 ) :\n            for k in range ( j + 1 , n ) :\n                max_product = max ( max_product , arr [ i ] * arr [ j ] * arr [ k ] )\n    return max_product\n"}
+Disassembly of <code object maxProduct at 0x7f816a673a50, file "<dis>", line 100>:
+101 0 LOAD_FAST 0 ( arr )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( n )
+
+102 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( n )
+
+103 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( n )
+
+104 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 4 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 5 ( 1 )
+32 BINARY_SUBSCR
+34 LOAD_CONST 6 ( 2 )
+36 BINARY_SUBSCR
+38 STORE_FAST 4 ( n )
+
+105 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 7 ( 1 )
+44 BINARY_SUBSCR
+46 LOAD_CONST 8 ( 2 )
+48 BINARY_SUBSCR
+50 STORE_FAST 5 ( n )
+
+106 52 LOAD_FAST 1 ( n )
+54 LOAD_CONST 9 ( 1 )
+56 BINARY_SUBSCR
+58 LOAD_CONST 10 ( 2 )
+60 BINARY_SUBSCR
+62 STORE_FAST 6 ( n )
+
+107 64 LOAD_FAST 1 ( n )
+66 LOAD_CONST 10 ( 2 )
+68 BINARY_SUBSCR
+70 LOAD_FAST 2 ( n )
+72 LOAD_CONST 11 ( 1 )
+74 BINARY_SUBSCR
+76 LOAD_CONST 12 ( 2 )
+78 BINARY_SUBSCR
+80 LOAD_CONST 13 ( 1 )
+82 BINARY_SUBSCR
+84 LOAD_CONST 14 ( 2 )
+86 BINARY_SUBSCR
+88 LOAD_CONST 15 ( 1 )
+90 BINARY_SUBSCR
+92 LOAD_FAST 2 ( n )
+94 LOAD_CONST 16 ( 2 )
+96 BINARY_SUBSCR
+98 LOAD_CONST 17 ( 1 )
+100 BINARY_SUBSCR
+102 LOAD_CONST 18 ( 2 )
+104 BINARY_SUBSCR
+106 LOAD_CONST 19 ( 1 )
+108 BINARY_SUBSCR
+110 LOAD_CONST 20 ( 2 )
+112 BINARY_SUBSCR
+114 LOAD_CONST 21 ( 1 )
+116 BINARY_SUBSCR
+118 LOAD_CONST 22 ( 2 )
+120 BINARY_SUBSCR
+122 LOAD_CONST 21 ( 1 )
+124 BINARY_SUBSCR
+126 LOAD_CONST 22 ( 2 )
+128 BINARY_SUBSCR
+130 LOAD_CONST 23 ( 1 )
+132 BINARY_SUBSCR
+134 LOAD_CONST 22 ( 2 )
+136 BINARY_SUBSCR
+138 LOAD_CONST 24 ( 2 )
+140 BINARY_SUBSCR
+142 LOAD_CONST 25 ( 1 )
+144 BINARY_SUBSCR
+146 LOAD_CONST 22 ( 2 )
+148 BINARY_SUBSCR
+150 LOAD_CONST 24 ( 2 )
+152 BINARY_SUBSCR
+154 LOAD_CONST 23 ( 1 )
+156 BINARY_SUBSCR
+158 LOAD_CONST 24 ( 2 )
+160 BUILD_SLICE 2
+162 BINARY_SUBSCR
+164 BINARY_SUBSCR
+166 LOAD_CONST 24 ( 2 )
+168 STORE_SUBSCR
+
+103 103 LOAD_FAST 1 ( n )
+104 RETURN_VALUE
+

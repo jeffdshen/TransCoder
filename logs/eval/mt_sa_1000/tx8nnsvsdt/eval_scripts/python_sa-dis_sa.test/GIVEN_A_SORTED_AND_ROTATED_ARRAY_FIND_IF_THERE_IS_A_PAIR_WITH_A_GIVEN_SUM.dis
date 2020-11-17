@@ -1,0 +1,90 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , x ) :\n    for i in range ( 0 , n - 1 ) :\n        if ( arr [ i ] > arr [ i + 1 ] ) :\n            break ;\n    l = ( i + 1 ) % n\n    r = i\n    while ( l != r ) :\n        if ( arr [ l ] + arr [ r ] == x ) :\n            return True ;\n        if ( arr [ l ] + arr [ r ] < x ) :\n            l = ( l + 1 ) % n ;\n        else :\n            r = ( n + r - 1 ) % n ;\n    return False ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 8, 10, 15, 18, 19, 20, 20, 21, 22, 26, 30, 32, 34, 43, 45, 50, 50, 51, 52, 53, 56, 57, 58, 62, 63, 65, 82, 86, 91, 91, 92, 92, 93, 97],17,30,),\n    ([30, -34, 86, -30, -26, 2, 90, 8, 26, -8, -8, 0, -86, 68, 22, 72, -76, 48, -24, 90, -22, -58, -54, 90, -12, -12, 88, 72, -58, 68, 84, 22, 60, 66, -52, -38, -90, 62, 30, -26, 88, -36, 92, 32, -32, -42, -90, -40, -10],41,10,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],26,1,),\n    ([20, 68, 40, 19, 74, 69],4,88,),\n    ([-98, -94, -94, -94, -90, -88, -88, -78, -74, -70, -68, -66, -64, -62, -54, -50, -40, -40, -40, -40, -28, -22, -22, -18, -14, -12, 0, 6, 6, 8, 12, 20, 22, 26, 28, 36, 42, 44, 48, 52, 56, 60, 68, 84],28,94,),\n    ([1, 1, 0],2,60,),\n    ([12, 22, 38, 76, 80, 86],4,3,),\n    ([-36, -10, -26, 34, -50, 66, -2, -14, -62, 60, -48, 94, -70, 6, -60, -90, 28, -4, -20, -52, 40, -76, -92, -14, 54, 4, -58, 38, -74, -96, -88, 86, -54, 98, 48, 68, 78, -28, -80, -46],26,37,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],17,20,),\n    ([69, 99, 25, 52, 41, 51, 7, 33, 42, 91, 85, 57, 91, 89, 86, 11, 70, 67, 30, 92, 81, 23, 51, 98, 85, 5, 50, 44],21,27,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def pairInSortedRotated ( arr , n , x ) :\n    for i in range ( 0 , n - 1 ) :\n        if ( arr [ i ] > arr [ i + 1 ] ) :\n            break ;\n    l = ( i + 1 ) % n\n    r = i\n    while ( l != r ) :\n        if ( arr [ l ] + arr [ r ] == x ) :\n            return True ;\n        if ( arr [ l ] + arr [ r ] < x ) :\n            l = ( l + 1 ) % n ;\n        else :\n            r = ( n + r - 1 ) % n ;\n    return False ;\n"}
+Disassembly of <code object pairInSortedRotated at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 120 ( to 122 )
+2 LOAD_GLOBAL 0 ( range )
+4 LOAD_CONST 1 ( 0 )
+6 LOAD_FAST 1 ( n )
+8 LOAD_CONST 2 ( 1 )
+10 BINARY_SUBTRACT
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 106 ( to 120 )
+18 STORE_FAST 3 ( i )
+
+3 20 LOAD_FAST 0 ( arr )
+22 LOAD_FAST 3 ( i )
+24 BINARY_SUBSCR
+26 LOAD_FAST 0 ( arr )
+28 LOAD_FAST 3 ( i )
+30 LOAD_CONST 2 ( 1 )
+32 BINARY_ADD
+34 BINARY_SUBSCR
+36 COMPARE_OP 4 ( > )
+38 POP_JUMP_IF_FALSE 16
+
+4 40 BREAK_LOOP
+42 JUMP_ABSOLUTE 16
+44 POP_BLOCK
+
+5 >> 46 LOAD_FAST 3 ( i )
+48 LOAD_CONST 2 ( 1 )
+50 BINARY_ADD
+52 LOAD_FAST 1 ( n )
+54 BINARY_MODULO
+56 STORE_FAST 4 ( l )
+
+6 58 LOAD_FAST 3 ( i )
+60 STORE_FAST 5 ( r )
+
+7 62 SETUP_LOOP 68 ( to 112 )
+>> 64 LOAD_FAST 4 ( l )
+66 LOAD_FAST 5 ( r )
+68 COMPARE_OP 3 ( != )
+70 POP_JUMP_IF_FALSE 110
+
+8 72 LOAD_FAST 0 ( arr )
+74 LOAD_FAST 4 ( l )
+76 BINARY_SUBSCR
+78 LOAD_FAST 0 ( arr )
+80 LOAD_FAST 5 ( r )
+82 BINARY_SUBSCR
+84 BINARY_ADD
+86 COMPARE_OP 2 ( == )
+88 POP_JUMP_IF_FALSE 94
+
+9 90 LOAD_CONST 3 ( True )
+92 RETURN_VALUE
+
+10 >> 94 LOAD_FAST 0 ( arr )
+96 LOAD_FAST 4 ( l )
+98 BINARY_SUBSCR
+100 LOAD_FAST 0 ( arr )
+102 LOAD_FAST 5 ( r )
+104 BINARY_SUBSCR
+106 BINARY_ADD
+108 LOAD_FAST 2 ( x )
+110 COMPARE_OP 0 ( < )
+112 POP_JUMP_IF_FALSE 126
+
+11 114 LOAD_FAST 4 ( l )
+116 LOAD_CONST 2 ( 1 )
+118 BINARY_ADD
+120 LOAD_FAST 1 ( n )
+122 BINARY_MODULO
+124 STORE_FAST 4 ( l )
+126 JUMP_ABSOLUTE 64
+128 POP_BLOCK
+
+13 >> 130 LOAD_FAST 1 ( n )
+132 LOAD_FAST 5 ( r )
+134 BINARY_ADD
+136 LOAD_CONST 2 ( 1 )
+138 BINARY_SUBTRACT
+140 LOAD_FAST 1 ( n )
+142 BINARY_MODULO
+144 STORE_FAST 5 ( r )
+146 JUMP_ABSOLUTE 64
+>> 148 POP_BLOCK
+
+14 >> 150 LOAD_CONST 4 ( False )
+152 RETURN_VALUE

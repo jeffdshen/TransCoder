@@ -1,0 +1,65 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , c ) :\n    if ( ( a < b and b < c ) or ( c < b and b < a ) ) :\n        return b ;\n    if ( ( b < a and a < c ) or ( c < a and a < b ) ) :\n        return a ;\n    else :\n        return c\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (56,5,82,),\n    (56,60,17,),\n    (36,56,51,),\n    (71,54,6,),\n    (3,70,81,),\n    (84,57,47,),\n    (30,80,85,),\n    (82,54,32,),\n    (90,70,55,),\n    (38,4,5,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def middleOfThree ( a , b , c ) :\n    if ( ( a < b and b < c ) or ( c < b and b < a ) ) :\n        return b ;\n    if ( ( b < a and a < c ) or ( c < a and a < b ) ) :\n        return a ;\n    else :\n        return c\n"}
+Disassembly of <code object middleOfThree at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_FAST 0 ( a )
+2 LOAD_CONST 1 ( b '<a href="href">' )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+66 8 LOAD_FAST 0 ( a )
+10 LOAD_CONST 2 ( 'href' )
+12 BINARY_SUBSCR
+14 STORE_FAST 0 ( a )
+
+67 16 LOAD_FAST 0 ( a )
+18 LOAD_CONST 3 ( 'href' )
+20 BINARY_SUBSCR
+22 STORE_FAST 0 ( a )
+
+68 24 LOAD_FAST 0 ( a )
+26 LOAD_CONST 4 ( 'href="href">' )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 44
+
+69 32 LOAD_FAST 0 ( a )
+34 LOAD_CONST 5 ( 'href' )
+36 BINARY_SUBSCR
+38 STORE_FAST 0 ( a )
+
+70 40 LOAD_FAST 0 ( a )
+42 LOAD_CONST 6 ( 'href' )
+44 BINARY_SUBSCR
+46 STORE_FAST 0 ( a )
+
+71 48 LOAD_FAST 0 ( a )
+50 LOAD_CONST 7 ( 'href' )
+52 BINARY_SUBSCR
+54 STORE_FAST 1 ( b )
+
+72 56 LOAD_FAST 0 ( a )
+58 LOAD_CONST 8 ( 'href' )
+60 BINARY_SUBSCR
+62 STORE_FAST 0 ( a )
+
+73 64 LOAD_FAST 0 ( a )
+66 LOAD_CONST 9 ( 'href' )
+68 BINARY_SUBSCR
+70 STORE_FAST 1 ( b )
+
+74 72 LOAD_FAST 0 ( a )
+74 LOAD_CONST 10 ( 'href' )
+76 BINARY_SUBSCR
+78 STORE_FAST 0 ( a )
+
+75 80 LOAD_FAST 0 ( a )
+82 LOAD_FAST 1 ( b )
+84 LOAD_FAST 0 ( a )
+86 LOAD_FAST 0 ( a )
+88 LOAD_FAST 1 ( b )
+90 LOAD_FAST 2 ( b )
+92 LOAD_FAST 1 ( b )
+94 LOAD_FAST 2 ( b )
+96 BUILD_TUPLE 3
+98 STORE_SUBSCR
+100 LOAD_CONST 0 ( None )
+102 RETURN_VALUE
+

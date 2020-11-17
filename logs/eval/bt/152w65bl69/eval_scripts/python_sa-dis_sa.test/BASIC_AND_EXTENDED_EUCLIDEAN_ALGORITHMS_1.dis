@@ -1,0 +1,85 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , x , y ) :\n    if a == 0 :\n        x = 0\n        y = 1\n        return b\n    x1 = 1\n    y1 = 1\n    gcd = f_gold ( b % a , a , x1 , y1 )\n    x = y1 - ( b / a ) * x1\n    y = x1\n    return gcd\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (44,17,10,65,),\n    (33,81,67,20,),\n    (39,77,21,34,),\n    (52,96,23,97,),\n    (64,48,17,33,),\n    (45,32,89,3,),\n    (53,88,24,74,),\n    (86,19,29,21,),\n    (57,67,30,32,),\n    (11,86,96,81,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def gcdExtended ( a , b , x , y ) :\n    if a == 0 :\n        x = 0\n        y = 1\n        return b\n    x1 = 1\n    y1 = 1\n    gcd = gcdExtended ( b % a , a , x1 , y1 )\n    x = y1 - ( b / a ) * x1\n    y = x1\n    return gcd\n"}
+Disassembly of <code object gcdExtended at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_FAST 0 ( a )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( b )
+
+66 8 LOAD_FAST 1 ( b )
+10 LOAD_CONST 2 ( 'cdExtended a b = a' )
+12 LOAD_FAST 1 ( b )
+14 LOAD_CONST 3 ( 1 )
+16 BINARY_SUBSCR
+18 LOAD_CONST 4 ( 'b' )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+67 24 LOAD_FAST 1 ( b )
+26 LOAD_CONST 5 ( 'b' )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 34
+
+68 32 LOAD_FAST 1 ( b )
+34 LOAD_CONST 6 ( 'b' )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 42
+
+69 40 LOAD_FAST 1 ( b )
+42 LOAD_CONST 7 ( 'b' )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 42
+
+70 48 LOAD_FAST 1 ( b )
+50 LOAD_CONST 8 ( 'b' )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 42
+
+71 56 LOAD_FAST 1 ( b )
+58 LOAD_CONST 9 ( 'b' )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 42
+
+72 64 LOAD_FAST 1 ( b )
+66 LOAD_CONST 10 ( 'b' )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 76
+
+73 72 LOAD_FAST 1 ( b )
+74 LOAD_CONST 11 ( 'b' )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 80
+
+74 80 LOAD_FAST 1 ( b )
+82 LOAD_CONST 12 ( 'b' )
+84 COMPARE_OP 2 ( == )
+86 POP_JUMP_IF_FALSE 80
+
+75 88 LOAD_FAST 1 ( b )
+90 LOAD_CONST 12 ( 'b' )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 80
+
+76 96 LOAD_FAST 1 ( b )
+98 LOAD_CONST 13 ( 'b' )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 80
+
+77 104 LOAD_FAST 1 ( b )
+106 LOAD_CONST 6 ( 'b' )
+108 COMPARE_OP 2 ( == )
+110 POP_JUMP_IF_FALSE 80
+
+78 112 LOAD_FAST 1 ( b )
+114 LOAD_CONST 6 ( 'b' )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 80
+
+80 >> 120 LOAD_FAST 1 ( b )
+122 LOAD_CONST 6 ( 'b' )
+124 COMPARE_OP 2 ( == )
+126 POP_JUMP_IF_FALSE 130
+
+81 128 LOAD_FAST 1 ( b )
+130 LOAD_CONST 6 ( 'b' )
+132 COMPARE_OP 2 ( == )
+134 POP_JUMP_IF_FALSE 130

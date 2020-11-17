@@ -1,0 +1,82 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    count = 0\n    cummulative_sum = 0\n    arr.sort ( )\n    for i in range ( n ) :\n        if arr [ i ] >= cummulative_sum :\n            count += 1\n            cummulative_sum += arr [ i ]\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([7, 33, 34, 42, 42, 45, 73],5,),\n    ([32, -10, -64, -20, 92, -66, 6, 44, -62, -98, 4, -48, 44, 42, 12, -90, 52, 86, -30, -80, 64, 94, 14],16,),\n    ([0, 0, 0, 0, 1],2,),\n    ([11, 85, 89, 71, 82, 44],3,),\n    ([-96, -92, -78, -72, -68, -58, -52, -50, -50, -48, -42, -32, -20, -18, -4, 0, 0, 2, 18, 18, 20, 24, 32, 34, 36, 38, 38, 60, 66, 68, 70, 72, 72, 74, 76, 96, 98],21,),\n    ([0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1],16,),\n    ([8, 9, 10, 11, 12, 15, 17, 19, 20, 21, 24, 30, 33, 35, 36, 39, 41, 41, 42, 54, 62, 63, 68, 70, 71, 72, 77, 85, 86, 86, 94, 95, 97, 97],31,),\n    ([96, 22, -60, 4, -94, -16, 46, 10, 76, -90, 4, 70, -72, 60, 28, -24, -66, 92, -70, 72, 36],20,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],13,),\n    ([90, 63, 16, 40, 28, 97, 20, 63, 42, 31, 57, 84, 10, 12, 59, 69, 47, 7, 53, 67],10,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxRemoval ( arr , n ) :\n    count = 0\n    cummulative_sum = 0\n    arr.sort ( )\n    for i in range ( n ) :\n        if arr [ i ] >= cummulative_sum :\n            count += 1\n            cummulative_sum += arr [ i ]\n    return count\n"}
+Disassembly of <code object maxRemoval at 0x7f816a5e56f0, file "<dis>", line 41>:
+42 0 LOAD_FAST 0 ( arr )
+2 LOAD_METHOD 0 ( sort )
+4 CALL_METHOD 0
+6 STORE_FAST 1 ( n )
+
+43 8 LOAD_FAST 1 ( n )
+10 LOAD_GLOBAL 1 ( cummulative_sum )
+12 LOAD_FAST 0 ( arr )
+14 CALL_FUNCTION 1
+16 BINARY_SUBTRACT
+18 STORE_FAST 2 ( a )
+
+44 20 LOAD_FAST 2 ( a )
+22 LOAD_FAST 1 ( n )
+24 BINARY_MULTIPLY
+26 STORE_FAST 3 ( b )
+
+45 28 LOAD_FAST 3 ( b )
+30 LOAD_FAST 2 ( a )
+32 BINARY_MULTIPLY
+34 STORE_FAST 4 ( b )
+
+46 36 LOAD_FAST 0 ( arr )
+38 LOAD_FAST 4 ( b )
+40 BINARY_MULTIPLY
+42 LOAD_FAST 2 ( a )
+44 BINARY_MULTIPLY
+46 LOAD_FAST 3 ( b )
+48 BINARY_MULTIPLY
+50 BINARY_ADD
+52 LOAD_FAST 4 ( b )
+54 LOAD_FAST 2 ( a )
+56 BINARY_MULTIPLY
+58 BINARY_ADD
+60 LOAD_FAST 4 ( b )
+62 BINARY_MULTIPLY
+64 BINARY_ADD
+66 LOAD_FAST 2 ( a )
+68 BINARY_MULTIPLY
+70 BINARY_ADD
+72 LOAD_FAST 3 ( b )
+74 BINARY_MULTIPLY
+76 BINARY_ADD
+78 LOAD_FAST 4 ( b )
+80 BINARY_MULTIPLY
+82 BINARY_ADD
+84 LOAD_FAST 2 ( a )
+86 BINARY_MULTIPLY
+88 BINARY_ADD
+90 LOAD_FAST 4 ( b )
+92 BINARY_MULTIPLY
+94 BINARY_ADD
+96 LOAD_FAST 2 ( a )
+98 BINARY_MULTIPLY
+100 BINARY_ADD
+102 LOAD_FAST 4 ( b )
+104 BINARY_ADD
+106 BINARY_ADD
+108 LOAD_FAST 2 ( a )
+110 BINARY_MULTIPLY
+112 BINARY_ADD
+114 LOAD_FAST 3 ( b )
+116 BINARY_ADD
+118 BINARY_ADD
+120 LOAD_FAST 2 ( a )
+122 BINARY_MULTIPLY
+124 BINARY_ADD
+126 BINARY_ADD
+128 LOAD_FAST 3 ( b )
+130 BINARY_ADD
+132 BINARY_ADD
+134 LOAD_FAST 2 ( a )
+136 BINARY_ADD
+138 BINARY_ADD
+140 BINARY_ADD
+142 LOAD_FAST 3 ( b )
+144 BINARY_ADD
+146 BINARY_ADD
+148 RETURN_VALUE
+

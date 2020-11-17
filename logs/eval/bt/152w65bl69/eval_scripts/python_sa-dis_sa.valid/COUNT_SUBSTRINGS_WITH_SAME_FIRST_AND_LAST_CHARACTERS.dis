@@ -1,0 +1,22 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    result = 0 ;\n    n = len ( s ) ;\n    for i in range ( n ) :\n        for j in range ( i , n ) :\n            if ( s [ i ] == s [ j ] ) :\n                result = result + 1\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('LZIKA',),\n    ('0556979952',),\n    ('110010',),\n    ('kGaYfd',),\n    ('413567670657',),\n    ('01001',),\n    ('EQPuFa',),\n    ('48848378',),\n    ('110',),\n    ('PLehNeP',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countSubstringWithEqualEnds ( s ) :\n    result = 0 ;\n    n = len ( s ) ;\n    for i in range ( n ) :\n        for j in range ( i , n ) :\n            if ( s [ i ] == s [ j ] ) :\n                result = result + 1\n    return result\n"}
+Disassembly of <code object countSubstringWithEqualEnds at 0x7f8169e05c00, file "<dis>", line 48>:
+49 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( i )
+
+50 4 SETUP_LOOP 52 ( to 54 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_FAST 0 ( s )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 52 ( to 52 )
+16 STORE_FAST 2 ( i )
+
+51 18 LOAD_FAST 1 ( i )
+20 LOAD_CONST 2 ( 1 )
+22 INPLACE_ADD
+24 STORE_FAST 1 ( i )
+26 JUMP_ABSOLUTE 14
+>> 28 POP_BLOCK
+>> 30 LOAD_CONST 3 ( None )
+32 RETURN_VALUE
+

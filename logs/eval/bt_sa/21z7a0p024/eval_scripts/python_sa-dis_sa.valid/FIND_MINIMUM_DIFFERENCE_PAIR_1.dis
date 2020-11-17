@@ -1,0 +1,61 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    arr = sorted ( arr )\n    diff = 10 ** 20\n    for i in range ( n - 1 ) :\n        if arr [ i + 1 ] - arr [ i ] < diff :\n            diff = arr [ i + 1 ] - arr [ i ]\n    return diff\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 25, 44, 46, 54, 60, 81],3,),\n    ([82, 68, -98, -66, -36, -42, 98, -38, 58, -6, -28, 70, -24, 18, 16, 10, 92, 44, 28, -96, -72, 24, 28, -80, -4, 38, 88, 76],22,),\n    ([1, 1, 1],2,),\n    ([87, 25, 80, 45, 44, 20, 48, 47, 51, 54, 68, 47, 89, 95, 15, 29, 5, 45, 2, 64, 53, 96, 94, 22, 23, 43, 61, 75, 74, 50],15,),\n    ([-74, -48, -42, -26, -16, -12, 0, 4, 8, 18, 46, 46, 62, 70, 74, 88, 92, 96, 98],18,),\n    ([0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0],36,),\n    ([27, 42, 59, 80],2,),\n    ([-96, -94, 10, -36, 18, -40],4,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],12,),\n    ([96],0,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMinDiff ( arr , n ) :\n    arr = sorted ( arr )\n    diff = 10 ** 20\n    for i in range ( n - 1 ) :\n        if arr [ i + 1 ] - arr [ i ] < diff :\n            diff = arr [ i + 1 ] - arr [ i ]\n    return diff\n"}
+Disassembly of <code object findMinDiff at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( sorted )
+2 LOAD_FAST 0 ( arr )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( arr )
+
+3 8 LOAD_CONST 1 ( 10 )
+10 LOAD_CONST 2 ( 20 )
+12 LOAD_CONST 3 ( 20 )
+14 LOAD_CONST 4 ( ( 'n' , 'n' ) )
+16 CALL_FUNCTION_KW 2
+18 STORE_FAST 2 ( diff )
+
+4 20 SETUP_LOOP 64 ( to 102 )
+22 LOAD_GLOBAL 1 ( range )
+24 LOAD_CONST 5 ( 1 )
+26 LOAD_CONST 6 ( 2 )
+28 CALL_FUNCTION 2
+30 GET_ITER
+>> 32 FOR_ITER 64 ( to 100 )
+34 STORE_FAST 3 ( i )
+
+5 36 LOAD_FAST 1 ( arr )
+38 LOAD_FAST 3 ( i )
+40 BINARY_SUBSCR
+42 LOAD_METHOD 2 ( append )
+44 LOAD_FAST 2 ( diff )
+46 CALL_METHOD 1
+48 POP_TOP
+
+6 50 LOAD_FAST 1 ( arr )
+52 LOAD_FAST 3 ( i )
+54 BINARY_SUBSCR
+56 LOAD_METHOD 2 ( append )
+58 LOAD_FAST 2 ( diff )
+60 CALL_METHOD 1
+62 POP_TOP
+
+7 64 LOAD_FAST 1 ( arr )
+66 LOAD_FAST 3 ( i )
+68 BINARY_SUBSCR
+70 LOAD_METHOD 2 ( append )
+72 LOAD_FAST 2 ( diff )
+74 CALL_METHOD 1
+76 POP_TOP
+
+8 78 LOAD_FAST 1 ( arr )
+80 LOAD_FAST 3 ( i )
+82 BINARY_SUBSCR
+84 LOAD_METHOD 2 ( append )
+86 LOAD_FAST 2 ( diff )
+88 CALL_METHOD 1
+90 POP_TOP
+92 JUMP_ABSOLUTE 32
+>> 94 POP_BLOCK
+>> 96 JUMP_ABSOLUTE 32
+>> 98 POP_BLOCK
+
+9 >> 100 LOAD_FAST 1 ( arr )
+102 RETURN_VALUE

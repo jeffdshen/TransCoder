@@ -1,0 +1,17 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    return ( int ) ( 0.6172 * ( pow ( 10 , n ) - 1 ) - 0.55 * n )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (18,),\n    (81,),\n    (77,),\n    (84,),\n    (87,),\n    (14,),\n    (15,),\n    (3,),\n    (21,),\n    (60,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def sumOfSeries ( n ) :\n    return ( int ) ( 0.6172 * ( pow ( 10 , n ) - 1 ) - 0.55 * n )\n"}
+Disassembly of <code object sumOfSeries at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( int )
+2 LOAD_CONST 1 ( 0.6172 )
+4 LOAD_GLOBAL 1 ( pow )
+6 LOAD_CONST 2 ( 10 )
+8 LOAD_FAST 0 ( n )
+10 CALL_FUNCTION 2
+12 LOAD_CONST 3 ( 1 )
+14 BINARY_SUBTRACT
+16 BINARY_MULTIPLY
+18 LOAD_CONST 4 ( 0.55 )
+20 LOAD_FAST 0 ( n )
+22 BINARY_MULTIPLY
+24 BINARY_SUBTRACT
+26 BINARY_MULTIPLY
+28 RETURN_VALUE

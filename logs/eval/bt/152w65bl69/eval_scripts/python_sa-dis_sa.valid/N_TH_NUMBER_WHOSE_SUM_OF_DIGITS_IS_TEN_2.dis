@@ -1,0 +1,20 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    nthElement = 19 + ( n - 1 ) * 9\n    outliersCount = int ( math.log10 ( nthElement ) ) - 1\n    nthElement += 9 * outliersCount\n    return nthElement\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (68,),\n    (70,),\n    (69,),\n    (93,),\n    (99,),\n    (44,),\n    (91,),\n    (8,),\n    (83,),\n    (51,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findNth ( n ) :\n    nthElement = 19 + ( n - 1 ) * 9\n    outliersCount = int ( math.log10 ( nthElement ) ) - 1\n    nthElement += 9 * outliersCount\n    return nthElement\n"}
+Disassembly of <code object findNth at 0x7f816a6e4b70, file "<dis>", line 17>:
+18 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( - 1 )
+4 COMPARE_OP 3 ( != )
+6 POP_JUMP_IF_FALSE 12
+
+19 8 LOAD_GLOBAL 0 ( nthElement )
+10 LOAD_METHOD 1 ( getgetlith )
+12 LOAD_FAST 0 ( n )
+14 CALL_METHOD 1
+16 STORE_FAST 1 ( nthElement )
+
+20 18 LOAD_FAST 1 ( nthElement )
+20 LOAD_CONST 2 ( - 1 )
+22 COMPARE_OP 3 ( != )
+24 POP_JUMP_IF_FALSE 30
+
+21 26 LOAD_FAST 1 ( nthElement )
+28 LOAD_CONST 3 ( 'Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth Nth 

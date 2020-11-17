@@ -1,0 +1,101 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n , k ) :\n    while ( n % 2 == 0 ) :\n        k = k - 1\n        n = n / 2\n        if ( k == 0 ) :\n            return 2\n    i = 3\n    while i <= math.sqrt ( n ) :\n        while ( n % i == 0 ) :\n            if ( k == 1 ) :\n                return i\n            k = k - 1\n            n = n / i\n        i = i + 2\n    if ( n > 2 and k == 1 ) :\n        return n\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (94,0),\n    (99,1),\n    (64,3),\n    (27,3),\n    (24,4),\n    (84,6),\n    (69,98),\n    (69,39),\n    (22,60),\n    (39,57)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def kPrimeFactor ( n , k ) :\n    while ( n % 2 == 0 ) :\n        k = k - 1\n        n = n / 2\n        if ( k == 0 ) :\n            return 2\n    i = 3\n    while i <= math.sqrt ( n ) :\n        while ( n % i == 0 ) :\n            if ( k == 1 ) :\n                return i\n            k = k - 1\n            n = n / i\n        i = i + 2\n    if ( n > 2 and k == 1 ) :\n        return n\n    return - 1\n"}
+Disassembly of <code object kPrimeFactor at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 64 ( to 66 )
+2 LOAD_FAST 0 ( n )
+4 LOAD_CONST 1 ( 2 )
+6 COMPARE_OP 2 ( == )
+8 POP_JUMP_IF_FALSE 64
+
+3 10 LOAD_FAST 0 ( n )
+12 LOAD_CONST 2 ( 1 )
+14 BINARY_SUBTRACT
+16 STORE_FAST 1 ( k )
+
+4 18 LOAD_FAST 1 ( k )
+20 LOAD_CONST 2 ( 1 )
+22 BINARY_SUBTRACT
+24 STORE_FAST 2 ( n )
+
+5 26 LOAD_FAST 1 ( k )
+28 LOAD_CONST 2 ( 1 )
+30 BINARY_SUBTRACT
+32 STORE_FAST 1 ( k )
+
+6 34 LOAD_FAST 1 ( k )
+36 LOAD_CONST 2 ( 1 )
+38 BINARY_SUBTRACT
+40 STORE_FAST 2 ( n )
+
+7 42 LOAD_FAST 1 ( k )
+44 LOAD_CONST 2 ( 1 )
+46 BINARY_SUBTRACT
+48 STORE_FAST 1 ( k )
+
+8 50 LOAD_FAST 1 ( k )
+52 LOAD_CONST 2 ( 1 )
+54 BINARY_SUBTRACT
+56 LOAD_FAST 2 ( n )
+58 BINARY_MULTIPLY
+60 LOAD_FAST 1 ( k )
+62 LOAD_CONST 2 ( 1 )
+64 BINARY_SUBTRACT
+66 LOAD_FAST 2 ( n )
+68 BINARY_MULTIPLY
+70 BINARY_SUBTRACT
+72 LOAD_FAST 1 ( k )
+74 LOAD_CONST 2 ( 1 )
+76 BINARY_SUBTRACT
+78 BINARY_SUBTRACT
+80 BINARY_MULTIPLY
+82 LOAD_FAST 1 ( k )
+84 LOAD_CONST 2 ( 1 )
+86 BINARY_SUBTRACT
+88 LOAD_FAST 2 ( n )
+90 BINARY_MULTIPLY
+92 BINARY_SUBTRACT
+94 LOAD_FAST 1 ( k )
+96 LOAD_CONST 2 ( 1 )
+98 BINARY_SUBTRACT
+100 LOAD_FAST 2 ( n )
+102 BINARY_SUBTRACT
+104 BINARY_MULTIPLY
+106 BINARY_SUBTRACT
+108 STORE_FAST 1 ( k )
+
+9 110 LOAD_FAST 1 ( k )
+112 LOAD_CONST 2 ( 1 )
+114 BINARY_SUBTRACT
+116 LOAD_FAST 2 ( n )
+118 BINARY_SUBTRACT
+120 BINARY_MULTIPLY
+122 LOAD_FAST 1 ( k )
+124 LOAD_CONST 2 ( 1 )
+126 BINARY_SUBTRACT
+128 LOAD_FAST 2 ( n )
+130 BINARY_SUBTRACT
+132 BINARY_MULTIPLY
+134 LOAD_FAST 1 ( k )
+136 LOAD_CONST 2 ( 1 )
+138 BINARY_SUBTRACT
+140 LOAD_FAST 2 ( n )
+142 BINARY_SUBTRACT
+144 BINARY_MULTIPLY
+146 BINARY_SUBTRACT
+148 LOAD_FAST 1 ( k )
+150 LOAD_CONST 2 ( 1 )
+152 BINARY_SUBTRACT
+154 LOAD_FAST 2 ( n )
+156 BINARY_SUBTRACT
+158 BINARY_MULTIPLY
+160 LOAD_FAST 2 ( n )
+162 LOAD_FAST 2 ( n )
+164 BINARY_SUBTRACT
+166 BINARY_MULTIPLY
+168 LOAD_FAST 2 ( n )
+170 BINARY_SUBTRACT
+172 LOAD_FAST 2 ( n )
+174 BINARY_SUBTRACT
+176 LOAD_FAST 2 ( n )
+178 BINARY_SUBTRACT
+180 BINARY_MULTIPLY
+72 LOAD_FAST 2

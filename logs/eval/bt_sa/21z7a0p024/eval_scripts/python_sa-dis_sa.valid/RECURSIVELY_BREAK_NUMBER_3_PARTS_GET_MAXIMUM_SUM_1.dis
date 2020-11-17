@@ -1,0 +1,73 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    dp = [ 0 ] * ( n + 1 )\n    dp [ 0 ] = 0\n    dp [ 1 ] = 1\n    for i in range ( 2 , n + 1 ) :\n        dp [ i ] = max ( dp [ int ( i / 2 ) ] + dp [ int ( i / 3 ) ] + dp [ int ( i / 4 ) ] , i ) ;\n    return dp [ n ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (50,),\n    (83,),\n    (18,),\n    (24,),\n    (31,),\n    (38,),\n    (94,),\n    (24,),\n    (13,),\n    (53,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def breakSum ( n ) :\n    dp = [ 0 ] * ( n + 1 )\n    dp [ 0 ] = 0\n    dp [ 1 ] = 1\n    for i in range ( 2 , n + 1 ) :\n        dp [ i ] = max ( dp [ int ( i / 2 ) ] + dp [ int ( i / 3 ) ] + dp [ int ( i / 4 ) ] , i ) ;\n    return dp [ n ]\n"}
+Disassembly of <code object breakSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 LOAD_CONST 2 ( ( 'n' , ) )
+4 IMPORT_NAME 0 ( dp )
+6 IMPORT_FROM 1 ( n )
+8 STORE_FAST 0 ( dp )
+10 POP_TOP
+
+3 12 LOAD_CONST 1 ( 0 )
+14 LOAD_CONST 2 ( ( 'n' , ) )
+16 IMPORT_NAME 2 ( max )
+18 IMPORT_FROM 3 ( max )
+20 STORE_FAST 1 ( n )
+22 POP_TOP
+
+4 24 SETUP_LOOP 26 ( to 44 )
+26 LOAD_FAST 0 ( dp )
+28 GET_ITER
+>> 30 FOR_ITER 18 ( to 42 )
+32 STORE_FAST 2 ( i )
+
+5 34 LOAD_FAST 1 ( n )
+36 LOAD_FAST 2 ( i )
+38 BINARY_SUBSCR
+40 LOAD_FAST 1 ( n )
+42 COMPARE_OP 4 ( > )
+44 POP_JUMP_IF_FALSE 30
+
+6 46 LOAD_FAST 1 ( n )
+48 LOAD_FAST 2 ( i )
+50 BINARY_SUBSCR
+52 LOAD_FAST 1 ( n )
+54 LOAD_FAST 2 ( i )
+56 BINARY_SUBSCR
+58 LOAD_FAST 1 ( n )
+60 COMPARE_OP 4 ( > )
+62 POP_JUMP_IF_FALSE 30
+
+7 64 LOAD_FAST 1 ( n )
+66 LOAD_FAST 2 ( i )
+68 BINARY_SUBSCR
+70 LOAD_FAST 1 ( n )
+72 COMPARE_OP 4 ( > )
+74 POP_JUMP_IF_FALSE 30
+
+8 76 LOAD_FAST 1 ( n )
+78 LOAD_FAST 2 ( i )
+80 BINARY_SUBSCR
+82 LOAD_FAST 1 ( n )
+84 BINARY_SUBSCR
+86 LOAD_FAST 1 ( n )
+88 STORE_SUBSCR
+
+9 90 LOAD_FAST 1 ( n )
+92 LOAD_FAST 2 ( i )
+94 BINARY_SUBSCR
+96 LOAD_FAST 1 ( n )
+98 LOAD_FAST 2 ( i )
+100 STORE_SUBSCR
+
+10 102 LOAD_FAST 1 ( n )
+104 LOAD_FAST 2 ( i )
+106 STORE_SUBSCR
+
+11 108 LOAD_FAST 1 ( n )
+110 LOAD_FAST 2 ( i )
+112 STORE_SUBSCR
+114 JUMP_ABSOLUTE 30
+>> 116 POP_BLOCK
+
+12 >> 118 LOAD_FAST 1 ( n )
+120 RETURN_VALUE

@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x ) :\n    if ( x == 0 or x == 1 ) :\n        return x\n    i = 1 ; result = 1\n    while ( result <= x ) :\n        i += 1\n        result = i * i\n    return i - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (89,),\n    (11,),\n    (14,),\n    (92,),\n    (76,),\n    (63,),\n    (51,),\n    (16,),\n    (83,),\n    (66,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def floorSqrt ( x ) :\n    if ( x == 0 or x == 1 ) :\n        return x\n    i = 1 ; result = 1\n    while ( result <= x ) :\n        i += 1\n        result = i * i\n    return i - 1\n"}
+Disassembly of <code object floorSqrt at 0x7f816a673a50, file "<dis>", line 148>:
+149 0 LOAD_FAST 0 ( x )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+150 8 LOAD_FAST 0 ( x )
+10 LOAD_CONST 2 ( 0 )
+12 BINARY_SUBSCR
+14 STORE_FAST 1 ( result )
+
+151 16 LOAD_FAST 1 ( result )
+18 LOAD_CONST 3 ( 1 )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+152 24 LOAD_FAST 1 ( result )
+26 LOAD_CONST 4 ( 2 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 28
+
+153 32 LOAD_FAST 1 ( result )
+34 LOAD_CONST 5 ( 1 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 48
+
+154 40 LOAD_FAST 1 ( result )
+42 LOAD_CONST 6 ( 2 )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 48
+
+155 48 LOAD_FAST 1 ( result )
+50 LOAD_CONST 7 ( 2 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 48
+
+156 56 LOAD_FAST 1 ( result )
+58 LOAD_CONST 8 ( 2 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 48
+
+157 64 LOAD_FAST 1 ( result )
+66 LOAD_CONST 9 ( 2 )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 48
+
+158 72 LOAD_FAST 1 ( result )
+74 LOAD_CONST 10 ( 2 )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 48
+
+159 80 LOAD_FAST 1 ( result )
+82 LOAD_CONST 11 ( 1 )
+84 INPLACE_ADD
+86 STORE_FAST 1 ( result )
+
+160 >> 88 LOAD_FAST 1 ( result )
+90 LOAD_CONST 12 ( 2 )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 110
+
+161 96 LOAD_FAST 1 ( result )
+98 LOAD_CONST 12 ( 2 )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 110
+
+162 104 LOAD_FAST 1 ( result )
+106 LOAD_CONST 13 ( 1 )
+108 INPLACE_ADD
+110 STORE_FAST 1 ( result )
+
+163 >> 112 LOAD_FAST 1 ( result )
+114 LOAD_CONST 14 ( 2 )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 124
+
+164 120 LOAD_FAST 1 ( result )
+122 LOAD_CONST 15 ( 2 )
+124 COMPARE_OP 2 ( == )
+126 POP_JUMP_IF_FALSE 126
+
+165 128 LOAD_FAST 1 ( result )
+130 LOAD_CONST 15 ( 2 )
+132 COMPARE_OP 2 ( == )
+134 POP_JUMP_IF_FALSE 126
+
+166 136 LOAD_FAST 1 ( result )
+138 LOAD_CONST 16 ( 2 )
+140 COMPARE_OP 2 ( == )
+142 POP_JUMP_IF_FALSE 146
+
+167 144 LOAD_FAST 1 ( result )
+146 RETURN_VALUE
+

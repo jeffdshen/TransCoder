@@ -1,0 +1,35 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    res = 1\n    for i in range ( 0 , n ) :\n        if arr [ i ] <= res :\n            res = res + arr [ i ]\n        else :\n            break\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([16, 23, 24, 41, 48, 58, 72, 75],4,),\n    ([-14, -82, 12, -14, -38, 12, 40, 12, -74, 42, -36, 64],8,),\n    ([0, 0, 1, 1, 1, 1],5,),\n    ([17, 89, 44],2,),\n    ([-94, -92, -84, -82, -72, -58, -56, -40, -34, -34, -24, -22, -8, -8, 12, 14, 16, 16, 22, 22, 34, 46, 54, 58, 68, 72, 74, 78, 88, 96],25,),\n    ([0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0],8,),\n    ([2, 12, 13, 13, 13, 16, 28, 32, 34, 41, 41, 47, 49, 49, 50, 52, 58, 61, 63, 65, 67, 68, 68, 74, 80, 80, 84, 84, 89, 93, 94, 98, 99, 99],23,),\n    ([-54],0,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],33,),\n    ([42, 50, 76, 45, 6, 63, 46, 73, 65, 70, 87, 5, 41, 63, 96, 75, 38, 76, 27, 7, 71, 9, 65, 44, 76, 37, 94, 52, 55, 3, 38, 68, 45, 15, 35, 90, 36, 46, 13, 92, 32, 22, 49, 35, 83],35,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSmallest ( arr , n ) :\n    res = 1\n    for i in range ( 0 , n ) :\n        if arr [ i ] <= res :\n            res = res + arr [ i ]\n        else :\n            break\n    return res\n"}
+Disassembly of <code object findSmallest at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 2 ( res )
+
+3 4 SETUP_LOOP 46 ( to 52 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 0 )
+10 LOAD_FAST 1 ( n )
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 30 ( to 50 )
+18 STORE_FAST 3 ( i )
+
+4 20 LOAD_FAST 0 ( arr )
+22 LOAD_FAST 3 ( i )
+24 BINARY_SUBSCR
+26 LOAD_FAST 2 ( res )
+28 COMPARE_OP 1 ( <= )
+30 POP_JUMP_IF_FALSE 16
+
+5 32 LOAD_FAST 2 ( res )
+34 LOAD_FAST 0 ( arr )
+36 LOAD_FAST 3 ( i )
+38 BINARY_SUBSCR
+40 BINARY_ADD
+42 STORE_FAST 2 ( res )
+44 JUMP_ABSOLUTE 16
+
+7 46 BREAK_LOOP
+48 JUMP_ABSOLUTE 16
+>> 50 POP_BLOCK
+
+8 >> 52 LOAD_FAST 2 ( res )
+54 RETURN_VALUE

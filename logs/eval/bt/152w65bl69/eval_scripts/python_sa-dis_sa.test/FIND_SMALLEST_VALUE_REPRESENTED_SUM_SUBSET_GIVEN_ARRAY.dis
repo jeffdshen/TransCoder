@@ -1,0 +1,90 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    res = 1\n    for i in range ( 0 , n ) :\n        if arr [ i ] <= res :\n            res = res + arr [ i ]\n        else :\n            break\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([16, 23, 24, 41, 48, 58, 72, 75],4,),\n    ([-14, -82, 12, -14, -38, 12, 40, 12, -74, 42, -36, 64],8,),\n    ([0, 0, 1, 1, 1, 1],5,),\n    ([17, 89, 44],2,),\n    ([-94, -92, -84, -82, -72, -58, -56, -40, -34, -34, -24, -22, -8, -8, 12, 14, 16, 16, 22, 22, 34, 46, 54, 58, 68, 72, 74, 78, 88, 96],25,),\n    ([0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0],8,),\n    ([2, 12, 13, 13, 13, 16, 28, 32, 34, 41, 41, 47, 49, 49, 50, 52, 58, 61, 63, 65, 67, 68, 68, 74, 80, 80, 84, 84, 89, 93, 94, 98, 99, 99],23,),\n    ([-54],0,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],33,),\n    ([42, 50, 76, 45, 6, 63, 46, 73, 65, 70, 87, 5, 41, 63, 96, 75, 38, 76, 27, 7, 71, 9, 65, 44, 76, 37, 94, 52, 55, 3, 38, 68, 45, 15, 35, 90, 36, 46, 13, 92, 32, 22, 49, 35, 83],35,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSmallest ( arr , n ) :\n    res = 1\n    for i in range ( 0 , n ) :\n        if arr [ i ] <= res :\n            res = res + arr [ i ]\n        else :\n            break\n    return res\n"}
+Disassembly of <code object findSmallest at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 1 ( n )
+
+27 4 LOAD_FAST 1 ( n )
+6 LOAD_CONST 2 ( 0 )
+8 COMPARE_OP 4 ( > )
+10 POP_JUMP_IF_FALSE 20
+
+28 12 LOAD_CONST 3 ( '' )
+14 STORE_FAST 1 ( n )
+
+29 >> 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 4 ( 0 )
+20 COMPARE_OP 4 ( > )
+22 POP_JUMP_IF_FALSE 28
+
+30 24 LOAD_CONST 5 ( '' )
+26 STORE_FAST 1 ( n )
+
+31 >> 28 LOAD_FAST 1 ( n )
+30 LOAD_CONST 6 ( '' )
+32 COMPARE_OP 2 ( == )
+34 POP_JUMP_IF_FALSE 44
+
+32 36 LOAD_CONST 7 ( '' )
+38 STORE_FAST 1 ( n )
+
+33 >> 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 8 ( 0 )
+44 COMPARE_OP 4 ( > )
+46 POP_JUMP_IF_FALSE 44
+
+34 48 LOAD_CONST 9 ( '' )
+50 STORE_FAST 1 ( n )
+
+35 >> 52 LOAD_FAST 1 ( n )
+54 LOAD_CONST 10 ( 0 )
+56 COMPARE_OP 4 ( > )
+58 POP_JUMP_IF_FALSE 60
+
+36 60 LOAD_CONST 11 ( '' )
+62 STORE_FAST 1 ( n )
+
+37 >> 64 LOAD_FAST 1 ( n )
+66 LOAD_CONST 12 ( 0 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 90
+
+38 72 LOAD_CONST 13 ( '' )
+74 STORE_FAST 1 ( n )
+
+39 >> 76 LOAD_FAST 1 ( n )
+78 LOAD_CONST 14 ( 0 )
+80 COMPARE_OP 4 ( > )
+82 POP_JUMP_IF_FALSE 90
+
+40 84 LOAD_CONST 15 ( '' )
+86 STORE_FAST 1 ( n )
+
+41 >> 88 LOAD_FAST 1 ( n )
+90 LOAD_CONST 16 ( 0 )
+92 COMPARE_OP 4 ( > )
+94 POP_JUMP_IF_FALSE 94
+
+42 96 LOAD_FAST 1 ( n )
+98 LOAD_CONST 17 ( 0 )
+100 COMPARE_OP 4 ( > )
+102 POP_JUMP_IF_FALSE 94
+104 LOAD_FAST 1 ( n )
+106 LOAD_CONST 18 ( 0 )
+108 COMPARE_OP 4 ( > )
+110 POP_JUMP_IF_FALSE 94
+
+43 112 LOAD_FAST 1 ( n )
+114 LOAD_CONST 18 ( 0 )
+116 COMPARE_OP 4 ( > )
+118 POP_JUMP_IF_FALSE 94
+
+44 120 LOAD_FAST 1 ( n )
+122 LOAD_CONST 19 ( 0 )
+124 COMPARE_OP 4 ( > )
+126 POP_JUMP_IF_FALSE 94
+
+45 128 LOAD_FAST 1 ( n )
+130 RETURN_VALUE
+>> 132 LOAD_CONST 0 ( None )
+134 RETURN_VALUE
+

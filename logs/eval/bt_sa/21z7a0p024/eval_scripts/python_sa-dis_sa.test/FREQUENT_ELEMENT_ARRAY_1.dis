@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    Hash = dict ( )\n    for i in range ( n ) :\n        if arr [ i ] in Hash.keys ( ) :\n            Hash [ arr [ i ] ] += 1\n        else :\n            Hash [ arr [ i ] ] = 1\n    max_count = 0\n    res = - 1\n    for i in Hash :\n        if ( max_count < Hash [ i ] ) :\n            res = i\n            max_count = Hash [ i ]\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 5, 7, 9, 9, 10, 11, 15, 19, 19, 29, 31, 34, 34, 35, 37, 41, 43, 45, 47, 51, 51, 55, 57, 59, 61, 65, 67, 73, 76, 77, 77, 80, 83, 83, 84, 84, 92, 94],24,),\n    ([14, -38, -84, 24, 82, -68, 60, 2, -22, 54, 90, 90, -38, -8, -72, 68, 50, 54, -32, -66, -10, -70, -28, 18, 58, -54, -30, 60, -24, -48, 22, 32, -18, 2, -64, -56, 70, -92, -38, -70, 22, -36, -64],28,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],18,),\n    ([76, 18, 41, 46, 34, 41, 56, 76, 14, 82, 51, 87, 1, 92, 9, 2, 68, 82, 43, 98, 88, 62, 84, 25, 7, 87, 37, 7, 55, 98, 60, 99, 92, 56, 17, 82, 28, 43, 40, 1, 99, 79, 38, 75, 84, 61, 21, 11],37,),\n    ([-92, -86, -86, -84, -70, -68, -68, -66, -62, -52, -52, -50, -48, -38, -22, -14, -6, 4, 8, 10, 10, 16, 22, 36, 38, 40, 50, 50, 70, 78, 80, 86, 96, 96, 98],21,),\n    ([1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0],18,),\n    ([3, 53, 56, 57, 66, 73, 76, 94, 97],8,),\n    ([12, 60, -94, 92],3,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],21,),\n    ([95, 93, 82, 73, 61, 24, 73, 21, 47, 91, 48, 42, 76, 12, 89, 21, 3, 30, 5, 49, 26, 54, 16, 70, 50, 21, 58, 36, 16],25,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def mostFrequent ( arr , n ) :\n    Hash = dict ( )\n    for i in range ( n ) :\n        if arr [ i ] in Hash.keys ( ) :\n            Hash [ arr [ i ] ] += 1\n        else :\n            Hash [ arr [ i ] ] = 1\n    max_count = 0\n    res = - 1\n    for i in Hash :\n        if ( max_count < Hash [ i ] ) :\n            res = i\n            max_count = Hash [ i ]\n    return res\n"}
+Disassembly of <code object LastFrequent at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( dict )
+2 CALL_FUNCTION 0
+4 STORE_FAST 2 ( Hash )
+
+3 6 SETUP_LOOP 64 ( to 76 )
+8 LOAD_GLOBAL 1 ( range )
+10 LOAD_FAST 0 ( arr )
+12 CALL_FUNCTION 1
+14 GET_ITER
+>> 16 FOR_ITER 64 ( to 74 )
+18 STORE_FAST 3 ( i )
+
+4 20 LOAD_FAST 2 ( Hash )
+22 LOAD_FAST 3 ( i )
+24 BINARY_SUBSCR
+26 COMPARE_OP 6 ( in )
+28 POP_JUMP_IF_FALSE 16
+
+5 30 LOAD_FAST 2 ( Hash )
+32 LOAD_FAST 3 ( i )
+34 BINARY_SUBSCR
+36 STORE_FAST 4 ( expected )
+
+6 38 LOAD_FAST 1 ( value )
+40 LOAD_FAST 4 ( expected )
+42 COMPARE_OP 6 ( in )
+44 POP_JUMP_IF_FALSE 16
+
+7 46 LOAD_FAST 2 ( Hash )
+48 LOAD_FAST 3 ( i )
+50 BINARY_SUBSCR
+52 STORE_FAST 5 ( expected )
+
+8 54 LOAD_FAST 1 ( value )
+56 LOAD_FAST 4 ( expected )
+58 COMPARE_OP 6 ( in )
+60 POP_JUMP_IF_FALSE 16
+
+9 62 LOAD_FAST 1 ( value )
+64 LOAD_FAST 4 ( expected )
+66 BINARY_SUBSCR
+68 STORE_FAST 5 ( expected )
+
+10 70 LOAD_FAST 1 ( value )
+72 LOAD_FAST 4 ( expected )
+74 COMPARE_OP 6 ( in )
+76 POP_JUMP_IF_FALSE 16
+
+11 78 LOAD_FAST 1 ( value )
+80 LOAD_FAST 4 ( expected )
+82 BINARY_SUBSCR
+84 LOAD_FAST 5 ( expected )
+86 COMPARE_OP 6 ( in )
+88 POP_JUMP_IF_FALSE 16
+
+12 90 LOAD_FAST 1 ( value )
+92 LOAD_FAST 4 ( expected )
+94 BINARY_SUBSCR
+96 LOAD_FAST 5 ( expected )
+98 COMPARE_OP 6 ( in )
+100 POP_JUMP_IF_FALSE 16
+
+13 102 LOAD_FAST 1 ( value )
+104 LOAD_FAST 4 ( expected )
+106 BINARY_SUBSCR
+108 LOAD_FAST 5 ( expected )
+110 COMPARE_OP 6 ( in )
+112 POP_JUMP_IF_FALSE 16
+
+14 114 LOAD_FAST 1 ( value )
+116 LOAD_FAST 4 ( expected )
+118 BINARY_SUBSCR
+120 LOAD_FAST 5 ( expected )
+122 COMPARE_OP 6 ( in )
+124 POP_JUMP_IF_FALSE 16
+
+15 126 LOAD_FAST 1 ( value )
+128 LOAD_FAST 4 ( expected )
+130 BINARY_SUBSCR
+132 LOAD_FAST 5 ( expected )
+134 COMPARE_OP 6 ( in )
+136 POP_JUMP_IF_FALSE 16
+
+16 >> 138 LOAD_FAST 1 ( value )
+140 LOAD_FAST 4 ( expected )
+142 STORE_SUBSCR
+144 JUMP_ABSOLUTE 16
+>> 146 POP_BLOCK
+>> 148 LOAD_CONST 0 ( None )
+150 RETURN_VALUE

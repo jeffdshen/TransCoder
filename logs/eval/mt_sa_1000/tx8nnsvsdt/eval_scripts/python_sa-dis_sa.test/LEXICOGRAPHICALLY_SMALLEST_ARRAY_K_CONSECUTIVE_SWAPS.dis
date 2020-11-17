@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , k ) :\n    for i in range ( n - 1 ) :\n        pos = i\n        for j in range ( i + 1 , n ) :\n            if ( j - i > k ) :\n                break\n            if ( arr [ j ] < arr [ pos ] ) :\n                pos = j\n        for j in range ( pos , i , - 1 ) :\n            arr [ j ] , arr [ j - 1 ] = arr [ j - 1 ] , arr [ j ]\n        k -= pos - i\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 6, 6, 10, 12, 13, 17, 18, 21, 25, 30, 30, 32, 33, 36, 36, 37, 39, 41, 42, 42, 43, 47, 49, 50, 54, 54, 55, 59, 71, 72, 73, 74, 79, 80, 82, 83, 86, 89, 90, 92, 97, 98],26,25,),\n    ([-84, 0, 8, 42, 0, 44, -74, -24, 94, -90, -60, 90, -14, -22, -98, 38, -72, -94, 92, 94, -64, 92, -22, -36, 34, 68, -96, -34, -40, 28, 76, 68, -28, 2, -98, -24, -66, 40, 22, 84, 28, 48, 12, 98, 6, 2, -74, 86, 98],33,37,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],35,40,),\n    ([6],0,0,),\n    ([-26],0,0,),\n    ([1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0],7,11,),\n    ([6, 23, 34, 37, 37, 38, 39, 45, 56, 56, 57, 59, 60, 65, 67, 68, 69, 71, 82, 85, 89, 94, 97, 99],12,18,),\n    ([10, 18, 72, 42, 34, 0, -86, -96, -88, -66, -62, -30, 72, 56, -42, -54, -24, -6, -98, 10, -96, 22, -30, 58, -48, -14, -96, -42, -76, 82, 2, 44, 64, -48, 96, 46, -50, 42, -46, -94, 78, 82, 20, -46, -44, -80, 12],32,46,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,21,),\n    ([84, 84, 82, 82, 54, 12, 68, 59, 21, 6, 16, 80, 6, 30, 12, 95, 96, 63, 37, 15, 41, 40, 88, 3, 49, 37, 8, 24, 36, 65, 47, 67, 78, 36, 6, 58, 66, 75, 71, 14, 99, 14, 56, 50, 85, 33],30,32,)\n        ]\n    filled_function_param = [\n    ([4, 6, 6, 10, 12, 13, 17, 18, 21, 25, 30, 30, 32, 33, 36, 36, 37, 39, 41, 42, 42, 43, 47, 49, 50, 54, 54, 55, 59, 71, 72, 73, 74, 79, 80, 82, 83, 86, 89, 90, 92, 97, 98],26,25,),\n    ([-84, 0, 8, 42, 0, 44, -74, -24, 94, -90, -60, 90, -14, -22, -98, 38, -72, -94, 92, 94, -64, 92, -22, -36, 34, 68, -96, -34, -40, 28, 76, 68, -28, 2, -98, -24, -66, 40, 22, 84, 28, 48, 12, 98, 6, 2, -74, 86, 98],33,37,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],35,40,),\n    ([6],0,0,),\n    ([-26],0,0,),\n    ([1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0],7,11,),\n    ([6, 23, 34, 37, 37, 38, 39, 45, 56, 56, 57, 59, 60, 65, 67, 68, 69, 71, 82, 85, 89, 94, 97, 99],12,18,),\n    ([10, 18, 72, 42, 34, 0, -86, -96, -88, -66, -62, -30, 72, 56, -42, -54, -24, -6, -98, 10, -96, 22, -30, 58, -48, -14, -96, -42, -76, 82, 2, 44, 64, -48, 96, 46, -50, 42, -46, -94, 78, 82, 20, -46, -44, -80, 12],32,46,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],19,21,),\n    ([84, 84, 82, 82, 54, 12, 68, 59, 21, 6, 16, 80, 6, 30, 12, 95, 96, 63, 37, 15, 41, 40, 88, 3, 49, 37, 8, 24, 36, 65, 47, 67, 78, 36, 6, 58, 66, 75, 71, 14, 99, 14, 56, 50, 85, 33],30,32,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minimizeWithKSwaps ( arr , n , k ) :\n    for i in range ( n - 1 ) :\n        pos = i\n        for j in range ( i + 1 , n ) :\n            if ( j - i > k ) :\n                break\n            if ( arr [ j ] < arr [ pos ] ) :\n                pos = j\n        for j in range ( pos , i , - 1 ) :\n            arr [ j ] , arr [ j - 1 ] = arr [ j - 1 ] , arr [ j ]\n        k -= pos - i\n"}
+Disassembly of <code object minimizeWithKSwaps at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 160 ( to 162 )
+2 LOAD_GLOBAL 0 ( range )
+4 LOAD_FAST 1 ( n )
+6 LOAD_CONST 1 ( 1 )
+8 BINARY_SUBTRACT
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 144 ( to 160 )
+16 STORE_FAST 3 ( i )
+
+3 18 LOAD_FAST 3 ( i )
+20 STORE_FAST 4 ( pos )
+
+4 22 SETUP_LOOP 40 ( to 66 )
+24 LOAD_GLOBAL 0 ( range )
+26 LOAD_FAST 3 ( i )
+28 LOAD_CONST 1 ( 1 )
+30 BINARY_ADD
+32 LOAD_FAST 1 ( n )
+34 CALL_FUNCTION 2
+36 GET_ITER
+>> 38 FOR_ITER 22 ( to 64 )
+40 STORE_FAST 5 ( j )
+
+5 42 LOAD_FAST 5 ( j )
+44 LOAD_FAST 3 ( i )
+46 BINARY_SUBTRACT
+48 LOAD_FAST 2 ( k )
+50 COMPARE_OP 4 ( > )
+52 POP_JUMP_IF_FALSE 54
+
+6 54 BREAK_LOOP
+56 JUMP_ABSOLUTE 38
+>> 58 POP_BLOCK
+
+7 60 LOAD_FAST 0 ( arr )
+62 LOAD_FAST 5 ( j )
+64 BINARY_SUBSCR
+66 LOAD_FAST 0 ( arr )
+68 LOAD_FAST 4 ( pos )
+70 BINARY_SUBSCR
+72 COMPARE_OP 0 ( < )
+74 POP_JUMP_IF_FALSE 38
+
+8 76 LOAD_FAST 5 ( j )
+78 STORE_FAST 4 ( pos )
+80 JUMP_ABSOLUTE 38
+>> 82 POP_BLOCK
+
+9 >> 84 SETUP_LOOP 68 ( to 160 )
+86 LOAD_GLOBAL 0 ( range )
+88 LOAD_FAST 4 ( pos )
+90 LOAD_FAST 3 ( i )
+92 LOAD_CONST 2 ( - 1 )
+94 CALL_FUNCTION 3
+96 GET_ITER
+>> 98 FOR_ITER 52 ( to 158 )
+100 STORE_FAST 5 ( j )
+
+10 102 LOAD_FAST 0 ( arr )
+104 LOAD_FAST 5 ( j )
+106 LOAD_CONST 1 ( 1 )
+108 BINARY_SUBTRACT
+110 BINARY_SUBSCR
+112 LOAD_FAST 0 ( arr )
+114 LOAD_FAST 5 ( j )
+116 BINARY_SUBSCR
+118 ROT_TWO
+120 LOAD_FAST 0 ( arr )
+122 LOAD_FAST 5 ( j )
+124 STORE_SUBSCR
+126 JUMP_ABSOLUTE 98
+>> 128 POP_BLOCK
+
+11 >> 130 LOAD_FAST 2 ( k )
+132 LOAD_FAST 4 ( pos )
+134 LOAD_FAST 3 ( i )
+136 BINARY_SUBTRACT
+138 INPLACE_SUBTRACT
+140 STORE_FAST 2 ( k )
+142 JUMP_ABSOLUTE 98
+>> 144 POP_BLOCK
+>> 146 JUMP_ABSOLUTE 14
+>> 148 POP_BLOCK
+
+12 >> 150 LOAD_FAST 2 ( k )
+152 LOAD_FAST 3 ( i )
+154 INPLACE_SUBTRACT
+156 STORE_FAST 2 ( k )
+158 JUMP_ABSOLUTE 14
+>> 160 POP_BLOCK
+>> 162 LOAD_CONST 0 ( None )
+164 RETURN_VALUE

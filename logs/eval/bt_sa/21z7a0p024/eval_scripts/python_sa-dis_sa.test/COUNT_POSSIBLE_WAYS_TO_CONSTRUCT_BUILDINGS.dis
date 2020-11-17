@@ -1,0 +1,76 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( N ) :\n    if ( N == 1 ) :\n        return 4\n    countB = 1\n    countS = 1\n    for i in range ( 2 , N + 1 ) :\n        prev_countB = countB\n        prev_countS = countS\n        countS = prev_countB + prev_countS\n        countB = prev_countS\n    result = countS + countB\n    return ( result * result )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (17,),\n    (66,),\n    (53,),\n    (97,),\n    (34,),\n    (54,),\n    (9,),\n    (99,),\n    (59,),\n    (87,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countWays ( N ) :\n    if ( N == 1 ) :\n        return 4\n    countB = 1\n    countS = 1\n    for i in range ( 2 , N + 1 ) :\n        prev_countB = countB\n        prev_countS = countS\n        countS = prev_countB + prev_countS\n        countB = prev_countS\n    result = countS + countB\n    return ( result * result )\n"}
+Disassembly of <code object countWays at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( N )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 2 ( 4 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_CONST 3 ( 1 )
+14 STORE_FAST 1 ( countB )
+
+5 16 SETUP_LOOP 64 ( to 76 )
+18 LOAD_GLOBAL 0 ( range )
+20 LOAD_CONST 1 ( 2 )
+22 LOAD_FAST 0 ( N )
+24 LOAD_CONST 1 ( 1 )
+26 BINARY_ADD
+28 CALL_FUNCTION 2
+30 GET_ITER
+>> 32 FOR_ITER 48 ( to 74 )
+34 STORE_FAST 2 ( i )
+
+6 36 LOAD_FAST 0 ( N )
+38 LOAD_CONST 1 ( 1 )
+40 INPLACE_ADD
+42 STORE_FAST 0 ( N )
+
+7 44 LOAD_FAST 1 ( countB )
+46 LOAD_FAST 2 ( i )
+48 BINARY_SUBSCR
+50 LOAD_FAST 0 ( N )
+52 LOAD_FAST 2 ( i )
+54 BINARY_SUBSCR
+56 LOAD_FAST 0 ( N )
+58 COMPARE_OP 4 ( > )
+60 POP_JUMP_IF_FALSE 32
+
+8 62 LOAD_FAST 1 ( countB )
+64 LOAD_FAST 2 ( i )
+66 BINARY_SUBSCR
+68 LOAD_FAST 0 ( N )
+70 COMPARE_OP 4 ( > )
+72 POP_JUMP_IF_FALSE 32
+
+9 74 LOAD_FAST 1 ( countB )
+76 LOAD_FAST 2 ( i )
+78 BINARY_SUBSCR
+80 LOAD_FAST 0 ( N )
+82 COMPARE_OP 4 ( > )
+84 POP_JUMP_IF_FALSE 32
+
+10 86 LOAD_FAST 1 ( countB )
+88 LOAD_FAST 2 ( i )
+90 BINARY_SUBSCR
+92 LOAD_FAST 0 ( N )
+94 COMPARE_OP 4 ( > )
+96 POP_JUMP_IF_FALSE 32
+
+11 98 LOAD_FAST 1 ( countB )
+100 LOAD_FAST 2 ( i )
+102 BINARY_SUBSCR
+104 LOAD_FAST 0 ( N )
+106 COMPARE_OP 4 ( > )
+108 POP_JUMP_IF_FALSE 32
+
+12 110 LOAD_FAST 1 ( countB )
+112 LOAD_FAST 2 ( i )
+114 BINARY_SUBSCR
+116 RETURN_VALUE
+
+13 >> 118 LOAD_FAST 1 ( countB )
+120 LOAD_FAST 2 ( i )
+122 BINARY_SUBSCR
+124 RETURN_VALUE

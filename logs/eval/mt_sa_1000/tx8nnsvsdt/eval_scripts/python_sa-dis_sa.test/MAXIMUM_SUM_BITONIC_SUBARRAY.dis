@@ -1,0 +1,168 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    msis = [ None ] * n\n    msds = [ None ] * n\n    max_sum = 0\n    msis [ 0 ] = arr [ 0 ]\n    for i in range ( 1 , n ) :\n        if ( arr [ i ] > arr [ i - 1 ] ) :\n            msis [ i ] = msis [ i - 1 ] + arr [ i ]\n        else :\n            msis [ i ] = arr [ i ]\n    msds [ n - 1 ] = arr [ n - 1 ]\n    for i in range ( n - 2 , - 1 , - 1 ) :\n        if ( arr [ i ] > arr [ i + 1 ] ) :\n            msds [ i ] = msds [ i + 1 ] + arr [ i ]\n        else :\n            msds [ i ] = arr [ i ]\n    for i in range ( n ) :\n        if ( max_sum < ( msis [ i ] + msds [ i ] - arr [ i ] ) ) :\n            max_sum = ( msis [ i ] + msds [ i ] - arr [ i ] )\n    return max_sum\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([7, 12, 16, 23, 26, 27, 39, 39, 40, 44, 57, 58, 77, 78, 81, 82, 84, 86, 91, 94, 94, 95, 97],13,),\n    ([72, 38, -60, 98, -52, -38, -2, 94, 34, 56, 90, 46, 6, -2, 30, -96, -76, -96, -76, 32, 68, 64, -32, -4, 72, -62, 58, 20, -84, 0, -96, 70, -22, -56, 70, -74, -90, -86, -14, 82, -90, 40, -64, 94],37,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],33,),\n    ([69, 31, 85, 84, 28, 28],5,),\n    ([-80, -74, -24, -22, -22, 4, 20, 28, 30, 32, 36, 58, 58, 68, 92, 94, 98],16,),\n    ([1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1],10,),\n    ([2, 2, 2, 4, 6, 7, 8, 10, 15, 17, 19, 20, 21, 27, 28, 29, 32, 32, 40, 44, 46, 47, 49, 50, 50, 52, 55, 56, 58, 59, 64, 69, 73, 74, 74, 77, 80, 80, 84, 89, 91, 95, 96, 96, 97, 98, 98, 99],46,),\n    ([26, -86, 8, 64, -40, 64, 60, -16, 54, -42, -86, 14, -48, -20, -42, -4, -34, -52, -74, 22, 10],18,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],27,),\n    ([8, 5, 5, 56, 5, 38],3,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxSumBitonicSubArr ( arr , n ) :\n    msis = [ None ] * n\n    msds = [ None ] * n\n    max_sum = 0\n    msis [ 0 ] = arr [ 0 ]\n    for i in range ( 1 , n ) :\n        if ( arr [ i ] > arr [ i - 1 ] ) :\n            msis [ i ] = msis [ i - 1 ] + arr [ i ]\n        else :\n            msis [ i ] = arr [ i ]\n    msds [ n - 1 ] = arr [ n - 1 ]\n    for i in range ( n - 2 , - 1 , - 1 ) :\n        if ( arr [ i ] > arr [ i + 1 ] ) :\n            msds [ i ] = msds [ i + 1 ] + arr [ i ]\n        else :\n            msds [ i ] = arr [ i ]\n    for i in range ( n ) :\n        if ( max_sum < ( msis [ i ] + msds [ i ] - arr [ i ] ) ) :\n            max_sum = ( msis [ i ] + msds [ i ] - arr [ i ] )\n    return max_sum\n"}
+Disassembly of <code object maxSumBitonicSubArr at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 0 ( None )
+2 BUILD_LIST 1
+4 LOAD_FAST 1 ( n )
+6 BINARY_MULTIPLY
+8 STORE_FAST 2 ( msis )
+
+3 10 LOAD_CONST 0 ( None )
+12 BUILD_LIST 1
+14 LOAD_FAST 1 ( n )
+16 BINARY_MULTIPLY
+18 STORE_FAST 3 ( msds )
+
+4 20 LOAD_CONST 1 ( 0 )
+22 STORE_FAST 4 ( max_sum )
+
+5 24 LOAD_FAST 0 ( arr )
+26 LOAD_CONST 1 ( 0 )
+28 BINARY_SUBSCR
+30 LOAD_FAST 2 ( msis )
+32 LOAD_CONST 1 ( 0 )
+34 STORE_SUBSCR
+
+6 36 SETUP_LOOP 68 ( to 108 )
+38 LOAD_GLOBAL 0 ( range )
+40 LOAD_CONST 2 ( 1 )
+42 LOAD_FAST 1 ( n )
+44 CALL_FUNCTION 2
+46 GET_ITER
+>> 48 FOR_ITER 52 ( to 106 )
+50 STORE_FAST 5 ( i )
+
+7 52 LOAD_FAST 0 ( arr )
+54 LOAD_FAST 5 ( i )
+56 BINARY_SUBSCR
+58 LOAD_FAST 0 ( arr )
+60 LOAD_FAST 5 ( i )
+62 LOAD_CONST 2 ( 1 )
+64 BINARY_SUBTRACT
+66 BINARY_SUBSCR
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 48
+
+8 72 LOAD_FAST 2 ( msis )
+74 LOAD_FAST 5 ( i )
+76 LOAD_CONST 2 ( 1 )
+78 BINARY_SUBTRACT
+80 BINARY_SUBSCR
+82 LOAD_FAST 0 ( arr )
+84 LOAD_FAST 5 ( i )
+86 BINARY_SUBSCR
+88 BINARY_ADD
+90 LOAD_FAST 2 ( msis )
+92 LOAD_FAST 5 ( i )
+94 STORE_SUBSCR
+96 JUMP_ABSOLUTE 48
+
+10 >> 98 LOAD_FAST 0 ( arr )
+100 LOAD_FAST 5 ( i )
+102 BINARY_SUBSCR
+104 LOAD_FAST 2 ( msis )
+106 LOAD_FAST 5 ( i )
+108 STORE_SUBSCR
+>> 110 JUMP_ABSOLUTE 48
+>> 112 POP_BLOCK
+
+11 >> 114 LOAD_FAST 0 ( arr )
+116 LOAD_FAST 1 ( n )
+118 LOAD_CONST 2 ( 1 )
+120 BINARY_SUBTRACT
+122 BINARY_SUBSCR
+124 LOAD_FAST 3 ( msds )
+126 LOAD_FAST 1 ( n )
+128 LOAD_CONST 2 ( 1 )
+130 BINARY_SUBTRACT
+132 STORE_SUBSCR
+
+12 134 SETUP_LOOP 68 ( to 194 )
+136 LOAD_GLOBAL 0 ( range )
+138 LOAD_FAST 1 ( n )
+140 LOAD_CONST 3 ( 2 )
+142 BINARY_SUBTRACT
+144 LOAD_CONST 4 ( - 1 )
+146 LOAD_CONST 4 ( - 1 )
+148 CALL_FUNCTION 3
+150 GET_ITER
+>> 152 FOR_ITER 52 ( to 192 )
+154 STORE_FAST 5 ( i )
+
+13 156 LOAD_FAST 0 ( arr )
+158 LOAD_FAST 5 ( i )
+160 BINARY_SUBSCR
+162 LOAD_FAST 0 ( arr )
+164 LOAD_FAST 5 ( i )
+166 LOAD_CONST 2 ( 1 )
+168 BINARY_ADD
+170 BINARY_SUBSCR
+172 COMPARE_OP 4 ( > )
+174 POP_JUMP_IF_FALSE 152
+
+14 176 LOAD_FAST 3 ( msds )
+178 LOAD_FAST 5 ( i )
+180 LOAD_CONST 2 ( 1 )
+182 BINARY_ADD
+184 BINARY_SUBSCR
+186 LOAD_FAST 0 ( arr )
+188 LOAD_FAST 5 ( i )
+190 STORE_SUBSCR
+192 JUMP_ABSOLUTE 152
+
+16 >> 194 LOAD_FAST 0 ( arr )
+196 LOAD_FAST 5 ( i )
+198 BINARY_SUBSCR
+200 LOAD_FAST 3 ( msds )
+202 LOAD_FAST 5 ( i )
+204 STORE_SUBSCR
+206 JUMP_ABSOLUTE 152
+>> 208 POP_BLOCK
+
+17 >> 210 SETUP_LOOP 54 ( to 250 )
+212 LOAD_GLOBAL 0 ( range )
+214 LOAD_FAST 1 ( n )
+216 CALL_FUNCTION 1
+218 GET_ITER
+>> 220 FOR_ITER 46 ( to 248 )
+222 STORE_FAST 5 ( i )
+
+18 224 LOAD_FAST 4 ( max_sum )
+226 LOAD_FAST 2 ( msis )
+228 LOAD_FAST 5 ( i )
+230 BINARY_SUBSCR
+232 LOAD_FAST 3 ( msds )
+234 LOAD_FAST 5 ( i )
+236 BINARY_SUBSCR
+238 BINARY_ADD
+240 LOAD_FAST 0 ( arr )
+242 LOAD_FAST 5 ( i )
+244 BINARY_SUBSCR
+246 BINARY_SUBTRACT
+248 LOAD_FAST 0 ( arr )
+250 LOAD_FAST 5 ( i )
+252 BINARY_SUBSCR
+254 BINARY_SUBTRACT
+256 COMPARE_OP 0 ( < )
+258 POP_JUMP_IF_FALSE 220
+
+19 260 LOAD_FAST 2 ( msis )
+262 LOAD_FAST 5 ( i )
+264 BINARY_SUBSCR
+266 LOAD_FAST 3 ( msds )
+268 LOAD_FAST 5 ( i )
+270 BINARY_SUBSCR
+272 BINARY_ADD
+274 LOAD_FAST 0 ( arr )
+276 LOAD_FAST 5 ( i )
+278 BINARY_SUBSCR
+280 BINARY_ADD
+282 LOAD_FAST 0 ( arr )
+284 LOAD_FAST 5 ( i )
+282 BINARY_SUBSCR
+284 BINARY_SUBTRACT
+286 STORE_FAST 4 ( max_sum )
+288 JUMP_ABSOLUTE 220
+>> 290 POP_BLOCK
+
+20 >> 280 LOAD_FAST 4 ( max_sum )
+282 RETURN_VALUE

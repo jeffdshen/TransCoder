@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x ) :\n    if ( x == 0 or x == 1 ) :\n        return x\n    start = 1\n    end = x\n    while ( start <= end ) :\n        mid = ( start + end ) // 2\n        if ( mid * mid == x ) :\n            return mid\n        if ( mid * mid < x ) :\n            start = mid + 1\n            ans = mid\n        else :\n            end = mid - 1\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (40,),\n    (10,),\n    (46,),\n    (54,),\n    (1,),\n    (67,),\n    (64,),\n    (10,),\n    (75,),\n    (11,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def floorSqrt ( x ) :\n    if ( x == 0 or x == 1 ) :\n        return x\n    start = 1\n    end = x\n    while ( start <= end ) :\n        mid = ( start + end ) // 2\n        if ( mid * mid == x ) :\n            return mid\n        if ( mid * mid < x ) :\n            start = mid + 1\n            ans = mid\n        else :\n            end = mid - 1\n    return ans\n"}
+Disassembly of <code object floorSqrt at 0x7f816a673a50, file "<dis>", line 148>:
+149 0 LOAD_FAST 0 ( x )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+150 8 LOAD_FAST 0 ( x )
+10 LOAD_CONST 2 ( 2 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+151 16 LOAD_FAST 0 ( x )
+18 LOAD_CONST 3 ( 1 )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+152 24 LOAD_FAST 0 ( x )
+26 LOAD_CONST 4 ( 2 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 44
+
+153 32 LOAD_FAST 0 ( x )
+34 LOAD_CONST 5 ( 1 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+
+154 40 LOAD_FAST 0 ( x )
+42 LOAD_CONST 6 ( 2 )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 44
+
+155 48 LOAD_FAST 0 ( x )
+50 LOAD_CONST 7 ( 2 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 44
+
+156 56 LOAD_FAST 0 ( x )
+58 LOAD_CONST 6 ( 2 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 44
+
+157 64 LOAD_FAST 0 ( x )
+66 LOAD_CONST 6 ( 2 )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 44
+
+158 72 LOAD_FAST 0 ( x )
+74 LOAD_CONST 7 ( 2 )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 80
+
+159 80 LOAD_FAST 0 ( x )
+82 LOAD_CONST 8 ( 2 )
+84 COMPARE_OP 2 ( == )
+86 POP_JUMP_IF_FALSE 94
+
+160 88 LOAD_FAST 0 ( x )
+90 LOAD_CONST 9 ( 2 )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 94
+
+161 96 LOAD_FAST 0 ( x )
+98 LOAD_CONST 10 ( 2 )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 106
+
+162 104 LOAD_FAST 0 ( x )
+106 LOAD_CONST 11 ( 1 )
+108 COMPARE_OP 2 ( == )
+110 POP_JUMP_IF_FALSE 106
+
+163 112 LOAD_FAST 0 ( x )
+114 LOAD_CONST 12 ( 2 )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 106
+
+164 120 LOAD_FAST 0 ( x )
+122 LOAD_CONST 12 ( 2 )
+124 COMPARE_OP 2 ( == )
+126 POP_JUMP_IF_FALSE 130
+
+163 128 LOAD_FAST 0 ( x )
+130 LOAD_CONST 13 ( 2 )
+132 COMPARE_OP 2 ( == )
+134 POP_JUMP_IF_FALSE 130
+136 LOAD_FAST 0 ( x )
+138 LOAD_CONST 14 ( 2 )
+140 COMPARE_OP 2 ( == )
+142 POP_JUMP_IF_FALSE 130
+
+164 144 LOAD_FAST 0 ( x )
+146 RETURN_VALUE
+
+165

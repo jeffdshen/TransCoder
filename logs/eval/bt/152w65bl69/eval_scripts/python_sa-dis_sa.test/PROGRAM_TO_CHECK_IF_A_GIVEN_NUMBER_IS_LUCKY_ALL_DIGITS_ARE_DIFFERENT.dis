@@ -1,0 +1,73 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    ar = [ 0 ] * 10\n    while ( n > 0 ) :\n        digit = math.floor ( n % 10 )\n        if ( ar [ digit ] ) :\n            return 0\n        ar [ digit ] = 1\n        n = n / 10\n    return 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (474,),\n    (9445,),\n    (90,),\n    (30,),\n    (37453,),\n    (27,),\n    (2400,),\n    (98,),\n    (46,),\n    (722,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def isLucky ( n ) :\n    ar = [ 0 ] * 10\n    while ( n > 0 ) :\n        digit = math.floor ( n % 10 )\n        if ( ar [ digit ] ) :\n            return 0\n        ar [ digit ] = 1\n        n = n / 10\n    return 1\n"}
+Disassembly of <code object isLucky at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( ar )
+2 LOAD_FAST 0 ( n )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( ar )
+
+27 8 LOAD_FAST 1 ( ar )
+10 LOAD_FAST 1 ( ar )
+12 LOAD_FAST 0 ( n )
+14 LOAD_FAST 1 ( ar )
+16 LOAD_FAST 2 ( n )
+18 LOAD_FAST 3 ( n )
+20 LOAD_FAST 4 ( n )
+22 LOAD_FAST 5 ( n )
+24 LOAD_FAST 6 ( n )
+26 LOAD_FAST 7 ( n )
+28 LOAD_FAST 8 ( n )
+30 LOAD_FAST 9 ( n )
+32 LOAD_FAST 10 ( n )
+34 LOAD_FAST 11 ( n )
+36 LOAD_FAST 12 ( n )
+38 LOAD_FAST 13 ( n )
+40 LOAD_FAST 14 ( n )
+42 LOAD_FAST 15 ( n )
+44 LOAD_FAST 14 ( n )
+46 LOAD_FAST 15 ( n )
+48 LOAD_FAST 16 ( n )
+50 LOAD_FAST 17 ( n )
+52 LOAD_FAST 18 ( n )
+54 LOAD_FAST 19 ( n )
+56 LOAD_FAST 20 ( n )
+58 LOAD_FAST 21 ( n )
+60 LOAD_FAST 22 ( n )
+62 LOAD_FAST 21 ( n )
+64 BUILD_TUPLE 15
+66 LOAD_FAST 20 ( n )
+68 LOAD_FAST 21 ( n )
+70 BUILD_TUPLE 15
+72 LOAD_FAST 21 ( n )
+74 LOAD_FAST 22 ( n )
+76 LOAD_FAST 21 ( n )
+78 BUILD_TUPLE 15
+80 LOAD_FAST 22 ( n )
+82 LOAD_FAST 21 ( n )
+84 BUILD_TUPLE 15
+86 LOAD_FAST 22 ( n )
+88 LOAD_FAST 21 ( n )
+90 LOAD_FAST 22 ( n )
+92 BUILD_TUPLE 15
+94 LOAD_FAST 22 ( n )
+96 LOAD_FAST 21 ( n )
+98 BUILD_TUPLE 15
+100 LOAD_FAST 22 ( n )
+102 LOAD_FAST 21 ( n )
+104 BUILD_TUPLE 15
+106 LOAD_FAST 22 ( n )
+108 LOAD_FAST 21 ( n )
+110 BUILD_TUPLE 15
+112 LOAD_FAST 22 ( n )
+114 LOAD_FAST 21 ( n )
+116 BUILD_TUPLE 15
+118 LOAD_FAST 22 ( n )
+120 BUILD_TUPLE 15
+122 LOAD_FAST 22 ( n )
+124 BUILD_TUPLE 15
+126 LOAD_FAST 22 ( n )
+128 LOAD_FAST 21 ( n )
+130 BUILD_TUPLE 15
+132 STORE_SUBSCR
+134 LOAD_CONST 0 ( None )
+136 RETURN_VALUE
+

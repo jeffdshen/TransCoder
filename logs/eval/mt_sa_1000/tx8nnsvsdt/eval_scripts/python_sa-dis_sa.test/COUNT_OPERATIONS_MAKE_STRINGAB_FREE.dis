@@ -1,0 +1,46 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    b_count = 0\n    res = 0\n    for i in range ( len ( s ) ) :\n        if s [ ~ i ] == 'a' :\n            res = ( res + b_count )\n            b_count = ( b_count * 2 )\n        else :\n            b_count += 1\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (['L', 'k', 'y'],),\n    (['1', '0', '9', '5', '7', '4', '6', '0', '4', '8', '0', '1', '4', '1', '8', '9', '1', '5', '4', '4', '8', '0', '5', '8', '9', '8', '1', '9', '7', '0', '4', '2', '5', '2', '4', '6', '6', '5', '3', '1', '1', '0', '6'],),\n    (['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],),\n    (['A', 'L', 'a', 'l', 'G', ' ', 'p', 'b'],),\n    (['0', '1', '1', '1', '2', '2', '4', '5', '5', '5', '6', '6', '6', '7', '9'],),\n    (['0'],),\n    ([' ', 'A', 'B', 'B', 'B', 'B', 'D', 'G', 'G', 'H', 'H', 'H', 'I', 'I', 'J', 'J', 'J', 'L', 'M', 'N', 'O', 'Q', 'U', 'U', 'X', 'Y', 'Y', 'Z', 'Z', 'c', 'c', 'e', 'f', 'h', 'k', 'o', 'p', 'q', 'q', 's', 'v', 'z'],),\n    (['2', '5', '7', '5', '2', '3', '9'],),\n    (['0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1'],),\n    (['a', 'z', 'M', ' ', 'l', 'X', 'x', 'B', 'i', 'j'],)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def abFree ( s ) :\n    b_count = 0\n    res = 0\n    for i in range ( len ( s ) ) :\n        if s [ ~ i ] == 'a' :\n            res = ( res + b_count )\n            b_count = ( b_count * 2 )\n        else :\n            b_count += 1\n    return res\n"}
+Disassembly of <code object abFree at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( b_count )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 2 ( res )
+
+4 8 SETUP_LOOP 62 ( to 74 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_GLOBAL 1 ( len )
+14 LOAD_FAST 0 ( s )
+16 CALL_FUNCTION 1
+18 CALL_FUNCTION 1
+20 GET_ITER
+>> 22 FOR_ITER 44 ( to 72 )
+24 STORE_FAST 3 ( i )
+
+5 26 LOAD_FAST 0 ( s )
+28 LOAD_FAST 3 ( i )
+30 UNARY_NEGATIVE
+32 BINARY_SUBSCR
+34 LOAD_CONST 2 ( 'a' )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 60
+
+6 40 LOAD_FAST 2 ( res )
+42 LOAD_FAST 1 ( b_count )
+44 BINARY_ADD
+46 STORE_FAST 2 ( res )
+
+7 48 LOAD_FAST 1 ( b_count )
+50 LOAD_CONST 3 ( 2 )
+52 BINARY_MULTIPLY
+54 STORE_FAST 1 ( b_count )
+56 JUMP_FORWARD 8 ( to 60 )
+
+9 >> 58 LOAD_FAST 1 ( b_count )
+60 LOAD_CONST 4 ( 1 )
+62 INPLACE_ADD
+64 STORE_FAST 1 ( b_count )
+66 JUMP_ABSOLUTE 22
+>> 68 POP_BLOCK
+
+10 70 LOAD_FAST 2 ( res )
+72 RETURN_VALUE

@@ -1,0 +1,87 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , x ) :\n    i = 0\n    while ( i < n ) :\n        if ( arr [ i ] == x ) :\n            return i\n        i = i + abs ( arr [ i ] - x )\n    print ( \"number is not present!\" )\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([8, 7, 6, 7, 6, 5, 4, 3, 2, 3, 4, 3],12,3,),\n    ([6, 90],1,1,),\n    ([1, 2, 3, 4, 5, 4],6,5,),\n    ([97, 35, 60, 96, 3, 67, 72, 95, 55, 9, 69, 28, 15, 91, 31, 59],15,9,),\n    ([-84, -78, -74, -70, -68, -60, -56, -54, -48, -46, -28, -16, -6, 0, 0, 8, 8, 8, 12, 16, 26, 30, 32, 34, 36, 40, 46, 48, 70, 70, 72, 76, 78, 78, 80, 84, 84, 86],22,31,),\n    ([1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1],5,7,),\n    ([55, 64, 76, 79, 93, 96],4,4,),\n    ([66, -90, 98, -50, 0, 46, 42, 64, -96, -80, -96, 20, -10, -84],8,13,),\n    ([0, 0, 0, 0, 0, 0, 1],6,5,),\n    ([94, 4, 34, 87, 32, 3, 92, 68, 57, 76, 24, 33, 3, 4, 30, 70, 49, 30, 72, 82, 16, 53, 6, 24, 92, 96, 89, 28, 21, 8, 36, 9, 40, 85, 51, 1, 63, 68, 74, 26, 40, 3, 9, 32, 67, 4, 6, 73],25,25,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def search ( arr , n , x ) :\n    i = 0\n    while ( i < n ) :\n        if ( arr [ i ] == x ) :\n            return i\n        i = i + abs ( arr [ i ] - x )\n    print ( \"number is not present!\" )\n    return - 1\n"}
+Disassembly of <code object search at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( arr )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( n )
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( n )
+
+28 16 LOAD_FAST 2 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( n )
+
+29 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 4 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 5 ( 'number' )
+32 BINARY_SUBSCR
+34 LOAD_CONST 6 ( 'number' )
+36 BINARY_SUBSCR
+38 LOAD_CONST 7 ( 'number' )
+40 BINARY_SUBSCR
+42 LOAD_CONST 8 ( 'number' )
+44 BINARY_SUBSCR
+46 LOAD_CONST 9 ( 'number' )
+48 BINARY_SUBSCR
+50 LOAD_CONST 10 ( 'number' )
+52 BINARY_SUBSCR
+54 LOAD_CONST 11 ( 'number' )
+56 BINARY_SUBSCR
+58 LOAD_CONST 12 ( 'number' )
+60 BINARY_SUBSCR
+62 LOAD_CONST 13 ( 'number' )
+64 BINARY_SUBSCR
+66 LOAD_CONST 14 ( 'number' )
+68 BINARY_SUBSCR
+70 LOAD_CONST 15 ( 'number' )
+72 BINARY_SUBSCR
+74 LOAD_CONST 16 ( 'number' )
+76 BINARY_SUBSCR
+78 LOAD_CONST 17 ( 'number' )
+80 BINARY_SUBSCR
+82 LOAD_CONST 16 ( 'number' )
+84 BINARY_SUBSCR
+86 LOAD_CONST 17 ( 'number' )
+88 BINARY_SUBSCR
+90 LOAD_CONST 18 ( 'number' )
+92 BINARY_SUBSCR
+94 LOAD_CONST 19 ( 'number' )
+96 BINARY_SUBSCR
+98 LOAD_CONST 20 ( 'number' )
+100 BINARY_SUBSCR
+102 LOAD_CONST 21 ( 'number' )
+104 BINARY_SUBSCR
+106 LOAD_CONST 22 ( 'number' )
+108 BINARY_SUBSCR
+110 LOAD_CONST 21 ( 'number' )
+112 BINARY_SUBSCR
+114 LOAD_CONST 22 ( 'number' )
+116 BINARY_SUBSCR
+118 LOAD_CONST 23 ( 'number' )
+120 BINARY_SUBSCR
+122 LOAD_CONST 22 ( 'number' )
+124 BINARY_SUBSCR
+126 LOAD_CONST 23 ( 'number' )
+128 BINARY_SUBSCR
+130 LOAD_CONST 22 ( 'number' )
+132 BINARY_SUBSCR
+134 LOAD_CONST 24 ( 'number' )
+136 BINARY_SUBSCR
+138 LOAD_CONST 25 ( 'number' )
+140 BINARY_SUBSCR
+142 LOAD_CONST 26 ( 'number' )
+144 BINARY_SUBSCR
+146 LOAD_CONST 25 ( 'number' )
+148 BINARY_SUBSCR
+150 LOAD_CONST 26 ( 'number' )
+152 BINARY_SUBSCR
+154 LOAD_CONST 27 ( 'number' )
+156 BINARY_SUBSCR
+158 LOAD_CONST 26 ( 'number' )
+160 COMPARE_OP 2 ( == )
+162 POP_JUMP_IF_FALSE 154

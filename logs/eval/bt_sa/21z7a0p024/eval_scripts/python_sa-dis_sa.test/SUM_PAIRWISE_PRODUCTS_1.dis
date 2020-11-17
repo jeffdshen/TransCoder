@@ -1,0 +1,46 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    multiTerms = n * ( n + 1 ) // 2\n    sm = multiTerms\n    for i in range ( 2 , n + 1 ) :\n        multiTerms = multiTerms - ( i - 1 )\n        sm = sm + multiTerms * i\n    return sm\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (41,),\n    (50,),\n    (67,),\n    (18,),\n    (60,),\n    (6,),\n    (27,),\n    (46,),\n    (50,),\n    (20,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSum ( n ) :\n    multiTerms = n * ( n + 1 ) // 2\n    sm = multiTerms\n    for i in range ( 2 , n + 1 ) :\n        multiTerms = multiTerms - ( i - 1 )\n        sm = sm + multiTerms * i\n    return sm\n"}
+Disassembly of <code object findSum at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_FAST 1 ( multiTerms )
+4 LOAD_CONST 1 ( 1 )
+6 BINARY_ADD
+8 BINARY_FLOOR_DIVIDE
+10 STORE_FAST 2 ( sm )
+
+3 12 SETUP_LOOP 64 ( to 76 )
+14 LOAD_GLOBAL 0 ( range )
+16 LOAD_CONST 2 ( 2 )
+18 LOAD_FAST 1 ( multiTerms )
+20 LOAD_CONST 1 ( 1 )
+22 BINARY_ADD
+24 CALL_FUNCTION 2
+26 GET_ITER
+>> 28 FOR_ITER 48 ( to 74 )
+30 STORE_FAST 3 ( i )
+
+4 32 LOAD_FAST 0 ( n )
+34 LOAD_FAST 1 ( multiTerms )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 28
+
+5 40 LOAD_FAST 0 ( n )
+42 LOAD_FAST 1 ( multiTerms )
+44 LOAD_CONST 1 ( 1 )
+46 BINARY_ADD
+48 BINARY_SUBSCR
+50 LOAD_FAST 2 ( sm )
+52 LOAD_FAST 3 ( i )
+54 BINARY_SUBSCR
+56 BINARY_ADD
+58 LOAD_FAST 2 ( sm )
+60 LOAD_FAST 3 ( i )
+62 BINARY_SUBSCR
+64 BINARY_ADD
+66 LOAD_FAST 2 ( sm )
+68 LOAD_FAST 3 ( i )
+70 STORE_SUBSCR
+72 JUMP_ABSOLUTE 28
+>> 74 POP_BLOCK
+
+6 >> 76 LOAD_FAST 0 ( n )
+78 RETURN_VALUE

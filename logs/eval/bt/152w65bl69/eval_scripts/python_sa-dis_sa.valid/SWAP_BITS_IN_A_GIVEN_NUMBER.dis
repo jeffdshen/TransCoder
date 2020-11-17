@@ -1,0 +1,88 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , p1 , p2 , n ) :\n    set1 = ( x >> p1 ) & ( ( 1 << n ) - 1 )\n    set2 = ( x >> p2 ) & ( ( 1 << n ) - 1 )\n    xor = ( set1 ^ set2 )\n    xor = ( xor << p1 ) | ( xor << p2 )\n    result = x ^ xor\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (95,88,97,92,),\n    (16,26,59,42,),\n    (55,56,40,41,),\n    (75,35,79,30,),\n    (90,12,59,34,),\n    (58,65,25,19,),\n    (69,64,17,94,),\n    (5,1,59,38,),\n    (36,33,97,44,),\n    (62,69,66,9,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def swapBits ( x , p1 , p2 , n ) :\n    set1 = ( x >> p1 ) & ( ( 1 << n ) - 1 )\n    set2 = ( x >> p2 ) & ( ( 1 << n ) - 1 )\n    xor = ( set1 ^ set2 )\n    xor = ( xor << p1 ) | ( xor << p2 )\n    result = x ^ xor\n    return result\n"}
+Disassembly of <code object swapBits at 0x7f816a673a50, file "<dis>", line 89>:
+90 0 LOAD_FAST 1 ( p1 )
+2 LOAD_CONST 1 ( ( 1 << n ) - 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+91 8 LOAD_FAST 1 ( p1 )
+10 LOAD_CONST 2 ( - 1 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+92 16 LOAD_FAST 1 ( p1 )
+18 LOAD_CONST 3 ( - 1 )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+93 24 LOAD_FAST 1 ( p1 )
+26 LOAD_CONST 4 ( - 1 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 28
+
+94 32 LOAD_FAST 1 ( p1 )
+34 LOAD_CONST 5 ( - 1 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+
+95 40 LOAD_FAST 1 ( p1 )
+42 LOAD_CONST 6 ( - 1 )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 44
+
+96 48 LOAD_FAST 1 ( p1 )
+50 LOAD_CONST 7 ( - 1 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 44
+
+97 56 LOAD_FAST 1 ( p1 )
+58 LOAD_CONST 8 ( - 1 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 44
+
+98 64 LOAD_FAST 1 ( p1 )
+66 LOAD_CONST 9 ( - 1 )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 78
+
+99 72 LOAD_FAST 1 ( p1 )
+74 LOAD_CONST 10 ( - 1 )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 78
+
+100 80 LOAD_FAST 1 ( p1 )
+82 LOAD_CONST 10 ( - 1 )
+84 COMPARE_OP 2 ( == )
+86 POP_JUMP_IF_FALSE 78
+
+101 88 LOAD_FAST 1 ( p1 )
+90 LOAD_CONST 11 ( - 1 )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 78
+
+102 102 LOAD_FAST 1 ( p1 )
+104 LOAD_CONST 12 ( - 1 )
+106 COMPARE_OP 2 ( == )
+108 POP_JUMP_IF_FALSE 108
+
+103 110 LOAD_FAST 1 ( p1 )
+112 LOAD_CONST 12 ( - 1 )
+114 COMPARE_OP 2 ( == )
+116 POP_JUMP_IF_FALSE 130
+
+104 118 LOAD_FAST 1 ( p1 )
+120 LOAD_CONST 12 ( - 1 )
+122 COMPARE_OP 2 ( == )
+124 POP_JUMP_IF_FALSE 130
+126 LOAD_FAST 1 ( p1 )
+128 LOAD_CONST 13 ( - 1 )
+130 COMPARE_OP 2 ( == )
+132 POP_JUMP_IF_FALSE 130
+134 LOAD_FAST 1 ( p1 )
+136 LOAD_CONST 12 ( - 1 )
+138 COMPARE_OP 2 ( == )
+140 POP_JUMP_IF_FALSE 130
+
+105 142 LOAD_FAST 1 ( p1 )
+144 LOAD_CONST 13 ( - 1 )
+146 COMPARE_OP 2 ( ==

@@ -1,0 +1,91 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    return ( n * n ) + ( n * n * n )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (90,),\n    (95,),\n    (22,),\n    (29,),\n    (62,),\n    (40,),\n    (52,),\n    (21,),\n    (33,),\n    (11,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def nthTerm ( n ) :\n    return ( n * n ) + ( n * n * n )\n"}
+Disassembly of <code object nthTerm at 0x7f816a5e54b0, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_GLOBAL 0 ( int )
+10 LOAD_FAST 0 ( n )
+12 CALL_FUNCTION 1
+14 LOAD_CONST 2 ( 0 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 28
+
+28 20 LOAD_GLOBAL 1 ( int )
+22 LOAD_FAST 0 ( n )
+24 CALL_FUNCTION 1
+26 LOAD_CONST 3 ( 1 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 28
+
+29 32 LOAD_FAST 0 ( n )
+34 LOAD_CONST 4 ( 2 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 48
+
+30 40 LOAD_FAST 0 ( n )
+42 LOAD_CONST 5 ( 1 )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 48
+
+31 48 LOAD_FAST 0 ( n )
+50 LOAD_CONST 6 ( 2 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 48
+
+32 56 LOAD_FAST 0 ( n )
+58 LOAD_CONST 7 ( 2 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 48
+
+33 64 LOAD_FAST 0 ( n )
+66 LOAD_CONST 8 ( 3 )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 48
+
+34 72 LOAD_FAST 0 ( n )
+74 LOAD_CONST 9 ( 1 )
+76 INPLACE_ADD
+78 STORE_FAST 0 ( n )
+80 JUMP_FORWARD 10 ( to 48 )
+
+35 >> 82 LOAD_FAST 0 ( n )
+84 LOAD_CONST 10 ( 2 )
+86 INPLACE_ADD
+88 STORE_FAST 1 ( n )
+
+36 >> 90 LOAD_FAST 0 ( n )
+92 LOAD_CONST 11 ( 2 )
+94 COMPARE_OP 2 ( == )
+96 POP_JUMP_IF_FALSE 106
+
+37 98 LOAD_FAST 0 ( n )
+100 LOAD_CONST 12 ( 2 )
+102 COMPARE_OP 2 ( == )
+104 POP_JUMP_IF_FALSE 106
+
+38 106 LOAD_FAST 0 ( n )
+108 LOAD_CONST 13 ( 1 )
+110 INPLACE_ADD
+112 STORE_FAST 0 ( n )
+
+39 >> 114 LOAD_FAST 0 ( n )
+116 LOAD_CONST 12 ( 2 )
+118 INPLACE_ADD
+120 STORE_FAST 0 ( n )
+122 JUMP_FORWARD 10 ( to 108 )
+
+40 >> 124 LOAD_FAST 0 ( n )
+126 LOAD_CONST 12 ( 2 )
+128 INPLACE_ADD
+130 STORE_FAST 0 ( n )
+
+41 >> 132 LOAD_FAST 0 ( n )
+134 LOAD_CONST 13 ( 1 )
+136 INPLACE_ADD
+138 STORE_FAST 0 ( n )
+
+42 >> 140 LOAD_FAST 0 ( n )
+142 RETURN_VALUE
+

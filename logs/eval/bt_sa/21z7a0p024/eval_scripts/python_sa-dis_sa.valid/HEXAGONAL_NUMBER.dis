@@ -1,0 +1,8 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    return n * ( 2 * n - 1 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (38,),\n    (44,),\n    (58,),\n    (10,),\n    (31,),\n    (53,),\n    (94,),\n    (64,),\n    (71,),\n    (59,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def hexagonalNum ( n ) :\n    return n * ( 2 * n - 1 )\n"}
+Disassembly of <code object hexagonalNum at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 2 )
+4 LOAD_FAST 1 ( n )
+6 BINARY_SUBTRACT
+8 BINARY_MULTIPLY
+10 RETURN_VALUE

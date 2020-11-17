@@ -1,0 +1,97 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b ) :\n    result = 0\n    rem = 0\n    if ( a < b ) :\n        a , b = b , a\n    while ( b > 0 ) :\n        result += int ( a / b )\n        rem = int ( a % b )\n        a = b\n        b = rem\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (87,60,),\n    (18,35,),\n    (68,93,),\n    (80,20,),\n    (87,69,),\n    (64,29,),\n    (64,1,),\n    (65,95,),\n    (43,72,),\n    (97,41,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minimumSquare ( a , b ) :\n    result = 0\n    rem = 0\n    if ( a < b ) :\n        a , b = b , a\n    while ( b > 0 ) :\n        result += int ( a / b )\n        rem = int ( a % b )\n        a = b\n        b = rem\n    return result\n"}
+Disassembly of <code object minimumSquare at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( result )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 3 ( rem )
+
+4 8 LOAD_FAST 0 ( a )
+10 LOAD_FAST 1 ( b )
+12 COMPARE_OP 0 ( < )
+14 POP_JUMP_IF_FALSE 20
+
+5 16 LOAD_FAST 2 ( result )
+18 LOAD_FAST 1 ( b )
+20 COMPARE_OP 4 ( > )
+22 POP_JUMP_IF_FALSE 32
+
+6 24 LOAD_FAST 2 ( result )
+26 LOAD_FAST 1 ( b )
+28 BINARY_SUBTRACT
+30 STORE_FAST 2 ( result )
+
+7 >> 32 LOAD_GLOBAL 0 ( int )
+34 LOAD_FAST 2 ( result )
+36 CALL_FUNCTION 1
+38 STORE_FAST 4 ( a )
+
+8 40 LOAD_FAST 3 ( rem )
+42 LOAD_FAST 4 ( a )
+44 BINARY_SUBTRACT
+46 STORE_FAST 5 ( b )
+
+9 48 LOAD_FAST 5 ( b )
+50 LOAD_FAST 4 ( a )
+52 BINARY_SUBTRACT
+54 STORE_FAST 6 ( b )
+
+10 56 LOAD_FAST 5 ( b )
+58 LOAD_FAST 6 ( b )
+60 BINARY_SUBTRACT
+62 STORE_FAST 7 ( a )
+
+11 64 LOAD_FAST 2 ( result )
+66 LOAD_FAST 6 ( b )
+68 BINARY_SUBTRACT
+70 LOAD_FAST 3 ( rem )
+72 BINARY_SUBTRACT
+74 LOAD_FAST 4 ( a )
+76 BINARY_SUBTRACT
+78 LOAD_FAST 5 ( b )
+80 BINARY_SUBTRACT
+82 LOAD_FAST 7 ( a )
+84 BINARY_SUBTRACT
+86 STORE_FAST 8 ( b )
+
+12 88 LOAD_FAST 6 ( b )
+90 LOAD_FAST 8 ( b )
+92 BINARY_SUBTRACT
+94 LOAD_FAST 8 ( b )
+96 BINARY_SUBTRACT
+98 LOAD_FAST 7 ( a )
+100 BINARY_SUBTRACT
+102 LOAD_FAST 8 ( b )
+104 BINARY_SUBTRACT
+106 STORE_FAST 9 ( a )
+
+13 108 LOAD_FAST 9 ( a )
+110 LOAD_FAST 6 ( b )
+112 BINARY_SUBTRACT
+114 LOAD_FAST 9 ( a )
+116 BINARY_SUBTRACT
+118 LOAD_FAST 10 ( b )
+120 BINARY_SUBTRACT
+122 LOAD_FAST 9 ( a )
+124 BINARY_SUBTRACT
+126 LOAD_FAST 10 ( b )
+128 BINARY_SUBTRACT
+130 LOAD_FAST 11 ( a )
+132 BINARY_SUBTRACT
+134 LOAD_FAST 11 ( b )
+136 BINARY_SUBTRACT
+138 LOAD_FAST 10 ( b )
+140 BINARY_SUBTRACT
+142 LOAD_FAST 11 ( b )
+144 BINARY_SUBTRACT
+146 LOAD_FAST 12 ( b )
+148 BINARY_SUBTRACT
+150 LOAD_FAST 11 ( a )
+152 BINARY_SUBTRACT
+154 LOAD_FAST 10 ( b )
+156 BINARY_SUBTRACT
+158 BINARY_MULTIPLY
+160 BINARY_SUBTRACT
+162 LOAD_FAST 10 ( b )
+164 BINARY_SUBTRACT
+166 RETURN_VALUE

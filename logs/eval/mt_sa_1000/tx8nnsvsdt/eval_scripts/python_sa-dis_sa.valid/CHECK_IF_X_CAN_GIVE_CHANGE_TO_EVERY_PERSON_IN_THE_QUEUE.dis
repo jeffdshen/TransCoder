@@ -1,0 +1,105 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( notes , n ) :\n    fiveCount = 0\n    tenCount = 0\n    for i in range ( n ) :\n        if ( notes [ i ] == 5 ) :\n            fiveCount += 1\n        elif ( notes [ i ] == 10 ) :\n            if ( fiveCount > 0 ) :\n                fiveCount -= 1\n                tenCount += 1\n            else :\n                return 0\n        else :\n            if ( fiveCount > 0 and tenCount > 0 ) :\n                fiveCount -= 1\n                tenCount -= 1\n            elif ( fiveCount >= 3 ) :\n                fiveCount -= 3\n            else :\n                return 0\n    return 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([5, 5, 5, 10, 20],4,),\n    ([5,5,5,20,10],5,),\n    ([5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,10,10,10,10,10,10,10,10,10,10,10,10,10],27,),\n    ([10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,18],12,),\n    ([5,5,20],2,),\n    ([10,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],17,),\n    ([5,10,20,5,5,5,5,5,5,5,5,5,5,5,5],7,),\n    ([-82,-10,-78,-84,68,62,10,20,-86,-98,92,70,40,-12,-20,-36,8,-70,6,8,44,-24,8,-18,76,-54,-14,-94,-68,-62,-24,-36,-74,92,92,-80,48,56,94],31,),\n    ([10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],25,),\n    ([46, 46, 93, 57, 82, 34, 83, 80, 77, 36, 80, 85, 69, 28, 9, 56, 49, 27, 83, 25, 1, 80, 99, 14, 69, 82, 79, 71, 74, 34],20,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isChangeable ( notes , n ) :\n    fiveCount = 0\n    tenCount = 0\n    for i in range ( n ) :\n        if ( notes [ i ] == 5 ) :\n            fiveCount += 1\n        elif ( notes [ i ] == 10 ) :\n            if ( fiveCount > 0 ) :\n                fiveCount -= 1\n                tenCount += 1\n            else :\n                return 0\n        else :\n            if ( fiveCount > 0 and tenCount > 0 ) :\n                fiveCount -= 1\n                tenCount -= 1\n            elif ( fiveCount >= 3 ) :\n                fiveCount -= 3\n            else :\n                return 0\n    return 1\n"}
+Disassembly of <code object isChangeable at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( fiveCount )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 3 ( tenCount )
+
+4 8 SETUP_LOOP 96 ( to 108 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_FAST 1 ( n )
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 80 ( to 106 )
+20 STORE_FAST 4 ( i )
+
+5 22 LOAD_FAST 0 ( notes )
+24 LOAD_FAST 4 ( i )
+26 BINARY_SUBSCR
+28 LOAD_CONST 2 ( 5 )
+30 COMPARE_OP 2 ( == )
+32 POP_JUMP_IF_FALSE 44
+
+6 34 LOAD_FAST 2 ( fiveCount )
+36 LOAD_CONST 3 ( 1 )
+38 INPLACE_ADD
+40 STORE_FAST 2 ( fiveCount )
+42 JUMP_ABSOLUTE 18
+
+7 >> 44 LOAD_FAST 0 ( notes )
+46 LOAD_FAST 4 ( i )
+48 BINARY_SUBSCR
+50 LOAD_CONST 4 ( 10 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 80
+
+8 56 LOAD_FAST 2 ( fiveCount )
+58 LOAD_CONST 1 ( 0 )
+60 COMPARE_OP 4 ( > )
+62 POP_JUMP_IF_FALSE 80
+
+9 64 LOAD_FAST 2 ( fiveCount )
+66 LOAD_CONST 3 ( 1 )
+68 INPLACE_SUBTRACT
+70 STORE_FAST 2 ( fiveCount )
+
+10 72 LOAD_FAST 3 ( tenCount )
+74 LOAD_CONST 3 ( 1 )
+76 INPLACE_ADD
+78 STORE_FAST 3 ( tenCount )
+
+11 >> 80 LOAD_CONST 1 ( 0 )
+82 RETURN_VALUE
+
+13 >> 84 LOAD_FAST 2 ( fiveCount )
+86 LOAD_CONST 1 ( 0 )
+88 COMPARE_OP 4 ( > )
+90 POP_JUMP_IF_FALSE 104
+92 LOAD_FAST 3 ( tenCount )
+94 LOAD_CONST 1 ( 0 )
+96 COMPARE_OP 4 ( > )
+98 POP_JUMP_IF_FALSE 104
+100 LOAD_FAST 3 ( tenCount )
+102 LOAD_CONST 1 ( 0 )
+104 COMPARE_OP 4 ( > )
+106 POP_JUMP_IF_FALSE 104
+
+14 108 LOAD_FAST 2 ( fiveCount )
+110 LOAD_CONST 3 ( 1 )
+112 INPLACE_SUBTRACT
+114 STORE_FAST 2 ( fiveCount )
+
+15 116 LOAD_FAST 3 ( tenCount )
+118 LOAD_CONST 3 ( 1 )
+120 INPLACE_SUBTRACT
+122 STORE_FAST 3 ( tenCount )
+124 JUMP_ABSOLUTE 18
+
+16 >> 126 LOAD_FAST 2 ( fiveCount )
+128 LOAD_CONST 5 ( 3 )
+130 COMPARE_OP 5 ( >= )
+132 POP_JUMP_IF_FALSE 148
+
+17 134 LOAD_FAST 2 ( fiveCount )
+136 LOAD_CONST 5 ( 3 )
+138 INPLACE_SUBTRACT
+140 STORE_FAST 3 ( tenCount )
+142 JUMP_ABSOLUTE 18
+
+18 >> 144 LOAD_FAST 2 ( fiveCount )
+146 LOAD_CONST 5 ( 3 )
+148 COMPARE_OP 5 ( >= )
+150 POP_JUMP_IF_FALSE 156
+
+19 152 LOAD_FAST 2 ( fiveCount )
+154 LOAD_CONST 5 ( 3 )
+156 INPLACE_SUBTRACT
+158 STORE_FAST 2 ( fiveCount )
+160 JUMP_ABSOLUTE 18
+
+21 162 LOAD_CONST 1 ( 0 )
+164 RETURN_VALUE
+
+22 >> 166 LOAD_CONST 3 ( 1 )
+168 RETURN_VALUE

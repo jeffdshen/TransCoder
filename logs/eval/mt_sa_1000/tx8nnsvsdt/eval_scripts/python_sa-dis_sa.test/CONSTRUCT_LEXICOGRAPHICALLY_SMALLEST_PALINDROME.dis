@@ -1,0 +1,120 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( string , l ) :\n    string = list ( string )\n    i = - 1\n    j = l\n    while i < j :\n        i += 1\n        j -= 1\n        if ( string [ i ] == string [ j ] and string [ i ] != '*' ) :\n            continue\n        elif ( string [ i ] == string [ j ] and string [ i ] == '*' ) :\n            string [ i ] = 'a'\n            string [ j ] = 'a'\n            continue\n        elif string [ i ] == '*' :\n            string [ i ] = string [ j ]\n            continue\n        elif string [ j ] == '*' :\n            string [ j ] = string [ i ]\n            continue\n        print ( \"Not Possible\" )\n        return \"\"\n    return ''.join ( string )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (['A', 'B', 'C', 'G', 'I', 'L', 'L', 'O', 'O', 'P', 'Q', 'S', 'W', 'Y', 'c', 'd', 'e', 'f', 'f', 'i', 'm', 'm', 'o', 'q', 'v', 'w', 'x', 'x', 'y', 'z'],27,),\n    (['3', '2', '3', '6', '8', '9', '0', '5', '0', '5', '8', '7', '9', '0', '3', '6', '9', '6', '2', '4', '2', '3', '1', '2', '7', '9', '1', '8', '8', '7', '1', '1', '6', '1'],30,),\n    (['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],27,),\n    (['z', 'v', 'B', 'Y', 'n', 'K', 'h', 'C', 'T', 'L', 'g'],7,),\n    (['1', '2', '5', '6', '7'],4,),\n    (['0', '0', '1', '0'],3,),\n    (['D', 'n', 'r'],1,),\n    (['0', '9', '9', '1', '2', '1', '5', '3', '7', '5', '9', '2', '4', '4', '8', '9', '6', '4', '2', '8', '8', '5', '5', '7', '1', '7', '6', '2', '2', '2', '3', '3', '7', '9'],24,),\n    (['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1'],21,),\n    (['E', 's', 'I', 'S', 'h', 'H', 'i', 'm', 'v', 'B'],6,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def constructPalin ( string , l ) :\n    string = list ( string )\n    i = - 1\n    j = l\n    while i < j :\n        i += 1\n        j -= 1\n        if ( string [ i ] == string [ j ] and string [ i ] != '*' ) :\n            continue\n        elif ( string [ i ] == string [ j ] and string [ i ] == '*' ) :\n            string [ i ] = 'a'\n            string [ j ] = 'a'\n            continue\n        elif string [ i ] == '*' :\n            string [ i ] = string [ j ]\n            continue\n        elif string [ j ] == '*' :\n            string [ j ] = string [ i ]\n            continue\n        print ( \"Not Possible\" )\n        return \"\"\n    return ''.join ( string )\n"}
+Disassembly of <code object constructPalin at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( list )
+2 LOAD_FAST 0 ( string )
+4 CALL_FUNCTION 1
+6 STORE_FAST 0 ( string )
+
+3 8 LOAD_CONST 1 ( - 1 )
+10 STORE_FAST 2 ( i )
+
+4 12 LOAD_FAST 1 ( l )
+14 STORE_FAST 3 ( j )
+
+5 16 SETUP_LOOP 166 ( to 188 )
+>> 18 LOAD_FAST 2 ( i )
+20 LOAD_FAST 3 ( j )
+22 COMPARE_OP 0 ( < )
+24 POP_JUMP_IF_FALSE 186
+
+6 26 LOAD_FAST 2 ( i )
+28 LOAD_CONST 2 ( 1 )
+30 INPLACE_ADD
+32 STORE_FAST 2 ( i )
+
+7 34 LOAD_FAST 3 ( j )
+36 LOAD_CONST 2 ( 1 )
+38 INPLACE_SUBTRACT
+40 STORE_FAST 3 ( j )
+
+8 42 LOAD_FAST 0 ( string )
+44 LOAD_FAST 2 ( i )
+46 BINARY_SUBSCR
+48 LOAD_FAST 0 ( string )
+50 LOAD_FAST 3 ( j )
+52 BINARY_SUBSCR
+54 COMPARE_OP 2 ( == )
+56 POP_JUMP_IF_FALSE 66
+58 LOAD_FAST 0 ( string )
+60 LOAD_FAST 2 ( i )
+62 BINARY_SUBSCR
+64 LOAD_CONST 3 ( '*' )
+66 COMPARE_OP 3 ( != )
+68 POP_JUMP_IF_FALSE 74
+
+9 70 JUMP_ABSOLUTE 18
+72 JUMP_ABSOLUTE 18
+
+10 >> 74 LOAD_FAST 0 ( string )
+76 LOAD_FAST 2 ( i )
+78 BINARY_SUBSCR
+80 LOAD_FAST 0 ( string )
+82 LOAD_FAST 3 ( j )
+84 BINARY_SUBSCR
+86 COMPARE_OP 2 ( == )
+88 POP_JUMP_IF_FALSE 138
+90 LOAD_FAST 0 ( string )
+92 LOAD_FAST 2 ( i )
+94 BINARY_SUBSCR
+96 LOAD_CONST 3 ( '*' )
+98 COMPARE_OP 2 ( == )
+100 POP_JUMP_IF_FALSE 138
+
+11 102 LOAD_CONST 4 ( 'a' )
+104 LOAD_FAST 0 ( string )
+106 LOAD_FAST 2 ( i )
+108 STORE_SUBSCR
+
+12 110 LOAD_CONST 5 ( 'a' )
+112 LOAD_FAST 0 ( string )
+114 LOAD_FAST 3 ( j )
+116 STORE_SUBSCR
+
+13 118 JUMP_ABSOLUTE 18
+
+14 >> 120 LOAD_FAST 0 ( string )
+122 LOAD_FAST 2 ( i )
+124 BINARY_SUBSCR
+126 LOAD_CONST 3 ( '*' )
+128 COMPARE_OP 2 ( == )
+130 POP_JUMP_IF_FALSE 138
+
+15 132 LOAD_FAST 0 ( string )
+134 LOAD_FAST 3 ( j )
+136 BINARY_SUBSCR
+138 LOAD_FAST 0 ( string )
+140 LOAD_FAST 2 ( i )
+142 STORE_SUBSCR
+
+16 144 JUMP_ABSOLUTE 18
+
+17 >> 146 LOAD_FAST 0 ( string )
+148 LOAD_FAST 3 ( j )
+150 BINARY_SUBSCR
+152 LOAD_CONST 3 ( '*' )
+154 COMPARE_OP 2 ( == )
+156 POP_JUMP_IF_FALSE 174
+
+18 158 LOAD_FAST 0 ( string )
+160 LOAD_FAST 2 ( i )
+162 BINARY_SUBSCR
+164 LOAD_FAST 0 ( string )
+166 LOAD_FAST 3 ( j )
+168 STORE_SUBSCR
+
+19 170 JUMP_ABSOLUTE 18
+172 JUMP_ABSOLUTE 18
+
+20 >> 174 LOAD_GLOBAL 1 ( print )
+176 LOAD_CONST 6 ( 'Not Pos' )
+178 CALL_FUNCTION 1
+180 POP_TOP
+
+21 182 LOAD_CONST 7 ( '' )
+184 RETURN_VALUE
+
+22 >> 186 LOAD_CONST 7 ( '' )
+188 LOAD_METHOD 2 ( join )
+190 LOAD_FAST 0 ( string )
+192 CALL_METHOD 1
+194 RETURN_VALUE

@@ -1,0 +1,94 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , k ) :\n    if k > n :\n        return - 1\n    csum = [ 0 ] * n\n    csum [ 0 ] = arr [ 0 ]\n    for i in range ( 1 , n ) :\n        csum [ i ] = csum [ i - 1 ] + arr [ i ] ;\n    max_sum = csum [ k - 1 ]\n    max_end = k - 1\n    for i in range ( k , n ) :\n        curr_sum = csum [ i ] - csum [ i - k ]\n        if curr_sum > max_sum :\n            max_sum = curr_sum\n            max_end = i\n    return max_end - k + 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 4, 6, 19, 21, 23, 32, 34, 47, 51, 56, 57, 57, 65, 68, 68, 69, 70, 71, 73, 74, 74, 77, 77, 79, 82, 82, 86, 87, 87, 88, 89, 90, 91, 92],29,20,),\n    ([24, 62, -32, -28, 42, -46, -96, -70, -68, 60, 44, 34, -30, 96, -26, 92, 62, 42, -46, -38, 44, 54, -94, 52, 66, 68, -96, -58, 84, -2, 66, 30, 42],23,31,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],32,31,),\n    ([94, 6, 48, 34, 31],4,3,),\n    ([-98, -88, -82, -80, -76, -70, -70, -60, -60, -52, -50, -46, -44, -44, -44, -20, -18, -12, -12, -12, -10, -8, -6, -4, 4, 4, 18, 28, 32, 34, 42, 42, 44, 46, 48, 54, 60, 70, 70, 72, 78, 78, 78, 78, 84, 86, 90, 96, 98],45,30,),\n    ([0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0],15,8,),\n    ([1, 5, 13, 17, 26, 26, 32, 35, 38, 38, 39, 45, 52, 58, 60, 61, 62, 63, 82, 83, 85, 89, 89, 91],13,22,),\n    ([-68, -52, 4, -90, 90, 88, 38, -18, 86, 4, 14, -32, -14, -44, -88, -50, -12, -26, -68, -20, -30, 22, 0, 14, -40, 58, -6, 28, -44, 8, 28, 96, -46, -12],32,22,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],13,11,),\n    ([17, 33, 36, 34, 32, 10, 37, 48, 47, 32, 21, 18, 75, 8, 18, 52, 21, 73, 25, 25, 80, 32, 10, 24, 1, 89, 7, 42, 86, 85, 73, 12, 20, 20, 1, 74, 77, 4, 24, 74, 8],20,28,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMaxAverage ( arr , n , k ) :\n    if k > n :\n        return - 1\n    csum = [ 0 ] * n\n    csum [ 0 ] = arr [ 0 ]\n    for i in range ( 1 , n ) :\n        csum [ i ] = csum [ i - 1 ] + arr [ i ] ;\n    max_sum = csum [ k - 1 ]\n    max_end = k - 1\n    for i in range ( k , n ) :\n        curr_sum = csum [ i ] - csum [ i - k ]\n        if curr_sum > max_sum :\n            max_sum = curr_sum\n            max_end = i\n    return max_end - k + 1\n"}
+Disassembly of <code object findMaxAverage at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 2 ( k )
+2 LOAD_FAST 1 ( n )
+4 COMPARE_OP 4 ( > )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 1 ( - 1 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_CONST 2 ( 0 )
+14 BUILD_LIST 1
+16 LOAD_FAST 1 ( n )
+18 BINARY_MULTIPLY
+20 STORE_FAST 3 ( csum )
+
+5 22 LOAD_FAST 0 ( arr )
+24 LOAD_CONST 2 ( 0 )
+26 BINARY_SUBSCR
+28 LOAD_FAST 3 ( csum )
+30 LOAD_CONST 2 ( 0 )
+32 STORE_SUBSCR
+
+6 34 SETUP_LOOP 44 ( to 78 )
+36 LOAD_GLOBAL 0 ( range )
+38 LOAD_CONST 3 ( 1 )
+40 LOAD_FAST 1 ( n )
+42 CALL_FUNCTION 2
+44 GET_ITER
+>> 46 FOR_ITER 28 ( to 76 )
+48 STORE_FAST 4 ( i )
+
+7 50 LOAD_FAST 3 ( csum )
+52 LOAD_FAST 4 ( i )
+54 LOAD_CONST 3 ( 1 )
+56 BINARY_SUBTRACT
+58 BINARY_SUBSCR
+60 LOAD_FAST 0 ( arr )
+62 LOAD_FAST 4 ( i )
+64 STORE_SUBSCR
+66 JUMP_ABSOLUTE 46
+>> 68 POP_BLOCK
+
+8 >> 70 LOAD_FAST 3 ( csum )
+72 LOAD_FAST 2 ( k )
+74 LOAD_CONST 3 ( 1 )
+76 BINARY_SUBTRACT
+78 BINARY_SUBSCR
+80 STORE_FAST 5 ( max_sum )
+
+9 82 LOAD_FAST 2 ( k )
+84 LOAD_CONST 3 ( 1 )
+86 BINARY_SUBTRACT
+88 STORE_FAST 6 ( max_end )
+
+10 90 SETUP_LOOP 66 ( to 160 )
+92 LOAD_GLOBAL 0 ( range )
+94 LOAD_FAST 2 ( k )
+96 LOAD_FAST 1 ( n )
+98 CALL_FUNCTION 2
+100 GET_ITER
+>> 102 FOR_ITER 52 ( to 158 )
+104 STORE_FAST 4 ( i )
+
+11 106 LOAD_FAST 3 ( csum )
+108 LOAD_FAST 4 ( i )
+110 BINARY_SUBSCR
+112 LOAD_FAST 3 ( csum )
+114 LOAD_FAST 4 ( i )
+116 LOAD_FAST 2 ( k )
+118 BINARY_SUBTRACT
+120 BINARY_SUBSCR
+122 BINARY_SUBTRACT
+124 STORE_FAST 7 ( curr_sum )
+
+12 126 LOAD_FAST 7 ( curr_sum )
+128 LOAD_FAST 5 ( max_sum )
+130 COMPARE_OP 4 ( > )
+132 POP_JUMP_IF_FALSE 102
+
+13 134 LOAD_FAST 7 ( curr_sum )
+136 STORE_FAST 5 ( max_sum )
+
+14 138 LOAD_FAST 4 ( i )
+140 STORE_FAST 6 ( max_end )
+142 JUMP_ABSOLUTE 102
+>> 144 POP_BLOCK
+
+15 >> 146 LOAD_FAST 6 ( max_end )
+148 LOAD_FAST 2 ( k )
+150 BINARY_SUBTRACT
+152 LOAD_CONST 3 ( 1 )
+154 BINARY_ADD
+156 RETURN_VALUE

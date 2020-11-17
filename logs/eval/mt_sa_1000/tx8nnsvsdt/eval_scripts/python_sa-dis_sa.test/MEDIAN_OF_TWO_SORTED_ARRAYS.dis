@@ -1,0 +1,110 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( ar1 , ar2 , n ) :\n    i = 0\n    j = 0\n    m1 = - 1\n    m2 = - 1\n    count = 0\n    while count < n + 1 :\n        count += 1\n        if i == n :\n            m1 = m2\n            m2 = ar2 [ 0 ]\n            break\n        elif j == n :\n            m1 = m2\n            m2 = ar1 [ 0 ]\n            break\n        if ar1 [ i ] < ar2 [ j ] :\n            m1 = m2\n            m2 = ar1 [ i ]\n            i += 1\n        else :\n            m1 = m2\n            m2 = ar2 [ j ]\n            j += 1\n    return ( m1 + m2 ) / 2\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 6, 18, 21, 23, 27, 44, 44, 69, 72, 78, 88, 90, 98],[6, 12, 16, 18, 26, 34, 48, 48, 49, 56, 61, 79, 81, 89],12,),\n    ([90, 54, 24, -10, -84, -74, 58, 96, -28, -92, -18, 90, 70, -60, 72, 78, 10, 42, -2, -18, -38, -16, 18, -86, 40, -46, -38, 66, 20, -16, 48],[-72, -62, 14, -58, 70, 54, 88, -40, -94, 4, 60, -16, -38, -98, -70, -46, 66, 42, 26, 36, 56, -4, 32, 30, -46, -42, -72, 44, 16, 4, 24],16,),\n    ([0, 1, 1],[0, 1, 1],2,),\n    ([53, 17, 94, 21, 16, 75, 67, 51, 44, 71, 65, 82],[98, 50, 8, 11, 80, 41, 59, 24, 94, 41, 75, 78],10,),\n    ([-96, -92, -80, -68, -64, -64, -60, -56, -52, -50, -50, -22, -20, -4, -2, 0, 6, 20, 22, 28, 38, 40, 48, 50, 56, 58, 64, 64, 80, 82, 90, 92, 92, 92],[-88, -72, -72, -58, -54, -50, -48, -34, -24, -14, -14, -14, -10, -6, 4, 12, 16, 18, 26, 30, 32, 34, 40, 46, 52, 54, 58, 62, 62, 72, 82, 82, 92, 98],25,),\n    ([0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1],[1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1],40,),\n    ([8, 15, 17, 19, 21, 32, 34, 38, 41, 41, 49, 49, 51, 54, 54, 56, 56, 57, 59, 63, 70, 74, 79, 79, 84, 84, 86, 88, 89, 93, 98],[5, 6, 17, 18, 22, 29, 32, 33, 36, 44, 45, 47, 59, 59, 60, 65, 67, 68, 69, 71, 72, 76, 78, 81, 84, 85, 85, 86, 86, 87, 92],29,),\n    ([96, -42, -94, -46, -68, 76, 8, 16, -54, -94, 76, 24, 94, 10, 34, 78, -30, 0, -52, 80, 98, -58, 92, 12, 26, 64],[88, 78, -26, 10, 84, 34, 56, -8, -30, 46, 48, 20, 26, -78, 96, 44, 92, -44, -86, 24, -58, -96, -86, -12, -98, 18],17,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],17,),\n    ([61, 69, 66, 3],[39, 84, 97, 15],3,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def getMedian ( ar1 , ar2 , n ) :\n    i = 0\n    j = 0\n    m1 = - 1\n    m2 = - 1\n    count = 0\n    while count < n + 1 :\n        count += 1\n        if i == n :\n            m1 = m2\n            m2 = ar2 [ 0 ]\n            break\n        elif j == n :\n            m1 = m2\n            m2 = ar1 [ 0 ]\n            break\n        if ar1 [ i ] < ar2 [ j ] :\n            m1 = m2\n            m2 = ar1 [ i ]\n            i += 1\n        else :\n            m1 = m2\n            m2 = ar2 [ j ]\n            j += 1\n    return ( m1 + m2 ) / 2\n"}
+Disassembly of <code object getMedian at 0x7f2b016399c0, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 3 ( i )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 4 ( j )
+
+4 8 LOAD_CONST 2 ( - 1 )
+10 STORE_FAST 5 ( m1 )
+
+5 12 LOAD_CONST 2 ( - 1 )
+14 STORE_FAST 6 ( m2 )
+
+6 16 LOAD_CONST 1 ( 0 )
+18 STORE_FAST 7 ( count )
+
+7 20 SETUP_LOOP 76 ( to 96 )
+>> 22 LOAD_FAST 7 ( count )
+24 LOAD_FAST 2 ( n )
+26 LOAD_CONST 3 ( 1 )
+28 BINARY_ADD
+30 COMPARE_OP 0 ( < )
+32 POP_JUMP_IF_FALSE 62
+
+8 34 LOAD_FAST 7 ( count )
+36 LOAD_CONST 3 ( 1 )
+38 INPLACE_ADD
+40 STORE_FAST 7 ( count )
+
+9 42 LOAD_FAST 3 ( i )
+44 LOAD_FAST 2 ( n )
+46 COMPARE_OP 2 ( == )
+48 POP_JUMP_IF_FALSE 70
+
+10 50 LOAD_FAST 6 ( m2 )
+52 STORE_FAST 5 ( m1 )
+
+11 54 LOAD_FAST 1 ( ar2 )
+56 LOAD_CONST 1 ( 0 )
+58 BINARY_SUBSCR
+60 STORE_FAST 6 ( m2 )
+
+12 62 BREAK_LOOP
+64 JUMP_FORWARD 28 ( to 96 )
+
+13 >> 66 LOAD_FAST 4 ( j )
+68 LOAD_FAST 2 ( n )
+70 COMPARE_OP 2 ( == )
+72 POP_JUMP_IF_FALSE 96
+
+14 74 LOAD_FAST 6 ( m2 )
+76 STORE_FAST 5 ( m1 )
+
+15 78 LOAD_FAST 1 ( ar1 )
+80 LOAD_CONST 1 ( 0 )
+82 BINARY_SUBSCR
+84 STORE_FAST 6 ( m2 )
+
+16 86 BREAK_LOOP
+
+17 >> 88 LOAD_FAST 1 ( ar1 )
+90 LOAD_FAST 3 ( i )
+92 BINARY_SUBSCR
+94 LOAD_FAST 1 ( ar2 )
+96 LOAD_FAST 4 ( j )
+98 BINARY_SUBSCR
+100 COMPARE_OP 0 ( < )
+102 POP_JUMP_IF_FALSE 132
+
+18 104 LOAD_FAST 6 ( m2 )
+106 STORE_FAST 5 ( m1 )
+
+19 108 LOAD_FAST 1 ( ar1 )
+110 LOAD_FAST 3 ( i )
+112 BINARY_SUBSCR
+114 STORE_FAST 6 ( m2 )
+
+20 116 LOAD_FAST 3 ( i )
+118 LOAD_CONST 3 ( 1 )
+120 INPLACE_ADD
+122 STORE_FAST 3 ( i )
+124 JUMP_FORWARD 12 ( to 138 )
+
+22 >> 126 LOAD_FAST 6 ( m2 )
+128 STORE_FAST 5 ( m1 )
+
+23 130 LOAD_FAST 1 ( ar2 )
+132 LOAD_FAST 4 ( j )
+134 BINARY_SUBSCR
+136 STORE_FAST 6 ( m2 )
+
+24 138 LOAD_FAST 4 ( j )
+140 LOAD_CONST 3 ( 1 )
+142 INPLACE_ADD
+144 STORE_FAST 4 ( j )
+
+25 146 LOAD_FAST 4 ( j )
+148 LOAD_CONST 3 ( 1 )
+150 INPLACE_ADD
+152 STORE_FAST 4 ( j )
+154 JUMP_ABSOLUTE 22
+>> 156 POP_BLOCK
+
+25 >> 158 LOAD_FAST 5 ( m1 )
+160 LOAD_FAST 6 ( m2 )
+162 BINARY_ADD
+164 LOAD_CONST 4 ( 2 )
+166 BINARY_TRUE_DIVIDE
+168 RETURN_VALUE

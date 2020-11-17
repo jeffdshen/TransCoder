@@ -1,0 +1,87 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    n = len ( s )\n    count = 0 ;\n    for i in range ( 0 , n , 1 ) :\n        if ( s [ i ] == '4' or s [ i ] == '8' or s [ i ] == '0' ) :\n            count += 1\n    for i in range ( 0 , n - 1 , 1 ) :\n        h = ( ord ( s [ i ] ) - ord ( '0' ) ) * 10 + ( ord ( s [ i + 1 ] ) - ord ( '0' ) )\n        if ( h % 4 == 0 ) :\n            count = count + i + 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('Qaq',),\n    ('9400761825850',),\n    ('0011001111',),\n    ('lasWqrLRq',),\n    ('5662',),\n    ('110',),\n    (' tOYKf',),\n    ('6536991235305',),\n    ('11111',),\n    ('uZftT iDHcYiCt',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countDivisbleby4 ( s ) :\n    n = len ( s )\n    count = 0 ;\n    for i in range ( 0 , n , 1 ) :\n        if ( s [ i ] == '4' or s [ i ] == '8' or s [ i ] == '0' ) :\n            count += 1\n    for i in range ( 0 , n - 1 , 1 ) :\n        h = ( ord ( s [ i ] ) - ord ( '0' ) ) * 10 + ( ord ( s [ i + 1 ] ) - ord ( '0' ) )\n        if ( h % 4 == 0 ) :\n            count = count + i + 1\n    return count\n"}
+Disassembly of <code object countDivisbleby4 at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( s )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( n )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 STORE_FAST 2 ( count )
+
+4 12 SETUP_LOOP 54 ( to 68 )
+14 LOAD_GLOBAL 1 ( range )
+16 LOAD_CONST 1 ( 0 )
+18 LOAD_FAST 1 ( n )
+20 LOAD_CONST 2 ( 1 )
+22 CALL_FUNCTION 3
+24 GET_ITER
+>> 26 FOR_ITER 42 ( to 66 )
+28 STORE_FAST 3 ( i )
+
+5 30 LOAD_FAST 0 ( s )
+32 LOAD_FAST 3 ( i )
+34 BINARY_SUBSCR
+36 LOAD_CONST 3 ( '4' )
+38 COMPARE_OP 2 ( == )
+40 POP_JUMP_IF_TRUE 26
+42 LOAD_FAST 0 ( s )
+44 LOAD_FAST 3 ( i )
+46 BINARY_SUBSCR
+48 LOAD_CONST 3 ( '8' )
+50 COMPARE_OP 2 ( == )
+52 POP_JUMP_IF_TRUE 26
+54 LOAD_FAST 0 ( s )
+56 LOAD_FAST 3 ( i )
+58 BINARY_SUBSCR
+60 LOAD_CONST 4 ( '0' )
+62 COMPARE_OP 2 ( == )
+64 POP_JUMP_IF_FALSE 26
+
+6 66 LOAD_FAST 2 ( count )
+68 LOAD_CONST 2 ( 1 )
+70 INPLACE_ADD
+72 STORE_FAST 2 ( count )
+74 JUMP_ABSOLUTE 26
+>> 76 POP_BLOCK
+
+7 >> 78 SETUP_LOOP 82 ( to 160 )
+80 LOAD_GLOBAL 1 ( range )
+82 LOAD_CONST 1 ( 0 )
+84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 2 ( 1 )
+88 BINARY_SUBTRACT
+90 LOAD_CONST 2 ( 1 )
+92 CALL_FUNCTION 3
+94 GET_ITER
+>> 96 FOR_ITER 66 ( to 158 )
+98 STORE_FAST 3 ( i )
+
+8 100 LOAD_GLOBAL 2 ( ord )
+102 LOAD_FAST 0 ( s )
+104 LOAD_FAST 3 ( i )
+106 BINARY_SUBSCR
+108 CALL_FUNCTION 1
+110 LOAD_GLOBAL 2 ( ord )
+112 LOAD_CONST 4 ( '0' )
+114 CALL_FUNCTION 1
+116 BINARY_SUBTRACT
+118 STORE_FAST 4 ( h )
+
+9 120 LOAD_FAST 4 ( h )
+122 LOAD_CONST 5 ( 4 )
+124 BINARY_MODULO
+126 LOAD_CONST 1 ( 0 )
+128 COMPARE_OP 2 ( == )
+130 POP_JUMP_IF_FALSE 96
+
+10 132 LOAD_FAST 2 ( count )
+134 LOAD_FAST 3 ( i )
+136 BINARY_ADD
+138 LOAD_CONST 2 ( 1 )
+140 BINARY_ADD
+142 STORE_FAST 2 ( count )
+144 JUMP_ABSOLUTE 96
+>> 146 POP_BLOCK
+
+11 >> 148 LOAD_FAST 2 ( count )
+150 RETURN_VALUE

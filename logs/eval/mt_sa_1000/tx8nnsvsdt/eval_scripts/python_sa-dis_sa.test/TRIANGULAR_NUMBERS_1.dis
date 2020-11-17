@@ -1,0 +1,111 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( num ) :\n    if ( num < 0 ) :\n        return False\n    c = ( - 2 * num )\n    b , a = 1 , 1\n    d = ( b * b ) - ( 4 * a * c )\n    if ( d < 0 ) :\n        return False\n    root1 = ( - b + math.sqrt ( d ) ) / ( 2 * a )\n    root2 = ( - b - math.sqrt ( d ) ) / ( 2 * a )\n    if ( root1 > 0 and math.floor ( root1 ) == root1 ) :\n        return True\n    if ( root2 > 0 and math.floor ( root2 ) == root2 ) :\n        return True\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1,),\n    (3,),\n    (6,),\n    (10,),\n    (55,),\n    (48,),\n    (63,),\n    (72,),\n    (16,),\n    (85,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isTriangular ( num ) :\n    if ( num < 0 ) :\n        return False\n    c = ( - 2 * num )\n    b , a = 1 , 1\n    d = ( b * b ) - ( 4 * a * c )\n    if ( d < 0 ) :\n        return False\n    root1 = ( - b + math.sqrt ( d ) ) / ( 2 * a )\n    root2 = ( - b - math.sqrt ( d ) ) / ( 2 * a )\n    if ( root1 > 0 and math.floor ( root1 ) == root1 ) :\n        return True\n    if ( root2 > 0 and math.floor ( root2 ) == root2 ) :\n        return True\n    return False\n"}
+Disassembly of <code object isTriangular at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( num )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 2 ( False )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_CONST 3 ( ( - 2 ) )
+14 LOAD_FAST 0 ( num )
+16 BINARY_MULTIPLY
+18 STORE_FAST 1 ( c )
+
+5 20 LOAD_CONST 4 ( ( 1 , 1 ) )
+22 UNPACK_SEQUENCE 2
+24 STORE_FAST 2 ( b )
+26 STORE_FAST 3 ( a )
+
+6 28 LOAD_FAST 2 ( b )
+30 LOAD_FAST 2 ( b )
+32 BINARY_MULTIPLY
+34 LOAD_CONST 5 ( 4 )
+36 LOAD_FAST 3 ( a )
+38 BINARY_MULTIPLY
+40 LOAD_FAST 1 ( c )
+42 BINARY_MULTIPLY
+44 BINARY_SUBTRACT
+46 STORE_FAST 4 ( d )
+
+7 48 LOAD_FAST 4 ( d )
+50 LOAD_CONST 1 ( 0 )
+52 COMPARE_OP 0 ( < )
+54 POP_JUMP_IF_FALSE 60
+
+8 56 LOAD_CONST 2 ( False )
+58 RETURN_VALUE
+
+9 >> 60 LOAD_FAST 2 ( b )
+62 LOAD_GLOBAL 0 ( math )
+64 LOAD_METHOD 1 ( sqrt )
+66 LOAD_FAST 4 ( d )
+68 CALL_METHOD 1
+70 BINARY_ADD
+72 LOAD_CONST 6 ( 2 )
+74 LOAD_FAST 3 ( a )
+76 BINARY_MULTIPLY
+78 BINARY_TRUE_DIVIDE
+80 STORE_FAST 5 ( root1 )
+
+10 82 LOAD_FAST 2 ( b )
+84 UNARY_NEGATIVE
+86 LOAD_GLOBAL 0 ( math )
+88 LOAD_METHOD 1 ( sqrt )
+90 LOAD_FAST 4 ( d )
+92 CALL_METHOD 1
+94 BINARY_SUBTRACT
+96 LOAD_CONST 6 ( 2 )
+98 LOAD_FAST 3 ( a )
+100 BINARY_MULTIPLY
+102 BINARY_TRUE_DIVIDE
+104 STORE_FAST 6 ( root2 )
+
+11 106 LOAD_FAST 5 ( root1 )
+108 LOAD_CONST 1 ( 0 )
+110 COMPARE_OP 4 ( > )
+112 POP_JUMP_IF_FALSE 118
+114 LOAD_GLOBAL 0 ( math )
+116 LOAD_METHOD 2 ( floor )
+118 LOAD_FAST 5 ( root1 )
+120 CALL_METHOD 1
+122 LOAD_FAST 6 ( root2 )
+124 COMPARE_OP 2 ( == )
+126 POP_JUMP_IF_FALSE 118
+
+12 128 LOAD_CONST 7 ( True )
+130 RETURN_VALUE
+
+13 >> 132 LOAD_FAST 6 ( root2 )
+134 LOAD_CONST 1 ( 0 )
+136 COMPARE_OP 4 ( > )
+138 POP_JUMP_IF_FALSE 148
+140 LOAD_GLOBAL 0 ( math )
+142 LOAD_METHOD 2 ( floor )
+144 LOAD_FAST 6 ( root2 )
+146 CALL_METHOD 1
+148 LOAD_FAST 6 ( root2 )
+150 COMPARE_OP 2 ( == )
+152 POP_JUMP_IF_FALSE 148
+
+14 154 LOAD_CONST 7 ( True )
+156 RETURN_VALUE
+
+15 >> 158 LOAD_FAST 5 ( root2 )
+160 LOAD_CONST 1 ( 0 )
+162 COMPARE_OP 4 ( > )
+164 POP_JUMP_IF_FALSE 180
+166 LOAD_GLOBAL 0 ( math )
+168 LOAD_METHOD 2 ( floor )
+170 LOAD_FAST 5 ( root2 )
+172 CALL_METHOD 1
+174 LOAD_FAST 6 ( root2 )
+176 COMPARE_OP 2 ( == )
+178 POP_JUMP_IF_FALSE 180
+
+16 180 LOAD_CONST 7 ( True )
+182 RETURN_VALUE
+
+17 >> 184 LOAD_CONST 2 ( False )
+186 RETURN_VALUE

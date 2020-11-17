@@ -1,0 +1,47 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    l = len ( str )\n    count = 0\n    res = str [ 0 ]\n    for i in range ( l ) :\n        cur_count = 1\n        for j in range ( i + 1 , l ) :\n            if ( str [ i ] != str [ j ] ) :\n                break\n            cur_count += 1\n        if cur_count > count :\n            count = cur_count\n            res = str [ i ]\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('geeekk',),\n    ('3786868',),\n    ('110',),\n    ('aaaabbcbbb',),\n    ('11',),\n    ('011101',),\n    ('WoHNyJYLC',),\n    ('3141711779',),\n    ('10111101101',),\n    ('aabbabababcc',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxRepeating ( str ) :\n    l = len ( str )\n    count = 0\n    res = str [ 0 ]\n    for i in range ( l ) :\n        cur_count = 1\n        for j in range ( i + 1 , l ) :\n            if ( str [ i ] != str [ j ] ) :\n                break\n            cur_count += 1\n        if cur_count > count :\n            count = cur_count\n            res = str [ i ]\n    return res\n"}
+Disassembly of <code object maxRepeating at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( l )
+2 LOAD_METHOD 0 ( split )
+4 LOAD_CONST 1 ( '\n' )
+6 CALL_METHOD 1
+8 STORE_FAST 2 ( l )
+
+27 10 LOAD_FAST 2 ( l )
+12 LOAD_METHOD 1 ( split )
+14 LOAD_CONST 2 ( '\n' )
+16 CALL_METHOD 1
+18 STORE_FAST 3 ( l )
+
+28 20 LOAD_FAST 3 ( l )
+22 LOAD_METHOD 2 ( split )
+24 LOAD_CONST 3 ( '\n' )
+26 CALL_METHOD 1
+28 STORE_FAST 4 ( l )
+
+29 30 LOAD_FAST 4 ( l )
+32 LOAD_METHOD 3 ( split )
+34 LOAD_CONST 4 ( '\n' )
+36 CALL_METHOD 1
+38 STORE_FAST 5 ( l )
+
+30 40 LOAD_FAST 5 ( l )
+42 LOAD_METHOD 4 ( append )
+44 LOAD_FAST 4 ( l )
+46 LOAD_METHOD 5 ( split )
+48 LOAD_CONST 5 ( '\n' )
+50 CALL_METHOD 1
+52 CALL_METHOD 1
+54 POP_TOP
+
+31 56 LOAD_FAST 5 ( l )
+58 LOAD_METHOD 6 ( split )
+60 LOAD_CONST 6 ( '\n' )
+62 CALL_METHOD 1
+64 LOAD_CONST 7 ( 1 )
+66 BINARY_ADD
+68 LOAD_CONST 8 ( '\n' )
+70 CALL_METHOD 2
+72 POP_TOP
+74 LOAD_CONST 9 ( None )
+76 RETURN_VALUE
+

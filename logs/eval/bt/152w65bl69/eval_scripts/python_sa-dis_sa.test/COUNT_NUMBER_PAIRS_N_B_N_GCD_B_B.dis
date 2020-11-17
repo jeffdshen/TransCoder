@@ -1,0 +1,21 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    k = n\n    imin = 1\n    ans = 0\n    while ( imin <= n ) :\n        imax = n / k\n        ans += k * ( imax - imin + 1 )\n        imin = imax + 1\n        k = n / imin\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (17,),\n    (72,),\n    (43,),\n    (55,),\n    (62,),\n    (22,),\n    (17,),\n    (68,),\n    (20,),\n    (29,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def CountPairs ( n ) :\n    k = n\n    imin = 1\n    ans = 0\n    while ( imin <= n ) :\n        imax = n / k\n        ans += k * ( imax - imin + 1 )\n        imin = imax + 1\n        k = n / imin\n    return ans\n"}
+Disassembly of <code object CountPairs at 0x7f816a683d20, file "<dis>", line 64>:
+65 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( imx )
+
+66 8 LOAD_FAST 1 ( imx )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( imx )
+
+67 16 LOAD_FAST 1 ( imx )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( imx )
+
+68 24 LOAD_FAST 1 ( imx )
+26 LOAD_CONST 4 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 5 ( '%d-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-imin-im

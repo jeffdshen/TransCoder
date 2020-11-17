@@ -1,0 +1,72 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    s = dict ( )\n    count , maxm , minm = 0 , - 10 ** 9 , 10 ** 9\n    for i in range ( n ) :\n        s [ arr [ i ] ] = 1\n        if ( arr [ i ] < minm ) :\n            minm = arr [ i ]\n        if ( arr [ i ] > maxm ) :\n            maxm = arr [ i ]\n    for i in range ( minm , maxm + 1 ) :\n        if i not in s.keys ( ) :\n            count += 1\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 4, 5, 5, 11, 11, 12, 14, 16, 20, 23, 23, 25, 27, 29, 33, 33, 35, 37, 39, 39, 44, 44, 45, 47, 51, 51, 53, 55, 65, 73, 73, 75, 78, 79, 79, 80, 82, 86, 86, 87, 87, 88, 90, 91, 91, 94],26,),\n    ([-38, 20, -94, -68, -96, 36, 48, 32, 44, -56, 72, -28, -6, 22, -54, -46, 58, -60, -80, 28, -34, 60, -12, -26, -32, 28, 72, -50, 66, -36, 28, 30, 10, 14, 0, -78, 94, -24, -42, -60, 66, -12, 92, 54, -34, -58, 56],31,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],20,),\n    ([73, 69, 12, 82, 65, 55, 93, 93, 88, 52, 33, 94, 62, 75, 61, 81, 48, 43, 29, 8, 28, 60, 60, 58, 54, 44, 25, 36, 46, 88, 54, 36, 83, 46, 34, 44, 71, 90, 68, 75, 42],31,),\n    ([-98, -94, -88, -80, -74, -70, -70, -56, -50, -48, -40, -24, -22, -14, 0, 2, 2, 6, 12, 22, 30, 32, 32, 40, 48, 52, 52, 58, 64, 66, 66, 68, 70, 72, 74, 76, 78, 94, 98, 98],22,),\n    ([1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],18,),\n    ([1, 2, 3, 4, 7, 11, 12, 13, 14, 15, 20, 21, 22, 25, 25, 28, 32, 32, 35, 36, 37, 38, 42, 42, 45, 48, 48, 48, 54, 67, 70, 70, 71, 74, 80, 81, 82, 82, 85, 94],24,),\n    ([-90, 92, 28, -32, 76, 94, 48, 80, 52, -12, -6, 22, 40, 26, -18, -84, 90, 16, -76, 52, 10, -56, 6],11,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],14,),\n    ([4, 21, 34, 35, 71, 10, 88, 44, 82, 13, 79, 92, 35, 73, 28, 91, 33, 9, 12, 76, 40, 91, 4, 22, 90, 53, 98, 7, 30],17,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countNum ( arr , n ) :\n    s = dict ( )\n    count , maxm , minm = 0 , - 10 ** 9 , 10 ** 9\n    for i in range ( n ) :\n        s [ arr [ i ] ] = 1\n        if ( arr [ i ] < minm ) :\n            minm = arr [ i ]\n        if ( arr [ i ] > maxm ) :\n            maxm = arr [ i ]\n    for i in range ( minm , maxm + 1 ) :\n        if i not in s.keys ( ) :\n            count += 1\n    return count\n"}
+Disassembly of <code object countNum at 0x7f816a673a50, file "<dis>", line 9>:
+10 0 LOAD_GLOBAL 0 ( dict )
+2 LOAD_FAST 1 ( n )
+4 LOAD_CONST 1 ( 10 )
+6 LOAD_CONST 2 ( ( 'n' , 'n' ) )
+8 CALL_FUNCTION_KW 1
+10 STORE_FAST 2 ( a )
+
+11 12 LOAD_FAST 2 ( a )
+14 LOAD_FAST 0 ( arr )
+16 LOAD_CONST 3 ( 1 )
+18 COMPARE_OP 2 ( == )
+20 POP_JUMP_IF_FALSE 26
+
+12 22 LOAD_FAST 2 ( a )
+24 LOAD_FAST 0 ( arr )
+26 LOAD_CONST 4 ( 2 )
+28 BINARY_POWER
+30 LOAD_FAST 0 ( arr )
+32 LOAD_CONST 5 ( 3 )
+34 BINARY_POWER
+36 LOAD_FAST 0 ( arr )
+38 LOAD_CONST 6 ( ( 'n' , 'n' ) )
+40 CALL_FUNCTION_KW 3
+42 STORE_FAST 3 ( a )
+
+13 44 LOAD_FAST 3 ( a )
+46 LOAD_FAST 0 ( arr )
+48 LOAD_CONST 7 ( 3 )
+50 BINARY_POWER
+52 LOAD_FAST 0 ( arr )
+54 LOAD_CONST 8 ( 2 )
+56 BINARY_POWER
+58 BINARY_TRUE_DIVIDE
+60 LOAD_FAST 0 ( arr )
+62 LOAD_CONST 9 ( ( 'n' , 'n' ) )
+64 CALL_FUNCTION_KW 3
+66 STORE_FAST 4 ( a )
+
+14 68 LOAD_FAST 4 ( a )
+70 LOAD_FAST 1 ( n )
+72 LOAD_CONST 10 ( 2 )
+74 BINARY_POWER
+76 BINARY_MULTIPLY
+78 LOAD_FAST 0 ( arr )
+80 LOAD_CONST 11 ( ( 'n' , 'n' ) )
+82 BUILD_CONST_KEY_MAP 3
+84 STORE_FAST 5 ( a )
+
+15 86 LOAD_FAST 5 ( a )
+88 LOAD_FAST 4 ( a )
+90 LOAD_FAST 5 ( a )
+92 LOAD_FAST 0 ( arr )
+94 LOAD_CONST 12 ( ( 'n' , 'n' ) )
+96 BUILD_CONST_KEY_MAP 3
+98 STORE_FAST 6 ( a )
+
+16 100 LOAD_FAST 6 ( a )
+102 LOAD_FAST 0 ( arr )
+104 LOAD_CONST 13 ( ( 'n' , 'n' ) )
+106 BUILD_CONST_KEY_MAP 3
+108 STORE_FAST 7 ( b )
+
+17 110 LOAD_FAST 7 ( b )
+112 LOAD_FAST 0 ( arr )
+114 LOAD_CONST 14 ( 'n' )
+116 STORE_SUBSCR
+
+18 118 LOAD_FAST 0 ( arr )
+120 RETURN_VALUE
+

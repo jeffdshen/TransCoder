@@ -1,0 +1,126 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( blockSize , m , processSize , n ) :\n    allocation = [ - 1 ] * n\n    for i in range ( n ) :\n        bestIdx = - 1\n        for j in range ( m ) :\n            if blockSize [ j ] >= processSize [ i ] :\n                if bestIdx == - 1 :\n                    bestIdx = j\n                elif blockSize [ bestIdx ] > blockSize [ j ] :\n                    bestIdx = j\n        if bestIdx != - 1 :\n            allocation [ i ] = bestIdx\n            blockSize [ bestIdx ] -= processSize [ i ]\n    print ( \"Process No.Process Size     Block no.\" )\n    for i in range ( n ) :\n        print ( i + 1 , \"         \" , processSize [ i ] , end = \"         \" )\n        if allocation [ i ] != - 1 :\n            print ( allocation [ i ] + 1 )\n        else :\n            print ( \"Not Allocated\" )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 12, 63, 99, 99],2,[8, 11, 35, 64, 93],3,),\n    ([-72, -60, 22, 88, 90, -36, 98, -42, 72, 16, -36, 30, -24, -2, 92, 50, -96, -12, -42, 14, -62, 70, -84, -30, -20, 4, -36, -8, 16, 88, 58, -92, -84, 40, -12, 50],24,[-98, 96, -92, -98, -48, -64, 16, -94, -30, 58, 0, 14, -30, -30, 70, -72, 8, -8, 84, -24, -74, 2, -24, 20, 12, 46, 30, 2, -2, -74, 82, -96, 44, -68, -58, -52],23,),\n    ([0, 1],1,[0, 1],1,),\n    ([50, 45, 11, 24, 93, 76, 89, 90, 63, 40, 84, 47, 9, 90, 61, 11, 46, 63, 16, 80, 99, 65],21,[64, 56, 53, 46, 97, 91, 50, 68, 32, 83, 69, 57, 59, 99, 61, 6, 90, 61, 9, 47, 93, 86],12,),\n    ([-64, -26, 76],1,[-88, 44, 58],2,),\n    ([0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1],40,[1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1],36,),\n    ([1, 2, 3, 3, 8, 9, 10, 10, 11, 18, 18, 19, 22, 23, 24, 27, 27, 27, 33, 36, 38, 39, 40, 41, 48, 50, 50, 51, 59, 59, 62, 65, 68, 69, 70, 71, 72, 72, 75, 75, 76, 84, 85, 86, 88, 91, 96, 99],36,[6, 14, 14, 21, 24, 25, 27, 29, 29, 30, 33, 38, 39, 44, 49, 50, 50, 51, 52, 52, 53, 54, 56, 56, 59, 59, 63, 64, 67, 68, 70, 71, 71, 72, 73, 73, 78, 80, 83, 84, 85, 87, 90, 91, 91, 92, 94, 96],43,),\n    ([-58, -62, 82, -88],3,[38, 92, 76, 6],3,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],16,[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],18,),\n    ([13, 37, 2, 83, 4, 55, 76, 94, 74, 33, 99, 9, 62, 32, 45, 31, 40, 67, 47, 29, 70, 42, 93, 66, 78, 57, 27, 50, 17, 32, 18, 96, 52, 50, 99, 60, 4, 68, 34, 24, 26, 41, 23, 72, 93, 93, 39, 3],43,[53, 65, 91, 70, 65, 77, 70, 52, 89, 39, 22, 76, 95, 98, 85, 11, 27, 43, 39, 56, 44, 53, 63, 86, 32, 71, 5, 71, 85, 80, 41, 27, 52, 66, 4, 64, 99, 99, 92, 82, 17, 48, 41, 18, 79, 22, 62, 40],37,)\n        ]\n    filled_function_param = [\n    ([1, 12, 63, 99, 99],2,[8, 11, 35, 64, 93],3,),\n    ([-72, -60, 22, 88, 90, -36, 98, -42, 72, 16, -36, 30, -24, -2, 92, 50, -96, -12, -42, 14, -62, 70, -84, -30, -20, 4, -36, -8, 16, 88, 58, -92, -84, 40, -12, 50],24,[-98, 96, -92, -98, -48, -64, 16, -94, -30, 58, 0, 14, -30, -30, 70, -72, 8, -8, 84, -24, -74, 2, -24, 20, 12, 46, 30, 2, -2, -74, 82, -96, 44, -68, -58, -52],23,),\n    ([0, 1],1,[0, 1],1,),\n    ([50, 45, 11, 24, 93, 76, 89, 90, 63, 40, 84, 47, 9, 90, 61, 11, 46, 63, 16, 80, 99, 65],21,[64, 56, 53, 46, 97, 91, 50, 68, 32, 83, 69, 57, 59, 99, 61, 6, 90, 61, 9, 47, 93, 86],12,),\n    ([-64, -26, 76],1,[-88, 44, 58],2,),\n    ([0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1],40,[1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1],36,),\n    ([1, 2, 3, 3, 8, 9, 10, 10, 11, 18, 18, 19, 22, 23, 24, 27, 27, 27, 33, 36, 38, 39, 40, 41, 48, 50, 50, 51, 59, 59, 62, 65, 68, 69, 70, 71, 72, 72, 75, 75, 76, 84, 85, 86, 88, 91, 96, 99],36,[6, 14, 14, 21, 24, 25, 27, 29, 29, 30, 33, 38, 39, 44, 49, 50, 50, 51, 52, 52, 53, 54, 56, 56, 59, 59, 63, 64, 67, 68, 70, 71, 71, 72, 73, 73, 78, 80, 83, 84, 85, 87, 90, 91, 91, 92, 94, 96],43,),\n    ([-58, -62, 82, -88],3,[38, 92, 76, 6],3,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],16,[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],18,),\n    ([13, 37, 2, 83, 4, 55, 76, 94, 74, 33, 99, 9, 62, 32, 45, 31, 40, 67, 47, 29, 70, 42, 93, 66, 78, 57, 27, 50, 17, 32, 18, 96, 52, 50, 99, 60, 4, 68, 34, 24, 26, 41, 23, 72, 93, 93, 39, 3],43,[53, 65, 91, 70, 65, 77, 70, 52, 89, 39, 22, 76, 95, 98, 85, 11, 27, 43, 39, 56, 44, 53, 63, 86, 32, 71, 5, 71, 85, 80, 41, 27, 52, 66, 4, 64, 99, 99, 92, 82, 17, 48, 41, 18, 79, 22, 62, 40],37,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def bestFit ( blockSize , m , processSize , n ) :\n    allocation = [ - 1 ] * n\n    for i in range ( n ) :\n        bestIdx = - 1\n        for j in range ( m ) :\n            if blockSize [ j ] >= processSize [ i ] :\n                if bestIdx == - 1 :\n                    bestIdx = j\n                elif blockSize [ bestIdx ] > blockSize [ j ] :\n                    bestIdx = j\n        if bestIdx != - 1 :\n            allocation [ i ] = bestIdx\n            blockSize [ bestIdx ] -= processSize [ i ]\n    print ( \"Process No.Process Size     Block no.\" )\n    for i in range ( n ) :\n        print ( i + 1 , \"         \" , processSize [ i ] , end = \"         \" )\n        if allocation [ i ] != - 1 :\n            print ( allocation [ i ] + 1 )\n        else :\n            print ( \"Not Allocated\" )\n"}
+Disassembly of <code object bestFit at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( - 1 )
+2 BUILD_LIST 1
+4 LOAD_FAST 3 ( n )
+6 BINARY_MULTIPLY
+8 STORE_FAST 4 ( allocation )
+
+3 10 SETUP_LOOP 120 ( to 134 )
+12 LOAD_GLOBAL 0 ( range )
+14 LOAD_FAST 3 ( n )
+16 CALL_FUNCTION 1
+18 GET_ITER
+>> 20 FOR_ITER 112 ( to 132 )
+22 STORE_FAST 5 ( i )
+
+4 24 LOAD_CONST 1 ( - 1 )
+26 STORE_FAST 6 ( bestIdx )
+
+5 28 SETUP_LOOP 76 ( to 112 )
+30 LOAD_GLOBAL 0 ( range )
+32 LOAD_FAST 1 ( m )
+34 CALL_FUNCTION 1
+36 GET_ITER
+>> 38 FOR_ITER 60 ( to 110 )
+40 STORE_FAST 7 ( j )
+
+6 42 LOAD_FAST 0 ( blockSize )
+44 LOAD_FAST 7 ( j )
+46 BINARY_SUBSCR
+48 LOAD_GLOBAL 1 ( processSize )
+50 LOAD_FAST 5 ( i )
+52 BINARY_SUBSCR
+54 COMPARE_OP 5 ( >= )
+56 POP_JUMP_IF_FALSE 38
+
+7 58 LOAD_FAST 7 ( j )
+60 STORE_FAST 6 ( bestIdx )
+62 JUMP_ABSOLUTE 38
+
+8 >> 64 LOAD_FAST 0 ( blockSize )
+66 LOAD_FAST 6 ( bestIdx )
+68 BINARY_SUBSCR
+70 LOAD_FAST 0 ( blockSize )
+72 LOAD_FAST 7 ( j )
+74 BINARY_SUBSCR
+76 COMPARE_OP 4 ( > )
+78 POP_JUMP_IF_FALSE 38
+
+9 80 LOAD_FAST 7 ( j )
+82 STORE_FAST 6 ( bestIdx )
+84 JUMP_ABSOLUTE 38
+>> 86 POP_BLOCK
+
+10 >> 88 LOAD_FAST 6 ( bestIdx )
+90 LOAD_CONST 1 ( - 1 )
+92 COMPARE_OP 3 ( != )
+94 POP_JUMP_IF_FALSE 120
+
+11 96 LOAD_FAST 6 ( bestIdx )
+98 STORE_FAST 4 ( allocation )
+
+12 100 LOAD_FAST 0 ( blockSize )
+102 LOAD_FAST 6 ( bestIdx )
+104 DUP_TOP_TWO
+106 BINARY_SUBSCR
+108 LOAD_GLOBAL 1 ( processSize )
+110 LOAD_FAST 5 ( i )
+112 BINARY_SUBSCR
+114 INPLACE_SUBTRACT
+116 ROT_THREE
+118 STORE_SUBSCR
+>> 120 JUMP_ABSOLUTE 38
+>> 122 POP_BLOCK
+
+13 >> 124 LOAD_GLOBAL 2 ( print )
+126 LOAD_CONST 2 ( 'Process No. Process Size    Block no.' )
+128 CALL_FUNCTION 1
+130 POP_TOP
+
+14 132 SETUP_LOOP 54 ( to 178 )
+134 LOAD_GLOBAL 0 ( range )
+136 LOAD_FAST 3 ( n )
+138 CALL_FUNCTION 1
+140 GET_ITER
+>> 142 FOR_ITER 42 ( to 176 )
+144 STORE_FAST 5 ( i )
+
+15 146 LOAD_GLOBAL 2 ( print )
+148 LOAD_FAST 5 ( i )
+150 LOAD_CONST 3 ( 1 )
+152 BINARY_ADD
+154 LOAD_CONST 4 ( '         ' )
+156 LOAD_GLOBAL 1 ( processSize )
+158 LOAD_FAST 5 ( i )
+160 BINARY_SUBSCR
+162 LOAD_CONST 5 ( '              ' )
+164 LOAD_CONST 6 ( ( 'end' , ) )
+166 CALL_FUNCTION_KW 3
+168 POP_TOP
+
+16 170 LOAD_FAST 4 ( allocation )
+172 LOAD_FAST 5 ( i )
+174 BINARY_SUBSCR
+176 LOAD_CONST 1 ( - 1 )
+178 COMPARE_OP 3 ( != )
+180 POP_JUMP_IF_FALSE 142
+
+17 182 LOAD_GLOBAL 2 ( print )
+184 LOAD_FAST 4 ( allocation )
+186 LOAD_FAST 5 ( i )
+188 BINARY_SUBSCR
+190 LOAD_CONST 3 ( 1 )
+192 BINARY_ADD
+194 CALL_FUNCTION 1
+196 POP_TOP
+198 JUMP_ABSOLUTE 142
+
+19 >> 200 LOAD_GLOBAL 2 ( print )
+202 LOAD_CONST 7 ( 'Not Allocated' )
+204 CALL_FUNCTION 1
+206 POP_TOP
+208 JUMP_ABSOLUTE 38
+>> 210 POP_BLOCK
+>> 212 LOAD_CONST 0 ( None )
+214 RETURN_VALUE

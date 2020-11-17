@@ -1,0 +1,28 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    x = 0\n    res = 0\n    yCount = 0\n    while ( yCount * yCount < n ) :\n        yCount = yCount + 1\n    while ( yCount != 0 ) :\n        res = res + yCount\n        x = x + 1\n        while ( yCount != 0 and ( x * x + ( yCount - 1 ) * ( yCount - 1 ) >= n ) ) :\n            yCount = yCount - 1\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (72,),\n    (75,),\n    (92,),\n    (30,),\n    (45,),\n    (40,),\n    (81,),\n    (17,),\n    (81,),\n    (99,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countSolutions ( n ) :\n    x = 0\n    res = 0\n    yCount = 0\n    while ( yCount * yCount < n ) :\n        yCount = yCount + 1\n    while ( yCount != 0 ) :\n        res = res + yCount\n        x = x + 1\n        while ( yCount != 0 and ( x * x + ( yCount - 1 ) * ( yCount - 1 ) >= n ) ) :\n            yCount = yCount - 1\n    return res\n"}
+Disassembly of <code object countSolutions at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( self )
+2 LOAD_ATTR 0 ( yCount )
+4 LOAD_CONST 1 ( 1 )
+6 COMPARE_OP 2 ( == )
+8 POP_JUMP_IF_FALSE 14
+
+27 10 LOAD_FAST 0 ( self )
+12 LOAD_METHOD 1 ( assertEqual )
+14 LOAD_FAST 0 ( self )
+16 LOAD_ATTR 0 ( yCount )
+18 LOAD_CONST 1 ( 1 )
+20 COMPARE_OP 2 ( == )
+22 CALL_METHOD 1
+24 POP_TOP
+
+28 26 LOAD_FAST 0 ( self )
+28 LOAD_METHOD 1 ( assertEqual )
+30 LOAD_FAST 0 ( self )
+32 LOAD_ATTR 0 ( yCount )
+34 LOAD_CONST 1 ( 1 )
+36 COMPARE_OP 2 ( == )
+38 CALL_METHOD 1
+40 POP_TOP
+42 LOAD_CONST 0 ( None )
+44 RETURN_VALUE
+

@@ -1,0 +1,96 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    sum = 0\n    maxsize = - 1\n    for i in range ( 0 , n - 1 ) :\n        sum = - 1 if ( arr [ i ] == 0 ) else 1\n        for j in range ( i + 1 , n ) :\n            sum = sum + ( - 1 ) if ( arr [ j ] == 0 ) else sum + 1\n            if ( sum == 0 and maxsize < j - i + 1 ) :\n                maxsize = j - i + 1\n                startindex = i\n    if ( maxsize == - 1 ) :\n        print ( \"No such subarray\" ) ;\n    else :\n        print ( startindex , \"to\" , startindex + maxsize - 1 ) ;\n    return maxsize\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([56, 8, 67, 35, 19, 82, 81, 66, 10, 24, 82, 2, 42, 48, 18, 63, 48, 74, 60, 64, 64, 95, 95, 20, 95, 55, 63, 96, 54],26,),\n    ([78, 67, 1, 78, 48, 83, 17, 19, 21, 44, 99, 68, 16, 54, 9],8,),\n    ([3, 69, 97, 21, 12, 67, 45, 53, 77, 70, 26, 43],9,),\n    ([21, 80, 29, 22, 77, 64, 42, 4, 71, 75, 62, 27, 30, 36, 66, 37, 49, 97],10,),\n    ([18, 66, 9, 90, 21, 95, 74, 48, 44, 9, 43, 17],10,),\n    ([42, 41, 87, 3, 64, 25, 96, 55, 99, 57, 32, 64, 10, 75, 69, 95, 11, 36, 15, 2, 78, 70, 14, 54, 11, 28, 55, 47, 27, 85, 47, 62, 97, 68, 44, 70, 12, 27, 36, 85, 76, 91, 17, 75, 83, 34, 32, 89, 55],41,),\n    ([44],0,),\n    ([1, 43, 28, 17, 30, 46, 89, 51, 15, 70, 96, 79, 65, 55, 8],9,),\n    ([25, 91, 68, 4, 35, 49, 33],4,),\n    ([14, 86, 22, 42, 94, 54, 28, 41, 48, 8, 82, 84, 99, 92, 33, 75, 38, 31, 59, 86, 21, 6, 77, 89, 79, 83, 57, 26, 89, 45, 60, 55, 60, 76, 76, 6, 40, 57, 38, 44, 7, 98, 64, 65, 88, 73, 88, 99],26,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSubArray ( arr , n ) :\n    sum = 0\n    maxsize = - 1\n    for i in range ( 0 , n - 1 ) :\n        sum = - 1 if ( arr [ i ] == 0 ) else 1\n        for j in range ( i + 1 , n ) :\n            sum = sum + ( - 1 ) if ( arr [ j ] == 0 ) else sum + 1\n            if ( sum == 0 and maxsize < j - i + 1 ) :\n                maxsize = j - i + 1\n                startindex = i\n    if ( maxsize == - 1 ) :\n        print ( \"No such subarray\" ) ;\n    else :\n        print ( startindex , \"to\" , startindex + maxsize - 1 ) ;\n    return maxsize\n"}
+Disassembly of <code object findSubArray at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( sum )
+
+3 4 LOAD_CONST 2 ( - 1 )
+6 STORE_FAST 3 ( maxsize )
+
+4 8 SETUP_LOOP 120 ( to 126 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_CONST 1 ( 0 )
+14 LOAD_FAST 1 ( n )
+16 LOAD_CONST 3 ( 1 )
+18 BINARY_SUBTRACT
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 106 ( to 124 )
+26 STORE_FAST 4 ( i )
+
+5 28 LOAD_FAST 0 ( arr )
+30 LOAD_FAST 4 ( i )
+32 BINARY_SUBSCR
+34 LOAD_CONST 1 ( 0 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 48
+40 LOAD_CONST 2 ( - 1 )
+42 JUMP_FORWARD 2 ( to 50 )
+>> 44 LOAD_CONST 3 ( 1 )
+46 STORE_FAST 2 ( sum )
+
+6 48 SETUP_LOOP 76 ( to 122 )
+50 LOAD_GLOBAL 0 ( range )
+52 LOAD_FAST 4 ( i )
+54 LOAD_CONST 3 ( 1 )
+56 BINARY_ADD
+58 LOAD_FAST 1 ( n )
+60 CALL_FUNCTION 2
+62 GET_ITER
+>> 64 FOR_ITER 60 ( to 120 )
+66 STORE_FAST 5 ( j )
+
+7 68 LOAD_FAST 0 ( arr )
+70 LOAD_FAST 5 ( j )
+72 BINARY_SUBSCR
+74 LOAD_CONST 1 ( 0 )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 64
+80 LOAD_FAST 2 ( sum )
+82 LOAD_CONST 2 ( - 1 )
+84 BINARY_ADD
+86 JUMP_FORWARD 2 ( to 66 )
+>> 88 LOAD_FAST 2 ( sum )
+90 LOAD_CONST 3 ( 1 )
+92 BINARY_ADD
+94 STORE_FAST 2 ( sum )
+
+8 96 LOAD_FAST 2 ( sum )
+98 LOAD_CONST 1 ( 0 )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 120
+104 LOAD_FAST 3 ( maxsize )
+106 LOAD_FAST 4 ( i )
+108 BINARY_SUBTRACT
+110 LOAD_CONST 3 ( 1 )
+112 BINARY_ADD
+114 STORE_FAST 3 ( maxsize )
+
+9 116 LOAD_FAST 4 ( i )
+118 STORE_FAST 6 ( send_comm_email )
+>> 120 JUMP_ABSOLUTE 64
+>> 122 POP_BLOCK
+
+10 >> 124 LOAD_FAST 3 ( maxsize )
+126 LOAD_CONST 2 ( - 1 )
+128 COMPARE_OP 2 ( == )
+130 POP_JUMP_IF_FALSE 144
+
+11 132 LOAD_GLOBAL 1 ( print )
+134 LOAD_CONST 4 ( 'No such subarray' )
+136 CALL_FUNCTION 1
+138 POP_TOP
+140 JUMP_FORWARD 12 ( to 154 )
+
+13 >> 142 LOAD_GLOBAL 1 ( print )
+144 LOAD_FAST 6 ( "8" )
+146 LOAD_CONST 5 ( 'to' )
+148 LOAD_FAST 6 ( "8" )
+150 LOAD_FAST 3 ( maxsize )
+152 BINARY_ADD
+154 LOAD_CONST 3 ( 1 )
+156 BINARY_SUBTRACT
+158 CALL_FUNCTION 3
+160 POP_TOP
+
+14 >> 162 LOAD_FAST 3 ( maxsize )
+164 RETURN_VALUE

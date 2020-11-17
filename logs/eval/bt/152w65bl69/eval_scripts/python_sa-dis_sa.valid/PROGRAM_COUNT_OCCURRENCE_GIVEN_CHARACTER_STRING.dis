@@ -1,0 +1,30 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s , c ) :\n    res = 0\n    for i in range ( len ( s ) ) :\n        if ( s [ i ] == c ) :\n            res = res + 1\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('mhjnKfd','l',),\n    ('716662107','6',),\n    ('01','1',),\n    ('wPHSxIbnHakGRO','n',),\n    ('721106','8',),\n    ('111','0',),\n    ('TIBFU','Q',),\n    ('0','3',),\n    ('10','0',),\n    ('lqq','d',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def count ( s , c ) :\n    res = 0\n    for i in range ( len ( s ) ) :\n        if ( s [ i ] == c ) :\n            res = res + 1\n    return res\n"}
+Disassembly of <code object count at 0x7f816a673a50, file "<dis>", line 100>:
+101 0 LOAD_FAST 0 ( self )
+2 LOAD_METHOD 0 ( res )
+4 CALL_METHOD 0
+6 STORE_FAST 1 ( c )
+
+102 8 LOAD_FAST 1 ( c )
+10 LOAD_METHOD 1 ( count )
+12 CALL_METHOD 0
+14 STORE_FAST 2 ( count )
+
+103 16 LOAD_FAST 0 ( self )
+18 LOAD_METHOD 2 ( assertEqual )
+20 LOAD_FAST 2 ( count )
+22 LOAD_CONST 1 ( 1 )
+24 CALL_METHOD 2
+26 POP_TOP
+
+104 28 LOAD_FAST 0 ( self )
+30 LOAD_METHOD 3 ( assertEqual )
+32 LOAD_FAST 1 ( c )
+34 LOAD_METHOD 1 ( count )
+36 CALL_METHOD 0
+38 LOAD_CONST 2 ( 0 )
+40 CALL_METHOD 2
+42 POP_TOP
+44 LOAD_CONST 0 ( None )
+46 RETURN_VALUE
+

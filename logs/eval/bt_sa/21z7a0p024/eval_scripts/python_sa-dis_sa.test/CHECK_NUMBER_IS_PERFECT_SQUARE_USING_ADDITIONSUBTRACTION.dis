@@ -1,0 +1,58 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    i = 1\n    the_sum = 0\n    while the_sum < n :\n        the_sum += i\n        if the_sum == n :\n            return True\n        i += 2\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1,),\n    (4,),\n    (9,),\n    (25,),\n    (36,),\n    (3,),\n    (121,),\n    (14,),\n    (17,),\n    (80,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPerfectSquare ( n ) :\n    i = 1\n    the_sum = 0\n    while the_sum < n :\n        the_sum += i\n        if the_sum == n :\n            return True\n        i += 2\n    return False\n"}
+Disassembly of <code object isPerfectSquare at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 1 ( i )
+
+3 4 LOAD_CONST 1 ( 1 )
+6 STORE_FAST 2 ( the_sum )
+
+4 8 LOAD_CONST 2 ( 0 )
+10 STORE_FAST 3 ( the_sum )
+
+5 12 SETUP_LOOP 74 ( to 92 )
+>> 14 LOAD_FAST 0 ( n )
+16 LOAD_FAST 1 ( i )
+18 COMPARE_OP 0 ( < )
+20 POP_JUMP_IF_FALSE 90
+
+6 22 LOAD_FAST 2 ( the_sum )
+24 LOAD_FAST 3 ( the_sum )
+26 COMPARE_OP 4 ( > )
+28 POP_JUMP_IF_FALSE 86
+
+7 30 LOAD_FAST 2 ( the_sum )
+32 LOAD_FAST 3 ( the_sum )
+34 BINARY_SUBTRACT
+36 STORE_FAST 4 ( the_sum )
+
+8 38 LOAD_FAST 4 ( the_sum )
+40 LOAD_FAST 4 ( the_sum )
+42 BINARY_SUBTRACT
+44 STORE_FAST 5 ( the_sum )
+
+9 46 LOAD_FAST 5 ( the_sum )
+48 LOAD_FAST 4 ( the_sum )
+50 BINARY_SUBTRACT
+52 LOAD_FAST 5 ( the_sum )
+54 BINARY_SUBTRACT
+56 LOAD_FAST 4 ( the_sum )
+58 BINARY_SUBTRACT
+60 LOAD_FAST 5 ( the_sum )
+62 BINARY_SUBTRACT
+64 LOAD_FAST 6 ( the_sum )
+66 BINARY_SUBTRACT
+68 LOAD_FAST 7 ( the_sum )
+70 BINARY_SUBTRACT
+72 LOAD_FAST 5 ( the_sum )
+74 BINARY_SUBTRACT
+76 LOAD_FAST 6 ( the_sum )
+78 BINARY_SUBTRACT
+80 LOAD_FAST 7 ( the_sum )
+82 BINARY_SUBTRACT
+84 BINARY_MULTIPLY
+86 STORE_FAST 7 ( the_sum )
+88 JUMP_ABSOLUTE 14
+>> 90 POP_BLOCK
+
+10 >> 92 LOAD_FAST 2 ( the_sum )
+94 RETURN_VALUE

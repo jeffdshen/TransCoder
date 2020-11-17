@@ -1,0 +1,13 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    return n * ( n + 1 ) * ( n + 2 ) * ( 3 * n + 1 ) / 24\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (57,),\n    (18,),\n    (97,),\n    (9,),\n    (42,),\n    (67,),\n    (71,),\n    (66,),\n    (69,),\n    (18,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSum ( n ) :\n    return n * ( n + 1 ) * ( n + 2 ) * ( 3 * n + 1 ) / 24\n"}
+Disassembly of <code object findSum at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_CONST 2 ( '' )
+10 RETURN_VALUE
+
+28 >> 12 LOAD_CONST 3 ( '' )
+14 RETURN_VALUE
+

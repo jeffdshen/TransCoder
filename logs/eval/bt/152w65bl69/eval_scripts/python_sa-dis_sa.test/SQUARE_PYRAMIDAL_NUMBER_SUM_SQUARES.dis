@@ -1,0 +1,78 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    _sum = 0\n    n = 1\n    while ( _sum < s ) :\n        _sum += n * n\n        n += 1\n    n -= 1\n    if _sum == s :\n        return n\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1,),\n    (5,),\n    (14,),\n    (140,),\n    (204,),\n    (3,),\n    (506,),\n    (42,),\n    (4,),\n    (87,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findS ( s ) :\n    _sum = 0\n    n = 1\n    while ( _sum < s ) :\n        _sum += n * n\n        n += 1\n    n -= 1\n    if _sum == s :\n        return n\n    return - 1\n"}
+Disassembly of <code object findS at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( s )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+27 8 LOAD_FAST 0 ( s )
+10 LOAD_CONST 1 ( 1 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+28 >> 16 LOAD_FAST 0 ( s )
+18 LOAD_CONST 2 ( 2 )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+29 24 LOAD_FAST 0 ( s )
+26 LOAD_CONST 3 ( 1 )
+28 INPLACE_ADD
+30 STORE_FAST 0 ( s )
+
+30 >> 32 LOAD_FAST 0 ( s )
+34 LOAD_CONST 4 ( 2 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 48
+
+31 40 LOAD_FAST 0 ( s )
+42 LOAD_CONST 5 ( 1 )
+44 INPLACE_ADD
+46 STORE_FAST 0 ( s )
+
+32 >> 48 LOAD_FAST 0 ( s )
+50 LOAD_CONST 6 ( 2 )
+52 INPLACE_ADD
+54 STORE_FAST 0 ( s )
+
+33 56 LOAD_FAST 0 ( s )
+58 LOAD_CONST 7 ( 2 )
+60 INPLACE_ADD
+62 STORE_FAST 0 ( s )
+
+34 64 LOAD_FAST 0 ( s )
+66 LOAD_CONST 8 ( 3 )
+68 INPLACE_ADD
+70 STORE_FAST 0 ( s )
+
+35 72 LOAD_FAST 0 ( s )
+74 LOAD_CONST 9 ( 4 )
+76 INPLACE_ADD
+78 STORE_FAST 0 ( s )
+80 STORE_FAST 0 ( s )
+82 JUMP_FORWARD 10 ( to 106 )
+
+36 >> 84 LOAD_FAST 0 ( s )
+86 LOAD_FAST 0 ( s )
+88 LOAD_FAST 0 ( s )
+90 LOAD_FAST 0 ( s )
+92 LOAD_FAST 0 ( s )
+94 LOAD_FAST 0 ( s )
+96 LOAD_FAST 0 ( s )
+98 LOAD_FAST 1 ( s )
+100 LOAD_FAST 0 ( s )
+102 LOAD_FAST 0 ( s )
+104 LOAD_FAST 0 ( s )
+106 LOAD_FAST 1 ( s )
+108 BUILD_TUPLE 3
+110 BINARY_MODULO
+112 INPLACE_ADD
+114 STORE_FAST 0 ( s )
+
+37 >> 116 LOAD_FAST 0 ( s )
+118 LOAD_FAST 0 ( s )
+120 LOAD_FAST 0 ( s )
+122 LOAD_FAST 0 ( s )
+124 BUILD_TUPLE 3
+126 RETURN_VALUE
+

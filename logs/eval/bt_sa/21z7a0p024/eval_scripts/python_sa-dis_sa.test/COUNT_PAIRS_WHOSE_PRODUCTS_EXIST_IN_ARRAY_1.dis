@@ -1,0 +1,28 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    result = 0\n    Hash = set ( )\n    for i in range ( n ) :\n        Hash.add ( arr [ i ] )\n    for i in range ( n ) :\n        for j in range ( i + 1 , n ) :\n            product = arr [ i ] * arr [ j ]\n            if product in ( Hash ) :\n                result += 1\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([7, 10, 17, 17, 18, 20, 27, 28, 29, 29, 31, 32, 41, 43, 45, 46, 63, 66, 69, 69, 70, 75, 87, 95],17,),\n    ([-60],0,),\n    ([0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],9,),\n    ([52, 83, 36, 57, 93, 11, 32, 91, 52],8,),\n    ([-98, -94, -90, -88, -76, -76, -64, -62, -60, -50, -46, -32, -24, -22, -20, -16, -4, -2, 6, 10, 20, 28, 30, 32, 34, 38, 40, 42, 54, 64, 72, 76, 82, 82, 86, 92, 92, 98, 98],22,),\n    ([0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0],42,),\n    ([2, 3, 10, 12, 15, 23, 26, 28, 29, 30, 31, 31, 33, 33, 35, 41, 45, 48, 50, 50, 53, 53, 56, 65, 66, 67, 68, 68, 72, 72, 75, 76, 79, 82, 90, 94, 94, 95, 97, 99],35,),\n    ([14, 36, -54, -54],3,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],12,),\n    ([5, 69, 37, 80, 21, 98, 70, 70, 74, 95, 6, 67, 44, 55, 52, 89, 84, 99, 65, 52],12,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPairs ( arr , n ) :\n    result = 0\n    Hash = set ( )\n    for i in range ( n ) :\n        Hash.add ( arr [ i ] )\n    for i in range ( n ) :\n        for j in range ( i + 1 , n ) :\n            product = arr [ i ] * arr [ j ]\n            if product in ( Hash ) :\n                result += 1\n    return result\n"}
+Disassembly of <code object countPairs at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( result )
+
+3 4 LOAD_GLOBAL 0 ( set )
+6 CALL_FUNCTION 0
+8 STORE_FAST 3 ( result )
+
+4 10 SETUP_LOOP 74 ( to 84 )
+12 LOAD_GLOBAL 1 ( range )
+14 LOAD_FAST 2 ( result )
+16 CALL_FUNCTION 1
+18 GET_ITER
+>> 20 FOR_ITER 74 ( to 82 )
+22 STORE_FAST 4 ( i )
+
+5 24 LOAD_FAST 4 ( i )
+26 LOAD_FAST 0 ( arr )
+28 LOAD_FAST 1 ( n )
+30 BINARY_SUBSCR
+32 LOAD_METHOD 2 ( add )
+34 LOAD_FAST 2 ( result )
+36 CALL_METHOD 1
+38 POP_TOP
+
+6 40 LOAD_FAST 2 ( result )
+42 RETURN_VALUE

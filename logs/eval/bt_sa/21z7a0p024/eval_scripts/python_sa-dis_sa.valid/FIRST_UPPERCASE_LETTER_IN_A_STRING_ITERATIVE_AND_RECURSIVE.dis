@@ -1,0 +1,40 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    for i in range ( 0 , len ( str ) ) :\n        if ( str [ i ].istitle ( ) ) :\n            return str [ i ]\n    return 0\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('pH',),\n    ('96544000',),\n    ('000010000',),\n    ('ujqpx',),\n    ('20684847994',),\n    ('111',),\n    ('rclkv',),\n    ('45173693434',),\n    ('11111011001101',),\n    ('f',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def first ( str ) :\n    for i in range ( 0 , len ( str ) ) :\n        if ( str [ i ].istitle ( ) ) :\n            return str [ i ]\n    return 0\n"}
+Disassembly of <code object first at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 SETUP_LOOP 76 ( to 78 )
+2 LOAD_GLOBAL 0 ( range )
+4 LOAD_CONST 1 ( 0 )
+6 LOAD_GLOBAL 1 ( len )
+8 LOAD_FAST 0 ( str )
+10 CALL_FUNCTION 1
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 54 ( to 76 )
+18 STORE_FAST 1 ( i )
+
+3 20 LOAD_GLOBAL 2 ( str )
+22 LOAD_FAST 0 ( str )
+24 CALL_FUNCTION 1
+26 LOAD_METHOD 3 ( istitle )
+28 CALL_METHOD 0
+30 CALL_FUNCTION 1
+32 STORE_FAST 2 ( i )
+
+4 34 LOAD_FAST 0 ( str )
+36 LOAD_FAST 1 ( i )
+38 BINARY_SUBSCR
+40 LOAD_METHOD 4 ( strip )
+42 CALL_METHOD 0
+44 COMPARE_OP 6 ( in )
+46 POP_JUMP_IF_FALSE 16
+
+5 48 LOAD_FAST 0 ( str )
+50 LOAD_FAST 1 ( i )
+52 BINARY_SUBSCR
+54 LOAD_METHOD 5 ( strip )
+56 CALL_METHOD 0
+58 STORE_FAST 1 ( i )
+60 JUMP_ABSOLUTE 16
+>> 62 POP_BLOCK
+
+6 >> 64 LOAD_CONST 2 ( '' )
+66 RETURN_VALUE

@@ -1,0 +1,17 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num ) :\n    if ( num // 10 == 0 ) :\n        return True\n    while ( num != 0 ) :\n        if ( num // 10 == 0 ) :\n            return True\n        digit1 = num % 10\n        digit2 = ( num // 10 ) % 10\n        if ( abs ( digit2 - digit1 ) > 1 ) :\n            return False\n        num = num // 10\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (67,),\n    (77,),\n    (35,),\n    (79,),\n    (45,),\n    (22,),\n    (68,),\n    (17,),\n    (5,),\n    (85,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkJumbled ( num ) :\n    if ( num / 10 == 0 ) :\n        return True\n    while ( num != 0 ) :\n        if ( num / 10 == 0 ) :\n            return True\n        digit1 = num % 10\n        digit2 = ( num / 10 ) % 10\n        if ( abs ( digit2 - digit1 ) > 1 ) :\n            return False\n        num = num / 10\n    return True\n"}
+Disassembly of <code object checkJumbled at 0x7f816a6e4b70, file "<dis>", line 17>:
+18 0 LOAD_FAST 0 ( num )
+2 LOAD_CONST 1 ( 10 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 12
+
+19 8 LOAD_CONST 2 ( 10 )
+10 RETURN_VALUE
+
+20 >> 12 LOAD_CONST 3 ( '%d/%d/%d/%d' )
+14 LOAD_FAST 0 ( num )
+16 BINARY_MODULO
+18 RETURN_VALUE
+20 LOAD_CONST 0 ( None )
+22 RETURN_VALUE
+

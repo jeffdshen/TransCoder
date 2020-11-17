@@ -1,0 +1,23 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    res = 0\n    for i in range ( 0 , n - 1 ) :\n        res = res ^ ( i + 1 ) ^ arr [ i ]\n    res = res ^ arr [ n - 1 ]\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 2, 4, 5, 5, 7, 7, 7, 8, 11, 14, 15, 18, 19, 20, 25, 25, 29, 29, 31, 32, 32, 33, 38, 42, 48, 52, 55, 60, 61, 63, 71, 74, 78, 82, 82, 84, 84, 87, 87, 88, 90, 93, 94, 94],31,),\n    ([46, 2, 62, 60, 92, 4, 26, 66, 66, 90, 26, -14, 76, -20, -68],8,),\n    ([0, 0, 0, 1, 1, 1, 1, 1],4,),\n    ([87, 67, 11, 47, 64, 81, 94, 75, 58, 77, 18, 2, 85, 26, 6, 44, 55, 19, 46, 49, 5, 69, 44, 12, 42, 66, 46, 9, 26, 49, 68, 95, 6, 9, 11, 72, 5, 67],34,),\n    ([-98, -94, -92, -82, -78, -64, -62, -58, -52, -44, -40, -38, -8, 6, 10, 20, 22, 28, 30, 30, 36, 54, 54, 58, 64, 68, 76, 78, 84, 88, 90, 94, 96],29,),\n    ([1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1],17,),\n    ([1, 14, 15, 15, 21, 34, 38, 39, 41, 50, 60, 74, 96, 97],7,),\n    ([96, -12, -16, -52],3,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],21,),\n    ([66, 21, 21, 59, 78, 8, 46, 41, 16, 32, 97, 93, 32, 86, 91, 61, 67, 61, 97, 49, 66, 35, 24, 35, 65, 45, 83],25,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findRepeating ( arr , n ) :\n    res = 0\n    for i in range ( 0 , n - 1 ) :\n        res = res ^ ( i + 1 ) ^ arr [ i ]\n    res = res ^ arr [ n - 1 ]\n    return res\n"}
+Disassembly of <code object findRepeating at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 BUILD_LIST 0
+2 STORE_FAST 1 ( n )
+
+27 4 SETUP_LOOP 52 ( to 54 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 1 ( 1 )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 52 ( to 52 )
+16 STORE_FAST 2 ( i )
+
+28 18 LOAD_FAST 0 ( arr )
+20 LOAD_METHOD 1 ( append )
+22 LOAD_FAST 1 ( n )
+24 CALL_METHOD 1
+26 POP_TOP
+28 JUMP_ABSOLUTE 14
+>> 30 POP_BLOCK
+>> 32 LOAD_CONST 0 ( None )
+34 RETURN_VALUE
+

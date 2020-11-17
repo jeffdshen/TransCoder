@@ -1,0 +1,73 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( r ) :\n    if ( r <= 0 ) :\n        return 0\n    result = 4\n    for x in range ( 1 , r ) :\n        ySquare = r * r - x * x\n        y = int ( math.sqrt ( ySquare ) )\n        if ( y * y == ySquare ) :\n            result += 4\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (34,),\n    (56,),\n    (90,),\n    (47,),\n    (36,),\n    (63,),\n    (21,),\n    (76,),\n    (18,),\n    (75,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countLattice ( r ) :\n    if ( r <= 0 ) :\n        return 0\n    result = 4\n    for x in range ( 1 , r ) :\n        ySquare = r * r - x * x\n        y = int ( math.sqrt ( ySquare ) )\n        if ( y * y == ySquare ) :\n            result += 4\n    return result\n"}
+Disassembly of <code object countLattice at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( r )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 1 ( <= )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 2 ( 1 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_CONST 3 ( 4 )
+14 STORE_FAST 1 ( result )
+
+5 16 SETUP_LOOP 74 ( to 92 )
+18 LOAD_GLOBAL 0 ( range )
+20 LOAD_CONST 1 ( 0 )
+22 LOAD_FAST 1 ( result )
+24 CALL_FUNCTION 2
+26 GET_ITER
+>> 28 FOR_ITER 74 ( to 90 )
+30 STORE_FAST 2 ( x )
+
+6 32 LOAD_FAST 2 ( x )
+34 LOAD_FAST 0 ( r )
+36 LOAD_FAST 2 ( x )
+38 BINARY_SUBSCR
+40 LOAD_FAST 2 ( x )
+42 BINARY_SUBSCR
+44 LOAD_FAST 2 ( x )
+46 BINARY_SUBSCR
+48 LOAD_FAST 2 ( x )
+50 BINARY_SUBSCR
+52 LOAD_FAST 2 ( x )
+54 BINARY_SUBSCR
+56 LOAD_FAST 2 ( x )
+58 BINARY_SUBSCR
+60 LOAD_FAST 2 ( x )
+62 BINARY_SUBSCR
+64 LOAD_FAST 2 ( x )
+66 BINARY_SUBSCR
+68 LOAD_FAST 2 ( x )
+70 BINARY_SUBSCR
+72 LOAD_FAST 2 ( x )
+74 BINARY_SUBSCR
+76 LOAD_FAST 2 ( x )
+78 BINARY_SUBSCR
+80 LOAD_FAST 2 ( x )
+82 BINARY_SUBSCR
+84 LOAD_FAST 2 ( x )
+86 BINARY_SUBSCR
+88 LOAD_FAST 2 ( x )
+90 BINARY_SUBSCR
+92 LOAD_FAST 2 ( x )
+94 BINARY_SUBSCR
+96 LOAD_FAST 2 ( x )
+98 BINARY_SUBSCR
+100 LOAD_FAST 2 ( x )
+102 BINARY_SUBSCR
+104 LOAD_FAST 2 ( x )
+106 BINARY_SUBSCR
+108 LOAD_FAST 2 ( x )
+110 BINARY_SUBSCR
+112 LOAD_FAST 2 ( x )
+114 BINARY_SUBSCR
+116 LOAD_FAST 2 ( x )
+118 STORE_SUBSCR
+120 JUMP_ABSOLUTE 28
+>> 122 POP_BLOCK
+>> 124 JUMP_ABSOLUTE 28
+>> 126 POP_BLOCK
+
+7 >> 128 LOAD_FAST 1 ( result )
+130 RETURN_VALUE

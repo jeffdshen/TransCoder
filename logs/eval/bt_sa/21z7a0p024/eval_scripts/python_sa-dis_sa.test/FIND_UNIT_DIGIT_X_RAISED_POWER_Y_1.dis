@@ -1,0 +1,27 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( x , y ) :\n    x = x % 10\n    if y != 0 :\n        y = y % 4 + 4\n    return ( ( ( int ) ( math.pow ( x , y ) ) ) % 10 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (37,17,),\n    (70,52,),\n    (26,23,),\n    (9,96,),\n    (82,71,),\n    (95,36,),\n    (43,40,),\n    (7,27,),\n    (19,56,),\n    (49,28,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def unitnumber ( x , y ) :\n    x = x % 10\n    if y != 0 :\n        y = y % 4 + 4\n    return ( ( ( int ) ( math.pow ( x , y ) ) ) % 10 )\n"}
+Disassembly of <code object unitnumber at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( x )
+2 LOAD_CONST 1 ( 10 )
+4 BINARY_MODULO
+6 STORE_FAST 1 ( x )
+
+3 8 LOAD_FAST 1 ( x )
+10 LOAD_CONST 2 ( 0 )
+12 COMPARE_OP 3 ( != )
+14 POP_JUMP_IF_FALSE 20
+
+4 16 LOAD_FAST 1 ( x )
+18 LOAD_CONST 2 ( 0 )
+20 BINARY_SUBSCR
+22 STORE_FAST 1 ( x )
+
+5 >> 24 LOAD_GLOBAL 0 ( int )
+26 LOAD_GLOBAL 1 ( math )
+28 LOAD_METHOD 2 ( pow )
+30 LOAD_FAST 0 ( x )
+32 LOAD_FAST 1 ( x )
+34 CALL_METHOD 2
+36 CALL_FUNCTION 1
+38 LOAD_CONST 3 ( 2 )
+40 BINARY_MODULO
+42 RETURN_VALUE

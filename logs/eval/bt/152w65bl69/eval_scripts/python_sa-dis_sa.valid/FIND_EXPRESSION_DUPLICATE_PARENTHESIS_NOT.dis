@@ -1,0 +1,22 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( string ) :\n    Stack = [ ]\n    for ch in string :\n        if ch == ')' :\n            top = Stack.pop ( )\n            elementsInside = 0\n            while top != '(' :\n                elementsInside += 1\n                top = Stack.pop ( )\n            if elementsInside < 1 :\n                return True\n        else :\n            Stack.append ( ch )\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (\"((a+b)+((c+d)))\",),\n    (\"(((a+(b)))+(c+d))\",),\n    (\"(((a+(b))+c+d))\",),\n    (\"((a+b)+(c+d))\",),\n    (\"(8582007)\",),\n    (\"((a+(b))+(c+d))\",),\n    (\"(PylsShEdKAE)\",),\n    ('886980680541',),\n    ('001',),\n    ('jsVmFeOq',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findDuplicateparenthesis ( string ) :\n    Stack = [ ]\n    for ch in string :\n        if ch == ')' :\n            top = Stack.pop ( )\n            elementsInside = 0\n            while top != '(' :\n                elementsInside += 1\n                top = Stack.pop ( )\n            if elementsInside < 1 :\n                return True\n        else :\n            Stack.append ( ch )\n    return False\n"}
+Disassembly of <code object findDuplicateparenthesis at 0x7f816a673a50, file "<dis>", line 25>:
+27 0 LOAD_GLOBAL 0 ( Stack )
+2 LOAD_FAST 0 ( string )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( ch )
+
+28 8 LOAD_FAST 1 ( ch )
+10 LOAD_METHOD 1 ( pop )
+12 LOAD_CONST 1 ( '' )
+14 CALL_METHOD 1
+16 POP_TOP
+
+29 18 LOAD_FAST 1 ( ch )
+20 LOAD_METHOD 2 ( pop )
+22 LOAD_CONST 2 ( '--' )
+24 CALL_METHOD 1
+26 POP_TOP
+
+30 28 LOAD_FAST 1 ( ch )
+30 LOAD_METHOD 3 ( pop )
+32 LOAD_CONST 3 ( '--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

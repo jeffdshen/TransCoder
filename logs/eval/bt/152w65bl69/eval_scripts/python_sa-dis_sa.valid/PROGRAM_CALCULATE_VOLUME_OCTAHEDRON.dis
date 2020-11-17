@@ -1,0 +1,19 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( side ) :\n    return ( ( side * side * side ) * ( math.sqrt ( 2 ) / 3 ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (3355.322051344013,),\n    (-891.0551553192736,),\n    (8242.699647177868,),\n    (-9259.146104439229,),\n    (7712.806145993083,),\n    (-4998.858862079315,),\n    (9771.127582524628,),\n    (-5415.8106399098115,),\n    (670.0774772280249,),\n    (-7068.634369272122,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def vol_of_octahedron ( side ) :\n    return ( ( side * side * side ) * ( math.sqrt ( 2 ) / 3 ) )\n"}
+Disassembly of <code object vol_of_octaron at 0x7f816a683a50, file "<dis>", line 68>:
+69 0 LOAD_CONST 1 ( ( ( side * side * side ) , 3 ) , 4 ) )
+6 STORE_FAST 1 ( side )
+
+70 8 LOAD_FAST 0 ( side )
+10 LOAD_METHOD 0 ( append )
+12 LOAD_FAST 1 ( side )
+14 CALL_METHOD 1
+16 POP_TOP
+
+71 18 LOAD_FAST 0 ( side )
+20 LOAD_METHOD 0 ( append )
+22 LOAD_FAST 1 ( side )
+24 CALL_METHOD 1
+26 POP_TOP
+28 LOAD_CONST 0 ( None )
+30 RETURN_VALUE
+

@@ -1,0 +1,33 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    sum = 0\n    for i in range ( 1 , n + 1 ) :\n        sum += int ( n / i ) * i\n    return int ( sum )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (73,),\n    (41,),\n    (36,),\n    (28,),\n    (49,),\n    (24,),\n    (85,),\n    (59,),\n    (82,),\n    (40,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def divisorSum ( n ) :\n    sum = 0\n    for i in range ( 1 , n + 1 ) :\n        sum += int ( n / i ) * i\n    return int ( sum )\n"}
+Disassembly of <code object divisorSum at 0x7f2b0164d390, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( sum )
+
+3 4 SETUP_LOOP 44 ( to 50 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 1 )
+10 LOAD_FAST 0 ( n )
+12 LOAD_CONST 2 ( 1 )
+14 BINARY_ADD
+16 CALL_FUNCTION 2
+18 GET_ITER
+>> 20 FOR_ITER 28 ( to 48 )
+22 STORE_FAST 2 ( i )
+
+4 24 LOAD_FAST 1 ( sum )
+26 LOAD_GLOBAL 1 ( int )
+28 LOAD_FAST 0 ( n )
+30 LOAD_FAST 2 ( i )
+32 BINARY_TRUE_DIVIDE
+34 CALL_FUNCTION 1
+36 LOAD_FAST 2 ( i )
+38 BINARY_MULTIPLY
+40 INPLACE_ADD
+42 STORE_FAST 1 ( sum )
+44 JUMP_ABSOLUTE 20
+>> 46 POP_BLOCK
+
+5 48 LOAD_GLOBAL 1 ( int )
+50 LOAD_FAST 1 ( sum )
+52 CALL_FUNCTION 1
+54 RETURN_VALUE

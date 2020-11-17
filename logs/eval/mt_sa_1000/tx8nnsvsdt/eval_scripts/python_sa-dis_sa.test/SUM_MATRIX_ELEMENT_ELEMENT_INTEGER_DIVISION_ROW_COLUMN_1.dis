@@ -1,0 +1,71 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    ans = 0 ; temp = 0 ;\n    for i in range ( 1 , n + 1 ) :\n        if temp < n :\n            temp = i - 1\n            num = 1\n            while temp < n :\n                if temp + i <= n :\n                    ans += i * num\n                else :\n                    ans += ( n - temp ) * num\n                temp += i\n                num += 1\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (35,),\n    (93,),\n    (7,),\n    (81,),\n    (80,),\n    (47,),\n    (7,),\n    (41,),\n    (59,),\n    (34,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSum ( n ) :\n    ans = 0 ; temp = 0 ;\n    for i in range ( 1 , n + 1 ) :\n        if temp < n :\n            temp = i - 1\n            num = 1\n            while temp < n :\n                if temp + i <= n :\n                    ans += i * num\n                else :\n                    ans += ( n - temp ) * num\n                temp += i\n                num += 1\n    return ans\n"}
+Disassembly of <code object findSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( ans )
+
+3 4 SETUP_LOOP 96 ( to 102 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 1 )
+10 LOAD_FAST 0 ( n )
+12 LOAD_CONST 2 ( 1 )
+14 BINARY_ADD
+16 CALL_FUNCTION 2
+18 GET_ITER
+>> 20 FOR_ITER 82 ( to 100 )
+22 STORE_FAST 2 ( i )
+
+4 24 LOAD_FAST 1 ( ans )
+26 LOAD_FAST 0 ( n )
+28 COMPARE_OP 0 ( < )
+30 POP_JUMP_IF_FALSE 20
+
+5 32 LOAD_FAST 2 ( i )
+34 LOAD_CONST 2 ( 1 )
+36 BINARY_SUBTRACT
+38 STORE_FAST 1 ( ans )
+
+6 40 LOAD_CONST 2 ( 1 )
+42 STORE_FAST 3 ( num )
+
+7 44 SETUP_LOOP 64 ( to 98 )
+>> 46 LOAD_FAST 1 ( ans )
+48 LOAD_FAST 0 ( n )
+50 COMPARE_OP 0 ( < )
+52 POP_JUMP_IF_FALSE 96
+
+8 54 LOAD_FAST 1 ( ans )
+56 LOAD_FAST 2 ( i )
+58 BINARY_ADD
+60 LOAD_FAST 0 ( n )
+62 COMPARE_OP 1 ( <= )
+64 POP_JUMP_IF_FALSE 82
+
+9 66 LOAD_FAST 1 ( ans )
+68 LOAD_FAST 2 ( i )
+70 LOAD_FAST 3 ( num )
+72 BINARY_MULTIPLY
+74 INPLACE_ADD
+76 STORE_FAST 1 ( ans )
+78 JUMP_ABSOLUTE 46
+
+11 80 LOAD_FAST 1 ( ans )
+82 LOAD_FAST 2 ( i )
+84 LOAD_FAST 3 ( num )
+86 BINARY_MULTIPLY
+88 INPLACE_ADD
+90 STORE_FAST 1 ( ans )
+
+12 >> 92 LOAD_FAST 1 ( ans )
+94 LOAD_FAST 2 ( i )
+96 INPLACE_ADD
+98 STORE_FAST 1 ( ans )
+
+13 100 LOAD_FAST 3 ( num )
+102 LOAD_CONST 2 ( 1 )
+104 INPLACE_ADD
+106 STORE_FAST 3 ( num )
+108 JUMP_ABSOLUTE 46
+>> 110 POP_BLOCK
+
+14 >> 112 LOAD_FAST 1 ( ans )
+114 RETURN_VALUE

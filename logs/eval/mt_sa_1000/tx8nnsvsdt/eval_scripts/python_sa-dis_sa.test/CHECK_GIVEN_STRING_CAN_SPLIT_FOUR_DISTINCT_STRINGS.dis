@@ -1,0 +1,124 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    if ( len ( s ) >= 10 ) :\n        return True\n    for i in range ( 1 , len ( s ) ) :\n        for j in range ( i + 1 , len ( s ) ) :\n            for k in range ( j + 1 , len ( s ) ) :\n                s1 = s [ 0 : i ]\n                s2 = s [ i : j - i ]\n                s3 = s [ j : k - j ]\n                s4 = s [ k : len ( s ) - k ]\n                if ( s1 != s2 and s1 != s3 and s1 != s4 and s2 != s3 and s2 != s4 and s3 != s4 ) :\n                    return True\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('WKTj Nw',),\n    ('8235021',),\n    ('0101',),\n    ('BLMhiQsQcFla',),\n    ('00363175722',),\n    ('10000',),\n    ('aqEYWNd bqgye',),\n    ('83',),\n    ('000011110111',),\n    ('E',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def check ( s ) :\n    if ( len ( s ) >= 10 ) :\n        return True\n    for i in range ( 1 , len ( s ) ) :\n        for j in range ( i + 1 , len ( s ) ) :\n            for k in range ( j + 1 , len ( s ) ) :\n                s1 = s [ 0 : i ]\n                s2 = s [ i : j - i ]\n                s3 = s [ j : k - j ]\n                s4 = s [ k : len ( s ) - k ]\n                if ( s1 != s2 and s1 != s3 and s1 != s4 and s2 != s3 and s2 != s4 and s3 != s4 ) :\n                    return True\n    return False\n"}
+Disassembly of <code object check at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( s )
+4 CALL_FUNCTION 1
+6 LOAD_CONST 1 ( 10 )
+8 COMPARE_OP 5 ( >= )
+10 POP_JUMP_IF_FALSE 16
+
+3 12 LOAD_CONST 2 ( True )
+14 RETURN_VALUE
+
+4 >> 16 SETUP_LOOP 192 ( to 214 )
+18 LOAD_GLOBAL 1 ( range )
+20 LOAD_CONST 3 ( 1 )
+22 LOAD_GLOBAL 0 ( len )
+24 LOAD_FAST 0 ( s )
+26 CALL_FUNCTION 1
+28 CALL_FUNCTION 2
+30 GET_ITER
+>> 32 FOR_ITER 180 ( to 212 )
+34 STORE_FAST 1 ( i )
+
+5 36 SETUP_LOOP 174 ( to 210 )
+38 LOAD_GLOBAL 1 ( range )
+40 LOAD_FAST 1 ( i )
+42 LOAD_CONST 3 ( 1 )
+44 BINARY_ADD
+46 LOAD_GLOBAL 0 ( len )
+48 LOAD_FAST 0 ( s )
+50 CALL_FUNCTION 1
+52 CALL_FUNCTION 2
+54 GET_ITER
+>> 56 FOR_ITER 146 ( to 208 )
+58 STORE_FAST 2 ( j )
+
+6 60 SETUP_LOOP 146 ( to 206 )
+62 LOAD_GLOBAL 1 ( range )
+64 LOAD_FAST 2 ( j )
+66 LOAD_CONST 3 ( 1 )
+68 BINARY_ADD
+70 LOAD_GLOBAL 0 ( len )
+72 LOAD_FAST 0 ( s )
+74 CALL_FUNCTION 1
+76 CALL_FUNCTION 2
+78 GET_ITER
+>> 80 FOR_ITER 132 ( to 204 )
+82 STORE_FAST 3 ( k )
+
+7 84 LOAD_FAST 0 ( s )
+86 LOAD_CONST 4 ( 0 )
+88 LOAD_FAST 1 ( i )
+90 BUILD_SLICE 2
+92 BINARY_SUBSCR
+94 STORE_FAST 4 ( s1 )
+
+8 96 LOAD_FAST 0 ( s )
+98 LOAD_FAST 1 ( i )
+100 LOAD_FAST 2 ( j )
+102 BINARY_SUBTRACT
+104 BUILD_SLICE 2
+106 BINARY_SUBSCR
+108 STORE_FAST 5 ( s2 )
+
+9 110 LOAD_FAST 0 ( s )
+112 LOAD_FAST 3 ( j )
+114 LOAD_FAST 3 ( k )
+116 BINARY_SUBTRACT
+118 BUILD_SLICE 2
+120 BINARY_SUBSCR
+122 STORE_FAST 6 ( s3 )
+
+10 124 LOAD_FAST 0 ( s )
+126 LOAD_FAST 3 ( k )
+128 LOAD_GLOBAL 0 ( len )
+130 LOAD_FAST 0 ( s )
+132 CALL_FUNCTION 1
+134 LOAD_FAST 3 ( k )
+136 BINARY_SUBTRACT
+138 BUILD_SLICE 2
+140 BINARY_SUBSCR
+142 STORE_FAST 7 ( s4 )
+
+11 144 LOAD_FAST 0 ( s )
+146 LOAD_FAST 3 ( k )
+148 LOAD_GLOBAL 0 ( len )
+150 LOAD_FAST 0 ( s )
+152 CALL_FUNCTION 1
+154 LOAD_FAST 3 ( k )
+156 BINARY_SUBTRACT
+158 BUILD_SLICE 2
+160 BINARY_SUBSCR
+162 STORE_FAST 8 ( s4 )
+
+12 164 LOAD_FAST 4 ( s1 )
+166 LOAD_FAST 5 ( s2 )
+168 COMPARE_OP 3 ( != )
+170 POP_JUMP_IF_FALSE 80
+172 LOAD_FAST 4 ( s1 )
+174 LOAD_FAST 6 ( s3 )
+176 COMPARE_OP 3 ( != )
+178 POP_JUMP_IF_FALSE 80
+180 LOAD_FAST 4 ( s1 )
+182 LOAD_FAST 7 ( s4 )
+184 COMPARE_OP 3 ( != )
+186 POP_JUMP_IF_FALSE 80
+188 LOAD_FAST 5 ( s2 )
+190 LOAD_FAST 8 ( s4 ( s4 )
+192 COMPARE_OP 3 ( != )
+194 POP_JUMP_IF_FALSE 80
+196 LOAD_FAST 6 ( s3 )
+198 LOAD_FAST 8 ( s4 )
+200 COMPARE_OP 3 ( != )
+202 POP_JUMP_IF_FALSE 80
+
+13 204 LOAD_CONST 2 ( True )
+206 RETURN_VALUE
+>> 208 JUMP_ABSOLUTE 80
+>> 210 POP_BLOCK
+>> 212 JUMP_ABSOLUTE 56
+>> 214 POP_BLOCK
+
+14 >> 216 LOAD_CONST 5 ( False )
+218 RETURN_VALUE

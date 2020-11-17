@@ -1,0 +1,60 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    ans = 0\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            if ( arr [ i ] == arr [ j ] ) :\n                ans += 1\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 6, 9, 16, 16, 21, 36, 41, 58, 60, 62, 73, 77, 81, 95],12,),\n    ([-86, -72, -26, -34, 18, -62, -66],3,),\n    ([1],0,),\n    ([16],0,),\n    ([-88, -80, -72, -68, -64, -26, 4, 14, 16, 22, 30, 32, 60, 74, 82],11,),\n    ([0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1],9,),\n    ([3, 9, 10, 12, 17, 23, 27, 29, 42, 44, 59, 61, 71, 76, 78, 82, 84, 84, 89, 90, 93, 93, 97, 97],15,),\n    ([68, -40, -46, -20, -64, 90],5,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],15,),\n    ([99, 17, 94, 43, 97, 17, 11, 58, 75, 94, 37, 22, 54, 31, 41, 4, 55, 69, 92, 80, 45, 97, 16, 33, 36, 17, 43, 82, 81, 64, 22, 65, 85, 44, 47, 14],23,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countPairs ( arr , n ) :\n    ans = 0\n    for i in range ( 0 , n ) :\n        for j in range ( i + 1 , n ) :\n            if ( arr [ i ] == arr [ j ] ) :\n                ans += 1\n    return ans\n"}
+Disassembly of <code object countPairs at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( ans )
+
+3 4 SETUP_LOOP 64 ( to 66 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 0 )
+10 LOAD_FAST 0 ( arr )
+12 CALL_FUNCTION 2
+14 GET_ITER
+>> 16 FOR_ITER 48 ( to 64 )
+18 STORE_FAST 3 ( i )
+
+4 20 LOAD_FAST 2 ( ans )
+22 LOAD_FAST 3 ( i )
+24 BINARY_SUBSCR
+26 LOAD_FAST 1 ( n )
+28 COMPARE_OP 4 ( > )
+30 POP_JUMP_IF_FALSE 16
+
+5 32 LOAD_FAST 2 ( ans )
+34 LOAD_FAST 3 ( i )
+36 BINARY_SUBSCR
+38 LOAD_FAST 1 ( n )
+40 COMPARE_OP 4 ( > )
+42 POP_JUMP_IF_FALSE 16
+
+6 44 LOAD_FAST 2 ( ans )
+46 LOAD_FAST 3 ( i )
+48 BINARY_SUBSCR
+50 LOAD_FAST 1 ( n )
+52 COMPARE_OP 4 ( > )
+54 POP_JUMP_IF_FALSE 16
+
+7 56 LOAD_FAST 2 ( ans )
+58 LOAD_FAST 3 ( i )
+60 BINARY_SUBSCR
+62 LOAD_FAST 1 ( n )
+64 COMPARE_OP 4 ( > )
+66 POP_JUMP_IF_FALSE 16
+
+8 68 LOAD_FAST 2 ( ans )
+70 LOAD_FAST 3 ( i )
+72 BINARY_SUBSCR
+74 LOAD_FAST 1 ( n )
+76 COMPARE_OP 4 ( > )
+78 POP_JUMP_IF_FALSE 16
+
+9 80 LOAD_FAST 2 ( ans )
+82 LOAD_FAST 3 ( i )
+84 BINARY_SUBSCR
+86 LOAD_FAST 1 ( n )
+88 BINARY_SUBSCR
+90 LOAD_FAST 1 ( n )
+92 STORE_SUBSCR
+94 JUMP_ABSOLUTE 16
+>> 96 POP_BLOCK
+>> 98 LOAD_CONST 0 ( None )
+100 RETURN_VALUE

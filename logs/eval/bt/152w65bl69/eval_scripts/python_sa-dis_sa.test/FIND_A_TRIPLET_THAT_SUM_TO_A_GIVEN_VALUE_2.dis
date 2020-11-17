@@ -1,0 +1,20 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( A , arr_size , sum ) :\n    for i in range ( 0 , arr_size - 1 ) :\n        s = set ( )\n        curr_sum = sum - A [ i ]\n        for j in range ( i + 1 , arr_size ) :\n            if ( curr_sum - A [ j ] ) in s :\n                print ( \"Triplet is\" , A [ i ] , \", \" , A [ j ] , \", \" , curr_sum - A [ j ] )\n                return True\n            s.add ( A [ j ] )\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 6, 8, 8, 9, 11, 13, 13, 15, 17, 21, 24, 38, 38, 42, 43, 46, 46, 47, 54, 55, 56, 57, 58, 60, 60, 60, 62, 63, 63, 65, 66, 67, 67, 69, 81, 84, 84, 85, 86, 95, 99],27,24,),\n    ([20, -86, -24, 38, -32, -64, -72, 72, 68, 94, 18, -60, -4, -18, -18, -70, 6, -86, 46, -16, 46, -28],21,20,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],17,13,),\n    ([13, 96, 31, 39, 23, 39, 50, 10, 21, 64, 41, 54, 44, 97, 24, 91, 79, 86, 38, 49, 77, 71, 8, 98, 85, 36, 37, 65, 42, 48],17,18,),\n    ([-86, -68, -58, -56, -54, -54, -48, -40, -36, -32, -26, -16, -14, -12, -12, -4, -4, -4, 0, 10, 22, 22, 30, 54, 62, 68, 88, 88],21,25,),\n    ([0, 1, 1, 1, 1, 0, 0],5,3,),\n    ([8, 8, 9, 13, 20, 24, 29, 52, 53, 96],9,8,),\n    ([18, -92, -10, 26, 58, -48, 38, 66, -98, -72, 4, 76, -52, 20, 60, -56, 96, 60, -10, -26, -64, -66, -22, -86, 74, 82, 2, -14, 76, 82, 40, 70, -40, -2, -46, -38, 22, 98, 58],30,30,),\n    ([1, 1, 1, 1],2,2,),\n    ([72],0,0,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def find3Numbers ( A , arr_size , sum ) :\n    for i in range ( 0 , arr_size - 1 ) :\n        s = set ( )\n        curr_sum = sum - A [ i ]\n        for j in range ( i + 1 , arr_size ) :\n            if ( curr_sum - A [ j ] ) in s :\n                print ( \"Triplet is\" , A [ i ] , \", \" , A [ j ] , \", \" , curr_sum - A [ j ] )\n                return True\n            s.add ( A [ j ] )\n    return False\n"}
+Disassembly of <code object find3DayDayA at 0x7f816a601660, file "<dis>", line 75>:
+76 0 SETUP_LOOP 22 ( to 24 )
+2 LOAD_GLOBAL 0 ( range )
+4 LOAD_CONST 1 ( - 1 )
+6 CALL_FUNCTION 1
+8 GET_ITER
+>> 10 FOR_ITER 22 ( to 24 )
+12 STORE_FAST 1 ( arr_size )
+
+77 14 LOAD_FAST 0 ( self )
+16 LOAD_METHOD 1 ( _get_Triplet )
+18 LOAD_FAST 1 ( arr_size )
+20 CALL_METHOD 1
+22 STORE_FAST 2 ( arr_range )
+24 JUMP_ABSOLUTE 10
+>> 26 POP_BLOCK
+>> 28 LOAD_CONST 0 ( None )
+30 RETURN_VALUE
+

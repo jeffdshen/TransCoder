@@ -1,0 +1,52 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( N ) :\n    if ( N == 1 ) :\n        return 4\n    countB = 1\n    countS = 1\n    for i in range ( 2 , N + 1 ) :\n        prev_countB = countB\n        prev_countS = countS\n        countS = prev_countB + prev_countS\n        countB = prev_countS\n    result = countS + countB\n    return ( result * result )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (17,),\n    (66,),\n    (53,),\n    (97,),\n    (34,),\n    (54,),\n    (9,),\n    (99,),\n    (59,),\n    (87,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countWays ( N ) :\n    if ( N == 1 ) :\n        return 4\n    countB = 1\n    countS = 1\n    for i in range ( 2 , N + 1 ) :\n        prev_countB = countB\n        prev_countS = countS\n        countS = prev_countB + prev_countS\n        countB = prev_countS\n    result = countS + countB\n    return ( result * result )\n"}
+Disassembly of <code object countWays at 0x7f2b016399c0, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( N )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 2 ( 4 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_CONST 1 ( 1 )
+14 STORE_FAST 1 ( countB )
+
+5 16 LOAD_CONST 1 ( 1 )
+18 STORE_FAST 2 ( countS )
+
+6 20 SETUP_LOOP 52 ( to 74 )
+22 LOAD_GLOBAL 0 ( range )
+24 LOAD_CONST 3 ( 2 )
+26 LOAD_FAST 0 ( N )
+28 LOAD_CONST 1 ( 1 )
+30 BINARY_ADD
+32 CALL_FUNCTION 2
+34 GET_ITER
+>> 36 FOR_ITER 30 ( to 72 )
+38 STORE_FAST 3 ( i )
+
+7 40 LOAD_FAST 2 ( countB )
+42 STORE_FAST 4 ( prev_countB )
+
+8 44 LOAD_FAST 1 ( countS )
+46 STORE_FAST 5 ( prev_countS )
+
+9 48 LOAD_FAST 4 ( prev_countB )
+50 LOAD_FAST 5 ( prev_countS )
+52 BINARY_ADD
+54 STORE_FAST 6 ( countS )
+
+10 56 LOAD_FAST 6 ( prev_countS )
+58 STORE_FAST 7 ( countB )
+60 JUMP_ABSOLUTE 36
+>> 62 POP_BLOCK
+
+11 64 LOAD_FAST 2 ( countS )
+66 LOAD_FAST 1 ( countB )
+68 BINARY_ADD
+70 STORE_FAST 8 ( result )
+
+12 72 LOAD_FAST 8 ( result )
+74 LOAD_FAST 8 ( result )
+76 BINARY_MULTIPLY
+78 RETURN_VALUE

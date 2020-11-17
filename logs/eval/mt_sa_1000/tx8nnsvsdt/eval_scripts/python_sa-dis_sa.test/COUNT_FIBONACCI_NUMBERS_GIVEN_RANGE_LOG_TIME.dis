@@ -1,0 +1,39 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( low , high ) :\n    f1 , f2 , f3 = 0 , 1 , 1\n    result = 0\n    while ( f1 <= high ) :\n        if ( f1 >= low ) :\n            result += 1\n        f1 = f2\n        f2 = f3\n        f3 = f1 + f2\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (76,43,),\n    (96,52,),\n    (19,79,),\n    (36,2,),\n    (60,11,),\n    (20,15,),\n    (76,4,),\n    (63,93,),\n    (2,25,),\n    (41,39,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countFibs ( low , high ) :\n    f1 , f2 , f3 = 0 , 1 , 1\n    result = 0\n    while ( f1 <= high ) :\n        if ( f1 >= low ) :\n            result += 1\n        f1 = f2\n        f2 = f3\n        f3 = f1 + f2\n    return result\n"}
+Disassembly of <code object countFibs at 0x7f2b01639f60, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( ( 0 , 1 , 1 ) )
+2 UNPACK_SEQUENCE 3
+4 STORE_FAST 2 ( f1 )
+6 STORE_FAST 3 ( f2 )
+8 STORE_FAST 4 ( f3 )
+
+3 10 LOAD_CONST 1 ( 0 )
+12 STORE_FAST 5 ( result )
+
+4 14 SETUP_LOOP 46 ( to 66 )
+>> 16 LOAD_FAST 2 ( f1 )
+18 LOAD_FAST 1 ( high )
+20 COMPARE_OP 1 ( <= )
+22 POP_JUMP_IF_FALSE 64
+
+5 24 LOAD_FAST 2 ( f1 )
+26 LOAD_FAST 0 ( low )
+28 COMPARE_OP 5 ( >= )
+30 POP_JUMP_IF_FALSE 64
+
+6 32 LOAD_FAST 5 ( result )
+34 LOAD_CONST 2 ( 1 )
+36 INPLACE_ADD
+38 STORE_FAST 5 ( result )
+
+7 40 LOAD_FAST 4 ( f3 )
+42 STORE_FAST 3 ( f2 )
+
+8 44 LOAD_FAST 2 ( f1 )
+46 LOAD_FAST 3 ( f2 )
+48 BINARY_ADD
+50 STORE_FAST 4 ( f3 )
+52 JUMP_ABSOLUTE 16
+54 POP_BLOCK
+
+9 >> 56 LOAD_FAST 5 ( result )
+58 RETURN_VALUE

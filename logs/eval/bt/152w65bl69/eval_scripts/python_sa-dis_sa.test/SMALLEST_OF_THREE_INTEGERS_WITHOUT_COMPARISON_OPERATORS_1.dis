@@ -1,0 +1,20 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , y , z ) :\n    if ( not ( y / x ) ) :\n        return y if ( not ( y / z ) ) else z\n    return x if ( not ( x / z ) ) else z\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (48,63,56,),\n    (11,55,84,),\n    (50,89,96,),\n    (21,71,74,),\n    (94,39,42,),\n    (22,44,86,),\n    (3,41,68,),\n    (67,62,94,),\n    (59,2,83,),\n    (50,11,1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def smallest ( x , y , z ) :\n    if ( not ( y / x ) ) :\n        return y if ( not ( y / z ) ) else z\n    return x if ( not ( x / z ) ) else z\n"}
+Disassembly of <code object smallest at 0x7f816a6e4b70, file "<dis>", line 16>:
+17 0 LOAD_FAST 0 ( self )
+2 LOAD_ATTR 0 ( x )
+4 LOAD_FAST 1 ( y )
+6 BINARY_MULTIPLY
+8 LOAD_FAST 2 ( y )
+10 BINARY_MULTIPLY
+12 LOAD_FAST 3 ( y )
+14 BINARY_MULTIPLY
+16 LOAD_FAST 4 ( y )
+18 BINARY_MULTIPLY
+20 LOAD_FAST 5 ( alpha )
+22 BINARY_MULTIPLY
+24 LOAD_FAST 6 ( alpha )
+26 BINARY_MULTIPLY
+28 BINARY_MULTIPLY
+30 BINARY_ADD
+32 RETURN_VALUE
+

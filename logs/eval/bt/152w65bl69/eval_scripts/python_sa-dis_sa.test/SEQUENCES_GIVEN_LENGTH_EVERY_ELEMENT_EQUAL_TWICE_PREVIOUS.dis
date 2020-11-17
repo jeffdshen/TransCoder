@@ -1,0 +1,100 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( m , n ) :\n    if m < n :\n        return 0\n    if n == 0 :\n        return 1\n    res = ( f_gold ( m - 1 , n ) + f_gold ( m // 2 , n - 1 ) )\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (38,34,),\n    (39,29,),\n    (24,99,),\n    (90,23,),\n    (44,2,),\n    (49,70,),\n    (58,84,),\n    (97,34,),\n    (99,72,),\n    (19,67,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def getTotalNumberOfSequences ( m , n ) :\n    if m < n :\n        return 0\n    if n == 0 :\n        return 1\n    res = ( getTotalNumberOfSequences ( m - 1 , n ) + getTotalNumberOfSequences ( m // 2 , n - 1 ) )\n    return res\n"}
+Disassembly of <code object getTotalTotalSequences at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( m )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( n )
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( n )
+
+28 16 LOAD_FAST 2 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( n )
+
+29 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 4 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 5 ( 1 )
+32 BINARY_SUBSCR
+34 LOAD_CONST 6 ( 2 )
+36 BINARY_SUBSCR
+38 STORE_FAST 4 ( n )
+
+30 40 LOAD_FAST 0 ( m )
+42 LOAD_CONST 7 ( 1 )
+44 BINARY_SUBSCR
+46 LOAD_FAST 3 ( n )
+48 LOAD_CONST 8 ( 2 )
+50 BINARY_SUBSCR
+52 LOAD_CONST 9 ( 1 )
+54 BINARY_SUBSCR
+56 LOAD_CONST 10 ( 2 )
+58 BINARY_SUBSCR
+60 LOAD_CONST 11 ( 1 )
+62 BINARY_SUBSCR
+64 LOAD_CONST 12 ( 1 )
+66 BINARY_SUBSCR
+68 LOAD_CONST 13 ( 1 )
+70 BINARY_SUBSCR
+72 LOAD_CONST 14 ( 2 )
+74 BINARY_SUBSCR
+76 LOAD_CONST 15 ( 1 )
+78 BINARY_SUBSCR
+80 LOAD_CONST 16 ( 2 )
+82 BINARY_SUBSCR
+84 LOAD_CONST 17 ( 1 )
+86 BINARY_SUBSCR
+88 LOAD_CONST 16 ( 2 )
+90 BINARY_SUBSCR
+92 LOAD_CONST 17 ( 1 )
+94 BINARY_SUBSCR
+96 LOAD_CONST 18 ( 1 )
+98 BINARY_SUBSCR
+100 LOAD_CONST 16 ( 2 )
+102 BINARY_SUBSCR
+104 LOAD_CONST 17 ( 1 )
+106 BINARY_SUBSCR
+108 LOAD_CONST 18 ( 1 )
+110 BINARY_SUBSCR
+112 LOAD_CONST 19 ( 1 )
+114 BINARY_SUBSCR
+116 LOAD_CONST 20 ( 2 )
+118 BINARY_SUBSCR
+120 LOAD_CONST 21 ( 1 )
+122 BINARY_SUBSCR
+124 LOAD_CONST 22 ( 2 )
+126 BINARY_SUBSCR
+128 LOAD_CONST 21 ( 1 )
+130 BINARY_SUBSCR
+132 LOAD_CONST 22 ( 2 )
+134 BINARY_SUBSCR
+136 LOAD_CONST 23 ( 1 )
+138 BINARY_SUBSCR
+140 LOAD_CONST 22 ( 2 )
+142 BINARY_SUBSCR
+144 LOAD_CONST 23 ( 1 )
+146 BINARY_SUBSCR
+148 LOAD_CONST 22 ( 2 )
+150 BINARY_SUBSCR
+148 LOAD_CONST 23 ( 1 )
+152 BINARY_SUBSCR
+154 LOAD_CONST 22 ( 2 )
+156 BINARY_SUBSCR
+158 LOAD_CONST 23 ( 1 )
+160 BINARY_SUBSCR
+162 LOAD_CONST 24 ( 2 )
+164 BINARY_SUBSCR
+166 LOAD_CONST 23 ( 1 )
+168 BINARY_SUBSCR
+170 LOAD_CONST 24 ( 2 )
+172 BINARY_SUBSCR
+174 LOAD_CONST 25 ( 2 )
+176 BINARY_SUBSCR
+174 LOAD_CONST 24 ( 2 )
+176 BINARY_SUBSCR
+178 RETURN_VALUE
+

@@ -1,0 +1,100 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , y ) :\n    if ( y == 0 ) : return 1\n    elif ( int ( y % 2 ) == 0 ) :\n        return ( f_gold ( x , int ( y / 2 ) ) * f_gold ( x , int ( y / 2 ) ) )\n    else :\n        return ( x * f_gold ( x , int ( y / 2 ) ) * f_gold ( x , int ( y / 2 ) ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (46,92,),\n    (99,87,),\n    (30,32,),\n    (1,86,),\n    (26,81,),\n    (1,49,),\n    (27,46,),\n    (10,52,),\n    (26,38,),\n    (29,80,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def power ( x , y ) :\n    if ( y == 0 ) : return 1\n    elif ( int ( y % 2 ) == 0 ) :\n        return ( power ( x , int ( y / 2 ) ) * power ( x , int ( y / 2 ) ) )\n    else :\n        return ( x * power ( x , int ( y / 2 ) ) * power ( x , int ( y / 2 ) ) )\n"}
+Disassembly of <code object power at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( x )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_FAST 0 ( x )
+10 LOAD_CONST 2 ( 1 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 20
+
+4 16 LOAD_FAST 0 ( x )
+18 LOAD_CONST 2 ( 1 )
+20 BINARY_SUBTRACT
+22 STORE_FAST 1 ( y )
+
+5 >> 24 LOAD_FAST 0 ( x )
+26 LOAD_CONST 3 ( 2 )
+28 BINARY_POWER
+30 LOAD_FAST 1 ( y )
+32 LOAD_CONST 3 ( 2 )
+34 BINARY_POWER
+36 BINARY_SUBTRACT
+38 LOAD_FAST 1 ( y )
+40 LOAD_CONST 3 ( 2 )
+42 BINARY_POWER
+44 BINARY_SUBTRACT
+46 LOAD_FAST 1 ( y )
+48 LOAD_CONST 3 ( 2 )
+50 BINARY_POWER
+52 BINARY_SUBTRACT
+54 LOAD_FAST 1 ( y )
+56 LOAD_CONST 3 ( 2 )
+58 BINARY_POWER
+60 BINARY_SUBTRACT
+62 LOAD_FAST 1 ( y )
+64 LOAD_CONST 3 ( 2 )
+66 BINARY_POWER
+68 BINARY_SUBTRACT
+70 LOAD_FAST 1 ( y )
+72 LOAD_CONST 3 ( 2 )
+74 BINARY_POWER
+76 BINARY_SUBTRACT
+78 LOAD_FAST 1 ( y )
+80 LOAD_CONST 3 ( 2 )
+82 BINARY_POWER
+84 BINARY_SUBTRACT
+86 LOAD_FAST 1 ( y )
+88 LOAD_CONST 3 ( 2 )
+90 BINARY_POWER
+92 BINARY_SUBTRACT
+94 LOAD_FAST 1 ( y )
+96 LOAD_CONST 3 ( 2 )
+98 BINARY_POWER
+100 BINARY_SUBTRACT
+102 LOAD_FAST 1 ( y )
+104 LOAD_CONST 3 ( 2 )
+106 BINARY_POWER
+108 BINARY_SUBTRACT
+110 LOAD_FAST 1 ( y )
+112 LOAD_CONST 3 ( 2 )
+114 BINARY_POWER
+116 BINARY_SUBTRACT
+118 LOAD_FAST 1 ( y )
+120 LOAD_CONST 3 ( 2 )
+122 BINARY_POWER
+124 BINARY_SUBTRACT
+126 LOAD_FAST 1 ( y )
+128 LOAD_CONST 3 ( 2 )
+130 BINARY_POWER
+132 BINARY_SUBTRACT
+134 LOAD_FAST 1 ( y )
+136 LOAD_CONST 3 ( 2 )
+138 BINARY_POWER
+140 LOAD_FAST 1 ( y )
+142 LOAD_CONST 3 ( 2 )
+144 BINARY_POWER
+146 BINARY_SUBTRACT
+148 LOAD_FAST 1 ( y )
+150 LOAD_CONST 3 ( 2 )
+152 BINARY_POWER
+154 BINARY_SUBTRACT
+156 LOAD_FAST 1 ( y )
+158 LOAD_CONST 3 ( 2 )
+160 BINARY_POWER
+162 BINARY_SUBTRACT
+164 LOAD_FAST 1 ( y )
+166 LOAD_CONST 3 ( 2 )
+168 BINARY_POWER
+170 BINARY_SUBTRACT
+172 LOAD_FAST 1 ( y )
+174 LOAD_CONST 3 ( 2 )
+176 BINARY_POWER
+178 BINARY_SUBTRACT
+180 LOAD_FAST 1 ( y )
+182 LOAD_CONST 3 ( 2 )
+184 BINARY_POWER
+186 BINARY_SUBTRACT
+188 LOAD_FAST 1 (

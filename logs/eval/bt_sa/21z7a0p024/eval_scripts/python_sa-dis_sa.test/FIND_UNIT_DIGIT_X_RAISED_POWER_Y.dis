@@ -1,0 +1,70 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( x , y ) :\n    res = 1\n    for i in range ( y ) :\n        res = ( res * x ) % 10\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (33,55,),\n    (95,7,),\n    (21,63,),\n    (3,62,),\n    (40,53,),\n    (64,24,),\n    (17,23,),\n    (58,74,),\n    (44,13,),\n    (27,54,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def unitDigitXRaisedY ( x , y ) :\n    res = 1\n    for i in range ( y ) :\n        res = ( res * x ) % 10\n    return res\n"}
+Disassembly of <code object unitDigitXXY at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 2 ( res )
+
+3 4 SETUP_LOOP 26 ( to 32 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_FAST 0 ( x )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 18 ( to 30 )
+16 STORE_FAST 3 ( i )
+
+4 18 LOAD_FAST 2 ( res )
+20 LOAD_FAST 3 ( i )
+22 BINARY_MODULO
+24 STORE_FAST 4 ( res )
+
+5 26 LOAD_FAST 4 ( res )
+28 LOAD_FAST 3 ( i )
+30 BINARY_MODULO
+32 LOAD_FAST 1 ( y )
+34 BINARY_SUBTRACT
+36 LOAD_FAST 2 ( res )
+38 BINARY_SUBTRACT
+40 LOAD_FAST 3 ( i )
+42 BINARY_SUBTRACT
+44 BINARY_MULTIPLY
+46 LOAD_FAST 2 ( res )
+48 LOAD_FAST 3 ( i )
+50 BINARY_SUBTRACT
+52 BINARY_MULTIPLY
+54 LOAD_FAST 2 ( res )
+56 LOAD_FAST 3 ( i )
+58 BINARY_SUBTRACT
+60 BINARY_MULTIPLY
+62 LOAD_FAST 2 ( res )
+64 BINARY_SUBTRACT
+66 LOAD_FAST 4 ( res )
+68 BINARY_SUBTRACT
+70 BINARY_MULTIPLY
+72 LOAD_FAST 2 ( res )
+74 BINARY_SUBTRACT
+76 LOAD_FAST 3 ( i )
+78 BINARY_SUBTRACT
+80 BINARY_MULTIPLY
+82 LOAD_FAST 2 ( res )
+84 BINARY_SUBTRACT
+86 LOAD_FAST 3 ( i )
+88 BINARY_SUBTRACT
+90 BINARY_MULTIPLY
+92 BINARY_SUBTRACT
+94 LOAD_FAST 2 ( res )
+96 BINARY_SUBTRACT
+98 LOAD_FAST 3 ( i )
+100 BINARY_SUBTRACT
+102 LOAD_FAST 4 ( res )
+104 BINARY_SUBTRACT
+106 BINARY_MULTIPLY
+108 BINARY_SUBTRACT
+110 LOAD_FAST 2 ( res )
+112 BINARY_SUBTRACT
+114 LOAD_FAST 3 ( i )
+116 BINARY_SUBTRACT
+118 BINARY_MULTIPLY
+120 BINARY_ADD
+122 STORE_FAST 2 ( res )
+
+6 124 LOAD_FAST 2 ( res )
+126 RETURN_VALUE

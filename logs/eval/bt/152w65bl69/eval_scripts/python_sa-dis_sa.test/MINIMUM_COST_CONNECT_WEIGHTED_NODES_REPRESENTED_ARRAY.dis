@@ -1,0 +1,81 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport sys\n\ndef f_gold ( a , n ) :\n    mn = sys.maxsize\n    sum = 0\n    for i in range ( n ) :\n        mn = min ( a [ i ] , mn )\n        sum += a [ i ]\n    return mn * ( sum - mn )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([3, 8, 14, 15, 17, 17, 19, 21, 22, 23, 29, 32, 36, 37, 43, 45, 46, 47, 47, 53, 57, 57, 70, 71, 72, 76, 81, 82, 90, 95, 96, 98, 99],32,),\n    ([94, -18, 50, 94, -74, -50, -44, -92, -58, 14, -66, -78],10,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],24,),\n    ([15, 18, 64, 28],2,),\n    ([-96, -88, -88, -84, -82, -78, -78, -60, -58, -56, -54, -52, -48, -44, -28, -26, -14, -12, 6, 10, 10, 14, 14, 50, 52, 54, 60, 62, 62, 64, 66, 70, 72, 72, 78, 80, 84],31,),\n    ([0, 1, 1, 0, 1, 1, 1, 1],6,),\n    ([3, 10, 14, 14, 15, 16, 18, 20, 21, 30, 31, 33, 35, 39, 46, 48, 59, 59, 61, 77, 78, 79, 81, 83, 85, 92, 97, 97, 99],23,),\n    ([4, -32, 68, -48, 54, 24, 78, 98, -70, 44, -82, -92, -16, -92, -70, 52, -58, -62, -58, 32, 14, -4, 80, -78, -26, -24, -8],18,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],35,),\n    ([82, 74, 53, 91, 81, 88, 42, 62, 38, 43, 29, 60, 43, 44, 19, 28, 20, 1, 5, 94, 18, 77, 52, 38, 55, 1, 10, 29, 34, 91, 64, 80, 81, 39, 4, 47, 30, 62, 58, 66, 73, 52, 62, 9, 36, 49],38,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minimum_cost ( a , n ) :\n    mn = sys.maxsize\n    sum = 0\n    for i in range ( n ) :\n        mn = min ( a [ i ] , mn )\n        sum += a [ i ]\n    return mn * ( sum - mn )\n"}
+Disassembly of <code object minimum_cost at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( sys )
+2 LOAD_ATTR 1 ( maxsize )
+4 LOAD_CONST 1 ( 0 )
+6 COMPARE_OP 4 ( > )
+8 POP_JUMP_IF_FALSE 20
+
+27 10 LOAD_GLOBAL 2 ( max )
+12 LOAD_FAST 0 ( a )
+14 CALL_FUNCTION 1
+16 STORE_FAST 1 ( n )
+
+28 18 LOAD_FAST 1 ( n )
+20 LOAD_CONST 2 ( 1 )
+22 COMPARE_OP 4 ( > )
+24 POP_JUMP_IF_FALSE 30
+
+29 26 LOAD_FAST 1 ( n )
+28 LOAD_CONST 3 ( 1 )
+30 INPLACE_ADD
+32 STORE_FAST 1 ( n )
+
+30 >> 34 LOAD_FAST 1 ( n )
+36 LOAD_CONST 4 ( - 1 )
+38 INPLACE_ADD
+40 STORE_FAST 1 ( n )
+
+31 42 LOAD_FAST 1 ( n )
+44 LOAD_CONST 5 ( 1 )
+46 INPLACE_ADD
+48 STORE_FAST 1 ( n )
+
+32 50 LOAD_FAST 1 ( n )
+52 LOAD_CONST 6 ( 2 )
+54 INPLACE_ADD
+56 STORE_FAST 1 ( n )
+
+33 58 LOAD_FAST 1 ( n )
+60 LOAD_CONST 7 ( 2 )
+62 INPLACE_ADD
+64 STORE_FAST 1 ( n )
+
+34 66 LOAD_FAST 1 ( n )
+68 LOAD_CONST 8 ( 2 )
+70 INPLACE_ADD
+72 STORE_FAST 1 ( n )
+74 JUMP_FORWARD 4 ( to 78 )
+
+35 >> 76 LOAD_FAST 1 ( n )
+78 LOAD_CONST 9 ( 2 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( n )
+
+36 84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 10 ( 2 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( n )
+
+37 >> 92 LOAD_FAST 1 ( n )
+94 LOAD_FAST 0 ( a )
+96 LOAD_FAST 0 ( a )
+98 LOAD_FAST 1 ( n )
+100 LOAD_FAST 2 ( n )
+102 LOAD_FAST 2 ( n )
+104 BUILD_TUPLE 3
+106 INPLACE_ADD
+108 STORE_FAST 1 ( n )
+
+38 110 LOAD_FAST 1 ( n )
+112 LOAD_FAST 0 ( a )
+114 LOAD_FAST 2 ( n )
+116 BUILD_TUPLE 3
+118 INPLACE_ADD
+120 STORE_FAST 1 ( n )
+
+39 122 LOAD_FAST 1 ( n )
+124 LOAD_FAST 2 ( n )
+126 BUILD_TUPLE 3
+128 RETURN_VALUE
+

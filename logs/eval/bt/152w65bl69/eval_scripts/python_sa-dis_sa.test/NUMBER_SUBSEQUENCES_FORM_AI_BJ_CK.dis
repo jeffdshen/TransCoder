@@ -1,0 +1,90 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    aCount = 0\n    bCount = 0\n    cCount = 0\n    for i in range ( len ( s ) ) :\n        if ( s [ i ] == 'a' ) :\n            aCount = ( 1 + 2 * aCount )\n        elif ( s [ i ] == 'b' ) :\n            bCount = ( aCount + 2 * bCount )\n        elif ( s [ i ] == 'c' ) :\n            cCount = ( bCount + 2 * cCount )\n    return cCount\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('',),\n    ('abbc',),\n    ('abcabc',),\n    ('agsdbkfdc ',),\n    ('ababab',),\n    ('aaaaaaa',),\n    ('aabaaabcc',),\n    ('19',),\n    ('1001100',),\n    ('DtAnuQbU',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countSubsequences ( s ) :\n    aCount = 0\n    bCount = 0\n    cCount = 0\n    for i in range ( len ( s ) ) :\n        if ( s [ i ] == 'a' ) :\n            aCount = ( 1 + 2 * aCount )\n        elif ( s [ i ] == 'b' ) :\n            bCount = ( aCount + 2 * bCount )\n        elif ( s [ i ] == 'c' ) :\n            cCount = ( bCount + 2 * cCount )\n    return cCount\n"}
+Disassembly of <code object countSubsequences at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( cCount )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 2 ( s )
+
+27 8 LOAD_FAST 0 ( s )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 3 ( s )
+
+28 16 LOAD_FAST 0 ( s )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 4 ( s )
+
+29 24 LOAD_FAST 0 ( s )
+26 LOAD_CONST 4 ( '' )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 44
+
+30 32 LOAD_FAST 0 ( s )
+34 LOAD_CONST 5 ( 1 )
+36 BINARY_SUBSCR
+38 STORE_FAST 5 ( s )
+
+31 40 LOAD_FAST 0 ( s )
+42 LOAD_CONST 6 ( '' )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 44
+
+32 48 LOAD_FAST 0 ( s )
+50 LOAD_CONST 7 ( '' )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 44
+
+33 56 LOAD_FAST 0 ( s )
+58 LOAD_CONST 8 ( '' )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 44
+
+34 64 LOAD_FAST 0 ( s )
+66 LOAD_CONST 9 ( '' )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 80
+
+35 72 LOAD_FAST 0 ( s )
+74 LOAD_CONST 10 ( '' )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 80
+
+36 80 LOAD_FAST 0 ( s )
+82 LOAD_CONST 11 ( '' )
+84 COMPARE_OP 2 ( == )
+86 POP_JUMP_IF_FALSE 80
+
+37 88 LOAD_FAST 0 ( s )
+90 LOAD_CONST 12 ( '' )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 80
+
+38 >> 96 LOAD_FAST 0 ( s )
+98 LOAD_CONST 13 ( '' )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 80
+
+39 104 LOAD_FAST 0 ( s )
+106 LOAD_CONST 14 ( '' )
+108 COMPARE_OP 2 ( == )
+110 POP_JUMP_IF_FALSE 80
+
+40 112 LOAD_FAST 0 ( s )
+114 LOAD_CONST 15 ( '' )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 80
+
+41 120 LOAD_FAST 0 ( s )
+122 LOAD_CONST 16 ( '' )
+124 COMPARE_OP 2 ( == )
+126 POP_JUMP_IF_FALSE 130
+
+42 128 LOAD_FAST 0 ( s )
+130 LOAD_CONST 17 ( 1 )
+132 COMPARE_OP 2 ( == )
+134 POP_JUMP_IF_FALSE 130
+
+43 >> 136 LOAD_FAST 0 ( s )
+138 RETURN_VALUE
+

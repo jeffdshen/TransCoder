@@ -1,0 +1,64 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , x ) :\n    curr_sum = 0\n    min_len = n + 1\n    start = 0\n    end = 0\n    while ( end < n ) :\n        while ( curr_sum <= x and end < n ) :\n            curr_sum += arr [ end ]\n            end += 1\n        while ( curr_sum > x and start < n ) :\n            if ( end - start < min_len ) :\n                min_len = end - start\n            curr_sum -= arr [ start ]\n            start += 1\n    return min_len\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([6, 11, 11, 14, 18, 19, 21, 22, 22, 23, 26, 27, 28, 28, 29, 30, 31, 34, 39, 42, 42, 44, 45, 49, 49, 53, 57, 61, 65, 66, 67, 70, 71, 73, 74, 74, 78, 85, 88, 94, 95, 97],37,23,),\n    ([-30, -22, -66, -80, 18, -64, -28, -46, 94, 60, -64, 2, 26, -94, 58, 56, 56, 88, 50, -78, -12, 68, 54, -78, 42, -30, 24, -48, 84, 12, -88, 0, 54, -92, -4, 42, -60, -72, -32],31,29,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],8,12,),\n    ([86, 8, 23, 40, 55, 93, 11, 35, 33, 37, 96, 91, 35, 66, 37, 57, 83, 99, 96, 15, 18, 93],16,13,),\n    ([-92, -68, -48, -48, -42, -26, -22, -18, 2, 4, 8, 14, 20, 22, 32, 46, 52, 62, 70, 96, 98],17,14,),\n    ([0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0],11,10,),\n    ([4, 4, 11, 11, 13, 15, 16, 18, 19, 19, 19, 23, 26, 27, 34, 39, 39, 40, 41, 46, 47, 51, 52, 52, 53, 57, 58, 58, 60, 64, 68, 70, 72, 84, 84, 85, 95, 98, 99],31,35,),\n    ([12, -22, 2, -90, -92, 84, -26, -76, -72, 50, -36, 30, 78, -18, -94, -30, 22, 28, 10, 32, 34, -86, 0, -4, 40, 0, 80, 50, 66, -48, -40, -94, 64, 58, -14, 0, -32, -58, -22, -94, -68, -36, -94, -48, 40, 78, -74],42,26,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],25,21,),\n    ([1, 33, 20, 32, 76, 27, 8, 95, 78, 72, 25, 56],9,10,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def smallestSubWithSum ( arr , n , x ) :\n    curr_sum = 0\n    min_len = n + 1\n    start = 0\n    end = 0\n    while ( end < n ) :\n        while ( curr_sum <= x and end < n ) :\n            curr_sum += arr [ end ]\n            end += 1\n        while ( curr_sum > x and start < n ) :\n            if ( end - start < min_len ) :\n                min_len = end - start\n            curr_sum -= arr [ start ]\n            start += 1\n    return min_len\n"}
+Disassembly of <code object esearch_results stSubWithSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( curr_sum )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 3 ( curr_sum )
+
+4 8 LOAD_CONST 2 ( 1 )
+10 STORE_FAST 4 ( curr_sum )
+
+5 12 SETUP_LOOP 64 ( to 76 )
+14 LOAD_FAST 0 ( arr )
+16 GET_ITER
+>> 18 FOR_ITER 64 ( to 74 )
+20 STORE_FAST 5 ( i )
+
+6 22 LOAD_FAST 1 ( n )
+24 LOAD_FAST 5 ( i )
+26 COMPARE_OP 0 ( < )
+28 POP_JUMP_IF_FALSE 42
+
+7 30 LOAD_FAST 1 ( n )
+32 LOAD_FAST 5 ( i )
+34 BINARY_SUBSCR
+36 STORE_FAST 6 ( curr_sum )
+
+8 38 LOAD_FAST 1 ( n )
+40 LOAD_FAST 6 ( curr_sum )
+42 COMPARE_OP 4 ( > )
+44 POP_JUMP_IF_FALSE 18
+
+9 46 LOAD_FAST 1 ( n )
+48 LOAD_FAST 6 ( curr_sum )
+50 BINARY_SUBSCR
+52 STORE_FAST 7 ( curr_sum )
+
+10 54 LOAD_FAST 2 ( curr_sum )
+56 LOAD_FAST 7 ( curr_sum )
+58 BINARY_SUBSCR
+60 LOAD_FAST 7 ( curr_sum )
+62 COMPARE_OP 4 ( > )
+64 POP_JUMP_IF_FALSE 18
+
+11 66 LOAD_FAST 1 ( n )
+68 LOAD_FAST 6 ( curr_sum )
+70 BINARY_SUBSCR
+72 LOAD_FAST 7 ( curr_sum )
+74 LOAD_FAST 7 ( curr_sum )
+76 STORE_SUBSCR
+
+12 78 LOAD_FAST 1 ( n )
+80 LOAD_FAST 6 ( curr_sum )
+82 BINARY_SUBSCR
+84 LOAD_FAST 7 ( curr_sum )
+86 STORE_SUBSCR
+88 JUMP_ABSOLUTE 18
+>> 90 POP_BLOCK
+
+13 >> 92 LOAD_FAST 2 ( curr_sum )
+94 LOAD_FAST 4 ( curr_sum )
+96 STORE_SUBSCR
+98 LOAD_CONST 0 ( None )
+100 RETURN_VALUE

@@ -1,0 +1,87 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , l , h ) :\n    if l >= h :\n        return\n    if arr [ l ] > arr [ h ] :\n        t = arr [ l ]\n        arr [ l ] = arr [ h ]\n        arr [ h ] = t\n    if h - l + 1 > 2 :\n        t = ( int ) ( ( h - l + 1 ) / 3 )\n        f_gold ( arr , l , ( h - t ) )\n        f_gold ( arr , l + t , ( h ) )\n        f_gold ( arr , l , ( h - t ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([6, 25, 42, 52, 53, 54, 58, 66, 67, 70],6,6,),\n    ([-13, -98, 50, -63, 48, 3, -76, 12, -35, 93, 29, 17, 16, 5, -97, -54, -45, -25],16,14,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],28,24,),\n    ([7, 49, 26, 33, 48, 79, 2, 71, 32, 4, 20, 36],9,10,),\n    ([88],0,0,),\n    ([1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0],20,28,),\n    ([2, 2, 4, 5, 7, 12, 12, 14, 14, 16, 17, 29, 29, 31, 32, 39, 41, 47, 48, 49, 51, 54, 58, 58, 59, 60, 73, 78, 80, 81, 82, 83, 84, 85, 90, 95, 97, 99, 99],28,29,),\n    ([-31, -55, 6, 37, 77, 61, 0, 46, -91, -38, 85, -71, 25, 14, 53, 43, 34],15,11,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],12,17,),\n    ([77, 68, 78, 97, 92, 52, 37, 8, 44, 98, 5, 69, 31, 45, 9, 32, 33, 67, 30, 76, 29, 3, 90, 57, 30, 9, 26, 2, 62, 3, 46, 68, 25, 51, 13, 44, 35, 55],27,20,)\n        ]\n    filled_function_param = [\n    ([6, 25, 42, 52, 53, 54, 58, 66, 67, 70],6,6,),\n    ([-13, -98, 50, -63, 48, 3, -76, 12, -35, 93, 29, 17, 16, 5, -97, -54, -45, -25],16,14,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],28,24,),\n    ([7, 49, 26, 33, 48, 79, 2, 71, 32, 4, 20, 36],9,10,),\n    ([88],0,0,),\n    ([1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0],20,28,),\n    ([2, 2, 4, 5, 7, 12, 12, 14, 14, 16, 17, 29, 29, 31, 32, 39, 41, 47, 48, 49, 51, 54, 58, 58, 59, 60, 73, 78, 80, 81, 82, 83, 84, 85, 90, 95, 97, 99, 99],28,29,),\n    ([-31, -55, 6, 37, 77, 61, 0, 46, -91, -38, 85, -71, 25, 14, 53, 43, 34],15,11,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],12,17,),\n    ([77, 68, 78, 97, 92, 52, 37, 8, 44, 98, 5, 69, 31, 45, 9, 32, 33, 67, 30, 76, 29, 3, 90, 57, 30, 9, 26, 2, 62, 3, 46, 68, 25, 51, 13, 44, 35, 55],27,20,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def stoogesort ( arr , l , h ) :\n    if l >= h :\n        return\n    if arr [ l ] > arr [ h ] :\n        t = arr [ l ]\n        arr [ l ] = arr [ h ]\n        arr [ h ] = t\n    if h - l + 1 > 2 :\n        t = ( int ) ( ( h - l + 1 ) / 3 )\n        stoogesort ( arr , l , ( h - t ) )\n        stoogesort ( arr , l + t , ( h ) )\n        stoogesort ( arr , l , ( h - t ) )\n"}
+Disassembly of <code object stoogesort at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 1 ( l )
+2 LOAD_FAST 2 ( h )
+4 COMPARE_OP 5 ( >= )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 0 ( None )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_FAST 0 ( arr )
+14 LOAD_FAST 1 ( l )
+16 BINARY_SUBSCR
+18 LOAD_FAST 0 ( arr )
+20 LOAD_FAST 2 ( h )
+22 BINARY_SUBSCR
+24 COMPARE_OP 4 ( > )
+26 POP_JUMP_IF_FALSE 54
+
+5 28 LOAD_FAST 0 ( arr )
+30 LOAD_FAST 1 ( l )
+32 BINARY_SUBSCR
+34 STORE_FAST 3 ( t )
+
+6 36 LOAD_FAST 0 ( arr )
+38 LOAD_FAST 2 ( h )
+40 BINARY_SUBSCR
+42 LOAD_FAST 0 ( arr )
+44 LOAD_FAST 1 ( l )
+46 STORE_SUBSCR
+
+7 48 LOAD_FAST 3 ( t )
+50 LOAD_FAST 0 ( arr )
+52 LOAD_FAST 2 ( h )
+54 STORE_SUBSCR
+
+8 56 LOAD_FAST 2 ( h )
+58 LOAD_FAST 1 ( l )
+60 BINARY_SUBTRACT
+62 LOAD_CONST 1 ( 1 )
+64 BINARY_ADD
+66 LOAD_CONST 2 ( 2 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 116
+
+9 72 LOAD_GLOBAL 0 ( int )
+74 LOAD_FAST 2 ( h )
+76 LOAD_FAST 1 ( l )
+78 BINARY_SUBTRACT
+80 LOAD_CONST 1 ( 1 )
+82 BINARY_ADD
+84 LOAD_CONST 3 ( 3 )
+86 BINARY_TRUE_DIVIDE
+88 CALL_FUNCTION 1
+90 STORE_FAST 3 ( t )
+
+10 92 LOAD_GLOBAL 1 ( stoogesort )
+94 LOAD_FAST 0 ( arr )
+96 LOAD_FAST 1 ( l )
+98 LOAD_FAST 2 ( h )
+100 LOAD_FAST 3 ( t )
+102 BINARY_SUBTRACT
+104 BUILD_TUPLE 2
+106 CALL_FUNCTION 1
+108 POP_TOP
+
+11 110 LOAD_GLOBAL 1 ( stoogesort )
+112 LOAD_FAST 0 ( arr )
+114 LOAD_FAST 1 ( l )
+116 LOAD_FAST 3 ( t )
+118 BINARY_ADD
+120 LOAD_FAST 2 ( h )
+122 BUILD_TUPLE 2
+124 CALL_FUNCTION 3
+126 POP_TOP
+
+12 128 LOAD_GLOBAL 1 ( stoogesort )
+130 LOAD_FAST 0 ( arr )
+132 LOAD_FAST 1 ( l )
+134 LOAD_FAST 2 ( h )
+136 LOAD_FAST 2 ( h )
+138 BINARY_SUBTRACT
+140 BUILD_TUPLE 2
+142 CALL_FUNCTION 3
+144 POP_TOP
+>> 146 LOAD_CONST 0 ( None )
+148 RETURN_VALUE

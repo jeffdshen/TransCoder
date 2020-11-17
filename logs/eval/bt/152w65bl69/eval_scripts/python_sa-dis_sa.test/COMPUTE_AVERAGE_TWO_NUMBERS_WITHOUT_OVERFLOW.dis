@@ -1,0 +1,14 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nfrom math import floor\n\ndef f_gold ( a , b ) :\n    return floor ( ( a + b ) / 2 )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1,44,),\n    (6,61,),\n    (75,20,),\n    (51,17,),\n    (19,25,),\n    (82,98,),\n    (72,21,),\n    (48,41,),\n    (12,17,),\n    (41,80,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def compute_average ( a , b ) :\n    return floor ( ( a + b ) / 2 )\n"}
+Disassembly of <code object compute_average at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( floor )
+2 LOAD_FAST 0 ( a )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( b )
+
+27 8 LOAD_FAST 1 ( b )
+10 LOAD_FAST 1 ( b )
+12 LOAD_FAST 2 ( b )
+14 LOAD_FAST 3 ( b )
+16 CALL_FUNCTION 2
+18 RETURN_VALUE
+

@@ -1,0 +1,64 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s , c ) :\n    oneSeen = False\n    i = 0\n    n = len ( s )\n    while ( i < n ) :\n        if ( s [ i ] == c ) :\n            if ( oneSeen == True ) :\n                return False\n            while ( i < n and s [ i ] == c ) :\n                i = i + 1\n            oneSeen = True\n        else :\n            i = i + 1\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('gILrzLimS','m',),\n    ('307471222','2',),\n    ('110','0',),\n    ('GcAB','v',),\n    ('113','3',),\n    ('011110010','0',),\n    ('wcwob','w',),\n    ('74571582216153','1',),\n    ('100000011','0',),\n    ('ryPErkzY','q',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkIfAllTogether ( s , c ) :\n    oneSeen = False\n    i = 0\n    n = len ( s )\n    while ( i < n ) :\n        if ( s [ i ] == c ) :\n            if ( oneSeen == True ) :\n                return False\n            while ( i < n and s [ i ] == c ) :\n                i = i + 1\n            oneSeen = True\n        else :\n            i = i + 1\n    return True\n"}
+Disassembly of <code object checkIfAllTosions at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( False )
+2 STORE_FAST 2 ( oneSeen )
+
+3 4 LOAD_CONST 2 ( 0 )
+6 STORE_FAST 3 ( i )
+
+4 8 LOAD_GLOBAL 0 ( len )
+10 LOAD_FAST 0 ( s )
+12 CALL_FUNCTION 1
+14 STORE_FAST 4 ( n )
+
+5 16 SETUP_LOOP 92 ( to 110 )
+>> 18 LOAD_FAST 3 ( i )
+20 LOAD_FAST 4 ( n )
+22 COMPARE_OP 0 ( < )
+24 POP_JUMP_IF_FALSE 108
+
+6 26 LOAD_FAST 0 ( s )
+28 LOAD_FAST 3 ( i )
+30 BINARY_SUBSCR
+32 LOAD_FAST 1 ( c )
+34 COMPARE_OP 2 ( == )
+36 POP_JUMP_IF_FALSE 46
+
+7 38 LOAD_FAST 2 ( oneSeen )
+40 LOAD_CONST 3 ( True )
+42 COMPARE_OP 2 ( == )
+44 POP_JUMP_IF_FALSE 50
+
+8 46 LOAD_CONST 1 ( False )
+48 RETURN_VALUE
+
+9 >> 50 SETUP_LOOP 30 ( to 82 )
+>> 52 LOAD_FAST 3 ( i )
+54 LOAD_FAST 4 ( n )
+56 COMPARE_OP 0 ( < )
+58 POP_JUMP_IF_FALSE 80
+60 LOAD_FAST 0 ( s )
+62 LOAD_FAST 3 ( i )
+64 BINARY_SUBSCR
+66 LOAD_FAST 1 ( c )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 80
+
+10 72 LOAD_FAST 3 ( i )
+74 LOAD_CONST 4 ( 1 )
+76 BINARY_ADD
+78 STORE_FAST 3 ( i )
+
+11 >> 80 LOAD_CONST 3 ( True )
+82 STORE_FAST 2 ( oneSeen )
+84 JUMP_ABSOLUTE 52
+
+13 >> 86 LOAD_FAST 3 ( i )
+88 LOAD_CONST 4 ( 1 )
+90 BINARY_ADD
+92 STORE_FAST 3 ( i )
+94 JUMP_ABSOLUTE 18
+>> 96 POP_BLOCK
+
+14 >> 98 LOAD_CONST 3 ( True )
+100 RETURN_VALUE

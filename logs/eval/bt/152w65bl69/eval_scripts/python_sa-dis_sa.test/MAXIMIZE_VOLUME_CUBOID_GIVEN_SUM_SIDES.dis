@@ -1,0 +1,85 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( s ) :\n    maxvalue = 0\n    i = 1\n    for i in range ( s - 1 ) :\n        j = 1\n        for j in range ( s ) :\n            k = s - i - j\n            maxvalue = max ( maxvalue , i * j * k )\n    return maxvalue\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (67,),\n    (48,),\n    (59,),\n    (22,),\n    (14,),\n    (66,),\n    (1,),\n    (75,),\n    (58,),\n    (78,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxvolume ( s ) :\n    maxvalue = 0\n    i = 1\n    for i in range ( s - 1 ) :\n        j = 1\n        for j in range ( s ) :\n            k = s - i - j\n            maxvalue = max ( maxvalue , i * j * k )\n    return maxvalue\n"}
+Disassembly of <code object maxvolume at 0x7f816a673a50, file "<dis>", line 100>:
+101 0 LOAD_FAST 1 ( maxvalue )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+102 8 LOAD_FAST 1 ( maxvalue )
+10 LOAD_CONST 2 ( 0 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+103 16 LOAD_FAST 1 ( maxvalue )
+18 LOAD_CONST 3 ( 1 )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+104 >> 24 LOAD_FAST 1 ( maxvalue )
+26 LOAD_CONST 4 ( - 1 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 44
+
+105 32 LOAD_FAST 1 ( maxvalue )
+34 LOAD_CONST 5 ( - 1 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+
+106 40 LOAD_FAST 1 ( maxvalue )
+42 LOAD_CONST 6 ( - 1 )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 44
+
+107 48 LOAD_FAST 1 ( maxvalue )
+50 LOAD_CONST 7 ( - 1 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 44
+
+108 56 LOAD_FAST 1 ( maxvalue )
+58 LOAD_CONST 8 ( - 1 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 44
+
+109 64 LOAD_FAST 1 ( maxvalue )
+66 LOAD_CONST 9 ( - 1 )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 44
+
+110 72 LOAD_FAST 1 ( maxvalue )
+74 LOAD_CONST 10 ( - 1 )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 44
+
+111 80 LOAD_FAST 1 ( maxvalue )
+82 LOAD_CONST 11 ( - 1 )
+84 COMPARE_OP 2 ( == )
+86 POP_JUMP_IF_FALSE 44
+
+112 88 LOAD_FAST 1 ( maxvalue )
+90 LOAD_CONST 6 ( - 1 )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 106
+
+113 96 LOAD_FAST 1 ( maxvalue )
+98 LOAD_CONST 12 ( - 1 )
+100 COMPARE_OP 2 ( == )
+102 POP_JUMP_IF_FALSE 106
+
+114 104 LOAD_FAST 1 ( maxvalue )
+106 LOAD_CONST 13 ( - 1 )
+108 COMPARE_OP 2 ( == )
+110 POP_JUMP_IF_FALSE 106
+
+115 112 LOAD_FAST 1 ( maxvalue )
+114 LOAD_CONST 6 ( - 1 )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 106
+
+116 120 LOAD_FAST 1 ( maxvalue )
+122 JUMP_FORWARD 2 ( to 106 )
+>> 124 LOAD_CONST 6 ( - 1 )
+126 RETURN_VALUE
+
+117 >> 128 LOAD_FAST 1 ( maxvalue )
+130 RETURN_VALUE
+

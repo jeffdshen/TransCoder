@@ -1,0 +1,58 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    i = 0\n    ans = 0\n    while ( ( 1 << i ) <= n ) :\n        k = 0\n        change = 1 << i\n        for j in range ( 0 , n + 1 ) :\n            ans += k\n            if change == 1 :\n                k = not k\n                change = 1 << i\n            else :\n                change -= 1\n        i += 1\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (90,),\n    (56,),\n    (43,),\n    (31,),\n    (77,),\n    (35,),\n    (43,),\n    (66,),\n    (15,),\n    (95,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countSetBits ( n ) :\n    i = 0\n    ans = 0\n    while ( ( 1 << i ) <= n ) :\n        k = 0\n        change = 1 << i\n        for j in range ( 0 , n + 1 ) :\n            ans += k\n            if change == 1 :\n                k = not k\n                change = 1 << i\n            else :\n                change -= 1\n        i += 1\n    return ans\n"}
+Disassembly of <code object countSetBits at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( ans )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 2 ( ans )
+
+4 8 SETUP_LOOP 64 ( to 76 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_CONST 2 ( 1 )
+14 LOAD_FAST 0 ( n )
+16 CALL_FUNCTION 2
+18 GET_ITER
+>> 20 FOR_ITER 64 ( to 74 )
+22 STORE_FAST 3 ( j )
+
+5 24 LOAD_FAST 3 ( j )
+26 LOAD_CONST 3 ( 1 )
+28 INPLACE_ADD
+30 STORE_FAST 3 ( j )
+
+6 32 LOAD_FAST 3 ( j )
+34 LOAD_CONST 4 ( 2 )
+36 INPLACE_ADD
+38 STORE_FAST 3 ( j )
+
+7 40 LOAD_FAST 1 ( ans )
+42 LOAD_CONST 5 ( 3 )
+44 INPLACE_ADD
+46 STORE_FAST 1 ( ans )
+
+8 48 LOAD_FAST 1 ( ans )
+50 LOAD_CONST 6 ( 4 )
+52 INPLACE_ADD
+54 STORE_FAST 1 ( ans )
+
+9 56 LOAD_FAST 2 ( ans )
+58 LOAD_CONST 7 ( 2 )
+60 INPLACE_ADD
+62 STORE_FAST 2 ( ans )
+
+10 64 LOAD_FAST 2 ( ans )
+66 LOAD_CONST 8 ( 3 )
+68 INPLACE_ADD
+70 STORE_FAST 2 ( ans )
+72 JUMP_ABSOLUTE 20
+>> 74 POP_BLOCK
+
+11 >> 76 LOAD_FAST 1 ( ans )
+78 LOAD_CONST 9 ( 3 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( ans )
+84 JUMP_ABSOLUTE 20
+>> 86 POP_BLOCK
+
+12 >> 88 LOAD_FAST 1 ( ans )
+90 RETURN_VALUE

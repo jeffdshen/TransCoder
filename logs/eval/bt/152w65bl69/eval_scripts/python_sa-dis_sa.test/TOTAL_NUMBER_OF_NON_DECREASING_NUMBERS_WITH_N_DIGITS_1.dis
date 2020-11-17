@@ -1,0 +1,82 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    N = 10\n    count = 1\n    for i in range ( 1 , n + 1 ) :\n        count = int ( count * ( N + i - 1 ) )\n        count = int ( count / i )\n    return count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (40,),\n    (11,),\n    (94,),\n    (73,),\n    (6,),\n    (73,),\n    (58,),\n    (40,),\n    (64,),\n    (66,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countNonDecreasing ( n ) :\n    N = 10\n    count = 1\n    for i in range ( 1 , n + 1 ) :\n        count = int ( count * ( N + i - 1 ) )\n        count = int ( count / i )\n    return count\n"}
+Disassembly of <code object countNonDecreasing at 0x7f816a443a50, file "<dis>", line 164>:
+165 0 LOAD_CONST 1 ( 10 )
+2 STORE_FAST 1 ( n )
+
+166 4 LOAD_CONST 2 ( 1 )
+6 STORE_FAST 2 ( d )
+
+167 8 LOAD_FAST 0 ( n )
+10 LOAD_CONST 3 ( 1 )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+168 16 LOAD_CONST 4 ( 1 )
+18 STORE_FAST 2 ( d )
+
+169 >> 20 LOAD_FAST 1 ( n )
+22 LOAD_CONST 3 ( 1 )
+24 COMPARE_OP 2 ( == )
+26 POP_JUMP_IF_FALSE 28
+
+170 28 LOAD_CONST 5 ( 1 )
+30 STORE_FAST 2 ( d )
+
+171 32 LOAD_FAST 0 ( n )
+34 LOAD_CONST 3 ( 1 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 52
+
+172 40 LOAD_CONST 6 ( 1 )
+42 STORE_FAST 2 ( d )
+
+173 44 LOAD_FAST 0 ( n )
+46 LOAD_CONST 3 ( 1 )
+48 INPLACE_ADD
+50 STORE_FAST 2 ( d )
+
+174 >> 52 LOAD_FAST 2 ( d )
+54 LOAD_CONST 3 ( 1 )
+56 INPLACE_ADD
+58 STORE_FAST 2 ( d )
+
+175 60 LOAD_FAST 0 ( n )
+62 LOAD_CONST 3 ( 1 )
+64 INPLACE_ADD
+66 STORE_FAST 2 ( d )
+
+176 68 LOAD_FAST 0 ( n )
+70 LOAD_CONST 3 ( 1 )
+72 INPLACE_ADD
+74 STORE_FAST 2 ( d )
+76 JUMP_FORWARD 16 ( to 78 )
+
+177 >> 78 LOAD_FAST 0 ( n )
+80 LOAD_CONST 3 ( 1 )
+82 INPLACE_ADD
+84 STORE_FAST 2 ( d )
+86 JUMP_FORWARD 2 ( to 78 )
+
+178 >> 88 LOAD_FAST 2 ( d )
+90 LOAD_CONST 3 ( 1 )
+92 INPLACE_ADD
+94 STORE_FAST 2 ( d )
+
+179 96 LOAD_FAST 2 ( d )
+98 LOAD_CONST 3 ( 1 )
+100 INPLACE_ADD
+102 STORE_FAST 2 ( d )
+
+180 104 LOAD_FAST 0 ( n )
+106 LOAD_CONST 3 ( 1 )
+108 INPLACE_ADD
+110 STORE_FAST 2 ( d )
+
+181 112 LOAD_FAST 2 ( d )
+114 LOAD_CONST 3 ( 1 )
+116 INPLACE_ADD
+118 STORE_FAST 2 ( d )
+
+182 >> 120 LOAD_FAST 2 ( d )
+122 RETURN_VALUE
+

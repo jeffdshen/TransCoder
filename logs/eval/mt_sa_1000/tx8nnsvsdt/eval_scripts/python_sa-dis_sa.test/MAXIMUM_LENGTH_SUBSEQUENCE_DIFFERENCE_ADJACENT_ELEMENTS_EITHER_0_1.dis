@@ -1,0 +1,100 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    mls = [ ]\n    max = 0\n    for i in range ( n ) :\n        mls.append ( 1 )\n    for i in range ( n ) :\n        for j in range ( i ) :\n            if ( abs ( arr [ i ] - arr [ j ] ) <= 1 and mls [ i ] < mls [ j ] + 1 ) :\n                mls [ i ] = mls [ j ] + 1\n    for i in range ( n ) :\n        if ( max < mls [ i ] ) :\n            max = mls [ i ]\n    return max\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 5, 9, 31, 31, 37, 41, 55, 56, 61, 79, 81, 89, 93],12,),\n    ([-76, 96, -68, -16, 22, -24, -24, 6, 98, -82, 54, -80, 46, 0, 0, -50],15,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],29,),\n    ([97, 93, 43, 51, 15, 33, 13, 96, 39, 89, 78, 25, 45, 6, 64, 54],13,),\n    ([-98, -78, -72, -70, -68, -58, -56, -54, -46, -44, -38, -34, -30, -24, -18, -16, -14, -12, 2, 6, 8, 8, 10, 10, 16, 24, 26, 28, 40, 42, 44, 56, 58, 62, 66, 66, 78, 86],19,),\n    ([1, 1, 0, 1, 0, 0],3,),\n    ([7, 8, 10, 11, 12, 15, 16, 16, 19, 21, 23, 23, 23, 25, 26, 35, 38, 43, 46, 47, 51, 52, 53, 57, 60, 61, 66, 67, 69, 74, 75, 81, 83, 84, 88, 92, 94, 98, 98, 99],34,),\n    ([14, -40],1,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],38,),\n    ([59, 70, 53],1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxLenSub ( arr , n ) :\n    mls = [ ]\n    max = 0\n    for i in range ( n ) :\n        mls.append ( 1 )\n    for i in range ( n ) :\n        for j in range ( i ) :\n            if ( abs ( arr [ i ] - arr [ j ] ) <= 1 and mls [ i ] < mls [ j ] + 1 ) :\n                mls [ i ] = mls [ j ] + 1\n    for i in range ( n ) :\n        if ( max < mls [ i ] ) :\n            max = mls [ i ]\n    return max\n"}
+Disassembly of <code object maxLenSub at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 BUILD_LIST 0
+2 STORE_FAST 2 ( mls )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 3 ( max )
+
+4 8 SETUP_LOOP 28 ( to 38 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_FAST 1 ( n )
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 14 ( to 36 )
+20 STORE_FAST 4 ( i )
+
+5 22 LOAD_FAST 2 ( mls )
+24 LOAD_METHOD 1 ( append )
+26 LOAD_CONST 2 ( 1 )
+28 CALL_METHOD 1
+30 POP_TOP
+32 JUMP_ABSOLUTE 18
+>> 34 POP_BLOCK
+
+6 36 SETUP_LOOP 92 ( to 146 )
+>> 38 LOAD_GLOBAL 0 ( range )
+40 LOAD_FAST 1 ( n )
+42 CALL_FUNCTION 1
+44 GET_ITER
+>> 46 FOR_ITER 76 ( to 144 )
+48 STORE_FAST 4 ( i )
+
+7 50 SETUP_LOOP 62 ( to 104 )
+52 LOAD_GLOBAL 0 ( range )
+54 LOAD_FAST 4 ( i )
+56 CALL_FUNCTION 1
+58 GET_ITER
+>> 60 FOR_ITER 54 ( to 102 )
+62 STORE_FAST 5 ( j )
+
+8 64 LOAD_GLOBAL 2 ( abs )
+66 LOAD_FAST 0 ( arr )
+68 LOAD_FAST 4 ( i )
+70 BINARY_SUBSCR
+72 LOAD_FAST 0 ( arr )
+74 LOAD_FAST 5 ( j )
+76 BINARY_SUBSCR
+78 BINARY_SUBTRACT
+80 CALL_FUNCTION 1
+82 LOAD_CONST 2 ( 1 )
+84 COMPARE_OP 1 ( <= )
+86 POP_JUMP_IF_FALSE 60
+88 LOAD_FAST 2 ( mls )
+90 LOAD_FAST 4 ( i )
+92 BINARY_SUBSCR
+94 LOAD_FAST 2 ( mls )
+96 LOAD_FAST 5 ( j )
+98 BINARY_SUBSCR
+100 LOAD_CONST 2 ( 1 )
+102 BINARY_ADD
+104 COMPARE_OP 0 ( < )
+106 POP_JUMP_IF_FALSE 60
+
+9 108 LOAD_FAST 2 ( mls )
+110 LOAD_FAST 5 ( j )
+112 BINARY_SUBSCR
+114 LOAD_CONST 2 ( 1 )
+116 BINARY_ADD
+118 LOAD_FAST 2 ( mls )
+120 LOAD_FAST 4 ( i )
+122 STORE_SUBSCR
+124 JUMP_ABSOLUTE 60
+>> 126 POP_BLOCK
+>> 128 JUMP_ABSOLUTE 46
+>> 130 POP_BLOCK
+
+10 >> 132 SETUP_LOOP 40 ( to 164 )
+134 LOAD_GLOBAL 0 ( range )
+136 LOAD_FAST 1 ( n )
+138 CALL_FUNCTION 1
+140 GET_ITER
+>> 142 FOR_ITER 28 ( to 162 )
+144 STORE_FAST 4 ( i )
+
+11 146 LOAD_FAST 3 ( max )
+148 LOAD_FAST 2 ( mls )
+150 LOAD_FAST 4 ( i )
+152 BINARY_SUBSCR
+154 COMPARE_OP 0 ( < )
+156 POP_JUMP_IF_FALSE 142
+
+12 158 LOAD_FAST 2 ( mls )
+160 LOAD_FAST 4 ( i )
+162 BINARY_SUBSCR
+164 STORE_FAST 3 ( max )
+166 JUMP_ABSOLUTE 142
+>> 168 POP_BLOCK
+
+13 >> 170 LOAD_FAST 3 ( max )
+172 RETURN_VALUE

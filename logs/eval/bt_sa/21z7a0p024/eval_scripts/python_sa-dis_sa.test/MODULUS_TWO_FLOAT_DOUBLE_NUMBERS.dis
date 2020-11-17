@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b ) :\n    if ( a < 0 ) :\n        a = - a\n    if ( b < 0 ) :\n        b = - b\n    mod = a\n    while ( mod >= b ) :\n        mod = mod - b\n    if ( a < 0 ) :\n        return - mod\n    return mod\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (3243.229719038493,5659.926861939672,),\n    (-4362.665881044217,-9196.507113304497,),\n    (7255.066257575837,2623.200060506935,),\n    (-6929.554320261099,-3009.0234530313287,),\n    (3569.942027998315,6920.809419868375,),\n    (-6513.849053096595,-70.95992406437102,),\n    (7333.183189243961,580.3500610971768,),\n    (-2856.1752826258803,-9625.97442825802,),\n    (9787.228111241662,2419.6844962423256,),\n    (-1722.873699288031,-8370.700544254058,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMod ( a , b ) :\n    if ( a < 0 ) :\n        a = - a\n    if ( b < 0 ) :\n        b = - b\n    mod = a\n    while ( mod >= b ) :\n        mod = mod - b\n    if ( a < 0 ) :\n        return - mod\n    return mod\n"}
+Disassembly of <code object findMod at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 20
+
+3 8 LOAD_FAST 0 ( a )
+10 LOAD_CONST 2 ( - 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 1 ( a )
+
+4 16 LOAD_FAST 0 ( a )
+18 LOAD_CONST 1 ( 0 )
+20 COMPARE_OP 0 ( < )
+22 POP_JUMP_IF_FALSE 36
+
+5 24 LOAD_FAST 0 ( a )
+26 LOAD_CONST 1 ( 0 )
+28 COMPARE_OP 0 ( < )
+30 POP_JUMP_IF_FALSE 36
+
+6 32 LOAD_FAST 0 ( a )
+34 LOAD_CONST 1 ( 0 )
+36 BINARY_SUBSCR
+38 STORE_FAST 1 ( a )
+
+7 40 LOAD_FAST 0 ( a )
+42 LOAD_CONST 1 ( 0 )
+44 COMPARE_OP 4 ( > )
+46 POP_JUMP_IF_FALSE 64
+
+8 48 LOAD_FAST 0 ( a )
+50 LOAD_CONST 1 ( 0 )
+52 BINARY_SUBSCR
+54 STORE_FAST 1 ( a )
+
+9 56 LOAD_FAST 0 ( a )
+58 LOAD_CONST 1 ( 0 )
+60 BINARY_SUBSCR
+62 STORE_FAST 2 ( b )
+
+10 >> 64 LOAD_FAST 0 ( a )
+66 LOAD_CONST 1 ( 0 )
+68 COMPARE_OP 0 ( < )
+70 POP_JUMP_IF_FALSE 76
+
+11 72 LOAD_FAST 0 ( a )
+74 LOAD_CONST 1 ( 0 )
+76 BINARY_SUBSCR
+78 STORE_FAST 0 ( a )
+
+12 >> 80 LOAD_FAST 0 ( a )
+82 LOAD_CONST 1 ( 0 )
+84 COMPARE_OP 0 ( < )
+86 POP_JUMP_IF_FALSE 98
+
+13 88 LOAD_FAST 0 ( a )
+90 LOAD_CONST 1 ( 0 )
+92 BINARY_SUBSCR
+94 STORE_FAST 1 ( a )
+96 JUMP_FORWARD 4 ( to 98 )
+
+14 >> 98 LOAD_FAST 0 ( a )
+100 LOAD_CONST 1 ( 0 )
+102 COMPARE_OP 0 ( < )
+104 POP_JUMP_IF_FALSE 114
+
+15 106 LOAD_FAST 0 ( a )
+108 LOAD_CONST 1 ( 0 )
+110 BINARY_SUBSCR
+112 STORE_FAST 1 ( a )
+
+16 >> 114 LOAD_FAST 0 ( a )
+116 LOAD_CONST 1 ( 0 )
+118 COMPARE_OP 0 ( < )
+120 POP_JUMP_IF_FALSE 126
+
+17 122 LOAD_FAST 0 ( a )
+124 LOAD_CONST 1 ( 0 )
+126 COMPARE_OP 0 ( < )
+128 POP_JUMP_IF_FALSE 126
+
+18 130 LOAD_FAST 0 ( a )
+132 LOAD_CONST 1 ( 0 )
+134 COMPARE_OP 4 ( > )
+136 POP_JUMP_IF_FALSE 126
+
+19 138 LOAD_FAST 0 ( a )
+140 LOAD_CONST 1 ( 0 )
+142 BINARY_SUBSCR
+144 RETURN_VALUE
+
+20 >> 146 LOAD_FAST 0 ( a )
+148 RETURN_VALUE

@@ -1,0 +1,50 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    count = 0\n    i = 5\n    while ( n / i >= 1 ) :\n        count += int ( n / i )\n        i *= 5\n    return int ( count )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (9,),\n    (43,),\n    (50,),\n    (32,),\n    (37,),\n    (51,),\n    (33,),\n    (49,),\n    (1,),\n    (75,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findTrailingZeros ( n ) :\n    count = 0\n    i = 5\n    while ( n / i >= 1 ) :\n        count += int ( n / i )\n        i *= 5\n    return int ( count )\n"}
+Disassembly of <code object findTrailingZeros at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( count )
+
+3 4 LOAD_CONST 2 ( 5 )
+6 STORE_FAST 2 ( count )
+
+4 8 SETUP_LOOP 64 ( to 78 )
+10 LOAD_FAST 0 ( n )
+12 GET_ITER
+>> 14 FOR_ITER 64 ( to 76 )
+16 STORE_FAST 3 ( i )
+
+5 18 LOAD_GLOBAL 0 ( int )
+20 LOAD_FAST 3 ( i )
+22 LOAD_CONST 3 ( 1 )
+24 BINARY_SUBTRACT
+26 CALL_FUNCTION 1
+28 STORE_FAST 4 ( i )
+
+6 30 LOAD_FAST 1 ( count )
+32 LOAD_CONST 4 ( 5 )
+34 COMPARE_OP 2 ( == )
+36 POP_JUMP_IF_FALSE 14
+
+7 38 LOAD_FAST 1 ( count )
+40 LOAD_CONST 5 ( 6 )
+42 INPLACE_ADD
+44 STORE_FAST 1 ( count )
+
+8 46 LOAD_FAST 1 ( count )
+48 LOAD_CONST 6 ( 8 )
+50 INPLACE_SUBTRACT
+52 STORE_FAST 1 ( count )
+
+9 54 LOAD_FAST 1 ( count )
+56 LOAD_CONST 7 ( 8 )
+58 INPLACE_SUBTRACT
+60 STORE_FAST 1 ( count )
+
+10 62 LOAD_FAST 1 ( count )
+64 LOAD_CONST 8 ( 9 )
+66 INPLACE_SUBTRACT
+68 STORE_FAST 1 ( count )
+70 JUMP_ABSOLUTE 14
+>> 72 POP_BLOCK
+
+11 >> 74 LOAD_FAST 1 ( count )
+76 RETURN_VALUE

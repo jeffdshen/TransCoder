@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( string ) :\n    l = 0\n    h = len ( string ) - 1\n    while h > l :\n        l += 1\n        h -= 1\n        if string [ l - 1 ] != string [ h + 1 ] :\n            return False\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('aadaa',),\n    ('2674377254',),\n    ('11',),\n    ('0011000',),\n    ('26382426486138',),\n    ('111010111010',),\n    ('abccba',),\n    ('5191',),\n    ('1110101101',),\n    ('abcdecbe',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPalindrome ( string ) :\n    l = 0\n    h = len ( string ) - 1\n    while h > l :\n        l += 1\n        h -= 1\n        if string [ l - 1 ] != string [ h + 1 ] :\n            return False\n    return True\n"}
+Disassembly of <code object isPalindrome at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 1 ( l )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 2 ( l )
+
+27 8 LOAD_FAST 0 ( string )
+10 LOAD_CONST 1 ( 0 )
+12 BINARY_SUBSCR
+14 STORE_FAST 3 ( l )
+
+28 16 LOAD_FAST 2 ( l )
+18 LOAD_CONST 2 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 4 ( l )
+
+29 24 LOAD_FAST 0 ( string )
+26 LOAD_CONST 3 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 4 ( 2 )
+32 BINARY_SUBSCR
+34 STORE_FAST 5 ( l )
+
+30 36 LOAD_FAST 0 ( string )
+38 LOAD_CONST 5 ( 1 )
+40 BINARY_SUBSCR
+42 STORE_FAST 6 ( l )
+
+31 44 LOAD_FAST 0 ( string )
+46 LOAD_CONST 6 ( '' )
+48 COMPARE_OP 2 ( == )
+50 POP_JUMP_IF_FALSE 56
+
+32 52 LOAD_FAST 0 ( string )
+54 LOAD_CONST 7 ( '' )
+56 COMPARE_OP 2 ( == )
+58 POP_JUMP_IF_FALSE 56
+
+33 60 LOAD_FAST 0 ( string )
+62 LOAD_CONST 8 ( '' )
+64 COMPARE_OP 2 ( == )
+66 POP_JUMP_IF_FALSE 56
+
+34 68 LOAD_FAST 0 ( string )
+70 LOAD_CONST 9 ( '' )
+72 COMPARE_OP 2 ( == )
+74 POP_JUMP_IF_FALSE 56
+
+35 76 LOAD_FAST 0 ( string )
+78 LOAD_CONST 10 ( '' )
+80 COMPARE_OP 2 ( == )
+82 POP_JUMP_IF_FALSE 56
+
+36 84 LOAD_FAST 0 ( string )
+86 LOAD_CONST 11 ( '' )
+88 COMPARE_OP 2 ( == )
+90 POP_JUMP_IF_FALSE 94
+
+37 92 LOAD_FAST 0 ( string )
+94 LOAD_CONST 12 ( '' )
+96 COMPARE_OP 2 ( == )
+98 POP_JUMP_IF_FALSE 94
+
+38 100 LOAD_FAST 0 ( string )
+102 LOAD_CONST 13 ( '' )
+104 COMPARE_OP 2 ( == )
+106 POP_JUMP_IF_FALSE 110
+
+39 108 LOAD_FAST 0 ( string )
+110 LOAD_CONST 14 ( '' )
+112 COMPARE_OP 2 ( == )
+114 POP_JUMP_IF_FALSE 110
+
+40 116 LOAD_FAST 0 ( string )
+118 LOAD_CONST 15 ( '' )
+120 COMPARE_OP 2 ( == )
+122 POP_JUMP_IF_FALSE 126
+
+41 124 LOAD_FAST 0 ( string )
+126 LOAD_CONST 16 ( '' )
+128 COMPARE_OP 2 ( == )
+130 POP_JUMP_IF_FALSE 126
+
+42 132 LOAD_FAST 0 ( string )
+134 LOAD_CONST 16 ( '' )
+136 COMPARE_OP 2 ( == )
+138 POP_JUMP_IF_FALSE 126
+
+43 >> 140 LOAD_FAST 0 ( string )
+142 RETURN_VALUE
+

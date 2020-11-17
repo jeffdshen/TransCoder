@@ -1,0 +1,38 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    result = \"\"\n    v = True\n    for i in range ( len ( str ) ) :\n        if ( str [ i ] == ' ' ) :\n            v = True\n        elif ( str [ i ] != ' ' and v == True ) :\n            result += ( str [ i ] )\n            v = False\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('t a',),\n    ('77 78 2 600 7',),\n    ('011 10 10',),\n    ('kV Co O iR',),\n    ('2',),\n    ('0 11',),\n    ('Y sT wgheC',),\n    ('58 824 6',),\n    ('00 100 001 0111',),\n    ('Q',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def firstLetterWord ( str ) :\n    result = \"\"\n    v = True\n    for i in range ( len ( str ) ) :\n        if ( str [ i ] == ' ' ) :\n            v = True\n        elif ( str [ i ] != ' ' and v == True ) :\n            result += ( str [ i ] )\n            v = False\n    return result\n"}
+Disassembly of <code object firstLetterWord at 0x7f816a673a50, file "<dis>", line 19>:
+20 0 LOAD_CONST 1 ( "'" )
+2 STORE_FAST 1 ( i )
+
+21 4 LOAD_CONST 2 ( "'" )
+6 STORE_FAST 2 ( i )
+
+22 8 LOAD_FAST 0 ( str )
+10 LOAD_CONST 3 ( "'" )
+12 COMPARE_OP 2 ( == )
+14 POP_JUMP_IF_FALSE 28
+
+23 16 LOAD_CONST 4 ( "'" )
+18 STORE_FAST 1 ( i )
+
+24 >> 20 LOAD_FAST 0 ( str )
+22 LOAD_CONST 5 ( "'" )
+24 COMPARE_OP 2 ( == )
+26 POP_JUMP_IF_FALSE 28
+
+25 28 LOAD_CONST 6 ( "'" )
+30 STORE_FAST 1 ( i )
+
+26 32 LOAD_FAST 0 ( str )
+34 LOAD_CONST 7 ( "'" )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+
+27 40 LOAD_CONST 8 ( "'" )
+42 STORE_FAST 1 ( i )
+
+28 >> 44 LOAD_FAST 0 ( str )
+46 LOAD_CONST 9 ( "'" )
+48 COMPARE_OP 2 ( == )
+50 POP_JUMP_IF_FALSE 44
+
+29 52 LOAD_CONST 10 ( "'                                                                                                                                                                                                                                                                                          

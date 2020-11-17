@@ -1,0 +1,133 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    if ( n < 10 ) :\n        return ( n * ( n + 1 ) / 2 )\n    d = ( int ) ( math.log10 ( n ) )\n    a = [ 0 ] * ( d + 1 )\n    a [ 0 ] = 0\n    a [ 1 ] = 45\n    for i in range ( 2 , d + 1 ) :\n        a [ i ] = a [ i - 1 ] * 10 + 45 * ( int ) ( math.ceil ( math.pow ( 10 , i - 1 ) ) )\n    p = ( int ) ( math.ceil ( math.pow ( 10 , d ) ) )\n    msd = n // p\n    return ( int ) ( msd * a [ d ] + ( msd * ( msd - 1 ) // 2 ) * p + msd * ( 1 + n % p ) + f_gold ( n % p ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (29,),\n    (97,),\n    (71,),\n    (82,),\n    (69,),\n    (30,),\n    (82,),\n    (32,),\n    (77,),\n    (39,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def sumOfDigitsFrom1ToN ( n ) :\n    if ( n < 10 ) :\n        return ( n * ( n + 1 ) / 2 )\n    d = ( int ) ( math.log10 ( n ) )\n    a = [ 0 ] * ( d + 1 )\n    a [ 0 ] = 0\n    a [ 1 ] = 45\n    for i in range ( 2 , d + 1 ) :\n        a [ i ] = a [ i - 1 ] * 10 + 45 * ( int ) ( math.ceil ( math.pow ( 10 , i - 1 ) ) )\n    p = ( int ) ( math.ceil ( math.pow ( 10 , d ) ) )\n    msd = n // p\n    return ( int ) ( msd * a [ d ] + ( msd * ( msd - 1 ) // 2 ) * p + msd * ( 1 + n % p ) + sumOfDigitsFrom1ToN ( n % p ) )\n"}
+Disassembly of <code object sumOfDigitsFrom1ToN at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 10 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 24
+
+3 8 LOAD_FAST 0 ( n )
+10 LOAD_FAST 0 ( n )
+12 LOAD_CONST 2 ( 1 )
+14 BINARY_ADD
+16 BINARY_MULTIPLY
+18 LOAD_CONST 3 ( 2 )
+20 BINARY_TRUE_DIVIDE
+22 RETURN_VALUE
+
+4 >> 24 LOAD_GLOBAL 0 ( int )
+26 LOAD_GLOBAL 1 ( math )
+28 LOAD_METHOD 2 ( log10 )
+30 LOAD_FAST 0 ( n )
+32 CALL_METHOD 1
+34 CALL_FUNCTION 1
+36 STORE_FAST 1 ( d )
+
+5 38 LOAD_CONST 4 ( 0 )
+40 BUILD_LIST 1
+42 LOAD_FAST 1 ( d )
+44 LOAD_CONST 2 ( 1 )
+46 BINARY_ADD
+48 BINARY_MULTIPLY
+50 STORE_FAST 2 ( a )
+
+6 52 LOAD_CONST 4 ( 0 )
+54 LOAD_FAST 2 ( a )
+56 LOAD_CONST 4 ( 0 )
+58 STORE_SUBSCR
+
+7 60 LOAD_CONST 5 ( 45 )
+62 LOAD_FAST 2 ( a )
+64 LOAD_CONST 2 ( 1 )
+66 STORE_SUBSCR
+
+8 68 SETUP_LOOP 76 ( to 144 )
+70 LOAD_GLOBAL 3 ( range )
+72 LOAD_CONST 3 ( 2 )
+74 LOAD_FAST 1 ( d )
+76 LOAD_CONST 2 ( 1 )
+78 BINARY_ADD
+80 CALL_FUNCTION 2
+82 GET_ITER
+>> 84 FOR_ITER 60 ( to 142 )
+86 STORE_FAST 3 ( i )
+
+9 88 LOAD_FAST 2 ( a )
+90 LOAD_FAST 3 ( i )
+92 LOAD_CONST 2 ( 1 )
+94 BINARY_SUBTRACT
+96 BINARY_SUBSCR
+98 LOAD_CONST 1 ( 10 )
+100 BINARY_MULTIPLY
+102 LOAD_CONST 5 ( 45 )
+104 LOAD_GLOBAL 0 ( int )
+106 LOAD_METHOD 4 ( ceil )
+108 LOAD_GLOBAL 1 ( math )
+110 LOAD_METHOD 4 ( pow )
+112 LOAD_CONST 1 ( 10 )
+114 LOAD_FAST 3 ( i )
+116 LOAD_CONST 2 ( 1 )
+118 BINARY_SUBTRACT
+120 CALL_METHOD 2
+122 CALL_METHOD 1
+124 BINARY_MULTIPLY
+126 BINARY_ADD
+128 LOAD_FAST 2 ( a )
+130 LOAD_FAST 3 ( i )
+132 STORE_SUBSCR
+134 JUMP_ABSOLUTE 84
+>> 136 POP_BLOCK
+
+10 >> 138 LOAD_GLOBAL 0 ( int )
+140 CALL_FUNCTION 1
+142 LOAD_GLOBAL 1 ( math )
+144 LOAD_METHOD 4 ( ceil )
+146 LOAD_GLOBAL 1 ( math )
+148 LOAD_METHOD 4 ( pow )
+150 LOAD_CONST 1 ( 10 )
+152 LOAD_FAST 1 ( d )
+154 CALL_METHOD 2
+156 CALL_METHOD 1
+158 CALL_METHOD 1
+160 CALL_FUNCTION 1
+162 STORE_FAST 4 ( p )
+
+11 164 LOAD_FAST 0 ( n )
+166 LOAD_FAST 4 ( p )
+168 BINARY_FLOOR_DIVIDE
+170 STORE_FAST 5 ( msd )
+
+12 172 LOAD_FAST 2 ( a )
+174 LOAD_FAST 4 ( p )
+176 BINARY_FLOOR_DIVIDE
+178 STORE_FAST 6 ( msd )
+
+13 180 LOAD_GLOBAL 0 ( int )
+182 CALL_FUNCTION 1
+184 LOAD_FAST 5 ( msd )
+186 LOAD_FAST 2 ( a )
+188 LOAD_FAST 1 ( d )
+190 BINARY_SUBSCR
+192 LOAD_FAST 6 ( msd )
+194 LOAD_FAST 1 ( d )
+196 LOAD_CONST 2 ( 1 )
+198 BINARY_SUBTRACT
+200 BINARY_SUBTRACT
+202 LOAD_CONST 3 ( 2 )
+204 BINARY_FLOOR_DIVIDE
+206 BINARY_MULTIPLY
+208 LOAD_FAST 4 ( p )
+210 BINARY_MULTIPLY
+212 BINARY_ADD
+214 LOAD_FAST 6 ( msd )
+216 LOAD_CONST 2 ( 1 )
+218 LOAD_FAST 0 ( n )
+220 LOAD_FAST 4 ( p )
+222 BINARY_MODULO
+224 BINARY_ADD
+226 LOAD_GLOBAL 5 ( sumOfsFromitsFrom1ToN )
+228 LOAD_FAST 0 ( n )
+230 LOAD_FAST 4 ( p )
+232 BINARY_MODULO
+234 CALL_FUNCTION 1
+236 BINARY_ADD
+238 RETURN_VALUE

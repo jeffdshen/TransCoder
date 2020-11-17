@@ -1,0 +1,94 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    for i in range ( 0 , n , 2 ) :\n        if ( i > 0 and arr [ i ] < arr [ i - 1 ] ) :\n            arr [ i ] , arr [ i - 1 ] = arr [ i - 1 ] , arr [ i ]\n        if ( i < n - 1 and arr [ i ] < arr [ i + 1 ] ) :\n            arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([78, 81],1,),\n    ([-44, -6, -7, -16, -15, 89, -78, -65, -84, -50, 22, 28, 13, 71, -83, -20, 86, 30, 32, -15, 67, -6, 34, -19, -31],16,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],15,),\n    ([97, 18, 71, 65, 97, 1, 88, 4, 4, 82, 27, 43, 59, 32, 33, 28, 55, 60, 70, 62, 80, 34, 87, 88, 56, 13, 56, 18, 54, 77, 43, 39, 61, 42, 81, 79, 18, 23, 54, 30, 98, 58, 68, 67, 71, 18],32,),\n    ([-60, -51, -48, -32, -30, 14, 93],5,),\n    ([0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0],22,),\n    ([1, 14, 17, 18, 19, 22, 22, 29, 30, 30, 31, 35, 37, 38, 41, 42, 44, 52, 56, 56, 57, 62, 65, 67, 70, 75, 79, 84, 85, 87, 89, 93, 93, 98, 98],17,),\n    ([-79],0,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,),\n    ([44, 53, 71, 79, 34, 46, 68],4,)\n        ]\n    filled_function_param = [\n    ([78, 81],1,),\n    ([-44, -6, -7, -16, -15, 89, -78, -65, -84, -50, 22, 28, 13, 71, -83, -20, 86, 30, 32, -15, 67, -6, 34, -19, -31],16,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],15,),\n    ([97, 18, 71, 65, 97, 1, 88, 4, 4, 82, 27, 43, 59, 32, 33, 28, 55, 60, 70, 62, 80, 34, 87, 88, 56, 13, 56, 18, 54, 77, 43, 39, 61, 42, 81, 79, 18, 23, 54, 30, 98, 58, 68, 67, 71, 18],32,),\n    ([-60, -51, -48, -32, -30, 14, 93],5,),\n    ([0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0],22,),\n    ([1, 14, 17, 18, 19, 22, 22, 29, 30, 30, 31, 35, 37, 38, 41, 42, 44, 52, 56, 56, 57, 62, 65, 67, 70, 75, 79, 84, 85, 87, 89, 93, 93, 98, 98],17,),\n    ([-79],0,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],14,),\n    ([44, 53, 71, 79, 34, 46, 68],4,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def sortInWave ( arr , n ) :\n    for i in range ( 0 , n , 2 ) :\n        if ( i > 0 and arr [ i ] < arr [ i - 1 ] ) :\n            arr [ i ] , arr [ i - 1 ] = arr [ i - 1 ] , arr [ i ]\n        if ( i < n - 1 and arr [ i ] < arr [ i + 1 ] ) :\n            arr [ i ] , arr [ i + 1 ] = arr [ i + 1 ] , arr [ i ]\n"}
+Disassembly of <code object sortInWave at 0x7f2b016399c0, file "<dis>", line 1>:
+2 0 SETUP_LOOP 118 ( to 120 )
+2 LOAD_GLOBAL 0 ( range )
+4 LOAD_CONST 1 ( 0 )
+6 LOAD_FAST 1 ( n )
+8 LOAD_CONST 2 ( 2 )
+10 CALL_FUNCTION 3
+12 GET_ITER
+>> 14 FOR_ITER 106 ( to 118 )
+16 STORE_FAST 2 ( i )
+
+3 18 LOAD_FAST 2 ( i )
+20 LOAD_CONST 1 ( 0 )
+22 COMPARE_OP 4 ( > )
+24 POP_JUMP_IF_FALSE 14
+26 LOAD_FAST 0 ( arr )
+28 LOAD_FAST 2 ( i )
+30 BINARY_SUBSCR
+32 LOAD_FAST 0 ( arr )
+34 LOAD_FAST 2 ( i )
+36 BINARY_SUBSCR
+38 COMPARE_OP 0 ( < )
+40 POP_JUMP_IF_FALSE 14
+
+4 42 LOAD_FAST 0 ( arr )
+44 LOAD_FAST 2 ( i )
+46 LOAD_CONST 3 ( 1 )
+48 BINARY_SUBTRACT
+50 BINARY_SUBSCR
+52 LOAD_FAST 0 ( arr )
+54 LOAD_FAST 2 ( i )
+56 BINARY_SUBSCR
+58 ROT_TWO
+60 LOAD_FAST 0 ( arr )
+62 LOAD_FAST 2 ( i )
+64 STORE_SUBSCR
+66 LOAD_FAST 0 ( arr )
+68 LOAD_FAST 2 ( i )
+70 STORE_SUBSCR
+72 LOAD_FAST 0 ( arr )
+74 LOAD_FAST 2 ( i )
+76 BINARY_SUBSCR
+78 ROT_TWO
+80 LOAD_FAST 0 ( arr )
+82 LOAD_FAST 2 ( i )
+84 STORE_SUBSCR
+86 STORE_FAST 2 ( i )
+
+5 88 LOAD_FAST 2 ( i )
+90 LOAD_FAST 1 ( n )
+92 LOAD_CONST 3 ( 1 )
+94 BINARY_SUBTRACT
+96 COMPARE_OP 0 ( < )
+98 POP_JUMP_IF_FALSE 14
+100 LOAD_FAST 0 ( arr )
+102 LOAD_FAST 2 ( i )
+104 BINARY_SUBSCR
+106 LOAD_FAST 0 ( arr )
+108 LOAD_FAST 2 ( i )
+110 LOAD_CONST 3 ( 1 )
+112 BINARY_ADD
+114 BINARY_SUBSCR
+116 COMPARE_OP 0 ( < )
+118 POP_JUMP_IF_FALSE 14
+
+6 120 LOAD_FAST 0 ( arr )
+122 LOAD_FAST 2 ( i )
+124 LOAD_CONST 3 ( 1 )
+126 BINARY_ADD
+128 BINARY_SUBSCR
+130 LOAD_FAST 0 ( arr )
+132 LOAD_FAST 2 ( i )
+134 BINARY_SUBSCR
+136 ROT_TWO
+138 LOAD_FAST 0 ( arr )
+140 LOAD_FAST 2 ( i )
+142 STORE_SUBSCR
+144 LOAD_FAST 0 ( arr )
+146 LOAD_FAST 2 ( i )
+148 BINARY_SUBSCR
+150 ROT_TWO
+152 LOAD_FAST 0 ( arr )
+154 LOAD_FAST 2 ( i )
+156 STORE_SUBSCR
+158 LOAD_FAST 0 ( arr )
+160 LOAD_FAST 2 ( i )
+162 LOAD_CONST 3 ( 1 )
+164 BINARY_ADD
+166 STORE_SUBSCR
+168 JUMP_ABSOLUTE 14
+>> 170 POP_BLOCK
+>> 172 LOAD_CONST 0 ( None )
+174 RETURN_VALUE

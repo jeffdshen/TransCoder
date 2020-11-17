@@ -1,0 +1,86 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    found = True\n    for i in range ( 0 , n - 2 ) :\n        for j in range ( i + 1 , n - 1 ) :\n            for k in range ( j + 1 , n ) :\n                if ( arr [ i ] + arr [ j ] + arr [ k ] == 0 ) :\n                    print ( arr [ i ] , arr [ j ] , arr [ k ] )\n                    found = True\n    if ( found == False ) :\n        print ( \" not exist \" )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([12, 15, 17, 26, 29, 30, 31, 45, 48, 49, 51, 58, 63, 68, 69, 76, 80, 82, 83, 83, 85, 87],13,),\n    ([-96, 22, -8, -66, -92, 48, -42, -96, -76, -8, -46, -28, -82, 24, 58, -42, -8, -8, -40, 38, -74, -76, -72, -6, -4, 86, 52, 80, -80],14,),\n    ([1],0,),\n    ([3],0,),\n    ([-96, -92, -90, -90, -88, -86, -74, -60, -40, -40, -40, -40, -36, -34, -28, -22, -18, -18, -14, -10, -6, -4, 14, 24, 24, 34, 50, 60, 72, 98],22,),\n    ([1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],13,),\n    ([5, 6, 8, 13, 18, 18, 19, 22, 22, 26, 31, 31, 34, 37, 39, 41, 44, 44, 46, 50, 55, 55, 56, 56, 57, 59, 60, 62, 63, 65, 65, 66, 69, 71, 72, 74, 75, 83, 85, 88, 91, 97, 99, 99, 99],24,),\n    ([46, 92, 40, 24, 4, 16, 14, -46, 48, -32, -84, -68, -60, 20, -54, -32, 22, -70, 92, -20, -22, 78, 86, 58, -70, 64],16,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],25,),\n    ([17, 60],1,)\n        ]\n    filled_function_param = [\n    ([12, 15, 17, 26, 29, 30, 31, 45, 48, 49, 51, 58, 63, 68, 69, 76, 80, 82, 83, 83, 85, 87],13,),\n    ([-96, 22, -8, -66, -92, 48, -42, -96, -76, -8, -46, -28, -82, 24, 58, -42, -8, -8, -40, 38, -74, -76, -72, -6, -4, 86, 52, 80, -80],14,),\n    ([1],0,),\n    ([3],0,),\n    ([-96, -92, -90, -90, -88, -86, -74, -60, -40, -40, -40, -40, -36, -34, -28, -22, -18, -18, -14, -10, -6, -4, 14, 24, 24, 34, 50, 60, 72, 98],22,),\n    ([1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],13,),\n    ([5, 6, 8, 13, 18, 18, 19, 22, 22, 26, 31, 31, 34, 37, 39, 41, 44, 44, 46, 50, 55, 55, 56, 56, 57, 59, 60, 62, 63, 65, 65, 66, 69, 71, 72, 74, 75, 83, 85, 88, 91, 97, 99, 99, 99],24,),\n    ([46, 92, 40, 24, 4, 16, 14, -46, 48, -32, -84, -68, -60, 20, -54, -32, 22, -70, 92, -20, -22, 78, 86, 58, -70, 64],16,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],25,),\n    ([17, 60],1,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        f_filled(*(filled_function_param[i]))\n        f_gold(*parameters_set)\n        if parameters_set == filled_function_param[i]:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findTriplets ( arr , n ) :\n    found = True\n    for i in range ( 0 , n - 2 ) :\n        for j in range ( i + 1 , n - 1 ) :\n            for k in range ( j + 1 , n ) :\n                if ( arr [ i ] + arr [ j ] + arr [ k ] == 0 ) :\n                    print ( arr [ i ] , arr [ j ] , arr [ k ] )\n                    found = True\n    if ( found == False ) :\n        print ( \" not exist \" )\n"}
+Disassembly of <code object findTriplets at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( True )
+2 STORE_FAST 2 ( found )
+
+3 4 SETUP_LOOP 120 ( to 126 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 0 )
+10 LOAD_FAST 1 ( n )
+12 LOAD_CONST 3 ( 2 )
+14 BINARY_SUBTRACT
+16 CALL_FUNCTION 2
+18 GET_ITER
+>> 20 FOR_ITER 106 ( to 124 )
+22 STORE_FAST 3 ( i )
+
+4 24 SETUP_LOOP 92 ( to 122 )
+26 LOAD_GLOBAL 0 ( range )
+28 LOAD_FAST 3 ( i )
+30 LOAD_CONST 4 ( 1 )
+32 BINARY_ADD
+34 LOAD_FAST 1 ( n )
+36 LOAD_CONST 4 ( 1 )
+38 BINARY_SUBTRACT
+40 CALL_FUNCTION 2
+42 GET_ITER
+>> 44 FOR_ITER 76 ( to 120 )
+46 STORE_FAST 4 ( j )
+
+5 48 SETUP_LOOP 68 ( to 122 )
+50 LOAD_GLOBAL 0 ( range )
+52 LOAD_FAST 4 ( j )
+54 LOAD_CONST 4 ( 1 )
+56 BINARY_ADD
+58 LOAD_FAST 1 ( n )
+60 CALL_FUNCTION 2
+62 GET_ITER
+>> 64 FOR_ITER 52 ( to 120 )
+66 STORE_FAST 5 ( k )
+
+6 68 LOAD_FAST 0 ( arr )
+70 LOAD_FAST 3 ( i )
+72 BINARY_SUBSCR
+74 LOAD_FAST 0 ( arr )
+76 LOAD_FAST 4 ( j )
+78 BINARY_SUBSCR
+80 BINARY_ADD
+82 LOAD_FAST 0 ( arr )
+84 LOAD_FAST 5 ( k )
+86 BINARY_SUBSCR
+88 BINARY_ADD
+90 LOAD_CONST 2 ( 0 )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 64
+
+7 96 LOAD_GLOBAL 1 ( print )
+98 LOAD_FAST 0 ( arr )
+100 LOAD_FAST 3 ( i )
+102 BINARY_SUBSCR
+104 LOAD_FAST 0 ( arr )
+106 LOAD_FAST 4 ( j )
+108 BINARY_SUBSCR
+110 LOAD_FAST 0 ( arr )
+112 LOAD_FAST 5 ( k )
+114 BINARY_SUBSCR
+116 CALL_FUNCTION 3
+118 POP_TOP
+
+8 120 LOAD_CONST 1 ( True )
+122 STORE_FAST 2 ( found )
+>> 124 JUMP_ABSOLUTE 72
+>> 126 POP_BLOCK
+>> 128 JUMP_ABSOLUTE 44
+>> 130 POP_BLOCK
+
+9 >> 132 LOAD_FAST 2 ( found )
+134 LOAD_CONST 5 ( False )
+136 COMPARE_OP 2 ( == )
+138 POP_JUMP_IF_FALSE 144
+
+10 140 LOAD_GLOBAL 1 ( print )
+142 LOAD_CONST 6 ( ' not exist ' )
+144 CALL_FUNCTION 1
+146 POP_TOP
+>> 148 LOAD_CONST 0 ( None )
+150 RETURN_VALUE

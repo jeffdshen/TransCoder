@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , x , y ) :\n    min_dist = 99999999\n    for i in range ( n ) :\n        for j in range ( i + 1 , n ) :\n            if ( x == arr [ i ] and y == arr [ j ] or y == arr [ i ] and x == arr [ j ] ) and min_dist > abs ( i - j ) :\n                min_dist = abs ( i - j )\n        return min_dist\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 7, 7, 8, 11, 14, 16, 25, 34, 35, 36, 36, 38, 40, 41, 43, 45, 47, 57, 60, 64, 72, 73, 74, 75, 82, 83, 83, 84, 84, 84, 92],22,7,40,),\n    ([96, 70, 88, -64, -42, 58, 92, 66, -14, 90, -66, 12, 88, -12, 48, -4, 90, 24, 98, 14, 32, 38, 98, 78, 2, 26, 12, -36, 90, 80, 40, 58, 88, 64, 16],25,58,70,),\n    ([0, 0, 1],1,1,1,),\n    ([46, 96, 82, 73, 30, 36, 56, 20, 5, 36, 4, 7, 89, 63, 54, 97, 80, 56, 93, 34, 90, 56, 25, 27, 75, 68, 14, 90],26,54,82,),\n    ([-96, -88, -82, -66, -62, -52, -52, -46, -46, -40, -40, -28, -24, -12, 0, 4, 10, 24, 42, 46, 48, 48, 50, 60, 62, 64, 64, 70, 92, 98],24,0,4,),\n    ([0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1],10,0,1,),\n    ([1, 2, 2, 6, 10, 14, 15, 18, 19, 22, 23, 29, 30, 37, 40, 40, 41, 41, 42, 42, 44, 46, 46, 54, 56, 72, 73, 81, 83, 83, 86, 88, 93],27,1,42,),\n    ([46, 86, -52, 18, -32, 86, 2, 38, 72, 72, -60, 70, -58, 66, -66, -72, -74, 58, 52, 58, 16, 64, 62, -62, 80, -70, -96, -44, -20, -74, -10, 14, -32, 48, 30, 76, -16, 80, 66, -46, -92, 26, -86, 28, -76, -24, -98, 54, 50],30,25,45,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],38,0,0,),\n    ([32, 65, 10, 72, 17, 58, 79, 28, 67, 36, 18, 35],7,10,7,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minDist ( arr , n , x , y ) :\n    min_dist = 99999999\n    for i in range ( n ) :\n        for j in range ( i + 1 , n ) :\n            if ( x == arr [ i ] and y == arr [ j ] or y == arr [ i ] and x == arr [ j ] ) and min_dist > abs ( i - j ) :\n                min_dist = abs ( i - j )\n        return min_dist\n"}
+Disassembly of <code object minDist at 0x7f816a673a50, file "<dis>", line 100>:
+101 0 LOAD_FAST 1 ( n )
+2 LOAD_CONST 1 ( 99999999 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+102 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 0 )
+12 BINARY_SUBSCR
+14 STORE_FAST 1 ( n )
+
+103 16 LOAD_FAST 1 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 COMPARE_OP 2 ( == )
+22 POP_JUMP_IF_FALSE 28
+
+104 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 4 ( - 1 )
+28 COMPARE_OP 2 ( == )
+30 POP_JUMP_IF_FALSE 44
+
+105 32 LOAD_FAST 1 ( n )
+34 LOAD_CONST 5 ( - 1 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+
+106 40 LOAD_FAST 1 ( n )
+42 LOAD_CONST 6 ( - 1 )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_FALSE 44
+
+107 48 LOAD_FAST 1 ( n )
+50 LOAD_CONST 7 ( - 1 )
+52 COMPARE_OP 2 ( == )
+54 POP_JUMP_IF_FALSE 44
+
+108 56 LOAD_FAST 1 ( n )
+58 LOAD_CONST 8 ( - 1 )
+60 COMPARE_OP 2 ( == )
+62 POP_JUMP_IF_FALSE 44
+
+109 64 LOAD_FAST 1 ( n )
+66 LOAD_CONST 9 ( - 1 )
+68 COMPARE_OP 2 ( == )
+70 POP_JUMP_IF_FALSE 44
+
+110 72 LOAD_FAST 1 ( n )
+74 LOAD_CONST 10 ( - 1 )
+76 COMPARE_OP 2 ( == )
+78 POP_JUMP_IF_FALSE 80
+
+111 80 LOAD_FAST 1 ( n )
+82 LOAD_CONST 11 ( - 1 )
+84 INPLACE_ADD
+86 STORE_FAST 1 ( n )
+
+112 >> 88 LOAD_FAST 1 ( n )
+90 LOAD_CONST 12 ( - 1 )
+92 INPLACE_ADD
+94 STORE_FAST 1 ( n )
+
+113 >> 96 LOAD_FAST 1 ( n )
+98 LOAD_CONST 13 ( - 1 )
+100 INPLACE_ADD
+102 STORE_FAST 1 ( n )
+
+114 104 LOAD_FAST 1 ( n )
+106 LOAD_CONST 14 ( - 1 )
+108 INPLACE_ADD
+110 STORE_FAST 1 ( n )
+112 JUMP_FORWARD 10 ( to 124 )
+
+115 >> 114 LOAD_FAST 1 ( n )
+116 LOAD_CONST 15 ( - 1 )
+118 INPLACE_ADD
+120 STORE_FAST 1 ( n )
+
+116 122 LOAD_FAST 1 ( n )
+124 LOAD_CONST 15 ( - 1 )
+126 INPLACE_ADD
+128 STORE_FAST 1 ( n )
+
+117 130 LOAD_FAST 1 ( n )
+132 LOAD_FAST 1 ( n )
+134 LOAD_CONST 16 ( - 1 )
+136 INPLACE_ADD
+138 STORE_FAST 1 ( n )
+
+118 140 LOAD_FAST 1 ( n )
+142 RETURN_VALUE
+

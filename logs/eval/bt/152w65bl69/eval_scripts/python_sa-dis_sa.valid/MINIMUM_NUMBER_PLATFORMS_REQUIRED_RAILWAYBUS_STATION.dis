@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , dep , n ) :\n    arr.sort ( )\n    dep.sort ( )\n    plat_needed = 1\n    result = 1\n    i = 1\n    j = 0\n    while ( i < n and j < n ) :\n        if ( arr [ i ] < dep [ j ] ) :\n            plat_needed += 1\n            i += 1\n            if ( plat_needed > result ) :\n                result = plat_needed\n        else :\n            plat_needed -= 1\n            j += 1\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([8, 24, 28, 64, 75, 86, 93, 95],[19, 30, 41, 51, 62, 68, 85, 96],6,),\n    ([2, -30, -8, -78, 58, -42, -94, 84, -58, 14, 78, 34, 30, 6, -18, -92, 0, 94, -54, 58, 0, -86, 66, 86, 8, -26, 50, 16, -30, -68, 98, -28, -4, -6],[40, 22, -24, 80, -76, -4, -8, -34, 96, -98, 16, 28, 14, 52, 10, -10, -62, 64, -48, 10, -64, -90, -52, 46, 34, 50, 50, -84, 68, -12, -44, 28, -22, 78],18,),\n    ([0, 0, 0, 0, 0, 0, 1],[0, 0, 0, 0, 0, 1, 1],6,),\n    ([51, 5, 48, 61, 71, 2, 4, 35, 50, 76, 59, 64, 81, 5, 21, 95],[67, 84, 86, 43, 50, 90, 49, 8, 40, 67, 5, 51, 40, 28, 31, 47],8,),\n    ([-64, -52, 44, 52, 90],[-62, -16, 22, 26, 58],3,),\n    ([0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1],[0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],17,),\n    ([2, 15, 25, 55, 72, 96, 98],[3, 6, 11, 19, 26, 37, 39],6,),\n    ([-60, 30, -58, 52, 40, 74, 74, 76, -72, -48, 8, -56, -24, -40, -98, -76, -56, -20, 30, -30, -34, 4, -34],[-96, -40, -76, 52, -20, -28, -64, -72, 36, 56, 52, 34, 14, 8, -50, 6, -82, -98, -8, 18, -76, -66, -22],20,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],22,),\n    ([37, 84, 20, 34, 56, 1, 87, 72],[68, 62, 84, 54, 15, 29, 70, 96],6,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findPlatform ( arr , dep , n ) :\n    arr.sort ( )\n    dep.sort ( )\n    plat_needed = 1\n    result = 1\n    i = 1\n    j = 0\n    while ( i < n and j < n ) :\n        if ( arr [ i ] < dep [ j ] ) :\n            plat_needed += 1\n            i += 1\n            if ( plat_needed > result ) :\n                result = plat_needed\n        else :\n            plat_needed -= 1\n            j += 1\n    return result\n"}
+Disassembly of <code object findPlatform at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( arr )
+2 LOAD_METHOD 0 ( sort )
+4 CALL_METHOD 0
+6 STORE_FAST 1 ( dep )
+
+27 8 LOAD_FAST 1 ( dep )
+10 LOAD_CONST 1 ( 0 )
+12 COMPARE_OP 4 ( > )
+14 POP_JUMP_IF_FALSE 28
+
+28 16 LOAD_FAST 1 ( dep )
+18 LOAD_CONST 1 ( 0 )
+20 COMPARE_OP 4 ( > )
+22 POP_JUMP_IF_FALSE 28
+
+29 24 LOAD_FAST 1 ( dep )
+26 LOAD_CONST 1 ( 0 )
+28 COMPARE_OP 4 ( > )
+30 POP_JUMP_IF_FALSE 28
+
+30 32 LOAD_FAST 1 ( dep )
+34 LOAD_CONST 1 ( 0 )
+36 COMPARE_OP 4 ( > )
+38 POP_JUMP_IF_FALSE 48
+
+31 40 LOAD_FAST 1 ( dep )
+42 LOAD_CONST 1 ( 0 )
+44 COMPARE_OP 4 ( > )
+46 POP_JUMP_IF_FALSE 48
+
+32 48 LOAD_FAST 1 ( dep )
+50 LOAD_CONST 1 ( 0 )
+52 COMPARE_OP 4 ( > )
+54 POP_JUMP_IF_FALSE 48
+
+33 56 LOAD_FAST 1 ( dep )
+58 LOAD_CONST 1 ( 0 )
+60 COMPARE_OP 4 ( > )
+62 POP_JUMP_IF_FALSE 48
+
+34 64 LOAD_FAST 1 ( dep )
+66 LOAD_CONST 1 ( 0 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 48
+
+35 72 LOAD_FAST 1 ( dep )
+74 LOAD_CONST 1 ( 0 )
+76 COMPARE_OP 4 ( > )
+78 POP_JUMP_IF_FALSE 48
+
+36 80 LOAD_FAST 1 ( dep )
+82 LOAD_CONST 1 ( 0 )
+84 COMPARE_OP 4 ( > )
+86 POP_JUMP_IF_FALSE 48
+
+37 88 LOAD_FAST 1 ( dep )
+90 LOAD_CONST 1 ( 0 )
+92 COMPARE_OP 4 ( > )
+94 POP_JUMP_IF_FALSE 48
+
+38 >> 96 LOAD_FAST 1 ( dep )
+98 LOAD_CONST 1 ( 0 )
+100 COMPARE_OP 4 ( > )
+102 POP_JUMP_IF_FALSE 48
+
+39 104 LOAD_FAST 1 ( dep )
+106 LOAD_CONST 1 ( 0 )
+108 COMPARE_OP 4 ( > )
+110 POP_JUMP_IF_FALSE 48
+
+40 112 LOAD_FAST 1 ( dep )
+114 LOAD_CONST 1 ( 0 )
+116 COMPARE_OP 4 ( > )
+118 POP_JUMP_IF_FALSE 48
+
+41 120 LOAD_FAST 1 ( dep )
+122 JUMP_FORWARD 2 ( to 48 )
+>> 124 LOAD_CONST 1 ( 0 )
+126 COMPARE_OP 4 ( > )
+128 POP_JUMP_IF_FALSE 48
+
+42 >> 130 LOAD_FAST 1 ( dep )
+132 LOAD_FAST 0 ( arr )
+134 LOAD_CONST 1 ( 0 )
+136 COMPARE_OP 4 ( > )
+138 POP_JUMP_IF_FALSE 48
+
+43 >> 140 LOAD_FAST 1 ( dep )
+142 RETURN_VALUE
+

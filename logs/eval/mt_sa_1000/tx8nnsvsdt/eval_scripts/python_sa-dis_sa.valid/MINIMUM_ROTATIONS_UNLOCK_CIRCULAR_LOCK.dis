@@ -1,0 +1,61 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( input , unlock_code ) :\n    rotation = 0 ;\n    while ( input > 0 or unlock_code > 0 ) :\n        input_digit = input % 10 ;\n        code_digit = unlock_code % 10 ;\n        rotation += min ( abs ( input_digit - code_digit ) , 10 - abs ( input_digit - code_digit ) ) ;\n        input = int ( input / 10 ) ;\n        unlock_code = int ( unlock_code / 10 ) ;\n    return rotation ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (71,46,),\n    (90,65,),\n    (28,84,),\n    (41,23,),\n    (32,58,),\n    (39,82,),\n    (33,58,),\n    (89,32,),\n    (50,51,),\n    (92,77,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minRotation ( input , unlock_code ) :\n    rotation = 0 ;\n    while ( input > 0 or unlock_code > 0 ) :\n        input_digit = input % 10 ;\n        code_digit = unlock_code % 10 ;\n        rotation += min ( abs ( input_digit - code_digit ) , 10 - abs ( input_digit - code_digit ) ) ;\n        input = int ( input / 10 ) ;\n        unlock_code = int ( unlock_code / 10 ) ;\n    return rotation ;\n"}
+Disassembly of <code object minRotation at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( rotation )
+
+3 4 SETUP_LOOP 88 ( to 94 )
+>> 6 LOAD_FAST 0 ( input )
+8 LOAD_CONST 1 ( 0 )
+10 COMPARE_OP 4 ( > )
+12 POP_JUMP_IF_TRUE 92
+14 LOAD_FAST 1 ( unlock_code )
+16 LOAD_CONST 1 ( 0 )
+18 COMPARE_OP 4 ( > )
+20 POP_JUMP_IF_FALSE 92
+
+4 22 LOAD_FAST 0 ( input )
+24 LOAD_CONST 2 ( 10 )
+26 BINARY_MODULO
+28 STORE_FAST 3 ( input_digit )
+
+5 30 LOAD_FAST 1 ( unlock_code )
+32 LOAD_CONST 2 ( 10 )
+34 BINARY_MODULO
+36 STORE_FAST 4 ( code_digit )
+
+6 38 LOAD_FAST 2 ( rotation )
+40 LOAD_GLOBAL 0 ( min )
+42 LOAD_GLOBAL 1 ( abs )
+44 LOAD_FAST 3 ( input_digit )
+46 LOAD_FAST 4 ( code_digit )
+48 BINARY_SUBTRACT
+50 CALL_FUNCTION 1
+52 LOAD_CONST 2 ( 10 )
+54 LOAD_GLOBAL 1 ( abs )
+56 LOAD_FAST 3 ( input_digit )
+58 LOAD_FAST 4 ( code_digit )
+60 BINARY_SUBTRACT
+62 CALL_FUNCTION 1
+64 BINARY_SUBTRACT
+66 CALL_FUNCTION 2
+68 INPLACE_ADD
+70 STORE_FAST 2 ( rotation )
+
+7 72 LOAD_GLOBAL 2 ( int )
+74 LOAD_FAST 0 ( input )
+76 LOAD_CONST 2 ( 10 )
+78 BINARY_TRUE_DIVIDE
+80 CALL_FUNCTION 1
+82 STORE_FAST 1 ( unlock_code )
+
+8 84 LOAD_GLOBAL 2 ( int )
+86 LOAD_FAST 1 ( unlock_code )
+88 LOAD_CONST 2 ( 10 )
+90 BINARY_TRUE_DIVIDE
+92 CALL_FUNCTION 1
+94 STORE_FAST 1 ( unlock_code )
+96 JUMP_ABSOLUTE 6
+>> 98 POP_BLOCK
+
+9 >> 100 LOAD_FAST 2 ( rotation )
+102 RETURN_VALUE

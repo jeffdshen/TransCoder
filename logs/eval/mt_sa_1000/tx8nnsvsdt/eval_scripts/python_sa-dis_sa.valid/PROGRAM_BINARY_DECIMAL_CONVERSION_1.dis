@@ -1,0 +1,51 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    num = n ;\n    dec_value = 0 ;\n    base1 = 1 ;\n    len1 = len ( num ) ;\n    for i in range ( len1 - 1 , - 1 , - 1 ) :\n        if ( num [ i ] == '1' ) :\n            dec_value += base1 ;\n        base1 = base1 * 2 ;\n    return dec_value ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('uEmIAgF',),\n    ('753310137',),\n    ('010011010',),\n    ('kNi',),\n    ('04562016903312',),\n    ('000111101',),\n    ('bk',),\n    ('9',),\n    ('1',),\n    ('XxT nXLlk',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def binaryToDecimal ( n ) :\n    num = n ;\n    dec_value = 0 ;\n    base1 = 1 ;\n    len1 = len ( num ) ;\n    for i in range ( len1 - 1 , - 1 , - 1 ) :\n        if ( num [ i ] == '1' ) :\n            dec_value += base1 ;\n        base1 = base1 * 2 ;\n    return dec_value ;\n"}
+Disassembly of <code object binaryToDecimal at 0x7f2b016399c0, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 STORE_FAST 1 ( num )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 2 ( dec_value )
+
+4 8 LOAD_CONST 2 ( 1 )
+10 STORE_FAST 3 ( base1 )
+
+5 12 LOAD_GLOBAL 0 ( len )
+14 LOAD_FAST 1 ( num )
+16 CALL_FUNCTION 1
+18 STORE_FAST 4 ( Publi)
+
+6 20 SETUP_LOOP 70 ( to 88 )
+22 LOAD_GLOBAL 1 ( range )
+24 LOAD_FAST 4 ( Publi)
+26 LOAD_CONST 2 ( 1 )
+28 BINARY_SUBTRACT
+30 LOAD_CONST 3 ( - 1 )
+32 LOAD_CONST 3 ( - 1 )
+34 CALL_FUNCTION 3
+36 GET_ITER
+>> 38 FOR_ITER 48 ( to 86 )
+40 STORE_FAST 5 ( i )
+
+7 42 LOAD_FAST 1 ( num )
+44 LOAD_FAST 5 ( i )
+46 BINARY_SUBSCR
+48 LOAD_CONST 4 ( '1' )
+50 COMPARE_OP 2 ( == )
+52 POP_JUMP_IF_FALSE 68
+
+8 54 LOAD_FAST 2 ( dec_value )
+56 LOAD_FAST 3 ( base1 )
+58 INPLACE_ADD
+60 STORE_FAST 2 ( dec_value )
+62 JUMP_ABSOLUTE 38
+>> 64 POP_BLOCK
+
+9 66 LOAD_FAST 3 ( base1 )
+68 LOAD_CONST 5 ( 2 )
+70 BINARY_MULTIPLY
+72 STORE_FAST 3 ( base1 )
+74 JUMP_ABSOLUTE 38
+>> 76 POP_BLOCK
+
+10 78 LOAD_FAST 2 ( dec_value )
+80 RETURN_VALUE

@@ -1,0 +1,98 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    res = list ( )\n    res.append ( 0 )\n    res.append ( 1 )\n    i = 2\n    while i < n + 1 :\n        res.append ( max ( i , ( res [ int ( i / 2 ) ] + res [ int ( i / 3 ) ] + res [ int ( i / 4 ) ] + res [ int ( i / 5 ) ] ) ) )\n        i = i + 1\n    return res [ n ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (3,),\n    (19,),\n    (39,),\n    (89,),\n    (96,),\n    (68,),\n    (48,),\n    (5,),\n    (3,),\n    (4,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def maxDP ( n ) :\n    res = list ( )\n    res.append ( 0 )\n    res.append ( 1 )\n    i = 2\n    while i < n + 1 :\n        res.append ( max ( i , ( res [ int ( i / 2 ) ] + res [ int ( i / 3 ) ] + res [ int ( i / 4 ) ] + res [ int ( i / 5 ) ] ) ) )\n        i = i + 1\n    return res [ n ]\n"}
+Disassembly of <code object maxDP at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( list )
+2 LOAD_FAST 0 ( n )
+4 CALL_FUNCTION 1
+6 LOAD_CONST 1 ( 1 )
+8 COMPARE_OP 4 ( > )
+10 POP_JUMP_IF_FALSE 20
+
+27 12 LOAD_FAST 0 ( n )
+14 LOAD_CONST 2 ( 2 )
+16 BINARY_POWER
+18 STORE_FAST 0 ( n )
+
+28 20 LOAD_FAST 0 ( n )
+22 LOAD_CONST 3 ( 1 )
+24 INPLACE_ADD
+26 STORE_FAST 0 ( n )
+
+29 28 LOAD_FAST 0 ( n )
+30 LOAD_CONST 4 ( 2 )
+32 BINARY_POWER
+34 STORE_FAST 1 ( n )
+
+30 36 LOAD_FAST 0 ( n )
+38 LOAD_CONST 5 ( 1 )
+40 INPLACE_ADD
+42 STORE_FAST 0 ( n )
+
+31 44 LOAD_FAST 0 ( n )
+46 LOAD_CONST 6 ( 2 )
+48 BINARY_POWER
+50 STORE_FAST 1 ( n )
+
+32 52 LOAD_FAST 0 ( n )
+54 LOAD_CONST 7 ( 3 )
+56 BINARY_POWER
+58 LOAD_FAST 1 ( n )
+60 LOAD_CONST 8 ( 2 )
+62 BINARY_POWER
+64 BINARY_MULTIPLY
+66 LOAD_FAST 1 ( n )
+68 LOAD_CONST 9 ( 2 )
+70 BINARY_POWER
+72 BINARY_POWER
+74 LOAD_FAST 1 ( n )
+76 LOAD_CONST 10 ( 2 )
+78 BINARY_POWER
+80 BINARY_MULTIPLY
+82 LOAD_FAST 1 ( n )
+84 LOAD_CONST 11 ( 3 )
+86 BINARY_POWER
+88 BINARY_MULTIPLY
+90 BINARY_ADD
+92 LOAD_FAST 1 ( n )
+94 LOAD_CONST 12 ( 2 )
+96 BINARY_POWER
+98 BINARY_MULTIPLY
+100 BINARY_ADD
+102 LOAD_FAST 1 ( n )
+104 LOAD_CONST 13 ( 3 )
+106 BINARY_POWER
+108 BINARY_MULTIPLY
+110 BINARY_ADD
+112 LOAD_FAST 1 ( n )
+114 LOAD_CONST 12 ( 2 )
+116 BINARY_POWER
+118 BINARY_MULTIPLY
+120 BINARY_ADD
+122 LOAD_FAST 1 ( n )
+124 LOAD_CONST 13 ( 3 )
+126 BINARY_POWER
+128 BINARY_MULTIPLY
+130 BINARY_ADD
+132 LOAD_FAST 1 ( n )
+134 LOAD_CONST 14 ( 2 )
+136 BINARY_POWER
+138 BINARY_MULTIPLY
+140 BINARY_ADD
+142 LOAD_FAST 1 ( n )
+144 BINARY_MULTIPLY
+146 BINARY_ADD
+148 LOAD_FAST 1 ( n )
+150 LOAD_CONST 15 ( 3 )
+152 BINARY_POWER
+154 BINARY_MULTIPLY
+156 BINARY_ADD
+158 LOAD_FAST 1 ( n )
+160 BINARY_MULTIPLY
+162 BINARY_ADD
+164 LOAD_FAST 1 ( n )
+166 BINARY_MULTIPLY
+168 BINARY_ADD
+170 LOAD_FAST 1 ( n )
+172 BINARY_ADD
+174 BINARY_ADD
+176 RETURN_VALUE
+

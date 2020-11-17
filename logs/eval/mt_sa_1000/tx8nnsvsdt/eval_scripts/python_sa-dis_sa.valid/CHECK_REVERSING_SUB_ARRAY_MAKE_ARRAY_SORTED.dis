@@ -1,0 +1,111 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    temp = [ 0 ] * n\n    for i in range ( n ) :\n        temp [ i ] = arr [ i ]\n    temp.sort ( )\n    for front in range ( n ) :\n        if temp [ front ] != arr [ front ] :\n            break\n    for back in range ( n - 1 , - 1 , - 1 ) :\n        if temp [ back ] != arr [ back ] :\n            break\n    if front >= back :\n        return True\n    while front != back :\n        front += 1\n        if arr [ front - 1 ] < arr [ front ] :\n            return False\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([5, 9, 9, 16, 17, 22, 32, 40, 45, 53, 57, 58, 66, 69, 76, 80, 91, 93, 94],10,),\n    ([52, -76, -18, 86, 56],3,),\n    ([0, 0, 1],1,),\n    ([66, 44, 98, 44],2,),\n    ([-96, -62, -56, -46, -44, -38, -38, -26, -22, -22, -16, -12, -6, 12, 22, 34, 36, 44, 44, 68, 70, 74, 94],14,),\n    ([1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1],27,),\n    ([5, 9, 11, 12, 13, 16, 19, 23, 23, 23, 25, 27, 27, 28, 31, 36, 40, 44, 48, 59, 60, 63, 66, 66, 67, 67, 69, 69, 70, 71, 73, 76, 76, 79, 86, 86, 92, 92, 93, 93],34,),\n    ([6, 82, -88, -46, -60, 70, -54, -96, -94, 46, -52, 48, -26, -50, -92, -92, 6, -6, 42, 0, -66, -96, 66, 6, -68, -30, -54, 76, 60, 30, 72, -66, -12, -74],28,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],13,),\n    ([62, 54, 36, 35, 36, 91, 45, 87, 74, 49, 15, 15, 73, 77, 63, 70, 74, 65, 11, 18],16,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def checkReverse ( arr , n ) :\n    temp = [ 0 ] * n\n    for i in range ( n ) :\n        temp [ i ] = arr [ i ]\n    temp.sort ( )\n    for front in range ( n ) :\n        if temp [ front ] != arr [ front ] :\n            break\n    for back in range ( n - 1 , - 1 , - 1 ) :\n        if temp [ back ] != arr [ back ] :\n            break\n    if front >= back :\n        return True\n    while front != back :\n        front += 1\n        if arr [ front - 1 ] < arr [ front ] :\n            return False\n    return True\n"}
+Disassembly of <code object checkReverse at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 BUILD_LIST 1
+4 LOAD_FAST 1 ( n )
+6 BINARY_MULTIPLY
+8 STORE_FAST 2 ( temp )
+
+3 10 SETUP_LOOP 32 ( to 46 )
+12 LOAD_GLOBAL 0 ( range )
+14 LOAD_FAST 1 ( n )
+16 CALL_FUNCTION 1
+18 GET_ITER
+>> 20 FOR_ITER 18 ( to 44 )
+22 STORE_FAST 3 ( i )
+
+4 24 LOAD_FAST 0 ( arr )
+26 LOAD_FAST 3 ( i )
+28 BINARY_SUBSCR
+30 LOAD_FAST 2 ( temp )
+32 LOAD_FAST 3 ( i )
+34 STORE_SUBSCR
+36 JUMP_ABSOLUTE 20
+>> 38 POP_BLOCK
+
+5 >> 40 LOAD_FAST 2 ( temp )
+42 LOAD_METHOD 1 ( sort )
+44 CALL_METHOD 0
+46 POP_TOP
+
+6 48 SETUP_LOOP 34 ( to 84 )
+50 LOAD_GLOBAL 0 ( range )
+52 LOAD_FAST 1 ( n )
+54 CALL_FUNCTION 1
+56 GET_ITER
+>> 58 FOR_ITER 22 ( to 82 )
+60 STORE_FAST 4 ( front )
+
+7 62 LOAD_FAST 2 ( temp )
+64 LOAD_FAST 4 ( front )
+66 BINARY_SUBSCR
+68 LOAD_FAST 0 ( arr )
+70 LOAD_FAST 4 ( front )
+72 BINARY_SUBSCR
+74 COMPARE_OP 3 ( != )
+76 POP_JUMP_IF_FALSE 58
+
+8 78 BREAK_LOOP
+80 JUMP_ABSOLUTE 58
+>> 82 POP_BLOCK
+
+9 >> 84 SETUP_LOOP 48 ( to 126 )
+86 LOAD_GLOBAL 0 ( range )
+88 LOAD_FAST 1 ( n )
+90 LOAD_CONST 2 ( 1 )
+92 BINARY_SUBTRACT
+94 LOAD_CONST 3 ( - 1 )
+96 LOAD_CONST 3 ( - 1 )
+98 CALL_FUNCTION 3
+100 GET_ITER
+>> 102 FOR_ITER 28 ( to 124 )
+104 STORE_FAST 5 ( back )
+
+10 106 LOAD_FAST 2 ( temp )
+108 LOAD_FAST 5 ( back )
+110 BINARY_SUBSCR
+112 LOAD_FAST 0 ( arr )
+114 LOAD_FAST 5 ( back )
+116 BINARY_SUBSCR
+118 COMPARE_OP 3 ( != )
+120 POP_JUMP_IF_FALSE 102
+
+11 122 BREAK_LOOP
+>> 124 JUMP_ABSOLUTE 102
+>> 126 POP_BLOCK
+
+12 >> 128 LOAD_FAST 4 ( front )
+130 LOAD_FAST 5 ( back )
+132 COMPARE_OP 5 ( >= )
+134 POP_JUMP_IF_FALSE 144
+
+13 136 LOAD_CONST 4 ( True )
+138 RETURN_VALUE
+
+14 >> 140 SETUP_LOOP 54 ( to 192 )
+>> 142 LOAD_FAST 4 ( front )
+144 LOAD_FAST 5 ( back )
+146 COMPARE_OP 3 ( != )
+148 POP_JUMP_IF_FALSE 190
+
+15 150 LOAD_FAST 4 ( front )
+152 LOAD_CONST 2 ( 1 )
+154 INPLACE_ADD
+156 STORE_FAST 4 ( front )
+
+16 158 LOAD_FAST 0 ( arr )
+160 LOAD_FAST 4 ( front )
+162 LOAD_CONST 2 ( 1 )
+164 BINARY_SUBTRACT
+166 BINARY_SUBSCR
+168 LOAD_FAST 0 ( arr )
+170 LOAD_FAST 4 ( front )
+172 BINARY_SUBSCR
+174 COMPARE_OP 0 ( < )
+176 POP_JUMP_IF_FALSE 178
+
+17 178 LOAD_CONST 5 ( False )
+180 RETURN_VALUE
+
+18 >> 182 LOAD_CONST 4 ( True )
+184 RETURN_VALUE

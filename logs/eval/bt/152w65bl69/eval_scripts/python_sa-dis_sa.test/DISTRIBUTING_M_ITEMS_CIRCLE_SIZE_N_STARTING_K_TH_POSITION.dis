@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , m , k ) :\n    if ( m <= n - k + 1 ) :\n        return m + k - 1\n    m = m - ( n - k + 1 )\n    if ( m % n == 0 ) :\n        return n\n    else :\n        return m % n\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (19,14,34,),\n    (23,51,5,),\n    (92,10,24,),\n    (9,50,34,),\n    (20,67,20,),\n    (68,25,40,),\n    (66,30,24,),\n    (77,22,32,),\n    (90,1,71,),\n    (26,34,54,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def lastPosition ( n , m , k ) :\n    if ( m <= n - k + 1 ) :\n        return m + k - 1\n    m = m - ( n - k + 1 )\n    if ( m % n == 0 ) :\n        return n\n    else :\n        return m % n\n"}
+Disassembly of <code object lastPosition at 0x7f816a601660, file "<dis>", line 202>:
+204 0 LOAD_FAST 1 ( m )
+2 LOAD_CONST 1 ( - 1 )
+4 BINARY_SUBSCR
+6 LOAD_CONST 2 ( - 1 )
+8 COMPARE_OP 2 ( == )
+10 POP_JUMP_IF_FALSE 20
+
+205 12 LOAD_FAST 0 ( self )
+14 LOAD_ATTR 0 ( _lastPosition )
+16 LOAD_FAST 1 ( m )
+18 LOAD_CONST 1 ( - 1 )
+20 BINARY_SUBSCR
+22 LOAD_CONST 3 ( - 1 )
+24 BINARY_SUBSCR
+26 LOAD_CONST 4 ( - 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 5 ( - 1 )
+32 BINARY_SUBSCR
+34 LOAD_CONST 6 ( - 1 )
+36 BINARY_SUBSCR
+38 LOAD_CONST 7 ( - 1 )
+40 BINARY_SUBSCR
+42 LOAD_CONST 8 ( - 1 )
+44 BINARY_SUBSCR
+46 LOAD_CONST 9 ( - 1 )
+48 BINARY_SUBSCR
+50 LOAD_CONST 10 ( - 1 )
+52 BINARY_SUBSCR
+54 LOAD_CONST 11 ( - 1 )
+56 BINARY_SUBSCR
+58 LOAD_CONST 12 ( - 1 )
+60 BINARY_SUBSCR
+62 LOAD_CONST 13 ( - 1 )
+64 BINARY_SUBSCR
+66 LOAD_CONST 14 ( - 1 )
+68 BINARY_SUBSCR
+70 LOAD_CONST 6 ( - 1 )
+72 BINARY_SUBSCR
+74 LOAD_CONST 12 ( - 1 )
+76 BINARY_SUBSCR
+78 LOAD_CONST 13 ( - 1 )
+80 BINARY_SUBSCR
+82 LOAD_CONST 14 ( - 1 )
+84 BINARY_SUBSCR
+86 LOAD_CONST 15 ( - 1 )
+88 BINARY_SUBSCR
+90 LOAD_CONST 16 ( - 1 )
+92 BINARY_SUBSCR
+94 LOAD_CONST 17 ( - 1 )
+96 BINARY_SUBSCR
+98 LOAD_CONST 18 ( - 1 )
+100 BINARY_SUBSCR
+102 LOAD_CONST 19 ( - 1 )
+104 BINARY_SUBSCR
+106 LOAD_CONST 20 ( - 1 )
+108 BINARY_SUBSCR
+110 LOAD_CONST 21 ( - 1 )
+112 BINARY_SUBSCR
+114 LOAD_CONST 22 ( - 1 )
+116 BINARY_SUBSCR
+118 LOAD_CONST 21 ( - 1 )
+120 BINARY_SUBSCR
+122 LOAD_CONST 22 ( - 1 )
+124 BINARY_SUBSCR
+126 LOAD_CONST 23 ( - 1 )
+128 BINARY_SUBSCR
+130 LOAD_CONST 22 ( - 1 )
+132 BINARY_SUBSCR
+134 LOAD_CONST 22 ( - 1 )
+136 BINARY_SUBSCR
+138 LOAD_CONST 23 ( - 1 )
+140 BINARY_SUBSCR
+142 LOAD_CONST 22 ( - 1 )
+144 LOAD_CONST 23 ( - 1 )
+146 BINARY_SUBSCR
+148 LOAD_CONST 22 ( - 1 )
+150 BINARY_SUBSCR
+152 LOAD_CONST 23 ( - 1 )
+154 BINARY_SUBSCR
+156 LOAD_CONST 24 ( - 1 )
+158 LOAD_CONST 23 ( - 1 )
+160 BUILD_SLICE 2
+162 BINARY_SUBSCR
+164 LOAD_CONST 24 ( - 1 )
+166 BINARY_SUBSCR
+168 LOAD_CONST 25 ( - 1 )
+170 BUILD_SLICE 2
+168 STORE_SUBSCR
+
+207 207 LOAD_FAST

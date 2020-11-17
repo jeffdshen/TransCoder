@@ -1,0 +1,78 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n ) :\n    arr.sort ( )\n    count = 0 ; max_count = 0 ; min_count = n\n    for i in range ( 0 , ( n - 1 ) ) :\n        if arr [ i ] == arr [ i + 1 ] :\n            count += 1\n            continue\n        else :\n            max_count = max ( max_count , count )\n            min_count = min ( min_count , count )\n            count = 0\n    return max_count - min_count\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([5, 15, 19, 22, 28, 29, 39, 46, 46, 49, 51, 55, 62, 69, 72, 72, 72, 74, 79, 92, 92, 93, 95, 96],15,),\n    ([-26, -54, 92, 76, -92, -14, -24, -70, -78, -50, -48, -22, 12, 2, -34, -60, 4, -32, -10, 52, -92, -74, 18, 34, 6, -66, 42, -10, -6, 56, 92],30,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],24,),\n    ([59, 35, 13, 79, 61, 97, 92, 48, 98, 38, 65, 54, 31, 49, 81, 22, 96, 29, 65, 48, 92, 66, 25, 21, 26, 1, 32, 73, 46, 5, 40, 17, 53, 93, 83, 29],29,),\n    ([-70, -34, -32, -30, -14, 80, 86, 90],4,),\n    ([0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0],23,),\n    ([9],0,),\n    ([94, 10, 70, 42],2,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],24,),\n    ([64, 76, 49, 55, 92, 15, 4, 8, 95, 60, 90, 3, 7, 79, 84, 17, 96, 10, 80, 26, 22, 15],20,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findDiff ( arr , n ) :\n    arr.sort ( )\n    count = 0 ; max_count = 0 ; min_count = n\n    for i in range ( 0 , ( n - 1 ) ) :\n        if arr [ i ] == arr [ i + 1 ] :\n            count += 1\n            continue\n        else :\n            max_count = max ( max_count , count )\n            min_count = min ( min_count , count )\n            count = 0\n    return max_count - min_count\n"}
+Disassembly of <code object findDiff at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_FAST 0 ( arr )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( n )
+
+66 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( n )
+
+67 16 LOAD_FAST 2 ( n )
+18 LOAD_CONST 3 ( 1 )
+20 BINARY_SUBSCR
+22 STORE_FAST 3 ( n )
+
+68 24 LOAD_FAST 1 ( n )
+26 LOAD_CONST 4 ( 1 )
+28 BINARY_SUBSCR
+30 STORE_FAST 4 ( n )
+
+69 32 LOAD_FAST 0 ( arr )
+34 LOAD_FAST 3 ( n )
+36 LOAD_CONST 5 ( 1 )
+38 BINARY_SUBSCR
+40 LOAD_FAST 2 ( n )
+42 LOAD_CONST 6 ( 2 )
+44 BINARY_SUBSCR
+46 LOAD_FAST 4 ( n )
+48 LOAD_CONST 7 ( 3 )
+50 BINARY_SUBSCR
+52 LOAD_FAST 4 ( n )
+54 LOAD_CONST 8 ( 2 )
+56 BINARY_SUBSCR
+58 LOAD_FAST 4 ( n )
+60 LOAD_CONST 9 ( 4 )
+62 BINARY_SUBSCR
+64 LOAD_FAST 2 ( n )
+66 LOAD_CONST 10 ( 4 )
+68 BINARY_SUBSCR
+70 BINARY_SUBTRACT
+72 LOAD_FAST 3 ( n )
+74 LOAD_CONST 11 ( 3 )
+76 BINARY_SUBSCR
+78 LOAD_FAST 4 ( n )
+80 LOAD_CONST 12 ( 4 )
+82 BINARY_SUBSCR
+84 LOAD_FAST 4 ( n )
+86 LOAD_CONST 13 ( 3 )
+88 BINARY_SUBSCR
+90 LOAD_FAST 4 ( n )
+92 LOAD_CONST 14 ( 3 )
+94 BINARY_SUBSCR
+96 LOAD_CONST 15 ( 4 )
+98 BINARY_SUBSCR
+100 LOAD_FAST 4 ( n )
+102 LOAD_CONST 16 ( 4 )
+104 BINARY_SUBSCR
+106 LOAD_CONST 17 ( 4 )
+108 BINARY_SUBSCR
+110 LOAD_CONST 18 ( 4 )
+112 STORE_SUBSCR
+
+71 114 LOAD_FAST 1 ( n )
+116 LOAD_CONST 6 ( 2 )
+118 BINARY_SUBSCR
+120 LOAD_CONST 19 ( 4 )
+122 BINARY_SUBSCR
+124 LOAD_FAST 4 ( n )
+126 LOAD_CONST 20 ( 4 )
+128 BINARY_SUBSCR
+130 LOAD_FAST 4 ( n )
+132 LOAD_CONST 21 ( 3 )
+134 STORE_SUBSCR
+136 LOAD_CONST 0 ( None )
+138 RETURN_VALUE
+

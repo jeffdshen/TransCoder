@@ -1,0 +1,55 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( low , high ) :\n    fact = 1\n    x = 1\n    while ( fact < low ) :\n        fact = fact * x\n        x += 1\n    res = 0\n    while ( fact <= high ) :\n        res += 1\n        fact = fact * x\n        x += 1\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (57,79,),\n    (57,21,),\n    (31,37,),\n    (62,87,),\n    (49,98,),\n    (82,76,),\n    (31,45,),\n    (5,52,),\n    (76,43,),\n    (55,6,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countFact ( low , high ) :\n    fact = 1\n    x = 1\n    while ( fact < low ) :\n        fact = fact * x\n        x += 1\n    res = 0\n    while ( fact <= high ) :\n        res += 1\n        fact = fact * x\n        x += 1\n    return res\n"}
+Disassembly of <code object countFact at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 STORE_FAST 2 ( fact )
+
+3 4 LOAD_CONST 1 ( 1 )
+6 STORE_FAST 3 ( x )
+
+4 8 SETUP_LOOP 64 ( to 76 )
+10 LOAD_FAST 0 ( low )
+12 GET_ITER
+>> 14 FOR_ITER 64 ( to 74 )
+16 STORE_FAST 4 ( n )
+
+5 18 LOAD_FAST 2 ( fact )
+20 LOAD_FAST 3 ( x )
+22 BINARY_SUBSCR
+24 LOAD_FAST 1 ( high )
+26 COMPARE_OP 0 ( < )
+28 POP_JUMP_IF_FALSE 14
+
+6 30 LOAD_FAST 2 ( fact )
+32 LOAD_FAST 3 ( x )
+34 BINARY_SUBSCR
+36 STORE_FAST 5 ( fact )
+
+7 38 LOAD_FAST 2 ( fact )
+40 LOAD_FAST 4 ( n )
+42 BINARY_SUBSCR
+44 INPLACE_ADD
+46 STORE_FAST 2 ( fact )
+
+8 48 LOAD_FAST 2 ( fact )
+50 LOAD_FAST 4 ( n )
+52 BINARY_SUBSCR
+54 LOAD_FAST 1 ( high )
+56 COMPARE_OP 0 ( < )
+58 POP_JUMP_IF_FALSE 14
+
+9 60 LOAD_FAST 2 ( fact )
+62 LOAD_FAST 4 ( n )
+64 BINARY_SUBSCR
+66 INPLACE_ADD
+68 STORE_FAST 2 ( fact )
+
+10 70 LOAD_FAST 2 ( fact )
+72 LOAD_FAST 4 ( n )
+74 BINARY_SUBSCR
+76 INPLACE_ADD
+78 STORE_FAST 2 ( fact )
+80 JUMP_ABSOLUTE 14
+>> 82 POP_BLOCK
+
+11 >> 84 LOAD_FAST 2 ( fact )
+86 RETURN_VALUE

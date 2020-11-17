@@ -1,0 +1,23 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nfrom math import sqrt\n\ndef f_gold ( a ) :\n    area = ( sqrt ( 5 * ( 5 + 2 * ( sqrt ( 5 ) ) ) ) * a * a ) / 4\n    return area\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (2009.019461888707,),\n    (-1480.5131394215787,),\n    (357.7870347569567,),\n    (-8040.293697508038,),\n    (3821.882657293133,),\n    (-6840.635072240347,),\n    (1623.036598830132,),\n    (-9714.00706195298,),\n    (3916.454769669618,),\n    (-669.068424712943,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findArea ( a ) :\n    area = ( sqrt ( 5 * ( 5 + 2 * ( sqrt ( 5 ) ) ) ) * a * a ) / 4\n    return area\n"}
+Disassembly of <code object findArea at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( sqrt )
+2 LOAD_CONST 1 ( 5 )
+4 LOAD_CONST 1 ( 5 )
+6 LOAD_CONST 1 ( 2 )
+8 LOAD_GLOBAL 0 ( sqrt )
+10 LOAD_CONST 1 ( 5 )
+12 CALL_FUNCTION 1
+14 BINARY_MULTIPLY
+16 BINARY_ADD
+18 BINARY_MULTIPLY
+20 CALL_FUNCTION 1
+22 LOAD_FAST 0 ( a )
+24 BINARY_MULTIPLY
+26 LOAD_FAST 0 ( a )
+28 BINARY_MULTIPLY
+30 LOAD_CONST 2 ( 4 )
+32 BINARY_TRUE_DIVIDE
+34 STORE_FAST 1 ( area )
+
+3 36 LOAD_FAST 1 ( area )
+38 RETURN_VALUE

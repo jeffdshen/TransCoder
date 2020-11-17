@@ -1,0 +1,95 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    dp = [ ] ;\n    dp.append ( 1 ) ;\n    dp.append ( 1 ) ;\n    for i in range ( 2 , n + 1 ) :\n        dp.append ( dp [ i - 1 ] + dp [ i - 2 ] + 1 ) ;\n    return dp [ n ] ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (75,),\n    (76,),\n    (55,),\n    (14,),\n    (43,),\n    (10,),\n    (16,),\n    (30,),\n    (44,),\n    (65,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def leonardo ( n ) :\n    dp = [ ] ;\n    dp.append ( 1 ) ;\n    dp.append ( 1 ) ;\n    for i in range ( 2 , n + 1 ) :\n        dp.append ( dp [ i - 1 ] + dp [ i - 2 ] + 1 ) ;\n    return dp [ n ] ;\n"}
+Disassembly of <code object leardo at 0x7f816a673a50, file "<dis>", line 19>:
+20 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 INPLACE_ADD
+6 STORE_FAST 1 ( i )
+
+21 8 LOAD_FAST 1 ( i )
+10 LOAD_CONST 2 ( 2 )
+12 BINARY_MULTIPLY
+14 INPLACE_ADD
+16 STORE_FAST 1 ( i )
+
+22 18 LOAD_FAST 1 ( i )
+20 LOAD_CONST 3 ( 1 )
+22 INPLACE_ADD
+24 STORE_FAST 1 ( i )
+
+23 26 LOAD_FAST 1 ( i )
+28 LOAD_CONST 4 ( - 1 )
+30 INPLACE_ADD
+32 STORE_FAST 1 ( i )
+
+24 34 LOAD_FAST 1 ( i )
+36 LOAD_CONST 5 ( - 1 )
+38 INPLACE_ADD
+40 STORE_FAST 1 ( i )
+
+25 42 LOAD_FAST 1 ( i )
+44 LOAD_CONST 6 ( - 1 )
+46 INPLACE_ADD
+48 STORE_FAST 1 ( i )
+
+26 50 LOAD_FAST 1 ( i )
+52 LOAD_CONST 7 ( - 1 )
+54 INPLACE_ADD
+56 STORE_FAST 1 ( i )
+
+27 58 LOAD_FAST 1 ( i )
+60 LOAD_CONST 8 ( - 1 )
+62 INPLACE_ADD
+64 STORE_FAST 1 ( i )
+
+28 66 LOAD_FAST 1 ( i )
+68 LOAD_CONST 9 ( - 1 )
+70 INPLACE_ADD
+72 STORE_FAST 1 ( i )
+
+29 74 LOAD_FAST 1 ( i )
+76 LOAD_CONST 10 ( - 1 )
+78 INPLACE_ADD
+80 STORE_FAST 1 ( i )
+
+30 82 LOAD_FAST 1 ( i )
+84 LOAD_CONST 11 ( - 1 )
+86 INPLACE_ADD
+88 STORE_FAST 1 ( i )
+
+31 90 LOAD_FAST 1 ( i )
+92 LOAD_CONST 12 ( - 1 )
+94 INPLACE_ADD
+96 STORE_FAST 1 ( i )
+
+32 98 LOAD_FAST 1 ( i )
+100 LOAD_CONST 13 ( - 1 )
+102 INPLACE_ADD
+104 STORE_FAST 1 ( i )
+
+33 106 LOAD_FAST 1 ( i )
+108 LOAD_CONST 6 ( - 1 )
+110 INPLACE_ADD
+112 STORE_FAST 1 ( i )
+
+34 114 LOAD_FAST 1 ( i )
+116 LOAD_CONST 6 ( - 1 )
+118 INPLACE_ADD
+120 STORE_FAST 1 ( i )
+
+35 122 LOAD_FAST 1 ( i )
+124 LOAD_CONST 6 ( - 1 )
+126 INPLACE_ADD
+128 STORE_FAST 1 ( i )
+
+36 130 LOAD_FAST 1 ( i )
+132 LOAD_CONST 7 ( - 1 )
+134 INPLACE_ADD
+136 STORE_FAST 1 ( i )
+
+37 138 LOAD_FAST 1 ( i )
+140 LOAD_CONST 6 ( - 1 )
+142 INPLACE_ADD
+144 STORE_FAST 1 ( i )
+
+38 146 LOAD_FAST 1 ( i )
+148 RETURN_VALUE

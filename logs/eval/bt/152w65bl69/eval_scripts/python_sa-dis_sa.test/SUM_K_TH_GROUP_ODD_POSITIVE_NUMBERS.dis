@@ -1,0 +1,21 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( k ) :\n    cur = int ( ( k * ( k - 1 ) ) + 1 )\n    sum = 0\n    while k :\n        sum += cur\n        cur += 2\n        k = k - 1\n    return sum\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (91,),\n    (52,),\n    (78,),\n    (51,),\n    (65,),\n    (39,),\n    (42,),\n    (12,),\n    (56,),\n    (98,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def kthgroupsum ( k ) :\n    cur = int ( ( k * ( k - 1 ) ) + 1 )\n    sum = 0\n    while k :\n        sum += cur\n        cur += 2\n        k = k - 1\n    return sum\n"}
+Disassembly of <code object kthgroupsum at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_GLOBAL 0 ( cur )
+2 LOAD_METHOD 1 ( int )
+4 LOAD_FAST 0 ( k )
+6 CALL_METHOD 1
+8 STORE_FAST 1 ( cur )
+
+66 10 LOAD_FAST 1 ( cur )
+12 LOAD_METHOD 2 ( cur )
+14 LOAD_FAST 0 ( k )
+16 CALL_METHOD 1
+18 POP_TOP
+
+67 20 LOAD_FAST 1 ( cur )
+22 LOAD_METHOD 3 ( cur )
+24 CALL_METHOD 0
+26 POP_TOP
+28 LOAD_CONST 0 ( None )
+30 RETURN_VALUE
+

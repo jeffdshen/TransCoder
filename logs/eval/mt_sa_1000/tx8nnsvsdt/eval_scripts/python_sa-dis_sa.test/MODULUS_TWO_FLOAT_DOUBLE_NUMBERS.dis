@@ -1,0 +1,47 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b ) :\n    if ( a < 0 ) :\n        a = - a\n    if ( b < 0 ) :\n        b = - b\n    mod = a\n    while ( mod >= b ) :\n        mod = mod - b\n    if ( a < 0 ) :\n        return - mod\n    return mod\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (3243.229719038493,5659.926861939672,),\n    (-4362.665881044217,-9196.507113304497,),\n    (7255.066257575837,2623.200060506935,),\n    (-6929.554320261099,-3009.0234530313287,),\n    (3569.942027998315,6920.809419868375,),\n    (-6513.849053096595,-70.95992406437102,),\n    (7333.183189243961,580.3500610971768,),\n    (-2856.1752826258803,-9625.97442825802,),\n    (9787.228111241662,2419.6844962423256,),\n    (-1722.873699288031,-8370.700544254058,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findMod ( a , b ) :\n    if ( a < 0 ) :\n        a = - a\n    if ( b < 0 ) :\n        b = - b\n    mod = a\n    while ( mod >= b ) :\n        mod = mod - b\n    if ( a < 0 ) :\n        return - mod\n    return mod\n"}
+Disassembly of <code object findMod at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 14
+
+3 8 LOAD_FAST 0 ( a )
+10 UNARY_NEGATIVE
+12 STORE_FAST 0 ( a )
+
+4 >> 14 LOAD_FAST 1 ( b )
+16 LOAD_CONST 1 ( 0 )
+18 COMPARE_OP 0 ( < )
+20 POP_JUMP_IF_FALSE 28
+
+5 22 LOAD_FAST 1 ( b )
+24 UNARY_NEGATIVE
+26 STORE_FAST 1 ( b )
+
+6 >> 28 LOAD_FAST 0 ( a )
+30 STORE_FAST 2 ( mod )
+
+7 32 SETUP_LOOP 20 ( to 54 )
+>> 34 LOAD_FAST 2 ( mod )
+36 LOAD_FAST 1 ( b )
+38 COMPARE_OP 5 ( >= )
+40 POP_JUMP_IF_FALSE 52
+
+8 42 LOAD_FAST 2 ( mod )
+44 LOAD_FAST 1 ( b )
+46 BINARY_SUBTRACT
+48 STORE_FAST 2 ( mod )
+50 JUMP_ABSOLUTE 34
+>> 52 POP_BLOCK
+
+9 >> 54 LOAD_FAST 0 ( a )
+56 LOAD_CONST 1 ( 0 )
+58 COMPARE_OP 0 ( < )
+60 POP_JUMP_IF_FALSE 66
+
+10 62 LOAD_FAST 2 ( mod )
+64 UNARY_NEGATIVE
+66 RETURN_VALUE
+
+11 >> 68 LOAD_FAST 2 ( mod )
+70 RETURN_VALUE

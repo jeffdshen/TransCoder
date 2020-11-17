@@ -1,0 +1,82 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , m ) :\n    count = [ ]\n    for i in range ( n + 2 ) :\n        count.append ( 0 )\n    count [ 0 ] = 0\n    for i in range ( 1 , n + 1 ) :\n        if ( i > m ) :\n            count [ i ] = count [ i - 1 ] + count [ i - m ]\n        elif ( i < m ) :\n            count [ i ] = 1\n        else :\n            count [ i ] = 2\n    return count [ n ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (93,54,),\n    (17,4,),\n    (38,39,),\n    (33,64,),\n    (78,35,),\n    (40,61,),\n    (95,6,),\n    (12,8,),\n    (69,60,),\n    (78,21,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countWays ( n , m ) :\n    count = [ ]\n    for i in range ( n + 2 ) :\n        count.append ( 0 )\n    count [ 0 ] = 0\n    for i in range ( 1 , n + 1 ) :\n        if ( i > m ) :\n            count [ i ] = count [ i - 1 ] + count [ i - m ]\n        elif ( i < m ) :\n            count [ i ] = 1\n        else :\n            count [ i ] = 2\n    return count [ n ]\n"}
+Disassembly of <code object countWays at 0x7f2b01639f60, file "<dis>", line 1>:
+2 0 BUILD_LIST 0
+2 STORE_FAST 2 ( count )
+
+3 4 SETUP_LOOP 26 ( to 32 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_FAST 0 ( n )
+10 LOAD_CONST 1 ( 2 )
+12 BINARY_ADD
+14 CALL_FUNCTION 1
+16 GET_ITER
+>> 18 FOR_ITER 14 ( to 30 )
+20 STORE_FAST 3 ( i )
+
+4 22 LOAD_FAST 2 ( count )
+24 LOAD_METHOD 1 ( append )
+26 LOAD_CONST 2 ( 0 )
+28 CALL_METHOD 1
+>> 30 POP_TOP
+32 JUMP_ABSOLUTE 18
+>> 34 POP_BLOCK
+
+5 >> 36 LOAD_CONST 2 ( 0 )
+38 LOAD_FAST 2 ( count )
+40 LOAD_CONST 2 ( 0 )
+42 STORE_SUBSCR
+
+6 44 SETUP_LOOP 92 ( to 146 )
+46 LOAD_GLOBAL 0 ( range )
+48 LOAD_CONST 3 ( 1 )
+50 LOAD_FAST 0 ( n )
+52 LOAD_CONST 3 ( 1 )
+54 BINARY_ADD
+56 CALL_FUNCTION 2
+58 GET_ITER
+>> 60 FOR_ITER 68 ( to 144 )
+62 STORE_FAST 3 ( i )
+
+7 64 LOAD_FAST 3 ( i )
+66 LOAD_FAST 1 ( m )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 96
+
+8 72 LOAD_FAST 2 ( count )
+74 LOAD_FAST 3 ( i )
+76 LOAD_CONST 3 ( 1 )
+78 BINARY_SUBTRACT
+80 BINARY_SUBSCR
+82 LOAD_FAST 2 ( count )
+84 LOAD_FAST 3 ( i )
+86 LOAD_FAST 1 ( m )
+88 BINARY_SUBTRACT
+90 BINARY_SUBSCR
+92 BINARY_ADD
+94 LOAD_FAST 2 ( count )
+96 LOAD_FAST 3 ( i )
+98 STORE_SUBSCR
+100 JUMP_ABSOLUTE 60
+
+9 >> 102 LOAD_FAST 3 ( i )
+104 LOAD_FAST 1 ( m )
+106 COMPARE_OP 0 ( < )
+108 POP_JUMP_IF_FALSE 120
+
+10 110 LOAD_CONST 3 ( 1 )
+112 LOAD_FAST 2 ( count )
+114 LOAD_FAST 3 ( i )
+116 STORE_SUBSCR
+118 JUMP_ABSOLUTE 60
+
+12 >> 120 LOAD_CONST 1 ( 2 )
+122 LOAD_FAST 2 ( count )
+124 LOAD_FAST 3 ( i )
+126 STORE_SUBSCR
+128 JUMP_ABSOLUTE 60
+>> 130 POP_BLOCK
+
+13 >> 132 LOAD_FAST 2 ( count )
+134 LOAD_FAST 0 ( n )
+136 BINARY_SUBSCR
+138 RETURN_VALUE

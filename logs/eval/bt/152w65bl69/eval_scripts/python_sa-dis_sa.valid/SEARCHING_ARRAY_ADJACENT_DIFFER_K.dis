@@ -1,0 +1,91 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , x , k ) :\n    i = 0\n    while ( i < n ) :\n        if ( arr [ i ] == x ) :\n            return i\n        i = i + max ( 1 , int ( abs ( arr [ i ] - x ) / k ) )\n    print ( \"number is not present!\" )\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([1, 5, 9, 11, 14, 18, 19, 21, 26, 32, 38, 38, 43, 47, 49, 52, 55, 61, 65, 67, 69, 73, 74, 79, 84, 90, 91, 91, 92, 93, 94, 99],22,19,26,),\n    ([12, -86, -66, -50, -48, 78, -92, -56, -2, 66, 64],5,10,5,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],35,37,43,),\n    ([10, 87, 39, 87, 45, 33, 5, 37, 70, 69, 88, 78, 90, 3],9,8,10,),\n    ([-78, -70, -68, -60, -52, -34, -24, -4, 12, 18, 58, 58, 64, 76, 84, 94],14,9,13,),\n    ([0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0],26,36,32,),\n    ([5, 5, 7, 11, 11, 15, 22, 23, 28, 38, 41, 53, 54, 57, 59, 68, 71, 89],16,17,16,),\n    ([-4, 0, 60, -14, -48, 54, -96, -68, -40, 64, -50, -74, -20, -22, 48, -48, 42, 62, 66, 84, 54, -52, -52, 6, 46, -90, -18, 90],18,14,23,),\n    ([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],9,8,9,),\n    ([30, 91, 34, 44, 3, 76, 43, 75, 49, 33, 74, 72, 68, 79, 26, 62, 23, 5, 32, 75, 82, 25, 7, 19, 32, 87, 87, 94, 34, 62, 3, 32, 59],32,30,24,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def search ( arr , n , x , k ) :\n    i = 0\n    while ( i < n ) :\n        if ( arr [ i ] == x ) :\n            return i\n        i = i + max ( 1 , int ( abs ( arr [ i ] - x ) / k ) )\n    print ( \"number is not present!\" )\n    return - 1\n"}
+Disassembly of <code object search at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( arr )
+2 LOAD_CONST 1 ( 0 )
+4 BINARY_SUBSCR
+6 STORE_FAST 1 ( n )
+
+27 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 2 ( 1 )
+12 BINARY_SUBSCR
+14 LOAD_CONST 3 ( 2 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 24
+
+28 20 LOAD_GLOBAL 0 ( print )
+22 LOAD_CONST 4 ( 'number is not present!' )
+24 CALL_FUNCTION 1
+26 POP_TOP
+
+29 28 LOAD_FAST 1 ( n )
+30 LOAD_CONST 5 ( 1 )
+32 BINARY_SUBSCR
+34 LOAD_CONST 6 ( 2 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 48
+
+30 40 LOAD_GLOBAL 0 ( print )
+42 LOAD_CONST 7 ( 'number is not present!' )
+44 CALL_FUNCTION 1
+46 POP_TOP
+
+31 >> 48 LOAD_FAST 1 ( n )
+50 LOAD_CONST 8 ( 1 )
+52 BINARY_SUBSCR
+54 LOAD_CONST 9 ( 2 )
+56 COMPARE_OP 2 ( == )
+58 POP_JUMP_IF_FALSE 48
+
+32 60 LOAD_GLOBAL 1 ( print )
+62 LOAD_CONST 10 ( 'number is present!' )
+64 CALL_FUNCTION 1
+66 POP_TOP
+
+33 68 LOAD_FAST 1 ( n )
+70 LOAD_CONST 5 ( 1 )
+72 BINARY_SUBSCR
+74 LOAD_CONST 11 ( 2 )
+76 BINARY_SUBSCR
+78 LOAD_CONST 12 ( 3 )
+80 COMPARE_OP 2 ( == )
+82 POP_JUMP_IF_FALSE 88
+
+34 84 LOAD_FAST 1 ( n )
+86 LOAD_CONST 5 ( 1 )
+88 BINARY_SUBSCR
+90 LOAD_CONST 12 ( 3 )
+92 COMPARE_OP 2 ( == )
+94 POP_JUMP_IF_FALSE 88
+
+35 96 LOAD_FAST 1 ( n )
+98 LOAD_CONST 5 ( 1 )
+100 BINARY_SUBSCR
+102 LOAD_CONST 12 ( 3 )
+104 COMPARE_OP 2 ( == )
+106 POP_JUMP_IF_FALSE 88
+
+36 108 LOAD_FAST 1 ( n )
+110 LOAD_CONST 5 ( 1 )
+112 BINARY_SUBSCR
+114 LOAD_CONST 12 ( 3 )
+116 COMPARE_OP 2 ( == )
+118 POP_JUMP_IF_FALSE 106
+
+37 120 LOAD_FAST 1 ( n )
+122 LOAD_CONST 5 ( 1 )
+124 BINARY_SUBSCR
+126 STORE_FAST 1 ( n )
+
+38 >> 128 LOAD_FAST 1 ( n )
+130 LOAD_CONST 5 ( 1 )
+132 BINARY_SUBSCR
+134 LOAD_CONST 12 ( 3 )
+136 COMPARE_OP 2 ( == )
+138 POP_JUMP_IF_FALSE 138
+140 LOAD_FAST 1 ( n )
+142 LOAD_CONST 5 ( 1 )
+144 COMPARE_OP 2 ( == )
+146 POP_JUMP_IF_FALSE 138
+148 LOAD_FAST 1 ( n )
+150 LOAD_CONST 5 ( 1 )
+152 COMPARE_OP 2 ( == )

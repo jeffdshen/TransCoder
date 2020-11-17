@@ -1,0 +1,66 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    res = ord ( str [ 0 ] ) - 48\n    for i in range ( 1 , len ( str ) ) :\n        if ( str [ i ] == '0' or str [ i ] == '1' or res < 2 ) :\n            res += ord ( str [ i ] ) - 48\n        else :\n            res *= ord ( str [ i ] ) - 48\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('pR',),\n    ('9518',),\n    ('1',),\n    ('nNMCIXUCpRMmvO',),\n    ('3170487',),\n    ('0100101010',),\n    ('Z rONcUqWb',),\n    ('00419297',),\n    ('00',),\n    ('r',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def calcMaxValue ( str ) :\n    res = ord ( str [ 0 ] ) - 48\n    for i in range ( 1 , len ( str ) ) :\n        if ( str [ i ] == '0' or str [ i ] == '1' or res < 2 ) :\n            res += ord ( str [ i ] ) - 48\n        else :\n            res *= ord ( str [ i ] ) - 48\n    return res\n"}
+Disassembly of <code object calcMaxValue at 0x7f2b0164d390, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( ord )
+2 LOAD_FAST 0 ( str )
+4 LOAD_CONST 1 ( 0 )
+6 BINARY_SUBSCR
+8 CALL_FUNCTION 1
+10 LOAD_CONST 2 ( 48 )
+12 BINARY_SUBTRACT
+14 STORE_FAST 1 ( res )
+
+3 16 SETUP_LOOP 92 ( to 108 )
+18 LOAD_GLOBAL 1 ( range )
+20 LOAD_CONST 3 ( 1 )
+22 LOAD_GLOBAL 2 ( len )
+24 LOAD_FAST 0 ( str )
+26 CALL_FUNCTION 1
+28 CALL_FUNCTION 2
+30 GET_ITER
+>> 32 FOR_ITER 66 ( to 106 )
+34 STORE_FAST 2 ( i )
+
+4 36 LOAD_FAST 0 ( str )
+38 LOAD_FAST 2 ( i )
+40 BINARY_SUBSCR
+42 LOAD_CONST 4 ( '0' )
+44 COMPARE_OP 2 ( == )
+46 POP_JUMP_IF_TRUE 52
+48 LOAD_FAST 0 ( str )
+50 LOAD_FAST 2 ( i )
+52 BINARY_SUBSCR
+54 LOAD_CONST 4 ( '1' )
+56 COMPARE_OP 2 ( == )
+58 POP_JUMP_IF_TRUE 32
+60 LOAD_FAST 1 ( res )
+62 LOAD_CONST 5 ( 2 )
+64 COMPARE_OP 0 ( < )
+66 POP_JUMP_IF_FALSE 78
+
+5 68 LOAD_FAST 1 ( res )
+70 LOAD_GLOBAL 0 ( ord )
+72 LOAD_FAST 0 ( str )
+74 LOAD_FAST 2 ( i )
+76 BINARY_SUBSCR
+78 CALL_FUNCTION 1
+80 LOAD_CONST 2 ( 48 )
+82 BINARY_SUBTRACT
+84 INPLACE_ADD
+86 STORE_FAST 1 ( res )
+88 JUMP_ABSOLUTE 32
+
+7 >> 90 LOAD_FAST 1 ( res )
+92 LOAD_GLOBAL 0 ( ord )
+94 LOAD_FAST 0 ( str )
+96 LOAD_FAST 2 ( i )
+98 BINARY_SUBSCR
+100 CALL_FUNCTION 1
+102 LOAD_CONST 2 ( 48 )
+104 BINARY_SUBTRACT
+106 INPLACE_MULTIPLY
+108 STORE_FAST 1 ( res )
+110 JUMP_ABSOLUTE 32
+>> 112 POP_BLOCK
+
+8 >> 114 LOAD_FAST 1 ( res )
+116 RETURN_VALUE

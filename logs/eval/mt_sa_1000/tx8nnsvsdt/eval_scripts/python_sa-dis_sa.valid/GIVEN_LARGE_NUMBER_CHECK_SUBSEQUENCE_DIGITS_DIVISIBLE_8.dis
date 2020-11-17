@@ -1,0 +1,108 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( st ) :\n    l = len ( st )\n    arr = [ 0 ] * l\n    for i in range ( 0 , l ) :\n        for j in range ( i , l ) :\n            for k in range ( j , l ) :\n                if ( arr [ i ] % 8 == 0 ) :\n                    return True\n                elif ( ( arr [ i ] * 10 + arr [ j ] ) % 8 == 0 and i != j ) :\n                    return True\n                elif ( ( arr [ i ] * 100 + arr [ j ] * 10 + arr [ k ] ) % 8 == 0 and i != j and j != k and i != k ) :\n                    return True\n    return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('1787075866',),\n    ('8',),\n    ('1110101110111',),\n    ('6673177113',),\n    ('7',),\n    ('000001',),\n    ('dbxMF',),\n    ('71733',),\n    ('01101101100',),\n    ('',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isSubSeqDivisible ( st ) :\n    l = len ( st )\n    arr = [ 0 ] * l\n    for i in range ( 0 , l ) :\n        for j in range ( i , l ) :\n            for k in range ( j , l ) :\n                if ( arr [ i ] % 8 == 0 ) :\n                    return True\n                elif ( ( arr [ i ] * 10 + arr [ j ] ) % 8 == 0 and i != j ) :\n                    return True\n                elif ( ( arr [ i ] * 100 + arr [ j ] * 10 + arr [ k ] ) % 8 == 0 and i != j and j != k and i != k ) :\n                    return True\n    return False\n"}
+Disassembly of <code object isSubSeqDivisible at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( st )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( l )
+
+3 8 LOAD_CONST 1 ( 0 )
+10 BUILD_LIST 1
+12 LOAD_FAST 1 ( l )
+14 BINARY_MULTIPLY
+16 STORE_FAST 2 ( arr )
+
+4 18 SETUP_LOOP 156 ( to 168 )
+20 LOAD_GLOBAL 1 ( range )
+22 LOAD_CONST 1 ( 0 )
+24 LOAD_FAST 1 ( l )
+26 CALL_FUNCTION 2
+28 GET_ITER
+>> 30 FOR_ITER 148 ( to 166 )
+32 STORE_FAST 3 ( i )
+
+5 34 SETUP_LOOP 146 ( to 164 )
+36 LOAD_GLOBAL 1 ( range )
+38 LOAD_FAST 3 ( i )
+40 LOAD_FAST 1 ( l )
+42 CALL_FUNCTION 2
+44 GET_ITER
+>> 46 FOR_ITER 138 ( to 162 )
+48 STORE_FAST 4 ( j )
+
+6 50 SETUP_LOOP 140 ( to 160 )
+52 LOAD_GLOBAL 1 ( range )
+54 LOAD_FAST 4 ( j )
+56 LOAD_FAST 1 ( l )
+58 CALL_FUNCTION 2
+60 GET_ITER
+>> 62 FOR_ITER 128 ( to 158 )
+64 STORE_FAST 5 ( k )
+
+7 66 LOAD_FAST 2 ( arr )
+68 LOAD_FAST 3 ( i )
+70 BINARY_SUBSCR
+72 LOAD_CONST 2 ( 8 )
+74 BINARY_MODULO
+76 LOAD_CONST 1 ( 0 )
+78 COMPARE_OP 2 ( == )
+80 POP_JUMP_IF_FALSE 86
+
+8 82 LOAD_CONST 3 ( True )
+84 RETURN_VALUE
+
+9 >> 86 LOAD_FAST 2 ( arr )
+88 LOAD_FAST 3 ( i )
+90 BINARY_SUBSCR
+92 LOAD_CONST 4 ( 10 )
+94 BINARY_MULTIPLY
+96 LOAD_FAST 2 ( arr )
+98 LOAD_FAST 4 ( j )
+100 BINARY_SUBSCR
+102 BINARY_ADD
+104 LOAD_CONST 1 ( 0 )
+106 COMPARE_OP 2 ( == )
+108 POP_JUMP_IF_FALSE 118
+110 LOAD_FAST 3 ( i )
+112 LOAD_FAST 4 ( j )
+114 COMPARE_OP 3 ( != )
+116 POP_JUMP_IF_FALSE 118
+
+10 >> 118 LOAD_CONST 3 ( True )
+120 RETURN_VALUE
+
+11 >> 122 LOAD_FAST 2 ( arr )
+124 LOAD_FAST 3 ( i )
+126 BINARY_SUBSCR
+128 LOAD_CONST 5 ( 100 )
+130 BINARY_MULTIPLY
+132 LOAD_FAST 2 ( arr )
+134 LOAD_FAST 4 ( j )
+136 BINARY_SUBSCR
+138 LOAD_CONST 4 ( 10 )
+140 BINARY_MULTIPLY
+142 BINARY_ADD
+144 LOAD_FAST 2 ( arr )
+146 LOAD_FAST 4 ( j )
+148 BINARY_SUBSCR
+150 BINARY_ADD
+152 LOAD_CONST 1 ( 0 )
+154 COMPARE_OP 2 ( == )
+156 POP_JUMP_IF_FALSE 62
+158 LOAD_FAST 4 ( j )
+160 LOAD_FAST 5 ( k )
+162 COMPARE_OP 3 ( != )
+164 POP_JUMP_IF_FALSE 62
+166 LOAD_FAST 3 ( i )
+168 LOAD_FAST 5 ( k )
+170 COMPARE_OP 3 ( != )
+172 POP_JUMP_IF_FALSE 62
+
+12 174 LOAD_CONST 3 ( True )
+176 RETURN_VALUE
+>> 178 JUMP_ABSOLUTE 62
+>> 180 POP_BLOCK
+>> 182 JUMP_ABSOLUTE 46
+>> 184 POP_BLOCK
+
+13 >> 186 LOAD_CONST 6 ( False )
+188 RETURN_VALUE

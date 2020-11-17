@@ -1,0 +1,93 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( N , insrt , remov , cpy ) :\n    if N == 0 :\n        return 0\n    if N == 1 :\n        return insrt\n    dp = [ 0 ] * ( N + 1 )\n    for i in range ( 1 , N + 1 ) :\n        if i % 2 == 0 :\n            dp [ i ] = min ( dp [ i - 1 ] + insrt , dp [ i // 2 ] + cpy )\n        else :\n            dp [ i ] = min ( dp [ i - 1 ] + insrt , dp [ ( i + 1 ) // 2 ] + cpy + remov )\n    return dp [ N ]\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (59,75,12,45,),\n    (66,68,32,41,),\n    (98,55,69,5,),\n    (63,4,41,12,),\n    (99,37,98,55,),\n    (45,28,59,7,),\n    (60,53,40,52,),\n    (11,96,50,50,),\n    (96,95,48,84,),\n    (54,6,50,82,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minTimeForWritingChars ( N , insrt , remov , cpy ) :\n    if N == 0 :\n        return 0\n    if N == 1 :\n        return insrt\n    dp = [ 0 ] * ( N + 1 )\n    for i in range ( 1 , N + 1 ) :\n        if i % 2 == 0 :\n            dp [ i ] = min ( dp [ i - 1 ] + insrt , dp [ i // 2 ] + cpy )\n        else :\n            dp [ i ] = min ( dp [ i - 1 ] + insrt , dp [ ( i + 1 ) // 2 ] + cpy + remov )\n    return dp [ N ]\n"}
+Disassembly of <code object minTimeForWritingChars at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( N )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 1 ( 0 )
+10 RETURN_VALUE
+
+4 >> 12 LOAD_FAST 0 ( N )
+14 LOAD_CONST 2 ( 1 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 24
+
+5 20 LOAD_FAST 1 ( insrt )
+22 RETURN_VALUE
+
+6 >> 24 LOAD_CONST 1 ( 0 )
+26 BUILD_LIST 1
+28 LOAD_FAST 0 ( N )
+30 LOAD_CONST 2 ( 1 )
+32 BINARY_ADD
+34 BINARY_MULTIPLY
+36 STORE_FAST 4 ( dp )
+
+7 38 SETUP_LOOP 140 ( to 182 )
+40 LOAD_GLOBAL 0 ( range )
+42 LOAD_CONST 2 ( 1 )
+44 LOAD_FAST 0 ( N )
+46 LOAD_CONST 2 ( 1 )
+48 BINARY_ADD
+50 CALL_FUNCTION 2
+52 GET_ITER
+>> 54 FOR_ITER 128 ( to 180 )
+56 STORE_FAST 5 ( i )
+
+8 58 LOAD_FAST 5 ( i )
+60 LOAD_CONST 3 ( 2 )
+62 BINARY_MODULO
+64 LOAD_CONST 1 ( 0 )
+66 COMPARE_OP 2 ( == )
+68 POP_JUMP_IF_FALSE 110
+
+9 70 LOAD_GLOBAL 1 ( min )
+72 LOAD_FAST 4 ( dp )
+74 LOAD_FAST 5 ( i )
+76 LOAD_CONST 2 ( 1 )
+78 BINARY_SUBTRACT
+80 BINARY_SUBSCR
+82 LOAD_FAST 1 ( insrt )
+84 BINARY_ADD
+86 LOAD_FAST 4 ( dp )
+88 LOAD_FAST 5 ( i )
+90 LOAD_CONST 3 ( 2 )
+92 BINARY_FLOOR_DIVIDE
+94 BINARY_SUBSCR
+96 LOAD_FAST 2 ( cpy )
+98 BINARY_ADD
+100 CALL_FUNCTION 2
+102 LOAD_FAST 4 ( dp )
+104 LOAD_FAST 5 ( i )
+106 STORE_SUBSCR
+108 JUMP_ABSOLUTE 54
+
+11 >> 110 LOAD_GLOBAL 1 ( min )
+112 LOAD_FAST 4 ( dp )
+114 LOAD_FAST 5 ( i )
+116 LOAD_CONST 2 ( 1 )
+118 BINARY_SUBTRACT
+120 BINARY_SUBSCR
+122 LOAD_FAST 1 ( insrt )
+124 BINARY_ADD
+126 LOAD_FAST 4 ( dp )
+128 LOAD_FAST 5 ( i )
+130 LOAD_CONST 3 ( 2 )
+132 BINARY_ADD
+134 BINARY_SUBSCR
+136 LOAD_FAST 2 ( cpy )
+138 BINARY_ADD
+140 LOAD_FAST 3 ( remo)
+142 BINARY_ADD
+144 CALL_FUNCTION 2
+146 LOAD_FAST 4 ( dp )
+148 LOAD_FAST 5 ( i )
+150 STORE_SUBSCR
+152 JUMP_ABSOLUTE 54
+>> 154 POP_BLOCK
+
+12 >> 156 LOAD_FAST 4 ( dp )
+158 LOAD_FAST 0 ( N )
+160 BINARY_SUBSCR
+162 RETURN_VALUE

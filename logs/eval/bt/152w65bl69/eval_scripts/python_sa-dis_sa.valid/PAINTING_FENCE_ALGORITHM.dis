@@ -1,0 +1,91 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , k ) :\n    total = k\n    mod = 1000000007\n    same , diff = 0 , k\n    for i in range ( 2 , n + 1 ) :\n        same = diff\n        diff = total * ( k - 1 )\n        diff = diff % mod\n        total = ( same + diff ) % mod\n    return total\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (6,30,),\n    (23,87,),\n    (89,31,),\n    (63,36,),\n    (23,68,),\n    (44,66,),\n    (81,18,),\n    (43,73,),\n    (9,42,),\n    (41,98,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def countWays ( n , k ) :\n    total = k\n    mod = 1000000007\n    same , diff = 0 , k\n    for i in range ( 2 , n + 1 ) :\n        same = diff\n        diff = total * ( k - 1 )\n        diff = diff % mod\n        total = ( same + diff ) % mod\n    return total\n"}
+Disassembly of <code object countWays at 0x7f816a673a50, file "<dis>", line 19>:
+20 0 LOAD_FAST 1 ( k )
+2 LOAD_FAST 0 ( n )
+4 BINARY_MULTIPLY
+6 STORE_FAST 2 ( v )
+
+21 8 LOAD_FAST 2 ( v )
+10 LOAD_CONST 1 ( - 1 )
+12 BINARY_SUBSCR
+14 STORE_FAST 3 ( diff )
+
+22 16 LOAD_FAST 3 ( diff )
+18 LOAD_FAST 2 ( v )
+20 LOAD_CONST 2 ( - 1 )
+22 BINARY_SUBSCR
+24 LOAD_FAST 3 ( diff )
+26 LOAD_CONST 3 ( 1 )
+28 BINARY_SUBSCR
+30 LOAD_CONST 4 ( - 1 )
+32 BINARY_SUBSCR
+34 LOAD_CONST 5 ( - 1 )
+36 BINARY_SUBSCR
+38 LOAD_CONST 6 ( - 1 )
+40 BINARY_SUBSCR
+42 LOAD_CONST 7 ( - 1 )
+44 BINARY_SUBSCR
+46 LOAD_CONST 8 ( - 1 )
+48 BINARY_SUBSCR
+50 LOAD_CONST 9 ( - 1 )
+52 BINARY_SUBSCR
+54 LOAD_CONST 10 ( - 1 )
+56 BINARY_SUBSCR
+58 LOAD_CONST 11 ( - 1 )
+60 BINARY_SUBSCR
+62 LOAD_CONST 12 ( - 1 )
+64 BINARY_SUBSCR
+66 LOAD_CONST 13 ( - 1 )
+68 BINARY_SUBSCR
+70 LOAD_CONST 14 ( - 1 )
+72 BINARY_SUBSCR
+74 LOAD_CONST 15 ( - 1 )
+76 BINARY_SUBSCR
+78 LOAD_CONST 16 ( - 1 )
+80 BINARY_SUBSCR
+82 LOAD_CONST 17 ( - 1 )
+84 BINARY_SUBSCR
+86 LOAD_CONST 16 ( - 1 )
+88 BINARY_SUBSCR
+90 LOAD_CONST 17 ( - 1 )
+92 BINARY_SUBSCR
+94 LOAD_CONST 18 ( - 1 )
+96 BINARY_SUBSCR
+98 LOAD_CONST 19 ( - 1 )
+100 BINARY_SUBSCR
+102 LOAD_CONST 20 ( - 1 )
+104 BINARY_SUBSCR
+106 LOAD_CONST 21 ( - 1 )
+108 BINARY_SUBSCR
+110 LOAD_CONST 22 ( - 1 )
+112 BINARY_SUBSCR
+114 LOAD_CONST 21 ( - 1 )
+116 BINARY_SUBSCR
+118 LOAD_CONST 22 ( - 1 )
+120 BINARY_SUBSCR
+122 LOAD_CONST 23 ( - 1 )
+124 BINARY_SUBSCR
+126 LOAD_CONST 22 ( - 1 )
+128 BINARY_SUBSCR
+130 LOAD_CONST 23 ( - 1 )
+132 BINARY_SUBSCR
+134 LOAD_CONST 22 ( - 1 )
+136 BINARY_SUBSCR
+138 LOAD_CONST 23 ( - 1 )
+140 BINARY_SUBSCR
+142 LOAD_CONST 22 ( - 1 )
+144 LOAD_CONST 23 ( - 1 )
+146 BINARY_SUBSCR
+148 LOAD_CONST 24 ( - 1 )
+150 BINARY_SUBSCR
+152 LOAD_CONST 23 ( - 1 )
+154 BINARY_SUBSCR
+156 LOAD_CONST 24 ( - 1 )
+158 LOAD_CONST 23 ( - 1 )
+160 BINARY_SUBSCR
+162 LOAD_CONST 24 ( - 1 )
+164 BINARY_SUBSCR
+166 LOAD_CONST 25 ( - 1 )
+168 BINARY_SUBSCR
+170 LOAD_CONST 24 ( - 1 )
+172 COMPARE_OP 2

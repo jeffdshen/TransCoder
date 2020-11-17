@@ -1,0 +1,101 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    sum = 0\n    for i in range ( 1 , n + 1 ) :\n        sum = sum + ( 2 * i - 1 ) * ( 2 * i - 1 )\n    return sum\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (14,),\n    (61,),\n    (37,),\n    (86,),\n    (47,),\n    (98,),\n    (70,),\n    (24,),\n    (76,),\n    (24,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def sumOfSeries ( n ) :\n    sum = 0\n    for i in range ( 1 , n + 1 ) :\n        sum = sum + ( 2 * i - 1 ) * ( 2 * i - 1 )\n    return sum\n"}
+Disassembly of <code object sumOfSeries at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( sum )
+
+3 4 SETUP_LOOP 64 ( to 76 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 2 ( 1 )
+10 LOAD_FAST 0 ( n )
+12 LOAD_CONST 2 ( 1 )
+14 BINARY_ADD
+16 CALL_FUNCTION 2
+18 GET_ITER
+>> 20 FOR_ITER 48 ( to 74 )
+22 STORE_FAST 2 ( i )
+
+4 24 LOAD_FAST 1 ( sum )
+26 LOAD_FAST 2 ( i )
+28 LOAD_FAST 2 ( i )
+30 BINARY_MULTIPLY
+32 LOAD_FAST 1 ( sum )
+34 LOAD_FAST 2 ( i )
+36 BINARY_MULTIPLY
+38 BINARY_SUBTRACT
+40 LOAD_FAST 1 ( sum )
+42 LOAD_FAST 2 ( i )
+44 BINARY_MULTIPLY
+46 BINARY_SUBTRACT
+48 LOAD_FAST 1 ( sum )
+50 LOAD_FAST 2 ( i )
+52 BINARY_MULTIPLY
+54 BINARY_SUBTRACT
+56 LOAD_FAST 1 ( sum )
+58 LOAD_FAST 2 ( i )
+60 BINARY_MULTIPLY
+62 BINARY_SUBTRACT
+64 BINARY_MULTIPLY
+66 LOAD_FAST 1 ( sum )
+68 LOAD_FAST 2 ( i )
+70 BINARY_MULTIPLY
+72 BINARY_SUBTRACT
+74 LOAD_FAST 1 ( sum )
+76 LOAD_FAST 2 ( i )
+78 BINARY_MULTIPLY
+80 BINARY_SUBTRACT
+82 LOAD_FAST 1 ( sum )
+84 LOAD_FAST 2 ( i )
+86 BINARY_MULTIPLY
+88 BINARY_SUBTRACT
+90 BINARY_MULTIPLY
+92 LOAD_FAST 1 ( sum )
+94 LOAD_FAST 2 ( i )
+96 BINARY_MULTIPLY
+98 BINARY_SUBTRACT
+100 LOAD_FAST 1 ( sum )
+102 LOAD_FAST 2 ( i )
+104 BINARY_MULTIPLY
+106 BINARY_SUBTRACT
+108 LOAD_FAST 1 ( sum )
+110 LOAD_FAST 2 ( i )
+112 BINARY_MULTIPLY
+114 BINARY_SUBTRACT
+116 LOAD_FAST 1 ( sum )
+118 LOAD_FAST 2 ( i )
+120 BINARY_MULTIPLY
+122 BINARY_SUBTRACT
+124 LOAD_FAST 1 ( sum )
+126 LOAD_FAST 2 ( i )
+128 BINARY_MULTIPLY
+130 BINARY_SUBTRACT
+132 BINARY_MULTIPLY
+134 LOAD_FAST 1 ( sum )
+136 LOAD_FAST 2 ( i )
+138 BINARY_MULTIPLY
+140 BINARY_SUBTRACT
+142 LOAD_FAST 1 ( sum )
+144 LOAD_FAST 2 ( i )
+146 BINARY_MULTIPLY
+148 BINARY_SUBTRACT
+150 BINARY_MULTIPLY
+152 LOAD_FAST 1 ( sum )
+154 LOAD_FAST 2 ( i )
+156 BINARY_MULTIPLY
+158 BINARY_SUBTRACT
+160 LOAD_FAST 1 ( sum )
+162 LOAD_FAST 2 ( i )
+164 BINARY_MULTIPLY
+166 BINARY_SUBTRACT
+168 LOAD_FAST 1 ( sum )
+170 LOAD_FAST 2 ( i )
+172 BINARY_MULTIPLY
+174 BINARY_SUBTRACT
+176 LOAD_FAST 1 ( sum )
+178 LOAD_FAST 2 ( i )
+180 BINARY_MULTIPLY
+72 BINARY_SUBTRACT
+74 LOAD_FAST 1 ( sum )
+76 LOAD_FAST 2 ( i )
+78 BINARY_SUBTRACT
+80 BINARY_MULTIPLY
+82

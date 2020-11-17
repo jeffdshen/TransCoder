@@ -1,0 +1,42 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    zeros = 0\n    ones = 0\n    for i in range ( 0 , len ( str ) ) :\n        ch = str [ i ] ;\n        if ( ch == '0' ) :\n            zeros = zeros + 1\n        else :\n            ones = ones + 1\n    return ( zeros == 1 or ones == 1 ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (\"00001\",),\n    (\"0000\",),\n    (\"11\",),\n    (\"111110\",),\n    (\"1\",),\n    (\"111010111010\",),\n    (\"hUInqJXNdbfP\",),\n    (\"5191\",),\n    (\"1110101101\",),\n    ('NupSrU xz',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def canMakeAllSame ( str ) :\n    zeros = 0\n    ones = 0\n    for i in range ( 0 , len ( str ) ) :\n        ch = str [ i ] ;\n        if ( ch == '0' ) :\n            zeros = zeros + 1\n        else :\n            ones = ones + 1\n    return ( zeros == 1 or ones == 1 ) ;\n"}
+Disassembly of <code object canMakeAllSame at 0x7f2b0164ded0, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( zeros )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 2 ( ones )
+
+4 8 SETUP_LOOP 54 ( to 66 )
+10 LOAD_GLOBAL 0 ( range )
+12 LOAD_CONST 1 ( 0 )
+14 LOAD_GLOBAL 1 ( len )
+16 LOAD_FAST 0 ( str )
+18 CALL_FUNCTION 1
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 42 ( to 64 )
+26 STORE_FAST 3 ( i )
+
+5 28 LOAD_FAST 0 ( str )
+30 LOAD_FAST 3 ( i )
+32 BINARY_SUBSCR
+34 STORE_FAST 4 ( ch )
+
+6 36 LOAD_FAST 4 ( ch )
+38 LOAD_CONST 2 ( '0' )
+40 COMPARE_OP 2 ( == )
+42 POP_JUMP_IF_FALSE 52
+
+7 44 LOAD_FAST 1 ( zeros )
+46 LOAD_CONST 3 ( 1 )
+48 BINARY_ADD
+50 STORE_FAST 1 ( zeros )
+
+9 >> 52 LOAD_FAST 2 ( ones )
+54 LOAD_CONST 3 ( 1 )
+56 BINARY_ADD
+58 STORE_FAST 2 ( ones )
+60 JUMP_ABSOLUTE 24
+62 POP_BLOCK
+>> 64 LOAD_CONST 0 ( None )
+66 RETURN_VALUE

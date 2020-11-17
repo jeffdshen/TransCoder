@@ -1,0 +1,36 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str , corner ) :\n    n = len ( str )\n    cl = len ( corner )\n    if ( n < cl ) :\n        return False\n    return ( ( str [ : cl ] == corner ) and ( str [ n - cl : ] == corner ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('geeksmanishgeeks','geeks',),\n    ('shreyadhatwalia','abc',),\n    ('10000100','100',),\n    ('abaa','a',),\n    ('30645530','30',),\n    ('0000011011001','001',),\n    ('dkqEd','d',),\n    ('48694119324654','654',),\n    ('1101010010','11',),\n    ('Ks','KsFLmngGGOmHKs',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isCornerPresent ( str , corner ) :\n    n = len ( str )\n    cl = len ( corner )\n    if ( n < cl ) :\n        return False\n    return ( ( str [ : cl ] == corner ) and ( str [ n - cl : ] == corner ) )\n"}
+Disassembly of <code object isCornerPresent at 0x7f816a6e4b70, file "<dis>", line 25>:
+26 0 LOAD_FAST 0 ( self )
+2 LOAD_ATTR 0 ( n )
+4 STORE_FAST 1 ( corner )
+
+27 6 LOAD_FAST 1 ( corner )
+8 LOAD_FAST 0 ( self )
+10 LOAD_ATTR 1 ( corner )
+12 COMPARE_OP 6 ( in )
+14 POP_JUMP_IF_FALSE 20
+
+28 16 LOAD_CONST 1 ( False )
+18 RETURN_VALUE
+
+29 >> 20 LOAD_FAST 1 ( corner )
+22 LOAD_FAST 0 ( self )
+24 LOAD_ATTR 2 ( corner )
+26 COMPARE_OP 6 ( in )
+28 POP_JUMP_IF_FALSE 38
+
+30 30 LOAD_CONST 1 ( False )
+32 RETURN_VALUE
+
+31 >> 34 LOAD_FAST 1 ( corner )
+36 LOAD_FAST 0 ( self )
+38 LOAD_ATTR 3 ( corner )
+40 COMPARE_OP 6 ( in )
+42 POP_JUMP_IF_FALSE 48
+
+32 44 LOAD_CONST 1 ( False )
+46 RETURN_VALUE
+
+33 >> 48 LOAD_CONST 1 ( False )
+50 RETURN_VALUE
+

@@ -1,0 +1,17 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b ) :\n    if a == 0 :\n        return b\n    return f_gold ( b % a , a )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (46,89,),\n    (26,82,),\n    (40,12,),\n    (58,4,),\n    (25,44,),\n    (2,87,),\n    (8,65,),\n    (21,87,),\n    (82,10,),\n    (17,61,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def gcd ( a , b ) :\n    if a == 0 :\n        return b\n    return gcd ( b % a , a )\n"}
+Disassembly of <code object gcd at 0x7f2b0164d8a0, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( a )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 2 ( == )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_FAST 0 ( a )
+10 LOAD_FAST 1 ( b )
+12 BUILD_TUPLE 2
+14 RETURN_VALUE
+
+4 >> 16 LOAD_GLOBAL 0 ( gcd )
+18 LOAD_FAST 0 ( a )
+20 LOAD_FAST 1 ( b )
+22 CALL_FUNCTION 2
+24 RETURN_VALUE

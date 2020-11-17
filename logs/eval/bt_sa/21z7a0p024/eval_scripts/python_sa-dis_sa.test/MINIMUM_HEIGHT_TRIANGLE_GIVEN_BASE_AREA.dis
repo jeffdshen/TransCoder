@@ -1,0 +1,11 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( base , area ) :\n    return math.ceil ( ( 2 * area ) / base )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (1657.0629620116251,1493.9165309072955,),\n    (9124.969801011524,1805.1693004732417,),\n    (939.4442550679516,4002.523220001232,),\n    (1696.1076035017763,1305.681153243279,),\n    (3624.090070396748,9193.838698730207,),\n    (304.33897626625406,2077.168327165032,),\n    (8242.270129715309,2452.3562706401203,),\n    (4410.9174799683105,985.4222263517964,),\n    (7951.742385610694,7364.610274987048,),\n    (1280.6368084273633,9479.625581022658,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minHeight ( area , base ) :\n    return math.ceil ( ( 2 * area ) / base )\n"}
+Disassembly of <code object minHeight at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( math )
+2 LOAD_METHOD 1 ( ceil )
+4 LOAD_CONST 1 ( 2 )
+6 LOAD_FAST 0 ( area )
+8 BINARY_MULTIPLY
+10 CALL_METHOD 1
+12 LOAD_FAST 1 ( base )
+14 BINARY_TRUE_DIVIDE
+16 RETURN_VALUE

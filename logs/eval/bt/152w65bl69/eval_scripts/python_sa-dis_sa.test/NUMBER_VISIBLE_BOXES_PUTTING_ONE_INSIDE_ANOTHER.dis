@@ -1,0 +1,33 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport collections\n\ndef f_gold ( arr , n ) :\n    q = collections.deque ( [ ] )\n    arr.sort ( )\n    q.append ( arr [ 0 ] )\n    for i in range ( 1 , n ) :\n        now = q [ 0 ]\n        if ( arr [ i ] >= 2 * now ) :\n            q.popleft ( )\n        q.append ( arr [ i ] )\n    return len ( q )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 3, 17, 17, 18, 28, 28, 29, 34, 43, 44, 52, 54, 80, 84, 84, 91, 92, 97],12,),\n    ([-34, 70, -90, -10, -26, 64, 4, 28, 24, -90, -78, 72, 74, 80, 82, -94],10,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],40,),\n    ([20, 87, 5, 62, 12, 81, 30, 83, 96, 16, 2, 76, 3, 8, 37, 53, 55, 88],9,),\n    ([-94, -92, -60, -58, -54, -42, -36, -12, -8, -2, 8, 14, 18, 20, 26, 32, 38, 56, 58, 60, 70, 78, 80, 86, 98],18,),\n    ([0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],9,),\n    ([1, 1, 2, 3, 3, 11, 16, 18, 19, 21, 21, 22, 22, 24, 27, 28, 29, 43, 43, 52, 55, 57, 60, 62, 62, 63, 65, 66, 70, 70, 73, 77, 78, 79, 79, 80, 85, 85, 86, 88, 89, 90, 97, 98],30,),\n    ([88, 12, -22, -60, 30, -30, -14, 80, -58, -80, -10, 86, -94, -14, 4, -18, -18, 54, -82, -8, -68, -6, -44, -44, 50, 88, -78, -42, 12, 52, 44, 14, 6, 48, 18, -30, 4],21,),\n    ([0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],7,),\n    ([82, 62, 43, 39, 5, 90, 75, 50, 16, 83, 52, 69, 71, 3, 89, 10, 51, 69, 32, 96, 5, 43, 83, 12, 31, 81, 22, 59, 52, 47, 86, 49, 56, 90, 31, 59],28,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minimumBox ( arr , n ) :\n    q = collections.deque ( [ ] )\n    arr.sort ( )\n    q.append ( arr [ 0 ] )\n    for i in range ( 1 , n ) :\n        now = q [ 0 ]\n        if ( arr [ i ] >= 2 * now ) :\n            q.popleft ( )\n        q.append ( arr [ i ] )\n    return len ( q )\n"}
+Disassembly of <code object minimumBox at 0x7f816a673a50, file "<dis>", line 64>:
+65 0 LOAD_GLOBAL 0 ( collections )
+2 LOAD_METHOD 1 ( deque )
+4 CALL_METHOD 0
+6 STORE_FAST 1 ( n )
+
+66 8 LOAD_FAST 1 ( n )
+10 LOAD_CONST 1 ( 0 )
+12 BINARY_SUBSCR
+14 STORE_FAST 2 ( a )
+
+67 16 LOAD_FAST 2 ( a )
+18 LOAD_METHOD 2 ( popleft )
+20 CALL_METHOD 0
+22 STORE_FAST 3 ( i )
+
+68 24 LOAD_FAST 3 ( i )
+26 LOAD_CONST 2 ( 1 )
+28 BINARY_SUBTRACT
+30 LOAD_CONST 3 ( 2 )
+32 BINARY_SUBTRACT
+34 STORE_FAST 4 ( a )
+
+69 36 LOAD_FAST 0 ( self )
+38 LOAD_METHOD 3 ( append )
+40 LOAD_FAST 4 ( a )
+42 LOAD_FAST 1 ( n )
+44 CALL_METHOD 2
+46 POP_TOP
+48 LOAD_CONST 0 ( None )
+50 RETURN_VALUE
+

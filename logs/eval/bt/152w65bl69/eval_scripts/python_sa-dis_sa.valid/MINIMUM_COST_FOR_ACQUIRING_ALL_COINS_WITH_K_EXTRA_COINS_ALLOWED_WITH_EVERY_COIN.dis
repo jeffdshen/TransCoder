@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( coin , n , k ) :\n    coin.sort ( )\n    coins_needed = math.ceil ( 1.0 * n // ( k + 1 ) ) ;\n    ans = 0\n    for i in range ( coins_needed - 1 + 1 ) :\n        ans += coin [ i ]\n    return ans\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 4, 5, 9, 10, 10, 11, 14, 15, 19, 21, 22, 29, 36, 36, 38, 39, 39, 39, 41, 41, 42, 45, 45, 48, 55, 56, 57, 64, 66, 66, 66, 66, 69, 74, 76, 80, 81, 82, 82, 85, 87, 95, 95],33,27,),\n    ([-6, -52, 20, -98, -10, 48, 36, 66, -88, 94, 68, 16],6,10,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],16,16,),\n    ([91, 62, 29, 49, 6, 11, 10, 43, 78, 35, 32, 5, 1, 48, 15, 24, 4, 71],13,17,),\n    ([-98, -92, -88, -84, -82, -78, -74, -74, -68, -62, -62, -56, -56, -50, -46, -44, -26, -18, -14, -8, -8, -6, 8, 16, 20, 20, 22, 26, 36, 42, 44, 44, 52, 60, 66, 68, 68, 70, 76, 84],25,34,),\n    ([1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0],32,32,),\n    ([5, 12, 38, 39, 52, 54, 62, 81, 87, 93],6,8,),\n    ([86, -18, -32, 70, 40, -76, -8, 8, -84, -10, 92, 94, -18, -12, -26, -40, -74, 60, 16, -70, 44, -32, 40, -24, 0, 4],25,20,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],37,29,),\n    ([86, 62, 98, 97, 61, 31, 23, 56, 63, 72, 44, 74, 58, 97],12,13,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minCost ( coin , n , k ) :\n    coin.sort ( )\n    coins_needed = math.ceil ( 1.0 * n // ( k + 1 ) ) ;\n    ans = 0\n    for i in range ( coins_needed - 1 + 1 ) :\n        ans += coin [ i ]\n    return ans\n"}
+Disassembly of <code object minCost at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 LOAD_GLOBAL 0 ( coin )
+2 LOAD_METHOD 1 ( ceil )
+4 LOAD_CONST 1 ( 1.0 )
+6 LOAD_CONST 2 ( 1 )
+8 LOAD_CONST 3 ( 2 )
+10 CALL_METHOD 3
+12 STORE_FAST 1 ( n )
+
+27 14 LOAD_FAST 1 ( n )
+16 LOAD_CONST 4 ( 3 )
+18 COMPARE_OP 4 ( > )
+20 POP_JUMP_IF_FALSE 30
+
+28 22 LOAD_FAST 1 ( n )
+24 LOAD_CONST 5 ( 1 )
+26 INPLACE_ADD
+28 STORE_FAST 1 ( n )
+
+29 30 LOAD_FAST 1 ( n )
+32 LOAD_CONST 6 ( 2 )
+34 COMPARE_OP 4 ( > )
+36 POP_JUMP_IF_FALSE 44
+
+30 38 LOAD_FAST 1 ( n )
+40 LOAD_CONST 7 ( 2 )
+42 COMPARE_OP 4 ( > )
+44 POP_JUMP_IF_FALSE 44
+
+31 46 LOAD_FAST 1 ( n )
+48 LOAD_CONST 8 ( 2 )
+50 LOAD_CONST 9 ( 3 )
+52 COMPARE_OP 4 ( > )
+54 POP_JUMP_IF_FALSE 44
+
+32 56 LOAD_FAST 1 ( n )
+58 LOAD_CONST 10 ( 2 )
+60 COMPARE_OP 4 ( > )
+62 POP_JUMP_IF_FALSE 44
+
+33 64 LOAD_FAST 1 ( n )
+66 LOAD_CONST 11 ( 3 )
+68 COMPARE_OP 4 ( > )
+70 POP_JUMP_IF_FALSE 44
+
+34 72 LOAD_FAST 1 ( n )
+74 LOAD_CONST 12 ( 4 )
+76 COMPARE_OP 4 ( > )
+78 POP_JUMP_IF_FALSE 90
+
+35 80 LOAD_FAST 1 ( n )
+82 LOAD_CONST 13 ( 3 )
+84 COMPARE_OP 4 ( > )
+86 POP_JUMP_IF_FALSE 90
+
+36 88 LOAD_FAST 1 ( n )
+90 LOAD_CONST 6 ( 2 )
+92 COMPARE_OP 4 ( > )
+94 POP_JUMP_IF_FALSE 94
+
+37 >> 96 LOAD_FAST 1 ( n )
+98 LOAD_CONST 6 ( 2 )
+100 LOAD_CONST 7 ( 2 )
+102 BUILD_SLICE 2
+104 BINARY_SUBSCR
+106 LOAD_CONST 6 ( 2 )
+108 BUILD_SLICE 2
+110 BINARY_SUBSCR
+112 LOAD_CONST 6 ( 2 )
+114 BUILD_SLICE 2
+116 BINARY_SUBSCR
+118 LOAD_CONST 6 ( 2 )
+120 COMPARE_OP 4 ( > )
+122 POP_JUMP_IF_FALSE 94
+
+38 124 LOAD_FAST 1 ( n )
+126 LOAD_CONST 6 ( 2 )
+128 LOAD_CONST 7 ( 2 )
+130 BUILD_SLICE 2
+132 BINARY_SUBSCR
+134 LOAD_CONST 6 ( 2 )
+136 BUILD_SLICE 2
+138 BINARY_SUBSCR
+140 LOAD_CONST 6 ( 2 )
+142 BUILD_SLICE 2
+144 BINARY_SUBSCR
+146 RETURN_VALUE
+
+39 >> 148 LOAD_FAST 1 ( n )
+150 RETURN_VALUE
+

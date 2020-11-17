@@ -1,0 +1,45 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num ) :\n    if num < 0 :\n        return f_gold ( - num )\n    if ( num == 0 or num == 7 ) :\n        return True\n    if ( num < 10 ) :\n        return False\n    return f_gold ( num / 10 - 2 * ( num - num / 10 * 10 ) )\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (0,),\n    (-21,),\n    (7,),\n    (63,),\n    (84,),\n    (73,),\n    (81,),\n    (-10,),\n    (47,),\n    (23,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isDivisibleBy7 ( num ) :\n    if num < 0 :\n        return isDivisibleBy7 ( - num )\n    if ( num == 0 or num == 7 ) :\n        return True\n    if ( num < 10 ) :\n        return False\n    return isDivisibleBy7 ( num / 10 - 2 * ( num - num / 10 * 10 ) )\n"}
+Disassembly of <code object isDivisibleBy7 at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( num )
+2 LOAD_CONST 1 ( 0 )
+4 COMPARE_OP 0 ( < )
+6 POP_JUMP_IF_FALSE 16
+
+3 8 LOAD_GLOBAL 0 ( isDivisibleBy7 )
+10 LOAD_FAST 0 ( num )
+12 UNARY_NEGATIVE
+14 CALL_FUNCTION 1
+>> 16 RETURN_VALUE
+
+4 18 LOAD_FAST 0 ( num )
+20 LOAD_CONST 1 ( 0 )
+22 COMPARE_OP 2 ( == )
+24 POP_JUMP_IF_TRUE 30
+26 LOAD_FAST 0 ( num )
+28 LOAD_CONST 2 ( 7 )
+30 COMPARE_OP 2 ( == )
+32 POP_JUMP_IF_FALSE 38
+
+5 >> 34 LOAD_CONST 3 ( True )
+36 RETURN_VALUE
+
+6 >> 38 LOAD_FAST 0 ( num )
+40 LOAD_CONST 4 ( 10 )
+42 COMPARE_OP 0 ( < )
+44 POP_JUMP_IF_FALSE 50
+
+7 46 LOAD_CONST 5 ( False )
+48 RETURN_VALUE
+
+8 >> 50 LOAD_GLOBAL 0 ( isDivisibleBy7 )
+52 LOAD_FAST 0 ( num )
+54 LOAD_CONST 4 ( 10 )
+56 BINARY_TRUE_DIVIDE
+58 LOAD_FAST 0 ( num )
+60 LOAD_FAST 0 ( num )
+62 BINARY_SUBTRACT
+64 LOAD_CONST 4 ( 10 )
+66 BINARY_TRUE_DIVIDE
+68 BINARY_SUBTRACT
+70 CALL_FUNCTION 1
+72 RETURN_VALUE

@@ -1,0 +1,32 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( l ) :\n    leafNodeCount = math.pow ( 2 , l - 1 ) ;\n    sumLastLevel = 0 ;\n    sumLastLevel = ( ( leafNodeCount * ( leafNodeCount + 1 ) ) / 2 ) ;\n    sum = sumLastLevel * l ;\n    return int ( sum ) ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (5,),\n    (16,),\n    (8,),\n    (61,),\n    (59,),\n    (88,),\n    (67,),\n    (28,),\n    (58,),\n    (42,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if abs(1 - (0.0000001 + abs(f_gold(*parameters_set))) / (abs(f_filled(*parameters_set)) + 0.0000001)) < 0.001:\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def sumNodes ( l ) :\n    leafNodeCount = math.pow ( 2 , l - 1 ) ;\n    sumLastLevel = 0 ;\n    sumLastLevel = ( ( leafNodeCount * ( leafNodeCount + 1 ) ) / 2 ) ;\n    sum = sumLastLevel * l ;\n    return int ( sum ) ;\n"}
+Disassembly of <code object sumNodes at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( math )
+2 LOAD_METHOD 1 ( pow )
+4 LOAD_CONST 1 ( 2 )
+6 LOAD_FAST 0 ( l )
+8 LOAD_CONST 2 ( 1 )
+10 BINARY_SUBTRACT
+12 CALL_METHOD 2
+14 STORE_FAST 1 ( leafNodeCount )
+
+3 16 LOAD_CONST 3 ( 0 )
+18 STORE_FAST 2 ( sumLastLevel )
+
+4 20 LOAD_FAST 1 ( leafNodeCount )
+22 LOAD_FAST 1 ( leafNodeCount )
+24 LOAD_CONST 2 ( 1 )
+26 BINARY_ADD
+28 BINARY_MULTIPLY
+30 LOAD_CONST 1 ( 2 )
+32 BINARY_TRUE_DIVIDE
+34 STORE_FAST 3 ( sumLastLevel )
+
+5 36 LOAD_FAST 3 ( sumLastLevel )
+38 LOAD_FAST 0 ( l )
+40 BINARY_MULTIPLY
+42 STORE_FAST 4 ( sum )
+
+6 44 LOAD_GLOBAL 2 ( int )
+46 LOAD_FAST 4 ( sum )
+48 CALL_FUNCTION 1
+50 RETURN_VALUE

@@ -1,0 +1,51 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\nimport math\n\ndef f_gold ( n ) :\n    l = math.sqrt ( n )\n    sq = l * l\n    if ( sq == n ) :\n        return l * 4\n    else :\n        row = n / l\n        perimeter = 2 * ( l + row )\n        if ( n % l != 0 ) :\n            perimeter += 2\n        return perimeter\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (45,),\n    (80,),\n    (54,),\n    (48,),\n    (83,),\n    (68,),\n    (32,),\n    (20,),\n    (68,),\n    (66,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minPerimeter ( n ) :\n    l = math.sqrt ( n )\n    sq = l * l\n    if ( sq == n ) :\n        return l * 4\n    else :\n        row = n / l\n        perimeter = 2 * ( l + row )\n        if ( n % l != 0 ) :\n            perimeter += 2\n        return perimeter\n"}
+Disassembly of <code object minPerimeter at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( math )
+2 LOAD_METHOD 1 ( sqrt )
+4 LOAD_FAST 0 ( n )
+6 CALL_METHOD 1
+8 STORE_FAST 1 ( l )
+
+3 10 LOAD_FAST 1 ( l )
+12 LOAD_FAST 1 ( l )
+14 BINARY_MULTIPLY
+16 STORE_FAST 2 ( sq )
+
+4 18 LOAD_FAST 2 ( sq )
+20 LOAD_FAST 0 ( n )
+22 COMPARE_OP 2 ( == )
+24 POP_JUMP_IF_FALSE 36
+
+5 26 LOAD_FAST 1 ( l )
+28 LOAD_CONST 1 ( 4 )
+30 BINARY_MULTIPLY
+32 RETURN_VALUE
+
+7 >> 34 LOAD_FAST 0 ( n )
+36 LOAD_FAST 1 ( l )
+38 BINARY_TRUE_DIVIDE
+40 STORE_FAST 3 ( row )
+
+8 42 LOAD_CONST 2 ( 2 )
+44 LOAD_FAST 1 ( l )
+46 LOAD_FAST 3 ( row )
+48 BINARY_ADD
+50 BINARY_MULTIPLY
+52 STORE_FAST 4 ( perimeter )
+
+9 54 LOAD_FAST 0 ( n )
+56 LOAD_FAST 1 ( l )
+58 BINARY_MODULO
+60 LOAD_CONST 3 ( 0 )
+62 COMPARE_OP 3 ( != )
+64 POP_JUMP_IF_FALSE 70
+
+10 66 LOAD_FAST 4 ( perimeter )
+68 LOAD_CONST 2 ( 2 )
+70 INPLACE_ADD
+72 STORE_FAST 4 ( perimeter )
+
+11 >> 74 LOAD_FAST 4 ( perimeter )
+76 RETURN_VALUE
+78 LOAD_CONST 0 ( None )
+80 RETURN_VALUE

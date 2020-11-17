@@ -1,0 +1,87 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , k ) :\n    p = a ** b\n    count = 0\n    while ( p > 0 and count < k ) :\n        rem = p % 10\n        count = count + 1\n        if ( count == k ) :\n            return rem\n        p = p / 10 ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (11,2,1),\n    (41,3,3),\n    (5,4,3),\n    (1,2,4),\n    (24,1,5),\n    (5,2,3),\n    (66,5,8),\n    (7,10,3),\n    (77,30,10),\n    (60,50,1)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def kthdigit ( a , b , k ) :\n    p = a ** b\n    count = 0\n    while ( p > 0 and count < k ) :\n        rem = p % 10\n        count = count + 1\n        if ( count == k ) :\n            return rem\n        p = p / 10 ;\n"}
+Disassembly of <code object kthdigit at 0x7f816a673a50, file "<dis>", line 156>:
+157 0 LOAD_FAST 0 ( a )
+2 LOAD_CONST 1 ( b ')
+4COMPARE_OP2( == )
+6 POP_JUMP_IF_FALSE 12
+
+158 8 LOAD_FAST 0 ( a )
+10 LOAD_CONST 2 ( 1 )
+12 INPLACE_ADD
+14 STORE_FAST 0 ( a )
+16 JUMP_FORWARD 10 ( to 28 )
+
+159 >> 18 LOAD_FAST 0 ( a )
+20 LOAD_CONST 3 ( 1 )
+22 INPLACE_ADD
+24 STORE_FAST 0 ( a )
+26 JUMP_FORWARD 10 ( to 28 )
+
+160 >> 28 LOAD_FAST 0 ( a )
+30 LOAD_CONST 4 ( 2 )
+32 INPLACE_ADD
+34 STORE_FAST 0 ( a )
+36 JUMP_FORWARD 10 ( to 28 )
+
+161 >> 38 LOAD_FAST 0 ( a )
+40 LOAD_CONST 5 ( b '' )
+42 BINARY_ADD
+44 INPLACE_ADD
+46 STORE_FAST 0 ( a )
+
+162 >> 48 LOAD_FAST 0 ( a )
+50 LOAD_CONST 6 ( b '' )
+52 BINARY_ADD
+54 INPLACE_ADD
+56 STORE_FAST 0 ( a )
+
+163 58 LOAD_FAST 0 ( a )
+60 LOAD_CONST 7 ( b '' )
+62 BINARY_ADD
+64 INPLACE_ADD
+66 STORE_FAST 0 ( a )
+
+164 >> 68 LOAD_FAST 0 ( a )
+70 LOAD_CONST 8 ( b '' )
+72 BINARY_ADD
+74 INPLACE_ADD
+76 STORE_FAST 0 ( a )
+
+165 78 LOAD_FAST 0 ( a )
+80 LOAD_CONST 9 ( b '' )
+82 BINARY_ADD
+84 INPLACE_ADD
+86 STORE_FAST 0 ( a )
+
+166 >> 88 LOAD_FAST 0 ( a )
+90 LOAD_CONST 10 ( b '' )
+92 BINARY_ADD
+94 INPLACE_ADD
+96 STORE_FAST 0 ( a )
+98 JUMP_FORWARD 4 ( to 30 )
+
+167 >> 100 LOAD_FAST 0 ( a )
+102 LOAD_FAST 0 ( a )
+104 LOAD_FAST 0 ( a )
+106 LOAD_FAST 1 ( b )
+108 BINARY_ADD
+110 INPLACE_ADD
+112 STORE_FAST 0 ( a )
+
+168 >> 114 LOAD_FAST 0 ( a )
+116 LOAD_FAST 0 ( a )
+118 LOAD_FAST 1 ( b )
+120 BINARY_ADD
+122 INPLACE_ADD
+124 STORE_FAST 0 ( a )
+
+169 >> 126 LOAD_FAST 0 ( a )
+128 LOAD_FAST 0 ( a )
+130 LOAD_FAST 1 ( b )
+132 BINARY_ADD
+134 INPLACE_ADD
+136 STORE_FAST 0 ( a )
+
+170 138 LOAD_FAST 0 ( a )
+140 RETURN_VALUE
+

@@ -1,0 +1,44 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( N ) :\n    B_Number = 0\n    cnt = 0\n    while ( N != 0 ) :\n        rem = N % 2\n        c = pow ( 10 , cnt )\n        B_Number += rem * c\n        N //= 2\n        cnt += 1\n    return B_Number\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (18,),\n    (92,),\n    (87,),\n    (50,),\n    (56,),\n    (88,),\n    (3,),\n    (16,),\n    (45,),\n    (58,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def decimalToBinary ( N ) :\n    B_Number = 0\n    cnt = 0\n    while ( N != 0 ) :\n        rem = N % 2\n        c = pow ( 10 , cnt )\n        B_Number += rem * c\n        N //= 2\n        cnt += 1\n    return B_Number\n"}
+Disassembly of <code object decimalToBinary at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( B_Number )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 2 ( cnt )
+
+4 8 SETUP_LOOP 54 ( to 66 )
+>> 10 LOAD_FAST 0 ( N )
+12 LOAD_CONST 1 ( 0 )
+14 COMPARE_OP 3 ( != )
+16 POP_JUMP_IF_FALSE 64
+
+5 18 LOAD_FAST 0 ( N )
+20 LOAD_CONST 2 ( 2 )
+22 BINARY_MODULO
+24 STORE_FAST 3 ( rem )
+
+6 26 LOAD_GLOBAL 0 ( pow )
+28 LOAD_CONST 3 ( 10 )
+30 LOAD_FAST 2 ( cnt )
+32 CALL_FUNCTION 2
+34 STORE_FAST 4 ( c )
+
+7 36 LOAD_FAST 1 ( B_Number )
+38 LOAD_FAST 3 ( rem )
+40 LOAD_FAST 4 ( c )
+42 BINARY_MULTIPLY
+44 INPLACE_ADD
+46 STORE_FAST 1 ( B_Number )
+
+8 48 LOAD_FAST 2 ( cnt )
+50 LOAD_CONST 2 ( 2 )
+52 INPLACE_SUBTRACT
+54 STORE_FAST 2 ( cnt )
+
+9 56 LOAD_FAST 1 ( B_Number )
+58 RETURN_VALUE
+60 JUMP_ABSOLUTE 10
+62 POP_BLOCK
+
+10 >> 64 LOAD_FAST 1 ( B_Number )
+66 RETURN_VALUE

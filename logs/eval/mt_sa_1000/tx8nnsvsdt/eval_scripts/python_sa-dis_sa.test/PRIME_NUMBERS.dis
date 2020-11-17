@@ -1,0 +1,33 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    if ( n <= 1 ) :\n        return False\n    for i in range ( 2 , n ) :\n        if ( n % i == 0 ) :\n            return False\n    return True\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (2,),\n    (74,),\n    (46,),\n    (38,),\n    (51,),\n    (48,),\n    (6,),\n    (14,),\n    (31,),\n    (10,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def isPrime ( n ) :\n    if ( n <= 1 ) :\n        return False\n    for i in range ( 2 , n ) :\n        if ( n % i == 0 ) :\n            return False\n    return True\n"}
+Disassembly of <code object isPrime at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_FAST 0 ( n )
+2 LOAD_CONST 1 ( 1 )
+4 COMPARE_OP 1 ( <= )
+6 POP_JUMP_IF_FALSE 12
+
+3 8 LOAD_CONST 2 ( False )
+10 RETURN_VALUE
+
+4 >> 12 SETUP_LOOP 32 ( to 48 )
+14 LOAD_GLOBAL 0 ( range )
+16 LOAD_CONST 3 ( 2 )
+18 LOAD_FAST 0 ( n )
+20 CALL_FUNCTION 2
+22 GET_ITER
+>> 24 FOR_ITER 20 ( to 46 )
+26 STORE_FAST 1 ( i )
+
+5 28 LOAD_FAST 0 ( n )
+30 LOAD_FAST 1 ( i )
+32 BINARY_MODULO
+34 LOAD_CONST 4 ( 0 )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 24
+
+6 40 LOAD_CONST 2 ( False )
+42 RETURN_VALUE
+44 JUMP_ABSOLUTE 24
+>> 46 POP_BLOCK
+
+7 >> 48 LOAD_CONST 5 ( True )
+50 RETURN_VALUE

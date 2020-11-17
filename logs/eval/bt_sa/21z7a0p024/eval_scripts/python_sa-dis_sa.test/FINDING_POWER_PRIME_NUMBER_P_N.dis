@@ -1,0 +1,43 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n , p ) :\n    ans = 0 ;\n    temp = p ;\n    while ( temp <= n ) :\n        ans += n / temp ;\n        temp = temp * p ;\n    return ans ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (49,30,),\n    (80,25,),\n    (10,9,),\n    (81,57,),\n    (11,4,),\n    (45,34,),\n    (86,90,),\n    (27,78,),\n    (80,60,),\n    (97,31,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def PowerOFPINnfactorial ( n , p ) :\n    ans = 0 ;\n    temp = p ;\n    while ( temp <= n ) :\n        ans += n / temp ;\n        temp = temp * p ;\n    return ans ;\n"}
+Disassembly of <code object PowerOOINfactorial at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 2 ( ans )
+
+3 4 LOAD_CONST 1 ( 0 )
+6 STORE_FAST 3 ( ans )
+
+4 8 SETUP_LOOP 64 ( to 76 )
+10 LOAD_FAST 0 ( n )
+12 GET_ITER
+>> 14 FOR_ITER 64 ( to 74 )
+16 STORE_FAST 4 ( i )
+
+5 18 LOAD_FAST 4 ( i )
+20 LOAD_FAST 1 ( p )
+22 COMPARE_OP 1 ( <= )
+24 POP_JUMP_IF_FALSE 38
+
+6 26 LOAD_FAST 2 ( ans )
+28 LOAD_FAST 4 ( i )
+30 BINARY_SUBSCR
+32 STORE_FAST 5 ( ans )
+
+7 34 LOAD_FAST 5 ( ans )
+36 LOAD_FAST 1 ( p )
+38 INPLACE_ADD
+40 STORE_FAST 5 ( ans )
+
+8 >> 42 LOAD_FAST 3 ( ans )
+44 LOAD_FAST 5 ( ans )
+46 INPLACE_ADD
+48 STORE_FAST 3 ( ans )
+
+9 50 LOAD_FAST 3 ( ans )
+52 LOAD_FAST 4 ( i )
+54 INPLACE_ADD
+56 STORE_FAST 3 ( ans )
+58 JUMP_ABSOLUTE 14
+>> 60 POP_BLOCK
+
+10 >> 62 LOAD_FAST 2 ( ans )
+64 RETURN_VALUE

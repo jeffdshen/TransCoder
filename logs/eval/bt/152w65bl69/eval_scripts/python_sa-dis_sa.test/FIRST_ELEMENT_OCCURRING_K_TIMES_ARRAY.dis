@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , n , k ) :\n    count_map = { } ;\n    for i in range ( 0 , n ) :\n        if ( arr [ i ] in count_map.keys ( ) ) :\n            count_map [ arr [ i ] ] += 1\n        else :\n            count_map [ arr [ i ] ] = 1\n        i += 1\n    for i in range ( 0 , n ) :\n        if ( count_map [ arr [ i ] ] == k ) :\n            return arr [ i ]\n        i += 1\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 3, 4, 4, 7, 18, 20, 23, 27, 30, 31, 31, 32, 35, 36, 43, 45, 46, 49, 50, 53, 55, 59, 60, 64, 64, 65, 68, 78, 80, 80, 85, 95],30,2,),\n    ([-26, 32, 36, 6, 64, 24, -28, 96],6,3,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],15,7,),\n    ([38, 40, 43, 70, 20, 40, 95, 96, 81, 82],9,1,),\n    ([-68, -8, -8, 16, 24, 54],3,2,),\n    ([1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],6,4,),\n    ([13, 18, 19, 28, 31, 34, 49, 49, 53, 57, 58, 62, 75, 76, 77, 78, 80, 84, 84, 85, 87, 91, 98, 99],20,2,),\n    ([-4, 24, -86, -84, 30, -16, 12, -92, -68, 22],6,5,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],8,10,),\n    ([55, 44, 75, 97, 25, 65, 76, 53, 20, 78, 25, 59, 61, 29, 81, 35, 15, 78, 41, 44, 31, 33, 39, 93, 26, 67],23,20,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def firstElement ( arr , n , k ) :\n    count_map = { } ;\n    for i in range ( 0 , n ) :\n        if ( arr [ i ] in count_map.keys ( ) ) :\n            count_map [ arr [ i ] ] += 1\n        else :\n            count_map [ arr [ i ] ] = 1\n        i += 1\n    for i in range ( 0 , n ) :\n        if ( count_map [ arr [ i ] ] == k ) :\n            return arr [ i ]\n        i += 1\n    return - 1\n"}
+Disassembly of <code object firstElement at 0x7f816a673a50, file "<dis>", line 19>:
+20 0 LOAD_CONST 1 ( ';;' )
+2 STORE_FAST 1 ( n )
+
+21 4 LOAD_FAST 0 ( arr )
+6 LOAD_FAST 1 ( n )
+8 LOAD_FAST 2 ( n )
+10 BINARY_ADD
+12 LOAD_CONST 2 ( '' )
+14 BINARY_ADD
+16 STORE_FAST 1 ( n )
+
+22 18 LOAD_FAST 0 ( arr )
+20 LOAD_FAST 1 ( n )
+22 LOAD_FAST 2 ( n )
+24 BINARY_MULTIPLY
+26 BINARY_ADD
+28 STORE_FAST 1 ( n )
+
+23 30 LOAD_FAST 0 ( arr )
+32 LOAD_FAST 1 ( n )
+34 LOAD_FAST 2 ( n )
+36 BINARY_MULTIPLY
+38 BINARY_ADD
+40 STORE_FAST 1 ( n )
+
+24 42 LOAD_FAST 0 ( arr )
+44 LOAD_FAST 1 ( n )
+46 BINARY_MULTIPLY
+48 BINARY_ADD
+50 STORE_FAST 1 ( n )
+
+25 52 LOAD_FAST 0 ( arr )
+54 LOAD_FAST 1 ( n )
+56 BINARY_MULTIPLY
+58 BINARY_ADD
+60 STORE_FAST 1 ( n )
+
+26 62 LOAD_FAST 0 ( arr )
+64 LOAD_FAST 1 ( n )
+66 BINARY_MULTIPLY
+68 INPLACE_ADD
+70 STORE_FAST 1 ( n )
+
+27 72 LOAD_FAST 0 ( arr )
+74 LOAD_FAST 1 ( n )
+76 LOAD_FAST 2 ( n )
+78 BINARY_MULTIPLY
+80 INPLACE_ADD
+82 STORE_FAST 1 ( n )
+
+28 84 LOAD_FAST 0 ( arr )
+86 LOAD_FAST 1 ( n )
+88 BINARY_MULTIPLY
+90 INPLACE_ADD
+92 STORE_FAST 1 ( n )
+
+29 94 LOAD_FAST 0 ( arr )
+96 LOAD_FAST 1 ( n )
+98 LOAD_FAST 2 ( n )
+100 BINARY_MULTIPLY
+102 INPLACE_ADD
+104 STORE_FAST 1 ( n )
+
+30 106 LOAD_FAST 0 ( arr )
+108 LOAD_FAST 1 ( n )
+110 BINARY_MULTIPLY
+112 INPLACE_ADD
+114 STORE_FAST 1 ( n )
+
+31 116 LOAD_FAST 0 ( arr )
+118 LOAD_FAST 1 ( n )
+120 BINARY_MULTIPLY
+122 INPLACE_ADD
+124 STORE_FAST 1 ( n )
+
+32 126 LOAD_FAST 0 ( arr )
+128 LOAD_FAST 1 ( n )
+130 BINARY_MULTIPLY
+132 INPLACE_ADD
+134 STORE_FAST 1 ( n )
+
+33 136 LOAD_FAST 1 ( n )
+138 LOAD_FAST 1 ( n )
+140 BINARY_MULTIPLY
+142 INPLACE_ADD
+144 STORE_FAST 1 ( n )
+
+34 146 LOAD_FAST 1 ( n )
+148 RETURN_VALUE
+

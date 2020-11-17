@@ -1,0 +1,61 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str ) :\n    result = 0\n    for i in range ( len ( str ) ) :\n        if ( ( i == ord ( str [ i ] ) - ord ( 'a' ) ) or ( i == ord ( str [ i ] ) - ord ( 'A' ) ) ) :\n            result += 1\n    return result\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('lLkhFeZGcb',),\n    ('ABcED',),\n    ('geeksforgeeks',),\n    ('Alphabetical',),\n    ('abababab',),\n    ('bcdefgxyz',),\n    ('cBzaqx L',),\n    (' bcd',),\n    ('11',),\n    ('MqqKY',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findCount ( str ) :\n    result = 0\n    for i in range ( len ( str ) ) :\n        if ( ( i == ord ( str [ i ] ) - ord ( 'a' ) ) or ( i == ord ( str [ i ] ) - ord ( 'A' ) ) ) :\n            result += 1\n    return result\n"}
+Disassembly of <code object findCount at 0x7f816a673a50, file "<dis>", line 25>:
+26 0 BUILD_LIST 0
+2 STORE_FAST 1 ( result )
+
+27 4 SETUP_LOOP 52 ( to 54 )
+6 LOAD_GLOBAL 0 ( range )
+8 LOAD_CONST 1 ( 0 )
+10 CALL_FUNCTION 1
+12 GET_ITER
+>> 14 FOR_ITER 52 ( to 52 )
+16 STORE_FAST 2 ( i )
+
+28 18 LOAD_FAST 0 ( str )
+20 LOAD_GLOBAL 1 ( int )
+22 LOAD_FAST 2 ( i )
+24 CALL_FUNCTION 1
+26 LOAD_CONST 2 ( 1 )
+28 BINARY_SUBTRACT
+30 LOAD_CONST 3 ( 2 )
+32 BINARY_MULTIPLY
+34 CALL_FUNCTION 1
+36 LOAD_CONST 4 ( 3 )
+38 BINARY_MULTIPLY
+40 BINARY_ADD
+42 STORE_FAST 3 ( i )
+
+29 44 LOAD_FAST 0 ( str )
+46 LOAD_GLOBAL 2 ( int )
+48 LOAD_FAST 3 ( i )
+50 CALL_FUNCTION 1
+52 LOAD_CONST 5 ( 1 )
+54 BINARY_SUBTRACT
+56 BINARY_MULTIPLY
+58 STORE_FAST 4 ( i )
+
+30 60 LOAD_FAST 0 ( str )
+62 LOAD_GLOBAL 3 ( int )
+64 LOAD_FAST 4 ( i )
+66 CALL_FUNCTION 1
+68 LOAD_CONST 6 ( 2 )
+70 BINARY_MULTIPLY
+72 BINARY_MULTIPLY
+74 BINARY_ADD
+76 STORE_FAST 5 ( i )
+
+31 78 LOAD_FAST 0 ( str )
+80 LOAD_GLOBAL 4 ( str )
+82 LOAD_FAST 5 ( i )
+84 CALL_FUNCTION 1
+86 BINARY_ADD
+88 STORE_FAST 6 ( i )
+
+32 90 LOAD_FAST 0 ( str )
+92 LOAD_GLOBAL 5 ( str )
+94 LOAD_FAST 6 ( i )
+96 CALL_FUNCTION 1
+98 BINARY_ADD
+100 CALL_FUNCTION 1
+102 RETURN_VALUE
+

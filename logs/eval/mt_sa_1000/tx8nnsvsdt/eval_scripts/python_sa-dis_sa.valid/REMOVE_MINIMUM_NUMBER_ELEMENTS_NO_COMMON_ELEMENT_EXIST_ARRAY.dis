@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( a , b , n , m ) :\n    countA = dict ( )\n    countB = dict ( )\n    for i in range ( n ) :\n        countA [ a [ i ] ] = countA.get ( a [ i ] , 0 ) + 1\n    for i in range ( n ) :\n        countB [ b [ i ] ] = countB.get ( b [ i ] , 0 ) + 1\n    res = 0\n    for x in countA :\n        if x in countB.keys ( ) :\n            res += min ( countA [ x ] , countB [ x ] )\n    return res\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([4, 7, 10, 12, 12, 24, 29, 38, 45, 51, 53, 54, 59, 68, 72, 73, 85, 86, 88, 92, 92, 95],[7, 9, 17, 23, 25, 26, 29, 32, 35, 56, 56, 58, 59, 59, 62, 63, 72, 82, 85, 86, 95, 97],15,13,),\n    ([-6, 48, -70, 14, -86, 56, 80, -64, 64, -88, -14, 78, 14, -18, 52, 2, 22, 88],[-62, -58, 60, -30, 42, 8, 66, -48, -18, 64, -76, -90, -48, -90, -24, 64, -88, -98],15,9,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],10,10,),\n    ([10, 93, 2, 16, 36, 49, 36, 86, 6, 99, 95, 2],[99, 28, 7, 21, 62, 89, 82, 41, 43, 77, 8, 14],6,10,),\n    ([-98, -96, -80, -64, -42, -30, -6, 10, 62, 66, 82],[-62, -50, -42, 24, 44, 46, 52, 54, 60, 72, 72],9,6,),\n    ([1, 1, 0, 1, 1],[1, 1, 1, 0, 0],4,2,),\n    ([7, 11, 13, 15, 21, 33, 36, 39, 66, 99],[23, 36, 42, 44, 62, 65, 70, 78, 82, 89],9,9,),\n    ([-40],[-98],0,0,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],31,26,),\n    ([79, 91, 31, 16, 28, 45, 37, 43, 73, 73, 76, 28, 71, 60, 64, 60, 99, 36, 47, 38, 65, 34, 22, 94, 84, 51, 72, 45, 71, 2],[58, 94, 12, 27, 98, 38, 75, 20, 94, 43, 32, 90, 23, 41, 88, 2, 62, 96, 53, 57, 48, 79, 6, 16, 11, 46, 73, 57, 67, 7],18,18,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def minRemove ( a , b , n , m ) :\n    countA = dict ( )\n    countB = dict ( )\n    for i in range ( n ) :\n        countA [ a [ i ] ] = countA.get ( a [ i ] , 0 ) + 1\n    for i in range ( n ) :\n        countB [ b [ i ] ] = countB.get ( b [ i ] , 0 ) + 1\n    res = 0\n    for x in countA :\n        if x in countB.keys ( ) :\n            res += min ( countA [ x ] , countB [ x ] )\n    return res\n"}
+Disassembly of <code object minRemove at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( dict )
+2 CALL_FUNCTION 0
+4 STORE_FAST 4 ( countA )
+
+3 6 LOAD_GLOBAL 0 ( dict )
+8 CALL_FUNCTION 0
+10 STORE_FAST 5 ( countB )
+
+4 12 SETUP_LOOP 46 ( to 60 )
+14 LOAD_GLOBAL 1 ( range )
+16 LOAD_FAST 2 ( n )
+18 CALL_FUNCTION 1
+20 GET_ITER
+>> 22 FOR_ITER 34 ( to 58 )
+24 STORE_FAST 6 ( i )
+
+5 26 LOAD_FAST 4 ( countA )
+28 LOAD_METHOD 2 ( get )
+30 LOAD_FAST 0 ( a )
+32 LOAD_FAST 6 ( i )
+34 BINARY_SUBSCR
+36 LOAD_CONST 1 ( 0 )
+38 CALL_METHOD 2
+40 LOAD_CONST 2 ( 1 )
+42 BINARY_ADD
+44 LOAD_FAST 5 ( countA )
+46 LOAD_FAST 0 ( a )
+48 LOAD_FAST 6 ( i )
+50 BINARY_SUBSCR
+52 STORE_SUBSCR
+54 JUMP_ABSOLUTE 22
+>> 56 POP_BLOCK
+
+6 58 SETUP_LOOP 40 ( to 108 )
+60 LOAD_GLOBAL 1 ( range )
+62 LOAD_FAST 2 ( n )
+64 CALL_FUNCTION 1
+66 GET_ITER
+>> 68 FOR_ITER 28 ( to 106 )
+70 STORE_FAST 6 ( i )
+
+7 72 LOAD_FAST 4 ( countB )
+74 LOAD_METHOD 2 ( get )
+76 LOAD_FAST 1 ( b )
+78 LOAD_FAST 6 ( i )
+80 BINARY_SUBSCR
+82 LOAD_CONST 1 ( 0 )
+84 CALL_METHOD 2
+86 LOAD_CONST 2 ( 1 )
+88 BINARY_ADD
+90 LOAD_FAST 5 ( countB )
+92 LOAD_FAST 1 ( b )
+94 LOAD_FAST 6 ( i )
+96 BINARY_SUBSCR
+98 STORE_SUBSCR
+100 JUMP_ABSOLUTE 68
+>> 102 POP_BLOCK
+
+8 >> 104 LOAD_CONST 1 ( 0 )
+106 STORE_FAST 7 ( res )
+
+9 108 SETUP_LOOP 52 ( to 162 )
+110 LOAD_FAST 5 ( countA )
+112 GET_ITER
+>> 114 FOR_ITER 44 ( to 160 )
+116 STORE_FAST 8 ( x )
+
+10 118 LOAD_FAST 8 ( x )
+120 LOAD_FAST 4 ( countB )
+122 LOAD_METHOD 3 ( keys )
+124 CALL_METHOD 0
+126 COMPARE_OP 6 ( in )
+128 POP_JUMP_IF_FALSE 114
+
+11 130 LOAD_FAST 7 ( res )
+132 LOAD_GLOBAL 4 ( min )
+134 LOAD_FAST 4 ( countA )
+136 LOAD_FAST 8 ( x )
+138 BINARY_SUBSCR
+140 LOAD_FAST 5 ( countB )
+142 LOAD_FAST 8 ( x )
+144 BINARY_SUBSCR
+146 CALL_FUNCTION 2
+148 INPLACE_ADD
+150 STORE_FAST 7 ( res )
+152 JUMP_ABSOLUTE 114
+>> 154 POP_BLOCK
+
+12 >> 156 LOAD_FAST 7 ( res )
+158 RETURN_VALUE

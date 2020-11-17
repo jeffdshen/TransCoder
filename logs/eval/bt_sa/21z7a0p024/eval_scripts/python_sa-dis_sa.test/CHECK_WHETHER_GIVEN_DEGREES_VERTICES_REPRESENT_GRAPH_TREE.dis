@@ -1,0 +1,19 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( degree , n ) :\n    deg_sum = sum ( degree )\n    if ( 2 * ( n - 1 ) == deg_sum ) :\n        return True\n    else :\n        return False\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([2, 3, 1, 1, 1],5,),\n    ([2, 2, 1, 1, 2],5,),\n    ([2, 2, 1, 1, 1],5,),\n    ([0,0,0,3,3,4],6,),\n    ([-10, 12, 2],3,),\n    ([1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0],19,),\n    ([1, 6, 10, 13, 15, 17, 18, 23, 26, 28, 30, 32, 32, 33, 36, 39, 39, 41, 43, 50, 50, 51, 53, 54, 59, 59, 63, 63, 63, 66, 66, 71, 71, 74, 78, 89, 89, 93],30,),\n    ([66, -96, -14, 74, -20],4,),\n    ([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],31,),\n    ([97, 73, 87, 45, 64, 30, 53, 50, 62, 42, 28, 58, 31, 90],10,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def check ( degree , n ) :\n    deg_sum = sum ( degree )\n    if ( 2 * ( n - 1 ) == deg_sum ) :\n        return True\n    else :\n        return False\n"}
+Disassembly of <code object check at 0x7f2b01639660, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( sum )
+2 LOAD_FAST 0 ( degree )
+4 CALL_FUNCTION 1
+6 STORE_FAST 1 ( deg_sum )
+
+3 8 LOAD_GLOBAL 1 ( check )
+10 LOAD_FAST 1 ( deg_sum )
+12 CALL_FUNCTION 1
+14 LOAD_CONST 1 ( 2 )
+16 COMPARE_OP 2 ( == )
+18 POP_JUMP_IF_FALSE 32
+
+4 20 LOAD_CONST 2 ( True )
+22 RETURN_VALUE
+
+5 >> 24 LOAD_CONST 3 ( False )
+26 RETURN_VALUE

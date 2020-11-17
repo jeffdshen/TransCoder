@@ -1,0 +1,92 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( arr , l , r , x ) :\n    if ( r >= l ) :\n        mid = int ( l + ( r - l ) / 2 )\n        if ( arr [ mid ] == x ) : return mid\n        if ( mid > l and arr [ mid - 1 ] == x ) :\n            return ( mid - 1 )\n        if ( mid < r and arr [ mid + 1 ] == x ) :\n            return ( mid + 1 )\n        if ( arr [ mid ] > x ) :\n            return f_gold ( arr , l , mid - 2 , x )\n        return f_gold ( arr , mid + 2 , r , x )\n    return - 1\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ([6,7,15,42,47,54,56,59,59,64,68,70,71,75,91,93], 0, 15, 71),\n([6,7,15,42,47,56,54,59,59,64,68,71,70, 75,91,93], 0, 15,    71),\n([-92,-96,-68,-40,70], 0, 4, ,    -96),\n([-92,-86,-68,-40,70], 0, 4,    20),\n([-3,-1,0,30,10,45,70,60], 0, 7,    0),\n([-3,-1,0,10,5,45,60,50], 0, 7,    12),\n([-3,-1,0,10,30,45,60,70], 0, 7,    18),\n([0,0,1], 0, 2,    20),\n([1,1,1], 0, 2,    17),\n([30,2,30,45], 0, 3,    28)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))\n", "ref": "def binarySearch ( arr , l , r , x ) :\n    if ( r >= l ) :\n        mid = int ( l + ( r - l ) / 2 )\n        if ( arr [ mid ] == x ) : return mid\n        if ( mid > l and arr [ mid - 1 ] == x ) :\n            return ( mid - 1 )\n        if ( mid < r and arr [ mid + 1 ] == x ) :\n            return ( mid + 1 )\n        if ( arr [ mid ] > x ) :\n            return binarySearch ( arr , l , mid - 2 , x )\n        return binarySearch ( arr , mid + 2 , r , x )\n    return - 1\n"}
+Disassembly of <code object binarySearch at 0x7f2b016399c0, file "<dis>", line 1>:
+2 0 LOAD_FAST 2 ( r )
+2 LOAD_FAST 1 ( l )
+4 COMPARE_OP 5 ( >= )
+6 POP_JUMP_IF_FALSE 104
+
+3 8 LOAD_GLOBAL 0 ( int )
+10 LOAD_FAST 1 ( l )
+12 LOAD_FAST 2 ( r )
+14 LOAD_FAST 1 ( l )
+16 BINARY_SUBTRACT
+18 LOAD_CONST 1 ( 2 )
+20 BINARY_TRUE_DIVIDE
+22 BINARY_ADD
+24 CALL_FUNCTION 1
+26 STORE_FAST 4 ( mid )
+
+4 28 LOAD_FAST 0 ( arr )
+30 LOAD_FAST 4 ( mid )
+32 BINARY_SUBSCR
+34 LOAD_FAST 3 ( x )
+36 COMPARE_OP 2 ( == )
+38 POP_JUMP_IF_FALSE 44
+40 LOAD_FAST 4 ( mid )
+42 RETURN_VALUE
+
+5 >> 44 LOAD_FAST 4 ( mid )
+46 LOAD_FAST 1 ( l )
+48 COMPARE_OP 4 ( > )
+50 POP_JUMP_IF_FALSE 72
+52 LOAD_FAST 0 ( arr )
+54 LOAD_FAST 4 ( mid )
+56 LOAD_CONST 2 ( 1 )
+58 BINARY_SUBTRACT
+60 BINARY_SUBSCR
+62 LOAD_FAST 3 ( x )
+64 COMPARE_OP 2 ( == )
+66 POP_JUMP_IF_FALSE 72
+
+6 68 LOAD_FAST 4 ( mid )
+70 LOAD_CONST 2 ( 1 )
+72 BINARY_SUBTRACT
+74 RETURN_VALUE
+
+7 >> 76 LOAD_FAST 4 ( mid )
+78 LOAD_FAST 2 ( r )
+80 COMPARE_OP 0 ( < )
+82 POP_JUMP_IF_FALSE 124
+84 LOAD_FAST 0 ( arr )
+86 LOAD_FAST 4 ( mid )
+88 LOAD_CONST 2 ( 1 )
+90 BINARY_ADD
+92 BINARY_SUBSCR
+94 LOAD_FAST 3 ( x )
+96 COMPARE_OP 2 ( == )
+98 POP_JUMP_IF_FALSE 124
+
+8 100 LOAD_FAST 4 ( mid )
+102 LOAD_CONST 2 ( 1 )
+104 BINARY_ADD
+106 RETURN_VALUE
+
+9 >> 108 LOAD_FAST 0 ( arr )
+110 LOAD_FAST 4 ( mid )
+112 BINARY_SUBSCR
+114 LOAD_FAST 3 ( x )
+116 COMPARE_OP 4 ( > )
+118 POP_JUMP_IF_FALSE 124
+
+10 120 LOAD_GLOBAL 1 ( binarySearch )
+122 LOAD_FAST 0 ( arr )
+124 LOAD_FAST 1 ( l )
+126 LOAD_FAST 4 ( mid )
+128 LOAD_CONST 1 ( 2 )
+130 BINARY_SUBTRACT
+132 LOAD_FAST 3 ( x )
+134 CALL_FUNCTION 4
+136 RETURN_VALUE
+
+11 >> 138 LOAD_GLOBAL 1 ( binarySearch )
+140 LOAD_FAST 0 ( arr )
+142 LOAD_FAST 4 ( mid )
+144 LOAD_CONST 1 ( 2 )
+146 BINARY_ADD
+148 LOAD_FAST 2 ( r )
+150 LOAD_FAST 3 ( x )
+152 CALL_FUNCTION 4
+154 RETURN_VALUE
+
+12 >> 156 LOAD_CONST 3 ( - 1 )
+158 RETURN_VALUE

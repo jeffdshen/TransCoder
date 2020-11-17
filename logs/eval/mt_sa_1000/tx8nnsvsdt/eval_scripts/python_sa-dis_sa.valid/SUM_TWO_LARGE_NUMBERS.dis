@@ -1,0 +1,162 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( str1 , str2 ) :\n    if ( len ( str1 ) > len ( str2 ) ) :\n        t = str1 ;\n        str1 = str2 ;\n        str2 = t ;\n    str = \"\" ;\n    n1 = len ( str1 ) ;\n    n2 = len ( str2 ) ;\n    str1 = str1 [ : : - 1 ] ;\n    str2 = str2 [ : : - 1 ] ;\n    carry = 0 ;\n    for i in range ( n1 ) :\n        sum = ( ( ord ( str1 [ i ] ) - 48 ) + ( ( ord ( str2 [ i ] ) - 48 ) + carry ) ) ;\n        str += chr ( sum % 10 + 48 ) ;\n        carry = int ( sum / 10 ) ;\n    for i in range ( n1 , n2 ) :\n        sum = ( ( ord ( str2 [ i ] ) - 48 ) + carry ) ;\n        str += chr ( sum % 10 + 48 ) ;\n        carry = ( int ) ( sum / 10 ) ;\n    if ( carry ) :\n        str += chr ( carry + 48 ) ;\n    str = str [ : : - 1 ] ;\n    return str ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('VkfzrPG','rKZ',),\n    ('0526110506447','903',),\n    ('011010010','110100000',),\n    ('sPAwZACc ','liYMsojPiinOV',),\n    ('3','611',),\n    ('0101','01110101011',),\n    ('VTtNu','Wsmc',),\n    ('2317170','898421173423',),\n    ('111111000010','01100001110111',),\n    ('Ktt','CTbbVX wGBkE',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def findSum ( str1 , str2 ) :\n    if ( len ( str1 ) > len ( str2 ) ) :\n        t = str1 ;\n        str1 = str2 ;\n        str2 = t ;\n    str = \"\" ;\n    n1 = len ( str1 ) ;\n    n2 = len ( str2 ) ;\n    str1 = str1 [ : : - 1 ] ;\n    str2 = str2 [ : : - 1 ] ;\n    carry = 0 ;\n    for i in range ( n1 ) :\n        sum = ( ( ord ( str1 [ i ] ) - 48 ) + ( ( ord ( str2 [ i ] ) - 48 ) + carry ) ) ;\n        str += chr ( sum % 10 + 48 ) ;\n        carry = int ( sum / 10 ) ;\n    for i in range ( n1 , n2 ) :\n        sum = ( ( ord ( str2 [ i ] ) - 48 ) + carry ) ;\n        str += chr ( sum % 10 + 48 ) ;\n        carry = ( int ) ( sum / 10 ) ;\n    if ( carry ) :\n        str += chr ( carry + 48 ) ;\n    str = str [ : : - 1 ] ;\n    return str ;\n"}
+Disassembly of <code object findSum at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_GLOBAL 0 ( len )
+2 LOAD_FAST 0 ( str1 )
+4 CALL_FUNCTION 1
+6 LOAD_GLOBAL 0 ( len )
+8 LOAD_FAST 1 ( str2 )
+10 CALL_FUNCTION 1
+12 COMPARE_OP 4 ( > )
+14 POP_JUMP_IF_FALSE 28
+
+3 16 LOAD_FAST 0 ( str1 )
+18 STORE_FAST 2 ( t )
+
+4 20 LOAD_FAST 1 ( str2 )
+22 STORE_FAST 0 ( str1 )
+
+5 24 LOAD_FAST 2 ( t )
+26 STORE_FAST 1 ( str2 )
+
+6 >> 28 LOAD_CONST 1 ( '' )
+30 STORE_FAST 3 ( str )
+
+7 32 LOAD_GLOBAL 0 ( len )
+34 LOAD_FAST 0 ( str1 )
+36 CALL_FUNCTION 1
+38 STORE_FAST 4 ( n1 )
+
+8 40 LOAD_GLOBAL 0 ( len )
+42 LOAD_FAST 1 ( str2 )
+44 CALL_FUNCTION 1
+46 STORE_FAST 1 ( str2 )
+
+9 48 LOAD_FAST 0 ( str1 )
+50 LOAD_CONST 0 ( None )
+52 LOAD_CONST 0 ( None )
+54 LOAD_CONST 2 ( - 1 )
+56 BUILD_SLICE 3
+58 BINARY_SUBSCR
+60 STORE_FAST 1 ( str2 )
+
+10 62 LOAD_FAST 1 ( str2 )
+64 LOAD_CONST 0 ( None )
+66 LOAD_CONST 0 ( None )
+68 LOAD_CONST 2 ( - 1 )
+70 BUILD_SLICE 3
+72 BINARY_SUBSCR
+74 STORE_FAST 1 ( str2 )
+
+11 76 LOAD_CONST 3 ( 0 )
+78 STORE_FAST 5 ( carry )
+
+12 80 SETUP_LOOP 120 ( to 234 )
+82 LOAD_GLOBAL 1 ( range )
+84 LOAD_FAST 4 ( n1 )
+86 CALL_FUNCTION 1
+88 GET_ITER
+>> 90 FOR_ITER 106 ( to 232 )
+92 STORE_FAST 6 ( i )
+
+13 94 LOAD_GLOBAL 2 ( ord )
+96 LOAD_FAST 0 ( str1 )
+98 LOAD_FAST 6 ( i )
+100 BINARY_SUBSCR
+102 CALL_FUNCTION 1
+104 LOAD_CONST 4 ( 48 )
+106 BINARY_SUBTRACT
+108 LOAD_GLOBAL 2 ( ord )
+110 LOAD_FAST 1 ( str2 )
+112 LOAD_FAST 6 ( i )
+114 BINARY_SUBSCR
+116 CALL_FUNCTION 1
+118 LOAD_CONST 4 ( 48 )
+120 BINARY_SUBTRACT
+122 LOAD_CONST 5 ( carry )
+124 BINARY_ADD
+126 CALL_FUNCTION 1
+128 STORE_FAST 7 ( sum )
+
+14 130 LOAD_FAST 3 ( str )
+132 LOAD_GLOBAL 3 ( chr )
+134 LOAD_FAST 7 ( sum )
+136 LOAD_CONST 6 ( 10 )
+138 BINARY_MODULO
+140 LOAD_CONST 4 ( 48 )
+142 BINARY_ADD
+144 CALL_FUNCTION 1
+146 INPLACE_ADD
+148 STORE_FAST 3 ( str )
+
+15 150 LOAD_GLOBAL 4 ( int )
+152 LOAD_FAST 7 ( sum )
+154 LOAD_CONST 6 ( 10 )
+156 BINARY_MODULO
+158 LOAD_CONST 4 ( 48 )
+160 BINARY_ADD
+162 CALL_FUNCTION 1
+164 STORE_FAST 5 ( carry )
+166 JUMP_ABSOLUTE 90
+>> 168 POP_BLOCK
+
+16 >> 170 SETUP_LOOP 76 ( to 232 )
+172 LOAD_GLOBAL 1 ( range )
+174 LOAD_FAST 4 ( n1 )
+176 LOAD_FAST 1 ( str2 )
+178 CALL_FUNCTION 2
+180 GET_ITER
+>> 182 FOR_ITER 68 ( to 230 )
+184 STORE_FAST 6 ( i )
+
+17 186 LOAD_GLOBAL 2 ( ord )
+188 LOAD_FAST 1 ( str2 )
+190 LOAD_FAST 6 ( i )
+192 BINARY_SUBSCR
+194 CALL_FUNCTION 1
+196 LOAD_CONST 4 ( 48 )
+198 BINARY_SUBTRACT
+200 LOAD_FAST 5 ( carry )
+202 BINARY_ADD
+204 STORE_FAST 7 ( sum )
+
+18 206 LOAD_FAST 3 ( str )
+208 LOAD_GLOBAL 3 ( chr )
+210 LOAD_FAST 7 ( sum )
+212 LOAD_CONST 6 ( 10 )
+214 BINARY_MULTIPLY
+216 LOAD_CONST 4 ( 48 )
+218 BINARY_ADD
+220 CALL_FUNCTION 1
+222 INPLACE_ADD
+224 STORE_FAST 3 ( str )
+
+19 226 LOAD_FAST 7 ( sum )
+228 LOAD_CONST 6 ( 10 )
+230 BINARY_TRUE_DIVIDE
+232 STORE_FAST 5 ( carry )
+
+20 >> 234 LOAD_FAST 5 ( carry )
+236 EXTENDED_ARG 1
+238 POP_JUMP_IF_FALSE 268
+
+21 240 LOAD_FAST 3 ( str )
+242 LOAD_GLOBAL 3 ( chr )
+244 LOAD_FAST 5 ( carry )
+246 LOAD_CONST 4 ( 48 )
+248 BINARY_ADD
+250 CALL_FUNCTION 1
+252 INPLACE_ADD
+254 STORE_FAST 3 ( str )
+186 JUMP_ABSOLUTE 182
+>> 188 POP_BLOCK
+
+22 >> 190 LOAD_FAST 3 ( str )
+192 LOAD_CONST 0 ( None )
+194 LOAD_CONST 0 ( None )
+196 LOAD_CONST 2 ( - 1 )
+198 BUILD_SLICE 3
+200 BINARY_SUBSCR
+202 STORE_FAST 3 ( str )
+
+23 204 LOAD_FAST 3 ( str )
+206 RETURN_VALUE

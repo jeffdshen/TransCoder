@@ -1,0 +1,97 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( n ) :\n    count = 0 ;\n    if ( n and not ( n & ( n - 1 ) ) ) :\n        return n\n    while ( n != 0 ) :\n        n >>= 1\n        count += 1\n    return 1 << count ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    (74,),\n    (70,),\n    (85,),\n    (78,),\n    (71,),\n    (32,),\n    (97,),\n    (90,),\n    (64,),\n    (48,)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def nextPowerOf2 ( n ) :\n    count = 0 ;\n    if ( n and not ( n & ( n - 1 ) ) ) :\n        return n\n    while ( n != 0 ) :\n        n >>= 1\n        count += 1\n    return 1 << count ;\n"}
+Disassembly of <code object nextPowerOf2 at 0x7f816a6e4b70, file "<dis>", line 19>:
+20 0 LOAD_CONST 1 ( 0 )
+2 STORE_FAST 1 ( count )
+
+21 4 LOAD_FAST 1 ( count )
+6 LOAD_CONST 2 ( 1 )
+8 INPLACE_ADD
+10 STORE_FAST 1 ( count )
+
+22 12 LOAD_FAST 1 ( count )
+14 LOAD_CONST 3 ( 1 )
+16 INPLACE_ADD
+18 STORE_FAST 1 ( count )
+
+23 20 LOAD_FAST 1 ( count )
+22 LOAD_CONST 4 ( 1 )
+24 INPLACE_ADD
+26 STORE_FAST 1 ( count )
+
+24 28 LOAD_FAST 1 ( count )
+30 LOAD_CONST 5 ( 1 )
+32 INPLACE_ADD
+34 STORE_FAST 1 ( count )
+
+25 36 LOAD_FAST 1 ( count )
+38 LOAD_CONST 6 ( 2 )
+40 INPLACE_ADD
+42 STORE_FAST 1 ( count )
+
+26 44 LOAD_FAST 1 ( count )
+46 LOAD_CONST 7 ( 1 )
+48 INPLACE_ADD
+50 STORE_FAST 1 ( count )
+
+27 52 LOAD_FAST 1 ( count )
+54 LOAD_CONST 8 ( 2 )
+56 INPLACE_ADD
+58 STORE_FAST 1 ( count )
+
+28 60 LOAD_FAST 1 ( count )
+62 LOAD_CONST 9 ( 2 )
+64 INPLACE_ADD
+66 STORE_FAST 1 ( count )
+
+29 68 LOAD_FAST 1 ( count )
+70 LOAD_CONST 10 ( 2 )
+72 INPLACE_ADD
+74 STORE_FAST 1 ( count )
+
+30 76 LOAD_FAST 1 ( count )
+78 LOAD_CONST 11 ( 3 )
+80 INPLACE_ADD
+82 STORE_FAST 1 ( count )
+
+31 84 LOAD_FAST 1 ( count )
+86 LOAD_CONST 12 ( 2 )
+88 INPLACE_ADD
+90 STORE_FAST 1 ( count )
+92 JUMP_FORWARD 10 ( to 106 )
+
+33 >> 94 LOAD_FAST 1 ( count )
+96 LOAD_CONST 13 ( 3 )
+98 INPLACE_ADD
+100 STORE_FAST 1 ( count )
+
+34 102 LOAD_FAST 1 ( count )
+104 LOAD_CONST 14 ( 2 )
+106 INPLACE_ADD
+108 STORE_FAST 1 ( count )
+
+35 110 LOAD_FAST 1 ( count )
+112 LOAD_CONST 15 ( 2 )
+114 INPLACE_ADD
+116 STORE_FAST 1 ( count )
+
+36 118 LOAD_FAST 1 ( count )
+120 LOAD_CONST 16 ( 2 )
+122 INPLACE_ADD
+124 STORE_FAST 1 ( count )
+
+37 126 LOAD_FAST 1 ( count )
+128 LOAD_CONST 16 ( 2 )
+130 INPLACE_ADD
+132 STORE_FAST 1 ( count )
+
+38 134 LOAD_FAST 1 ( count )
+136 LOAD_CONST 17 ( 3 )
+138 INPLACE_ADD
+140 STORE_FAST 1 ( count )
+
+39 142 LOAD_FAST 1 ( count )
+144 LOAD_CONST 18 ( 2 )
+146 INPLACE_ADD
+148 STORE_FAST 1 ( count )
+
+40 >> 150 LOAD_FAST

@@ -1,0 +1,83 @@
+{"script": "# Copyright (c) 2019-present, Facebook, Inc.\n# All rights reserved.\n#\n# This source code is licensed under the license found in the\n# LICENSE file in the root directory of this source tree.\n#\ndef f_gold ( num ) :\n    series = [ 1 , 3 , 2 , - 1 , - 3 , - 2 ] ;\n    series_index = 0 ;\n    result = 0 ;\n    for i in range ( ( len ( num ) - 1 ) , - 1 , - 1 ) :\n        digit = ord ( num [ i ] ) - 48 ;\n        result += digit * series [ series_index ] ;\n        series_index = ( series_index + 1 ) % 6 ;\n        result %= 7 ;\n    if ( result < 0 ) :\n        result = ( result + 7 ) % 7 ;\n    return result ;\n\n\n#TOFILL\n\nif __name__ == '__main__':\n    param = [\n    ('K',),\n    ('850076',),\n    ('00111',),\n    ('X',),\n    ('1',),\n    ('10010001100',),\n    (' pgPeLz',),\n    ('53212456821275',),\n    ('101',),\n    ('V',)\n        ]\n    n_success = 0\n    for i, parameters_set in enumerate(param):\n        if f_filled(*parameters_set) == f_gold(*parameters_set):\n            n_success+=1\n    print(\"#Results: %i, %i\" % (n_success, len(param)))", "ref": "def remainderWith7 ( num ) :\n    series = [ 1 , 3 , 2 , - 1 , - 3 , - 2 ] ;\n    series_index = 0 ;\n    result = 0 ;\n    for i in range ( ( len ( num ) - 1 ) , - 1 , - 1 ) :\n        digit = ord ( num [ i ] ) - 48 ;\n        result += digit * series [ series_index ] ;\n        series_index = ( series_index + 1 ) % 6 ;\n        result %= 7 ;\n    if ( result < 0 ) :\n        result = ( result + 7 ) % 7 ;\n    return result ;\n"}
+Disassembly of <code object Encoder inderWith7 at 0x7f2b0163dc90, file "<dis>", line 1>:
+2 0 LOAD_CONST 1 ( 1 )
+2 LOAD_CONST 2 ( 3 )
+4 LOAD_CONST 3 ( 2 )
+6 LOAD_CONST 4 ( - 1 )
+8 LOAD_CONST 5 ( - 2 )
+10 BUILD_LIST 4
+12 STORE_FAST 1 ( series )
+
+3 14 LOAD_CONST 6 ( 0 )
+16 STORE_FAST 2 ( series_index )
+
+4 18 LOAD_CONST 6 ( 0 )
+20 STORE_FAST 3 ( result )
+
+5 22 SETUP_LOOP 74 ( to 96 )
+24 LOAD_GLOBAL 0 ( range )
+26 LOAD_GLOBAL 1 ( len )
+28 LOAD_FAST 0 ( num )
+30 CALL_FUNCTION 1
+32 LOAD_CONST 1 ( 1 )
+34 BINARY_SUBTRACT
+36 LOAD_CONST 5 ( - 1 )
+38 LOAD_CONST 5 ( - 1 )
+40 CALL_FUNCTION 3
+42 GET_ITER
+>> 44 FOR_ITER 52 ( to 94 )
+46 STORE_FAST 4 ( i )
+
+6 48 LOAD_GLOBAL 2 ( ord )
+50 LOAD_FAST 0 ( num )
+52 LOAD_FAST 4 ( i )
+54 BINARY_SUBSCR
+56 CALL_FUNCTION 1
+58 LOAD_CONST 7 ( 48 )
+60 BINARY_SUBTRACT
+62 STORE_FAST 5 ( digit )
+
+7 64 LOAD_FAST 3 ( result )
+66 LOAD_FAST 5 ( digit )
+68 LOAD_FAST 1 ( series )
+70 LOAD_FAST 2 ( series_index )
+72 BINARY_SUBSCR
+74 BINARY_MULTIPLY
+76 INPLACE_ADD
+78 STORE_FAST 3 ( result )
+
+8 80 LOAD_FAST 2 ( series_index )
+82 LOAD_CONST 1 ( 1 )
+84 BINARY_ADD
+86 LOAD_CONST 8 ( 6 )
+88 BINARY_MODULO
+90 STORE_FAST 2 ( series_index )
+92 JUMP_ABSOLUTE 44
+>> 94 POP_BLOCK
+
+9 >> 96 LOAD_FAST 3 ( result )
+98 LOAD_CONST 6 ( 0 )
+100 COMPARE_OP 0 ( < )
+102 POP_JUMP_IF_FALSE 116
+
+10 104 LOAD_FAST 3 ( result )
+106 LOAD_CONST 6 ( 7 )
+108 BINARY_ADD
+110 LOAD_CONST 7 ( 7 )
+112 BINARY_MODULO
+114 STORE_FAST 3 ( result )
+
+11 >> 116 LOAD_FAST 3 ( result )
+118 LOAD_CONST 6 ( 0 )
+120 COMPARE_OP 0 ( < )
+122 POP_JUMP_IF_FALSE 146
+
+12 124 LOAD_FAST 3 ( result )
+126 LOAD_CONST 6 ( 7 )
+128 BINARY_ADD
+130 LOAD_CONST 7 ( 7 )
+132 BINARY_MODULO
+134 STORE_FAST 3 ( result )
+
+13 >> 136 LOAD_FAST 3 ( result )
+138 RETURN_VALUE
